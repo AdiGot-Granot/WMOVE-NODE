@@ -103,6 +103,12 @@ function check(name, cond, extra = '') {
     r = await req('GET', '/mpest/entrywc?module=INT', { cookie });
     check('international entry shows Country + title', /International Entry Form/.test(r.body) && /name="SCOUNTRY"/.test(r.body));
 
+    r = await req('GET', '/mpest/entrywc?module=INT', { cookie });
+    check('international entry shows both origin + destination Country', /name="SCOUNTRY"/.test(r.body) && /name="RCOUNTRY"/.test(r.body));
+
+    r = await req('GET', '/mpest/entrywc?module=INT', { cookie });
+    check('international entry keeps referral + move-size lookups', /How did you hear about us/.test(r.body) && /Returning Customer/.test(r.body) && /Select Move Size/.test(r.body));
+
     // ── Auto Transport entry form (entryautowc) ──
     r = await req('GET', '/mpest/entryautowc', { cookie });
     check('auto-transport entry renders', r.status === 200 && /Auto Transport Entry Form/.test(r.body) && /Transport From/.test(r.body) && /Transport To/.test(r.body), `status=${r.status}`);
