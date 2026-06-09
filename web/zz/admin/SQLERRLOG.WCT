@@ -1,0 +1,117 @@
+FUNCTION __SQLERRLOG
+TEXT<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>WM SQL Error Log</title>
+
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+	if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpadmin~SQLerrLogRet~<<pcSCR>>";
+       document.theForm.submit();
+     } ;
+
+	if (i==2) 
+     { 
+       document.theForm.action="/wc.dll?mpadmin~SQLerrLogRet~<<pcSCR>>~DEL3DAYS";
+       document.theForm.submit();
+     } ;
+
+	if (i==3) 
+     { 
+       document.theForm.action="/wc.dll?mpadmin~SQLerrLog~<<pcSCR>>~SORTLINE";
+       document.theForm.submit();
+     } ;
+
+	if (i==4) 
+     { 
+       document.theForm.action="/wc.dll?mpadmin~SQLerrLog~<<pcSCR>>~SORTDTE";
+       document.theForm.submit();
+     } ;
+	if (i==5) 
+     { 
+       document.theForm.action="/wc.dll?mpadmin~SQLerrLogRet~<<pcSCR>>~DELALL";
+       document.theForm.submit();
+     } ;
+
+}
+		
+</SCRIPT>
+</head>
+
+<body>
+ <BR>
+<form name="theForm" method="POST"> 
+<table border="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="100%">
+    <div align="center">
+      <center>
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="50%" id="AutoNumber1">
+  <tr>
+    <td width="48%" valign="top">
+      ENDTEXTSELECT _S1
+        Response.ShowCursor(,,.f.,,"style='font-family: Verdana;color: #000000;font-size: 12pt'")TEXT &nbsp;</td>
+    <td width="4%"></td>
+    <td width="48%">
+      ENDTEXTSELECT _S2
+        Response.ShowCursor(,,.f.,,"style='font-family: Verdana;color: #000000;font-size: 12pt'")TEXT &nbsp;</td>
+ </tr>
+    </table>
+      </center>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%"><B><font size="4"><<gcVERSION>> - <<pcIP>> - <<pcDTE>>&nbsp;<<pcTME>></font></B></td>
+  </tr>
+  <tr>
+    <td width="100%"><B><font size="4"><<pcRECS>>&nbsp;lines</font></B></td>
+  </tr>
+  <tr>
+    <td width="100%"><br>
+    &nbsp;<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber2">
+      <tr>
+        <td width="10%">
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(1)" style="width: 100;cursor: Hand; background-color:Green" ; value="Delete Selected"></td>
+        <td width="20%">&nbsp;
+    <input id="btnSubmit0" type="button" CLASS="SUBOFF" name="SUBMIT2" onclick="submitFunction(2)" style="width: 120;cursor: Hand; background-color:orange"  value="Delete last 3 days"></td>
+        <td width="28%">&nbsp;
+    <input id="btnSubmit1" type="button" CLASS="SUBOFF" name="SUBMIT3" onclick="submitFunction(3)" style="width: 100;cursor: Hand; background-color:yellow"  value="Sort by line">
+    <input id="btnSubmit3" type="button" CLASS="SUBOFF" name="SUBMIT4" onclick="submitFunction(4)" style="width: 100;cursor: Hand; background-color:yellow"  value="Sort by Date"></td>
+        <td width="12%">&nbsp;</td><td width="12%">
+    <input id="btnSubmit4" type="button" CLASS="SUBOFF" name="SUBMIT5" onclick="submitFunction(5)" style="width: 100;cursor: Hand; background-color:Red" ; value="Delete All"></td>
+      </tr>
+    </table>
+    </td>
+  </tr>  
+</table>
+  <BR>
+<table border="1" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+    <tr>
+      <td width="4%" align="center" bgcolor="#0081D3"><font face="Verdana" size="2" color="#FFFFFF">Delete</font></td>
+      <td width="8%" align="center" bgcolor="#0081D3"><font size="2" face="Verdana" color="#FFFFFF">MSG1</font></td>
+      <td width="31%" align="center" bgcolor="#0081D3"><font size="2" face="Verdana" color="#FFFFFF">Error Desc</font></td>
+      <td width="9%" align="center" bgcolor="#0081D3"><font size="2" face="Verdana" color="#FFFFFF">Cust/Server</font></td>
+      <td width="9%" align="center" bgcolor="#0081D3"><font size="2" face="Verdana" color="#FFFFFF">MSG2</font></td>
+    </tr>
+   ENDTEXT SELECT _ERR0 
+    	   SCAN TEXT
+    <tr>
+      <td width="4%" height="18" align="center"><label class="switch"><input type="checkbox" name="<<ALLT(STR(ERRID))>>" value="ON"><div class="slider round"></div></label><br><<ALLT(STR(RECNO()))>></td>
+      <td width="8%" height="18"><font face="Verdana" size="2"><<MSG1>></font></td>
+      <td width="31%" height="18"><font face="Verdana" size="2"><<FNC>></font></td>
+      <td width="9%" height="18"><font face="Verdana" size="2"><<CUST>></font></td>
+      <td width="9%" height="18"><font face="Verdana" size="2"><<MSG2>></font></td>
+    </tr>
+   ENDTEXT ENDSCAN TEXT
+</table>
+</form>
+</body>
+</html>ENDTEXT

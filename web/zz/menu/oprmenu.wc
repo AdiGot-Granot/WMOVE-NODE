@@ -1,0 +1,185 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Operation Menu</title>
+
+<script language="JavaScript">
+var msg="Right Click Disabled!";
+function disableIE() {if (document.all) {alert(msg);return false;}
+}
+function disableNS(e) {
+  if (document.layers||(document.getElementById&&!document.all)) {
+    if (e.which==2||e.which==3) {alert(msg);return false;}
+  }
+}
+if (document.layers) {
+  document.captureEvents(Event.MOUSEDOWN);document.onmousedown=disableNS;
+} else {
+  document.onmouseup=disableNS;document.oncontextmenu=disableIE;
+}
+document.oncontextmenu=new Function("alert(msg);return false")
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mv~oprmenuret~<%=pcSCR%>~1');
+    if (i==2) window.location.href=('/wc.dll?mv~oprmenuret~<%=pcSCR%>~2');
+    if (i==3) window.location.href=('/wc.dll?mv~oprmenuret~<%=pcSCR%>~3');
+    if (i==4) window.location.href=('/wc.dll?mv~oprmenuret~<%=pcSCR%>~4');
+    if (i==5) window.location.href=('/wc.dll?mpopr~truckmiscwc~<%=pcSCR%>');    
+    if (i==6) window.location.href=('/wc.dll?mpopr~multipaywc~<%=pcSCR%>');        
+    if (i==7) window.location.href=('/wc.dll?mprep~workersdata~<%=pcSCR%>');
+    if (i==8) window.location.href=('/wc.dll?mpmainten~workerswc~<%=pcSCR%>');
+    if (i==9) window.location.href=('/wc.dll?mpmainten~truckswc~<%=pcSCR%>');   
+	}
+
+function submitTrip(i) {
+    if (i==1) window.location.href=('/wc.dll?mpopr~TripsWc~<%=pcSCR%>');
+    if (i==2) window.location.href=('/wc.dll?mpopr~AssignTripWc~<%=pcSCR%>');
+    if (i==3) window.location.href=('/wc.dll?mpopr~DailyTrip~<%=pcSCR%>');
+    if (i==4) window.location.href=('/wc.dll?mpopr~TripClosedWc~<%=pcSCR%>');       
+	}
+
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 12pt;
+  				  	font-family: Times new Roman;
+  				  	cursor: pointer;
+					background-color: white;
+				  	text-align: left}
+	.txton		{	color: blue;
+				  	font-size: 12pt;
+				  	text-align: left;
+  				  	font-family: Times new Roman;
+  				  	cursor: pointer;
+					background-color: white;
+					text-decoration: underline
+  				  	cursor: pointer;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.MENU		{	color: #000000;
+				  	font-size: 8pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					background-color: #EFEFEF;
+				  	text-align: left;
+				  	border: 1px solid #708090}					
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500" align="center">
+  <tr>
+    <td width="100%"><IMG SRC="zz/images/topBaropr.gif" width="500" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#bebe99"><a href="javascript:window.close()"><img border="0" src="zz/images/x.gif" align="right" width="17" height="18"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" height="40" bgcolor="#FFFFFF" align="center"><font face="Verdana"><u><b>Operation Menu</b></u></font></td>
+  </tr>  
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">  
+  <form name="theForm" method="post">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+	<td width="24%" valign="top">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitFunction(1)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Jobs in Process</font></td>
+ </tr>
+ <%IF pnLEVEL > 3 %>	   				  
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+    <td width="38%" height="30"><font class="txtoff" onclick="submitFunction(2)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Salespersons Payroll</font></td>
+ </tr>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitFunction(3)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Workers Payroll</font></td>
+ </tr>
+ <% ENDIF %>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitFunction(7)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Workers Contact List</font></td>
+ </tr>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitFunction(5)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Trucks Operation</font></td>
+ </tr> 
+ <%IF pcCUSTNO='WHITEGLOVE' %>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitFunction(8)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Workers Table</font></td>
+ </tr> 
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitFunction(9)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Trucks Table</font></td>
+ </tr>
+ <% ENDIF %>
+ <%IF plCLAIMS%>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitFunction(4)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Claims & Damages</font></td>
+ </tr>
+ <% ENDIF %>
+ <%IF pcCUSTNO='MOVINGAPT' AND pnLEVEL=5 %>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitFunction(6)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Process Multiple Payments</font></td>
+ </tr>
+ <% ENDIF %>  
+</table>	
+	</td>
+	<td width="24%" valign="top">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitTrip(1)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Trips Table</font></td>
+ </tr>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+    <td width="38%" height="30"><font class="txtoff" onclick="submitTrip(2)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Assign Jobs to Trips</font></td>
+ </tr>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitTrip(3)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Trips Calendar</font></td>
+ </tr>
+  <tr>
+	<td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+	<td width="38%" height="30"><font class="txtoff" onclick="submitTrip(4)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Closed Trips</font></td>
+ </tr>
+</table>	
+	</td>
+ </tr>
+</table>  
+  </form>
+ </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366"><font size="2" color="white">User: <%=pcUser%></font></td>
+  </tr>
+  <tr>
+    <td width="100%"><IMG SRC="zz/images/botBar.gif" width="500" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>

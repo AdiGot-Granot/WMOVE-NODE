@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/zz/editor/main.css">
+
+<title>Extra Stop/Notes</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction() {
+       document.theForm.action="/wc.dll?mpest~extstopret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+</SCRIPT>
+
+   
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer}
+</style>
+
+<%IF pcCUSTNO<>'CHRISTOS'%>
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+<%ENDIF%>
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" height="25" bgcolor="#008000" align="center"><b><font face="Verdana" color="#FFFFFF">Extra Stop / Notes <font color="FFFF00"><%=(pcDEPT)+(pcORDNO)%></font></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<form name="theForm" method="POST">
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%" height="25" align="center"><b><font face="Verdana" size="2">Your notes appear in the <%=IIF(pcTYPE='T','Auto Transport Estimate','Moving Estimate')%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea rows="18" name="EXTSTOP" cols="60" tabindex="1"><%=pcEXTSTOP%></textarea></td>
+ </tr>
+</table>
+ <br>
+<table border="0" width="60%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="19%" align="center">
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" onclick="submitFunction()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="2" value="Submit"></td>
+    <td width="19%" align="center">
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" onclick="javascript: window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="3" value="Exit"></td>
+ </tr>
+</table>
+  </form>
+  </td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="19">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

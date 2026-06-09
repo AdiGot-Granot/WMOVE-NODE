@@ -1,0 +1,463 @@
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/zz/editor/main.css">
+
+<title>PickUp-<%=pcORDNO%></title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" /><!--CONF CHECKBOX-->
+  
+<script type="text/javascript">
+   jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });                   
+   });
+</script>
+
+<!--DROPDOWN AGENT SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN AGENT SEARCH-->
+
+<script type="text/javascript">
+      jQuery( document ).ready(function( $ ) {  
+      $('.agent-select').select2({
+          placeholder: 'Select Agent',
+          allowClear: true
+      });
+  });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function jobCard(i) {
+    if (i==1) window.location.href=('/wc.dll?mpopr~boxdlvwc~<%=pcSCR%>');
+    if (i==2) window.location.href=('/wc.dll?mpopr~packdaywc~<%=pcSCR%>');
+    if (i==3) window.location.href=('/wc.dll?mpopr~pickupwc~<%=pcSCR%>');
+    if (i==4) window.location.href=('/wc.dll?mpopr~oprwc~<%=pcSCR%>');
+//    if (i==5) window.location.href=('/wc.dll?mpopr~claimswc~<%=pcSCR%>');
+//    if (i==6) window.location.href=('/wc.dll?mpstg~stgwc~<%=pcSCR%>');
+//    if (i==7) window.location.href=('/wc.dll?mpopr~wageswc~<%=pcSCR%>');
+}
+
+function edittrip(){
+ 	window.open('/wc.dll?mpopr~tripaddwc~<%=pcSCR%>~theForm~TRIPNO~<%=pcCODE%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=700,height=400')
+ }
+
+function printTrip(){
+ 	window.open('/wc.dll?mpopr~TripPrint~<%=pcSCR%>~<%=ALLT(STR(pnTRIPID))%>')
+ }
+ 
+function submitagent() {
+   	document.theForm.action="/wc.dll?mpopr~agentfee~<%=pcSCR%>~<%=pcCODE%>";
+    document.theForm.submit();
+    }
+
+function submitPU(i) {
+    if (i==1) { document.theForm.action="/wc.dll?mpopr~packdayret~<%=pcSCR%>";
+                document.theForm.submit();
+    }
+    if (i==2){
+      window.open('/wc.dll?mpopr~mpwwc~<%=pcSCR%>~PU','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=600');
+    self.name="main"}
+    if (i==3){
+      window.open('/wc.dll?mpopr~truckswc~<%=pcSCR%>~PU','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=720,height=600');
+    self.name="main"}
+}
+
+</SCRIPT>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+
+<STYLE TYPE="text/css">
+
+/* Card */
+.nav-card {
+  display: inline-block;
+  padding: 10px 22px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #F7F7E7;
+  font-family: Arial;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #000000;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: border-color 0.18s, color 0.18s, background 0.18s, box-shadow 0.18s;
+}
+ 
+/*Hover state */
+.nav-card:hover {
+  border-color: #000;
+  color: #000;
+  background: #FFBE42;
+}
+ 
+/* Active / selected state */
+.nav-card.active {
+  border-color: #000;
+  color: #000000;
+  background: #F7F0B9;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.12);
+}
+
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #800000;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+
+</style>
+</head>
+
+<BODY bgColor="#4e6699">
+<br><br>
+<TABLE cellSpacing="0" cellPadding="0" align="center" width="850" bgColor="#4e6699" border="0">
+  <tr>
+    <% IF plBXDLV=.T. %>
+    <td width="20%" align="center" height="25"><a onclick="jobCard(1)"><span class="nav-card">Box Delivery</span></a></td>
+    <%ENDIF%>
+    <% IF plPKDAY=.T. %>
+    <td width="20%" align="center" height="25"><a onclick="jobCard(2)"><span class="nav-card">Packing Day</span></a></td>
+    <%ENDIF%>
+    <td width="20%" align="center" height="25"><a onclick="jobCard(3)"><span class="nav-card active">Job Pick-Up</span></a></td>
+    <td width="20%" align="center" height="25"><span class="nav-card">Delivery 1</span></td>
+    <td width="20%" align="center" height="25">&nbsp;</td>
+  </tr>
+</TABLE>
+ <br>
+<TABLE cellSpacing="0" cellPadding="0" align="center" width="850" bgColor="#ffffff" border="0">
+  <tr>
+    <td width="100%" align="center" bgcolor="#800000" height="25"><font style="font-family:Verdana;font-weight:bold;color:#FFF;">Job Pick-Up</font></td>
+  </tr>
+</TABLE>
+<TABLE cellSpacing="0" cellPadding="0" align="center" width="850" bgColor="#ffffff" border="0">
+  <TR>
+    <TD><br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="98%" cellspacing="0" cellpadding="0">
+   <tr>
+     <td valign="top" width="34%">
+	<table border="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="100%" cellspacing="1" cellpadding="3">
+   	   <tr>
+         <td width="100%"><b>Moving From: <%=ALLT(_EST.SNAME)%></b></td>
+     </tr>
+   	   <tr>
+         <td width="100%"><%=ALLT(_EST.SADD1)+' '+ALLT(_EST.SADD2)+',' %><%=IIF(EMPTY(_EST.SAPT),'',' A: '+ALLT(_EST.SAPT)+', ')%><%=IIF(EMPTY(_EST.SFLOOR),'',' F: '+ALLT(STR(_EST.SFLOOR)))%></td>
+     </tr>
+   	   <tr>
+         <td width="100%"><%=ALLT(PROPER(_EST.SCITY))%>,&nbsp;<%=ALLT(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%></td>
+     </tr>
+     <% IF !EMPTY(_EST.SCOUNTRY) %>
+   	   <tr>
+         <td width="100%"><%=ALLT(_EST.SCOUNTRY)%></td>
+     </tr>
+     <%ENDIF%>
+   	   <tr>
+         <td width="100%"><%=ALLT(_EST.STELH)%><%=IIF(EMPTY(_EST.STELO),'',' / '+ALLT(_EST.STELO))%></td>
+     </tr>                           
+	</table>
+     </td>
+     <td valign="top" width="33%" style="border-left: 1px solid #808080;">
+	<table border="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="100%" cellspacing="1" cellpadding="3">
+   	   <tr>
+         <td width="100%"><b>Moving To: <%=ALLT(_EST.RNAME)%></b></td>
+     </tr>
+   	   <tr>
+         <td width="100%"><%=ALLT(_EST.RADD1)+' '+ALLT(_EST.RADD2)+','%><%=IIF(EMPTY(_EST.RAPT),'',' A: '+ALLT(_EST.RAPT)+', ')%><%=IIF(EMPTY(_EST.RFLOOR),'',' F: '+ALLT(STR(_EST.RFLOOR)))%></td>
+     </tr>
+   	   <tr>
+         <td width="100%"><%=ALLT(PROPER(_EST.RCITY))%>,&nbsp;<%=ALLT(_EST.RSTATE)%>&nbsp;<%=ALLT(_EST.RZIP)%></td>
+     </tr>
+     <% IF !EMPTY(_EST.RCOUNTRY) %>
+   	   <tr>
+         <td width="100%"><%=ALLT(_EST.RCOUNTRY)%></td>
+     </tr>
+     <%ENDIF%>
+   	   <tr>
+         <td width="100%"><%=ALLT(_EST.RTELH)%><%=IIF(EMPTY(_EST.RTELO),'',' / '+ALLT(_EST.RTELO))%></td>
+     </tr>       
+	</table>     
+     </td>
+     <td valign="top" width="33%" style="border-left: 1px solid #808080;">
+	<table border="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="100%" cellspacing="1" cellpadding="3">
+   	   <tr>
+         <td width="50%"><b>Job Number:</b></td>
+         <td width="50%"><b><font style="font-size:12pt;color:#F76A00;"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></font></b></td>
+     </tr>
+   	   <tr>
+         <td width="50%"><b>Job Status:</b></td>
+         <td width="50%"><b><%=pcSTATUSNAME%><%=IIF(plCLAIMSX=.T.,'  CLAIM','')%></b></td>
+     </tr>
+   	   <tr>
+         <td width="50%"><b>Move Balance:</b></td>
+         <td width="50%"><b><font style="font-size:11pt;color:#FF0000;"><%=pcBALANCE%></font></b></td>
+     </tr>
+     <% IF pcBALSTG>'0' %>
+   	   <tr>
+         <td width="50%"><b>Storage Balance:</b></td>
+         <td width="50%"><b><font style="font-size:11pt;color:#FF0000;"><%=pcBALSTG%></font></b></td>
+     </tr>
+     <%ENDIF%>
+   	   <tr>
+         <td width="100%" align="center" colspan="2"><a onclick="Javascript: window.open('/wc.dll?mpopr~prnslipwc~<%=pcSCR%>~<%=pcCODE%>','')" style="text-decoration:underline;color:#0000FF;cursor:pointer;"><b>Print Pick-Up Slip</b></a></td>
+     </tr>       
+	</table>     
+     </td>
+  </tr>       
+</table>
+ <br>     
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#808080" width="98%">
+  <tr>
+    <td valign="top">
+<FORM NAME="theForm" METHOD="POST">    
+<table border="0" cellpadding="3" cellspacing="1" style="border-collapse: collapse;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="5"><b><u><font size="3">Job Parameters</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="18%"><b>Job Date/Time:</b></td>
+    <td width="12%" ><input type="text" autocomplete="off" id="Date1" name="DTEPU" size="8" value="<%=_PU.DTE%>" tabindex="1" maxlength="15"></td>
+    <td width="22%" style="border-right: 1px solid #808080;"><input type="text" name="TMEPU" size="8" value="<%=ALLT(_PU.TME)%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~TMEPU','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')"  tabindex="2" maxlength="20"></td>
+    <td width="18%">Workers Pay Hours:</td>
+    <td width="30%"><input type="text" name="HRSPU" style="width:50px;" value="<%=ALLT(STR(_PU.HRS,6,2))%>" tabindex="8" size="20"></td>
+ </tr> 
+  <tr>
+    <td width="18%"><b>Confirm Job:</b></td>
+    <td width="34%" style="border-right: 1px solid #808080;" colspan="2"><label class="switch"><input type="checkbox" id="togBtn" name="CONFPU" value="ON" <%=IIF(_PU.CONFIRM,'checked','')%> tabindex="3"><div class="slider round"></div></label></td>
+    <td width="18%"><b>Job CF:</b></td>
+    <td width="30%"><input type="text" style="width:55px;text-align: right;" name="TOTALCF" size="5" value="<%=ALLT(STR(_PU.TOTALCF))%>" tabindex="6"></td>
+ </tr> 
+  <tr>
+    <td width="18%">Required Workers:</td>
+    <td width="34%" style="border-right: 1px solid #808080;" colspan="2">
+	<select size="1" name="JMENPU" tabindex="4">
+	  <option value="<%=ALLT(STR(_PU.JMEN))%>" selected><%=ALLT(STR(_PU.JMEN))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+		  <option>11</option>
+		  <option>12</option>
+		  <option>13</option>
+		  <option>14</option>
+		  <option>15</option>
+		  <option>16</option>
+		  <option>17</option>
+		  <option>18</option>
+		  <option>19</option>
+		  <option>20</option>		  
+    </select></td>
+    <td width="18%">Job LBS:</td>
+    <td width="30%"><input type="text" style="width:55px;text-align: right;" name="TOTALLBS" size="5" value="<%=ALLT(STR(_PU.TOTALLBS))%>" tabindex="7"></td>
+ </tr>
+  <tr>
+    <td width="18%">Required Truck(s):</td>
+    <td width="34%" style="border-right: 1px solid #808080;" colspan="2">
+	<select size="1" name="JTRUCKPU" tabindex="5">
+	  <option value="<%=ALLT(STR(_PU.JTRUCK))%>" selected><%=ALLT(STR(_PU.JTRUCK))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+    </select></td>
+    <td width="17%"><b><a onclick="edittrip()" style="text-decoration:underline;color:#0000FF;cursor:pointer;">Assign Trip</a></b></td>
+    <td width="31%"><input type="text" name="TRIPNO" size="15" value="<%=pcTRIPNO%>" style="color: #000000; border: 1px solid #CCCCCC;" READONLY>
+    <%IF !EMPTY(pcTRIPNO)%><b><a onclick="printTrip()" style="text-decoration:underline;color:#0000FF;cursor:pointer;">Trip Printout</a></b><%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="18%">Travel Days:</td>
+    <td width="34%" style="border-right: 1px solid #808080;" colspan="2"><input type="text" style="width:35px;text-align: right;" name="DURATION" size="2" value="<%=ALLT(STR((_PU.DROPDTE-_PU.DTE)+1))%>" tabindex="5"></td>
+    <td width="17%">Trip Unload Date:</td>
+    <td width="31%"><input type="text" autocomplete="off" name="SHDROPDTE" id="Date2" size="8" ALIGN="center" value="<%=pcSHDROPDTE%>" ></td>
+  </tr>
+  
+  <tr>
+    <td width="52%" align="left" style="border-right: 1px solid #808080;" colspan="3">&nbsp;<b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitPU(2)" style="cursor:pointer;">Assign Workers</a></font></u></b></td>
+    <td width="48%" align="left" colspan="2">&nbsp;<b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitPU(3)" style="cursor:pointer;">Assign Trucks</a></font></u></b></td>
+  </tr>    
+  <tr>
+    <td width="52%" valign="top" style="border-right: 1px solid #808080;" colspan="3">
+    <table border="1" align="center" cellSpacing="0" cellPadding="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="95%">
+      <tr>
+        <td width="55%" height="23" bgcolor="#800000" align="left">&nbsp;<font color="#FFFFFF"><b>Workers</b></font></td>
+        <td width="25%" height="23" bgcolor="#800000" align="left">&nbsp;<font color="#FFFFFF"><b>Code</b></font></td>
+     </tr>
+      <%SELECT _MPWPU
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="55%">&nbsp;<%=ALLT(ID)%><%=IIF(EMPTY(NAME),'',' - <b>'+ALLT(NAME)+'</b>')%></td>
+        <td width="25%">&nbsp;<%=ALLT(OPRCODE)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>    
+    </td>
+    <td width="48%" valign="top" colspan="2">
+    <table border="1" align="center" cellSpacing="1" cellPadding="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="95%">
+      <tr>
+        <td width="38%" height="23" bgcolor="#800000" align="left">&nbsp;<font color="#FFFFFF"><b>Truck</b></font></td>
+        <td width="42%" height="23" bgcolor="#800000" align="left">&nbsp;<font color="#FFFFFF"><b>Driver</b></font></td>
+     </tr>
+      <%SELECT _TRPU
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="38%">&nbsp;<%=ALLT(TRUCK)%></td>
+        <td width="42%">&nbsp;<%=ALLT(DRIVER)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>    
+    </td>
+  </tr>  
+  </table>	
+  <% IF plAGENT AND !plBLKAGENTS %>
+  <br>  
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%"> 
+  <tr>
+    <td width="100%" colspan="5"><b><font face="Verdana" size="2">Agent:
+	<select size="1" name="AGENTIDPU" tabindex="10" class="agent-select" style="width: 450px;">
+	  <option value="<%=pnAGENTIDPU%>" selected><%=pcAGCOMPANYPU%></option> 
+	    <option></option>
+	    <% SELECT _TAGENT 
+	       GO TOP 
+	   	 SCAN %>
+	   <option value="<%=ALLT(STR(AGENTID))%>"><%=ALLT(AGENT)%>&nbsp;&nbsp;***&nbsp;&nbsp;<%=ALLT(COMPANY)%></option>
+       <% ENDSCAN %>  
+    </select>
+    <input type="checkbox" name="SUBAGENT" value="ON" <%=IIF(_PU.SUBAGENT,'checked','')%>> Job Holder</font></b></td>
+  </tr>
+</table>    
+  <%ENDIF%>  
+  </td>
+ </tr>
+</table>
+ <br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%" align="center"><b><u><font face="Verdana">Internal Office Remarks</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea rows="18" name="REMPU" cols="60" tabindex="7"><%=ALLT(_PU.REMARKS)%></textarea></td>
+ </tr>
+</table>
+<% IF _EST.STATUS<>'D' %>
+ <br>
+<table border="0" align="center" width="90%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="100%" align="center"><input type="button" CLASS="SUBOFF" name="B7" onclick="submitPU(1)" value="Submit"></td>    
+ </TR>
+</TABLE>
+<%ENDIF%>
+<% IF plAGENT AND !plBLKAGENTS %>
+  <br>
+<table border="0" width="98%" align="center" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#808080">
+   <tr>
+	 <td width="100%">
+<table border="0" style="border-collapse: collapse;font-family:Verdana;font-size:10pt;line-height:27px;" bordercolor="#111111" width="100%" bordercolor="#111111" cellspacing="1" cellpadding="2">
+  <tr>
+    <td align="center" colspan="4"><b><u><%=IIF(_PU.SUBAGENT=.T.,'Agent','Company')%> Fee</u></b></td>
+ </tr> 
+  <tr>
+    <td width="271" align="center" style="border-right: 1px solid #808080;" colspan="2"><b><u>Job Fee</u></b></td>
+    <td width="304" align="center" colspan="2"><b><u>Accessorial</u></b></td>
+ </tr>
+  <tr>
+    <td width="91"><b>CF Loaded:</b></td>
+    <td width="175" style="border-right: 1px solid #808080;"><input type="text" name="JOBCF" autocomplete="off" style="width:50px;text-align: right;" size="3" value="<%=ALLT(STR(_AG.JOBCF))%>" tabindex="10"></td>
+    <td width="81">Labor $:</td>
+    <td width="219"><input type="text" name="LABOR" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.LABOR=0,'',ALLT(STR(_AG.LABOR,7,2)))%>" tabindex="18" size="3"></td>
+ </tr>
+  <tr>
+    <td width="91">Per CF $:</td>
+    <td width="175" style="border-right: 1px solid #808080;"><input type="text" name="AGPERCF" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.AGPERCF=0,' ',ALLT(STR(_AG.AGPERCF,7,2)))%>" tabindex="18" size="20"></td>
+    <td width="81">Blankets $:</td>
+    <td width="219"><input type="text" name="BLANKETS" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.BLANKETS=0,'',ALLT(STR(_AG.BLANKETS)))%>" tabindex="18" size="3"></td>
+ </tr> 
+  <tr>
+    <td width="91">Flat Fee $:</td>
+    <td width="175" style="border-right: 1px solid #808080;"><input type="text" name="AGFLAT" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.AGFLAT=0,'',ALLT(STR(_AG.AGFLAT)))%>" tabindex="20" size="3"></td>
+    <td width="81">Others $:</td>
+    <td width="219"><input type="text" name="OTHERSAMT" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.OTHERSAMT=0,'',ALLT(STR(_AG.OTHERSAMT,7,2)))%>" tabindex="18" size="3"></td>
+ </tr>
+  <tr>
+    <td width="91">Percent %:</td>
+    <td width="175" style="border-right: 1px solid #808080;"><input type="text" name="AGPERCENT" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.AGPERCENT=0,'',ALLT(STR(_AG.AGPERCENT,7,0)))%>" tabindex="17" size="3"></td>
+    <td width="81">Other:</td>
+    <td width="219"><input type="text" name="OTHERSTXT" autocomplete="off" value="<%=ALLT(_AG.OTHERSTXT)%>" tabindex="18" size="30"></td>
+ </tr>
+   <% IF _EST.STATUS<>'D' AND !EMPTY(_PU.AGENT) %>
+  <tr>
+	<td width="100%" colspan="4" height="10" style="font-size:0; line-height:0;"></td>
+ </tr>   
+  <tr>
+    <td align="center" colspan="4"><input type="button" CLASS="SUBOFF" name="B6" onclick="submitagent()" value="Submit Agent Fee"></td>
+ </tr>
+   <%ENDIF%> 
+</table>	 
+	 </td>    
+  </TR>
+</TABLE>
+<%ENDIF%>    
+ &nbsp;</td>
+ </tr>
+</table>
+</form>
+<TABLE cellSpacing="0" cellPadding="0" align="center" width="850" bgColor="#ffffff" border="0">
+  <tr>
+    <td width="100%" align="center" bgcolor="#800000" height="25">&nbsp;</td>
+  </tr>
+</TABLE>   
+</BODY>
+</HTML>

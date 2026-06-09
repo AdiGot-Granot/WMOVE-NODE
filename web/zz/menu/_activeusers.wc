@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Active Users</title>
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~activeusersret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center}	
+	.TD2		{	color: #000000;
+				  	font-size: 9pt;
+					font-family: Verdana;
+					text-align: left}		
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+  <tr>
+    <td width="700" colspan="2"><IMG SRC="/zz/images/topBar.gif" width="700" height="14"></td>
+  </tr>  
+  <tr>
+    <td width="673" BGCOLOR="#008000" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Active Users</font></b></td>
+    <td width="29" BGCOLOR="#008000"><a href="javascript:window.close()">
+    <img border="0" src="zz/images/x.gif" align="right" width="17" height="18"></a></td>
+  </tr>
+  <tr>
+    <td width="702" bgcolor="#FFFFFF" colspan="2"><br>
+<FORM NAME="theForm" method="post">
+<table border="2" align="center" style="border-collapse: collapse" bordercolor="#7B96B5" width="95%">
+  <tr>
+    <td width="5%" class="TD1">ID</td>
+    <td width="5%" class="TD1">Active</td>
+    <td width="3%" class="TD1">User Name</td>
+    <td width="13%" class="TD1">Full Name</td>
+    <td width="10%" class="TD1">Dept/Level</td>
+    <td width="3%" class="TD1">QA</td>
+ </tr>
+<%SELECT _ACTIVE
+    SCAN%>
+  <tr>
+    <td width="5%" align="center"><font style="font-size:8pt;font-family:Verdana;"><%=ALLT(STR(USERID))%></font>&nbsp;</td> 
+    <td width="5%" align="center"><input type="checkbox" name="<%='t'+ALLT(STR(USERID)) %>" value="ON" <%=IIF(ACTIVE,'checked','')%>></td> 
+    <td width="8%" class="TD2">&nbsp;<%=ALLT(USERNAME)%></td>          
+    <td width="9%" class="TD2">&nbsp;<%=ALLT(NAME)%></td>          
+    <td width="10%" class="TD2">&nbsp;<font color="<%=ALLT(FONTCOLOR)%>"><%=ALLT(CLEVEL)%></font></td>
+    <td width="3%" class="TD2">&nbsp;&nbsp;<b><%=IIF(QA=.T.,'Yes','')%></b></td>
+ </tr>
+ <% ENDSCAN %>
+</table>
+   <BR>
+<table border="0" align="center" style="border-collapse: collapse" width="50%">
+  <tr>
+    <td width="49%" align="center">
+	<input id="btnSubmit" type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+    <td width="49%" align="center">
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="B4" onclick="submitFunction(3)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+  </tr>
+ </table>    
+</form>    
+    </td>
+  </tr>
+  <tr>
+    <td width="700" bgcolor="#993366" height="15" colspan="2"><font size="2" color="white">User: <%=pcUser%>&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td width="700" height="15" colspan="2"><IMG SRC="/zz/images/botBar.gif" width="700" height="14"></td>
+  </tr>  
+  </table> 
+</body>
+</html>

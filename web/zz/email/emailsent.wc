@@ -1,0 +1,21 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Send Email</title>
+</head>
+
+<body>
+<br>
+  <table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="72%">
+    <tr>
+      <td width="100%" align="center"><b><font style="font-family:Verdana;font-size:11pt;"><%=ALLT(pcSUBJECT)%><br><br>was sent successfully</font></b></td>
+    </tr>
+  </table>
+<br><center><img border="0" src="zz/images/mailsent.gif" width="149" height="103">
+<% IF plCLAIMS=.F. AND pnTEMAILID<>201 %><br><br><b><a href="/wc.dll?mpest~emailcenterwc~<%=pcSCR%>"><font face="Verdana" size="2">Back to Email Center</font></a><%ENDIF%>
+<br><br><br><b><a href="javascript:window.close()"><font face="Verdana" size="2">Close Window</font></a></b></center>
+
+</body>
+
+</html>

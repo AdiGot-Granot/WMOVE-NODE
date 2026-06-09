@@ -1,0 +1,12 @@
+FUNCTION __LEADSMNG
+TEXT<html>
+<FRAMESET rows="0,*" >
+	<FRAME NAME = "TOP" src="/zz/util/spacer.htm" target="contents" resiseable >
+	<FRAMESET cols='275,*'>
+		<FRAME NAME="MENU" SRC="/wc.dll?mpleads~LeadsMngMenuWc~<<pcSCR>>"  resiseable>
+		<FRAME NAME="MainWindow" SRC="/wc.dll?mpleads~LeadsMngEditWc~<<pcSCR>>~<<pcCUSTNO>>" resiseable>
+	</FRAMESET>
+	<noframes>
+    </noframes>
+</FRAMESET>
+</html>ENDTEXT

@@ -1,0 +1,63 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Carrier Loads Board Login</title>
+<script language="JavaScript" src="/zz/util/formcheck.js"> </script>
+
+<script language="JavaScript">
+var msg="Right Click Disabled!";
+function disableIE() {if (document.all) {alert(msg);return false;}
+}
+function disableNS(e) {
+  if (document.layers||(document.getElementById&&!document.all)) {
+    if (e.which==2||e.which==3) {alert(msg);return false;}
+  }
+}
+if (document.layers) {
+  document.captureEvents(Event.MOUSEDOWN);document.onmousedown=disableNS;
+} else {
+  document.onmouseup=disableNS;document.oncontextmenu=disableIE;
+}
+document.oncontextmenu=new Function("alert(msg);return false")
+</script>
+
+</head>
+
+<body onload="javascript: window.theForm.PINCODE.focus()">
+<center>
+<%IF pcCUSTNO='MOVINGAPT'%>
+<font face="Verdana" color="6D0092"><font size="5"><b><i>Moving Services Team</i></font><br>Operation: 786-600-3775</font></b><br>
+<%ELSE%>
+<img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>?ver=<%=RIGHT(SYS(2015),6)%>" alt="" width="700" height="100"><br><br>
+<font style="font-family:Arial;font-size:11pt;"><b><%=pcLBCONTACT%></b></font><br><br>
+<%ENDIF%>
+</center>
+<table border="2" align="center" width="500" bgcolor="#0081D3" cellspacing="1" cellpadding="1" bordercolor="#0081D3" style="border-collapse: collapse">
+  <tr>
+	<td width="100%" bgcolor="#0081D3" align="center"><b><font face="Arial" color="#FFFFFF">Carrier Loads Board Login</font></b></td>
+  </tr>
+  <tr>
+	<td width="100%" bgcolor="#F7F7E7">
+<form name="theForm" method="post" action="/wc.dll?mpagent~AgLoginRet~<%=ALLT(pcCUSTREF)%>">	
+<table border="0" align="center" cellpadding="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" cellspacing="1">
+	<tr>
+	  <td width="48%" height="40" align="right"><b><font face="Arial" size="2">Carrier Pin Code:</b></font></td>
+	  <td width="52%" height="40">&nbsp;<input name="PINCODE" onclick='this.value=""' autocomplete="off" maxlength="4" size="4" tabindex="1"></td>
+   </tr>   
+	<tr>
+	  <td width="100%" height="40" ALIGN="CENTER" colspan="2">
+	  <input id="btnSubmit" type="submit" value="Login" name="B3" tabindex="2" style="font-family: ARIAL;font-size: 10pt; font-weight: bold; width:100;height:25;cursor:pointer;"></td>
+   </tr>
+	<tr>
+	  <td width="100%" height="30" valign="bottom" colspan="2">&nbsp;<b><font face="Arial" size="2">Forgot 
+      your pin code? Contact your Broker.</b></font></td>
+   </tr>   	    	
+</table>
+</form>	
+	</td>
+  </tr>
+</table>
+</body>
+</html>

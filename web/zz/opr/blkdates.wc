@@ -1,0 +1,173 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Block/Limit Days</title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->  
+
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });       
+   });
+      
+</script>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function BlkSave(par) { 
+       document.theForm.action="/wc.dll?mpopr~blkdatesret~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+
+function Blkvisual(par) { 
+       document.theForm.action="/wc.dll?mpopr~blkvisualret~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+  				  	color:#FFFFFF;
+					text-align: center;
+					background-color:#31719C;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+  				  	color:#000000;
+					text-align: center;}					
+ 	.BUTTON	 	{	color: black; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 70;
+					height: 20;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="93%" BGCOLOR="#008000" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Block <%=IIF(plVISUAL=.F.,'Pick-Up Days/Limit Booking','Visual Estimates Days/Limit Visuals')%></font></b></td>
+    <td width="7%" BGCOLOR="#008000" align="right"><img border="0" src="/zz/images/x.gif" onclick="javascript:window.close()" style="cursor:pointer;" width="17" height="18"></td>
+  </tr>
+  <tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF" colspan="2">
+ <form name="theForm" method="POST">
+	<BR>
+<% IF plVISUAL=.F. %>
+<table border="2" align="center" style="border-collapse: collapse" bordercolor="#7B96B5" width="98%">
+  <tr>
+    <td width="4%" class="TD1" height="20">Day</td>  
+    <td width="8%" class="TD1" height="20">Date</td>
+    <td width="4%" class="TD1" height="20">Dept</td>
+    <td width="3%" class="TD1" height="20">Type</td>
+    <td width="3%" class="TD1" height="20">Booked<br>Jobs</td>    
+    <td width="5%" class="TD1" height="20">Block<br>Day</td>
+    <td width="4%" class="TD1" height="20">Limit<br>Booking</td>
+    <td width="11%" class="TD1" height="20">Remark</td>
+    <td width="13%" class="TD1" height="20">Last Update</td>
+    <td width="3%" class="TD1" height="20">&nbsp;</td>
+ </tr>
+ <% SELECT _BLK 
+    SCAN %>
+  <tr>
+    <td width="4%" class="TD2"><%=LEFT(CDOW(DTE),3)%>&nbsp;</td>  
+    <td width="8%" class="TD2"><% IF _BLK.BLKDTEID > 100 %><%=ALLT(_BLK.CDTE)%><%ELSE%>
+    <input type="text" id="Date1" name="<%='D'+ALLT(STR(BLKDTEID))%>" size="7" value="<%=ALLT(CDTE)%>" style="font-size:10pt;border: 1px solid #CCCCCC;"><%ENDIF%></td>
+    <td width="4%" class="TD2">
+    <% IF _BLK.BLKDTEID > 100 %>
+    	<%=ALLT(_BLK.DEPT)%>
+    <%ELSE%>
+    	<select size="1" name="<%='C'+ALLT(STR(BLKDTEID))%>">
+		     <% SELECT _DEPT
+		     	 SCAN %>
+			     <OPTION value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select>
+	<%ENDIF%></td>
+    <td width="3%" class="TD2">
+    <% IF _BLK.BLKDTEID > 100 %><%=ALLT(_BLK.TYP)%><%ELSE%>
+    	<select size="1" name="<%='T'+ALLT(STR(_BLK.BLKDTEID))%>">
+	        <option value="<%=ALLT(_BLK.CTYPE)%>" selected><%=ALLT(_BLK.CTYPE)%></option>
+			     <OPTION value="L">Local</OPTION>
+			     <OPTION value="D">Long D.</OPTION>
+			     <OPTION value="I">INTL</OPTION>			     
+		    </select><%ENDIF%></td>
+	<% SELECT _BLK %>		     
+    <td width="3%" class="TD2"><%=IIF(JOBS>0,ALLT(STR(JOBS)),'')%>&nbsp;</td> 		    
+    <td width="5%" align="center"><input type="checkbox" id="BLKDAY" name="<%='B'+ALLT(STR(BLKDTEID))%>" value="ON" <%=IIF(BLKDAY,'checked','')%>></td>
+    <td width="4%" align="center"><input autocomplete="off" id="LIMIT" name="<%='L'+ALLT(STR(BLKDTEID))%>" size="1" VALUE="<%=IIF(LIMIT=0,'',ALLT(STR(LIMIT)))%>" style="text-align:center;" maxlength="2"></td>
+    <td width="11%"><input autocomplete="off" name="<%='N'+ALLT(STR(BLKDTEID))%>" size="20" VALUE="<%=ALLT(NOTE)%>" style="font-size:10pt;" maxlength="50"></td>           
+    <td width="13%" align="center"><font style="font-family:Arial;font-size:9pt;"><%=IIF(EMPTY(NAME),ALLT(USERNAME),ALLT(NAME))%><br><%=ADDDTE%></font></td>           
+    <td width="3%" align="center"><input type="button" class="button" name="B1" onclick="BlkSave(<%=ALLT(STR(BLKDTEID,6))%>)" value="Update"></td>          
+ </tr>
+ <%ENDSCAN%>
+</table>
+<%ELSE%>
+	<% IF plESTIMATOR=.T. %>
+<BR>
+<table border="2" align="center" style="border-collapse: collapse" bordercolor="#7B96B5" width="98%">
+  <tr>
+    <td width="4%" class="TD1" height="20">Day</td>  
+    <td width="8%" class="TD1" height="20">Date</td>
+    <td width="3%" class="TD1" height="20">Estimator</td>
+    <td width="3%" class="TD1" height="20">Visuals</td>    
+    <td width="5%" class="TD1" height="20">Block<br>Day</td>
+    <td width="4%" class="TD1" height="20">Limit<br>Visuals</td>
+    <td width="11%" class="TD1" height="20">Remark</td>
+    <td width="13%" class="TD1" height="20">Last Update</td>
+    <td width="3%" class="TD1" height="20">&nbsp;</td>
+ </tr>
+ <% SELECT _BLK1 
+    SCAN %>
+  <tr>
+    <td width="4%" class="TD2"><%=LEFT(CDOW(DTE),3)%>&nbsp;</td>  
+    <td width="8%" class="TD2"><% IF _BLK1.BLKDTEID > 100 %><%=ALLT(_BLK1.CDTE)%><%ELSE%>
+    <input type="text" id="Date2" name="<%='D'+ALLT(STR(BLKDTEID))%>" size="7" value="<%=ALLT(CDTE)%>" style="font-size:10pt;border: 1px solid #CCCCCC;"><%ENDIF%></td>
+    <td width="3%" class="TD2">
+    <% IF _BLK1.BLKDTEID > 100 %><%=ALLT(_BLK1.ESTIMATOR)%>
+    <%ELSE%>
+		<select size="1" name="<%='E'+ALLT(STR(BLKDTEID))%>">
+       <% SELECT _U1
+  		 SCAN %>
+	      <option value="<%=ALLT(USERNAME)%>"><%=ALLT(USERNAME)%></option>
+       <% ENDSCAN%>
+      </select>
+      <%ENDIF%></td>
+	<% SELECT _BLK1 %>		     
+    <td width="3%" class="TD2"><%=IIF(JOBS>0,ALLT(STR(JOBS)),'')%>&nbsp;</td> 		    
+    <td width="5%" align="center"><input type="checkbox" id="BLKDAY" name="<%='B'+ALLT(STR(BLKDTEID))%>" value="ON" <%=IIF(BLKDAY,'checked','')%>></td>
+    <td width="4%" align="center"><input autocomplete="off" id="LIMIT" name="<%='L'+ALLT(STR(BLKDTEID))%>" size="1" VALUE="<%=IIF(LIMIT=0,'',ALLT(STR(LIMIT)))%>" style="text-align:center;" maxlength="2"></td>
+    <td width="11%"><input autocomplete="off" name="<%='N'+ALLT(STR(BLKDTEID))%>" size="20" VALUE="<%=ALLT(NOTE)%>" style="font-size:10pt;" maxlength="50"></td>           
+    <td width="13%" align="center"><font style="font-family:Arial;font-size:9pt;"><%=IIF(EMPTY(NAME),ALLT(USERNAME),ALLT(NAME))%><br><%=ADDDTE%></font></td>           
+    <td width="3%" align="center"><input type="button" class="button" name="B1" onclick="Blkvisual(<%=ALLT(STR(BLKDTEID,6))%>)" value="Update"></td>          
+ </tr>
+ <%ENDSCAN%>
+</table>
+   <%ENDIF%>
+<%ENDIF%>   
+</form>
+&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" colspan="2">&nbsp;<font face="Verdana" size="2" color="#FFFFFF">User: <%=pcUSER%></font></td>
+  </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><!--IE 11 Compatibility overrite-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>INTERSTATE BILL OF LADING</title>
+
+<style>
+p.fvp {text-align:justify;}
+p.pagebreak {   page-break-after: always;}
+</style>
+
+</head>
+
+<body>
+
+<table border="0" align="center" style="border-collapse:collapse;font-family:Arial;" width="950">
+  <tr>
+    <td valign="top" width="173">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" valign="top" height="35"><font style="font-family:Arial;font-size:9pt;">&nbsp;US DOT #:&nbsp;<%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcDOT,pcAGDOT)%><br>&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35"><font style="font-family:Arial;font-size:9pt;">&nbsp;ICC/MC #:&nbsp;<%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcICC,pcAGICC)%><br>&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35"><font style="font-family:Arial;font-size:9pt;">&nbsp;Van #</font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35"><font style="font-family:Arial;font-size:9pt;">&nbsp;Order No:&nbsp;<%=ALLT(_EST.ORDNO)%><%=' - '+pcREVNO%></font></td>
+ </tr>   
+</table>    
+    </td>
+    <td valign="top" align="center" width="565"><br><font style="font-size:16pt;"><b><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcCOMPANY,pcAGCOMPANY)%></b></font><br>
+    <font style="font-size:10pt;"><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcADD1,pcAGADD1)%>&nbsp;<%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcADD2,pcAGADD2)%><BR>
+    <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcTOLLFREE,pcAGPHONE)%><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),'<BR>'+pcCOMPEMAIL,'')%></font>
+    <br><br><br><font style="font-family:Arial;font-size:14pt;"><b>INTERSTATE BILL OF LADING CONTRACT</b></font></td>
+    <td valign="top" width="206">
+<table border="1" align="right" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%" valign="top" height="35"><font style="font-family:Arial;font-size:9pt;">&nbsp;Agreed Pick Up-Date:<br>&nbsp;<%=_EST.LBOOKDTE%><%=IIF(EMPTY(_EST.LBOOKDTE1),'','-'+DTOC(_EST.LBOOKDTE1))%></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35"><font style="font-family:Arial;font-size:9pt;">&nbsp;Actual Pick Up-Date:<br>&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35"><font style="font-family:Arial;font-size:9pt;">&nbsp;1<SUP>ST</SUP> Available Delivery Date:<br>&nbsp;
+    <%=IIF(EMPTY(_EST.DLVDTE),'',DTOC(_EST.DLVDTE))%><%=IIF(EMPTY(_EST.DLVDTE1),'','-'+DTOC(_EST.DLVDTE1))%></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35"><font style="font-family:Arial;font-size:9pt;">&nbsp;Delivery No Later Than:<br>&nbsp;</font></td>
+ </tr>   
+</table>
+   </td>
+ </tr>
+</table>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="950">
+  <tr>
+    <td width="231" valign="top" height="40">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Interlining Carrier / Agent:</FONT></td>
+    <td width="372" valign="top" height="40">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Address:</FONT></td>
+    <td width="187" valign="top" height="40">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Contact Phone:</FONT></td>
+ </tr>
+</table>
+<table border="0" align="center" style="border-collapse: collapse" width="950">
+  <tr>
+    <td valign="top" width="475">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="3"><font style="font-family:Arial;font-size:11pt;"><B>Origin Information</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35" colspan="3">&nbsp;Customer Name<br>&nbsp;<%=ALLT(PROPER(_EST.SNAME))%></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35" colspan="3">&nbsp;Address<br>&nbsp;<%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%>
+    <%=IIF(EMPTY(_EST.SFLOOR),'',', F: '+ALLT(STR(_EST.SFLOOR)))%><%=IIF(EMPTY(_EST.SAPT),'',', A: '+ALLT(_EST.SAPT))%><%=IIF(EMPTY(_EST.SSUBLEVEL),'',', L: '+ALLT(_EST.SSUBLEVEL))%></td>
+ </tr> 
+  <tr>
+    <td width="64%" valign="top" height="35">&nbsp;City<br>&nbsp;<%=ALLT(PROPER(_EST.SCITY))%></td>
+    <td width="15%" valign="top" height="35">State<BR>&nbsp;<%=ALLT(_EST.SSTATE)%></td>
+    <td width="21%" valign="top" height="35">Zip Code<BR>&nbsp;<%=ALLT(_EST.SZIP)%></td>
+ </tr>
+  <tr>
+    <td width="100%" colspan="3">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="50%" valign="top" height="35">&nbsp;Phone<br>&nbsp;<%=ALLT(_EST.STELH)%><%=IIF(EMPTY(_EST.STELO),'',', '+ALLT(_EST.STELO))%></td>
+        <td width="50%" valign="top" height="35" style="border-left: 2px solid #000000;">&nbsp;Email<br>&nbsp;<%=ALLT(_EST.EMAIL)%></td>
+      </tr>
+    </table>
+    </td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35" colspan="3">&nbsp;Contact Person En Route: Name<br>&nbsp;</td>
+ </tr> 
+</table>    
+    </td>
+    <td valign="top" width="475">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="3"><font style="font-family:Arial;font-size:11pt;"><B>Destination Information</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35" colspan="3">&nbsp;Customer Name<BR>&nbsp;<%=ALLT(PROPER(_EST.RNAME))%></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="35" colspan="3">&nbsp;Address<BR>&nbsp;<%=ALLT(_EST.RADD1)%>&nbsp;<%=ALLT(_EST.RADD2)%>
+    <%=IIF(EMPTY(_EST.RFLOOR),'',', F: '+ALLT(STR(_EST.RFLOOR)))%><%=IIF(EMPTY(_EST.RAPT),'',', A: '+ALLT(_EST.RAPT))%><%=IIF(EMPTY(_EST.RSUBLEVEL),'',', L: '+ALLT(_EST.RSUBLEVEL))%></td>
+ </tr> 
+  <tr>
+    <td width="62%" valign="top" height="35">&nbsp;City<br>&nbsp;<%=ALLT(PROPER(_EST.RCITY))%></td>
+    <td width="15%" valign="top" height="35">&nbsp;State<br><%=ALLT(_EST.RSTATE)%></td>
+    <td width="23%" valign="top" height="35">&nbsp;Zip Code<br>&nbsp;<%=ALLT(_EST.RZIP)%></td>
+ </tr>
+  <tr>
+    <td width="100%" colspan="3">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="50%" valign="top" height="35">&nbsp;Phone<br>&nbsp;<%=ALLT(_EST.RTELH)%></td>
+        <td width="50%" valign="top" height="35" style="border-left: 2px solid #000000;">&nbsp;Email&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+ </tr>
+  <tr>
+    <td width="100%" colspan="3">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="50%" valign="top" height="35">&nbsp;Phone<br>&nbsp;<%=ALLT(_EST.RTELO)%></td>
+        <td width="50%" valign="top" height="35" style="border-left: 2px solid #000000;">&nbsp;Fax&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+ </tr>   
+</table>    
+    </td>
+  </tr>
+</table>
+<table border="1" align="center" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="950">
+  <tr>
+    <td valign="top" bgcolor="#DCDCDC" align="center" width="469"><font style="font-family:Arial;font-size:11pt;"><b>Valuation Information</b></font></td>
+    <td valign="top" bgcolor="#DCDCDC" align="center" width="370"><font style="font-family:Arial;font-size:11pt;"><b>Services</b></font></td>
+    <td valign="top" bgcolor="#DCDCDC" align="center" width="101"><font style="font-family:Arial;font-size:11pt;"><b>Charges</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top" width="469"><p style="text-align:justify;"><b>THE CONSUMER MUST SELECT ONE OF THESE OPTIONS FOR THE CARRIER'S LIABILITY FOR LOSS OR DAMAGE TO YOUR HOUSEHOLD GOODS</p>
+    <center>CUSTOMER'S DECLARATION of VALUE<br>THIS IS A TARIFF LEVEL OF CARRIER LIABILITY -IT IS NOT INSURANCE</center></b>
+	<p style="text-align:justify;">OPTION 1: The Cost Estimate that you receive from your mover MUST INCLUDE Full (Replacement) Value Protection for the articles that are included in your shipment. If you wish to waive the Full
+	(Replacement) Level of protection you must complete the WAIVER of Full (Replacement) Value Protection showed below.<br><br>
+	Full (Replacement) Value Protection is the most comprehensive plan available for the protection of your goods. If any article is lost, destroyed, or damaged while in your mover's custody, your mover will, at its option, either
+	1) repair the article to the extent necessary to restore it to the same condition as when it was received by your mover, or pay you for the cost of such repairs; or 2) replace the article with an article of like
+	kind and quality, or pay you for the cost of such a replacement. Under Full (Replacement) Value Protection, if you do not declare a higher replacement value on this form before the time of shipment, the value of your goods will be deemed to be
+	equal to $6.00 multiplied by the weight (in pounds) of the shipment, subject to a minimum valuation for the shipment of $6000. Under this option, the cost of your move will be composed of a base rate plus an added cost reflecting the cost of
+	providing this full value cargo liability protection for your shipment.<br><br>
+	If you wish to declare a higher value for your shipment than these default amounts, you must indicate that value here. Declaring a higher value may increase the valuation charge in your cost estimate.<br>
+	The Total Value of my shipment is:<br><br>$________________________________ (to be provided by the customer) Dollar Estimate of the cost of your move at Full (Replacement) Value Protection: $_____________________________________ (to be provided by carrier)<br><br>
+	I acknowledge that for my shipment I have 1) ACCEPTED the Full (Replacement) Level of protection included in the estimate and declared a higher total value of my shipment (if appropriate), and 2) received a copy of the
+	&quot;Your Rights and Responsibilities When You Move&quot; brochure explaining these provisions.<br><br>X__________________________________ (Customer's Signature & Date)<br>
+	-------------------------------------------------- <b><i>OR</i></b> ----------------------------------------------<br>
+	Option 2 - WAIVER of Full (Replacement) Value Protection. This lower level of protection is provided at no additional cost beyond the base rate; however, it provides only minimal protection that is considerably less than the average value of household
+	goods. Under this option, a claim for an article that may be lost, destroyed, or damaged while in your mover's custody will be settled based on the weight of the individual article multiplied by 60 cents. For example, the settlement for an audio
+	component valued at $1000 that weighs 10 pounds would be $6.00 (10 pounds times 60cents). Dollar Estimate of the cost of your move under the 60-cents option:<br><br>$___________________________________ (to be provided by carrier)<br>
+	COMPLETE THIS PART ONLY if you wish to WAIVE the Full (Replacement) Level of Protection included in the higher cost estimate provided (above) (on the prior page) for your shipment and instead select the LOWER Released Value of 60 Cents
+	Per Pound Per Article; to do so you must initial and sign on the lines below 
+    - I wish to Release My Shipment to a Maximum Value of 60 Cents per Pound per Article.<br>____________ (Customer's Initials)<br><br>
+	I acknowledge that for my shipment I have 1) WAIVED the Full (Replacement) Level of protection for which I have received an estimate of charges, and 2) received a copy of the 
+    &quot;Your Rights and Responsibilities When You Move&quot; brochure explaining these provisions.<br><br>
+	X___________________________________ (Customer's Signature & Date)<hr color="#000000" size="1"></hr>
+	<b>DOCUMENTS:</b> I hereby declare that I have received the publications Ready to Move; Your Rights & Responsibilities; Claim Filing & Arbitration Program information.<br>
+	X___________________________________ Customer`s Signature & Date<hr color="#000000" size="1"></hr>
+	<b>PICK UP ACKNOWLEDGEMENT:</b> I, the customer/representative, hereby declare that I have the authority to enter into this agreement with the carrier/agents. I will be responsible severally or jointly for the charges listed above.
+	I understand that all charges are based on my shipment`s actual weight or space. I agree and accept the charges.<br>
+	<table border="1" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="100%">
+  	  <tr>
+    	<td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Carrier's (Driver)</FONT></td>
+        <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+    </tr>
+      <tr>
+        <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Customer's Signature</FONT></td>
+        <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+    </tr>
+	</table>
+	</td>
+    <td width="474" valign="top" colspan="2">
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:9pt;" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="41%" align="center" valign="bottom" height="35"><%=IIF(plESTCALCCF=.F.,ALLT(STR(_EST.TOTALLBS)),'')%> Lbs.@$<%=IIF(plESTCALCCF=.F.,ALLT(STR(_CRG.I1PERLBS,8,2)),'')%></td>
+        <td width="38%" align="center" valign="bottom" height="35"><%=IIF(plESTCALCCF=.T.,ALLT(STR(_EST.TOTALCF)),'')%> Cu. Ft.@$<%=IIF(plESTCALCCF=.T.,ALLT(STR(_CRG.I1PERCF,8,2)),'')%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;<%='$'+ALLT(STR(_CRG.I1TOTAL,8,2))%></td>
+      </tr>
+      <tr>
+        <td width="41%" align="center" valign="bottom" height="35">Lbs.@$ </td>
+        <td width="38%" align="center" valign="bottom" height="35">Cu. Ft.@$ </td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>      
+    </table>
+ <%IF pcCUSTNO<>'247LOGISTI' AND pcCUSTNO<>'NEWDESTIVL' AND pcCUSTNO<>'NEWERA' AND pcCUSTNO<>'DEMOMOVEXX' %><!---NOT HYBRID-->
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Fuel Surcharge <%=ALLT(STR(_CRG.DIESELP,6,2))+' %'%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Packing Labor &amp; Materials</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Bulky Articles Handling</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Stairs</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Elevator</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Long Carry</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Shuttle</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;SIT / Stg. Handling</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Redelivery</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Extra Stop</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Waiting Time / Overnight</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Hoisting / Lowering</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Origin</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;<span style="font-size:20pt;font-family:Times New Roman">&#9633;</span> Destination</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Extra Labor</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Other</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Other</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;FVP</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;Value $</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;Ded. $</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35">&nbsp;Insurance</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;Value $</td>
+        <td width="24%" valign="bottom" height="35">&nbsp;Ded. $</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>      
+      <tr>
+        <td width="79%" align="right" valign="bottom" height="35" colspan="3">TOTAL APPLICABLE CHARGES&nbsp;</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="79%" align="right" valign="bottom" height="35" colspan="3">PREPAID DEPOSIT&nbsp;</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+   </table>
+ <%ELSE%><!---HYBRID--->   
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Fuel Surcharge <%=ALLT(STR(_CRG.DIESELP,6,2))+' %'%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;<%='$'+ALLT(STR(_CRG.DIESEL,8,2))%></td>
+      </tr>    
+      <% IF !EMPTY(_CRG.OTHERS) %>    
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;<%=ALLTRIM(_CRG.OTHERS)%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.OTHERSAMT=0,'',ALLT(STR(_CRG.OTHERSAMT,8,2)))%></td>
+      </tr>
+      <% ENDIF %>
+      <% IF !EMPTY(_CRG.OTHERS1) %>      
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;<%=ALLTRIM(_CRG.OTHERS1)%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.OTHERS1AMT=0,'',ALLT(STR(_CRG.OTHERS1AMT,8,2)))%></td>
+      </tr>
+      <% ENDIF %>        
+      <% IF !EMPTY(_CRG.OTHERS2) %>      
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;<%=ALLTRIM(_CRG.OTHERS2)%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.OTHERS2AMT=0,'',ALLT(STR(_CRG.OTHERS2AMT,8,2)))%></td>
+      </tr>
+      <% ENDIF %>
+      <% IF _CRG.COUPONAMT > 0 %>
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Coupon Discount: <%=ALLT(STR(_CRG.COUPONP,8,2))+' %'%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;- <%='$'+ALLT(STR(_CRG.COUPONAMT,8,2))%></td>
+      </tr>
+      <% ENDIF %>        
+      <% IF _CRG.SENIORAMT > 0 %>      
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Senior Citizen: <%=ALLT(STR(_CRG.SENIORP,8,2))+' %'%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;- <%='$'+ALLT(STR(_CRG.SENIORAMT,8,2))%></td>
+      </tr>
+      <% ENDIF %>      
+      <% IF !EMPTY(_CRG.EXTRA1) %>    
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;<%=ALLTRIM(_CRG.EXTRA1)%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.EXTRA1AMT=0,'',ALLT(STR(_CRG.EXTRA1AMT,8,2)))%></td>
+      </tr>
+      <% ENDIF %>
+      <% IF !EMPTY(_CRG.EXTRA2) %>      
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;<%=ALLTRIM(_CRG.EXTRA2)%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.EXTRA2AMT=0,'',ALLT(STR(_CRG.EXTRA2AMT,8,2)))%></td>
+      </tr>
+      <% ENDIF %>        
+      <% IF !EMPTY(_CRG.EXTRA3) %>      
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;<%=ALLTRIM(_CRG.EXTRA3)%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.EXTRA3AMT=0,'',ALLT(STR(_CRG.EXTRA3AMT,8,2)))%></td>
+      </tr>
+      <% ENDIF %>
+      <tr>
+        <td width="36%" valign="bottom" height="35" colspan="3">&nbsp;Packing Materials</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.MATTOTAL=0,'',ALLT(STR(_CRG.MATTOTAL,8,2)))%></td>
+     </tr>
+	  <% IF _CRG.MATTAXAMT > 0 %>
+      <tr>
+        <td width="36%" valign="bottom" height="35" colspan="3">&nbsp;Packing Materials Sales Tax:&nbsp;<%=ALLT(STR(_CRG.MATTAX,5,3))%>%</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;<%='$'+ALLT(STR(_CRG.MATTAXAMT,8,2))%></td>
+     </tr>
+	  <% ENDIF %>
+      <tr>
+        <td width="36%" valign="bottom" height="35" colspan="3">&nbsp;Packing Labor</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.PTOTAL=0,'',ALLT(STR(_CRG.PTOTAL,8,2)))%></td>
+     </tr>
+      <tr>
+        <td width="36%" valign="bottom" height="35" colspan="3">&nbsp;Unpacking Labor</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.UTOTAL=0,'',ALLT(STR(_CRG.UTOTAL,8,2)))%></td>
+     </tr>            
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Other</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Other</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$</td>
+     </tr>
+      <tr>
+        <td width="26%" valign="bottom" height="35">&nbsp;FVP</td>
+        <td width="28%" valign="bottom" height="35">&nbsp;Value <%=ALLT(TRANSFORM(_CRG.FVPVALUE,"$,$$$,$$9.99"))%></td>
+        <td width="25%" valign="bottom" height="35">&nbsp;Ded. <%=IIF(_CRG.INSAMT=0,'',ALLT(TRANSFORM(VAL(_CRG.FVPDEDUCT),"$$,$99")))%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(_CRG.INSAMT=0,'',ALLT(STR(_CRG.INSAMT,8,2)))%></td>
+      </tr>
+      <tr>
+        <td width="79%" valign="bottom" height="35" colspan="3">&nbsp;Discount <%=ALLTRIM(_CRG.DISCTXT)%></td>
+        <td width="21%" valign="bottom" height="35">&nbsp;<%=IIF(_CRG.DISCOUNT=0,'','-$'+ALLT(STR(_CRG.DISCOUNT,8,2)))%></td>
+     </tr>      
+      <tr>
+        <td width="79%" align="right" valign="bottom" height="35" colspan="3">TOTAL APPLICABLE CHARGES&nbsp;</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;<%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></td>
+      </tr>
+      <tr>
+        <td width="79%" align="right" valign="bottom" height="35" colspan="3">PREPAID DEPOSIT&nbsp;</td>
+        <td width="21%" valign="bottom" height="35">&nbsp;$<%=IIF(pcPAIDAMT='0','',pcPAIDAMT)%></td>
+      </tr>
+   </table>
+  <%ENDIF%>
+ <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">      
+   <tr>
+     <td width="100%" height="35" colspan="4"><p style="text-align:justify;">
+     <b>BILL OF LADING RECEIPT ACKNOWLEDGEMENT:</b> I, the customer, hereby declare that I have received a copy of this Bill of Lading as required by law. 
+     I read, understand, and agree to the terms as presented on this contract. I understand that I have up to 3 days from the date of this acknowledgement to cancel my 
+     move without penalty. Cancellation after this date must be in accordance with the cancellation policy as detailed on the back thereof.</p>
+ <form name="theForm" method="post">
+ <table align="center" border="0" style="border-collapse: collapse" width="99%" cellspacing="0" cellpadding="0">
+ <% IF pnLOGEMAILID > 1000 %>
+  <tr style="font-family:Arial;font-size:10pt;">
+    <td width="100%" colspan="2"><img src="<%=pcSIGDATA%>"><br>Sign Date:&nbsp;<%=pcEDTE+' ET'%><br>
+    Sign Name:&nbsp;<%=pcENAME%>&nbsp;&nbsp;IP:&nbsp;<%=pcEIP%><br>
+    Print this document via <a href="javascript: window.print()"><b>Printer Friendly</a></b>.</td>
+ </tr> 
+ <%ENDIF%>
+ <% IF plLINK=.T. %>
+  <tr>
+    <td width="100%" colspan="2"><font style="font-family:Arial;font-size:10pt;"><b>Customer Name:</b></font> <input type="text" autocomplete="off" name="ENAME" size="15" style="background-color: #FFFFCC;border: 1px solid #000080;" maxlength="50"></td>
+ </tr>
+  <tr>
+    <td height="25" width="22%"><font style="font-family:Arial;font-size:10pt;"><b>Signature:</b></font></td>
+    <td valign="top" width="78%"><input type="hidden" name="sigData" id="sigData">
+    <canvas id="canvas" width="300" height="50" style="background-color: #FFFFCC;border-radius: 5px;border: 1px solid #000080;"></canvas></td>
+ </tr> 
+ <%ENDIF%>    
+ </table>
+ <% IF plLINK=.T. %>
+<br><center><button id="saveSig" style="width:125;height:25;font-family:Arial;font-size:10pt;font-weight:bold;color:#0000FF;cursor:pointer;" type="button">Accept and Sign</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="clearSig" style="width:60;height:25;font-family:Arial;font-size:10pt;font-weight:bold;cursor:pointer;" value="Clear"></center>       
+
+<script src="/zz/js/xsign-2.1.0.min.js"></script>
+
+<script type="text/javascript">
+		(function() {
+		
+			// Set up the canvas
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			ctx.strokeStyle = "#000080";
+			ctx.lineJoin = "miter";			
+			ctx.lineWith = 2;
+    		var paint;			
+					
+			// Get a regular interval for drawing to the screen
+			window.requestAnimFrame = (function (callback) {
+				return window.requestAnimationFrame || 
+							window.webkitRequestAnimationFrame ||
+							window.mozRequestAnimationFrame ||
+							window.oRequestAnimationFrame ||
+							window.msRequestAnimaitonFrame ||
+							function (callback) {
+							 	window.setTimeout(callback, 1000/60);
+							};
+			})();
+
+			// Set up the UI
+			var clearSig = document.getElementById("clearSig");
+			var saveSig = document.getElementById("saveSig");
+			clearSig.addEventListener("click", function (e) {
+				clearCanvas();
+			}, false);
+
+
+			//check data
+			function checkData(){
+			frm = document.theForm;
+			if (frm.ENAME.value.length < 4 || frm.ENAME.value.indexOf(" ") < 1) {
+					alert("Please type your full name (first & last)");
+					frm.ENAME.focus();
+			}else   	
+				return true;
+			}
+			
+		
+			//sigText.innerHTML = dataUrl
+			//save the signature dataUrl
+			saveSig.addEventListener("click", function (e) {
+       		var sigData = canvas.toDataURL();
+       		var n = sigData.length; 
+        	   if ((n) < 1000) {
+        	      alert("Please sign: Bill of Lading Receipt Acknowledgement");
+        	      return false;
+       		    }else {
+	        		if (checkData()) {
+	        		    $("#sigData").val(sigData);
+						document.theForm.action="/wc.dll?mpest~esignbolret~<%=pcREFNO%>~<%=pcCUSTID%>";
+			    		document.theForm.submit();
+			    	}else {   	
+					return false;
+				}
+		  	  }
+		    }, false);
+						
+			
+			// Clear the canvas
+			function clearCanvas() {
+				canvas.width = canvas.width;
+			}			
+
+			// Set up mouse events for drawing
+			var drawing = false;
+			var mousePos = { x:0, y:0 };
+			var lastPos = mousePos;
+			canvas.addEventListener("mousedown", function (e) {
+				drawing = true;
+				lastPos = getMousePos(canvas, e);
+			}, false);
+			
+			canvas.addEventListener("mouseup", function (e) {
+				drawing = false;
+			}, false);
+			
+			canvas.addEventListener("mousemove", function (e) {
+				mousePos = getMousePos(canvas, e);
+			}, false);
+
+			// Set up touch events for mobile, etc
+			canvas.addEventListener("touchstart", function (e) {
+				mousePos = getTouchPos(canvas, e);
+				var touch = e.touches[0];
+				var mouseEvent = new MouseEvent("mousedown", {
+					clientX: touch.clientX,
+					clientY: touch.clientY
+				});
+				canvas.dispatchEvent(mouseEvent);
+			}, false);
+			
+			canvas.addEventListener("touchend", function (e) {
+				var mouseEvent = new MouseEvent("mouseup", {});
+				canvas.dispatchEvent(mouseEvent);
+			}, false);
+			
+			canvas.addEventListener("touchmove", function (e) {
+				var touch = e.touches[0];
+				var mouseEvent = new MouseEvent("mousemove", {
+					clientX: touch.clientX,
+					clientY: touch.clientY
+				});
+				
+				canvas.dispatchEvent(mouseEvent);
+			}, false);
+
+
+			// Prevent scrolling when touching the canvas
+			document.body.addEventListener("touchstart", function (e) {
+				if (e.target == canvas) {
+					e.preventDefault();
+				}
+			}, false);
+			
+			document.body.addEventListener("touchend", function (e) {
+				if (e.target == canvas) {
+					e.preventDefault();
+				}
+			}, false);
+			
+			document.body.addEventListener("touchmove", function (e) {
+				if (e.target == canvas) {
+					e.preventDefault();
+				}
+			}, false);
+
+
+			// Get the position of the mouse relative to the canvas
+			function getMousePos(canvasDom, mouseEvent) {
+				var rect = canvasDom.getBoundingClientRect();
+				return {
+					x: mouseEvent.clientX - rect.left,
+					y: mouseEvent.clientY - rect.top
+				};
+			}
+
+
+			// Get the position of a touch relative to the canvas
+			function getTouchPos(canvasDom, touchEvent) {
+				var rect = canvasDom.getBoundingClientRect();
+				return {
+					x: touchEvent.touches[0].clientX - rect.left,
+					y: touchEvent.touches[0].clientY - rect.top
+				};
+			}
+
+			// Draw to the canvas
+			function renderCanvas() {
+				if (drawing) {
+					ctx.strokeStyle = "#000080";
+					ctx.lineJoin = "miter";			
+					ctx.lineWith = 2;
+					ctx.moveTo(lastPos.x, lastPos.y);
+					ctx.lineTo(mousePos.x, mousePos.y);
+					ctx.stroke();
+					lastPos = mousePos;
+				}
+			}
+
+			// Allow for animation
+			(function drawLoop () {
+				requestAnimFrame(drawLoop);
+				renderCanvas();
+			})();
+
+		})();
+	</script>
+ <%ENDIF%>
+</form>        
+        </td>
+      </tr>
+  </table>
+	<table border="1" align="center" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">        
+      <tr>
+        <td width="81%" align="right" valign="bottom" height="35" colspan="3">
+		<table border="0" align="center" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+  			<tr>
+    		 <td width="790" valign="top"><span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>CC <span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>Cashier`s Ck 
+    		 <span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>Personal Ck <span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>PMO 
+    		 <span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>App <span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>Cash</td>
+ 			</tr>
+		</table>        
+        ORIGIN PAYMENT&nbsp;</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="81%" align="right" valign="bottom" height="35" colspan="3">BALANCE DUE AT DESTINATION&nbsp;</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="81%" align="right" valign="bottom" height="35" colspan="3">PRICE ADJUSTMENTS&nbsp;</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="81%" align="right" valign="bottom" height="35" colspan="3">
+		<table border="0" align="center" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="100%">
+  			<tr>
+    		 <td width="790" valign="top"><span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>PMO <span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>App <span style="font-size:20pt;font-family:Times New Roman">&#9633;</span>Cash</td>
+ 			</tr>
+		</table>                
+        DESTINATION PAYMENT&nbsp;</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="81%" align="right" valign="bottom" height="35" colspan="3">BALANCE DUE TO CARRIER WITHIN 30 DAYS&nbsp;</td>
+        <td width="19%" valign="bottom" height="35">&nbsp;$</td>
+      </tr>
+      <tr>
+        <td width="100%" valign="bottom" height="35" colspan="4"><p style="text-align:justify;">
+        <b>DELIVERY ACKNOWLEDGEMENT:</b> I, the customer/representative, hereby declare that I have the authority to enter into this agreement with the carrier/agents. 
+        All services ordered have been performed and all goods are received in apparently good condition except as noted on the inventory sheets conducted for my move.</p></td>
+      </tr>
+      </table>
+	<table border="1" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="100%">
+  	  <tr>
+    	<td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Carrier's (Driver)</FONT></td>
+        <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+    </tr>
+      <tr>
+        <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Customer's Signature</FONT></td>
+        <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+    </tr>
+	</table>          
+    </td>
+ </tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#000000" width="950">
+  <tr>
+    <td width="545"><font style="font-family:Arial;font-size:9pt;">FORMS BY: CSI WWW.CSIPROS.ORG 2022 77-CSI-Claim (772) 742-5246 <span style="font-size:9pt;font-family:Arial">&#169;</span> 2022</font></td>
+    <td align="right" width="398"><font style="font-family:Arial;font-size:9pt;">FORM NO. 274BL-22 Rev. 06/22</font></td>
+  </tr>
+</table> 
+<p class="pagebreak">&nbsp;</p>
+<table border="1" align="center" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#000000" width="950">
+  <tr>
+    <td align="center" bgcolor="#DCDCDC"><FONT style="font-family:Arial;font-size:10pt;"><b>INTERSTATE BILL OF LADING TERMS AND CONDITIONS</b></FONT></td>
+  </tr>
+  <tr>
+    <td valign="top"><%=pcREMFILE%>&nbsp;</td>
+  </tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#000000" width="950">
+  <tr>
+    <td width="545"><font style="font-family:Arial;font-size:9pt;">FORMS BY: CSI WWW.CSIPROS.ORG 2022 77-CSI-Claim (772) 742-5246 <span style="font-size:9pt;font-family:Arial">&#169;</span> 2022</font></td>
+    <td align="right" width="398"><font style="font-family:Arial;font-size:9pt;">FORM NO. 274BL-22 Rev. 06/22</font></td>
+  </tr>
+</table>
+
+</body>
+</html>

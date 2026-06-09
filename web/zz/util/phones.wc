@@ -1,0 +1,125 @@
+<html lang="en" style="width: 800px;height:600px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<TITLE>Phones</TITLE>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function PhoneSave(par) 
+      { 
+       document.theForm.action="/wc.dll?mputil~phonesret~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+	
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 25;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 25;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	 .button	{	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Arial;
+                    width: 50; 
+                    height: 25; 
+                    cursor: pointer;}  				  	
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" align="center" style="border-collapse:collapse;width:800px;height:600px;" bordercolor="#111111" width="70%">
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center"><b>
+    <font face="Verdana" color="#FFFFFF">Customer's Phones</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" bgcolor="#FFFFFF">
+<form name="theForm" method="POST">
+ <BR>
+<table border="1" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" bordercolor="#C0C0C0" width="98%">
+   <tr>
+     <td>
+     <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;font-family:Verdana;font-size:10pt;color:#FFFFFF;" bordercolor="#111111" width="100%">
+       <tr>
+         <td width="6%" align="center" bgcolor="#008000" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #C0C0C0;"><b>Code</b></td>
+         <td width="12%" align="center" bgcolor="#008000" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #C0C0C0;"><b>Type</b></td>
+         <td width="15%" align="center" bgcolor="#008000" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #C0C0C0;"><b>Phone</b></td>
+         <td width="25%" align="center" bgcolor="#008000" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #C0C0C0;"><b>Reference</b></td>
+         <td width="25%" align="center" bgcolor="#008000" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #C0C0C0;"><b>Old Format</b></td>
+         <td width="11%" align="center" bgcolor="#008000" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #C0C0C0;"><b>Update</b></td>
+         <td width="6%" align="center" bgcolor="#008000" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #C0C0C0;"><b>Del</b></td>
+       </tr>
+ <% SELECT _PHONES
+    SCAN %>            
+       <tr>
+         <td width="6%" align="center"><input type="text" autocomplete="off" name="<%='Y-'+ALLT(STR(PHONEID))%>" style="text-align:center;" size="1" value="<%=ALLT(STR(CYCODE))%>" tabindex="1" maxlength="3"></td>
+         <td width="12%" align="center">
+      <select size="1" name="<%='T-'+ALLT(STR(PHONEID))%>" tabindex="2">
+	        <option value="<%=CTYPE%>" selected><%=CTYPE%></option>
+	        <option>Phone</option>	        
+	        <option>Mobile</option>	        
+	        <option>Home</option>	        
+	        <option>Work</option> 
+	        <option>Fax</option>
+	        <option>Proxy</option>
+	        <option>Other</option>
+		    </select></td>
+         <td width="15%" align="center"><input type="text" placeholder="only numbers" autocomplete="off" name="<%='P-'+ALLT(STR(PHONEID))%>"  size="10" style="background-color: #FFFFCC;" value="<%=ALLT(PHONE)%>" tabindex="3" maxlength="10"></td>
+         <td width="25%" align="center"><input type="text" autocomplete="off" name="<%='R-'+ALLT(STR(PHONEID))%>" size="20" value="<%=ALLT(PHONEREF)%>" tabindex="4"></td>
+         <td width="25%" align="center"><b><font color="#000000"><%=ALLT(CPHONE)%></font></b></td>
+         <td width="11%" align="center"><input type="button" class="button" name="B1" onclick="PhoneSave(<%=ALLT(STR(PHONEID))%>)" value="Save"></td>
+         <td width="6%" align="center"><img border="0" src="zz/images/trash.gif" width="19" height="28"></td>
+       </tr>
+       <tr>
+         <td width="100%" colspan="7"><hr color="#C0C0C0" size="1"></hr></td>
+      </tr>
+  <%ENDSCAN%>    
+       <tr>
+         <td width="6%" align="center"><input type="text" autocomplete="off" name="<%='Y-999'%>" style="text-align:center;" size="1" value="" tabindex="6" maxlength="3"></td>
+         <td width="12%" align="center">
+      <select size="1" name="<%='T-999'%>" tabindex="7">
+	        <option selected>Phone</option>	        
+	        <option>Mobile</option>	        
+	        <option>Home</option>	        
+	        <option>Work</option> 
+	        <option>Fax</option>
+	        <option>Proxy</option>
+	        <option>Other</option>
+		    </select></td>
+         <td width="15%" align="center"><input type="text" placeholder="only numbers" autocomplete="off" name="<%='P-999'%>" size="10" value="" tabindex="8" maxlength="10"></td>
+         <td width="25%" align="center"><input type="text" autocomplete="off" name="<%='R-999'%>" size="20" value="" tabindex="9"></td>
+         <td width="25%">&nbsp;</td>
+         <td width="11%" align="center"><input type="button" class="button" name="B1" onclick="PhoneSave('999')"  value="Save"></td>
+         <td width="6%">&nbsp;</td>
+       </tr>
+     </table>
+     </td>
+  </tr>
+   </table>
+ </form>&nbsp;</td>
+</tr>
+  <tr>
+    <td width="100%" bgcolor="#993366"><font color="#FFFFFF" size="2" face="Arial">&nbsp;<%=pcUSER%></font></td>
+  </tr>
+  </table>
+</body>
+</html>

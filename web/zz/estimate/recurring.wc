@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Recurring Customers</title>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;					
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD5		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+</style>
+
+</head>
+
+<body>
+<% SELECT _LIST %>
+ <br>
+<table border="0" align="center" style="border-collapse:collapse;" width="40%">
+  <tr>
+    <td width="100%" align="center" colspan="3"><b><font face="Arial"><a href="javascript:window.close()">Exit</a></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" height="10" style="font-size:0; line-height:0;" colspan="3">&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="34%"><b><font face="Arial">Select Recurring Customers for:</font></b>&nbsp;</td>
+    <td width="22%">
+	<select name="select" id="jumpMenu">
+      <option value="/wc.dll?mpest~recurringlist~<%=pcSCR%>" selected>Today <%=DTOC(DATE())%></option>
+      <option value="/wc.dll?mpest~recurringlist~<%=pcSCR%>~1">Yesterday <%=DTOC(DATE()-1)%></option>      
+      <option value="/wc.dll?mpest~recurringlist~<%=pcSCR%>~2">This Week</option>
+      <option value="/wc.dll?mpest~recurringlist~<%=pcSCR%>~3">Last Week</option>
+      <option value="/wc.dll?mpest~recurringlist~<%=pcSCR%>~4">This Month</option>
+    </select></td>
+    <td width="44%"><b><font face="Arial">Total:&nbsp;<%=ALLT(STR(RECCOUNT()))%></font></b></td>
+  </tr>    
+  </table>
+  <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="95%">
+  <tr>
+    <td width="2%" class="TD1">View </td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Job No</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">User</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Status</td>
+    <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;">Recurring</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Follow-Up</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Move Date</td>
+    <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;">Customer</td>
+    <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;">Origin/Destination</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Inv. Items</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Volume</td>
+    <td width="2%" class="TD1" style="border-left: 1px solid #A9A9A9;">Esign</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Equote</td>
+    <td width="2%" class="TD1" style="border-left: 1px solid #A9A9A9;">bol</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Subject</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">IP</td>
+ </tr>
+   <% SELECT _LIST 
+    	   SCAN %>
+      <tr>
+      <td width="2%" class="TD4"><%=VIEW%></td>
+      <td width="4%" class="TD3"><%=JOB_NO%></td>
+      <td width="5%" class="TD2"><%=ALLT(USER)%></td>
+      <td width="4%" class="TD2"><font color="#<%=IIF(ST<>'O','000000','008000')%>"><b><%=ALLT(STATUS)%></b></font><BR><%IF PRIOR='9'%>General Pool<%ELSE%>Prior: <%=PRIOR%><%ENDIF%></td>
+      <td width="9%" class="TD3"><b><%=RECURRING%></b></td>
+      <td width="5%" class="TD3"><%=FOLLOW_UP%></td>
+      <td width="5%" class="TD3"><font color="#<%=IIF(MOVE_DATE<DATE(),'FF0000','008000')%>"><b><%=MOVE_DATE%></b></font></td>
+      <td width="9%" class="TD2"><%=CUSTOMER%></td>
+      <td width="9%" class="TD2"><%=ALLT(PROPER(SCITY))+', '+ALLT(SSTATE)%><BR><%=ALLT(PROPER(RCITY))+', '+ALLT(RSTATE)%></td>
+      <td width="4%" class="TD2"><%=INV_ITEMS%></td>
+      <td width="3%" class="TD5"><%=VOLUME%></td>
+      <td width="2%" class="TD3"><%=ESIGN%></td>
+      <td width="3%" class="TD3"><%=EQUOTE%></td>
+      <td width="2%" class="TD3"><%=BOL%></td>
+      <td width="5%" class="TD2">&nbsp;<%=SUBJECT%></td>
+      <td width="5%" class="TD2"><%=IP%>&nbsp;</td>
+    </tr>
+    <% ENDSCAN %>
+</table>
+
+<script>
+  const menu = document.getElementById("jumpMenu");
+
+  // Set the dropdown to match the current page URL
+  const currentURL = window.location.href;
+  Array.from(menu.options).forEach(function(option) {
+    if (currentURL.includes(option.value)) {
+      option.selected = true;
+    }
+  });
+
+  // Navigate on change
+  menu.addEventListener("change", function () {
+    if (!this.value) return;
+    window.location.href = this.value;
+  });
+</script>
+
+</body>
+</html>

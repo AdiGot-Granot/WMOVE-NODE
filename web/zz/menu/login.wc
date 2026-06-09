@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>User Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  /* Right-Click Disable */
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    alert('Right Click Disabled!');
+  });
+});
+
+  /* Focus the Network ID field */
+  document.querySelector('input[name="USERNAME"]').focus();
+</script>
+
+
+<style>
+  :root {
+    --primary: #042D59;
+    --primary-light: #2B5E94;
+    --accent: #D94F4F;
+    --text: #1E2A38;
+    --text-muted: #6B7D93;
+    --border: #D4DAE2;
+    --input-bg: #F7F9FB;
+    --radius: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Mobile-first base styles */
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F7F7F7;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(43,94,148,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(217,79,79,0.06) 0%, transparent 60%);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
+    color: var(--text);
+}
+
+  .login-wrapper {
+    width: 100%;
+    margin-top: 120px;
+    animation: slideUp 0.5s ease-out;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .login-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(26, 58, 92, 0.10), 0 1px 3px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .login-header {
+    background: var(--primary);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .login-header .icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .login-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+
+  .login-header p {
+    font-size: 17px;
+    color: #fff;
+    margin-top: 2px;
+  }
+
+  .login-body {
+    padding: 28px 24px;
+  }
+
+  .field {
+    margin-bottom: 22px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 7px;
+  }
+
+  .input-wrap input {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--input-bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap input:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(43,94,148,0.10);
+  }
+
+  .input-wrap input::placeholder {
+    color: #A8B5C4;
+  }
+
+  .btn-login {
+    width: 100%;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  }
+
+  .btn-login:hover {
+    background: var(--primary-light);
+    box-shadow: 0 4px 16px rgba(26,58,92,0.20);
+  }
+
+  .btn-login:active {
+    transform: scale(0.98);
+  }
+
+  .login-footer {
+    text-align: center;
+    padding: 0 24px 28px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* Desktop */
+  @media (min-width: 769px) {
+    body { padding: 24px; }
+    .login-wrapper { max-width: 460px; }
+    .login-header { padding: 28px 32px; }
+    .login-body { padding: 32px 40px; }
+    .input-wrap input { width: 85%; }
+    .btn-login { width: 85%; }
+    .login-footer { padding: 0 40px 28px; }
+  }
+</style>
+</head>
+
+<body>
+   <% DO CASE 			
+			CASE pnCOLEVEL=1
+				lcOMSNAME='Legacy Basic'
+			CASE pnCOLEVEL=2
+				lcOMSNAME='Legacy Junior'
+			CASE pnCOLEVEL=3
+				lcOMSNAME='Legacy Software'
+			CASE pnCOLEVEL=4
+				lcOMSNAME='Legacy Pro'
+			CASE pnCOLEVEL=6
+				lcOMSNAME='Legacy Advanced'
+			CASE pnCOLEVEL=7
+				lcOMSNAME='Legacy Supreme'
+			OTHERWISE
+				lcOMSNAME=''
+   ENDCASE%>
+  <div class="login-wrapper">
+    <div class="login-card">
+
+      <div class="login-header">
+        <div>
+          <h1><%=lcOMSNAME%></h1>
+          <p><%=ALLT(pcCOMPANY)%></p>
+        </div>
+      </div>
+
+ 	<form name="theForm" method="POST" class="login-body" action="wc.dll?mp~loginret~<%=ALLT(pcSCR)%>~login">     
+        <div class="field">
+          <label>User Name</label>
+          <div class="input-wrap">
+            <input type="text" name="USERNAME" placeholder="User Name" onclick='this.value=""' size="20">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <div class="input-wrap">
+            <input type="password" name="PASSWORD" placeholder="Password" onclick='this.value=""' size="10">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login" name="LOGON" value="Login">Login</button>
+
+      </form>
+      <div class="login-footer">Authorized Users only. Access is monitored.</div>
+
+    </div>
+  <div style="text-align:center;padding:0; font-size:12px; font-weight:500;">Version: <%=gcVERSION%> &copy; <%=pcCOPYRIGHT%><br>
+  Upon login you agree to the Terms & Conditions as set forth in the<br><a target="_blank" href="https://eagle.hellomoving.com/zz/help/disclaimer.pdf">service disclaimer</a></div>
+  </div>
+</body>
+</html>

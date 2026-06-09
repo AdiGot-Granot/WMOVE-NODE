@@ -1,0 +1,130 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Change Priorities for Follow-Up Estimates</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mprep~followupwc~<%=pcSCR%>');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	 .SUBMIT	{	color: #FFFFFF;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Arial;
+                    width: 100; 
+                    height: 25; 
+                    cursor: pointer;}
+	 .EXIT		{	color: #000000;
+					background-color: #CCCCCC;
+				  	font-size: 10pt;
+  				  	font-family: Arial;
+				  	text-align: center;
+                    width: 100; 
+                    height: 25; 
+                    cursor: pointer;}                    			  	
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="50%">
+  <tr>
+   <td width="100%" BGCOLOR="#008000" align="center"><b><font face="Verdana" color="#FFFFFF">Change Priority Numbers</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+<table border="1" align="center" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="98%">
+  <tr>
+   <td width="9%" align="center"><b>Priority<br>0</b></td>
+   <td width="10%" align="center"><b><font color="#B50000">Priority<br>1</font></b></td>
+   <td width="9%" align="center"><b><font color="#003842">Priority<br>2</font></b></td>
+   <td width="9%" align="center"><b><font color="#089263">Priority<br>3</font></b></td>
+   <td width="9%" align="center"><b><font color="#083484">Priority<br>4</font></b></td>
+   <td width="9%" align="center"><b><font color="#631C7B">Priority<br>5</font></b></td>
+   <td width="9%" align="center"><b><font color="#000080">Priority<br>6</font></b></td>
+   <td width="9%" align="center"><b><font color="#006600">Priority<br>7</font></b></td>
+   <td width="9%" align="center"><b><font color="#990099">Priority<br>8</font></b></td>
+ </tr>
+  <tr>
+   <td width="9%" align="center"><b><%=pcFUSTATUS0%></b>&nbsp;</td>
+   <td width="10%" align="center"><b><%=pcFUSTATUS1%></b>&nbsp;</td>
+   <td width="9%" align="center"><b><%=pcFUSTATUS2%></b>&nbsp;</td>
+   <td width="9%" align="center"><b><%=pcFUSTATUS3%></b>&nbsp;</td>
+   <td width="9%" align="center"><b><%=pcFUSTATUS4%></b>&nbsp;</td>
+   <td width="9%" align="center"><b><%=pcFUSTATUS5%></b>&nbsp;</td>
+   <td width="9%" align="center"><b><%=pcFUSTATUS6%></b>&nbsp;</td>
+   <td width="9%" align="center"><b><%=pcFUSTATUS7%></b>&nbsp;</td>
+   <td width="9%" align="center"><b><%=pcFUSTATUS8%></b>&nbsp;</td>
+  </tr>
+</table>
+ <br>    
+<form name="theForm" method="POST" action="/wc.dll?mprep~changepriorret~<%=pcSCR%>"> 
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#C0C0C0" width="95%">
+  <tr>
+    <td width="80%" align="center" colspan="3"><b><font face="Verdana" size="2">
+    Change priority numbers in bulk: be alert to your selection</b><BR>&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="28%" align="center" bgcolor="#31719C"><b><font face="Verdana" size="2" color="#FFFFFF">From Priority #</font></b></td>
+    <td width="27%" align="center" bgcolor="#31719C"><b><font face="Verdana" size="2" color="#FFFFFF">To Priority #</font></b></td>
+    <td width="25%" align="center" bgcolor="#31719C"><b><font face="Verdana" size="2" color="#FFFFFF">Move Date</font></b></td>    
+ </tr>
+  <tr>
+    <td width="28%" align="center">
+			<select size="1" name="FUSTATUSA">
+			   <option></option>
+				 <%	SELECT _FUSTATUSA
+						SCAN %>
+					<OPTION><%=ALLT(STR(FUSTATUS))%></OPTION>
+					 <% ENDSCAN %>
+				</select>    
+    </td>  
+    <td width="27%" align="center">
+			<select size="1" name="FUSTATUSB">
+			  		<option value="0">0</option>
+			   		<option value="1">1</option>
+			   		<option value="2">2</option>
+			   		<option value="3">3</option>
+			   		<option value="4">4</option>
+			   		<option value="5">5</option>
+			   		<option value="6">6</option>
+			   		<option value="7">7</option>
+			   		<option value="8">8</option>
+					<option value="9">Pool</option>
+					</select>    
+    </td>
+    <td width="25%"><font face="Arial" size="2">
+    <input class="chkon" type="radio" name="MOVEDATE" value="V1" checked> All<br>
+    <input class="chkon" type="radio" name="MOVEDATE" value="V2"> Past Move Date<br>
+    <input class="chkon" type="radio" name="MOVEDATE" value="V3"> Future Move Date</font>    
+    </td>      
+ </tr>
+ <%IF !EMPTY(pcJOBS)%>
+  <tr>
+    <td width="80%" colspan="3"><B><font face="Verdana" size="2" color="#000000">&nbsp;Your change was 
+    applied to <font color="red"><%=pcJOBS%></font> follow-up estimates.</B></FONT></td>
+ </tr>
+ <%ENDIF%>
+</table>
+  <br>
+<table border="0" width="70%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="35%" align="center"><input type="submit" CLASS="EXIT" name="B31" value="Submit"></td>    
+    <td width="35%" align="center"><input type="button" name="B45" onclick="SubmitFunction(1)" class="EXIT" value="Exit"></td>    
+</table>  
+</form>  
+    </td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366"><font size="2" color="white">User: <%=pcUser%></font></td>
+  </tr>
+</table>
+</body>
+</html>

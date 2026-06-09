@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Tariff Management</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpmainten~TariffWc~<%=pcSCR%>');    	
+    if (i==2) window.location.href=('/wc.dll?mpmainten~TariffVolumeWc~<%=pcSCR%>');    	
+    if (i==3) window.location.href=('/wc.dll?mpmainten~TariffAreaWc~<%=pcSCR%>');    	
+    if (i==4) window.location.href=('/wc.dll?mpmainten~TariffRateWc~<%=pcSCR%>');    	
+    if (i==5) window.location.href=('/wc.dll?mpmainten~OthersWc~<%=pcSCR%>');    	
+	}
+
+function exitform(){
+       window.location.href="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+      }
+  
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 11pt;
+  				  	font-family: Verdana;
+  				  	cursor: pointer;
+					background-color: white;
+				  	text-align: left;}
+	.txton		{	color: blue;
+				  	font-size: 11pt;
+  				  	font-family: Verdana;
+					background-color: white;
+					text-decoration: underline;
+  				  	cursor: pointer;
+				  	text-align: left;}
+	.txtoffblue	{	color: #083484;
+				  	font-size: 12pt;
+  				  	font-family: Times new Roman;
+  				  	cursor: pointer;
+					background-color: white;
+				  	text-align: left}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="33%">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center">
+    <img border="0" src="/zz/images/x-yellow.gif" onclick="exitform()" align="right" width="17" height="18" style="cursor:pointer;"><b><font face="Verdana" size="4" color="#FFFFFF">Tariff Management</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="7"><br>
+<table border="0" align="center" width="98%" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" cellspacing="0" cellpadding="0">
+   <tr>
+     <td width="10%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="90%" height="30"><font class="txtoff" onclick="submitFunction(1)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Posting &amp; Active Tariff</font></td>
+  </tr>
+   <tr>
+     <td width="10%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="90%" height="30"><font class="txtoff" onclick="submitFunction(2)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Volume &amp; Periods</font></td>
+  </tr>
+   <tr>
+     <td width="10%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="90%" height="30"><font class="txtoff" onclick="submitFunction(3)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Tariff Zones</font></td>
+  </tr>
+   <tr>
+     <td width="8%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="92%" height="30"><font class="txtoff" onclick="submitFunction(4)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Tariff Rates</font></td>
+   </tr>
+ <%IF plOTHERS%>  
+   <tr>
+     <td width="10%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="90%" height="30"><font class="txtoff" onclick="submitFunction(5)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Posting &amp; Active - Accessorial Charges &amp; Discounts</font></td>
+  </tr>
+ <%ENDIF%>  
+</table>
+&nbsp;</td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="14">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+</body>
+</html>

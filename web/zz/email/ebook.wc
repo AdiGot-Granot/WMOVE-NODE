@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+</head>
+
+<body>
+<table border="0" ALIGN="left" style="border-collapse: collapse" bordercolor="#111111" width="700" id="AutoNumber1">
+  <tr>
+    <td>
+<%IF pcCUSTNO<>'ABCMOVINGI' AND pcCUSTNO<>'BINDINGMOV' AND pcCUSTNO<>'FLATFEE' AND pcCUSTNO<>'MOA' AND pcCUSTNO<>'NOBELVAN' AND pcCUSTNO<>'OLYMPICVAN' AND pcCUSTNO<>'PRESIDENT' AND pcCUSTNO<>'RIDESAUTO' AND pcCUSTNO<>'RLMOVING' AND pcCUSTNO<>'UNIVERSVL' AND pcCUSTNO<>'USEXPRESS' AND pcCUSTNO<>'UNITEDMS'%>
+<img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100">
+<% ENDIF %>
+<%IF pcCUSTNO='USEXPRESS'%>
+<img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="100%" height="150">
+<% ENDIF %>
+<%IF pcCUSTNO='MOA'%>
+<img border="0" src="https://eagle.hellomoving.com/moa/images/logomoa.gif" alt="" width="700" height="185">
+<% ENDIF %>
+<%IF pcCUSTNO='FLATFEE'%>
+<center><b><font size="7" color="0000A0">Flat Fee Moving</b></font></center>
+<% ENDIF %>
+</td>
+  </tr>
+  <tr>
+    <td align="right"><font face="Verdana" size="2"><%=CDOW(DATE())%>, <%=DATE()%>&nbsp;&nbsp;&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td><br><font face="Verdana" size="2">
+    <%IF pcCUSTNO<>'AVMOV' AND pcCUSTNO<>'DALLASMOV' AND pcCUSTNO<>'GMGMOVSER' AND pcCUSTNO<>'HAWAIIMOVE' AND pcCUSTNO<>'HVLPVLUMS' AND pcCUSTNO<>'NOBELVAN' AND pcCUSTNO<>'SOCIALMOV'%>Dear <%=PROPER(pcSNAME)%>,<%ENDIF%><br>
+    <%=pcBODY%><BR>
+<% IF pcCUSTNO<>'AMERICASMO' %> 
+   Sincerely,<br>
+   <%=PROPER(pcFULLNAME)%><br><%=IIF(EMPTY(pcTITLE),'Moving Consultant',pcTITLE)%><br><%=pcCOMPANY%><%=IIF(EMPTY(pcSLOGAN),'','<BR>'+pcSLOGAN)%><BR><%=pcTOLLFREE%>
+   <%=IIF(EMPTY(pcUSERPHONE),'','<BR>'+pcUSERPHONE)%>
+   <%=IIF(EMPTY(pcFAX),'','<BR>Fax: '+pcFAX)%>
+<%IF pcCUSTNO='SPARTANMO'%><br><%=pcUSEREMAIL%><BR><%=pcOURWEB%><%ELSE%><BR><a href="mailto:<%=pcUSEREMAIL%>"><%=pcUSEREMAIL%></a>
+<br><a href="<%=pcOURWEB%>" TARGET="_BLANK"><%=pcOURWEB%></a><%ENDIF%>
+<%IF pcCUSTNO<>'MOVINGAPT' AND pcCUSTNO<>'RAINBOW'%><br><%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%><%=IIF(EMPTY(pcICC),"","&nbsp;&nbsp;MC: "+pcICC)%><%=IIF(EMPTY(pcREGISTER),"",IIF(pcCUSTNO='INTLMOVENT',"<BR>FMC: "+pcREGISTER,"<br>Mover Registration: "+pcREGISTER))%><%ENDIF%>
+<%IF pcCUSTNO='FLATFEE'%><BR><a href="http://www.facebook.com/pages/Flat-Fee-Moving-Trucking/414646378597379?fref=ts">http://www.facebook.com/pages/Flat-Fee-Moving-Trucking/414646378597379?fref=ts</a><%ENDIF%>
+<%IF pcCUSTNO='KNIGHTSTX' AND pcDEPT='T'%><BR><img border="0" src="https://bear.hellomoving.com/knightstx/images/BBBAC.gif" width="168" height="64"><%ENDIF%>
+<%ENDIF%>
+</font></td>
+  </tr>
+</table>
+
+</body>
+</html>

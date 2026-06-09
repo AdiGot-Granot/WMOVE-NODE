@@ -1,0 +1,527 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<link rel="STYLESHEET" type="text/css" href="/zz/util/invStyle.css">
+<title>INV</title>
+
+<script type="text/javascript">
+
+<%IF plCALCCF%>
+	cVolumeType="Volume";
+	cVolumeDesc="cf";
+<%ELSE%>
+	cVolumeType="Weight";
+	cVolumeDesc="lbs";
+<%ENDIF%>
+
+function sf(){
+
+	// Detect Firefox and show a warning instead
+	if(navigator.userAgent.indexOf("Firefox") != -1){
+		document.getElementById('mainBody').innerHTML =
+			'<br><center><b><font color="#C90000" face="Verdana" size="4">' +
+			'This page is not supported in Firefox.<br><br>' +
+			'Please use Microsoft Edge, Google Chrome, or Safari.' +
+			'</font></b></center>';
+		return;
+	}
+
+	var cURL="/wc.dll?mpinv~invxml~<%=ALLT(pcSCR)%>~~~<%=pcNL%>";
+	xmlInv=loadXML(cURL);
+
+	var cURL="/zz/inventory/invxslrooms.xsl";
+	xslInv=loadXML(cURL);
+
+	transformXSL('mainBody',xmlInv,xslInv);
+	document.getElementById('searchitem').focus();
+
+	document.getElementById("volumeType1").innerHTML=cVolumeType;
+	document.getElementById("volumeDesc1").innerHTML=cVolumeDesc;
+	document.getElementById("volumeType2").innerHTML=cVolumeType;
+	document.getElementById("volumeDesc2").innerHTML=cVolumeDesc;
+
+	calcVolume();
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function loadXML(cURL){
+	var xmlhttp = new window.XMLHttpRequest();
+	xmlhttp.open("GET", cURL, false);
+	xmlhttp.send(null);
+	return xmlhttp.responseXML.documentElement;
+}
+
+function transformXSL(cDIV, oXML, oXSL){
+	xsltProcessor = new XSLTProcessor();
+	xsltProcessor.importStylesheet(oXSL);
+	resultDocument = xsltProcessor.transformToFragment(oXML, document);
+	document.getElementById(cDIV).innerHTML = "";
+	document.getElementById(cDIV).appendChild(resultDocument);
+}
+
+function filterXML(oXSL, cText){
+	oXSL.getElementsByTagName('xsl:for-each')[0].attributes['select'].value = cText;
+	return oXSL;
+}
+
+function sortXML(oXSL, title, dataType){
+	if(dataType=='float') dataType='number';
+	else dataType='text';
+
+	var selectTag = oXSL.getElementsByTagName("xsl:sort")[0];
+	selectTag.setAttribute("select", title);
+	selectTag.setAttribute("data-type", dataType);
+
+	if(selectTag.getAttribute("order") == "ascending")
+		selectTag.setAttribute("order", "descending");
+	else selectTag.setAttribute("order", "ascending");
+
+	return oXSL;
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Inventory Functions
+function filterINV(cat){
+
+	// rooms name
+	ninvroomid=document.getElementById('selectedinvroomid').value;
+	nroomnameid=document.getElementById('selectedroomnameid').value;
+
+	n=document.forms['catForm'].length;
+	for (i=0;i<n;i++){
+		document.forms['catForm'].elements[i].style.fontWeight='';
+	}
+	document.forms['catForm'].elements[cat].style.fontWeight='bold';
+
+	if (cat=='qty') cText="xdoc/moving/inv[qty>0]";
+		else if (cat=='all') cText="xdoc/moving/inv[item!='~' and (invroomid=0 or invroomid="+ninvroomid+")]";
+			else var cText="xdoc/moving/inv[code='"+cat+"' and (invroomid=0 or invroomid="+ninvroomid+")]";
+
+	xslInv=filterXML(xslInv,cText);
+	transformXSL('mainBody',xmlInv,xslInv);
+}
+
+function searchText(){
+
+	// rooms name
+	ninvroomid=document.getElementById('selectedinvroomid').value;
+	nroomnameid=document.getElementById('selectedroomnameid').value;
+
+	n=document.forms['catForm'].length;
+	for (i=0;i<n;i++){
+		document.forms['catForm'].elements[i].style.fontWeight='';
+	}
+
+	var cSearch=document.getElementById('searchitem').value.toUpperCase();
+
+	lWithin=document.getElementById('searchwithin').checked;
+	if(lWithin) cText="xdoc/moving/inv[contains(item,'"+cSearch+"') and lbs>0 and (invroomid='0' or invroomid="+ninvroomid+")]";
+		else cText="xdoc/moving/inv[starts-with(item,'"+cSearch+"') and lbs>0 and (invroomid='0' or invroomid="+ninvroomid+")]";
+
+	xslInv=filterXML(xslInv,cText);
+	transformXSL('mainBody',xmlInv,xslInv);
+}
+
+function filterROOMS(nINVROOMID, cROOMNAME, nROOMNAMEID){
+
+	document.getElementById('selectedinvroomid').value=nINVROOMID;
+	document.getElementById('selectedroomnameid').value=nROOMNAMEID;
+	document.getElementById('selectedRoomName').innerHTML=cROOMNAME;
+
+	if (nINVROOMID>0) var cText="xdoc/moving/inv[invroomid="+nINVROOMID+"]";
+		else var cText="xdoc/moving/inv[item!='~' and qty>0 and invroomid=0]";
+
+	xslInv=filterXML(xslInv,cText);
+	transformXSL('mainBody',xmlInv,xslInv);
+}
+
+function assignRoom(pos){
+
+	// rooms name
+	ninvroomid=eval(document.getElementById('selectedinvroomid').value);
+	nroomnameid=eval(document.getElementById('selectedroomnameid').value);
+
+	xmlInv.getElementsByTagName('inv')[pos].getElementsByTagName('invroomid')[0].childNodes[0].nodeValue=ninvroomid;
+	xmlInv.getElementsByTagName('inv')[pos].getElementsByTagName('roomnameid')[0].childNodes[0].nodeValue=nroomnameid;
+	transformXSL('mainBody',xmlInv,xslInv);
+}
+
+function alterQty(pos,qty){
+
+	itemNode1=xmlInv.getElementsByTagName('inv')[pos].getElementsByTagName('qty')[0].childNodes[0];
+	itemNode2=xmlInv.getElementsByTagName('inv')[pos].getElementsByTagName('roomnameid')[0].childNodes[0];
+	itemNode3=xmlInv.getElementsByTagName('inv')[pos].getElementsByTagName('invroomid')[0].childNodes[0];
+
+	// rooms name
+	var ninvroomid=document.getElementById('selectedinvroomid').value;
+	var nroomnameid=document.getElementById('selectedroomnameid').value;
+
+	if(qty==0){
+		itemNode1.nodeValue=0;
+	}
+	else if(itemNode1.nodeValue>=1 || (itemNode1.nodeValue>=0 && qty>=1)){
+		if(itemNode1.nodeValue==0 && nroomnameid>0){
+			// clone childnode
+			oldNode=xmlInv.getElementsByTagName('inv')[pos];
+			cloneNode=oldNode.cloneNode(true);
+			var x=xmlInv.getElementsByTagName('moving')[0];
+			x.appendChild(cloneNode);
+
+			// adjusting recnum to the new position
+			newPos=xmlInv.getElementsByTagName('inv').length-1;
+			xmlInv.getElementsByTagName('inv')[newPos].getElementsByTagName('recnum')[0].childNodes[0].nodeValue=newPos;
+			xmlInv.getElementsByTagName('inv')[newPos].getElementsByTagName('invroomid')[0].childNodes[0].nodeValue=0;
+		}
+		// continue with updating the qty
+		itemNode1.nodeValue=eval(itemNode1.nodeValue)+qty;
+		itemNode2.nodeValue=nroomnameid;
+		itemNode3.nodeValue=ninvroomid;
+	}
+	else{
+		itemNode1.nodeValue=0;
+	}
+
+	// change room name to General and Id=0
+	if(itemNode1.nodeValue==0) itemNode2.nodeValue=0;
+
+	calcVolume();
+	transformXSL('mainBody',xmlInv,xslInv);
+}
+
+function sortInv(title){
+	dataType=xmlInv.getElementsByTagName('inv')[0].getElementsByTagName(title)[0].getAttribute('type');
+	sortXML(xslInv,title,dataType);
+	transformXSL('mainBody',xmlInv,xslInv);
+}
+
+function addNewItem(){
+
+	var nCFRATIO=<%=pnCFRATIO%>;
+	var nNodes=xmlInv.getElementsByTagName('inv').length;
+	nRecNum=0;
+
+	for(i=0;i<nNodes;i++){
+		if(xmlInv.getElementsByTagName('inv')[i].getElementsByTagName('item')[0].childNodes[0].nodeValue=='~'){
+			nRecNum=xmlInv.getElementsByTagName('inv')[i].getElementsByTagName('recnum')[0].childNodes[0].nodeValue;
+			i=nNodes;
+		}
+	}
+
+	if(nRecNum==0){
+		alert("The free text item list may contain up to 20 items only.");
+		return;
+	}
+
+	var cITEM=document.getElementById('NEWITEM').value.toUpperCase();
+	var cLetter=cITEM.substring(0,1);
+	var cVOLUME=document.getElementById('NEWVOLUME').value;
+	var nVOLUME=eval(document.getElementById('NEWVOLUME').value);
+	var nQTY=eval(document.getElementById('NEWQTY').value);
+
+	// rooms name
+	var ninvroomid=document.getElementById('selectedinvroomid').value;
+	var nroomnameid=document.getElementById('selectedroomnameid').value;
+
+	if (cITEM==""){
+		document.getElementById('NEWITEM').focus();
+		alert("please fill the item name");
+		return;
+	}
+	if (nVOLUME<1){
+		document.getElementById('NEWVOLUME').focus();
+		alert("please provide the item's <%=IIF(plCALCCF,'volume','weight')%>");
+		return;
+	}
+	if (nQTY<1){
+		document.getElementById('NEWQTY').focus();
+		alert("please provide the quantity");
+		return;
+	}
+
+	<%IF plCALCCF%>
+		var nCUFT=nVOLUME;
+		var nLBS=round(nCUFT*nCFRATIO,0);
+		var cVolumeYype="cf";
+	<%ELSE%>
+		var nLBS=nVOLUME;
+		var nCUFT=round(nLBS/nCFRATIO,0);
+		var cVolumeYype="lbs";
+	<%ENDIF%>
+
+	// Update XML Doc
+	xmlInv.getElementsByTagName('inv')[nRecNum].getElementsByTagName('item')[0].childNodes[0].nodeValue=cITEM;
+	xmlInv.getElementsByTagName('inv')[nRecNum].getElementsByTagName('letter')[0].childNodes[0].nodeValue=cLetter;
+	xmlInv.getElementsByTagName('inv')[nRecNum].getElementsByTagName('cuft')[0].childNodes[0].nodeValue=nCUFT;
+	xmlInv.getElementsByTagName('inv')[nRecNum].getElementsByTagName('lbs')[0].childNodes[0].nodeValue=nLBS;
+	xmlInv.getElementsByTagName('inv')[nRecNum].getElementsByTagName('qty')[0].childNodes[0].nodeValue=nQTY;
+	xmlInv.getElementsByTagName('inv')[nRecNum].getElementsByTagName('code')[0].childNodes[0].nodeValue='NW';
+	xmlInv.getElementsByTagName('inv')[nRecNum].getElementsByTagName('volume')[0].childNodes[0].nodeValue=cVOLUME+' '+cVolumeYype;
+	xmlInv.getElementsByTagName('inv')[nRecNum].getElementsByTagName('invroomid')[0].childNodes[0].nodeValue=ninvroomid;
+
+	// Empty the fields
+	document.getElementById('NEWITEM').value="";
+	document.getElementById('NEWVOLUME').value="";
+	document.getElementById('NEWQTY').value="1";
+
+	calcVolume();
+	filterINV('NW');
+}
+
+function calcVolume(){
+	nNodes=xmlInv.getElementsByTagName('inv').length;
+	var vol=0;
+	for(i=0;i<nNodes;i++) {
+		x=xmlInv.getElementsByTagName("inv")[i];
+		if(x.getElementsByTagName('qty')[0].childNodes[0].nodeValue>0)
+			if(cVolumeDesc=="cf")
+				vol=vol+x.getElementsByTagName('cuft')[0].childNodes[0].nodeValue*x.getElementsByTagName('qty')[0].childNodes[0].nodeValue;
+			else
+				vol=vol+x.getElementsByTagName('lbs')[0].childNodes[0].nodeValue*x.getElementsByTagName('qty')[0].childNodes[0].nodeValue;
+	}
+	document.getElementById("totalVolume").innerHTML=vol;
+}
+
+function round(number,X) {
+	X = (!X ? 0 : X);
+	return Math.round(number*Math.pow(10,X))/Math.pow(10,X);
+}
+
+function clearItems(){
+	var Message = "Are you sure you want to clear the inventory list?";
+	if (confirm(Message)){
+		var nNodes=xmlInv.getElementsByTagName('inv').length;
+		for(i=0;i<nNodes;i++){
+			xmlInv.getElementsByTagName('inv')[i].getElementsByTagName('qty')[0].childNodes[0].nodeValue=0;
+		}
+		filterINV('qty');
+	}
+}
+
+function deleteEmptyNodes(){
+	nNodes=xmlInv.getElementsByTagName('inv').length;
+	var j=0;
+	for(i=0;i<nNodes;i++) {
+		x=xmlInv.getElementsByTagName("inv")[j];
+		if(x.getElementsByTagName('qty')[0].childNodes[0].nodeValue==0)
+			x.parentNode.removeChild(x);
+		else j=j+1;
+	}
+}
+
+function checkItemList(){
+	nNodes=xmlInv.getElementsByTagName('inv').length;
+	var j=0;
+	for(i=0;i<nNodes;i++) {
+		x=xmlInv.getElementsByTagName("inv")[i];
+		if(x.getElementsByTagName('qty')[0].childNodes[0].nodeValue>0)
+			j=j+1;
+	}
+	if(j>0) return true;
+		else return false;
+}
+
+function submitXML(){
+
+	<%IF EMPTY(pcNL)%>
+	if(checkItemList()==false){
+		alert("Please select/add at least one item");
+		return;
+	}
+	<%ENDIF%>
+
+	document.getElementById('SubmitXML').disabled = true;
+	cURL = "/wc.dll?mpinv~invxmlroomsret~<%=ALLT(pcSCR)%>~~~<%=pcNL%>";
+	deleteEmptyNodes();
+
+	var xmlhttp = new window.XMLHttpRequest();
+	var Xml2String = new XMLSerializer().serializeToString(xmlInv);
+	Xml2String = Xml2String.substring(Xml2String.indexOf("<xdoc>"));
+
+	xmlhttp.open("POST", cURL, false);
+	xmlhttp.send(Xml2String);
+}
+
+function submitToCharges(){
+	submitXML();
+	document.location.href='/wc.dll?mpcharge~chargeswc~<%=ALLT(pcSCR)%>';
+}
+
+function refreshInv(){
+	submitXML();
+	document.location.href='/wc.dll?mpinv~invxmlwc~<%=ALLT(pcSCR)%>';
+}
+
+function addrooms(){
+	window.open('/wc.dll?mpinv~INVROOMSWC~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=500,height=500');
+}
+
+</script>
+</head>
+
+<body onload="sf(); return false" bgcolor="#EFEFEF">
+<br>
+<table border="0" cellpadding="4" width="850" align="center" bgcolor="#FFFFFF">
+	<tr>
+		<td valign="top"><% IF plNL=.T. %><center><b><font face="Verdana" size="5" color="#9400D3">Items not Moving</font></b></center><%ENDIF%>
+		<table border="0" width="100%" style="border-collapse: collapse" bgcolor="#1C5D33">
+			<tr>
+				<td width="147" bgcolor="#1C5D33">
+				<input type="button" value="Submit" id="SubmitXML" onclick="submitToCharges()" class="button" style="border:2px solid #000000;background-color:#FFFF00; color: #000000; font-weight: bold; text-decoration:blink; font-size:11pt"></td>
+				<td bgcolor="#1C5D33">
+				<table border="0" width="687">
+					<tr>
+						<td width="25%">
+						<table border="0" width="100%" cellspacing="0" cellpadding="0">
+							<tr>
+								<td bgcolor="#1C5D33" align="right"><font color="#FFFFFF">&nbsp;Total&nbsp;</font></td>
+								<td bgcolor="#1C5D33" align="left"><font color="#FFFFFF"><div style="color:#FFFFFF" id="volumeType2" /></font>&nbsp;</td>
+								<td bgcolor="#1C5D33" align="right"><b><font color="#FFFFFF"><div style="color:#FFFFFF;font-weight:bold" id="totalVolume" /></b></font>&nbsp;</td>
+								<td bgcolor="#1C5D33" align="left"><font size="2" color="#FFFFFF"><div style="color:#FFFFFF;font-weight:bold" id="volumeDesc2" /></font></td>
+							</tr>
+						</table></td>
+						<td width="2%">&nbsp;</td>
+						<td width="35%">&nbsp;<FONT COLOR="#FFFFFF">Customer:<b>&nbsp;<%=pcSNAME%></b></FONT></td>
+						<td width="38%"><FONT COLOR="#FFFFFF">Job Number:<b>&nbsp;<%=ALLT(pcDEPT)+pcORDNO%></b></FONT></td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top">
+		<table border="0" width="100%" cellpadding="2" cellspacing="2" style="border-collapse: collapse">
+			<tr>
+				<td width="149" valign="top">
+				<table border="0" width="97%">
+					<tr>
+						<td style="border-right-style: solid; border-right-width: 1px">
+						<table border="0" width="100%">
+							<tr>
+								<td bgcolor="#1C5D33"><b><font color="#FFFFFF">&nbsp;Categories</font></b></td>
+							</tr>
+							<form name="catForm">
+							<%SELECT _IC
+								SCAN%>
+								<tr>
+									<td width="10%">
+									<input type="button" name="<%=ALLT(_IC.CODE)%>" value="<%=ALLT(_IC.NAME)%>" class="button" onmouseover="this.style.borderColor='#000000'" onmouseout="this.style.borderColor=''" onclick="filterINV('<%=ALLT(_IC.CODE)%>')" style="width:136; text-align: left; height:26"></td>
+								</tr>
+							<%ENDSCAN%>
+								<tr>
+									<td width="10%"><hr></td>
+								</tr>
+								<tr>
+									<td width="10%">
+									<input type="button" class="button" name="qty" value="Selected Items" onclick="filterINV('qty')" onmouseover="this.style.borderColor='#000000'" onmouseout="this.style.borderColor=''" style="width:136; text-align: left; text-indent:0; word-spacing:0; color:#800000; font-weight:bold"></td>
+								</tr>
+								<tr>
+									<td width="10%"><input type="button" name="NW" class="button" value="Added New Items" onmouseover="this.style.borderColor='#000000'" onmouseout="this.style.borderColor=''" onclick="filterINV('NW')" style="width:136; text-align: left"></td>
+								</tr>
+								<tr>
+									<td width="10%">
+									<input type="button" name="all" value="All Items" class="button" onmouseover="this.style.borderColor='#000000'" onmouseout="this.style.borderColor=''" onclick="filterINV('all')" style="width:136; text-align: left; color:#006600"></td>
+								</tr>
+								<tr>
+									<td width="10%">
+									<input type="button" class="button" name="clear" value="Clear All Items" onmouseover="this.style.borderColor='#000000'" onmouseout="this.style.borderColor=''" onclick="clearItems()" style="width:136; text-align: left; color:#C90000"></td>
+								</tr>
+							</form>
+						</table>
+						</td>
+					</tr>
+				</table>
+				</td>
+				<td valign="top" style="border-right-style: solid; border-right-width: 1px"><div id="mainBody" />&nbsp;</td>
+				<td width="150" valign="top" style="border-left-style: solid; border-left-width: 1px">
+				<table border="0" width="97%">
+					<tr>
+						<td bgcolor="#1C5D33">
+						<b><font color="#FFFFFF">&nbsp;Search by Item Name</font></b></td>
+					</tr>
+					<tr>
+						<td>
+						<input type="text" id="searchitem" onclick="this.value=''" onKeyUp="searchText()" name="searchitem" size="15" style="width:70">
+						<input type="checkbox" id="searchwithin" value="ON" onclick="searchText()" name="C1" checked><font size="2">(within name)</font></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td bgcolor="#1C5D33"><b><font color="#FFFFFF">&nbsp;Add New Items</font></b></td>
+					</tr>
+					<tr>
+						<td height="114">
+						<table border="1" width="185" style="border-collapse: collapse">
+							<tr>
+								<td width="40">Item</td>
+								<td width="120"><input type="text" id="NEWITEM" size="20" style="width:120" maxlength="70"></td>
+							</tr>
+							<tr>
+								<td width="40"><div id="volumeType1" /></td>
+								<td width="120"><table border="0" width="100%">
+									<tr>
+										<td width="50"><input type="text" id="NEWVOLUME" size="20" style="width:50"></td>
+										<td><div id="volumeDesc1" /></td>
+									</tr>
+								</table></td>
+							</tr>
+							<tr>
+								<td width="40">Qty</td>
+								<td width="120"><input type="text" id="NEWQTY" size="20" style="width:50" value="1"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="button" class="button" onmouseover="this.style.borderColor='#000000'" onmouseout="this.style.borderColor=''" value="Add New Item" name="ADDNEWITEM" onclick="addNewItem()" style="width:100;"></td>
+							</tr>
+						</table>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>
+						<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="table1">
+							<tr>
+								<td bgcolor="#1C5D33"><b><font color="#FFFFFF">Selected Room:</font></b></td>
+							</tr>
+							<tr>
+								<td><font color="#660066"><b><div id="selectedRoomName">General</div></b></font></td>
+							</tr>
+							<tr>
+								<td><input type="hidden" id="selectedinvroomid" value="0"><input type="hidden" id="selectedroomnameid" value="0">&nbsp;</td>
+							</tr>
+						</table>
+						</td>
+					</tr>
+					<tr>
+						<td><table border="0" width="100%">
+							<%SELECT _EI
+								SCAN%>
+							<tr>
+								<td><input type="button" value="#<%=ALLT(STR(_EI.ROOMNAMEID))%> - <%=ALLT(_EI.ROOMNAME)%>" onclick="filterROOMS(<%=ALLT(STR(_EI.INVROOMID))%>,'<%=ALLT(_EI.ROOMNAME)%>',<%=ALLT(STR(_EI.ROOMNAMEID))%>)" class="button" style="width:120;text-align:left; text-align: left; text-indent:0; word-spacing:0"></td>
+							</tr>
+							<%ENDSCAN%>
+						</table>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;<font color="#000080" style="cursor: pointer" onclick="addrooms()"><u>Add rooms by name</u></font></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+</body>
+
+</html>

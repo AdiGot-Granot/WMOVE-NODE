@@ -1,0 +1,68 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Activity Log-<%=RIGHT(pcORDNO,4)%></title>
+
+<STYLE TYPE="text/css">
+
+	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+
+</style>
+</head>
+<body bgcolor="#4E6699">
+<br>
+<%IF plESTLOG%> 
+<table border="1" align="center" width="98%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0">
+   <tr>
+     <td width="100%" height="25" bgcolor="#008000" align="center"><b><font face="verdana" color="#FFFFFF">Activity Log for Job No: <font color="#FFFF00"><%=ALLT(pcDEPT+pcORDNO)%></font></b></font></td>
+  </tr>
+</table>
+<table border="1" align="center" width="98%" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#C0C0C0">
+   <tr style="background-color:#00008B;font-family:Verdana,Helvetica;font-size:10pt;color:#FFFFFF;">
+     <td width="12%" align="center" height="25"><b>Date</b></td>
+     <td width="13%" align="center" height="25"><b>Time</b></td>
+     <td width="9%" align="center" height="25"><b>User</b></td>
+     <td width="8%" align="center" height="25"><b>Title</b></td>
+     <td width="5%" align="center" height="25"><b>Dept</b></td>
+     <td width="38%" align="center" height="25"><b>Remarks</b></td>
+     <td width="13%" align="center" height="25"><b>IP</b></td>
+  </tr>
+  <%SELECT _ESTLOG
+    SCAN%>
+   <tr style="background-color:#<%=IIF(MOD(RECNO(),2)=0,'F0F8FF','FFFFFF')%>;font-family:Verdana,Helvetica;font-size:10pt;">
+     <td width="12%" height="25"><%=TTOD(DATE)%></td>
+     <td width="13%" height="25"><%=RIGHT(TTOC(DATE),11)%></td>
+     <td width="9%" align="center" height="25"><%=ALLT(USER)%></td>
+     <td width="8%" align="center" height="25"><%=ALLT(TITLE)%></td>
+     <td width="5%" align="center" height="25"><%=ALLT(DEPT)%></td>
+     <td width="38%" height="25"><%=ALLT(REMARKS)%></td>
+     <td width="13%" height="25"><%=ALLT(IP)%></td>
+  </tr>
+  <%ENDSCAN%>  
+</table>
+<%ENDIF%> 
+<br>
+<table border="0" width="20%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align="center">
+  <tr>
+	<td width="100%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="javascript: window.close()" onmouseover="javasctript: this.className='SUBONEXIT'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+ </tr>
+</table>
+</body>
+</html>

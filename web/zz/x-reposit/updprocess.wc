@@ -1,0 +1,329 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Repository Process</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitprocess(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~updprocessret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~arenamenuwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 12pt;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+				  	text-align: left}
+	.txton		{	color: blue;
+				  	font-size: 12pt;
+				  	text-align: left;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+					text-decoration: underline
+  				  	cursor: Hand}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+
+<body onload="javascript: window.btnSubmit.focus()" BGCOLOR="#4E6699">
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="70%" height="461">
+  <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="http://www.hellomoving.com/zz/images/BotBar8.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#001E4C" height="20">
+    <p align="center">
+    <b><font face="Arial Rounded MT Bold" size="4" color="#FFFFFF">Update Sale 
+    Price Process</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="355">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+
+		<b><font color="#008000">Company Credit:<font color=<%=IIF(pnBALANCE >0,"#008000","#FF0000")%>>&nbsp;<font size="4">$<%=ALLT(STR(pnBALANCE,9,2))%></font></font></font></b><font color=<%=IIF(pnBALANCE >0,"#008000","#FF0000")%>><font color="#008000"><br>
+		
+		</font>
+		
+		<form name="theForm" method="POST">
+		<!-- Frame Table-->
+		<!-- Parameters-->
+		<table border="1" align="center" width="90%" cellspacing="0" align="center">
+		 <tr>
+           <td valign="top">
+
+			<!-- Dates-->
+			<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" height="23">
+			  <tr>
+			    <td width="25%" height="3" bgcolor="#001C4A">
+	            <b><font face="Verdana" size="2" color="#FFFFFF">Open date:</font></b></td>
+			    <td width="40%" height="3" align="right"><i>
+                <font color="#000080" size="2" face="Verdana">From</font><font face="Arial" color="#000080">:</font></i><input type="text" name="OPENDTE1" size="10" value="<%=DATE()%>"></td>
+			    <td width="40%" height="3" align="right"><i>
+                <font color="#000080" size="2" face="Verdana">To</font><font face="Arial" color="#000080">:</font></i><input type="text" name="OPENDTE2" size="10" value="<%=DATE() %>"></td>
+			  </tr>
+			</table>
+			<!-- Dates-->
+		</td>
+         </tr>
+		 <tr><td valign="top">
+
+			<!-- Dates-->
+			<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" height="23">
+			  <tr>
+			    <td width="25%" height="3" bgcolor="#001C4A">
+	            <b><font face="Verdana" size="2" color="#FFFFFF">Move Date:</font></b></td>
+			    <td width="40%" height="3" align="right"><i>
+                <font color="#000080" size="2" face="Verdana">From</font><font face="Arial" color="#000080">:</font></i><input type="text" name="DATE1" size="10"></td>
+			    <td width="40%" height="3" align="right"><i>
+                <font color="#000080" size="2" face="Verdana">To</font><font face="Arial" color="#000080">:</font></i><input type="text" name="DATE2" size="10"></td>
+			  </tr>
+			</table>
+			<!-- Dates-->
+		</td></tr><tr><td width="100%">
+			<!-- State-->
+			</font>
+			<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" height="23">
+			  <tr>
+                <font color=<%=IIF(pnBALANCE >0,"#008000","#FF0000")%>>
+			    <td width="25%" height="3" bgcolor="#001C4A">
+	            <b>
+	            <font face="Verdana" size="2" color="#FFFFFF">States:</font></b></td>
+			    <td width="40%" height="3" align="right"><i>
+                <font color="#000080" size="2" face="Verdana">From</font><font face="Arial" color="#000080">:</font></i><select size="1" name="STATE1">
+			  		<option selected>ALL</option>
+			  		 <%	SELECT _STATE
+					 	 SCAN %>
+				   		<option><%=ALLT(STATE)%></option>
+					 <% ENDSCAN %>
+					</select></td>
+			    <td width="40%" height="3" align="right"><i>
+                <font color="#000080" size="2" face="Verdana">To</font><font face="Arial" color="#000080">:</font></i><select size="1" name="STATE2">
+				   		<option selected>ALL</option>
+				     <%	 SELECT _STATE
+					 	 SCAN %>
+				   		<option><%=ALLT(STATE)%></option>
+					 <% ENDSCAN %>
+					</select></td>
+			    </font>
+              </tr>
+			  <tr>
+			    <td width="25%" height="3" bgcolor="#001C4A">
+	            <b><font face="Verdana" size="2" color="#FFFFFF">Source</font></b></td>
+			    <font color=<%=IIF(pnBALANCE >0,"#008000","#FF0000")%>>
+			    <td width="40%" height="3" align="right">
+                <select size="1" name="SOURCE">
+			  		<option selected>ALL</option>
+			  		 <%	SELECT _TSOURCE
+					 	 SCAN %>
+				   		<option><%=ALLT(SOURCE)%></option>
+					 <% ENDSCAN %>
+					</select></td>
+			    <td width="40%" height="3" align="right"></td>
+			  </tr>
+			</table>
+			<!-- State-->
+		</td></tr></table>
+		<!-- Parameters-->
+		<!-- Frame Table-->
+	
+		<br>
+
+		<!-- Frame Table-->
+		<!-- Radio-->
+		<table border="1" align="center" width="489" cellspacing="0" align="center">
+		 <tr><td valign="top" width="153">
+			<!-- Type-->
+			<table border="0" width="90%" align="center" cellspacing="0" cellpadding="3" height="125">
+			  <tr>
+			    <td width="100%" height="16" bgcolor="#001C4A" colspan="2" align="center">
+			    <b>
+			    <font face="Verdana" color="#FFFFFF" size="2">Type of Estimate</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20"><input class="chkon" type="radio" name="TYPE" value="V1" checked></td>
+			    <td width="95%" height="20"><font face="Arial" size="2">Long Distance</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20"><input type="radio" name="TYPE" value="V2"></td>
+			    <td width="95%" height="20"><font face="Arial" size="2">Local Move</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20"><input type="radio" name="TYPE" value="V3"></td>
+			    <td width="95%" height="20"><font face="Arial" size="2">International</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20"><input type="radio" name="TYPE" value="V4"></td>
+			    <td width="95%" height="20"><font face="Arial" size="2">Auto Transport</font></td>
+			  </tr>
+			  </table>
+			<!-- Type-->
+
+		 </td><td valign="top" width="163">
+			<!-- Sort-->
+			<table border="0" width="87%" align="center" cellspacing="0" cellpadding="3" height="125">
+			  <tr>
+			    <td width="100%" height="16" bgcolor="#001C4A" colspan="2">
+			    <p align="center">
+			    <b>
+			    <font face="Verdana" color="#FFFFFF" size="2">&nbsp;Sort By</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="1">
+                <input class="chkon" type="radio" name="SORT" value="V1"></td>
+			    <td width="95%" height="1"><font face="Arial" size="2">Move Date</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20">
+                <input type="radio" name="SORT" value="V2" checked></td>
+			    <td width="95%" height="20"><font face="Arial" size="2">Open Date</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20">
+                <input type="radio" name="SORT" value="V3"></td>
+			    <td width="95%" height="20">
+                <font face="Arial" size="2">Job Volume</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20">&nbsp;</td>
+			    <td width="95%" height="20">&nbsp;</td>
+			  </tr>
+			  </table>
+			<!-- Sort-->
+
+		</td>
+		<td valign="top" width="163">
+			<!-- Modul-->
+			<table border="0" width="40%" align="center" cellspacing="0" cellpadding="3" height="125">
+			  <tr>
+			    <td width="100%" height="16" bgcolor="#001C4A" colspan="2" align="center">
+			    <b><font face="Verdana" size="2" color="#FFFFFF">Leads/Booked</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20">
+                <input class="chkon" type="radio" name="MODUL" value="V1" checked></td>
+			    <td width="95%" height="20"><font face="Arial" size="2">Leads</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20">
+                &nbsp;</td>
+			    <td width="95%" height="20">&nbsp;</td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20">&nbsp;</td>
+			    <td width="95%" height="20">&nbsp;</td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="19">&nbsp;</td>
+			    <td width="95%" height="19">&nbsp;</td>
+			  </tr>
+			  </table>
+			<!-- Modul-->
+
+		</td></tr></table>
+		<!-- Radio-->
+		<!-- Frame Table-->
+		</form>
+ <br>
+		<!-- Buttons --->
+		<table border="0" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="25%" align="center">
+            <input id="btnSubmit" type="button" CLASS="SUBOFF" name="btnSubmit" onclick="submitprocess(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Submit"></td>    
+		    <td width="25%" align="center">
+            <input type="button" CLASS="SUBOFF" name="btnExit" onclick="submitprocess(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="10" value="Exit"></td>    
+		  </tr>
+		</table>
+		<!-- Buttons --->
+		<!-- Frame Table --->
+
+
+	<!-- Menu -->
+
+	<br>
+
+	<!-- Command Buttons -->
+
+    </td>
+  </tr>
+</table>
+<!-- frame table -->
+
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#001E4C" height="15">
+    <p align="left"><b><font color="#FFFFFF">User: <%=pcUser%></font> </b></td>
+  </tr>
+   <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="http://www.hellomoving.com/zz/images/botBarep.gif" width="100%" height="14"></td>
+ </tr>
+  </table>
+
+  </center>
+</div>
+
+</body>
+
+</html>

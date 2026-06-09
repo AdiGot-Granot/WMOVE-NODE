@@ -1,0 +1,392 @@
+FUNCTION __COMPANYEDIT
+TEXT<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Company Profile</TITLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpadmin~companyeditret~<<pcSCR>>~<<pcCUSTID>>";
+       document.theForm.submit();
+     }
+           
+    if (i==2) 
+	 {
+    	var Message = "Are you sure you want to initial Full Operation?";
+	    if (confirm (Message)){
+	      document.theForm.action="/wc.dll?mpadmin~initialopr~<<pcSCR>>~<<pcCUSTID>>~FULL";
+	      document.theForm.submit();
+       }
+     }
+     
+    if (i==3) 
+	 {
+    	var Message = "Are you sure you want to initial Limit Operation?";
+	    if (confirm (Message)){
+	       document.theForm.action="/wc.dll?mpadmin~initialopr~<<pcSCR>>~<<pcCUSTID>>~LIMIT";
+    	   document.theForm.submit();
+       }
+    }
+
+  }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+.SAVE {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #0081D3;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBMIT:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+
+.LIMIT {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #BB0000;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #000; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.LIMIT:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+
+.FULL {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #083484;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #000; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.FULL:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<br>
+ENDTEXTSELECT _COMPANY
+  GO TOP TEXT
+<div align="center">
+  <center>
+<table border="0" align="CENTER" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td width="550" BGCOLOR="#000080" height="19"align="center"><b><font color="#FFFFFF" face="Verdana" size="4"><<pcNAME>></font></b></td>
+  </tr>
+ <form name="theForm" method="POST">
+    <td width="700" align="center" bgcolor="#FFFFFF">	
+<table border="0" cellspacing="3" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="48%" VALIGN="TOP">
+<table border="0" align="center" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="38%" height="19"><b>Company ID:</b></td>
+    <td width="70%" height="19" colspan="2"><b><font size="4" color="#008000"><<ALLT(STR(CUSTID))>></font></b></td>
+ </tr>
+  <tr>
+    <td width="38%" height="19"><b>Company Code:</b></td>
+    <td width="70%" height="19" colspan="2"><b><font size="4" color="#008000"><<ALLT(CUSTNO)>></font></b></td>
+ </tr>
+  <tr>
+    <td width="38%" height="19"><b>Company Level:</b></td>
+    <td width="70%" height="19" colspan="2"><B>
+    ENDTEXT IF COLEVEL=1 TEXT<font color="#F353B1">Basic</font>ENDTEXTENDIFTEXT
+    ENDTEXT IF COLEVEL=2 TEXT<font color="#036D32">Junior</font>ENDTEXTENDIFTEXT
+    ENDTEXT IF COLEVEL=4 TEXT<font color="#EC7505">Professional</font>ENDTEXTENDIFTEXT
+    ENDTEXT IF COLEVEL=6 TEXT<font color="#0068B8">Advance</font>ENDTEXTENDIFTEXT
+    ENDTEXT IF COLEVEL=7 TEXT<font color="#AA2D19">Supreme</font>ENDTEXTENDIFTEXT
+    ENDTEXT IF COLEVEL=3 TEXT<font color="#443598">Auto Transport</font>ENDTEXTENDIFTEXT</b></td>
+ </tr>   
+  <tr>
+    <td width="38%" height="19"><b>Host Server:</b></td>
+    <td width="70%" height="19" colspan="2"><B><<ALLT(PROD)>></B>&nbsp;</td>
+ </tr>
+   <tr>
+    <td width="27%" height="19"><b>Active:</b></td>
+    <td width="9%" height="19"><input type="checkbox" name="ACTIVE" value="ON" <<IIF(ACTIVE,'checked','')>> tabindex="25"></td>
+    <td width="71%" height="19">ENDTEXTIF ACTIVETEXT<font color="#008000">Company is ACTIVEENDTEXTELSETEXT<font color="#FF000">Company not ACTIVEENDTEXTENDIFTEXT</td>
+ </tr>
+</table>    
+    <br><br><center><input type="button" CLASS="SAVE" name="B31" onclick="submitFunction(1)" value="Submit"></center>
+  </td>
+    <td width="48%" VALIGN="TOP">
+<table border="0" cellpadding="0" cellspacing="0" style="font-family:Arial;font-size:10pt;border-collapse:collapse;" bordercolor="#111111" width="100%">
+  <tr>
+    <td height="25"><input type="radio" value="V5" name="COLEVEL"<<IIF(COLEVEL=1,'checked','')>>><b>OMS Basic (1)</b>
+    <<IIF(COLEVEL=1,'<img border="0" src="zz/util/vmark.jpg" width="21" height="18">','')>></td>
+  </tr>
+  <tr>
+    <td height="25"><input type="radio" value="V2" name="COLEVEL"<<IIF(COLEVEL=2,'checked','')>>><b>OMS Junior (2)</b>
+    <<IIF(COLEVEL=2,'<img border="0" src="zz/util/vmark.jpg" width="21" height="18">','')>></td>
+  </tr>
+  <tr>
+    <td height="25"><input type="radio" value="V4" name="COLEVEL"<<IIF(COLEVEL=4,'checked','')>>><b>OMS Pro (4)</b>
+    <<IIF(COLEVEL=4,'<img border="0" src="zz/util/vmark.jpg" width="21" height="18">','')>></td>
+  </tr>
+  <tr>
+    <td height="25"><input type="radio" value="V6" name="COLEVEL"<<IIF(COLEVEL=6,'checked','')>>><b>OMS Advance (6)</b>
+    <<IIF(COLEVEL=6,'<img border="0" src="zz/util/vmark.jpg" width="21" height="18">','')>></td>
+  </tr>
+  <tr>
+    <td height="25"><input type="radio" value="V7" name="COLEVEL"<<IIF(COLEVEL=7,'checked','')>>><b>OMS Supreme (7)</b>
+    <<IIF(COLEVEL=7,'<img border="0" src="zz/util/vmark.jpg" width="21" height="18">','')>></td>
+  </tr>
+  <tr>
+    <td height="25"><input type="radio" value="V3" name="COLEVEL"<<IIF(COLEVEL=3,'checked','')>>><b>Auto Transport (3)</b>
+    <<IIF(COLEVEL=3,'<img border="0" src="zz/util/vmark.jpg" width="21" height="18">','')>></td>
+  </tr>          
+  ENDTEXT IF COLEVEL < 6 AND ACTIVE TEXT
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr>  
+  <tr>
+    <td width="100%" align="center"><input type="button" CLASS="LIMIT" name="B56" onclick="submitFunction(3)" value="Basic/Pro/Auto">
+    <br><font face="Verdana" color="#000000" size="2">Do not click when an upgrade or downgrade<br>is between these modules.</font></td>
+ </tr>
+  ENDTEXT ENDIF TEXT        
+  ENDTEXT IF COLEVEL > 5 AND ACTIVE TEXT
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr>  
+  <tr>
+    <td width="100%" align="center"><input type="button" CLASS="FULL" name="B54" onclick="submitFunction(2)" value="Advance/Supreme"></td>
+ </tr>
+  ENDTEXT ENDIF TEXT
+</table>    
+    </td>
+ </tr>
+</table>
+<br>
+<table border="1" cellpadding="0" cellspacing="0" ALIGN="CENTER" style="border-collapse: collapse" bordercolor="#CCCCCC" width="99%">
+  <tr>
+    <td width="48%" valign="top">
+    ENDTEXTIF COLEVEL=>3TEXT
+        <table border="0" align="center" cellpadding="1" cellspacing="1" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="98%">
+          <tr>
+            <td width="100%" height="25" align="center" colspan="2"><u><b><font face="Verdana" size="2">Agents Supplements</font></b></u></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="AGLOAD" value="ON" <<IIF(AGLOAD,'checked','')>>></td>
+            <td width="126%" height="25"><b>Agents Loads Board</b></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="JAF" value="ON" <<IIF(JAF,'checked','')>>></td>
+            <td width="126%" height="25"><b>Agents Job Acceptance Form</b></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="REMAGENT" value="ON" <<IIF(REMAGENT,'checked','')>>></td>
+            <td width="126%" height="25"><b>Carrier Notes (JAF/Estimate)</b></td>
+         </tr>
+         </table>
+    ENDTEXTENDIFTEXT     
+        <BR> 
+        <table border="0" align="center" cellpadding="1" cellspacing="1" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="98%">         
+          <tr>
+            <td width="100%" height="25" align="center" colspan="2"><u><b><font face="Verdana" size="2">Miscellaneous</font></b></u></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="OAUTH" value="ON" <<IIF(OAUTH,'checked','')>>></td>
+            <td width="126%" height="25"><b>OAUTH Gmail Outgoing Integration</b></td>
+         </tr>         
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="CALDLITE" value="ON" <<IIF(CALDLITE,'checked','')>>></td>
+            <td width="126%" height="25"><b>Operations Calendar Lite</b></td>
+         </tr>         
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="MERCHANT" value="ON" <<IIF(MERCHANT,'checked','')>>></td>
+            <td width="126%" height="25"><b>Payment Processing Gateway</b></td>
+         </tr>                           
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="HOSTING" value="ON" <<IIF(HOSTING,'checked','')>>></td>
+            <td width="126%" height="25"><b><font color="#FF000">Data Hosting (Block New Estimate)</font></b></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="BLKLOD" value="ON" <<IIF(BLKLOD,'checked','')>>></td>
+            <td width="126%" height="25"><b><font color="#FF000">Block Leads 
+            Marketplace (Apply to Data Hosting)</font></b></td>
+         </tr>         
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="FV" value="ON" <<IIF(FV,'checked','')>>></td>
+            <td width="126%" height="25"><b>Full Value Protection</b></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="CCCOPY" value="ON" <<IIF(CCCOPY,'checked','')>>></td>
+            <td width="126%" height="25"><b>Copy Credit Card to Processing screen</b></td>
+         </tr>        
+         ENDTEXT IF COLEVEL > 4 TEXT
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="CALCTIME" value="ON" <<IIF(CALCTIME,'checked','')>>></td>
+            <td width="126%" height="25"><b>Job Completion: Start/Finish Time Labor Calc</b></td>
+         </tr>
+        ENDTEXTENDIFTEXT                         
+      </table>
+      <br>
+        <table border="0" align="center" cellpadding="1" cellspacing="1" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="98%">         
+          <tr>
+            <td width="100%" height="25" align="center" colspan="2"><u><b><font face="Verdana" size="2">Custom Integration</font></b></u></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="LIDINSUR" value="ON" <<IIF(LIDINSUR,'checked','')>>></td>
+            <td width="126%" height="25"><b>UMIS Insurance Post Out</b></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="CSIAPI" value="ON" <<IIF(CSIAPI,'checked','')>>></td>
+            <td width="126%" height="25"><b>CSI Client Registration Post Out</b></td>
+         </tr>                  
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="PROVLOGIN" value="ON" <<IIF(PROVLOGIN,'checked','')>>></td>
+            <td width="126%" height="25"><b>Lead Provider Login (leads report) Adv &amp; Sup</b></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="LIDSLG" value="ON" <<IIF(LIDSLG,'checked','')>>></td>
+            <td width="126%" height="25"><b>Summit Leads Group/MoverMatcher Post out</b></td>
+         </tr>                  
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="LIDLAGOON" value="ON" <<IIF(LIDLAGOON,'checked','')>>></td>
+            <td width="126%" height="25"><b>Lagoon Media Post Out</b></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="SMUVAI" value="ON" <<IIF(SMUVAI,'checked','')>>></td>
+            <td width="126%" height="25"><b>SMUV AI: AI Dialer Agent</b></td>
+         </tr>         
+      </table>          
+    </td>
+    <td width="52%" valign="top">
+        <table border="0" align="center" cellpadding="1" cellspacing="1" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="98%">
+          <tr>
+            <td width="100%" height="25" align="center" bgcolor="#FFFFFF" colspan="2"><u><b><font face="Verdana" size="2">Add-On Components</font></b></u></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input name="POP3LEADS" size="1" maxlength="2" style="text-align:center" value="<<ALLT(STR(POP3LEADS))>>" tabindex="27"></td>
+            <td width="99%" height="25"><b>Leads Grabbing (1=$25 / 5=$50)</b></td>
+         </tr>         
+     ENDTEXTIF COLEVEL=>3TEXT              
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="AGENTS" value="ON" <<IIF(AGENTS,'checked','')>> tabindex="16"></td>
+            <td width="99%" height="25"><B>Agents $25 (Pro/Advance/Supreme)</B></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="AGTERMS" value="ON" <<IIF(AGTERMS,'checked','')>> tabindex="16"></td>
+            <td width="99%" height="25"><B>Agents BOL Terms $25 (Pro/Advance/Supreme)</B></td>
+         </tr>         
+          ENDTEXTIF COLEVEL>5TEXT
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="STORAGE" value="ON" <<IIF(STORAGE,'checked','')>> tabindex="26"></td>
+            <td width="99%" height="25"><B>Storage $25 (Advance/Supreme)</B></td>
+         </tr>
+          ENDTEXTENDIFTEXT
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="DEPARTMENT" value="ON" <<IIF(DEPARTMENT,'checked','')>>></td>
+            <td width="99%" height="25"><B>Department $25 (Pro/Advance/Supreme)</B></td>
+         </tr>
+     ENDTEXTENDIFTEXT        
+        </table>
+        <br>
+        <table border="0" align="center" cellpadding="1" cellspacing="1" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="98%">
+          <tr>
+            <td width="100%" height="25" align="center" bgcolor="#FFFFFF" colspan="2"><u><b><font face="Verdana" size="2">One Time Service Charge</font></b></u></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="INVROOM" value="ON" <<IIF(INVROOM,'checked','')>>></td>
+            <td width="99%" height="25"><b>Inventory by Room Names $150 for 
+            Basic</b></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="BOLMG" value="ON" <<IIF(BOLMG,'checked','')>>></td>
+            <td width="99%" height="25"><font color="#008000"><b>Bill of Lading by Michael Garcia $150</b></font></td>
+         </tr>
+          <tr>
+            <td width="1%" height="25" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="BOLCSI" value="ON" <<IIF(BOLCSI,'checked','')>>></td>
+            <td width="99%" height="25"><font color="#EC7505"><b>Bill of Lading by CSI Pros $150</b></font></td>
+         </tr>
+        </table>
+        <br>
+        <table border="0" align="center" cellpadding="1" cellspacing="1" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" width="98%">      
+        <tr>
+            <td width="100%" height="25" align="center" colspan="2"><u><b><font face="Verdana" size="2">Tariff Module</font></b></u></td>
+         </tr>
+          <tr>
+            <td width="1%" height="30" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="T400N" value="ON" <<IIF(T400N,'checked','')>>></td>
+            <td width="126%" height="30"><b>400N (standard build-in)</b></td>
+         </tr>
+    ENDTEXTIF COLEVEL>3TEXT            
+          <tr>
+            <td width="1%" height="30" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="VZTARIFF" value="ON" <<IIF(VZTARIFF,'checked','')>>></td>
+            <td width="126%" height="30"><b>Tariff Management $50<br>(free on Supreme 
+            per request)</b></td>
+         </tr>    
+          <tr>
+            <td width="1%" height="30" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="VZOTHERS" value="ON" <<IIF(VZOTHERS,'checked','')>>></td>
+            <td width="126%" height="30"><b>Accessorial Charges for Tariff Management</b></td>
+         </tr>
+    ENDTEXTENDIFTEXT     
+    ENDTEXTIF COLEVEL=>3TEXT         
+          <tr>
+            <td width="1%" height="30" align="center" bgcolor="#F7F0B9"><input type="checkbox" name="AUTOZONE" value="ON" <<IIF(AUTOZONE,'checked','')>>></td>
+            <td width="126%" height="30"><b>Auto Zone Tariff</b></td>
+         </tr>            
+    ENDTEXTENDIFTEXT
+		</table>    
+    </td>
+  </tr>
+</table>
+    <b><font color="#FF0000"><<pcMSG>></font></b>
+    </td>
+</form>
+  <tr>
+    <td width="700" bgcolor="#000080" height="14"></td>
+  </tr>
+</table>
+  </center>
+</div>
+</body>
+</html>ENDTEXT

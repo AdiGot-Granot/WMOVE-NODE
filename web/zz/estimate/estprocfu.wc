@@ -1,0 +1,330 @@
+<html>
+
+<head>
+<title>Moving System-Log File</title>
+<script language="JavaScript" src="/zz/util/calendar.js"></script>
+<script>
+
+function sf(){
+	frm=document.theForm;
+}
+
+function sendemail(cREFNO) {
+    window.open('/wc.dll?mprep~printselect~<%=pcSCR%>~'+cREFNO+'~EMAILCENTER','EANITHING','toolbar=no,location=no,directories=no,status=yes,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=700,height=750');
+	self.name="main"
+}
+
+function xxxcallPhone(par){
+	//alert('https://cp52.fonality.com/call.cgi?server_id=12083&extension=<=pcEXT>&number='+par+'&username=12083_<=pcEXT>&password=<=pcPASSWORD>')
+    newWin=window.open('https://cp52.fonality.com/call.cgi?server_id=12083&extension=<%=pcEXT%>&number='+par+'&username=<%=pcUSERNAME%>_<%=pcEXT%>&password=<=pcPASSWORD>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=100,height=100');
+	// delay 
+	window.setTimeout('newWin.close()',11000);
+	//newWin.close()
+
+}
+
+
+function fonality(par){
+	//alert('https://cp52.fonality.com/call.cgi?server_id=12083&extension=<%=pcEXT%>&number='+par+'&username=12083_<%=pcEXT%>&password=<%=pcPASSWORD%>')
+    newWin=window.open('https://cp52.fonality.com/call.cgi?server_id=12083&extension=<%=pcEXT%>&number='+par+'&username=12083_<%=pcEXT%>&password=<%=pcPASSWORD%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=100,height=100');
+	// delay 
+	window.setTimeout('newWin.close()',11000);
+	//newWin.close()
+
+}
+
+
+function srchDetails(nPageNo,nPRIORITY){  
+	frm.action='/wc.dll?mpxml~ESTFUWC~<%=pcSCR%>~&RECPERPAGE=<%=ALLT(STR(pnRECPERPAGE))%>&PAGENO='+nPageNo+'&PRIORITY='+nPRIORITY;
+	frm.submit();
+}
+
+
+function thisWeek(){
+	var today = new Date; // get current date
+	var first = today.getDate() - today.getDay(); // First day is the day of the month - the day of the week
+	
+	
+	var last = first + 6; // last day is the first day + 6
+	var firstday = new Date(today.setDate(first));
+	var month1 = firstday .getMonth()+1;
+	var day1 = firstday .getDate();
+	var year1 = firstday .getFullYear();
+	cDate1=month1+ '/' + day1 + '/' + year1;
+	
+	
+	//var lastday = new Date(curr.setDate(last)).toUTCString(); 
+	var lastday = new Date(today.setDate(last)); 
+	var month2 = lastday .getMonth()+1;
+	var day2 = lastday .getDate();
+	var year2 = lastday .getFullYear();
+	cDate2=month2+ '/' + day2 + '/' + year2;
+	
+	document.getElementById("DATE1").value=cDate1;
+	document.getElementById("DATE2").value=cDate2;
+}
+
+function todayDate(){
+	var today = new Date; // get current date
+	var month = today.getMonth()+1;
+	var day = today.getDate();
+	var year = today.getFullYear();
+	cDate=month+ '/' + day + '/' + year;
+		
+	document.getElementById("DATE1").value=cDate;
+	document.getElementById("DATE2").value=cDate;
+}
+
+function tomorrowDate(){
+	
+	var today = new Date(); // Or Date.today() 
+	var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000)); 
+
+	var month = tomorrow.getMonth()+1;
+	var day = tomorrow.getDate();
+	var year = tomorrow.getFullYear();
+	cDate=month+ '/' + day + '/' + year;
+		
+	document.getElementById("DATE1").value=cDate;
+	document.getElementById("DATE2").value=cDate;
+}
+
+function yesterdayDate(){
+	
+	var today = new Date(); // Or Date.today() 
+	var yesterday = new Date(today.getTime() - (24 * 60 * 60 * 1000)); 
+
+	var month = yesterday.getMonth()+1;
+	var day = yesterday.getDate();
+	var year = yesterday.getFullYear();
+	cDate=month+ '/' + day + '/' + year;
+		
+	document.getElementById("DATE1").value=cDate;
+	document.getElementById("DATE2").value=cDate;
+}
+
+function oldDate(){
+	
+	var today = new Date(); // Or Date.today() 
+	var yesterday = new Date(today.getTime() - (24 * 60 * 60 * 1000)); 
+
+	var month = yesterday.getMonth()+1;
+	var day = yesterday.getDate();
+	var year = yesterday.getFullYear();
+	cDate=month+ '/' + day + '/' + year;
+		
+	document.getElementById("DATE1").value='01/01/2000';
+	document.getElementById("DATE2").value=cDate;
+}
+
+
+</script>
+<STYLE TYPE="text/css">
+
+	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+
+</style>
+</head>
+<body onload="sf()" bgcolor="#336699">
+<form name="theForm" method="POST">
+<br>
+<table border="0" align="center" width="100%" cellspacing="0">
+      <tr>
+        <td width="100%" height="25" bgcolor="#008000" align="center">
+        <b><font face="verdana" color="#FFFFFF">Follow-Up </font></b>
+		<font face="verdana" color="#FFFFFF"><b>Report</b></font></td>
+      </tr>
+    <tr>
+      <td width="100%" height="25">
+      <table border="1" width="100%" bgcolor="#EEEEEE" style="border-collapse: collapse">
+		<tr>
+			<td>
+      <table border="0" width="100%">
+		<tr>
+			<td>
+			<table border="0" width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="50">&nbsp;</td>
+					<td width="29">&nbsp;</td>
+					<td width="119">&nbsp;</td>
+					<td width="162">&nbsp;</td>
+					<td width="74">&nbsp;</td>
+					<td width="73">From:</td>
+					<td width="182"><input type="text" id="DATE1" name="DATE1" size="10" value="<%=lcFROMDTE%>">
+   					<a href="javascript:cal1.popup();"><img src="/zz/images/cal.gif" border="0" width="16" height="16"></a></td>
+					<td width="20">To:</td>
+					<td width="714"><input type="text" id="DATE2" name="DATE2" size="10" value="<%=lcTODTE%>"><a href="javascript:cal2.popup();"><img src="/zz/images/cal.gif" border="0" width="16" height="16"></a></td>
+					<td width="20">&nbsp;</td>
+					<td width="20">&nbsp;</td>
+					<td width="75">&nbsp;</td>
+					<td width="74">&nbsp;</td>
+					<td width="78">&nbsp;</td>
+					<td width="136">&nbsp;</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="8"></td>
+		</tr>
+		<tr>
+			<td>
+			<table border="0" width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="40">&nbsp;</td>
+					<td width="193">
+			      	&nbsp;</td>
+					<td width="34">Type:</td>
+					<td width="171">
+			      	<select name="SELTYPE" size="1" id="type" style="width:120; height:22">
+					<%SELECT _TY
+					SCAN%>								
+						<option value="<%=_TY.TYPE%>" <%IF _TY.TYPE==pcSELTYPE%>selected<%ENDIF%>><%=ALLT(_TY.DESC)%></option>
+					<%ENDSCAN%>		 	               
+					<option value="ALL" <%IF pcSELTYPE=="ALL"%>selected<%ENDIF%>>All</option>
+	    </select></td>
+					<td width="32">
+			      	:</td>
+					<td width="10">
+				     &nbsp;</td>
+					<td width="37">
+			      	&nbsp;</td>
+					<td width="12">
+			      	&nbsp;</td>
+					<td width="68">
+			      	Sort By:</td>
+					<td width="197">
+			      	<select size="1" name="SORT" style="width:120; height:22">
+			      		<option value="E.NEXTFU" <%IF pcSORT="NEXTFU"%>SELECTED<%ENDIF%>>Follow-Up Date</option>
+						<option value="E.OPENDTE" <%IF pcSORT="OPENDTE"%>SELECTED<%ENDIF%>>Open Date</option>
+						<option value="E.LBOOKDTE" <%IF pcSORT="S.DTE"%>SELECTED<%ENDIF%>>Pick-Up Date</option>
+					 	<option value="E.USER" <%IF pcSORT="USER"%>SELECTED<%ENDIF%>>User</option>
+					 	<option value="E.FUSTATUS" <%IF pcSORT="FUSTATUS"%>SELECTED<%ENDIF%>>Priority</option>
+						</select></td>
+					<td>
+			      	&nbsp;</td>
+					<td>
+			      	<input type="button" value="Search" name="Search" onclick="srchDetails(1,'')" class="button"></td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+			<table border="1" width="50%" style="border-collapse: collapse">
+				<tr>
+					<%SELECT FUSTATUS FROM _EST9 INTO CURSOR _PRIORITY1%>
+					<%SCAN%>
+					<td align="center" width="5%"><font color="c90000">Priority: <%=ALLTRIM(STR(_PRIORITY1.FUSTATUS))%> </font></td>
+					<%ENDSCAN%>
+				</tr>
+				<tr>
+					<%SELECT * FROM _EST9 INTO CURSOR _PRIORITY2%>
+					<%SCAN%>
+					<td align="center" width="5%" ><a href="#" onclick="srchDetails(1,'<%=ALLTRIM(STR(_PRIORITY2.FUSTATUS))%>')"><%=ALLTRIM(STR(_PRIORITY2.CNTNUM))%></a>&nbsp;</td>
+					<%ENDSCAN%>					
+				</tr>
+			</table>
+			</td>
+		</tr>
+		</table>
+      		</td>
+		</tr>
+		</table>
+      </td>
+    </tr>
+    <tr>
+      <td width="100%" height="25">
+          &nbsp;</td>
+    </tr>
+    <tr>
+      <td width="100%" height="25">
+          <table border="1" width="100%" bgcolor="#F5F5F5">
+			<tr>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>#</b></font></td>
+				<td align="center" bgcolor="#808080">&nbsp;</td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>JobNo</b></font></td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>User / Rep</b></font></td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>Type / Status</b></font></td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>
+				Follow-Up Date</b></font></td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>
+				Pick-Up Date 
+				/ Dlv Date</b></font></td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>Customer</b></font></td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>From / To</b></font></td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>Volume</b></font></td>
+				<td align="center" bgcolor="#808080"><font color="#FFFFFF"><b>Estimate</b></font></td>
+			</tr>
+			<%SELECT _EST%>
+			<%SCAN%>
+			<tr>
+				<td align="center"><font size="1"><%=ALLTRIM(STR(RECNO()+pnPAGENO*pnRECPERPAGE-pnRECPERPAGE))%>.</font></td>
+				<td valign="top"><br><a href="javascript: sendemail('<%=_EST.REFNO%>')"><img border="0" src="zz/images/email2.png" ALT="Email Center" width="18" height="11"></a><br>
+				<FONT face="Arial" size="2" color="#000000"><b><%=ALLT(STR(_EST.EMAILCNT))%></b>&nbsp;sent</font>
+				</td>
+				<td><%=_EST.DEPT%>-<a href='/wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(_EST.REFNO)%>' target="_blank"><%=_EST.ORDNO%></a><br><%=_EST.OPENDTE%><br><font size="1"><%=ALLTRIM(_EST.REF)%></font></td>
+				<td><%=ALLTRIM(_EST.USER)%><br><%=ALLTRIM(_EST.REP)%></td>
+				<td><%=_EST.TYPE%><br><%=_EST.STATUS%></td>
+				<td align="center"><%=_EST.NEXTFU%><br><font color="c90000"><%=IIF(_EST.FUSTATUS>0,'Priority: '+ALLTRIM(STR(_EST.FUSTATUS)),'')%></font></td>
+				<td align="center"><%=_EST.PICKUPDTE%><br><%=IIF(!EMPTY(_EST.DLVDTE),_EST.DLVDTE,'')%></td>
+				<td><%=ALLTRIM(_EST.SNAME)%><br><%=ALLTRIM(_EST.EMAIL)%><br>
+					<a href="javascript: fonality(<%=ALLTRIM(_EST.STELH)%>)"><%=ALLTRIM(_EST.STELH)%></a>&nbsp;
+					<a href="javascript: fonality(<%=ALLTRIM(_EST.STELO)%>)"><%=ALLTRIM(_EST.STELO)%></a></td>
+				<td><%=ALLTRIM(_EST.SSTATE)%>&nbsp;<%=ALLTRIM(_EST.SCITY)%><br><%=ALLTRIM(_EST.RSTATE)%>&nbsp;<%=ALLTRIM(_EST.RCITY)%><br><%=TRANSFORM(_EST.MILES,'999,999')%> Miles</td>
+				<td><%=_EST.CF_LBS%>&nbsp;</td>
+				<td align="right"><%=TRANSFORM(_EST.ESTIMATE,'$999,999')%>&nbsp;</td>
+			</tr>
+			<%ENDSCAN%>
+			</table>
+      </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>
+    	<table border="0" width="100%">
+		<tr>
+			<td></td>
+			<td></td>
+			<td width="100"><font color="#F5F5F5"><% IF pnPAGENO>1%></font><a href="javascript: srchDetails(<%=ALLT(STR(pnPAGENO-1))%>,'')"><font color="#F5F5F5">Previous</font></a><font color="#F5F5F5"><%ELSE%>&nbsp;<%ENDIF%></font></td>
+			<td width="76"><font color="#F5F5F5"><%=ALLT(STR(pnPAGENO))%>&nbsp;/&nbsp;<%=ALLT(STR(CEILING(pnRECORDS/pnRECPERPAGE)))%></font></td>
+			<td width="372"><font color="#F5F5F5"><% IF pnPAGENO<CEILING(pnRECORDS/pnRECPERPAGE)%></font><a href="javascript: srchDetails(<%=ALLT(STR(pnPAGENO+1))%>,'')"><font color="#F5F5F5">Next</font></a><font color="#F5F5F5"><%ELSE%>&nbsp;<%ENDIF%></font></td>
+			<td></td>
+		</tr>
+		</table>
+    
+    </td></tr>
+   </table>
+<br>
+<script language="JavaScript">
+	var cal1 = new calendar2(document.forms['theForm'].elements['DATE1']);
+	cal1.year_scroll = false;
+	cal1.time_comp = false;
+
+	var cal2 = new calendar2(document.forms['theForm'].elements['DATE2']);
+	cal1.year_scroll = false;
+	cal1.time_comp = false;
+
+</script>
+</form>
+</body>
+</html>

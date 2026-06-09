@@ -1,0 +1,53 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Rooms Inventory Name</title>
+</head>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function closeform() {
+	window.close()}	
+
+function submitFunction(i) {
+    if (i==1) document.theForm.action="/wc.dll?mpscripts~roomsinvnameret~<%=pcSCR%>";
+    		  document.theForm.submit()
+    }
+    
+</SCRIPT>
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;" bordercolor="#111111" width="25%">
+  <tr>
+    <td width="50%" height="40" align="center"><b><font face="Verdana" size="4">Setup Default Rooms Names</font></b></td>
+ </tr>
+</table>
+<FORM NAME="theForm" method="post">
+<table border="1" width="25%" bordercolor="#000000" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+  <tr>
+    <td width="5%" bgcolor="#1C5D33" align="center"><font face="Verdana" color="#FFFFFF">#</font></td>
+    <td width="48%" bgcolor="#1C5D33" align="left">&nbsp;<b><font face="Verdana" color="#FFFFFF">Room Name</font></b></td>
+    <td width="13%" bgcolor="#1C5D33" align="center"><b><font color="#FFFFFF" face="Verdana">Delete</font></b></td>
+  </tr>
+  <% SELECT _TINV 
+  	 SCAN %>
+  <tr style="line-height:25px;">
+    <td width="5%" align="left">&nbsp;<font face="Verdana" size="2"><%=ALLT(STR(RECNO()))%>.</font></td>
+    <td width="48%">&nbsp;<input type="text" autocomplete="off" name="I-<%=ALLT(STR(RNAMEID))%>" size="30" value="<%=ALLT(ROOMNAME)%>" maxlength="25"></td>
+    <td width="13%" bgcolor="#FF0000" align="center"><% IF RNAMEID > 100 %><input type="checkbox" name="D-<%=ALLT(STR(RNAMEID))%>" value="ON"><%ENDIF%></td>
+  </tr>
+  <% ENDSCAN%>
+</table>
+<br>
+<table border="0" width="25%" cellspacing="0" cellpadding="0" bordercolor="#111111" style="border-collapse: collapse">
+  <tr>
+    <td align="center"><input type="button" name="btnSubmit" onclick="submitFunction(1)" value="Submit Rooms Name" size="15" style="cursor:pointer;"></td>
+ </tr>
+</table>
+
+</FORM>
+</body>
+
+</html>

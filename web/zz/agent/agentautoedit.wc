@@ -1,0 +1,289 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Auto Tranport Carrier</TITLE>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+  
+<script type="text/javascript">
+jQuery.noConflict();
+
+   jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) { 
+       document.theForm.action="/wc.dll?mpagent~agenteditret~<%=pcSCR%>~<%=lcAGENTID%>";
+       document.theForm.submit();
+     }
+    if (i==2) {
+		var Message = "Are you sure you want to delete this Carrier?";
+		if (confirm (Message))
+		  {
+			document.theForm.action="/wc.dll?mpagent~deleteagent~<%=pcSCR%>~<%=lcAGENTID%>";
+	        document.theForm.submit();
+	      }
+     }
+
+    if (i==3) { 
+       parent.location.href=('/wc.dll?mpagent~agentswc~<%=pcSCR%>');
+     }   
+  }
+
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #0081D3;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+
+.DELETE {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #BB0000;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #000; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.DELETE:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" bordercolor="#111111" width="820">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="19"><font face="Verdana" size="4" color="#FFFFFF">Carrier Information</font></b></td>
+  </tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF"><br>	
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="800">
+  <tr>
+    <td valign="top" width="466">
+    <form name="theForm" method="POST">
+    <input type="hidden" name="DEL" value="<%=plDEL%>">
+<%SELECT _AGENT%>    
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Active</font></td>
+    <td width="75%" height="19" colspan="2">
+    <%IF EMPTY(pcMSG) %>
+    <label class="switch"><input type="checkbox" id="togBtn" name="ACTIVE" value="ON" <%=IIF(ACTIVE,'checked','')%>><div class="slider round"></div></label>
+    <b><font face="Verdana" color="#<%=IIF(ACTIVE=.T.,'008000','FF0000')%>"><%=IIF(ACTIVE=.T.,'Active','Not Active')%></font></b>
+    <%ELSE%>
+    &nbsp;&nbsp;<b><font face="Verdana"><%=pcMSG%></font></b>
+    <%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Carrier ID</font></td>
+    <td width="75%" height="19" colspan="2">
+    <%IF lnAGENTID=0 %><input type="text" autocomplete="off" name="AGENT" size="11" value="<%=ALLT(AGENT)%>" maxlength="10" tabindex="1">
+    &nbsp;&nbsp;<b><font face="Verdana" size="2" color="#0081D3">3 to 10 Characters</font></b>
+    <%ELSE%><font face="Verdana" color="#008000"><b><%=ALLT(AGENT)%></b></font><%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Company</font></td>
+    <td width="75%" height="19" colspan="2"><input type="text" name="COMPANY" size="30" value="<%=ALLT(COMPANY)%>" tabindex="2"></td>
+  </tr>    
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Contact</font></td>
+    <td width="75%" height="19" colspan="2"><input type="text" name="CONTACT" size="20" value="<%=ALLT(CONTACT)%>" maxlength="35" tabindex="3"></td>
+  </tr>
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Address</font></td>
+    <td width="75%" height="19" colspan="2"><input type="text" name="ADD1" size="30" value="<%=ALLT(ADD1)%>" tabindex="4"></td>
+  </tr>
+  <tr>
+    <td width="31%" height="18"><font face="Verdana" size="2">City</font></td>
+    <td width="75%" height="18" colspan="2"><input type="text" name="CITY" size="30" value="<%=ALLT(CITY)%>" tabindex="5"></td>
+  </tr>  
+  <tr>
+    <td width="31%" height="18"><font face="Verdana" size="2">State</font></td>
+    <td width="17%" height="18">
+      <select size="1" name="STATEID" tabindex="6">
+		  <option selected value="<%=pcSTATEID%>"><%=pcSTATE%></option>
+		  <% SELECT _STATE
+		 	 SCAN %>
+		   	<option VALUE="<%=ALLT(STR(STATEID))%>"><%=ALLT(STATE)%></option>
+		  <% ENDSCAN %>
+	 </select></td>
+<%SELECT _AGENT%>	 
+    <td width="58%" height="18"><font face="Verdana" size="2">Zip Code</font> <input name="ZIP" size="5" value="<%=ALLT(ZIP)%>" tabindex="7"></td>
+  </tr>
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Country</font></td>
+    <td width="75%" height="19" colspan="2"><input type="text" name="COUNTRY" size="16" value="<%=ALLT(COUNTRY)%>" tabindex="8"></td>
+  </tr>  
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Phone 1</font></td>
+    <td width="75%" height="19" colspan="2"><input type="text" name="PHONE1" size="25" value="<%=ALLT(PHONE1)%>" maxlength="35" tabindex="9"></td>
+  </tr>  
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Phone 2</font></td>
+    <td width="75%" height="19" colspan="2"><input type="text" name="PHONE2" size="25" value="<%=ALLT(PHONE2)%>" maxlength="35" tabindex="10"></td>
+  </tr>            
+  <tr>
+    <td width="31%" height="19"><font face="Verdana" size="2">Fax</font></td>
+    <td width="75%" height="19" colspan="2"><input type="text" name="FAX" size="25" value="<%=ALLT(FAX)%>" maxlength="25" tabindex="12"></td>
+  </tr>      
+  <tr>
+    <td width="31%" height="18"><font face="Verdana" size="2">Email</font></td>
+    <td width="75%" height="18" colspan="2"><input type="text" name="EMAIL" size="30" value="<%=ALLT(EMAIL)%>" tabindex="13"></td>
+  </tr>
+  <tr>
+    <td width="31%" height="18"><font face="Verdana" size="2">Website</font></td>
+    <td width="75%" height="18" colspan="2"><input type="text" name="WEB" size="30" value="<%=ALLT(WEB)%>" tabindex="14"></td>
+  </tr>
+  <tr>
+    <td width="31%" height="18"><font face="Verdana" size="2">Payment Accepted</font></td>
+    <td width="75%" height="18" colspan="2"><input type="text" name="PAYTYPE" size="30" autocomplete="off" value="<%=ALLT(PAYTYPE)%>" tabindex="15"></td>
+  </tr>  
+  <% IF !EMPTY(pcOPENUSER)%>
+  <tr>
+    <td width="31%" height="18"><font face="Verdana" size="2">Created On</font></td>
+    <td width="75%" height="18" colspan="2"><font face="Verdana" size="2"><%=TTOD(OPENDTE)%> By <%=pcOPENUSER%></font></td>
+  </tr>
+ <%ENDIF%>  
+  </table>        
+    </td>
+    <td width="14">&nbsp;</td>
+    <td valign="top" width="345">         
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="2"><b><font style="font-family:Verdana;font-size:10pt;color:#0081D3">
+    Carrier Licensing</font></b></td>
+ </tr>
+  <tr>
+    <td width="49%"><font face="Verdana" size="2">US DOT #</font></td>
+    <td width="53%"><input type="text" name="DOT" size="12" value="<%=ALLT(DOT)%>" tabindex="16"></td>
+  </tr>
+  <tr>
+    <td width="49%"><font face="Verdana" size="2">ICC MC #</font></td>
+    <td width="53%"><input type="text" name="ICC" size="12" value="<%=ALLT(ICC)%>" tabindex="17"></td>
+  </tr>
+  <tr>
+    <td width="49%"><font face="Verdana" size="2">Registration #</font></td>
+    <td width="53%"><input type="text" name="REGISTER" size="12" value="<%=ALLT(REGISTER)%>" tabindex="18"></td>
+  </tr>
+  <tr>
+    <td width="49%"><font face="Verdana" size="2">Insurance Exp. Date</font></td>
+    <td width="53%"><input type="text" autocomplete="off" id="Date1" name="INSEXPDTE" size="8" value="<%=IIF(EMPTY(INSEXPDTE),'',ALLT(DTOC(INSEXPDTE)))%>" tabindex="19"></td>
+  </tr>
+  <tr>
+    <td width="49%"><font face="Verdana" size="2">Carrier Agreement</font></td>
+    <td width="53%"><label class="switch"><input type="checkbox" id="togBtn" name="AGREEDOC" value="ON" <%=IIF(AGREEDOC,'checked','')%> tabindex="21"><div class="slider round"></div></label></td>
+  </tr>
+  <tr>
+    <td width="49%"><font face="Verdana" size="2">Agreement Exp. Date</font></td>
+    <td width="53%"><input type="text" autocomplete="off" id="Date2" name="AGREXPDTE" size="8" value="<%=IIF(EMPTY(AGREXPDTE),'',ALLT(DTOC(AGREXPDTE)))%>" tabindex="22"></td>
+  </tr>
+  <tr>
+    <td width="49%"><font face="Verdana" size="2">Carrier Snapshot</font></td>
+    <td width="53%"><font face="Verdana" size="2"><a href="http://safer.fmcsa.dot.gov/CompanySnapshot.aspx" target="_blnk">FMCSA Safer</a></font></td>
+ </tr>
+</table>
+  <br> 
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="2"><b><font style="font-family:Verdana;font-size:10pt;color:#0081D3">
+    Carrier Service</font></b></td>
+ </tr>
+  <tr>
+    <td width="25%"><label class="switch"><input type="checkbox" id="togBtn" name="CARRIER" value="ON" <%=IIF(lnAGENTID=0 OR CARRIER,'checked','')%> tabindex="23"><div class="slider round"></div></label></td>
+    <td width="77%"><font face="Verdana" size="2">Third Party Carrier</font></td>
+ </tr>
+  </table>
+  <br> 
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" colspan="5" align="center"><b><font style="color:#0081D3">
+    Carrier Rating</font></b></td>
+ </tr>
+   <tr>
+     <td width="25%" align="center"><input type="radio" name="RATING" value="1" <%=IIF(pnRATING=1,'checked','')%>>
+     <% IF pnRATING=1 %><span style="font-size:12pt;color:#083484;">&#10003;</span><%ENDIF%><br>Very Poor</td>
+     <td width="18%" align="center"><input type="radio" name="RATING" value="2" <%=IIF(pnRATING=2,'checked','')%>>
+     <% IF pnRATING=2 %><span style="font-size:12pt;color:#083484;">&#10003;</span><%ENDIF%><br>Poor</td>
+     <td width="18%" align="center"><input type="radio" name="RATING" value="3" <%=IIF(pnRATING=3,'checked','')%>>
+     <% IF pnRATING=3 %><span style="font-size:12pt;color:#083484;">&#10003;</span><%ENDIF%><br>Fair</td>
+     <td width="18%" align="center"><input type="radio" name="RATING" value="4" <%=IIF(pnRATING=4,'checked','')%>>
+     <% IF pnRATING=4 %><span style="font-size:12pt;color:#083484;">&#10003;</span><%ENDIF%><br>Good</td>
+     <td width="21%" align="center"><input type="radio" name="RATING" value="5" <%=IIF(pnRATING=5,'checked','')%>>
+     <% IF pnRATING=5 %><span style="font-size:12pt;color:#083484;">&#10003;</span><%ENDIF%><br>Excellent</td>
+   </tr>
+</table>
+    </td>
+ </tr>
+</table>
+ <BR> 
+<table border="0" width="90%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="13%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" tabindex="12" value="Submit"></td>
+    <td width="20%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(3)" tabindex="12" value="Exit"></td>
+    <td width="15%" align="right"><%IF lnAGENTID > 0 %><input type="button" CLASS="DELETE" name="B31" onclick="submitFunction(2)" tabindex="12" value="Delete"><%ENDIF%></td>
+ </tr>   
+</table>
+ <br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="16%" valign="top"><b><font face="Verdana" style="font-size:10pt;">Internal Notes:</font></b></td>
+    <td width="84%"><textarea rows="5" name="NOTES" cols="65"><%=ALLT(NOTES)%></textarea></td>
+ </tr>
+</table>
+</form>
+  &nbsp;</td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="14">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+
+</body>
+</html>

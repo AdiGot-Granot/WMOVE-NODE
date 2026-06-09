@@ -1,0 +1,115 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Update Distance by Google</title>
+</head>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitDataA() {
+          document.theForm.action="/wc.dll?mputil~UpdateMiles~<%=pcSCR%>~GO";
+          document.theForm.submit();
+}
+
+function SubmitDataB() {
+       document.theForm.action="/wc.dll?mputil~UpdateMiles~<%=pcSCR%>~SAVE";
+       document.theForm.submit();
+}
+
+function SubmitDataC() {
+       document.theForm.action="/wc.dll?mputil~UpdateMiles~<%=pcSCR%>~NEW";
+       document.theForm.submit();
+}
+
+</script>
+<STYLE TYPE="text/css">
+ 	.TD1	 	{	color: #FFF; 
+					font-weight: 700;
+					font-family: Arial;
+				  	text-align: center;
+					background-color: #0081D3;
+					font-size: 10pt;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+  				  	
+</style>
+
+<body>
+
+<p align="center"><a href="javascript:window.close()">Exit</a></p>
+
+<form name="theForm" method="post">
+<input type="hidden" name="DISTID" value="<%=pcDISTID%>">    
+<center><font size="5" color="#0081D3" face="Arial"><b>Update UTL Distance</b></font></center>
+ <br>
+<table border="0" align="center" width="600" bordercolor="#111111" bordercolorlight="#111111" bordercolordark="#111111" style="border-collapse: collapse">
+  <tr>
+    <td width="182"><b><font face="Arial">Enter Two Zip Codes:</font></b></td>
+    <td width="97"><input type="text" name="ZIPA" size="7" value="<%=pcZIPA%>"></td>
+    <td width="96"><input type="text" name="ZIPB" size="7" value="<%=pcZIPB%>"></td>
+    <td width="203"><input type="button" CLASS="SUBMIT1" name="btnGo" onclick="SubmitDataA()"  style="background-color:#008080;font-family:Verdana;font-weight:bold;color:#FFFFFF;cursor:pointer;" value="Check"></td>
+ </tr>
+</table>
+   <br>
+<div align="center">
+<table border="0" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="650">
+<%IF !EMPTY(pcZIPA)%>
+	 <tr>
+	    <td width="77" class="TD1">DIST ID</td>
+	    <td width="78" class="TD1">ZipA</td>
+	    <td width="122" class="TD1">ZipB</td>
+	    <td width="139" class="TD1">Miles</td>
+	    <td width="221" class="TD1">Action</td>	    
+	 </tr>
+	  <%SELECT _DS
+	  SCAN %>
+	   <tr>
+	     <td align="center" width="77"><b><font face="Arial" color="#008000"><%=pcDISTID%></font></b></td>
+	     <td align="center" width="78"><b><font face="Arial" color="#008000"><%=ZIPA%></font></b></td>
+	     <td align="center" width="122"><b><font face="Arial" color="#008000"><%=ZIPB%></font></b></td>
+	     <td align="center" width="139"><input type="text" autocomplete="off" name="MILES" size="5" value="<%=ALLT(STR(MILES,8,2))%>"></td>
+	     <td align="center" width="221"><input type="submit" CLASS="SUBOFF" name="B54" onclick="SubmitDataB()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'"  value="Submit"></td>	     
+	    </tr>
+	<% ENDSCAN %>
+<%ENDIF%>
+</table>
+</div>
+<hr></hr>
+<center><font size="3" color="#0081D3" face="Arial"><b>Add New Manually: From Zip Code, To Zip Code, Miles (checked in Google Maps)</b></font></center><br>
+<table border="0" align="center" width="600" bordercolor="#111111" bordercolorlight="#111111" bordercolordark="#111111" style="border-collapse: collapse;line-height:35px;">
+  <tr>
+    <td width="151"><b><font face="Arial">From Zip Code:</font></b></td>
+    <td width="445"><input type="text" autocomplete="off" name="FROMZIP" size="5" value=""></td>
+ </tr>
+  <tr>
+    <td width="151"><b><font face="Arial">To Zip Code:</font></b></td>
+    <td width="445"><input type="text" autocomplete="off" name="TOZIP" size="5" value=""></td>
+ </tr>
+  <tr>
+    <td width="151"><b><font face="Arial">Miles:</font></b></td>
+    <td width="445"><input type="text" autocomplete="off" name="MILES" size="5" value=""></td>
+ </tr>
+  <tr>
+    <td width="151">&nbsp;</td>
+    <td width="445"><input type="submit" CLASS="SUBOFF" name="B54" onclick="SubmitDataC()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'"  value="Add New"></td>
+ </tr>       
+</table>
+</form>
+</body>
+</html>

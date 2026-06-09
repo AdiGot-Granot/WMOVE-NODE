@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Agents Loads Board VIP</title>
+
+<script language="JavaScript">
+var msg="Right Click Disabled!";
+function disableIE() {if (document.all) {alert(msg);return false;}
+}
+function disableNS(e) {
+  if (document.layers||(document.getElementById&&!document.all)) {
+    if (e.which==2||e.which==3) {alert(msg);return false;}
+  }
+}
+if (document.layers) {
+  document.captureEvents(Event.MOUSEDOWN);document.onmousedown=disableNS;
+} else {
+  document.onmouseup=disableNS;document.oncontextmenu=disableIE;
+}
+document.oncontextmenu=new Function("alert(msg);return false")
+</script>
+
+<style>
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Arial;
+				  	text-align: center}
+</style>
+</head>
+
+<body>
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="700">
+   <tr>
+    <td width="100%"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>?ver=<%=RIGHT(SYS(2015),6)%>" alt="" width="100%" height="96"></td>
+  </tr>
+   <tr>
+    <td width="100%"><b><font face="Verdana"><%=pcLBCONTACT%></b></font></td>
+  </tr>   
+</table>
+  <br>
+<table border="3" align="center" width="97%" cellspacing="1" cellpadding="3"  style="border-collapse:collapse;border-color:#9CB6D6;">
+    <tr>
+      <td width="5%" bgcolor="#61C2EC" class="TD1">Job No.</td>
+      <td width="6%" bgcolor="#61C2EC" class="TD1">Type</td>
+      <td width="6%" bgcolor="#61C2EC" class="TD1">Move Date</td>
+      <td width="5%" bgcolor="#61C2EC" class="TD1">Time</td>
+      <td width="8%" bgcolor="#61C2EC" class="TD1">1<sup>st</sup> Available<br>Delivery</td>
+      <td width="14%" bgcolor="#61C2EC" class="TD1" colspan="2">Moving From</td>
+      <td width="15%" bgcolor="#61C2EC" class="TD1" colspan="2">Moving To</td>
+      <td width="8%" bgcolor="#61C2EC" class="TD1">CF / Lbs</td>
+      <td width="4%" bgcolor="#61C2EC" class="TD1">Miles</td>
+      <td width="5%" bgcolor="#61C2EC" class="TD1">Estimate</td>
+   </tr>
+   <%SELECT _LIST
+     SCAN %>
+    <tr>
+     <td width="5%"><b><font size="2" face="Arial"><%=ALLT(DEPT)+ALLT(ORDNO)%></font>&nbsp;</td> 
+     <td width="6%"><b><font size="2" face="Arial">&nbsp;<%=ALLT(TYPE1) %></font></b></td>
+     <td width="6%" align="center"><b><font size="2" face="Arial"><%=ALLT(LBOOKDTE) %><%=IIF(EMPTY(LBOOKDTE1),'','<br>'+DTOC(LBOOKDTE1)) %></font></b>&nbsp;</td>
+     <td width="5%"><b><font size="2" face="Arial"><%=IIF(EMPTY(LBOOKTME),'',ALLT(LBOOKTME)) %></b></font>&nbsp;</td>
+     <td width="8%"><b><font size="2" face="Arial">
+     <%IF DLVIMM%>Immediately<%ELSE%><%=IIF(EMPTY(DLVDTE),'',DTOC(DLVDTE))%><%=IIF(EMPTY(DLVDTE1),'','<BR>'+DTOC(DLVDTE1))%><%ENDIF%></b></font>&nbsp;</td>
+     <td width="10%"><b><font size="2" face="Arial">&nbsp;<%=ALLT(SCITY)%></b></font></td>
+     <td width="4%" align="center"><b><font size="2" face="Arial"><a href="http://www.google.com/maps?q=<%=ALLT(SZIP)%>,+USA&sa=X&oi=map&ct=title" TARGET="_BLANK"><%=ALLT(SZIP)%></a></b></font>&nbsp;</td>
+     <td width="11%"><b><font size="2" face="Arial">&nbsp;<%=ALLT(RCITY) %></b></font></td>
+     <td width="4%" align="center"><b><font size="2" face="Arial"><a href="http://www.google.com/maps?q=<%=ALLT(RZIP)%>,+USA&sa=X&oi=map&ct=title" TARGET="_BLANK"><%=ALLT(RZIP)%></a></b></font>&nbsp;</td>
+     <td width="8%" align="right"><b><font size="2" face="Arial">
+     <%=ALLT(STR(TOTALCF,8))%>&nbsp;cf&nbsp;/&nbsp;<%=ALLT(STR(TOTALLBS,7))%>&nbsp;lbs 
+  <% IF VZMIN > '0' %>
+     <font color="red"><%='<br>Minimum $'+VZMIN%></font>
+  <%ENDIF%></font></b></td>
+     <td width="4%" align="center"><b><font size="2" face="Arial"><%=ALLT(STR(MILES,5)) %></font></b>&nbsp;</td>
+     <td width="5%" align="right"><b><font size="2" face="Arial"><%='$'+ALLT(STR(BALANCE,8,2))%></font></b>&nbsp;</td>
+    </tr>
+   <% ENDSCAN %>
+   </table>
+</body>
+</html>

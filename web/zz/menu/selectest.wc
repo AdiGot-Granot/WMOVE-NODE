@@ -1,0 +1,131 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Select Estimate</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function DEPT(){
+	<%IF plDEPT %>
+		frm = document.theForm;
+		if(frm.DEPT[frm.DEPT.selectedIndex].text=='') {
+			alert("Please select department");
+			frm.DEPT.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+	<%ELSE%>
+			return true ;
+	<%ENDIF%>
+	
+}
+
+function SubmitEst(i) {
+     if (DEPT()) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mv~selectestret~<%=pcSCR%>";
+       document.theForm.submit();
+      } ;
+
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mv~selectestret~<%=pcSCR%>~INT";
+       document.theForm.submit();
+      } ;
+
+    if (i==3)
+      { 
+       document.theForm.action="/wc.dll?mv~selectestret~<%=pcSCR%>~AUTO";
+       document.theForm.submit();
+      } ;
+    if (i==4)
+      { 
+       document.theForm.action="/wc.dll?mv~selectestret~<%=pcSCR%>~BROKER";
+       document.theForm.submit();
+      } ;
+      
+}
+}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #000080;
+				  	font-size: 11pt;
+  				  	font-family: Verdana;
+  				  	cursor: pointer;}
+	.txton		{	color: 000080;
+				  	font-size: 11pt;
+				  	text-align: left;
+  				  	font-family: Verdana;
+  				  	cursor: pointer;
+					text-decoration: underline
+  				  	cursor: pointer;}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500" align="center">
+  <tr>
+    <td width="100%"><IMG ALT="" SRC="zz/images/topBar.gif" width="500" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Select Estimate</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+  <form name="theForm" method="post">		
+<table border="0" cellpadding="0" cellspacing="0" width="80%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <% IF plDEPT %>
+  <tr>
+    <td width="8%" height="30" align="center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+    <td width="92%" height="30"><b><font face="Verdana" style="font-size: 11pt;" color="#000080">Department</font></b>
+     <select size="1" name="DEPT" style="background-color: #FFFFCC; font-size:10pt">
+      <option value="" selected></option> 
+         <% SELECT _DEPARTMENT 
+     	    GO TOP
+    	    SCAN %>
+	  <OPTION VALUE="<%=ALLT(DEPT)%>"><%=ALLT(DEPT)%>&nbsp;-&nbsp;<%=ALLT(DEPTNAME)%></OPTION>
+	     <% ENDSCAN %>  
+	</select></td>
+  </tr>
+  <% ENDIF %>
+  <tr>
+    <td width="8%" height="30" align="center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+    <td width="92%" height="30"><font class="txtoff" onclick="SubmitEst(1)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Local / Long Distance</font></td>
+  </tr>
+  <tr>
+    <td width="8%" height="30" align="center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+    <td width="92%" height="30"><font class="txtoff" onclick="SubmitEst(2)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">International</font></td>
+  </tr>
+  <tr>
+    <td width="8%" height="30" align="center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+    <td width="92%" height="30"><font class="txtoff" onclick="SubmitEst(3)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Auto Transport</font></td>
+ </tr>
+ <% IF plDMAIN %>
+  <tr>
+    <td width="8%" height="30" align="center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+    <td width="92%" height="30"><font class="txtoff" onclick="SubmitEst(4)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'"> 
+    Booked Job from Broker (Skip Tariff)</font></td>
+  </tr>
+ <%ENDIF%>	  				  
+</table>
+	 </FORM>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366">&nbsp;<font size="2" color="white">User: <%=pcUser%></font></td>
+  </tr>
+  <tr>
+    <td width="100%"><IMG SRC="zz/images/botBar.gif" width="500" height="14"></td>
+  </tr>
+</table>  
+</body>
+</html>

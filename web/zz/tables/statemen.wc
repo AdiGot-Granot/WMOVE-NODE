@@ -1,0 +1,163 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Price per Hour by States</title>
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 600,
+		maxHeight	: 430,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>~1');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+					background-color: #F7F7F7;				  	
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="60%">
+ <tr>
+  <td width="46%"><a class="fancybox fancybox.iframe" href="/zz/help/stateperhrs.htm"><img border="0" src="zz/util/manual.gif" title="Read about Price per Hour by States" width="32" height="32"></a></td>
+</tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="60%"> 
+  <tr>
+    <td BGCOLOR="#0081D3" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Price per Hour by States: <font size="2">Local/Intrastate Move</font></font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><br>
+<form method="POST" action="wc.dll?mpmainten~StateMenRet~<%=pcSCR%>">
+<table width="98%" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111">
+  <% SELECT _STATEMEN %>
+    <tr>
+      <td width="23%" class="TD2">State</td>
+      <td width="7%" class="TD1">$/2 men</td>
+      <td width="8%" class="TD1">$/3 men</td>
+      <td width="7%" class="TD1">$/4 men</td>
+      <td width="8%" class="TD1">$/5 men</td>
+      <td width="7%" class="TD1">$/6 men</td>
+      <td width="8%" class="TD1">Minimum</td>
+      <td width="10%" class="TD1">Intrastate</td>
+      <td width="7%" class="TD1">Per Mile</td>
+      <td width="6%" class="TD1">Delete</td>
+      
+   </tr>
+  <%SCAN 
+  	lcSTATEMENID=ALLT(STR(STATEMENID))%>
+     <tr style="line-height:25px;">
+      <td width="23%" class="TD3">&nbsp;<b><%=ALLT(STATECODE)%> - <%=ALLT(PROPER(STATENAME))%></b>&nbsp;</td>
+      <td width="7%" class="TD4"><input NAME="<%=lcSTATEMENID+'-2'%>" size="3" VALUE="<%=ALLT(STR(MEN2,6,2))%>" maxlength="6" style="text-align: right"></td>
+      <td width="8%" class="TD4"><input NAME="<%=lcSTATEMENID+'-3'%>" size="3" VALUE="<%=ALLT(STR(MEN3,6,2))%>" maxlength="6" style="text-align: right"></td>
+      <td width="7%" class="TD4"><input NAME="<%=lcSTATEMENID+'-4'%>" size="3" VALUE="<%=ALLT(STR(MEN4,6,2))%>" maxlength="6" style="text-align: right"></td>
+      <td width="8%" class="TD4"><input NAME="<%=lcSTATEMENID+'-5'%>" size="3" VALUE="<%=ALLT(STR(MEN5,6,2))%>" maxlength="6" style="text-align: right"></td>
+      <td width="7%" class="TD4"><input NAME="<%=lcSTATEMENID+'-6'%>" size="3" VALUE="<%=ALLT(STR(MEN6,6,2))%>" maxlength="6" style="text-align: right"></td>
+      <td width="8%" class="TD4">$<input NAME="<%=lcSTATEMENID+'-8'%>" size="3" VALUE="<%=ALLT(STR(LOCALMIN,4))%>" style="text-align: right"></td>
+      <td width="10%" class="TD4"><input NAME="<%=lcSTATEMENID+'-9'%>" size="1" VALUE="<%=ALLT(STR(RMILES,4))%>" style="text-align: right">Miles</td>
+      <td width="7%" class="TD4">$<input NAME="<%=lcSTATEMENID+'-10'%>" size="2" VALUE="<%=ALLT(STR(RPERMILE,7,2))%>" maxlength="4" style="text-align: right"></td>
+      <td width="6%" class="TD4" align="center"><input type="checkbox" name="<%=lcSTATEMENID+'-DEL'%>" value="ON" tabindex="11"></td>      
+    </tr>
+   <% ENDSCAN %>
+     <tr>
+      <td width="23%" align="center" style="border-bottom: 1px solid #A9A9A9;">
+	  <select size="1" name="1-1" tabindex="6">
+		  	<% SELECT _STATES
+				 	 SCAN %>
+		<option value="<%=ALLT(STR(STATEID))%>"><%=ALLT(STATECODE)%> - <%=ALLT(PROPER(STATENAME))%></option>
+				 <% ENDSCAN %>
+		</select></td>
+      <td width="7%" class="TD4"><input NAME="1-2" size="3" VALUE="" maxlength="6"></td>
+      <td width="8%" class="TD4"><input NAME="1-3" size="3" VALUE="" maxlength="6"></td>
+      <td width="7%" class="TD4"><input NAME="1-4" size="3" VALUE="" maxlength="6"></td>
+      <td width="8%" class="TD4"><input NAME="1-5" size="3" VALUE="" maxlength="6"></td>
+      <td width="7%" class="TD4"><input NAME="1-6" size="3" VALUE="" maxlength="6"></td>
+      <td width="8%" class="TD4">$<input NAME="1-8" size="3" VALUE="" tabindex="7"></td>
+      <td width="10%" class="TD4"><input NAME="1-9" size="1" VALUE="" tabindex="8">Miles</td>
+      <td width="7%" class="TD4">$<input NAME="1-10" size="2" VALUE="" maxlength="4"></td>
+      <td width="6%" class="TD4"></td>      
+    </tr>   
+ </table>
+  <BR>
+<table border="0" align="center" style="border-collapse: collapse" width="70%">
+  <tr>
+    <td align="center"><input type="submit" CLASS="SUBOFF" name="B5" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" STYLE="cursor:pointer;" value="Submit"></td>
+    <td align="center"><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="SubmitFunction(1)" value="Exit"></td>
+  </tr>
+ </table>    
+</form>    
+    <br></td>
+  </tr>
+  <tr>
+    <td bgcolor="#0081D3" height="15">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+</table>
+
+</body>
+</html>

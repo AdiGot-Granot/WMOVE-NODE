@@ -1,0 +1,308 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Customer Free Online Quote</title>
+
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  /* Right-Click Disable */
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    alert('Right Click Disabled!');
+  });
+});
+
+  /* Focus the Customer Name */
+  document.querySelector('input[name="SNAME"]').focus();
+
+</script>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+       $("#Date3").datepicker({ numberOfMonths:[1,2] });       
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+	if (parent.frames.length > 0) {
+	    parent.location.href = self.document.location}
+
+
+function FindZip(par) {
+   frm = document.theForm;
+   if (par=='SZIP'){      
+      var cSR='S'
+   }else{
+      var cSR='R'
+   }
+   window.open('/wc.dll?mputil~ZipWc~&SR='+cSR,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=550,height=500');
+   self.name="main"
+}
+
+function checkData(){
+	frm = document.theForm;
+	return  lengthValid(frm.SNAME, 4,"full name")
+			&& emailValid(frm.EMAIL, 4,"email")
+			&& lengthValid(frm.STELH, 9,"ten digits phone number") 			
+			&& zipValid(frm.SZIP, 5, "five digits origin zip code - US only") 
+			&& zipValid(frm.RZIP, 5, "five digits destination zip code - US only")	
+			&& lengthValid(frm.LBOOKDTE, 3,"expected date of move")
+	<% IF VAL(_EST.ORDNO) < 100000 %>
+			&&  selectValid(frm.ROOMID,"move size");
+    <%ENDIF%>
+ }
+
+<%IF VAL(_EST.ORDNO) < 100000 AND !plBLKREF %>
+function CHKREF(){
+		frm = document.theForm;
+		if(frm.REF[frm.REF.selectedIndex].text=='') {
+			alert("Please select how did you hear about us?");
+			frm.REF.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+<%ENDIF%>
+
+function SubmitEntry(){
+    if (checkData()<%IF VAL(_EST.ORDNO) < 100000 AND !plBLKREF %>&&CHKREF()<% ENDIF%>) {
+       document.theForm.ENTRYCUST.style.visibility="hidden";
+       document.theForm.action="/wc.dll?mpest~entryret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+}      
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.homeoff {	    color: #FFFFFF;
+				  	font-size: 10pt;
+  				  	background: #008000;
+				  	text-align: center;}
+	.homeon	 {	    color: #FFFF00;
+				  	font-size: 10pt;
+				  	text-align: center;
+  				  	cursor: pointer;
+  				  	font-weight: bold;
+ 				  	text-align: center;
+ 				  	background: #800080;}
+	 .SUBMIT {	    color: #000000;
+				  	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 240; 
+                    height: 25; 
+                    cursor: pointer;}	
+</style>
+</head>
+<body BGCOLOR="#316194">
+     <table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="700">
+       <tr>
+         <td BGCOLOR="#FFFFFF" width="100%"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100"></td>
+       </tr>
+     </table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+  <tr>
+    <td width="665" BGCOLOR="#4E6699" align="center" height="25"><b><font face="Verdana" size="4" color="#FFFFFF">Customer Free Online Quote</font></b></td>
+  </tr>
+  <tr>
+    <td width="700" bgcolor="#FFFFFF" valign="top"><br>	
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+	<td width="100%" align="center"><font face="Verdana" size="2">Fill out the Free Estimate Form to receive our competitive moving quote.</font></td>
+ </tr>
+</table>
+  <br>
+<form name="theForm" method="post"> 
+<div align="center">
+  <center> 
+<table style="border-radius:10px;border: 1px solid #316194;line-height:25px;" bgcolor="#FFFFFF" bordercolor="#111111" width="690" cellspacing="1" cellpadding="1">
+  <tr>
+   <td width="275" align="center" colspan="2"><b><font face="Arial" size="2"><u>Customer Information</u></FONT></B></td>
+   <td width="400" align="center" colspan="2"><b><font face="Arial" size="2"><u>Moving Details</u></FONT></B></td>
+ </tr>
+  <tr>
+   <td width="117"><b><font face="Arial" size="2">Customer Name:<font color="#FF0000">*</font></font></b></td>
+   <td width="153"><input class="textFields" autocomplete="off" style="border:1px solid #316194; font-size:10pt;background-color:#FFFFCC" name="SNAME" tabindex="1" value="<%=ALLT(_EST.SNAME)%>" size="20"></td>
+   <td width="131"><b><font face="Arial" size="2">Pick-Up Address:</font></b></td>
+   <td width="264">
+   <input class="textFields" autocomplete="off" style="border:1px solid #316194; font-size:10pt;" name="SADD1" tabindex="7" value="<%=ALLT(_EST.SADD1)%>" size="17">
+   <b><font face="Arial" size="2">Floor:</font></b> <input class="textFields" autocomplete="off" maxlength="3" style="border:1px solid #316194; font-size:10pt;" name="SFLOOR" tabindex="7" value="<%=IIF(_EST.SFLOOR=0,'',ALLT(STR(_EST.SFLOOR)))%>" size="1"></td>
+   </tr>
+  <tr>
+   <td width="117"><b><font face="Arial" size="2">Email:<font color="#FF0000">*</font></font></b></td>
+   <td width="153"><input class="textFields" autocomplete="off" style="border:1px solid #316194; font-size:10pt; background-color:#FFFFCC" name="EMAIL" tabindex="2" value="<%=ALLT(_EST.EMAIL)%>" size="20"></td>
+   <td width="131"><b><font face="Arial" size="2">Location:</font></b></td>
+   <td width="264">
+   <select size="1" name="SLEVEL" tabindex="8" style="font-size: 9pt">
+		  <option value="" selected>Select Location</option>
+	   		<option>House</option>
+            <option>Townhouse</option>
+            <option>Apartment</option>
+            <option>Condo</option>
+           <option>Dormitory</option>            
+	   		<option>Storage</option>
+	   		<option>Mobile Home</option>
+	   		<option>Garage</option>
+	   		<option>Warehouse</option>
+	   		<option>Office</option>
+	   		<option>Port</option>
+	   		<option>Military Base</option>
+		   <option></option>
+		  </select>
+	    <select size="1" name="SSUBLEVEL" tabindex="4" style="font-size: 9pt">
+		   <option value="" selected>Select Level</option>
+		   <option>Ground</option>
+		   <option>Elevator</option>
+		   <option>Stairs</option>
+		   <option>Basement</option>
+		   <option>Pod</option>		   
+		   <option></option>
+		  </select></td>
+   </tr>
+  <tr>
+   <td width="117"><b><font face="Arial" size="2">Home Phone:<font color="#FF0000">*</font></font></b></td>
+   <td width="153"><input class="textFields" autocomplete="off" style="border:1px solid #316194; font-size:10pt;background-color:#FFFFCC" name="STELH" tabindex="3" value="<%=ALLT(_EST.STELH)%>" size="20"></td>
+   <td width="131"><b><font face="Arial" size="2">Pick-Up </font></b><font face="Arial" size="2"><b>Zip Code:</b><font color="#FF0000">*</font></font></td>
+   <td width="264"><input type="text" class="textFields" autocomplete="off" name="SZIP" style="border:1px solid #316194;width:65px;font-size:10pt;background-color:#FFFFCC;" tabindex="9" value="<%=ALLT(_EST.SZIP)%>" size="20"></td>
+   </tr>   
+  <tr>
+   <td width="117"><b><font face="Arial" size="2">Mobile Phone:</font></b></td>
+   <td width="153"><input class="textFields" autocomplete="off" style="border:1px solid #316194; font-size:10pt;" name="RTELH" tabindex="4" value="<%=ALLT(_EST.RTELH)%>" size="20"></td>
+   <td width="131"><b><font face="Arial" size="2">Delivery Address:</font></b></td>
+   <td width="264"><input class="textFields" autocomplete="off" style="border:1px solid #316194; font-size:10pt;" name="RADD1" tabindex="10" value="<%=ALLT(_EST.RADD1)%>" size="17">
+   <b><font face="Arial" size="2">Floor:</font></b> <input class="textFields" autocomplete="off" maxlength="3" style="border:1px solid #316194; font-size:10pt;" name="RFLOOR" tabindex="7" value="<%=IIF(_EST.RFLOOR=0,'',ALLT(STR(_EST.RFLOOR)))%>" size="1"></td>
+   </tr>
+  <tr>
+   <td width="117"><b><font face="Arial" size="2">Work Phone:</font></b></td>
+   <td width="153"><input class="textFields" autocomplete="off" style="border:1px solid #316194; font-size:10pt;" name="STELO" tabindex="5" value="<%=ALLT(_EST.STELO)%>" size="20"></td>
+   <td width="131"><b><font face="Arial" size="2">Location:</font></b></td>
+   <td width="264">
+   <select size="1" name="RLEVEL" tabindex="11" style="font-size: 9pt">
+		  <option value="" selected>Select Location</option>
+	   		<option>House</option>
+            <option>Townhouse</option>
+            <option>Apartment</option>
+            <option>Condo</option>
+            <option>Dormitory</option>            
+	   		<option>Storage</option>
+	   		<option>Mobile Home</option>
+	   		<option>Garage</option>
+	   		<option>Warehouse</option>
+	   		<option>Office</option>
+	   		<option>Port</option>
+	   		<option>Military Base</option>
+		   <option></option>
+		  </select>
+	    <select size="1" name="RSUBLEVEL" tabindex="4" style="font-size: 9pt">
+		   <option value="" selected>Select Level</option>
+		   <option>Ground</option>
+		   <option>Elevator</option>
+		   <option>Stairs</option>
+		   <option>Basement</option>
+		   <option>Pod</option>		   
+		   <option></option>
+		  </select></td>
+   </tr>
+  <tr>
+   <td width="117"><b><font face="Arial" size="2">Best Time to Call:</font></b></td>
+   <td width="153"><input type="text" name="FUTME" size="8" value="<%=ALLT(_EST.FUTME)%>" style="border:1px solid #316194; font-size:10pt;cursor:pointer" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~FUTME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=500,height=500')" maxlength="20" tabindex="6"></td>
+   <td width="131"><b><font face="Arial" size="2">Delivery </font></b><font face="Arial" size="2"><b> <a href="javascript:FindZip('RZIP')">Zip Code</a>:</b><font color="#FF0000">*</font></font></td>
+   <td width="264"><input type="text" class="textFields" autocomplete="off" name="RZIP" style="border:1px solid #316194;width:65px;font-size:10pt;background-color:#FFFFCC;" tabindex="12" value="<%=ALLT(_EST.RZIP)%>" size="20"></td>
+   </tr>
+  </table>
+  </center>
+</div>
+<br>
+<div align="center">
+  <center> 
+<table style="border-radius:10px;border: 1px solid #316194;font-family:Arial;font-size:10pt;line-height:23px;" bordercolor="#111111" bgcolor="#FFFFFF" width="690" cellspacing="1" cellpadding="1">
+  <tr>
+   <td width="38%" height="19"><b>Expected Move Date:<font color="#FF0000">*</font></b></td>
+   <td width="62%" height="19" colspan="2"><input name="LBOOKDTE" autocomplete="off" id="Date1" size="20" value="<%=IIF(EMPTY(_EST.LBOOKDTE),'',ALLT(DTOC(_EST.LBOOKDTE)))%>" style="width: 100px; max-width: 100%;background-color: #FFFFCC; border:1px solid #316194;" tabindex="13"></td>
+  </tr>
+  <% IF VAL(_EST.ORDNO) < 100000 %>
+  <tr>
+   <td width="38%" height="19"><b>Move Size:<font color="#FF0000">*</font></b></td>
+   <td width="62%" height="19" colspan="2">
+		<select size="1" name="ROOMID" tabindex="14" style="background-color: #FFFFCC">
+		  <option selected>< Select Move Size ></option>		  
+	   	  <% SELECT _MOVESIZE 
+			   SCAN %>
+	      <option value="<%=ALLT(STR(MOVESIZEID))%>"><%=ALLT(ROOMDESC)%></option>
+		  <% ENDSCAN %>
+	    </select>
+	    </td>
+   </tr>
+  <% ENDIF %> 
+  <%IF VAL(_EST.ORDNO) < 100000 AND !plBLKREF %>
+  <tr>
+   <td width="38%" height="19"><b>How did you hear about us?<font color="#FF0000">*</font></b></td>
+   <td width="62%" height="19" colspan="2">
+   <select size="1" name="REF" tabindex="15" style="background-color: #FFFFCC">
+     	<option selected></option>
+     	<option><%=_EST.REF%></option>
+		<% SELECT _TREF 
+			SCAN %>
+	<OPTION><%=_TREF.RNAME %></OPTION>
+		<% ENDSCAN %>
+	</select>
+   </td>
+ </tr>
+  <% ENDIF %>   
+  <tr>
+   <td width="38%"><b>Requested Delivery Date:<br><font size="1">(Confirm with Customer Service)</font></b></td>
+   <td width="20%"><input name="DLVDTE" autocomplete="off" id="Date2" size="20" style="width: 100px; max-width: 100%;border:1px solid #316194; font-size:10pt;" value="<%=IIF(EMPTY(_EST.DLVDTE),'',ALLT(DTOC(_EST.DLVDTE)))%>" tabindex="16">&nbsp;<b>To:</b></td>
+   <td width="42%"><input name="DLVDTE1" autocomplete="off" id="Date3" size="20" style="width: 100px; max-width: 100%;border: 1px solid #316194; font-size:10pt;" value="<%=IIF(EMPTY(_EST.DLVDTE1),'',ALLT(DTOC(_EST.DLVDTE1)))%>" tabindex="17"></td>
+   </tr>  
+</table>
+  </center>
+</div>
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+	<td width="100%"><font style="font-family:Verdana;font-size:10pt;line-height:20px;">By clicking 'Submit' and providing your phone number, you consent to receive SMS text messages and calls. 
+    These may be delivered using automated dialing technology at the number provided (including mobile numbers) for informational or marketing purposes 
+    regarding your relocation. Your personal information will not be shared with third parties and will be used solely to provide you with a moving estimate.
+	I understand that consent is not a condition of purchase.<br><br>
+	<input type="checkbox" name="CONSENT" value="ON" tabindex="2">&nbsp;I agree and confirm I have read the above consent statement.</font></td>
+ </tr>
+</table> 
+<br>
+  <table border="0" width="40%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+      <td width="49%" align="center">
+      <input type="button" CLASS="SUBMIT" name="ENTRYCUST" onclick="SubmitEntry()" style="background-color: #EFEFF7;" tabindex="16" value="Submit and Continue to Inventory"></td>
+	</tr>
+  </table>
+  <br>
+<table border="0" width="80%" align="center">
+  <tr>
+	<td width="100%"><b><font font="Arial" color="#FF0000"><%=pcMSG%></font></b></td>
+ </tr>
+</table>  
+  </form>
+ </td>
+ </tr>
+  <tr>
+    <td width="700" bgcolor="#4E6699" height="23">&nbsp;</td>
+  </tr>
+  </table>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html lang="en" style="width: 1200px; height: 400px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Vehicle Price Suggestion</title>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	font-size: 10pt;
+					font-weight: bold;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}					
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+</style>
+
+</head>
+
+<body>
+<center><b><font FACE="Verdana">Vehicle Price Suggestion Based on Origin Zip Code: <%=pcOZIP%></font></b></center><br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="9%" class="TD1">Job No</td>
+    <td width="11%" class="TD1" style="border-left: 1px solid #A9A9A9;">Open Date</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">User</td>     
+    <td width="14%" class="TD1" style="border-left: 1px solid #A9A9A9;">Customer</td>
+    <td width="18%" class="TD1" style="border-left: 1px solid #A9A9A9;">From/To</td>
+    <td width="20%" class="TD1" style="border-left: 1px solid #A9A9A9;">Vehicle</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Price</td>     
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Move Date</td>     
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Estimate</td>
+ </tr>
+   <% SELECT _LIST 
+    	SCAN %>
+  <tr>
+    <td width="9%" class="TD4">&nbsp;<%=ALLT(DEPT)+ALLT(ORDNO)%><br>&nbsp;<%=ALLT(REF)%></td>
+    <td width="11%" class="TD2">&nbsp;<%=OPENDTE%><br>&nbsp;<%=IIF(STATUS='O','Operation','Follow-Up')%></td>
+    <td width="6%" class="TD2">&nbsp;<%=ALLT(USER)%></td>  
+    <td width="14%" class="TD2">&nbsp;<%=PROPER(SNAME)%></td>
+    <td width="18%" class="TD2">&nbsp;<%=FROM%><BR>&nbsp;<%=TO%></td>
+    <td width="20%" class="TD2">&nbsp;<b><%=YEAR+' '+MAKE+' '+MODEL%></b></td>
+    <td width="5%" class="TD3"><b><%='$'+ALLT(STR(UPRC,8,2))%></b>&nbsp;</td>    
+    <td width="7%" class="TD2">&nbsp;<%=LBOOKDTE%></td>    
+    <td width="7%" class="TD3"><b><%='$'+ALLT(STR(SUBTOTAL,8,2))%></b>&nbsp;</td>          
+ </tr>
+   <% ENDSCAN %>    
+</table>
+
+</body>
+</html>

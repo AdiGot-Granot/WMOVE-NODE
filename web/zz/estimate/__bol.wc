@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><!--IE 11 Compatibility overrite-->
+<meta name="viewport" content="width=*your site width*, initial-scale=0.30">
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>INTERSTATE BILL OF LADING</title>
+
+<style>
+p.fvp {text-align:justify;}
+p.pagebreak {   page-break-after: always;}
+</style>
+
+</head>
+
+<body>
+<form name="theForm" method="post">
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="850">
+  <tr>
+    <td valign="top">
+<table align="center" border="0" style="border-collapse: collapse" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" width="100%" colspan="4"><font style="font-family:Arial;font-size:11pt;"><b>SIGN AT LEAST 3 DAYS BEFORE PICK-UP DATE:</b></font></td>
+  </tr>
+ <% IF pnTEMAILID=105 AND plPRINT=.F. %>
+  <tr style="font-family:Arial;font-size:10pt;">
+    <td width="100%" colspan="4"><img src="<%=pcSIGDATA%>">&nbsp;&nbsp;Sign Date:&nbsp;<%=pcEDTE+' ET'%>&nbsp;Sign Name:&nbsp;<%=pcENAME%>&nbsp;&nbsp;IP:&nbsp;<%=pcEIP%></td>
+ </tr> 
+ <%ENDIF%>
+ <% IF plLINK=.T. %>
+  <tr>
+    <td width="9%"><font style="font-family:Arial;font-size:10pt;"><b>Signature:</b></font></td>
+    <td width="33%"><input type="hidden" name="sigData" id="sigData">
+    <canvas id="newSignature" width="350" height="60" style="position: relative;border: 2px solid #ff0000;"></canvas></td>
+    <td width="11%" align="center">
+    <input type="button" onclick="signatureClear()" style="width:60;height:25;font-family:Arial;font-size:10pt;font-weight:bold;cursor:pointer;" value="Clear"></td>
+    <td width="47%"><font style="font-family:Arial;font-size:10pt;"><b>Customer Name:</b></font> <input type="text" autocomplete="off" name="ENAME" size="22" style="background-color: #FFFFCC;border: 1px solid #000080;" maxlength="50"></td>    
+ </tr>
+ <%ENDIF%>    
+</table>
+<!-------------->
+<table align="center" border="0" style="border-collapse: collapse" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" style="border-top: 1px solid #000000;" height="30" valign="bottom" width="100%" colspan="3"><font style="font-family:Arial;font-size:11pt;"><b>PAYMENT TERMS:</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top" width="100%" colspan="3"><p style="text-align:justify;"><%=pcREMPAY%></p></td>
+ </tr>
+ <% IF pnTEMAILID=105 AND plPRINT=.F. %>
+  <tr style="font-family:Arial;font-size:10pt;">
+  <td width="100%" colspan="3"><img src="<%=pcSIGPAY%>">&nbsp;&nbsp;Sign Date:&nbsp;<%=pcEDTE+' ET'%>&nbsp;Sign Name:&nbsp;<%=pcENAME%>&nbsp;&nbsp;IP:&nbsp;<%=pcEIP%></b></td>
+ </tr> 
+ <%ENDIF%> 
+ <% IF plLINK=.T. %> 
+  <tr>
+    <td width="9%"><font style="font-family:Arial;font-size:10pt;"><b>Signature:</b></font></td>
+    <td width="33%"><input type="hidden" name="sigPay" id="sigPay">
+    <canvas id="sigpay" width="350" height="60" style="position: relative;border: 2px solid #ff0000;"></canvas></td>
+    <td width="58%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="signatureClearPay()" style="width:60;height:25;font-family:Arial;font-size:10pt;font-weight:bold;cursor:pointer;" value="Clear"></td>
+ </tr>
+ <%ENDIF%>   
+</table>
+<!-------------------->
+<br><center>
+ <% IF plLINK=.T. %>
+<input type="button" onclick="signatureSave()" style="width:125;height:25;font-family:Arial;font-size:10pt;font-weight:bold;color:#0000FF;cursor:pointer;" value="Accept and Sign">
+<%ENDIF%></center>	 
+ </td>
+ </tr>
+</table>
+ <br>
+<script src="/zz/js/xsign-2.1.0.min.js"></script>
+<script src="/zz/js/xsigndraw.js"></script>
+<script src="/zz/js/xsigndrawpay.js"></script>
+
+<script>
+signatureCapture();
+signatureCapturePay();
+
+//check data
+  function checkData(){
+  frm = document.theForm;
+  if (frm.ENAME.value.length < 4 || frm.ENAME.value.indexOf(" ") < 1) {
+      alert("Please type your full name (first & last)");
+	frm.ENAME.focus();
+  }else   	
+  return true;
+ }
+
+function signatureSave() {
+	var canvas = document.getElementById("newSignature");
+	var sigpay = document.getElementById("sigpay");	
+   // save canvas image as data url (png format by default)
+	var sigData = canvas.toDataURL();
+	var sigPay = sigpay.toDataURL();	
+	var n = sigData.length;
+	var d = sigPay.length; 	 
+          if ((n) < 1000) {
+              alert("Please sign: 3 Days Before Pick-Up Acknowledgement");
+              return false;
+       	    }else {
+          if ((d) < 1000) {
+              alert("Please sign: Payments Terms");
+            return false;
+       	  }else {
+	if (checkData()) {
+	    $("#sigData").val(sigData);$("#sigPay").val(sigPay);
+	    document.theForm.action="/wc.dll?mpest~esignbolret~<%=pcREFNO%>~<%=pcCUSTID%>";
+	    document.theForm.submit();
+	}else {   	
+	return false;
+      }	
+  }
+ }
+}
+
+ </script>
+ 
+    </td>
+ </tr>
+</table> 
+
+</form>
+
+</body>
+
+</html>

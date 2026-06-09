@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Assign Auto Transport Estimates to Representatives</title>
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function CHKUSER(){
+		frm = document.theForm;
+		if(frm.USER[frm.USER.selectedIndex].text=='') {
+			alert("Please Select User!");
+			frm.USER.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+
+function submitFunction(i) {
+			if (i==1) 
+		      { 
+		       document.theForm.action="/wc.dll?mpscripts~trdistret~<%=pcSCR%>";
+   		       document.theForm.submit();
+		      }
+		    if (i==2 &&CHKUSER())
+		      { 
+               document.theForm.action="/wc.dll?mpscripts~AssignNewListRet~<%=pcSCR%>";
+   		       document.theForm.submit();
+		      }
+	    }
+		
+checked=false;
+function checkedAll (theForm) {
+	var aa= document.getElementById('theForm');
+	 if (checked == false)
+          {
+           checked = true
+          }
+        else
+          {
+          checked = false
+          }
+	for (var i =0; i < aa.elements.length; i++) 
+	{
+	 aa.elements[i].checked = checked;
+	}
+      }
+		
+</SCRIPT>
+
+</head>
+
+<body>
+
+    <%	SELECT _LIST
+    	lnRecCount = RecCount() %>
+<br><center><b><font face="Arial" color="#<%=IIF(plREPASSIGN,'FF0000','000000')%>" size="4"><%=IIF(plREPASSIGN,'Reassign','Assign')%> Auto Transport Estimates to Representatives<br>    	
+Total Estimates: <%=ALLT(STR(lnRecCount))%></font></b></center>
+<form name="theForm" method="POST">  
+<%IF plREPASSIGN %>
+<table border="0" align="center" width="90%" style="border-collapse: collapse">
+  <tr>
+    <td width="4%"><font face="Verdana" size="2"><b>To User:</b></font></td>
+    <td width="49%">
+     <select size="1" name="USER">
+     <OPTION value=""></OPTION>
+	     <% SELECT _USERS
+	         SCAN %>
+		       <OPTION value="<%=USER %>"><%=USER%><%=ALLT(DEPT1)%></OPTION>
+	     <% ENDSCAN %>
+   	   </select></td>
+  </tr>
+</table>
+<%ENDIF%>  
+	<table border="1" align="center" width="90%" cellpadding="2" cellspacing="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#C0C0C0">
+    <tr style="background-color:#0081D3;font-family:Verdana;font-size:10pt;font-weight:bold;color:#FFFFFF;">
+      <td width="8%" align="center" height="20">User</td>
+      <td width="6%" align="center" height="20">Job No</td>
+      <td width="7%" align="center" height="20">Move Date</td>
+      <td width="14%" align="center" height="20">Customer</td>
+      <td width="7%" align="center" height="20">Phone</td>
+      <td width="16%" align="center" height="20">Ship From/To</td>
+      <td width="3%" align="center" height="20">Miles</td>
+      <td width="13%" align="center" height="20">Make/Model</td>
+      <td width="5%" align="center" height="20">Deposit</td>
+  	  <td width="5%" align="center" height="20">Price</td>
+      <td width="7%" align="center" height="20">Open Date</td>
+      <td width="13%" align="center" height="20">Refer/Type</td>
+    </tr>
+   <% SELECT _LIST 
+    	   SCAN %>
+   <tr style="font-family:Verdana;font-size:9pt;">
+      <td width="8%" height="18" align="center">
+   <%IF plREPASSIGN %>    
+      <input type="checkbox" name="<%=ALLT(ORDNO)%>" value="ON">
+   <%ELSE%>
+   <select size="1" name=<%=ALLT(ORDNO) %>>
+   <option value="<%=_LIST.USER%>"><%=_LIST.USER%></option> 
+	     <% SELECT _USERS
+	     	 SCAN %>
+	       <OPTION value="<%=_USERS.USER %>"><%=_USERS.USER %></OPTION>
+	     <% ENDSCAN %>
+   	   </select>
+   <%ENDIF%>
+     <%SELECT _LIST%>  
+      <font COLOR="#FF0000"><%=IIF(EMPTY(USER),'','<BR>'+USER)%></FONT></td>
+      <td width="6%" height="18"><a href="/wc.dll?mprep~printselect~<%=pcSCR+'~'+ALLT(REFERENCE)%>" target='_blank'><b><%=ALLT(_LIST.DEPT)+ALLT(_LIST.ORDNO)%></a><br><%=_LIST.WEB%></b></td>
+      <td width="7%" height="18"><%=ALLT(BOOKED) %><font color="#FF0000"><%=IIF(EMPTY(cLEADSTATUS),'','<BR>'+(cLEADSTATUS))%></font>
+<br><B>Prior-<%=IIF(FUSTATUS=9,'Pool',ALLT(STR(FUSTATUS)))%></B></td>
+      <td width="14%" height="18"><b><%=ALLT(SNAME)%></b><BR><%=ALLT(EMAIL)%>&nbsp;</td>
+      <td width="7%" height="18"><%=ALLT(STELH)%><%=IIF(EMPTY(STELO),'','<br>'+ALLT(STELO))%></td>
+      <td width="16%" height="18"><%=ALLT(FROM)%><br><%=ALLT(TO)%>&nbsp;</td>
+      <td width="3%" align="right" height="18"><%=IIF(MILES=0,' ',ALLT(STR(MILES)))%>&nbsp;</td>
+      <td width="13%" height="18"><%=MODEL%>&nbsp;</td>
+      <td width="5%" align="right" height="18"><%=IIF(DEPOSIT=0,' ','$'+ALLT(STR(DEPOSIT)))%>&nbsp;</td>
+      <td width="5%" align="right" height="18"><%=IIF(PRICE=0,' ','$'+ALLT(STR(PRICE,7,2)))%>&nbsp;</td>
+      <td width="7%" height="18"><%=OPEN_DATE%>&nbsp;</td>
+      <td width="13%" height="18"><%=ALLT(REF)%>&nbsp;</td>
+    </tr>
+    <% ENDSCAN %>
+</table>
+ <br>
+<table border="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="100%" ALIGN="CENTER">
+ <%IF !plREPASSIGN %>   
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(1)" style="width: 100;cursor: pointer;" value="Submit">
+ <%ELSE%>    
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(2)" style="width: 100;cursor: pointer;" value="Submit">
+ <%ENDIF%>    
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Jobs With Open Tasks</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function typeCheck(value) {
+	if (Number(value)) {
+		return Number(value);
+	}
+
+	const isDate = new Date(value);
+	if (isDate instanceof Date && !isNaN(isDate.valueOf())) {
+		return isDate.getTime();
+	}
+
+	return value;
+}
+
+// if true sort else reverse
+var sortDirection = true;
+
+function compareValues(a, b) {
+	a = typeCheck(a);
+	b = typeCheck(b);
+
+	return a < b ? -1 : a > b ? 1 : 0;
+}
+
+function sortTable(id, colnum) {
+	// get all the rows in this table:
+	let table = document.getElementById(id);
+	let rows = Array.from(table.querySelectorAll(`tr`));
+
+	// but ignore the heading row:
+	rows = rows.slice(1);
+
+	if (sortDirection) {
+		// and then just... sort the rows:
+		rows.sort((r1, r2) => {
+			// get each row's relevant column
+			let t1 = r1.querySelectorAll('td')[colnum].querySelector('.target-me').textContent;
+			let t2 = r2.querySelectorAll('td')[colnum].querySelector('.target-me').textContent;
+
+			// and then effect sorting by comparing their content:
+			return compareValues(t1, t2);
+		});
+		console.log('TCL: sortTable -> sort');
+	} else {
+		// and then just... sort the rows:
+
+		console.log('TCL: sortTable -> rev');
+		rows.reverse((r1, r2) => {
+			// get each row's relevant column
+			let t1 = r1.querySelectorAll('td')[colnum].querySelector('.target-me').textContent;
+			let t2 = r2.querySelectorAll('td')[colnum].querySelector('.target-me').textContent;
+
+			// and then effect sorting by comparing their content:
+			return compareValues(t1, t2);
+		});
+	}
+
+	sortDirection = !sortDirection;
+	console.log('TCL: sortTable -> rows', rows);
+	// and then the magic part that makes the sorting appear on-page:
+	rows.forEach((row) => table.appendChild(row));
+}
+
+</script>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;					
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD5		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+</style>
+
+</head>
+
+<body>
+<br>
+    <% SELECT _LIST %>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="85%">
+  <tr>
+    <td width="100%" align="center"><font face="Arial" size="4"><B>Estimates &amp; Jobs With Open Tasks<BR>Total Jobs:&nbsp;<%=ALLT(STR(RECCOUNT()))%></b></font></td>
+  </tr>
+  <tr>
+    <td width="100%"><font face="Arial" size="2">Report View By: <%=pcUSER%></font></td>
+  </tr>   
+</table>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="1600">
+  <tr>
+    <td class="TD1" width="79">Job No</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="182">Type/Status</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="116">User/Rep</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="84">Estimator</td>
+     <% IF pnCOLEVEL > 4 %>  
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="78">QA User</td>
+     <%ENDIF%>  
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="106">Move Date</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="323">Task Progress</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="57">Tasks</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="251">Customer</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="261">From/To</td>
+ </tr>
+  <% SCAN %>
+  <tr>
+    <td class="TD4" align="center" width="79"><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=REFNO%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a>&nbsp;</td>
+    <td class="TD2" width="182"><%=ALLT(TY)%> / <B><%=ALLT(ST)%></B>&nbsp;</td>
+    <td class="TD2" width="116"><%=ALLT(USER)%><%=IIF(STATUS<>'F',' / '+ALLT(REP),'')%>&nbsp;</td> 
+    <td class="TD2" width="84"><%=ALLT(ESTIMATOR)%>&nbsp;</td>
+     <% IF pnCOLEVEL > 4 %>        
+    <td class="TD2" width="78"><%=ALLT(QAUSER)%>&nbsp;</td>
+     <%ENDIF%>  
+    <td class="TD3" width="106"><b><font color="#008000"><%=LBOOKDTE%></font></b>&nbsp;</td>
+    <td class="TD3" width="323"><b><font color="#B22222"><%=ALLT(STR(NEED))%> Required</font> / <font color="#006400"><%=ALLT(STR(DONE))%> Completed</font><%=IIF(CNTUSER>0,' / '+ALLT(STR(CNTUSER))+' Assigned','')%></b></td>
+    <td class="TD3" width="57"><a href="/wc.dll?mpcharge~jobtaskwc~<%=pcSCR%>~MENU~<%=ALLT(STR(pnCUSTID23))%>~<%=ALLT(STR(JOBID))%>~<%=ALLT(CTYPE)%>" target='_blank'><b>Tasks</b></a></td>
+    <td class="TD2" width="251"><%=ALLT(PROPER(SNAME))%>&nbsp;</td>
+    <td class="TD2" width="261"><%=FROM%>&nbsp;<%=IIF(EMPTY(SCOUNTRY),'',ALLT(SCOUNTRY))%><BR><%=TO%>&nbsp;<%=IIF(EMPTY(RCOUNTRY),'',ALLT(RCOUNTRY))%></td>
+ </tr>
+  <% ENDSCAN %>
+</table>
+<br>
+     <% SELECT _TUSER %>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="85%">
+  <tr>
+    <td width="100%" align="center"><font face="Arial" size="4"><B><%=ALLT(STR(RECCOUNT()))%> Open Tasks Assigned To: <%=pcUSER%></b></font></td>
+  </tr>  
+</table>
+<table border="0" id="myTable" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="1505">
+  <tr>
+    <th class="TD1" width="95">Job No</th>
+    <th class="TD1" style="border-left: 1px solid #A9A9A9;" width="98">Status</th>
+    <th class="TD1" style="border-left: 1px solid #A9A9A9;" width="320">Task Description</th>
+    <th class="TD1" style="border-left: 1px solid #A9A9A9;cursor:pointer;" width="108" onclick="sortTable('myTable',3)">Due Date <font size="4">&#8597;</font></th>
+    <th class="TD1" style="border-left: 1px solid #A9A9A9;" width="381">Notes</th>
+    <th class="TD1" style="border-left: 1px solid #A9A9A9;" width="279">Customer</th>
+    <th class="TD1" style="border-left: 1px solid #A9A9A9;cursor:pointer;" width="102" onclick="sortTable('myTable',6)">Move Date <font size="4">&#8597;</font></th>
+    <th class="TD1" style="border-left: 1px solid #A9A9A9;" width="72">Tasks</th>
+ </tr>
+   <% SCAN %>
+  <tr style="line-height:23px;">
+    <td class="TD4" ALIGN="CENTER" width="95"><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=REFNO%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a>&nbsp;</td>
+    <td class="TD2" width="98"><B><%=ALLT(ST)%></B>&nbsp;</td> 
+    <td class="TD2" width="320"><%=IIF(TASKID<1000,ALLT(DESCNAME),ALLT(TASKDESC))%>&nbsp;</td> 
+    <td class="TD3" width="108"><span class="target-me"><%=IIF(YEAR(DUEDATE)<YEAR(DATE())-20,'',DTOC(DUEDATE))%></span>&nbsp;</td>
+    <td class="TD2" width="381"><%=ALLT(NOTES)%>&nbsp;</td>
+    <td class="TD2" width="279"><%=ALLT(PROPER(SNAME))%>&nbsp;</td>
+    <td class="TD3" width="102"><span class="target-me"><font color="#008000"><B><%=LBOOKDTE%></B></font></span>&nbsp;</td>
+    <td class="TD3" width="72"><a href="/wc.dll?mpcharge~jobtaskwc~<%=pcSCR%>~MENU~<%=ALLT(STR(pnCUSTID))%>~<%=ALLT(STR(JOBID))%>~<%=ALLT(CTYPE)%>" target='_blank'><b>Tasks</b></a></td>
+ </tr>
+  <% ENDSCAN %>
+</table>
+</body>
+</html>

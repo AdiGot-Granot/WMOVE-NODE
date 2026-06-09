@@ -1,0 +1,123 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Data Cleanup</title>
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 600,
+		maxHeight	: 350,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+
+function SubmitFunction(i) {
+    if (i==1) 
+	  {
+       document.theForm.action="/wc.dll?mpmainten~historyret~<%=pcSCR%>";
+       document.theForm.submit();
+      };
+    if (i==2) 
+      { 
+       window.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>~1');
+      } ;
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="650">
+  <tr>
+    <td><a class="fancybox fancybox.iframe" href="/zz/help/datacleanup.htm"><img border="0" src="zz/util/manual.gif" title="Read about Data Cleanup" width="32" height="32"></a></td>
+  </tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="650">
+  <tr>
+    <td width="100%" bgcolor="#0081D3" align="center" height="25"><b><font face="Verdana" size="4" color="#FFFFFF">Data Clean-Up</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" width="650">
+<form name="theForm" method="POST">
+<br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="60%" cellspacing="1" cellpadding="1">
+  <tr>
+	<td width="56%" height="3" bgcolor="#F7F7F7">&nbsp;<b><font face="Verdana" size="2">Delete Jobs older than:</font></b></td>
+	<td width="59%" height="3">&nbsp;<input type="text" name="DAYS" size="2" value="30" maxlength="4">&nbsp;<i><font face="Verdana" size="2" color="#000080">Days</font></i></td>
+ </tr>
+</table>
+ <br><center><b><font face="Verdana" size="2" color="red">Be responsible with 
+your selection and back-up your data prior to data clean-up.</font></b></center>
+<table border="0" width="95%" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" cellspacing="1" cellpadding="1">
+  <tr>
+	<td width="100%" height="13" bgcolor="#F7F7F7" colspan="2" align="center"><b><font face="Verdana" size="2">Status of Data</font></b></td>
+ </tr> 
+  <tr>
+	<td width="5%" height="20"><input class="chkon" type="radio" name="STATUS" value="V1" checked tabindex="1"></td>
+	<td width="95%" height="20"><font face="Arial" size="2">There are <font size="3" color="red"><B><%=pcCANCEL%></B></font> Canceled Estimates; Canceled date past 30 days</font></td>
+ </tr>
+  <tr>
+	<td width="5%" height="20"><input type="radio" name="STATUS" value="V3" tabindex="3"></td>
+	<td width="95%" height="20"><font face="Arial" size="2">There are <font size="3" color="red"><B><%=pcFOLLOW%></B></font> Follow-Up Estimates; Move date past 30 days</font></td>
+ </tr>
+  <tr>
+	<td width="5%" height="20"><input type="radio" name="STATUS" value="V4" tabindex="3"></td>
+	<td width="95%" height="20"><font face="Arial" size="2">There are <font size="3" color="red"><B><%=pcFUPRIOR%></B></font> Follow-Up Estimates; Priority 6, 7, 8 and General Pool; Move date past 30 days</font></td>
+ </tr> 
+  <tr>
+	<td width="100%" height="16" colspan="2"><hr color="#000000" width="98%"></hr></td>
+ </tr>
+  <tr>
+	<td width="5%" height="20"><input type="radio" name="STATUS" value="V2" tabindex="2"></td>
+	<td width="95%" height="20"><font face="Arial" size="2">There are <font size="3" color="red"><B><%=pcCLOSED%></B></font> Closed Jobs; Close date past 30 days</font></td>
+ </tr>
+</table>
+<br>     
+<table border="0" align="center" width="70%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="SubmitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="View the List"></td>    
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="SubmitFunction(2)" value="Exit"></td>    
+ </tr>
+</table>
+  </form>
+   </td>
+ </tr>
+  <tr>
+    <td bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+
+</body>
+</html>

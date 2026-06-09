@@ -1,0 +1,62 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Calendar Table</title>
+</head>
+<body bgcolor="#4E6699">
+		<br>
+		<table border="1" width="350" cellspacing="0" align="center"><tr>
+          <td style="background-color: #4275A5">
+			<table border="0" width="100%" cellspacing="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" height="16">
+			  <tr>
+		    	<td width="89%" bgcolor="#008200" align="center" height="1">
+                <b><font color="#FFFFFF" face="Verdana" size="2">Calendar 
+                Summary</font></b></td>
+		    	<td width="11%" bgcolor="#008200" align="center" height="1">
+                <a href="javascript:window.close()"><img border="0" src="/zz/images/x.gif" align="right" width="17" height="18"></A></td>
+			  </tr>
+			  </table>
+			<table border="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" width="100%" bgcolor="#FFFFFF">
+			  <tr>
+		    	<td width="19%" height="19" align="center"><b><font face="Verdana" size="2">Month</font></b></td>
+		    	<td width="15%" colspan="3" align="center"><b><font face="Verdana" size="2">
+                <font color="#FF0000">*</font>Booked</font></b></td>
+		    	<td width="21%" align="center"><b><font face="Verdana" size="2">
+                <font color="#FF0000">**</font>Follow-up</font></b></td>
+			  </tr>
+              <tr>
+		    	<td width="19%" height="19" align="left"><b><font face="Verdana" size="2" color="#4E6699"><%=pcMONTH1%></font></b></td>
+		    	<td width="15%" colspan="3" align="center"><b><font face="Verdana" size="2" color="#FF0000"><%=ALLT(STR(pnTHISMONTH))%></font></b></td>
+		    	<td width="21%" align="center"><b><font face="Verdana" size="2" color="#008000"><%=ALLT(STR(pnTHISMONTH1))%></font></b></td>
+			  </tr>
+              <tr>
+		    	<td width="19%" height="19" align="left"><b><font face="Verdana" size="2" color="#4E6699"><%=pcMONTH2%></font></b></td>
+		    	<td width="15%" colspan="3" align="center"><b><font face="Verdana" size="2" color="#FF0000"><%=ALLT(STR(pnNEXTMONTH))%></font></b></td>
+		    	<td width="21%" align="center"><b><font face="Verdana" size="2" color="#008000"><%=ALLT(STR(pnNEXTMONTH1))%></font></b></td>
+			  </tr>
+			  <tr>
+		    	<td width="19%" height="19" align="left"><b><font face="Verdana" size="2" color="#4E6699"><%=pcMONTH3%></font></b></td>
+		    	<td width="15%" colspan="3" align="center"><b><font face="Verdana" size="2" color="#FF0000"><%=ALLT(STR(pnNEXT2MONTH))%></font></b></td>
+		    	<td width="21%" align="center"><b><font face="Verdana" size="2" color="#008000"><%=ALLT(STR(pnNEXT2MONTH1))%></font></b></td>
+			  </tr>
+			  <tr>
+		    	<td width="19%" height="19" align="left" bgcolor="#C0C0C0"><b><font face="Verdana" size="2">All Future Jobs</font></b></td>
+		    	<td width="15%" colspan="3" align="center" bgcolor="#C0C0C0"><b><font face="Verdana" size="2" color="#FF0000"><%=ALLT(STR(pnALL))%></font></b></td>
+		    	<td width="21%" align="center" bgcolor="#C0C0C0"><b><font face="Verdana" size="2" color="#008000"><%=ALLT(STR(pnALL1))%></font></b></td>
+			  </tr>
+			  </table>
+	</td></tr></table>
+        <p align="center"><b><font face="Verdana" size="2" color="#FF0000">*</font><font face="Verdana" size="2" color="#FFFFFF"> 
+        Booked Job
+        </font><font face="Verdana" size="2" color="#FFFF00">include only</font><font face="Verdana" size="2" color="#FFFFFF"> 
+        Pick-up dates.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </font></b></p>
+        <p align="center"><b><font face="Verdana" size="2" color="#FF0000">**</font><font face="Verdana" size="2" color="#FFFFFF"> 
+        Follow up </font><font face="Verdana" size="2" color="#FFFF00">doesn't 
+        include</font><font face="Verdana" size="2" color="#FFFFFF"> estimates 
+        assigned to Agents.</font></b></p>
+</body>
+</html>

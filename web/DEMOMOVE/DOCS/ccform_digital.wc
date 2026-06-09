@@ -1,0 +1,139 @@
+<HTML>
+<HEAD>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Credit Card Authorization</title>
+
+<% IF pnTEMAILID=110 %>
+<script>
+  setTimeout(() => {
+    window.location.href = '/expired.htm'; // or any fallback page
+  }, 30000); // 30 seconds
+</script>
+<%ENDIF%>
+
+</HEAD>
+
+<BODY>
+
+<table border="1" width="700" ALIGN="CENTER" style="border-collapse: collapse" bordercolor="#27676F">
+  <tr> 
+    <td>
+<table border="0" width="100%" cellpadding="2" style="border-collapse: collapse" bordercolor="#27676F" cellspacing="1">
+  <tr>
+    <td width="41%" align="center"><font face="Arial" style="font-size: 14pt;"><b>Credit Card Authorization</u> <u>Terms and Conditions</b></font></td>
+  </tr>
+  <tr>
+    <td width="41%"><br><font face="Arial" size="2"><b>Dear <%=ALLT(PROPER(_EST.SNAME))%>,</b></font></td>
+ </tr>
+</table>
+ <br>
+<table border="0" width="100%" cellpadding="4" style="border-collapse: collapse" bordercolor="#111111" cellspacing="1"> 
+  <tr>
+    <td width="15%"><font face="Arial" style="font-size: 10pt;"><b>Job Number:</b></font></td>
+    <td width="46%"><font face="Arial" style="font-size: 10pt;"><b><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="15%"><font face="Arial" style="font-size: 10pt;"><b>Credit Card Number:</b></font></td>
+    <td width="46%"><font face="Arial" style="font-size: 10pt;"><b>xxxx-xxxx-xxxx-<%=RIGHT(_PAY.CREDITNO,4)%></b></font></td>
+  </tr>
+  <tr>
+    <td width="15%"><font face="Arial" style="font-size: 10pt;"><b>Expiration Date:</b></font></td>
+    <td width="46%"><font face="Arial" style="font-size: 10pt;"><b><%=_PAY.EXPMONTH%>/<%=_PAY.EXPYEAR%></b></font></td>
+  </tr>
+  <tr>
+    <td width="15%"><font face="Arial" style="font-size: 10pt;"><b>Name on Card:</b></font></td>
+    <td width="46%"><font face="Arial" style="font-size: 10pt;"><b><%=_PAY.CCNAME%></b></font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="15%"><font face="Arial" style="font-size: 10pt;"><b>Services Provided For:</b></font></td>
+    <td width="46%"><font face="Arial" style="font-size: 10pt;"><b><%=ALLT(PROPER(_EST.SNAME))%></b></font>&nbsp;</td>
+  </tr>
+   <tr>
+    <td width="15%"><font face="Arial" style="font-size: 10pt;"><b>Billing Address:</b></font></td>
+    <td width="46%"><font face="Arial" style="font-size: 10pt;"><b><%=_PAY.CCADD%></b></font>&nbsp;</td>
+  </tr>
+   <tr>
+    <td width="61%" colspan="2"><font face="Arial" style="font-size: 10pt;"><b>City: <%=_PAY.CCCITY%>&nbsp;&nbsp;STATE: <%=_PAY.CCSTATE%>&nbsp;&nbsp;ZIP CODE: <%=_PAY.CCZIP%></b></font></td>
+  </tr>
+
+  <tr>
+    <td width="15%"><font face="Arial" style="font-size: 10pt;"><b>Amount of Charge:</b></font></td>
+    <td width="46%"><font face="Arial" style="font-size: 10pt;"><b><%='$'+ALLT(STR(pnLASTPAYAMT+_PAY.CCPROCFEE,8,2))%></b></font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="61%" colspan="2"><br><font face="Arial" style="font-size: 10pt;">By  electronically signing this document I hereby authorize Moving Services to 
+    charge the amount listed above. By  electronically I also agree that I have read, agreed, and understand the terms and conditions. 
+    I also agree to the refund/cancellation policy listed in the terms and conditions and below.<br><br>
+    <b>Refund and Cancellation Policy</b> – By providing your credit card and signing this 
+    document, you are acknowledging and agreeing to this cancellation 
+    policy. Any credit card payments made with Visa, Master Card or Discover will be charged a 5% processing fee that is NON-REFUNDABLE. The deposit will 
+    be refundable, for a move cancelled up until the estimate is signed. By providing your credit card and SIGNING this 
+    document, you acknowledge that 
+    the deposit will be NONREFUNDABLE, if the cancellation is made within three days prior to the reserved move date.</font></td>
+ </tr>
+</table>
+<br>
+<form name="theForm" method="post">
+<table border="0" align="center" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Tahoma;font-size:10pt;" bordercolor="#111111" width="700">
+   <% IF pnTEMAILID=110 %>
+    <tr>
+    <td width="694" colspan="3"><img src="<%=pcSIGDATA%>"><br>Signature Date:&nbsp;<%=pcEDTE+' ET'%><br>Signature Name:&nbsp;<%=pcENAME%><br>Signature IP:&nbsp;<%=pcEIP%><br>
+    Print this document via <a href="javascript: window.print()"><b>Printer Friendly</a></b>.</td>
+   </tr>
+   <%ELSE%>   
+    <tr>
+     <td width="68"><br>Signature:</td>
+     <td width="328"><br><input type="hidden" name="sigData" id="sigData">
+     <canvas id="newSignature" width="300" height="60" style="position: relative;border: 2px solid #000000;"></canvas>&nbsp;</td>
+     <td width="288"><br>Name: <input type="text" autocomplete="off" name="ENAME" size="20" style="border: 1px solid #000000;" maxlength="50"></td>
+   </tr>
+    <tr>
+     <td colspan="3" height="40" valign="bottom" align="center" width="694" ><input type="button" onclick="signatureSave()" style="width:125;height:25;font-family:Arial;font-size:10pt;font-weight:bold;color:#0000FF;cursor:pointer;" value="Accept and Sign">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="signatureClear()" style="width:60;height:25;font-family:Arial;font-size:10pt;font-weight:bold;cursor:pointer;" value="Clear"></td>
+   </tr>
+   <%ENDIF%>
+</table>   
+</form> 
+    </TD>
+ </tr>
+</table>
+
+<script src="/zz/js/xsign-2.1.0.min.js"></script>
+<script src="/zz/js/xsigndraw.js?v=1.2.3"></script>
+
+<script>
+signatureCapture();
+
+//check data
+  function checkData(){
+  frm = document.theForm;
+  if (frm.ENAME.value.length < 4 || frm.ENAME.value.indexOf(" ") < 1) {
+      alert("Please type your full name (first & last)");
+	frm.ENAME.focus();
+  }else   	
+  return true;
+ }
+
+function signatureSave() {
+	var canvas = document.getElementById("newSignature");
+   // save canvas image as data url (png format by default)
+	var sigData = canvas.toDataURL();
+	var n = sigData.length; 
+             if ((n) < 1000) {
+        	 alert("Please sign your name");
+        	 return false;
+       		 }else {
+	if (checkData()) {
+	    $("#sigData").val(sigData);
+	    document.theForm.action="/wc.dll?mpest~esigndocret~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcTEMAILID%>";
+	    document.theForm.submit();
+	}else {   	
+	return false;
+      }	
+  }
+}
+
+ </script>
+
+</BODY>
+</HTML>

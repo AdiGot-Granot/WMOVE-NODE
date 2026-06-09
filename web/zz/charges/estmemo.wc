@@ -1,0 +1,54 @@
+<html lang="en" style="width: 355px; height: 390px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=pcTITLE%></title>
+
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" align="center" style="border-collapse:collapse;width:370px;height:370px;" bordercolor="#111111">
+  <tr>
+    <td width="98%" align="center" height="25" background="/zz/images/bar-green.gif"><font face="Arial" size="4" color="#FFFFFF"><b><%=pcTITLE%></font></b></td>
+  </tr>
+  <tr>
+    <td width="98%" bgcolor="#FFFFFF"><br>
+<form name="theForm" method="post" action="/wc.dll?mpcharge~estmemoret~<%=pcSCR%>~<%=pcACTION%>" target="_top">
+<table border="0" align="center" width="80%" style="border-collapse: collapse" bordercolor="#111111" value="ON">
+   <tr>
+	 <td align="center"><% IF pcACTION='CUNOTES' %><textarea rows="17" name="CUNOTESX" cols="42"></textarea><%ELSE%><textarea rows="17" name="BODY" cols="42"><%=_MEMO.BODY%></textarea><%ENDIF%></td>
+  </tr>
+   <tr>
+	 <td height="40" align="center">
+     <input type="submit" name="B3" CLASS="SUBOFF" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+  </tr>
+</table>
+</form>      
+  </td>
+ </tr>
+ <tr>
+    <td width="95%" height="25" background="/zz/images/bgdown.gif">&nbsp;</td>
+  </tr>
+  </table>
+</body>
+</html>

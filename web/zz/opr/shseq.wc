@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+</head>
+<title>Jobs Order on Trip</title>
+<SCRIPT LANGUAGE="JavaScript">
+
+function submitseq() {
+      { 
+       document.theForm.action="/wc.dll?mpopr~shuttleseqret~<%=pcSCR%>~<%=pcSHNO%>";
+       document.theForm.submit();
+      } ;
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+<body bgcolor="#4E6699">
+<br>
+<table border="1" align="center" width="90%" cellspacing="0" style="border-collapse: collapse" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+ <td height="39">
+ <form name="theForm" method="POST">
+	<table border="1" width="100%" style="border-collapse: collapse" bordercolor="#111111" height="39">
+	 <tr>
+	  <td width="100%" bgcolor="#105952" align="center" colspan="5">
+	  <b><font color="#FFFFFF" face="Verdana" size="2">Jobs Order on Trip</font></b></td>
+	 </tr>
+	 <tr>
+	  <td width="4%" bgcolor="#089694" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Order</font></b></td>
+	  <td width="8%" bgcolor="#089694" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Job #</font></b></td>
+	  <td width="26%" bgcolor="#089694" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Origin</font></b></td>
+	  <td width="24%" bgcolor="#089694" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Destination</font></b></td>
+	  <td width="14%" bgcolor="#089694" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Volume</font></b>&nbsp;</td>
+	 </tr>
+ <% SELECT _SHUTTLE
+       SCAN %>	 
+	 <tr>
+      <td width="4%" bgcolor="#FFFFFF" align="center"><input NAME="A-<%=ALLT(ORDNO)%>" size="1" VALUE="<%=ALLT(STR(SHSEQ))%>"></td>
+      <td width="8%" bgcolor="#FFFFFF" align="center"><b><font  face="Arial" size="2"><%=ALLT(DEPT)+ALLT(ORDNO)%></font></b>&nbsp;</td>
+      <td width="26%" bgcolor="#FFFFFF"><b><font face="Arial" size="2"><%=FROMADD%></font></b>&nbsp;</td>
+      <td width="24%" bgcolor="#FFFFFF"><b><font face="Arial" size="2"><%=TOADD%></font></b>&nbsp;</td>
+      <td width="14%" bgcolor="#FFFFFF" align="center"><b><font  face="Arial" size="2"><%=ALLT(STR(CF))+' cf / '+ALLT(STR(LBS))+' lbs'%></font></b>&nbsp;</td>
+	</tr>
+    <%ENDSCAN%>
+   </table><br>
+  <table border="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+   <tr>
+    <td width="50%" align="center">
+    <input type="submit" CLASS="SUBOFF" name="B31" onclick="submitseq()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+    <td width="50%" align="center"><input type="submit" CLASS="SUBOFF" name="B53" onclick="javascript: window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+   </tr>
+    </table>
+ </form>
+ </td></tr></table>
+</body>
+</html>

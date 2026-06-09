@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Online Estimates</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitList() {
+       document.theForm.action="/wc.dll?mpreposit~backsaleret~<%=pcCUSTNO%>";
+       document.theForm.submit();
+      }
+
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+<body  BGCOLOR="#ADBACE">
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="85%" height="1">
+  <tr>
+    <td width="100%" height="14" bgcolor="#FFCF63">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#4A698C" height="24">
+    <p align="center"><b><font face="Verdana" color="#FFFFFF">Back sale Listing</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="138">	
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+    <form name="theForm" method="POST">
+  <div align="center">
+    <center>
+  <table border="1" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" width="95%" bordercolorlight="#808080" bordercolordark="#808080">
+    <tr>
+      <td width="2%" align="center"><b><font face="Verdana" size="2">#</font></b></td>
+      <td width="9%" align="center"><b><font face="Verdana" size="2">Job No</font></b></td>
+      <td width="6%" align="center"><b><font face="Verdana" size="2">Type</font></b></td>
+      <td width="8%" align="center"><b><font face="Verdana" size="2">From</font></b></td>
+      <td width="8%" align="center"><b><font face="Verdana" size="2">To</font></b></td>
+      <td width="13%" align="center"><b><font face="Verdana" size="2">Email</font></b></td>
+      <td width="12%" align="center"><b><font face="Verdana" size="2">Phone</font></b></td>
+      <td width="15%" align="center"><b><font face="Verdana" size="2">Move Date</font></b></td>
+      <td width="14%" align="center"><b><font face="Verdana" size="2">Open Date</font></b></td>
+      <td width="10%" align="center"><b><font face="Verdana" size="2">Total CF</font></b></td>
+      <td width="7%" align="center"><b><font face="Verdana" size="2">Sold</font></b></td>
+      <td width="7%" align="center"><b><font face="Verdana" size="1">Release</font></b></td>
+    </tr>
+      <%SELECT _LIST
+        SCAN%>
+    <tr>
+      <td width="2%" align="LEFT"><b><font face="Verdana" size="2"><%=ALLT(STR(RECNO())) %></font></b>&nbsp;</td>
+      <td width="9%" align="LEFT"><b><font face="Verdana" size="2"><%=ALLT(ORDNO)%></font></b>&nbsp;</td>
+      <td width="6%" align="LEFT"><b><font face="Verdana" size="2"><%=ALLT(TYPE)%></font></b>&nbsp;</td>
+      <td width="8%" align="LEFT"><b><font face="Verdana" COLOR="#FF0000" size="2"><%=ALLT(SSTATE)%>&nbsp;</font></b></td>
+      <td width="8%" align="LEFT"><b><font face="Verdana" COLOR="#FF0000" size="2"><%=ALLT(RSTATE)%>&nbsp;</font></b></td>
+      <td width="13%" align="left"><b><font face="Verdana" size="2">&nbsp;<%=ALLT(EMAIL)%></font></b></td>
+      <td width="12%" align="left"><b><font face="Verdana" size="2"><%=ALLT(STELH)%><br><%=ALLT(STELO)%></font></b></td>
+      <td width="15%" align="LEFT"><b><font face="Verdana" size="2"><%=LBOOKDTE%>&nbsp;</font></b></td>
+      <td width="14%" align="LEFT"><b><font face="Verdana" size="2"><%=ALLT(TTOC(OPENDTE))%></font></b>&nbsp;</td>
+      <td width="10%" align="LEFT"><b><font face="Verdana" size="2"><%=ALLT(STR(TOTALCF))%></font></b>&nbsp;</td>      
+      <td width="7%" align="LEFT"><b><font face="Verdana" COLOR="#FF0000" size="2"><%=ALLT(MDCNT)%></font></b>&nbsp;</td>
+      <td width="7%" align="center"><input type="checkbox" name="ORDNO" value="ON" tabindex="2" checked></td>
+    </tr>
+   <%ENDSCAN%>  
+  </table></center>
+  </div>
+  </center>
+    </td></tr></table>
+<br>
+		<table border="0" width="32%" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="25%" align="center"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="btnSubmit" onclick="SubmitList()" style="cursor:hand; font-family: Verdana; font-weight: bold; height: 24; width:120" tabindex="9" value="Do Backsale"></td>    
+		    <td width="25%" align="center"><input type="button" CLASS="SUBOFF" name="ntbExit" onclick="window.close()" style="cursor:hand; font-family: Verdana; font-weight: bold; height: 24; width:120" tabindex="10" value="Exit"></td>    
+		  </tr>
+		</table>
+</form>
+</td></tr>
+   <tr>
+    <td width="100%" height="14" bgcolor="#FFCF63">&nbsp;</td>
+ </tr>
+  </table>
+</body>
+</html>

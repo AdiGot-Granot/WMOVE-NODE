@@ -1,0 +1,131 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Trash Old Estimates</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+checked=false;
+function checkedAll (theForm) {
+	var aa= document.getElementById('theForm');
+	 if (checked == false)
+          {
+           checked = true
+          }
+        else
+          {
+          checked = false
+          }
+	for (var i =0; i < aa.elements.length; i++) 
+	{
+	 aa.elements[i].checked = checked;
+	}
+      }
+
+function CheckBoxes(FormName, CheckValue){
+   if(!document.forms[FormName])
+      return;
+   var objCheckBoxes = document.getElementsByTagName('input');
+   if(!objCheckBoxes)
+      return;
+   var countCheckBoxes = objCheckBoxes.length;
+   if(!countCheckBoxes)
+      objCheckBoxes.checked = CheckValue;
+   else
+      for(var i = 0; i < countCheckBoxes; i++)
+      objCheckBoxes[i].checked = CheckValue;
+}
+      
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height:30;
+					background-color: #F0F0F0;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="100%" align="center"><B><font size="4" face="Arial">Delete Follow-Up Estimates<br>Move Date between <%=ldFROMDTE%> - <%=ldTODTE%><BR>
+    <% IF RECCOUNT() = 200 %>
+       You have <%=ALLT(STR(pnTOTALRECS))%> Estimates to Delete - View in increments of 200
+    <%ELSE%>
+      <BR><font onclick="javascript:history.go(-1)" style="color:#0000FF;cursor:pointer;"><u>Exit</u></font><br>
+      Total Estimates: <%=ALLT(STR(pnTOTALRECS))%></font></B>
+    <%ENDIF%></td>
+ </tr>
+  <tr>
+    <td width="100%"><font face="Arial"><b></b></font></td>
+  </tr>  
+</table>
+<form name="theForm" method="POST" action="/wc.dll?mpscripts~deleteret~<%=pcSCR%>">
+    <%	SELECT _LIST
+    	lnRecCount = RecCount() %>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="75%">
+  <tr>
+   <td width="3%" class="TD1">Delete<input type="checkbox" name="checkall" onclick="CheckBoxes('theForm',this.checked);" value="ON"></td>
+   <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Job No</td>
+   <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">User</td>
+   <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Follow-Up</td>   
+   <td width="2%" class="TD1" style="border-left: 1px solid #A9A9A9;">Prior</td>   
+   <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;">Customer</td>   
+   <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;">Move From</td>
+   <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">Move To</td>
+   <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Move Date</td>   
+   <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Estimate</td>
+   <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Open Date</td>
+ </tr>
+    <% SCAN %>
+  <tr style="line-height:22px;">
+   <td width="3%" class="TD3"><input type="checkbox" name="<%=ALLT(_LIST.DEL)%>" value="ON" <%=IIF(_LIST.LBOOKDTE<DATE()-10,'checked','')%>></td>
+   <td width="3%" class="TD2">&nbsp;<a href="/wc.dll?mprep~printselect~<%=pcSCR+'~'+ALLT(_LIST.REFNO)%>" target='_blank'><%=ALLT(_LIST.ORDNO)%></A></td> 
+   <td width="4%" class="TD2">&nbsp;<%=ALLT(_LIST.USER)%></td>
+   <td width="4%" class="TD2">&nbsp;<font color="#<%=IIF(_LIST.NEXTFU > DATE(),'008000','FF0000')%>"><%=_LIST.NEXTFU%></font></td>   
+   <td width="2%" class="TD4"><%=IIF(_LIST.FUSTATUS=9,'Pool',ALLT(STR(_LIST.FUSTATUS)))%>&nbsp;</td>   
+   <td width="9%" class="TD2">&nbsp;<%=ALLT(_LIST.SNAME)%></td>   
+   <td width="9%" class="TD2">&nbsp;<%=ALLT(_LIST.FROM)%></td>
+   <td width="10%" class="TD2">&nbsp;<%=ALLT(_LIST.TO)%></td>
+   <td width="4%" class="TD2">&nbsp;<font color="#<%=IIF(_LIST.LBOOKDTE > DATE(),'008000','FF0000')%>"><%=_LIST.LBOOKDTE%></font></td>   
+   <td width="4%" class="TD4"><%=_LIST.SUBTOTAL%></td>
+   <td width="4%" class="TD2">&nbsp;<%=_LIST.OPENDTE%></td>
+ </tr>
+  <% ENDSCAN %>
+</table>
+  <br><center><input CLASS="SUBOFF" name="B3" type="submit" value="Submit"></center>
+</form>
+</body>
+</html>

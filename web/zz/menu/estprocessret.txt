@@ -1,0 +1,716 @@
+*=======================
+FUNCTION estprocessret()
+************************
+XPrivateVariables()
+SCAN
+  lcX=ALLTRIM(Variable)
+  &lcX
+ENDSCAN
+pcSCR=Request.QueryString(3)
+IF !this.ScrProc(pcSCR,.F.,.F.,PROGRAM())   && 1->.T. = Continue Same Job *******  2->.F. = Level=0 or User='' -> "Not authorized user"
+   RETURN
+ENDIF
+*-----------------------------------*
+pcPAGESTMP=ALLTRIM(REQUEST.FORM("PAGESTMP"))
+pnPG=INT(VAL(REQUEST.QueryString("PG")))
+lnPGNO=IIF(pnPG < 2,1,pnPG)
+lcPGNO=ALLTRIM(STR(lnPGNO))
+lnREPNO=INT(VAL(REQUEST.FORM("REPNO")))
+lnREPNO=IIF(lnREPNO=0,10,lnREPNO)
+lnRAWPERPAGE=100&&INT(VAL(REQUEST.FORM("RAWPERPAGE")))
+pcRAWPERPAGE='100' &&IIF(lnRAWPERPAGE=0,'100',ALLTRIM(STR(lnRAWPERPAGE)))
+pnPAGES=INT(VAL(REQUEST.FORM("PAGES")))
+*STRTOFILE(pcPAGESTMP,'_PP.TXT')
+*---Paging-----*
+IF FILE('&pcPAGESTMP..DBF')
+	SELECT CNT(ORDNO) AS CNT1 FROM &pcPAGESTMP INTO CURSOR _P1
+	IF CNT1 > 100
+		this.FUPaging(lnREPNO,lnPGNO)
+		CLOSE DATABASES ALL
+		RETURN	
+	ENDIF
+ENDIF
+*-----------------------------------*
+lcWHERE="VAL(E.ORDNO) > 99999 AND G.ORDNO=E.ORDNO AND E.STATUS <> 'C' AND E.STATUS <> 'S' AND E.STATUS <> 'D' AND E.ORDNO=S.ORDNO AND S.CODE='pu' "
+*------------------------*
+IF pcCUSTNO='HVLPVLUMS'
+ELSE
+	DO CASE
+	   CASE plVIEWALL OR pnLEVEL=2
+	   CASE pnLEVEL = 3 OR pnLEVEL = 4
+	      lcWHERE=lcWHERE +' and (GROUP==pnGROUPUSER  OR ALLTRIM(DEPT)==pcDEPTUSER OR ALLTRIM(E.USER)==pcUSER OR ALLTRIM(E.REP)==pcUSER) '
+	   CASE pnLEVEL = 1
+	       lcWHERE=lcWHERE +' and (ALLTRIM(DEPT)==pcDEPTUSER OR ALLTRIM(E.USER)==pcUSER OR ALLTRIM(E.REP)==pcUSER) '
+	ENDCASE
+ENDIF
+*-----USERS-----------------------------*
+lcUSER=UPPER(REQUEST.FORM("USER"))
+DO CASE
+   CASE lcUSER=='ALL' OR EMPTY(lcUSER)
+   OTHERWISE
+      lcWHERE=lcWHERE +' and (USER==lcUSER OR REP==lcUSER)  '
+ENDCASE
+*----FROM/TO DATE-------------------------------------------------------------------*
+ldFROMDTE=CTOD(REQUEST.FORM("DATE1"))
+IF YEAR(ldFROMDTE) < YEAR(DATE())-7
+	ldFROMDTE=DATE()
+ENDIF
+ldTODTE=CTOD(REQUEST.FORM("DATE2"))
+ldTODTE=IIF(EMPTY(ldTODTE) and !EMPTY(ldFROMDTE),ldFROMDTE,ldTODTE)
+ldFROMDTE=IIF(EMPTY(ldFROMDTE) and !EMPTY(ldTODTE),ldTODTE,ldFROMDTE)
+lcFROMDTE=DTOC(ldFROMDTE)
+lcTODTE=DTOC(ldTODTE+1)
+lcIDATE1=ALLTRIM(STR(TTOI(ldFROMDTE)))
+lcIDATE2=ALLTRIM(STR(TTOI(ldTODTE)))
+*-----DATE FACTOR----------------------------------------------------*
+lcTYPEDTE=UPPER(REQUEST.FORM("TYPEDTE"))
+*	IF lcTYPEDTE='MOVE' && MOVE DATE
+*		lcWHERE=lcWHERE + ' and BETWEEN(E.LBOOKDTE,ldFROMDTE,ldTODTE) '
+*	ELSE	&& OPEN DATE   
+*		lcWHERE=lcWHERE + ' and BETWEEN(TTOD(E.OPENDTE),ldFROMDTE,ldTODTE) '
+*	ENDIF
+IF lcTYPEDTE='V2' && MOVE DATE
+   lcWHERE=lcWHERE + ' and BETWEEN(E.LBOOKDTE,ldFROMDTE,ldTODTE) '
+ELSE  && OPEN DATE
+   lcWHERE=lcWHERE + ' and BETWEEN(TTOD(E.OPENDTE),ldFROMDTE,ldTODTE) '
+ENDIF
+*------SORT BY-------------------------------------------*
+lcSORT=REQUEST.FORM("SORT")
+DO CASE
+   CASE lcSORT='V2' && SORT BY LBOOKDTE
+      lcORDER=' E.LBOOKDTE '
+   CASE lcSORT='V3' && SORT BY VOLUME
+      lcORDER=' E.TOTALCF DESCENDING '
+   CASE lcSORT= 'V4' && SORT BY ESIMATE SUBTOTAL
+      lcORDER=' E.SUBTOTAL DESCENDING '
+   CASE lcSORT= 'V5' && SORT BY NEXTFU
+      lcORDER=' E.NEXTFU '
+   CASE lcSORT= 'V6' && SORT FUSTATUS
+      lcORDER=' E.FUSTATUS '
+   CASE lcSORT= 'V7' && SORT REQ. DELIVERY DATE
+      lcORDER=' E.DLVDTE '
+   CASE lcSORT= 'V8' && SORT OPEN DATE DESC (TOP to BOTTOM)
+      lcORDER=' E.OPENDTE DESCENDING '            
+   OTHERWISE
+      lcORDER=' E.ORDNO '
+ENDCASE
+*------RESIDENT/COMMERC/MILITARY------------------------------------*
+IF 1=2 && EYAL 01/31/25
+	lcRC=UPPER(REQUEST.FORM("RC"))
+	DO CASE
+	   CASE lcRC='C' && COMMERCIAL
+	      lcWHERE=lcWHERE + " and E.RC='C' "
+	   CASE lcRC='M' && MILITARY
+	      lcWHERE=lcWHERE + " and E.RC='M' "
+	   OTHERWISE && RESIDENTIAL
+	      lcWHERE=lcWHERE + " and E.RC='R' "      
+	ENDCASE
+ELSE
+	lcRC=REQUEST.FORM("RC")
+	DO CASE
+	   CASE lcRC='V2' && RESIDENTIAL
+	      lcWHERE=lcWHERE + " and E.RC='R' "	
+	   CASE lcRC='V3' && COMMERCIAL
+	      lcWHERE=lcWHERE + " and E.RC='C' "
+	   CASE lcRC='V4' && MILITARY
+	      lcWHERE=lcWHERE + " and E.RC='M' "
+	ENDCASE
+ENDIF
+*------PRIORITY-------------------------------------------*
+lnFUSTATUS=INT(VAL(REQUEST.FORM("FUSTATUS")))
+IF pnCOLEVEL > 2
+	DO CASE
+	   CASE lnFUSTATUS=10 && PRIORITY ALL 
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS<10'
+	   CASE lnFUSTATUS=0 && PRIORITY 0 
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=0'
+	   CASE lnFUSTATUS=1 && PRIORITY 1
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=1' 
+	   CASE lnFUSTATUS=2 && PRIORITY 2
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=2' 
+	   CASE lnFUSTATUS=3 && PRIORITY 3
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=3' 
+	   CASE lnFUSTATUS=4 && PRIORITY 4
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=4' 
+	   CASE lnFUSTATUS=5 && PRIORITY 5
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=5' 
+	   CASE lnFUSTATUS=6 && PRIORITY 6
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=6' 
+	   CASE lnFUSTATUS=7 && PRIORITY 7
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=7' 
+	   CASE lnFUSTATUS=8 && PRIORITY 8
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=8'
+	   CASE lnFUSTATUS=9 && PRIORITY 9 POOL
+	     lcWHERE=lcWHERE + ' and E.FUSTATUS=9'	      
+	ENDCASE
+ENDIF	
+*------MOVE TYPE-------------------------------------------------*
+lcTYPE=UPPER(REQUEST.FORM("TYPE"))
+DO CASE
+   CASE lcTYPE='V2' && LOCAL
+      lcWHERE=lcWHERE + " and (E.TYPE='L' or E.TYPE='R') "
+   CASE lcTYPE='V3' && LONG DISTANCE'
+      lcWHERE=lcWHERE + " and E.TYPE='D' "
+   CASE lcTYPE='V4' && AUTO TRANSPORT'
+      lcWHERE=lcWHERE + " AND E.TYPE='T' "
+   CASE lcTYPE='V5' && INTERNATIONAL'
+      lcWHERE=lcWHERE + " and E.TYPE='I' "
+ENDCASE
+*-------FROM/TO STATES------------------------------------------*
+lcSTATE1=UPPER(REQUEST.FORM("STATE1"))
+IF lcSTATE1 <> 'ALL'
+   lcWHERE=lcWHERE + ' and E.SSTATE=lcSTATE1 '
+ENDIF
+lcSTATE2=UPPER(REQUEST.FORM("STATE2"))
+IF lcSTATE2 <> 'ALL'
+   lcWHERE=lcWHERE + ' and E.RSTATE=lcSTATE2 '
+ENDIF
+*------VIP------------------------------------------------------*
+plFUVIP=IIF(REQUEST.FORM("FUVIP")='ON',.T.,.F.)
+IF plFUVIP
+   lcWHERE=lcWHERE + ' and E.FUVIP '
+ENDIF
+*------LEAD STATUS------------------------------------------------------*
+plDUPEMAIL=IIF(REQUEST.FORM("DUPEMAIL")='ON',.T.,.F.)
+IF plDUPEMAIL
+   lcWHERE=lcWHERE + ' and E.LEADSTATUS=1 '
+ENDIF
+*------DOWNLOAD XLS------------------------------------------------------*
+plDLXLS=IIF(REQUEST.FORM("DLXLS")='ON',.T.,.F.)
+*-------DEPARTMENT------------------------------------------*
+lcDEPT=ALLTRIM(REQUEST.FORM("DEPT"))
+IF lcDEPT == 'ALL' OR EMPTY(lcDEPT) 
+   lcDEPT=''
+ELSE
+   lcWHERE=lcWHERE + ' and ALLTRIM(E.DEPT)==lcDEPT '
+ENDIF
+*-------------------------------------------------*
+lcMODUL=REQUEST.FORM("STATUS")
+*lcMODULX=Request.QueryString(4) && V6-Assign new ,V8  - call from new mainmenu navigator
+*IF !EMPTY(lcMODULX)
+*   lcMODUL=lcMODULX
+*ENDIF
+*-------------------------------------------------*
+lcSQL="SELECT CAST(J.JOBNO as varchar) AS ORDNO,I.MAKE,I.MODEL,I.YEAR,I.UPRC,I.DEPOSIT " ;
+	+" FROM JOB.INVAUTO AS I JOIN CST.JOBS AS J ON I.JOBID=J.JOBID ";
+	+" WHERE J.CUSTID="+pcCUSTID+" AND I.DEL=0 AND J.OPENDTE > GETDATE()-365"
+IF !XX_CUSTIDTABLE(pnCustId,lcSQL,'_INVAUTO',45000,PROGRAM(),LINENO())
+   CLOSE DATABASES ALL
+   THIS.ErrorMsg("Error-Line:"+ALLTRIM(STR(LINENO()))+"-"+PROGRAM())
+   RETURN .F.
+ENDIF    
+*------------------------------*
+DO CASE
+   CASE lcMODUL='V15'
+      pcURL="/wc.dll?mv~topestprocess~"+pcSCR
+      Response.Redirect(pcURL)
+   CASE lcMODUL='V2'  && DELETE Old Estimates
+      lnREPNO=22
+	  IF pnLEVEL=4 && ONLY DEL 4 HIMSELF
+    	 lcWHERE= "VAL(E.ORDNO) > 99999 and pcUSER=E.USER and E.STATUS = 'F' and (E.FUSTATUS=lnFUSTATUS OR lnFUSTATUS=10) and BETWEEN(E.LBOOKDTE,ldFROMDTE,ldTODTE)" 	  
+	  ELSE
+  		 lcWHERE= "VAL(E.ORDNO) > 99999 and E.USER==lcUSER and E.STATUS = 'F' and (E.FUSTATUS=lnFUSTATUS OR lnFUSTATUS=10) and BETWEEN(E.LBOOKDTE,ldFROMDTE,ldTODTE)" 
+	  ENDIF
+      *------------------------*
+*STRTOFILE(lcWHERE,'_WW.TXT')
+      SELECT E.ORDNO AS DEL,E.JOBID,E.DEPT,E.DEPTID,ALLTRIM(E.DEPT)+ALLTRIM(E.ORDNO) AS ORDNO,E.REFNO,DTOC(E.OPENDTE) AS OPENDTE,E.USER,E.SNAME, ;
+             ALLTRIM(PROPER(E.SCITY))+', '+E.SSTATE AS FROM,ALLTRIM(PROPER(E.RCITY))+', '+E.RSTATE AS TO, ;
+             E.FUSTATUS,E.NEXTFU,E.LBOOKDTE,IIF(EMPTY(E.SUBTOTAL),'        ','$'+ALLT(STR(E.SUBTOTAL,10,2))) AS SUBTOTAL ;
+      FROM EST AS E JOIN ESTCRG AS G ON G.ORDNO=E.ORDNO ;
+      INTO CURSOR _LIST1 ;
+      WHERE &lcWHERE ;
+      ORDER BY E.LBOOKDTE
+      *---------------------*
+ 	  pnTOTALRECS=RECCOUNT()
+	  lcTRASH='\TMP\_TRASHOLD-'+pcSCR  && GOES TO MPSCRIPTS.DELETERET
+	  SELECT DEL AS ORDNO,JOBID,DEPT,DEPTID FROM _LIST1 INTO TABLE &lcTRASH    
+      SELECT * FROM _LIST1 WHERE RECNO() < 201 INTO CURSOR _LIST
+      lcHTMLPAGEPATH = "\web\zz\estimate\"
+      Response.ExpandScript(lcHTMLPAGEPATH + 'deleteest',2, "", .f., .f.)
+      CLOSE DATA ALL
+      RETURN
+   CASE lcMODUL='V4' && VISUAL ESTIMATE SCHEDULE
+      lcWHERE= "VAL(E.ORDNO) > 99999 AND G.ORDNO = E.ORDNO AND E.STATUS='F' AND E.ORDNO=S.ORDNO AND S.CODE='es' "
+      lcWHERE=lcWHERE+" and !EMPTY(E.ESTIMDTE) "
+      lcWHERE=lcWHERE + ' and BETWEEN(E.ESTIMDTE,ldFROMDTE,ldTODTE) '
+      *------------------------*
+      IF plFUVIP
+         lcWHERE=lcWHERE + ' and E.FUVIP '
+      ENDIF
+      *------------------------*  
+      DO CASE
+         CASE  plVIEWALL  
+         CASE pnLEVEL < 4
+             lcWHERE=lcWHERE +' and ALLTRIM(E.DEPT)==pcDEPTUSER  '
+         CASE pnLEVEL = 4
+            lcWHERE=lcWHERE +' and E.GROUP==pnGROUPUSER  '
+      ENDCASE
+      *------------------------*
+   CASE lcMODUL='V5' && BOOKED JOBS
+      pcURL="<center><b><h2>Booked Jobs</center></b></h>"
+      Response.Writeln(pcURL)   
+      lcWHERE=lcWHERE+" and E.LBOOKC and E.STATUS='O' "
+      *-------------------*
+   CASE lcMODUL='V7' && REASSIGN ESTIMATE
+       plCLASSIC=.F.
+      *------------------------*
+   CASE lcMODUL='V9' && FollowUp Estimates
+    IF pnLEVEL=3
+      lcWHERE=lcWHERE+" and ALLTRIM(E.USER)==pcUSER and E.STATUS = 'F' "
+    ELSE
+      lcWHERE=lcWHERE+" and E.STATUS = 'F' "    
+    ENDIF  
+   CASE lcMODUL='V10' && Electronic signature 
+		lcWHERE="CUSTID="+pcCUSTID+" AND SENTDTE BETWEEN '"+lcFROMDTE+"' AND '"+lcTODTE+"' AND ESIGN=1 AND (TEMAILID=100 OR TEMAILID=101 OR (TEMAILID=105 AND EIP>'')) AND REMOVED=0"
+	   *--------------------------------------* 
+		lcSQL="SELECT LOGEMAILID,CAST(LOGEMAILID as varchar) AS EMAILID,JOBID,ORDNO,CSENTDTE AS SENTDTE,SENTTME,SENTBY,SUBJECT,ENAME,EDTE,EIP,TEMAILID "; 
+		  +" FROM job.vw_LOGEMAIL WHERE "+lcWHERE	   
+		IF !XX_CUSTIDTABLE(pnCustId,lcSQL,'_LOGEMAIL ',30000,PROGRAM(),LINENO())
+ 			XSQLERROR(LINENO(),PROGRAM(),lcSQL)
+		   CLOSE DATABASES ALL
+		   THIS.ErrorMsg("Error-Line:"+ALLTRIM(STR(LINENO()))+"-"+PROGRAM())
+		   RETURN .F.
+		ENDIF
+		*--------------------------------------*
+       lcWHERE='E.LBOOKDTE>=DATE() '	
+      DO CASE
+		   CASE pnLEVEL=2 OR pnLEVEL=5 OR plVIEWALL
+		   CASE pnLEVEL=4
+		     lcWHERE = lcWHERE+" and (E.GROUP==pnGROUPUSER OR E.USER==lcUSER OR E.REP==lcUSER)"
+		   CASE pnLEVEL=3	      
+			 lcWHERE = lcWHERE+" and E.DEPT==pcDEPTUSER "		      
+		   CASE pnLEVEL=1
+		     lcWHERE = lcWHERE+" and (E.USER==pcUSER OR E.REP==pcUSER) "
+      ENDCASE
+      *------------------------*
+      SELECT L.LOGEMAILID,L.EMAILID,L.SENTDTE,L.SENTTME,L.SENTBY,L.ENAME,L.EDTE,L.TEMAILID, ;
+      	     E.REFNO,E.DEPT,E.ORDNO,E.TYPE,E.STATUS+SPACE(10) AS ST,E.SNAME,E.LBOOKDTE,E.LBOOKDTE1,E.USER,E.REP,SPACE(30) AS SUBJECT ; 
+         FROM _LOGEMAIL AS L JOIN EST AS E ON E.ORDNO=L.ORDNO ;
+         WHERE &lcWHERE ORDER BY L.EDTE DESCENDING ;
+         INTO CURSOR _LIST READWRITE
+     *------------------------*
+     REPLACE ALL ST WITH 'Follow-Up' FOR ST= 'F'
+     REPLACE ALL ST WITH 'Cancel' FOR ST= 'C'
+     REPLACE ALL ST WITH 'Booked' FOR ST= 'O'
+     REPLACE ALL ST WITH 'Storage' FOR ST= 'S'
+     REPLACE ALL ST WITH 'Closed' FOR ST= 'D'
+
+     REPLACE ALL SUBJECT WITH 'Moving Estimate' FOR TYPE<>'I' AND TYPE<>'T' AND TEMAILID=100     
+     REPLACE ALL SUBJECT WITH 'INTL Estimate' FOR TYPE='I' AND TEMAILID=100
+     REPLACE ALL SUBJECT WITH 'Vehicle Estimate' FOR TYPE='T' AND TEMAILID=100    
+     REPLACE ALL SUBJECT WITH 'Moving Estimate-QA' FOR TEMAILID=101
+     REPLACE ALL SUBJECT WITH 'Bill of Lading' FOR TEMAILID=105           
+     *------------------------*
+      lcTMP1='\TMP\_ESIGN1-'+pcSCR
+      COPY FIELDS LOGEMAILID,ORDNO TO &lcTMP1
+      *------------------------*
+      lcHTMLPAGEPATH =  "\web\zz\estimate\"
+      Response.ExpandScript(lcHTMLPAGEPATH + 'esignremove',2, "", .f., .f.)
+      CLOSE DATABASES ALL
+      RETURN
+   CASE lcMODUL='V11' && BOOKED WITH DELIVERY
+      pcURL="<center><b><h2>Booked Jobs With Requested Delivery Date</center></b></h>"
+      Response.Writeln(pcURL)   
+      lcWHERE=lcWHERE+" and E.LBOOKC and E.STATUS='O' and (!EMPTY(E.DLVDTE) OR !EMPTY(E.DLVDTE1)) " 
+   CASE lcMODUL='V13' && ASSIGN FUTURE BOOKED JOBS TO QA
+*		lcWHERE= "G.ORDNO = E.ORDNO AND VAL(E.ORDNO) > 99999  AND E.ORDNO=S.ORDNO AND S.CODE='pu' "
+        lcWHERE=" VAL(E.ORDNO) > 99999  AND EMPTY(E.QAUSER) AND BETWEEN(DATE(),E.LBOOKDTE-11,E.LBOOKDTE) AND E.STATUS='O' AND E.TYPE<>'I' AND E.TYPE<>'T' "
+      *-------------------------------------*
+*		pcUSER==ALLTRIM(_EST.USER) MPPROC.XQA
+      *-------------------------------------*
+		lcSQL="SELECT USERID,USERNAME AS QAUSER FROM ARN.VW_USERSPRM WHERE CUSTID="+pcCUSTID+" AND QA=1 AND ACTIVE=1 ORDER BY USERNAME "
+		IF !XX_CUSTIDTABLE(pnCustId,lcSQL,'_QAUSER',100,PROGRAM(),LINENO())
+		   CLOSE DATABASES ALL
+		   THIS.ErrorMsg("Error-Line:"+ALLTRIM(STR(LINENO()))+"-"+PROGRAM())
+		   RETURN .F.
+		ENDIF
+		*-----------------------------*
+	      DO CASE
+			 CASE pnLEVEL=5
+			 CASE pnLEVEL=4
+			     lcWHERE = lcWHERE+" AND (E.GROUP==pnGROUPUSER OR E.USER<>pcUSER)"
+			 CASE pnLEVEL=3	      
+				 lcWHERE = lcWHERE+" AND (E.DEPT==pcDEPTUSER OR E.USER<>pcUSER)"		      
+		     CASE pnLEVEL=1
+			     lcWHERE = lcWHERE+" AND E.USER<>pcUSER "
+	      ENDCASE
+		*-----------------------------*
+      	SELECT E.REFNO,E.DEPT,E.ORDNO,TTOD(E.OPENDTE) AS OPEN_DATE,E.USER,E.REP,E.SNAME,TTOD(E.BOOKDTE) AS BOOKDTE,E.LBOOKDTE,E.LBOOKDTE1,E.DLVDTE,E.DLVDTE1,E.DLVIMM, ;
+      		   E.SCITY,E.SSTATE,E.RCITY,E.RSTATE,E.TOTALCF,E.TOTALLBS,E.SUBTOTAL,CALCCF,JOBID,DEPTID ;
+          FROM EST AS E ;
+          WHERE &lcWHERE ORDER BY E.LBOOKDTE ;
+          INTO CURSOR _LIST
+		*-----------------------------*          
+		TMP1='\TMP\_ASSIGNQA-'+pcSCR
+		COPY FIELDS ORDNO,JOBID,DEPT,DEPTID TO &TMP1
+        *------------------------*
+	      lcHTMLPAGEPATH =  "\web\zz\estimate\"
+	      Response.ExpandScript(lcHTMLPAGEPATH + 'assignqa',2, "", .f., .f.)
+	      CLOSE DATABASES ALL
+	      RETURN
+ENDCASE
+*-------------------------------------------------*
+IF lcUSER == 'ALL' OR EMPTY(lcUSER)
+   lcUSER=' '
+ELSE
+   IF lcMODUL='V4'  && VISUAL ESTIMATE
+      IF !EMPTY(lcUSER)
+          lcWHERE=lcWHERE + ' and ALLTRIM(E.ESTIMATOR)==lcUSER '
+      ENDIF
+      DO CASE
+         CASE pnLEVEL=2 OR pnLEVEL=5
+            lcWHERE=lcWHERE + ' and !EMPTY(E.ESTIMDTE) '
+         CASE pnLEVEL=4         
+            lcWHERE=lcWHERE + ' and !EMPTY(E.ESTIMDTE) and E.GROUP==pnGROUPUSER  '
+         OTHERWISE
+            lcWHERE=lcWHERE + ' and ALLTRIM(E.ESTIMATOR)==lcUSER '
+     ENDCASE
+   ELSE
+  *    lcWHERE=lcWHERE + ' and IIF(EMPTY(E.REP),ALLTRIM(E.USER)==lcUSER,ALLTRIM(E.REP)==lcUSER) '
+   ENDIF
+ENDIF
+*-------------------------------------------------*
+IF lcMODUL='V4'  AND pnLEVEL <> 2 AND pnLEVEL <> 5 && VISUAL ESTIMATE
+    lcWHERE=lcWHERE + ' and ALLTRIM(E.ESTIMATOR)==pcUSER'
+ELSE
+   IF (pnLEVEL = 1 AND pcCUSTNO<>'HVLPVLUMS' AND lcMODUL<>'V13') && AND pnCOLEVEL <> 1 
+      lcWHERE=lcWHERE + ' and IIF(EMPTY(E.REP),ALLTRIM(E.USER)==pcUSER,ALLTRIM(E.REP)==pcUSER)'
+*      STRTOFILE(lcWHERE,'_WW.TXT')
+   ENDIF
+ENDIF
+*IF pnLEVEL = 4 OR pnLEVEL=3
+*   lcWHERE=lcWHERE + ' and (E.GROUP==pnGROUPUSER ) '
+*ENDIF  
+DO CASE
+   CASE lcTYPE='V4' AND (lcMODUL='V1' OR lcMODUL='V5') && ALL ESTIMATE OR BOOKED JOBS + AUTO TRANSPORT   
+      lcWHERE="VAL(E.ORDNO) > 99999 AND E.ORDNO=I.ORDNO AND E.ORDNO=G.ORDNO AND E.ORDNO=S.ORDNO AND S.CODE='pu' "
+      IF lcMODUL='V1'
+      	 lcWHERE=lcWHERE+" AND E.STATUS <> 'C' "
+      ELSE
+      	 lcWHERE=lcWHERE+" AND E.STATUS='O' "      
+      ENDIF
+*      STRTOFILE(lcWHERE,'_WW.TXT')        
+      *--------------------*
+      DO CASE
+         CASE pnLEVEL=2 OR pnLEVEL=5
+         CASE pnLEVEL=4         
+            lcWHERE=lcWHERE + ' and E.GROUP==pnGROUPUSER  '
+         OTHERWISE
+            lcWHERE=lcWHERE + ' and E.USER==pcUSER '
+      ENDCASE
+      *-------------------------------------------------*
+      IF lcTYPEDTE='V2' && MOVE DATE
+         lcWHERE=lcWHERE + ' and BETWEEN(E.LBOOKDTE,ldFROMDTE,ldTODTE) '
+      ELSE  && OPEN DATE
+         lcWHERE=lcWHERE + ' and BETWEEN(TTOD(E.OPENDTE),ldFROMDTE,ldTODTE) '
+      ENDIF
+      *-------------------------------------------------*               
+      lcORDER='E.ORDNO'
+      DO CASE
+         CASE lcSORT='V2' && SORT BY LBOOKDTE
+            lcORDER=' E.LBOOKDTE '
+         CASE lcSORT= 'V5' && SORT BY NEXTFU
+            lcORDER=' E.NEXTFU '
+      ENDCASE
+	  *-------DEPT------------------------------------------*
+	  IF lcDEPT == 'ALL' OR EMPTY(lcDEPT) 
+	  ELSE
+	     lcWHERE=lcWHERE + ' and ALLTRIM(E.DEPT)==lcDEPT '
+	  ENDIF
+      *-------------------------------------------------*    
+      IF lcSTATE1 <> 'ALL'
+         lcWHERE=lcWHERE + ' and E.SSTATE=lcSTATE1 '
+      ENDIF
+      *-------------------------------------------------*
+      IF lcSTATE2 <> 'ALL'
+         lcWHERE=lcWHERE + ' and E.RSTATE=lcSTATE2 '
+      ENDIF
+      *------------------------*
+      DO CASE
+         CASE  lcUSER=='ALL' OR EMPTY(lcUSER)
+         OTHERWISE
+            lcWHERE=lcWHERE +' and (USER==lcUSER OR REP==lcUSER)  '
+      ENDCASE
+*------------------------*
+      SELECT E.ORDNO,E.REF,E.DEPT,E.STATUS,SPACE(120) AS CATEGORY,E.TYPE,E.REFNO,E.OPENDTE,E.USER,E.REP+SPACE(40) AS REP,S.AGENT +SPACE(40) AS AGENT, ;
+           E.SNAME+SPACE(50) AS CUSTOMER,E.LBOOKDTE AS DTE,E.SCITY,E.SSTATE,E.SZIP, ;
+           E.STELH AS PHONE1,E.STELO AS PHONE2,E.ONLINE,SPACE(15) AS WEB, ;
+           E.RSTATE,E.RCITY,E.RZIP,G.MODICRG,G.MILES,SPACE(50) AS MCRG, ;
+           ALLTRIM(I.YEAR)+' '+ALLTRIM(I.MAKE)+' '+ALLTRIM(I.MODEL) AS MODEL,I.UPRC AS PRICE,I.DEPOSIT ;
+           FROM EST AS E,ESTCRG AS G,_INVAUTO AS I,SCHED AS S ;
+           WHERE &lcWHERE ;
+           ORDER BY &lcORDER ;
+           INTO CURSOR  _I2 READWRITE
+      *---------------------------*
+        REPLACE ALL CATEGORY WITH '<b><font color="red">Operation</font></b>' FOR STATUS='O'
+        REPLACE ALL CATEGORY WITH 'Storage' FOR STATUS='S'        
+        REPLACE ALL CATEGORY WITH 'Closed' FOR STATUS='D'
+        REPLACE ALL CATEGORY WITH 'Follow-Up' FOR STATUS='F'
+	  *---------------------------*        
+        REPLACE ALL CATEGORY WITH 'Auto<br>'+ALLT(CATEGORY) FOR TYPE='T'
+        REPLACE ALL CATEGORY WITH 'Long Dist.<br>'+ALLT(CATEGORY) FOR TYPE='D'
+        REPLACE ALL CATEGORY WITH 'Local<br>'+ALLT(CATEGORY) FOR TYPE='L' OR TYPE='R'
+        REPLACE ALL CATEGORY WITH 'INTL<br>'+ALLT(CATEGORY) FOR TYPE='I'        
+	  *---------------------------*
+        REPLACE ALL REP WITH '<b><font color="red">'+ALLT(REP)+'</b></font>' FOR !EMPTY(REP)	                  
+        REPLACE ALL AGENT WITH '<b><font color="red">'+ALLT(AGENT)+'</b></font>' FOR !EMPTY(AGENT)    
+        REPLACE ALL MCRG WITH '<b><Font color="red">new</b></font>' FOR !MODICRG
+        REPLACE ALL WEB WITH '<b>web</b><br>' FOR ONLINE        
+      *---------------------------*
+      SELECT ;
+         [<a href='/wc.dll?mprep~printselect~]+pcSCR+'~'+ALLT(REFNO)+[' TARGET='_blank'>]+ALLTRIM(DEPT)+ALLT(ORDNO)+[</a>]+'<br>'+WEB+ALLTRIM(MCRG) AS JOB_NO, ;
+         CATEGORY,USER+'<BR>'+REP AS USER_REP,CUSTOMER,SSTATE+' '+SCITY AS ORIGIN,RSTATE+' '+RCITY AS DESTINATION,ALLTRIM(STR(MILES)) AS MILES, ;
+         MODEL,DEPOSIT,PRICE,DTE AS PICK_UP,AGENT,REF AS SOURCE,OPENDTE AS OPEN_DATE ;
+        FROM _I2 ;
+        INTO CURSOR _AUTO
+      *---------------------------*
+      IF RECCOUNT() > 0
+         MM=FCOUNT()
+         Dimension laHeader[MM]
+         FOR I = 1 TO FCOUNT()
+            laHeader[I]=LOWER(FIELD(I))
+         ENDFOR
+         Response.WriteLn([<CENTER><b><h3>]) 
+         lcURL='Total of: '+ALLT(STR(RECCOUNT()))+' Transactions (Auto Transport)'
+         Response.WriteLn("&lcURL") 
+         Response.WriteLn([<right>]) 
+         Response.Writeln([<Table width='90%' align='center' border='0' cellspacing='0'><tr><td>])
+         Response.ShowCursor(@laHeader,,.T.,,"width='100' style='font-family:Arial;font-size: 10pt;'")
+         Response.Writeln([</td></tr></table>])
+     ENDIF
+     Response.Writeln("<p><b><h3>")
+     Response.writeln([<a href="javascript:window.close()">Exit</a>])
+     Response.Writeln("</p></b></h3>")
+     *--------------------------------*
+     CLOSE DATA ALL
+     RETURN   
+  CASE lcMODUL='V4'  && VISUAL ESTIMATE SCHEDULE
+*-------------------------*
+*File2Var('_aa.txt',lcWHERE)
+*-------------------------*
+     SELECT ; 
+     [<a href='/wc.dll?mprep~printselect~]+pcSCR+'~'+ALLT(E.REFNO)+[' TARGET='_blank'>]+ALLTRIM(E.DEPT)+E.ORDNO+[</a>] AS JOB_NO, ;
+         E.TYPE+SPACE(12) AS TYPE,'<b>'+PROPER(E.SNAME)+'</b><br>'+E.STELH+'<br>'+E.STELO AS CUSTOMER,E.EMAIL,DTOC(E.LBOOKDTE) AS MOVE_DATE, ;
+         DTOC(NEXTFU)+'<br>Priority: '+IIF(FUSTATUS=9,'Pool',ALLTRIM(STR(FUSTATUS))) AS FOLLOW,ALLTRIM(E.USER) AS USER, ; 
+         E.ESTIMATOR,ALLTRIM(DTOC(E.ESTIMDTE))+' '+ALLTRIM(E.ESTIMTME) AS VISUAL_ON,E.VISUALTYPE,SPACE(10) AS VISTYPE,IIF(E.VISIT,'Yes','   ') AS VISIT, ;
+         E.SSTATE+' '+E.SCITY+' '+E.SZIP+'<br>'+E.RSTATE+' '+E.RCITY+' '+E.RZIP AS FROM_TO,E.REF,E.SUBTOTAL AS EST_TOTAL, ;
+         E.OPENDTE AS OPEN_DATE,IIF(E.FUVIP,'VIP','...') AS VIP,ALLTRIM(STR(G.MILES)) AS MILES ;
+        FROM EST AS E,ESTCRG AS G,SCHED AS S  ;
+        ORDER BY ESTIMDTE ;
+        WHERE  &lcWHERE ;
+        INTO CURSOR _L1 READWRITE
+      *-------------------------*
+      REPLACE ALL VISTYPE WITH 'On Site' FOR VISUALTYPE=1
+      REPLACE ALL VISTYPE WITH 'Virtual' FOR VISUALTYPE=2      
+      REPLACE ALL VISTYPE WITH 'Waived' FOR VISUALTYPE=3
+      REPLACE ALL VISTYPE WITH 'Photos' FOR VISUALTYPE=4
+      
+      REPLACE ALL TYPE WITH 'Local' FOR ALLTRIM(TYPE)='L'
+      REPLACE ALL TYPE WITH 'Intra' FOR ALLTRIM(TYPE)='R'      
+      REPLACE ALL TYPE WITH 'Long Dist.' FOR TYPE='D'
+      REPLACE ALL TYPE WITH 'INTL' FOR TYPE='I'
+      REPLACE ALL TYPE WITH 'Auto' FOR TYPE='T'
+      *-------------------------*
+      SELECT JOB_NO,TYPE,FOLLOW,USER,ESTIMATOR,VISUAL_ON,VISTYPE,VISIT,CUSTOMER,EMAIL,FROM_TO,MOVE_DATE,EST_TOTAL,REF,OPEN_DATE,VIP ;
+      FROM _L1 INTO CURSOR _LIST  
+     *-------------------------------*
+     MM=FCOUNT()
+     Dimension laHeader[MM]
+     FOR I = 1 TO FCOUNT()
+        laHeader[I]=LOWER(FIELD(I))
+     ENDFOR
+     Response.WriteLn([<CENTER><b><h3>]) 
+     Response.writeln([<a href="javascript:window.close()">Exit</a>])     
+     lcURL='<br>Visual Estimates Schedule by Visual Date: '+ALLT(STR(RECCOUNT()))+' Transactions'
+     Response.WriteLn("&lcURL") 
+     Response.writeln([<STYLE TYPE="text/css"> .xf{color: blue; text-decoration: underline;} .xn{color: red; text-decoration: underline; cursor: pointer;}></STYLE>])
+     Response.WriteLn([</center></b></h3>]) 
+     *-------------------------------*
+     Response.Writeln([<Table width='98%' align='center' border='0' cellspacing='0'><tr><td>])
+     Response.ShowCursor(@laHeader,,.T.,,"width='100' style='font-family:Arial;font-size: 10pt;'")
+     Response.Writeln([</td></tr></table>])
+     *-------------------------------*
+     CLOSE DATA ALL
+     RETURN
+	*-------------------------*     
+   CASE lcMODUL='V7' && RELEASE TO ANOTHER REP 
+         pcWHERE="E.ORDNO=G.ORDNO AND E.STATUS='F' AND !EMPTY(E.USER) AND VAL(E.ORDNO)>99999"
+         IF !EMPTY(lcDEPT)
+            pcWHERE=pcWHERE +" and ALLTRIM(DEPT)==lcDEPT "
+         ENDIF
+         IF !EMPTY(lcUSER)
+            pcWHERE=pcWHERE +' AND USER==lcUSER'
+         ENDIF
+         IF lnFUSTATUS<>10
+            pcWHERE=pcWHERE +" and E.FUSTATUS=lnFUSTATUS "
+         ENDIF         
+         IF pnLEVEL < 5 AND !plVIEWALL
+            pcWHERE=pcWHERE+" and E.GROUP==pnGROUPUSER "
+         ENDIF
+         *-----------------------------------------------------------------------*
+         IF lcTYPEDTE='V2' && MOVE DATE
+            pcWHERE=pcWHERE + ' and BETWEEN(E.LBOOKDTE,ldFROMDTE,ldTODTE) '
+         ELSE  && OPEN DATE
+            pcWHERE=pcWHERE + ' and BETWEEN(TTOD(E.OPENDTE),ldFROMDTE,ldTODTE) '
+         ENDIF
+         *-----------------------------------------------------------------------*
+         DO CASE
+            CASE lcTYPE='V2' && LOCAL
+               pcWHERE=pcWHERE + " and (E.TYPE='L' or E.TYPE='R') "
+            CASE lcTYPE='V3' && LONG DISTANCE'
+               pcWHERE=pcWHERE + " and E.TYPE='D' "
+            CASE lcTYPE='V4' && AUTO TRANSPORT'
+               pcWHERE=pcWHERE + " AND E.TYPE='T' "
+            CASE lcTYPE='V5' && INTERNATIONAL'
+               pcWHERE=pcWHERE + " and E.TYPE='I' "
+         ENDCASE
+         *------------------------*
+         IF lcTYPEDTE='V2' && MOVE DATE
+            pcTITLE='Move Date: '+DTOC(ldFROMDTE)+' - '+DTOC(ldTODTE)
+         ELSE
+            pcTITLE='Open Date: '+DTOC(ldFROMDTE)+' - '+DTOC(ldTODTE)
+         ENDIF
+         THIS.repassign(0)
+         CLOSE DATA ALL
+         RETURN
+  OTHERWISE
+     TMP1='\TMP\'+SYS(2015)
+     SELECT E.REFNO,E.REF AS SOURCE,E.DEPT,E.ORDNO,E.TYPE,E.STATUS,E.FUSTATUS,S.AGENT AS CARRIER,S.AGENT +SPACE(50) AS AGENT, ;
+       E.EMAIL,E.ORDREF AS REF_NO,ALLTRIM(E.STELH)+IIF(EMPTY(E.STELO),'','<br>'+ALLTRIM(E.STELO))+SPACE(30) AS PHONE,E.STELH,E.STELO, ;
+       E.LBOOKCW,E.LBOOKC,E.SNAME,E.NEXTFU,E.FUTME,E.DLVDTE,E.DLVDTE1,IIF(E.DLVIMM,'YES','...') AS DLV_IMM,LEADSTATUS AS LEADSTAT,SPACE(50) AS LEADSTATUS, ;
+       TTOD(E.BOOKDTE) AS BOOK_DATE,E.LBOOKDTE,E.LBOOKDTE1,E.REP+SPACE(70) AS REP,E.USER,E.REP AS JOB_REP,E.RC,ESTIMATOR+SPACE(30) AS VISUAL,E.TOTALCF,E.TOTALLBS, ;
+       ALLTRIM(E.SADD1)+' '+ALLTRIM(E.SADD2) AS FROM_ADDRESS,PROPER(E.SCITY) AS FROM_CITY,E.SSTATE,E.SZIP,ALLTRIM(E.RADD1)+' '+ALLTRIM(E.RADD2) AS TO_ADDRESS,PROPER(E.RCITY) AS TO_CITY,E.RSTATE,E.RZIP, ;
+       E.SSTATE+' '+E.SCITY+' '+E.SZIP+' '+E.SCOUNTRY AS FROM, ;
+       E.RSTATE+' '+E.RCITY+' '+E.RZIP+' '+E.RCOUNTRY AS TO, ;
+       G.MILES,G.MODICRG,SPACE(50) AS MCRG,IIF(E.CALCCF,G.I1PERCF,G.I1PERLBS) AS RATE,ALLT(STR(E.TOTALCF))+' cf<br>'+ALLT(STR(E.TOTALLBS))+' lbs' AS CF_LBS,ESTIMATOR,ESTIMDTE,ESTIMTME, ;
+       E.SUBTOTAL AS ESTIMATE,E.OPENDTE AS OPENDTE,SPACE(5) AS WEB,ONLINE,SPACE(120) AS CATEGORY,E.FUVIP AS VIP,SPACE(8) AS FUVIP  ;
+      FROM EST AS E,ESTCRG AS G,SCHED AS S ;
+      WHERE  &lcWHERE ;
+      ORDER BY &lcORDER;
+      INTO CURSOR _ES READWRITE
+*      STRTOFILE(lcWHERE,'_HH.TXT')      
+     *-------------------------------*
+*     REPLACE ALL REF WITH '<br><b><font color="green" SIZE="1">'+ALLT(REF)+'</b></font>' E.REF+SPACE(80) AS REF,
+     REPLACE ALL WEB WITH 'web' FOR ONLINE
+     REPLACE ALL AGENT WITH '<br><b><font color="red">'+ALLT(AGENT)+'</b></font>' FOR !EMPTY(AGENT)
+     REPLACE ALL REP WITH '<b><font color="red">'+ALLT(REP)+'</b></font>' FOR !EMPTY(REP) 
+     REPLACE ALL VISUAL WITH ESTIMATOR+'<BR>'+ALLTRIM(DTOC(ESTIMDTE))+'<br>'+ALLTRIM(ESTIMTME) FOR !EMPTY(ESTIMATOR)
+     *-------------------------------*
+     REPLACE ALL CATEGORY WITH 'Local<br>'+ALLT(CATEGORY) FOR TYPE='L'
+     REPLACE ALL CATEGORY WITH 'Intrastate<br>'+ALLT(CATEGORY) FOR TYPE='R'
+     REPLACE ALL CATEGORY WITH 'Long_Dist.<br>'+ALLT(CATEGORY) FOR TYPE='D'
+     REPLACE ALL CATEGORY WITH 'Intl<br>'+ALLT(CATEGORY) FOR TYPE='I'
+     REPLACE ALL CATEGORY WITH 'Auto<br>'+ALLT(CATEGORY) FOR TYPE='T'
+     REPLACE ALL CATEGORY WITH ALLT(CATEGORY)+'Operation' FOR STATUS='O'
+     REPLACE ALL CATEGORY WITH ALLT(CATEGORY)+'FollowUp' FOR STATUS='F'
+     REPLACE ALL CATEGORY WITH  ALLTRIM(CATEGORY)
+*     REPLACE ALL CATEGORY WITH  ALLTRIM(CATEGORY)+ALLTRIM(REF)     
+     REPLACE ALL MCRG WITH '<br><b><Font color="red">new</b></font>' FOR !MODICRG
+     REPLACE ALL FUVIP WITH '<br>VIP' FOR VIP
+     REPLACE ALL LEADSTATUS WITH '<b><Font color="red">Dup Email</font></b>' FOR LEADSTAT=1
+     *-------------------------------*
+*STRTOFILE(lcWHERE,'_AB.TXT',.F.)
+     IF lcMODUL='V9' && FOLLOW-UP ESTIMATES
+       SELECT ;
+           [<a href='/wc.dll?mprep~printselect~]+pcSCR+'~'+ALLT(REFNO)+[' TARGET='_blank'>]+ ALLT(DEPT)+ORDNO+[</a>]+'<br>'+WEB+AGENT+MCRG+FUVIP AS Job_No, ; 
+            CATEGORY+'<br><b>Priority: '+IIF(FUSTATUS=9,'Pool',ALLTRIM(STR(FUSTATUS)))+'</b>' AS CATEGORY,ALLTRIM(USER)+'<br>'+ALLTRIM(REP) AS USER, ;
+            '<B>'+DTOC(NEXTFU)+'</B>' AS FOLLOW,DTOC(LBOOKDTE) AS Move_Date,'<b>'+SNAME+'</b>' AS CUSTOMER, ;
+            ALLTRIM(EMAIL)+'<br>'+LEADSTATUS AS EMAIL,STELH AS PHONE1,STELO AS PHONE2, ;
+            FROM_CITY,SSTATE AS FROM_STATE,SZIP AS FROM_ZIP,TO_CITY,RSTATE AS TO_STATE,RZIP AS TO_ZIP, ;
+           MILES,TOTALCF AS CF,TOTALLBS AS LBS,RATE,ESTIMATE,REF_NO,SOURCE,OPENDTE AS Open_date ;
+         FROM _ES ;
+         INTO CURSOR _LIST
+ 		*-------------------------------------------*
+    ELSE
+       SELECT ;
+         [<a href='/wc.dll?mprep~printselect~]+pcSCR+'~'+ALLT(REFNO)+[' TARGET='_blank'>]+ ALLT(DEPT)+ORDNO+[</a>]+'<br>'+WEB+AGENT+MCRG+FUVIP AS Job_No, ;
+         CATEGORY+'<br><b>Priority: '+IIF(FUSTATUS=9,'Pool',ALLTRIM(STR(FUSTATUS)))+'</b>' AS CATEGORY,USER+'<br>'+REP AS USER_REP,DTOC(NEXTFU)+'<br>'+FUTME AS FOLLOW,VISUAL,'<b>'+ALLTRIM(SNAME)+'</b><BR>'+PHONE  AS CUSTOMER, ;
+         DTOC(LBOOKDTE)+'<BR>'+DTOC(LBOOKDTE1) AS Move_Date,DTOC(DLVDTE)+'<BR>'+DTOC(DLVDTE1) AS Deliver,DLV_IMM, ;
+         EMAIL+'<br>'+LEADSTATUS AS EMAIL,'<B>'+FROM+'</b>' AS ORIGIN,'<b>'+TO+'</b>' AS DESTINATION,MILES,CF_LBS,ESTIMATE,SOURCE,OPENDTE AS Open_date ;
+         FROM _ES ;
+         INTO CURSOR _LIST          
+ 		*-------------------------------------------*
+    ENDIF
+   *-------------------------------------------* 
+ IF lcMODUL='V1' AND plDLXLS=.T. && DOWNLOAD AS CSV ALL ESTIMATES
+     SELECT ALLT(DEPT) AS DEPT,ALLTRIM(ORDNO) AS Job_No,TTOD(OPENDTE) AS Open_date,TTOC(OPENDTE,2) AS Open_Time,IIF(STATUS='O','Booked','Follow') AS STATUS,USER,JOB_REP, ;
+     NEXTFU AS Follow_up,FUSTATUS AS Priority,LEFT(SNAME,AT(' ',SNAME,1))+SPACE(10) AS FIRST_NAME,ALLTRIM(SUBSTR(SNAME,AT(' ',SNAME,1),40)) AS LAST_NAME, ;
+     ALLTRIM(EMAIL) AS EMAIL,STELH AS PHONE1,STELO AS PHONE2,FROM_ADDRESS,FROM_CITY,SSTATE AS FROM_STATE,SZIP AS FROM_ZIP,TO_ADDRESS,TO_CITY,RSTATE AS TO_STATE,RZIP AS TO_ZIP, ;
+     Book_Date,DTOC(LBOOKDTE) AS Move_Date,TOTALCF AS CF,ESTIMATE AS EST_TOTAL,CARRIER,SOURCE,REF_NO,DLVDTE AS FAD1,DLVDTE1 AS FAD2 ;
+     FROM _ES ;
+     INTO CURSOR _EXCEL
+	 lcDIRECTORY='\WEB\'+pcCUSTNO+'\BU\'
+	 IF !DIRECTORY('&lcDIRECTORY')
+	    MD &lcDIRECTORY
+ 			 ENDIF
+	 lcRAND=RIGHT(SYS(3),4) 			 
+	 lcXLSFILE=lcDIRECTORY+'\allest'+lcRAND
+	 COPY TO &lcXLSFILE TYPE CSV
+	pcHREF='/'+LOWER(pcCUSTNO)+'/bu/allest'+lcRAND+'.csv'
+ ENDIF    
+   *-------------------------------------------*
+ IF lcMODUL='V9' AND plDLXLS=.T. && DOWNLOAD AS CSV FOLLOW-UP
+     SELECT ALLT(DEPT) AS DEPT,ALLTRIM(ORDNO) AS Job_No,TTOD(OPENDTE) AS Open_date,TTOC(OPENDTE,2) AS Open_Time,USER,NEXTFU AS Follow_up,FUSTATUS AS Priority,;
+     LEFT(SNAME,AT(' ',SNAME,1))+SPACE(10) AS FIRST_NAME,ALLTRIM(SUBSTR(SNAME,AT(' ',SNAME,1),40)) AS LAST_NAME, ;
+        DTOC(LBOOKDTE) AS Move_Date,ALLTRIM(EMAIL) AS EMAIL,STELH AS PHONE1,STELO AS PHONE2, ;
+        FROM_ADDRESS,FROM_CITY,SSTATE AS FROM_STATE,SZIP AS FROM_ZIP,TO_ADDRESS,TO_CITY,RSTATE AS TO_STATE,RZIP AS TO_ZIP,TOTALCF AS CF,SOURCE,REF_NO ;
+     FROM _ES ;
+     INTO CURSOR _EXCEL
+	 lcDIRECTORY='\WEB\'+pcCUSTNO+'\BU\'
+	 IF !DIRECTORY('&lcDIRECTORY')
+	    MD &lcDIRECTORY
+ 			 ENDIF
+	 lcRAND=RIGHT(SYS(3),4)
+	 lcXLSFILE=lcDIRECTORY+'\follow'+lcRAND
+	 COPY TO &lcXLSFILE TYPE CSV
+	pcHREF='/'+LOWER(pcCUSTNO)+'/bu/follow'+lcRAND+'.csv'
+ ENDIF   
+   *-------------------------------------------* 
+ IF lcMODUL='V5' AND plDLXLS=.T. && DOWNLOAD AS CSV BOOKED JOBS
+     SELECT ALLT(DEPT) AS DEPT,ALLTRIM(ORDNO) AS Job_No,TTOD(OPENDTE) AS Open_date,TTOC(OPENDTE,2) AS Open_Time,USER,JOB_REP,Book_Date,DTOC(LBOOKDTE) AS Move_Date, ;
+     FUSTATUS AS Priority,LEFT(SNAME,AT(' ',SNAME,1))+SPACE(10) AS FIRST_NAME,ALLTRIM(SUBSTR(SNAME,AT(' ',SNAME,1),40)) AS LAST_NAME, ;
+     ALLTRIM(EMAIL) AS EMAIL,STELH AS PHONE1,STELO AS PHONE2,FROM_ADDRESS,FROM_CITY,SSTATE AS FROM_STATE,SZIP AS FROM_ZIP,TO_ADDRESS,TO_CITY,RSTATE AS TO_STATE,RZIP AS TO_ZIP, ;
+     TOTALCF AS CF,ESTIMATE AS EST_TOTAL,CARRIER,SOURCE,REF_NO,DLVDTE AS FAD1,DLVDTE1 AS FAD2 ;
+     FROM _ES ;
+     INTO CURSOR _EXCEL
+	 lcDIRECTORY='\WEB\'+pcCUSTNO+'\BU\'
+	 IF !DIRECTORY('&lcDIRECTORY')
+	    MD &lcDIRECTORY
+ 			 ENDIF
+	 lcRAND=RIGHT(SYS(3),4) 			 
+	 lcXLSFILE=lcDIRECTORY+'\book'+lcRAND
+	 COPY TO &lcXLSFILE TYPE CSV
+	pcHREF='/'+LOWER(pcCUSTNO)+'/bu/book'+lcRAND+'.csv'
+ ENDIF    
+     *-------------------------------*
+   IF plDLXLS=.T. AND (lcMODUL='V1' OR lcMODUL='V5' OR lcMODUL='V9')
+      Response.Writeln("<BR><center><b>")
+   	  Response.href("&pcHREF","Download as CSV")
+   	  Response.Writeln("</b></center>")
+   ELSE
+     MM=FCOUNT()
+     Dimension laHeader[MM]
+     FOR I = 1 TO FCOUNT()
+        laHeader[I]=LOWER(FIELD(I))
+     ENDFOR
+     Response.WriteLn([<CENTER><b><h3>])
+     Response.writeln([<a href="javascript:window.close()">Exit</a>])      
+     lcURL='<br>Total of: '+ALLT(STR(RECCOUNT()))+' Transactions'
+     Response.WriteLn("&lcURL") 
+     Response.WriteLn([<right>]) 
+     Response.writeln([<STYLE TYPE="text/css"> .xf{color: blue; text-decoration: underline;} .xn{color: red; text-decoration: underline; cursor: Hand}></STYLE>])
+     Response.WriteLn([</right></b></h3>]) 
+     *-------------------------------*
+     Response.Writeln([<Table width='90%' align='center' border='0' cellspacing='0'><tr><td>])
+     Response.ShowCursor(@laHeader,,.T.,,"width='100' style='font-family:Arial;font-size: 10pt;'")
+     Response.Writeln([</td></tr></table>])
+   ENDIF  
+*    Response.ShowCursor(@laHeader,,.T.,,'WIDTH=100%')
+     *-------------------------------*
+ENDCASE
+*=========================*
+CLOSE DATA ALL
+ENDFUNC
+***********************
+* eof estprocessret
+***********************

@@ -1,0 +1,887 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Inventory by Category</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+document.addEventListener('mouseup', (e) => {
+  const container = document.getElementById('container');
+  if (!container.contains(e.target)) {
+    container.style.display = 'none';
+  }
+});
+
+<% IF plNL=.F. %>
+function Switch() {
+       document.theForm.action="/wc.dll?mpinv~investret~<%=pcSCR%>~ABC~~1<%=SYS(3)%>";
+       document.theForm.submit();
+      }
+<%ENDIF%>
+
+function additem(elem) 
+    {  
+		document.theForm.elements[elem].value ++ ;
+		theForm.elements[elem].className="QTYON";
+    }
+
+function clearall() {
+	var Message = "Are you sure you want to clear all the items?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpinv~clearall~<%=pcSCR%>~~~2<%=SYS(3)%>";
+       document.theForm.submit();
+       }
+	}   
+
+function CheckOut() {
+    document.theForm.CheckOut_1.style.visibility="hidden";
+    document.theForm.CheckOut_2.style.visibility="hidden";
+    document.theForm.Save_1.style.visibility="hidden";
+    document.theForm.Save_2.style.visibility="hidden";
+    document.theForm.action="/wc.dll?mpinv~investret~<%=pcSCR%>~~~4<%=SYS(3)%>~<%=pcNL%>";
+    document.theForm.submit()  
+  }
+
+function save() {
+    document.theForm.Save_1.style.visibility="hidden";
+    document.theForm.Save_2.style.visibility="hidden";
+    document.theForm.CheckOut_1.style.visibility="hidden";
+    document.theForm.CheckOut_2.style.visibility="hidden";
+    document.theForm.action="/wc.dll?mpinv~investret~<%=pcSCR%>~~Save~4<%=SYS(3)%>~<%=pcNL%>";
+    document.theForm.submit()  
+  }
+	
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+	.ITEMOFF	{	color:#0000FF;
+				  	font-size: 9pt;
+					font-weight: bold;
+				  	font-family: verdana;
+				  	cursor: pointer;
+				  	text-align: left;
+				  	text-decoration: underline;}
+	.ITEMON		{	color: red;
+				  	font-size: 9pt;
+ 				  	font-weight: bold;
+				  	font-family: verdana;
+				  	cursor: pointer;
+				  	text-align: left;
+				  	text-decoration: underline;}
+	.QTYOFF		{	text-align: Right;
+					color: #0000FF; 
+					font-size: 10pt;
+					font-family: Arial;
+					font-weight: none;
+					width: 30;
+					background-color: white}
+	.QTYON		{	text-align: Right;
+					color: #0000FF; 
+					font-size: 10pt;
+					font-family: Arial;
+					font-weight:none;
+					width: 30;
+					background-color: #FFFF99}
+    mark 		{   background: orange;
+    				color: black;}	
+				  	
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<BR>
+  <table border="1" align="center" style="border-collapse: collapse" bGcolor="#FFFFFF" width="850">
+   <tr>
+     <td>
+<a name="top"></a> 
+    <FORM name="theForm" method="post">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;font-family:Verdana;font-size:11pt;">
+<% IF pnLEVEL=0 %>
+  <tr>
+    <td width="100%" colspan="2">&nbsp;Hello <b><%=ALLT(PROPER(_EST.SNAME))%></b>. Click <b><i><font color="#008000">Save</font></i></b> to save your inventory or <b><i><font color="#395594">Check Out</font></i></b> once you finished.</td>
+ </tr>    
+<% ELSE %>
+  <tr>
+    <td width="50%">&nbsp;<b>Job #:&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></td>
+    <td width="50%"><b>Customer:&nbsp;<%=ALLT(PROPER(_EST.SNAME))%></b></td>
+ </tr>
+<%ENDIF%>
+</table>
+ <br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="75%">
+  <tr>
+    <td width="17%" align="center"><input type="button" value="Save" name="Save_1" onclick="save()" style="width:100;background-color:#008000;font-family:Verdana;color:#F7F7DE;font-weight: bold;cursor:pointer;">
+    &nbsp;<div id="container"><b><font face="Verdana" size="2"><%= IIF(plSAVED=.T.,'Saved','')%></font></b></div></td>
+    <td width="28%" align="center"><% IF plNL=.T. %><b><font face="Verdana" size="5" color="#9400D3">Items not Moving</font></b><%ENDIF%></td>
+    <td width="15%" align="center"><input type="button" value="Check Out" name="CheckOut_1" onclick="CheckOut()" style="width:100;background-color:#395594;font-family:Verdana;color:#F7F7DE;font-weight: bold;cursor:pointer;"></td>
+ </tr>
+</table>
+    <BR>
+<table border="0" cellpadding="1" cellspacing="1" align="center" style="border-radius:6px;border: 1px solid #083484;font-size:10pt;font-family:verdana;line-height:28px;" width="95%" bgcolor="#FFFFFF">   
+  <tr>
+    <td width="10%" align="center"><a href="#LR">Living Room</a></td>
+    <td width="8%" align="center" colspan="2"><a href="#BR">Bedroom</a></td>
+    <td width="9%" align="center"><a href="#DR">Dining Room</a></td>
+    <td width="7%" align="center" colspan="2"><a href="#KI">Kitchen</a></td>
+    <td width="8%" align="center"><a href="#AP">Appliance</a></td>
+ </tr>
+  <tr>
+    <td width="10%" align="center"><a href="#OF">Office</a></td>
+    <td width="8%" align="center" colspan="2"><a href="#PO">Patio</a></td>
+    <td width="9%" align="center"><a href="#GA">Garage</a></td>
+    <td width="7%" align="center" colspan="2"><a href="#MS">Misc.</a></td>
+    <td width="8%" align="center"><a href="#BX">Boxes</a></td>
+ </tr>
+  <tr>
+    <td width="9%" align="center"><a href="#NU">Nursery</a></td>
+    <td width="9%" align="center" colspan="2"><a href="#ML">Military</a></td>
+    <td width="9%" align="center"><a href="#PR">Play Room</a></td>
+    <td width="7%" align="center" colspan="2"><a href="#BM">Basement</a></td>
+    <td width="9%" align="center"><a href="#AT">Attic</a></td>
+  </tr>
+  <tr>
+    <td width="15%" align="center" colspan="2"><%IF pcCUSTNO<>'MOVINGAPT'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#new">Additional Items</a><%ENDIF%></td>
+    <% IF pnLEVEL > 0 %>
+    <td width="14%" align="center" colspan="3"><% IF plNL=.F. %><font onclick="Switch()" style="cursor:pointer;font-family:Verdana;text-decoration:underline;font-size:10pt;color: #0000FF;">Go to list by A B C</font><%ENDIF%></td>
+    <td width="14%" align="center" colspan="2"><font onclick="clearall()" style="text-decoration:underline;font-size:10pt;color:#0000FF;cursor:pointer;">Clear All</font></td>
+    <%ENDIF%>
+ </tr>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mark.js/dist/jquery.mark.min.js"></script>
+<br><center><font face="Verdana" size="2">Search for Item:</font> <input type="text" autocomplete="off" onclick='this.value=""' value="" size="15"></center>
+<div id="context">
+<br>
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" height="25" bgcolor="#EBEBEC" align="center" colspan="3"><a name="LR"></a><b>Living Room <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='LR' INTO CURSOR _LR
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='LR' INTO CURSOR _LR 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='LR' INTO CURSOR _LR 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="BR"></a><b>Bedroom <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='BR' INTO CURSOR _BR
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='BR' INTO CURSOR _BR 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center" >
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='BR' INTO CURSOR _BR 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="DR"></a><b>Dining Room <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='DR' INTO CURSOR _DR
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='DR' INTO CURSOR _DR 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='DR' INTO CURSOR _DR 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="KI"></a><b>Kitchen <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='KI' INTO CURSOR _KI
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='KI' INTO CURSOR _KI 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='KI' INTO CURSOR _KI 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="AP"></a><b>Appliance <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='AP' INTO CURSOR _AP
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='AP' INTO CURSOR _AP 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='AP' INTO CURSOR _AP 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>	
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="OF"></a><b>Office <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='OF' INTO CURSOR _OF
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='OF' INTO CURSOR _OF 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='OF' INTO CURSOR _OF 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>	
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="PO"></a><b>Patio Furniture <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='PO' INTO CURSOR _PO
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='PO' INTO CURSOR _PO 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='PO' INTO CURSOR _PO 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>	
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="GA"></a><b>Garage <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='GA' INTO CURSOR _GA
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='GA' INTO CURSOR _GA 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='GA' INTO CURSOR _GA 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>	
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="MS"></a><b>Misc. <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='MS' INTO CURSOR _MS
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='MS' INTO CURSOR _MS 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='MS' INTO CURSOR _MS 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="BX"></a><b>Boxes <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='BX' INTO CURSOR _BX
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='BX' INTO CURSOR _BX 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='BX' INTO CURSOR _BX 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>		
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="NU"></a><b>Nursery <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='NU' INTO CURSOR _NU
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='NU' INTO CURSOR _NU 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='NU' INTO CURSOR _NU 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>		
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="ML"></a><b>Military <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='ML' INTO CURSOR _ML
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='ML' INTO CURSOR _ML
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='ML' INTO CURSOR _ML
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>		
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="PR"></a><b>Play Room <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='PR' INTO CURSOR _PR
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='PR' INTO CURSOR _PR 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='PR' INTO CURSOR _PR 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>		
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="BM"></a><b>Basement <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='BM' INTO CURSOR _BM
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='BM' INTO CURSOR _BM 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='BM' INTO CURSOR _BM 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+<br>		
+<table border="0" width="98%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-family:Verdana;font-size:11pt;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#EBEBEC" align="center" colspan="3"><a name="AT"></a><b>Attic <a href="#top">Go Top</a>&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+ </tr>
+  <tr>
+    <td width="34%" valign="top">
+			    
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T1 WHERE CODE='AT' INTO CURSOR _AT
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>	    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T2 WHERE CODE='AT' INTO CURSOR _AT 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                </td>			    			    
+			    <td width="33%" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse;line-height:28px;" bordercolor="#111111" width="99%">
+		  <% SELECT * FROM _T3 WHERE CODE='AT' INTO CURSOR _AT 
+ 		     SCAN %>    
+      <tr bgcolor="<%=IIF(ODD,'#F7F7E7','#FFFFFF')%>">
+        <td width="85%" CLASS="ITEMOFF" onclick="additem('<%=ALLT(CODE)+ALLT(ID)%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+        <td width="14%" align="center">
+        <input ID="<%=ALLT(CODE)+ALLT(ID)%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+      </tr>
+          <%ENDSCAN%>
+   </table>
+                
+   </td>			    
+  </tr>	
+</table>
+</div>
+<script type="text/javascript">
+$(function() {
+  $("input").on("input.highlight", function() {
+    const searchTerm = $(this).val();
+    $("#context").unmark().mark(searchTerm);
+  });
+});
+</script>
+
+<br>				
+<% IF pcCUSTNO<>'MOVINGAPT' %>			
+<table border="0" align="center" cellspacing="1" style="border-collapse: collapse;font-family:verdana;font-size:11pt;" width="70%" bordercolor="083484">
+  <tr>
+    <td width="65%" bgcolor="#EBEBEC" align="center"><a name="new"></a><b>Add items not on the list - <a href="#top">Go Top</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></b></td>
+    <td width="16%" bgcolor="#EBEBEC"><b>Qty</b></td>
+    <td width="19%" bgcolor="#EBEBEC"><b>Volume</b></td>
+ </tr>
+   <%FOR I = 1 TO 20%>
+  <tr style="line-height:28px;">
+    <td width="65%" height="21"><input type="text" name="<%='I'+ALLT(STR(I))%>" size="40" maxlength="70"></td>
+    <td width="16%" height="21"><input type="text" name="<%='Q'+ALLT(STR(I))%>" size="3" ></td>
+    <td width="19%" height="21"><input type="text" name="<%='V'+ALLT(STR(I))%>" size="3" >&nbsp;<%=IIF(plCALCCF,'cf.','lbs.')%></td>
+ </tr>
+   <%ENDFOR%>
+</table>
+<%ENDIF%>
+<br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="75%">
+  <tr>
+    <td width="36%" align="left"><input type="button" value="Save" name="Save_2" onclick="save()" style="width:100;background-color:#008000;font-family:Verdana;color:#F7F7DE;font-weight: bold;cursor:pointer;">
+    &nbsp;<div id="container"><b><font face="Verdana" size="2"><%= IIF(plSAVED=.T.,'Saved','')%></font></b></div></td>
+    <td width="24%" align="center"><input type="button" value="Check Out" name="CheckOut_2" onclick="CheckOut()" style="width:100;background-color:#395594;font-family:Verdana;color:#F7F7DE;font-weight: bold;cursor:pointer;"></td>        
+ </tr>
+</table>
+</FORM>
+     </td>
+    </tr>
+  </table>
+</body>
+</html>

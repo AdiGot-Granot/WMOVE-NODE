@@ -1,0 +1,208 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Lead Rotation</title>
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~leaddistrulesret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }      
+
+	}
+
+function UruleSave(par) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~leaddistrulesret~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}					
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	 .BUTTON	{	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 65; 
+                    height: 25; 
+                    cursor: pointer;}                    					
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="1200">
+  <tr>
+    <td BGCOLOR="#0081D3" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Lead Rotation</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">
+<table border="0" width="98%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="12%"><font face="Verdana" size="2"><b>How  Lead Rotation Rules work?</b><br><br>
+	1. Setting up Lead Rotation Rule is <b>optional.</b> It ONLY applies to Users on Lead Rotation.<br>
+	2. Setting up Lead Rotation Rule to one User requires setting it up to all Users (with Lead Rotation).
+	<%IF plDEPT%><br>3. For Multi-Departments: Select <b>ALL</b> for Lead Rotation Rule for ALL Departments or select a Department.</font><%ENDIF%></td>    
+ </tr>
+</table>      
+  <br>
+<table border="0" width="98%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td valign="top" width="32%">
+	<FORM NAME="theForm" method="post">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="7%" class="TD1">Rotation</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Rule</td>    
+    <td width="22%" class="TD1" style="border-left: 1px solid #A9A9A9;" colspan="2">User-Dept-Level</td>
+ </tr>
+<%SELECT _LIST
+    SCAN%>
+  <tr>
+    <td width="7%" align="center" style="border-bottom: 1px solid #A9A9A9;"><label class="switch"><input type="checkbox" id="togBtn" name="<%='s'+ALLT(STR(USERID)) %>" value="ON" <%=IIF(LEADDIST,'checked','')%>><div class="slider round"></div></label></td>
+    <td width="5%" class="TD2"><% IF URULEID > 0%><center><font color="#8C1021"><b>Active</b></font></center><%ENDIF%></td>          
+    <td width="9%" class="TD3">&nbsp;<%=ALLT(USERNAME)%></td>          
+    <td width="18%" class="TD3">&nbsp;<font color="<%=ALLT(FONTCOLOR)%>"><%=ALLT(CLEVEL)%></font></td>
+ </tr>
+ <% ENDSCAN %>
+</table>
+	<br><center><input id="btnSubmit" type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></center>	
+	</td>
+	<td valign="top" width="1%">&nbsp;</td>	
+	<td valign="top" width="66%">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="6%" class="TD1">Rule #</td>
+    <td width="22%" class="TD1" style="border-left: 1px solid #A9A9A9;">User</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Local</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Long D.</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">INTL</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Auto</td>
+ <%IF plDEPT%>    
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Dept</td>
+ <%ENDIF%>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Active</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Delete</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">&nbsp;</td>
+ </tr>
+<%SELECT _UR
+    SCAN%>
+  <tr style="line-height:30px;">
+    <td width="6%" style="border-bottom: 1px solid #A9A9A9;" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>">&nbsp;<input name="URULEID" size="2" value="<%=ALLT(STR(URULEID))%>" style="color: #000000; border: 1px solid #C0C0C0;" READONLY></td> 
+    <td width="22%" class="TD3" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>">&nbsp;<%=ALLT(USERNAME)%><%=IIF(EMPTY(NAME),'','-'+ALLT(NAME))%><font color="red"><%=IIF(UACTIVE=.F.,'<BR>(user not active)','')%></font></td> 
+    <td width="6%" class="TD2" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>"><input type="checkbox" name="<%='L'+ALLT(STR(URULEID))%>" value="ON" <%=IIF(LOCAL=.T.,'checked','')%>></td> 
+    <td width="7%" class="TD2" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>"><input type="checkbox" name="<%='D'+ALLT(STR(URULEID))%>" value="ON" <%=IIF(LD=.T.,'checked','')%>></td>          
+    <td width="5%" class="TD2" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>"><input type="checkbox" name="<%='I'+ALLT(STR(URULEID))%>" value="ON" <%=IIF(INTL=.T.,'checked','')%>></td>          
+    <td width="5%" class="TD2" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>"><input type="checkbox" name="<%='T'+ALLT(STR(URULEID))%>" value="ON" <%=IIF(CAR=.T.,'checked','')%>></td>
+ <%IF plDEPT%>
+    <td width="6%" class="TD2" bgcolor="#<%=IIF(_UR.ACTIVE=.F.,'E9E9EA','FFFFFF')%>">
+   <select size="1" name="<%='P'+ALLT(STR(URULEID))%>">
+		    <option></option>
+	        <option value="<%=ALLT(STR(DEPTID))%>" selected><%=ALLT(DEPT)%></option> 
+		     <% SELECT _DEPT
+		     	 SCAN %>
+			     <OPTION value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select>	        
+    </td>
+ <%ENDIF%>   
+    <td width="5%" class="TD2" bgcolor="#<%=IIF(_UR.ACTIVE=.F.,'E9E9EA','FFFFFF')%>"><input type="checkbox" name="<%='A'+ALLT(STR(_UR.URULEID)) %>" value="ON" <%=IIF(_UR.ACTIVE=.T.,'checked','')%>></td>          
+    <td width="6%" class="TD2" bgcolor="#<%=IIF(_UR.ACTIVE=.F.,'E9E9EA','FFFFFF')%>"><input type="checkbox" name="<%='X'+ALLT(STR(_UR.URULEID)) %>" value="ON"></td>          
+    <td width="7%" class="TD2"><input type="button" class="BUTTON" name="B1" onclick="UruleSave(<%=ALLT(STR(_UR.URULEID,6))%>)" value="Save"></td>          
+ </tr>
+<% ENDSCAN %>
+  <tr style="line-height:30px;">
+    <td width="40%" style="border-bottom: 1px solid #A9A9A9;" colspan="2">&nbsp;<font face="Verdana" size="2"><b>Select User:</b></font>
+    <select size="1" name="USERID">
+	        <option></option> 
+		     <% SELECT _USERS
+		     	 SCAN %>
+			     <OPTION value="<%=ALLT(STR(USERID))%>"><%=ALLT(USERNAME)%>&nbsp;-&nbsp;<%=ALLT(DEPTUSER)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select>    
+    </td> 
+    <td width="6%" class="TD2"><input type="checkbox" name="L999" value="ON"></td> 
+    <td width="7%" class="TD2"><input type="checkbox" name="D999" value="ON"></td>          
+    <td width="5%" class="TD2"><input type="checkbox" name="I999" value="ON"></td>          
+    <td width="5%" class="TD2"><input type="checkbox" name="T999" value="ON"></td>
+ <%IF plDEPT%>             
+    <td width="6%" class="TD2">
+    <select size="1" name="P999">
+	        <option>ALL</option> 
+		     <% SELECT _DEPT
+		     	 SCAN %>
+			     <OPTION value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select>    
+    </td>
+ <%ENDIF%>
+    <td width="5%" class="TD2"><input type="checkbox" name="A999" value="ON" checked></td>          
+    <td width="6%" class="TD2">&nbsp;</td>          
+    <td width="7%" class="TD2"><input type="button" class="BUTTON" name="B1" onclick="UruleSave('999')" value="Create"></td>          
+ </tr>
+</table>	
+	</td>
+ </tr>
+</table>
+ <br>
+<table border="0" width="90%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="<%=IIF(pnLEVEL=4,'javascript: window.close()','submitFunction(3)')%>" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>    
+</form>    
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+  </table> 
+</body>
+</html>

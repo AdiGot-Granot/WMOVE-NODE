@@ -1,0 +1,161 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Operation Day</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function Submit() {
+	   document.theForm.SUBMIT_1.style.visibility="hidden";
+   	   document.theForm.SUBMIT_2.style.visibility="hidden";
+       document.theForm.action="/wc.dll?mpopr~operationdayret~<%=pcSCR%>~<%=ALLT(STR(pnOPRDAY))%>~<%=ALLT(STR(pnOPRMONTH))%>";
+       document.theForm.submit();
+	}
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+	.TD1		{	background-color: #008000;
+				  	text-align: center}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Pointer;}
+</style>
+
+</head>
+
+<BODY>
+<center><font style="font-family:Verdana;font-size:12pt;font-weight:bold;"><%=pcDAY%></font></center><br>
+<table border="0" width="75%" align="center" style="border-radius:7px;border: 1px solid #6B8AAD;font-family:Verdana;font-size:11pt;font-weight:bold;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="8%" valign="top" align="center">Total Jobs:<br><%=pnJOBS%></td>
+    <td width="10%" valign="top" align="center">Req. Workers:<br><%=ALLT(STR(pnJOBMEN))%></td>
+    <td width="9%" valign="top" align="center">Req. Trucks:<br><%=ALLT(STR(pnJOBTRUCK))%></td>
+    <td width="10%" valign="top" align="center">Workers:<br><%=ALLT(STR(pnWORKJOBS))%><br><font size="2">(<%=ALLT(STR(pnWORKFREE))%> available)</font></td>
+    <td width="8%" valign="top" align="center">Trucks:<br><%=ALLT(STR(pnTRUCKJOBS))%><br><font size="2">(<%=ALLT(STR(pnTRUCKFREE))%> available)</font></td>
+    <td width="10%" valign="top" align="center"><font color="magenta">Box Delivery:</font><br><%=pnJOBBX%></td>
+    <td width="9%" valign="top" align="center"><font color="brown">Pack Day:</font><br><%=pnJOBPK%></td>
+    <td width="8%" valign="top" align="center"><font color="#226A21">Pick Up:</font><br><%=pnJOBPU%></td>
+    <td width="9%" valign="top" align="center"><font color="purple">Delivery:</font><br><%=pnJOBDLV%></td>
+    <td width="7%" valign="top" align="center"><font color="#F76A00">Esign:</font><br><%=pnJOBESIGN%></td>
+    <td width="7%" valign="top" align="center"><font color="#0B780B">Confirm:</font><br><%=pnJOBCONF%></td>    
+    <td width="5%" align="center" align="center"><img border="0" onclick="Javascript:window.print()" style="cursor:pointer;" src="zz/images/Printer.png" width="25" height="25"></td>
+ </tr>
+</table>
+<br>
+<form name="theForm" method="post">
+<center><input type="button" CLASS="SUBOFF" name="SUBMIT_1" onclick="Submit()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></center><br>
+<table border="1" align="center" width="100%" bordercolor="#99CCFF" bordercolorlight="#6B8AAD" bordercolordark="#6B8AAD" style="border-collapse: collapse" cellspacing="1" cellpadding="2"> 
+  <tr style="background-color:#E9E9EA;font-family:Arial;font-size:10pt;">
+  <%IF pnLEVEL > 1 %>
+    <td width="2%" align="center" height="16"><b>Order</b></td>
+  <%ENDIF%>
+    <td width="6%" align="center" height="16"><b>Job Details</b></td>
+    <td width="3%" align="center" height="16"><b>Time</b></td>
+    <td width="8%" align="center" height="16"><b>Workers</b></td>
+    <td width="6%" align="center" height="16"><b>Customer</b></td>
+    <td width="8%" align="center" height="16"><b>From</b></td>
+    <td width="8%" align="center" height="16"><b>To</b></td>
+    <td width="7%" align="center" height="16"><b>Volume</b></td>
+  <%IF pnCOLEVEL > 4 %>    
+    <td width="7%" align="center" height="16"><b>Remarks</b></td>
+  <%ENDIF%>    
+    <td width="6%" align="center" height="16"><b>Dispatched</b></td>
+ </tr>
+<% SELECT _LIST 
+    GO TOP 
+    SCAN %>
+  <tr style="background-color:#FFFFFF;font-family:Arial;font-size:10pt;">
+  <%IF pnLEVEL > 1 %>
+    <td width="2%" VALIGN="TOP" ALIGN="CENTER" bgcolor="#FFFFFF" height="20"><input NAME="S-<%=ALLT(ORDNO)+ALLT(CODE)%>" style="width:30px;text-align: right;" size="1" VALUE="<%=ALLT(STR(JOBSEQ))%>" maxlength="3"><BR><br>
+    <B><font color="#0B780B"><%=CONFTXT%></font><% IF CODE='pu' %><br><br><font color="#F76A00"><%=ESIGN%></font><br><br><%=JOBDOCS%><br><br><font color="#FF00FF"><%=BOL%></font><%ENDIF%></B></td> 
+  <%ENDIF%>  
+    <td width="6%" VALIGN="TOP" height="20"><b>
+    <% IF ONHOLD=.T. %><font style="background-color:#000000;font-size:13pt;color:#FFFFFF;"><b>Move On Hold</font></b><br><%ENDIF%>
+    <%=JOBNO%><BR><%=PHASE%><font color="#4B0082"><%=IIF(!EMPTY(LBOOKDTE1),'<br>2<sup>nd</sup> Pick-Up: '+DTOC(LBOOKDTE1),'')%></font><BR><%=ALLT(ST)%>
+  <% IF pnCOLEVEL > 4 AND pnLEVEL > 2 %>
+    <br><a style="color:#0000FF;cursor:pointer;" onclick="window.open('/wc.dll?mpopr~mpwwc~<%=pcSCR%>~<%=CODE%>~<%=ALLT(ORDNO)%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=750,height=600')"><u>Add Workers</u></a>&nbsp;|
+	<a style="color:#0000FF;cursor:pointer;" onclick="window.open('/wc.dll?mpopr~truckswc~<%=pcSCR%>~<%=CODE%>~<%=ALLT(ORDNO)%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=700,height=500')">
+	<u>Add Truck/s</u></a>
+  <%ENDIF%>      
+    <BR><%=ALLT(TY)%><%=IIF(!EMPTY(BINDTXT),'<br>'+ALLT(BINDTXT),'')%><%=IIF(CODE='pu' AND STGNEED=.T.,'<br><font color="red">Need Storage</font>','')%><%=IIF(TYPE<>'D' AND VIEWFLAT=.T.,' Flat Rate','')%><br><%=ALLT(STR(MILES))+' Miles'%><BR>Rep: <%=ALLT(REP)%><BR><%=ALLT(REF)%></b></td> 
+    <td width="3%" VALIGN="top" ALIGN="CENTER" height="20"><br><b><%=TME%></b></td>  
+    <td width="8%" VALIGN="TOP" height="20"><b><%=IIF(JMEN>0,'Req. Workers: '+ALLT(STR(JMEN)),'')%><%=IIF(JTRUCK>0,'<br>Req. Truck: '+ALLT(STR(JTRUCK))+'<br><br>','')%>
+    <table border="0" align="center" cellSpacing="0" cellPadding="0" style="border-collapse:collapse;font-family:Verdana;font-size:9pt;" bordercolor="#111111" width="100%">
+      <tr>
+        <td><b><%=MPW%></b></td>
+     </tr>
+     </table>    
+    <br><%=IIF(EMPTY(TRUCKNO),'','<u>Truck</u><br>'+TRUCKNO)%><BR><%=IIF(EMPTY(TRIP),'','<u>Trip</u><br>'+TRIP)%>
+    <%=IIF(EMPTY(SHDROPDTE),'','<BR>Drop: '+DTOC(SHDROPDTE))%></b></td>    
+    <td width="6%" VALIGN="TOP" height="20"><b><%=CUSTOMER%>&nbsp;<%=IIF(CODE='pu' AND FUVIP=.T.,'<font color="red">VIP</font>','')%><BR><%=STELH%><%=IIF(EMPTY(RTELH),'','<br>Cell: '+RTELH)%><%=IIF(EMPTY(STELO),'','<BR>'+STELO)%><%=IIF(EMPTY(RTELO),'','<BR>'+RTELO)%>
+    <%=IIF(BALANCE>0,'<BR><BR>Cust. Balance: $'+ALLT(STR(BALANCE,8,2)),'')%></b></td>
+    <td width="8%" VALIGN="TOP" height="20"><b><%=FROMADD%><BR><%=IIF(!EMPTY(SFLOOR),'Floor: '+SFLOOR,'')%><%=IIF(EMPTY(SAPT),'',', Apt: '+SAPT)%><BR>
+    <%=FROM%>&nbsp;<a target="_blank" href="http://www.google.com/maps?q=<%=ALLT(SZIP)%>,+USA&sa=X&oi=map&ct=title" TARGET="_BLANK"><%=SZIP%></a></b></td> 
+    <td width="8%" VALIGN="TOP" height="20"><b><%=TOADD%><BR><%=IIF(!EMPTY(RFLOOR),'Floor: '+RFLOOR,'')%><%=IIF(EMPTY(RAPT),'',', Apt: '+RAPT)%><BR>
+    <%=TO%>&nbsp;<a target="_blank" href="http://www.google.com/maps?q=<%=ALLT(RZIP)%>,+USA&sa=X&oi=map&ct=title" TARGET="_BLANK"><%=RZIP%></a></b>
+ <% IF CODE='d' %><br><br><b><font color="#00574F">Alt. Delivery:<br><%=DLVADDTO%><%=IIF(!EMPTY(DLVRFLOOR),'<BR>Floor: '+DLVRFLOOR,'')%><%=IIF(EMPTY(DLVRAPT),'',', Apt: '+DLVRAPT)%>
+    <br><%=DLVTO%>&nbsp;<a target="_blank" href="http://www.google.com/maps?q=<%=ALLT(DLVRZIP)%>,+USA&sa=X&oi=map&ct=title" TARGET="_BLANK"><%=DLVRZIP%></a></b></font>
+ <%ENDIF%>    
+    </td>
+    <td width="7%" VALIGN="TOP" align="left" height="20"><b>
+    <% IF CODE='pk' %>
+       <% IF PMEN>'0' %><u>Pack:</u><br><%=PMEN+' packers'%>, <%=PHRS+' hrs'%>, <%=PPERHRS+' per hrs'%><BR>Total: <%=PTOTAL%><BR><%ENDIF%>
+       <% IF UMEN>'0' %><u>Unpack:</u><br><%=UMEN+' workers'%>, <%=UHRS+' hrs'%>, <%=UPERHRS+' per hrs'%><BR>Total: <%=UTOTAL%><%ENDIF%>
+    <%ENDIF%> 
+    <!--------------->  
+    <% IF TYPE<>'T' %>
+       <% IF CODE='d' %><%=ALLT(STR(LOADED))+' cf (loaded)'%><%ELSE%><%=VOLUME%><%ENDIF%><BR>
+       <% IF TYPE='D' %><%=IIF(CODE='pu',PERCFLBS,'')%>
+          <%ELSE%>
+           <% IF CODE='pu' %>
+          <%=LVAN+' truck/s'%>, <%=LMEN+' workers'%><br><%=LHRS+' hrs'%><br><%=LPERHRS+' per hrs'%><br><%='Estimate: $'+ALLT(STR(SUBTOTAL,8,2))%>
+          <%ENDIF%>
+       <%ENDIF%>   
+    <%ENDIF%></b></td>    
+  <%IF pnCOLEVEL > 4 %>
+    <td width="7%" VALIGN="TOP" height="20"><b><%=ALLT(REMARKS)%></b></td>
+  <%ENDIF%>  
+    <td width="6%" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;line-height:22px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center"><input type="checkbox" name="D-<%=ALLT(ORDNO)+ALLT(CODE) %>" value="ON" <%=IIF(DISPATCHED,'checked','')%>>&nbsp;<font size="2" face="Arial"><%=ALLT(STR(RECNO()))%></font></td>
+ </tr>
+<% IF !EMPTY(AGENT) AND pnLEVEL > 1%> 
+  <tr>
+    <td width="100%"><font size="2" face="Arial">Carrier: <%=AGENT%>
+    <%IF AGESIGN1=.T.%><br>E-Signed Estimate: <font color="green" size="4"><b>&#10003;</b></font><%ENDIF%>
+    <%IF AGESIGN2=.T.%><br>E-Signed JAF: <font color="green" size="4"><b>&#10003;</b><%ENDIF%></font></font></td>
+ </tr>
+<%ENDIF%>
+<%IF pnCOLEVEL > 4 AND !EMPTY(STARTTME)%> 
+  <tr>
+    <td width="100%"><font size="2" face="Arial">Start: <%=STARTTME%><br>Loaded: <%=LOADTME%><br>Finish: <%=ENDTME%></font></td>
+ </tr>
+<%ENDIF%>   
+</table>
+  </td>
+ </tr>
+<% ENDSCAN %>
+  <tr>
+    <td width="61%" bgcolor="#E9E9EA" height="20" colspan="10">&nbsp;</td>
+ </tr>
+</table>
+ <br><center><input type="button" CLASS="SUBOFF" name="SUBMIT_2" onclick="Submit()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></center>
+</form>
+</body>
+</html>

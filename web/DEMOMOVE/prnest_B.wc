@@ -1,0 +1,481 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Moving Estimate</title>
+
+</head>
+
+<body>
+<div style="font-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:1.6; color:#333333; max-width:820px; margin:0 auto;">
+  <!-- ============ HEADER ============ -->
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; margin-bottom:16px;">
+  <tbody>
+   <tr>
+     <td style="width:200px; vertical-align:middle; padding-right:14px;"><img border="0" src="https://dd9cab76.delivery.rocketcdn.me/wp-content/uploads/2026/02/Carmel-Logo-Nav-180-x-81.png.webp" alt="" width="180" height="80"></td>
+     <td>
+     <div style="font-size:22px; font-weight:bold; color:#1F4E79; letter-spacing:.5px;"><%=pcCOMPANY%></div>
+     <div style="font-size:13px; color:#333333; margin-top:4px;"><%=pcADD1%>&nbsp;<%=pcADD2%>&nbsp;&middot;&nbsp;<strong>Toll Free:</strong> <%=pcTOLLFREE%>&nbsp;&middot;&nbsp;<strong>Fax:</strong> <%=pcFAX%></div>
+     <div style="font-size:13px; color:#555555; margin-top:4px;"><strong>MDPU #</strong> <%=pcREGISTER%>&nbsp;&middot;&nbsp;<strong>US DOT</strong> <%=pcDOT%>&nbsp;&middot;&nbsp;<strong>MC</strong> <%=pcICC%>
+     &nbsp;&middot;&nbsp;<font style="color:#2E7D32;font-size:13px;font-weight:bold;">Fully Licensed &amp; Insured</font></div></td>
+  </tr>
+ </tbody>
+</table>
+ <!-- ============ ORDER BANNER ============ -->
+<div style="background-color:#D9E2F3; color:#1F4E79; padding:6px 6px; margin-top:8px; border:1px solid #B8C9E2;">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+  <tbody>
+   <tr>
+     <td style="font-size:15px; font-weight:bold; letter-spacing:.5px;"><%=pcBINDING%> <%=IIF(_EST.STATUS='F','Moving Estimate','Order for Service')%></td>
+     <td align="right" style="font-size:15px; font-weight:bold;"><%=pcORDNO1%></td>
+   </tr>
+ </tbody>
+</table>
+</div>
+ <BR>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; font-family: Arial, Helvetica, sans-serif; font-size:13px;">
+ <thead>
+  <tr>
+    <th align="left" style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#D9E2F3; color:#1F4E79; font-size:13px; width:50%;">Moving From</th>
+    <th align="left" style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#D9E2F3; color:#1F4E79; font-size:13px; width:50%;">Moving To</th>
+ </tr>
+ </thead>
+ <tbody>
+  <tr>
+    <td style="padding:10px; border:1px solid #e0e0e0; vertical-align:top;line-height:22px;"><strong><%=ALLT(PROPER(_EST.SNAME))%></strong>
+    <br/><%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%>
+    <br/><%=ALLT(PROPER(_EST.SLEVEL))%><%=IIF(EMPTY(_EST.SSUBLEVEL),'',' / '+ALLT(_EST.SSUBLEVEL))%><%=IIF(EMPTY(_EST.SFLOOR),'',', Floor: '+ALLT(STR(_EST.SFLOOR)))%><%=IIF(EMPTY(_EST.SAPT),'',', Apt. #: '+ALLT(_EST.SAPT))%>
+    <br/><%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%>
+    <br/>Phone: <%=ALLT(_EST.STELH)%><%=IIF(EMPTY(_EST.STELO),'',' / '+ALLT(_EST.STELO))%>
+    <br/><%=ALLT(_EST.EMAIL)%></td>
+    <td style="padding:10px; border:1px solid #e0e0e0; vertical-align:top; background-color:#f7f9fc;line-height:22px;"><strong><%=ALLT(PROPER(_EST.RNAME))%></strong>
+    <br/><%=ALLT(_EST.RADD1)%>&nbsp;<%=ALLT(_EST.RADD2)%>
+    <br/><%=ALLT(PROPER(_EST.RLEVEL))%><%=IIF(EMPTY(_EST.RSUBLEVEL),'',' / '+ALLT(_EST.RSUBLEVEL))%><%=IIF(EMPTY(_EST.RFLOOR),'',', Floor: '+ALLT(STR(_EST.RFLOOR)))%><%=IIF(EMPTY(_EST.RAPT),'',', Apt. #: '+ALLT(_EST.RAPT))%>
+    <br/><%=ALLT(PROPER(_EST.RCITY))+', '+(_EST.RSTATE)%>&nbsp;<%=ALLT(_EST.RZIP)%>
+    <br/>Phone: <%=ALLT(_EST.RTELH)%><%=IIF(EMPTY(_EST.RTELO),'',' / '+ALLT(_EST.RTELO))%>
+    <br/>&nbsp;</td>
+ </tr>
+ </tbody>
+</table>
+<!-- ============ MOVE DETAILS ============ -->
+<h3 style="color:#1F4E79; border-bottom:2px solid #1F4E79; padding-bottom:3px; margin-top:12px; margin-bottom:6px; font-size:15px;">Move Details</h3>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; font-family: Arial, Helvetica, sans-serif; font-size:13px;">
+ <tbody>
+  <tr>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; width:18%;"><strong>Move Date</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; width:32%; background-color:#f7f9fc;"><%=CDOW(_EST.LBOOKDTE)%>&nbsp;<%=_EST.LBOOKDTE%>&nbsp;<%=ALLT(_EST.LBOOKTME)%></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; width:18%;"><strong>Move Type</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; width:32%; background-color:#f7f9fc;"><%=IIF(pcTYPE='D','Long Distance, ','Local Move, ')%><%=pcRC%>&nbsp;/&nbsp;<%=ALLT(STR(_EST.TOTALCF))+' CF'%></td>
+ </tr>
+  <tr>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0;"><strong>Delivery Date</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#f7f9fc;"><%=_EST.DLVDTE%><%=IIF(EMPTY(_EST.DLVDTE1),'','-'+DTOC(_EST.DLVDTE1))%></td>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;"><strong>Reference By</strong></td>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#f7f9fc;"><%=_EST.REF%></td>
+ </tr>
+  <tr>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0;"><strong>Box Delivery</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#f7f9fc;"><%=_EST.BOXDTE%>&nbsp;<%=(_EST.BOXTME)%></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0;"><strong>Carmel Rep</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#f7f9fc;"><%=pcREP%></td>
+ </tr>
+  <tr>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0;"><strong>Packing Day</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#f7f9fc;"><%=(_EST.PBOOKDTE)%>&nbsp;<%=(_EST.PBOOKTME)%></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0;"><strong>Carmel Rep Email</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#f7f9fc;"><%=pcOUREMAIL%></td>
+ </tr>
+  <tr>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0;"><strong>Visual</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#f7f9fc;">
+    <% IF !EMPTY(_EST.ESTIMDTE)%>
+       <%=(_EST.ESTIMDTE)%>&nbsp;<%=(_EST.ESTIMTME)%>&nbsp;<%=pcVISUALTYPE%>&nbsp;<%=PROPER(_EST.ESTIMATOR)%>
+    <%ENDIF%></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0;"><strong>Contact Phone</strong></td>
+    <td style="padding:6px 10px; border:1px solid #e0e0e0; background-color:#f7f9fc;"><%=pcTOLLFREE%>&nbsp;<%=pcPHONEEXT%></td>
+ </tr>
+</tbody>
+</table>
+<!-- ============ CHARGES ============ -->
+<h3 style="color:#1F4E79; border-bottom:2px solid #1F4E79; padding-bottom:3px; margin-top:12px; margin-bottom:6px; font-size:15px;">Moving Services &amp; Charges</h3>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; font-family: Arial, Helvetica, sans-serif; font-size:13px;">
+ <thead>
+  <tr>
+    <th align="left"  style="padding:8px 10px; border:1px solid #e0e0e0; background-color:#D9E2F3; color:#1F4E79; font-size:13px;">Service</th>
+    <th align="right" style="padding:8px 10px; border:1px solid #e0e0e0; background-color:#D9E2F3; color:#1F4E79; font-size:13px; width:120px;">Amount</th>
+ </tr>
+</thead>
+<tbody>   
+   <% IF pcTYPE='L' OR pcTYPE='R' %>
+   <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;">
+	 Crew Members: <%=ALLT(STR(_CRG.LMEN))%>&nbsp;Workers and <%=IIF(_CRG.LVAN >0,ALLT(STR(_CRG.LVAN))+' Truck/s, ','')%>     
+     Hourly Rate: <strike><font COLOR="#C62828"><%='$'+ALLT(STR(_CRG.LPERHRS+50,7,2))%>/hrs</font></strike>&nbsp;&nbsp;<%='$'+ALLT(STR(_CRG.LPERHRS,7,2))%>/hrs</td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.LPERHRS*_CRG.LHRS,7,2))%></strong></td>
+  </tr> 
+   <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;">Estimated Labor Time: <%=ALLT(STR(_CRG.LHRS,6,2))%> hours</td>
+  </tr> 
+    <%IF _CRG.FTTOTAL > 0 %>
+   <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;">Travel Time Charge:
+     <%=ALLT(STR(_CRG.FTMEN))%>&nbsp;Workers and <%=IIF(_CRG.FTVAN >0,ALLT(STR(_CRG.FTVAN))+' Truck/s, ','')%><%='$'+ALLT(STR(_CRG.FTPERHRS,7,2))%>/hrs</td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.FTTOTAL,8,2))%></strong></td>
+  </tr>
+    <% ENDIF %>
+    <%IF _CRG.OTOTAL > 0 %>        
+   <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;">Fuel Surcharge</td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.OTOTAL,8,2))%></strong></td>
+  </tr>
+    <% ENDIF %>
+   <% ENDIF %>     
+      <% IF !EMPTY(_CRG.OTHERS) %>
+   <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;"><%=ALLTRIM(_CRG.OTHERS)%></td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.OTHERSAMT,8,2))%></strong></td>
+  </tr>
+      <% ENDIF %>
+      <% IF !EMPTY(_CRG.OTHERS1) %>
+   <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;"><%=ALLTRIM(_CRG.OTHERS1)%></td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.OTHERS1AMT,8,2))%></strong></td>          
+  </tr>
+      <% ENDIF %>        
+      <% IF !EMPTY(_CRG.OTHERS2) %>
+   <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;"><%=ALLTRIM(_CRG.OTHERS2)%></td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.OTHERS2AMT,8,2))%></strong></td>
+   </tr>
+      <% ENDIF %>        
+      <% IF _EST.COUPON %>
+    <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;"><font COLOR="#C62828">Coupon Discount: <%=ALLT(STR(_CRG.COUPONP,8,2))+' %'%></font></td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><font COLOR="#C62828">- <%='$'+ALLT(STR(_CRG.COUPONAMT,8,2))%></font></strong></td>
+   </tr>
+      <% ENDIF %>        
+      <% IF _EST.SENIOR %>
+    <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;"><font COLOR="#C62828">Senior Citizen: <%=ALLT(STR(_CRG.SENIORP,8,2))+' %'%></font></td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><font COLOR="#C62828">- <%='$'+ALLT(STR(_CRG.SENIORAMT,8,2))%></font></strong></td>
+   </tr>
+      <% ENDIF %>              
+      <% IF _CRG.INSAMT > 0 %>
+    <tr>
+     <td style="padding:6px 10px; border:1px solid #e0e0e0;"><%=ALLTRIM(_CRG.INS)%></td>
+     <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.INSAMT,8,2))%></strong></td>
+   </tr>
+      <% ENDIF %>        
+      <% IF !EMPTY(_CRG.EXTRA1) %>
+    <tr>
+      <td style="padding:6px 10px; border:1px solid #e0e0e0;"><%=ALLTRIM(_CRG.EXTRA1)%></td>
+      <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.EXTRA1AMT,8,2))%></strong></td>
+   </tr>
+      <% ENDIF %>              
+      <% IF !EMPTY(_CRG.EXTRA2) %>
+    <tr>
+      <td style="padding:6px 10px; border:1px solid #e0e0e0;"><%=ALLTRIM(_CRG.EXTRA2)%></td>
+      <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.EXTRA2AMT,8,2))%></strong></td>
+   </tr>
+      <% ENDIF %>
+      <% IF !EMPTY(_CRG.EXTRA3) %>
+    <tr>
+      <td style="padding:6px 10px; border:1px solid #e0e0e0;"><%=ALLTRIM(_CRG.EXTRA3)%></td>
+      <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.EXTRA3AMT,8,2))%></strong></td>
+   </tr>
+      <% ENDIF %>                                   
+    <% IF _CRG.PTOTAL > 0 %>  
+    <tr>
+      <td style="padding:6px 10px; border:1px solid #e0e0e0;">Packing Services:&nbsp;<% IF _CRG.PHRS > 0%><%=ALLT(STR(_CRG.PMEN))%>
+      &nbsp;Packers,&nbsp;<%=ALLT(STR(_CRG.PHRS,6,2))%>&nbsp;hrs,&nbsp;$<%=ALLT(STR(_CRG.PPERHRS,7,2))%>&nbsp;/hrs&nbsp;<% ENDIF %></td>
+      <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.PTOTAL,8,2))%></strong></td>
+   </tr>
+    <% ENDIF %>     
+    <% IF _CRG.UTOTAL > 0 %>         
+    <tr>
+      <td style="padding:6px 10px; border:1px solid #e0e0e0;">Unpacking Services:&nbsp;<% IF _CRG.UHRS > 0%><%=ALLT(STR(_CRG.UMEN))%>
+      &nbsp;Packers,&nbsp;<%=ALLT(STR(_CRG.UHRS,6,2))%>&nbsp;hrs,&nbsp;$<%=ALLT(STR(_CRG.UPERHRS,7,2))%>&nbsp;/hrs&nbsp;<% ENDIF %></td>
+      <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.UTOTAL,8,2))%></strong></td>
+   </tr>
+    <% ENDIF %>
+      <% IF _CRG.MATTOTAL > 0 %> 
+    <tr>
+      <td style="padding:6px 10px; border:1px solid #e0e0e0;">Packing Materials</td>
+      <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><%='$'+ALLT(STR(_CRG.MATTOTAL,8,2))%></strong></td>
+   </tr>
+      <% ENDIF %>    
+      <% IF _CRG.DISCOUNT > 0 %>
+    <tr>
+      <td style="padding:6px 10px; border:1px solid #e0e0e0;"><font COLOR="#C62828"><%=ALLTRIM(_CRG.DISCTXT)%></font></td>
+      <td align="right" style="padding:6px 10px; border:1px solid #e0e0e0;"><strong><FONT COLOR="#C62828">- <%='$'+ALLT(STR(_CRG.DISCOUNT,8,2))%></font></strong></td>
+   </tr>
+      <% ENDIF %>   
+    </tbody>
+    <tfoot>
+      <tr>
+        <td style="padding:10px; border:1px solid #B8C9E2; background-color:#D9E2F3; color:#1F4E79; font-size:15px;"><strong>Total Moving Estimate</strong></td>
+        <td align="right" style="padding:10px; border:1px solid #B8C9E2; background-color:#D9E2F3; color:#1F4E79; font-size:15px;"><strong><%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></strong></td>
+      </tr>
+      <% IF pnPAYAMT > 0 %>
+      <tr>
+        <td style="padding:10px; border:1px solid #B8C9E2; background-color:#D9E2F3; color:#C62828; font-size:15px;"><strong>Customer Payment</strong></td>
+        <td align="right" style="padding:10px; border:1px solid #B8C9E2; background-color:#D9E2F3; color:#C62828; font-size:15px;"><strong><%='$'+ALLT(STR(pnPAYAMT,8,2))%></strong></td>
+      </tr>
+      <% ENDIF %>      
+    </tfoot>
+  </table>
+<%IF plVIEWMAT OR plSHOWMAT %>  
+<!-- ============ PACKING ============ -->
+<h3 style="color:#1F4E79; border-bottom:2px solid #1F4E79; padding-bottom:3px; margin-top:12px; margin-bottom:6px; font-size:15px;">Packing Material List</h3>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; font-family: Arial, Helvetica, sans-serif; font-size:13px;">
+<tbody>   
+   <tr>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="10%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="70%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Material</font></b></td>
+              <td width="20%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Unit<br>Price $</font></b></td>
+            </tr>
+      <%SELECT _MAT1
+         SCAN %>
+            <tr>
+              <td width="10%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="70%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+              <td width="20%" align="right"><font face="Arial" size="1"><%=PRICE%></font>&nbsp;</td>
+            </tr>
+      <%ENDSCAN %>
+          </table>      
+     </td>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="10%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="70%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Material</font></b></td>
+              <td width="20%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Unit<br>Price $</font></b></td>
+            </tr>
+      <%SELECT _MAT2
+         SCAN %>
+            <tr>
+              <td width="10%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="70%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+              <td width="20%" align="right"><font face="Arial" size="1"><%=PRICE%></font>&nbsp;</td>
+            </tr>
+      <%ENDSCAN %>
+          </table>      
+     </td>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="10%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="70%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Material</font></b></td>
+              <td width="20%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Unit<br>Price $</font></b></td>
+            </tr>
+      <%SELECT _MAT3
+         SCAN %>
+            <tr>
+              <td width="10%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="70%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+              <td width="20%" align="right"><font face="Arial" size="1"><%=PRICE%></font>&nbsp;</td>
+            </tr>
+      <%ENDSCAN %>
+          </table>      
+     </td>
+  </tr>    
+</tbody>
+</table>
+<%ENDIF%>
+  
+<%IF !EMPTY(_ESTMEMO.EXTSTOP)%>  
+<!-- ============ MOVE PLANS ============ -->
+<h3 style="color:#1F4E79; border-bottom:2px solid #1F4E79; padding-bottom:3px; margin-top:12px; margin-bottom:6px; font-size:15px;">Move Plan</h3>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; font-family: Arial, Helvetica, sans-serif; font-size:13px;">
+<tbody>   
+   <tr>
+     <td style="padding:6px 8px; border:1px solid #e0e0e0;"><%=ALLT(_ESTMEMO.EXTSTOP)%></td>
+  </tr>    
+</tbody>
+</table>
+<%ENDIF%>
+<!-- ============ COMPANY TERMS ============ -->
+<h3 style="color:#1F4E79; border-bottom:2px solid #1F4E79; padding-bottom:3px; margin-top:12px; margin-bottom:6px; font-size:15px;">Understanding Your Estimate</h3>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; font-family: Arial, Helvetica, sans-serif; font-size:13px;">
+<tbody>   
+   <tr>
+     <td style="padding:6px 8px; border:1px solid #e0e0e0;"><%=pcREMFILE%></td>
+  </tr>    
+</tbody>
+</table>
+<!-- ============ INVENTORY ============ -->
+<h3 style="color:#1F4E79; border-bottom:2px solid #1F4E79; padding-bottom:3px; margin-top:12px; margin-bottom:6px; font-size:15px;">Articles List <%=IIF(pnITEMS=0,'',ALLT(STR(pnITEMS))+' Items, '+ALLT(STR(pnPCS))+' Pieces')%></h3>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; font-family: Arial, Helvetica, sans-serif; font-size:13px;">
+<tbody>   
+   <tr>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="11%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="76%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Items</font></b></td>
+            <% IF plVIEWVOL%>  
+              <td width="13%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;"><%=IIF(_EST.CALCCF,'CuFt','Lbs')%></font></b>&nbsp;</td>
+            <%ENDIF%>  
+            </tr>
+      <%SELECT _T1
+         SCAN %>
+            <tr>
+              <td width="11%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="76%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+            <% IF plVIEWVOL%>  
+              <td width="13%"><font face="Arial" size="1"><%=IIF(_EST.CALCCF,ALLT(CUFT),ALLT(LBS))%></font>&nbsp;</td>
+            <%ENDIF%>
+            </tr>
+      <%ENDSCAN %>
+          </table>    
+     </td>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="11%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="76%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Items</font></b></td>
+            <% IF plVIEWVOL%>  
+              <td width="13%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;"><%=IIF(_EST.CALCCF,'CuFt','Lbs')%></font></b>&nbsp;</td>
+            <%ENDIF%>  
+            </tr>
+      <%SELECT _T2
+         SCAN %>
+            <tr>
+              <td width="11%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="76%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+            <% IF plVIEWVOL%>  
+              <td width="13%"><font face="Arial" size="1"><%=IIF(_EST.CALCCF,ALLT(CUFT),ALLT(LBS))%></font>&nbsp;</td>
+            <%ENDIF%>
+            </tr>
+      <%ENDSCAN %>
+          </table>     
+     </td>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="11%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="76%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Items</font></b></td>
+            <% IF plVIEWVOL%>  
+              <td width="13%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;"><%=IIF(_EST.CALCCF,'CuFt','Lbs')%></font></b>&nbsp;</td>
+            <%ENDIF%>  
+            </tr>
+      <%SELECT _T3
+         SCAN %>
+            <tr>
+              <td width="11%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="76%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+            <% IF plVIEWVOL%>  
+              <td width="13%"><font face="Arial" size="1"><%=IIF(_EST.CALCCF,ALLT(CUFT),ALLT(LBS))%></font>&nbsp;</td>
+            <%ENDIF%>
+            </tr>
+      <%ENDSCAN %>
+          </table>     
+     </td>
+  </tr>    
+</tbody>
+</table>
+<% IF pnNOLOAD=.T. %>
+<!-- ============ INVENTORY NOT GOING============ -->
+<h3 style="color:#1F4E79; border-bottom:2px solid #1F4E79; padding-bottom:3px; margin-top:12px; margin-bottom:6px; font-size:15px;">Items Excluded from Move <%=IIF(pnITEMSNL=0,'',ALLT(STR(pnITEMSNL))+' Items, '+ALLT(STR(pnPCSNL))+' Pieces')%></h3>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; font-family: Arial, Helvetica, sans-serif; font-size:13px;">
+<tbody>   
+   <tr>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="11%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="76%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Items</font></b></td>
+            <% IF plVIEWVOL%>  
+              <td width="13%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;"><%=IIF(_EST.CALCCF,'CuFt','Lbs')%></font></b>&nbsp;</td>
+            <%ENDIF%>  
+            </tr>
+      <%SELECT _N1
+         SCAN %>
+            <tr>
+              <td width="11%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="76%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+            <% IF plVIEWVOL%>  
+              <td width="13%"><font face="Arial" size="1"><%=IIF(_EST.CALCCF,ALLT(CUFT),ALLT(LBS))%></font>&nbsp;</td>
+            <%ENDIF%>
+            </tr>
+      <%ENDSCAN %>
+          </table>    
+     </td>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="11%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="76%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Items</font></b></td>
+            <% IF plVIEWVOL%>  
+              <td width="13%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;"><%=IIF(_EST.CALCCF,'CuFt','Lbs')%></font></b>&nbsp;</td>
+            <%ENDIF%>  
+            </tr>
+      <%SELECT _N2
+         SCAN %>
+            <tr>
+              <td width="11%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="76%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+            <% IF plVIEWVOL%>  
+              <td width="13%"><font face="Arial" size="1"><%=IIF(_EST.CALCCF,ALLT(CUFT),ALLT(LBS))%></font>&nbsp;</td>
+            <%ENDIF%>
+            </tr>
+      <%ENDSCAN %>
+          </table>     
+     </td>
+     <td valign="top" style="padding:2px 4px; border:1px solid #e0e0e0;">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="11%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Qty</font></b></td>
+              <td width="76%" bgcolor="#D9E2F3" align="center"><b><font face="Arial" style="font-size: 9pt;">Items</font></b></td>
+            <% IF plVIEWVOL%>  
+              <td width="13%" bgcolor="#V" align="center"><b><font face="Arial" style="font-size: 9pt;"><%=IIF(_EST.CALCCF,'CuFt','Lbs')%></font></b>&nbsp;</td>
+            <%ENDIF%>  
+            </tr>
+      <%SELECT _N3
+         SCAN %>
+            <tr>
+              <td width="11%" align="center"><font face="Arial" size="1"><%=QTY%></font>&nbsp;</td>
+              <td width="76%"><font face="Arial" size="1"><%=ITEM%></font>&nbsp;</td>
+            <% IF plVIEWVOL%>  
+              <td width="13%"><font face="Arial" size="1"><%=IIF(_EST.CALCCF,ALLT(CUFT),ALLT(LBS))%></font>&nbsp;</td>
+            <%ENDIF%>
+            </tr>
+      <%ENDSCAN %>
+          </table>    
+     </td>
+  </tr>    
+</tbody>
+</table>
+<%ENDIF%>
+ <BR>
+<table border="0" width="98%" align="center" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <%IF plESIGN%>
+  <tr>
+	<td width="100%" colspan="3" align="center"><font face="Verdana" size="2"><b>Click on <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~esignwc~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>">Online Electronic Signature</a>
+	to confirm your move online.</b></font></td>
+ </tr>
+  <%ELSE%>
+  <tr>
+    <td width="39%" height="15"><br><u><i><font face="Courier New" style="font-size:11pt;"><%=ALLT(_EST.SNAME)%></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br><font face="Verdana" size="2">Customer Name</font></td>
+    <td width="41%" height="15"><br>________________________________<br><font face="Verdana" size="2">Customer Signature</font></td>
+    <td width="20%" height="15"><br>____________<br><font face="Verdana" size="2">Date</font></td>
+ </tr>
+ <%ENDIF%>
+</table>
+<%IF plREPSIGN AND _EST.STATUS='O'%>
+<BR>
+<table border="0" width="98%" align="center" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr>
+    <td width="29%" height="15"><br><u><i><font face="Courier New" style="font-size:11pt;"><%=pcREP%></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>Company Representative</font></td>
+    <td width="30%" height="15"><br><u><i><font face="Courier New" style="font-size:11pt;"><%=DATE()%></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>Date</font></td>
+ </tr>
+</table>
+<%ENDIF%>
+
+</div>
+</body>
+
+</html>

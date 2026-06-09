@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Thank You</title>
+</head>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitrem() {
+	   document.theForm.action="/wc.dll?mpest~thanksret~<%=pcSCR%>";
+       document.theForm.submit();
+    }
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+	.TDTOP1	 	{	text-align: left;
+					color: #000000; 
+					font-size: 10pt;
+					font-family: Arial;
+  				  	font-weight: bold;}
+	.TDBODY1 	{	text-align: left;
+					color: #083484; 
+					font-size: 10pt;
+					font-family: Arial;
+  				  	font-weight: bold;}
+	 .SUBMIT1	{	color: #000000;
+				  	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    cursor: pointer;
+                    width: 130; 
+                    height: 30;}
+</style>
+
+</head>
+
+<body BGCOLOR="#316194"> 
+ <%IF pcCUSTNO<>'RLMOVING' AND pcCUSTNO<>'TEXASTOP'%>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100"></td>
+ </tr>
+</table>
+<%ENDIF%>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="70%" valign="top" align="center"><br>
+<table border="0" width="98%" cellspacing="0" cellpadding="0" style="border-collapse: collapse;border: 1px solid #31557B;" bordercolor="#111111">
+  <tr>
+    <td width="8%" height="25" CLASS="TDTOP1">&nbsp;Estimate #:</td>
+    <td width="14%" height="25" CLASS="TDBODY1"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></td>
+    <td width="15%" height="25" CLASS="TDTOP1">Expected Pck-Up Date:</td>
+    <td width="24%" height="25" CLASS="TDBODY1"><%=pcLBOOKDTE%>&nbsp;</td>
+ </tr>
+</table>    
+<BR>
+<table border="0" width="95%" cellspacing="0" align="center">
+  <tr>
+    <td><font face="Verdana" size="2"><b>Thank you <%=ALLT(PROPER(_EST.SNAME))%></b></font>!!<br><br><%=pcTHANKSTXT%></td>
+ </tr>
+</table>
+<%IF pnCOLEVEL >= 3 %>
+  <form name="theForm" method="post">
+<table border="0" width="95%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="100%" height="30" valign="bottom"><font face="Verdana" size="2"><b>Add Notes to the Company:</b></font></td>
+ </tr>
+  <tr>
+	<td width="100%" align="left"><textarea rows="5" name="CUNOTESX" cols="70" style="border: 1px solid #31557B;"></textarea><br><br>
+    <input type="submit" CLASS="SUBMIT1" name="B3" onclick="submitrem()" value="Submit Your Note"></td>
+ </tr>
+</table>
+  </form>  
+<%ENDIF%>    
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" valign="top">
+  <% SELECT _CUNOTES
+     IF RECCOUNT() > 0 %>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#808080" width="95%" cellspacing="0" cellpadding="0">    
+  <tr>
+   <td width="100%" height="30" valign="bottom" colspan="2"><font face="Verdana" size="2"><b>Previous Notes:</b></font></td>
+ </tr>     
+</table>    
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#808080" width="95%" cellspacing="1" cellpadding="2">
+	<% SCAN %>
+  <tr>
+   <td width="21%" valign="top">&nbsp;<font face="Arial" style="font-size: 9pt"><%=TTOD(DATE)%>:&nbsp;<%=USER%></font></td>
+   <td width="79%" valign="top"><font face="Arial" style="font-size: 9pt"><%=ALLT(NOTES)%></font>&nbsp;</td>
+ </tr>
+   <% ENDSCAN %>
+</table>       
+  <%ENDIF%>            
+&nbsp;</td>
+  </tr>  
+</table>
+   </td>
+ </tr>
+</table>
+</body>
+</html>

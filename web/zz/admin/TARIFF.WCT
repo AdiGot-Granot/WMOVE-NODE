@@ -1,0 +1,244 @@
+FUNCTION __TARIFF
+TEXT<HTML>
+<HEAD>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Tariff</TITLE>
+
+<SCRIPT language="javascript">
+<!--
+
+function breakeveryheader(){
+if (!document.getElementById){
+alert("You need IE5 or NS6 to run this example")
+return
+}
+for (i=0; i<document.getElementsByTagName("H2").length; i++)
+document.getElementsByTagName("HR")[i].style.pageBreakBefore="always"
+}
+
+//-->
+</SCRIPT>
+
+</HEAD>
+<BODY onLoad="breakeveryheader()">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  Dimension laHeader[6]
+     	laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+    	laHeader[2]="1 to 20 Miles"
+    	laHeader[3]="21 to 40 Miles"
+    	laHeader[4]="41 to 60 Miles"
+    	laHeader[5]="61 to 80 Miles"
+    	laHeader[6]="81 to 100 Miles"
+     	SELECT _TMP1
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="101 to 120 Miles"
+    	laHeader[3]="121 to 140 Miles"
+    	laHeader[4]="141 to 160 Miles"
+    	laHeader[5]="161 to 180 Miles"
+    	laHeader[6]="181 to 200 Miles"
+     	SELECT _TMP2
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="201 to 250 Miles"
+    	laHeader[3]="251 to 300 Miles"
+    	laHeader[4]="301 to 350 Miles"
+    	laHeader[5]="351 to 400 Miles"
+    	laHeader[6]="401 to 450 Miles"
+     	SELECT _TMP3
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="451 to 500 Miles"
+    	laHeader[3]="501 to 550 Miles"
+    	laHeader[4]="551 to 600 Miles"
+    	laHeader[5]="601 to 650 Miles"
+    	laHeader[6]="651 to 700 Miles"
+     	SELECT _TMP4
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="701 to 750 Miles"
+    	laHeader[3]="751 to 800 Miles"
+    	laHeader[4]="801 to 850 Miles"
+    	laHeader[5]="851 to 900 Miles"
+    	laHeader[6]="901 to 950 Miles"
+     	SELECT _TMP5
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="951 to 1000 Miles"
+    	laHeader[3]="1001 to 1100 Miles"
+    	laHeader[4]="1101 to 1200 Miles"
+    	laHeader[5]="1201 to 1300 Miles"
+    	laHeader[6]="1301 to 1400 Miles"
+     	SELECT _TMP6
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="1401 to 1500 Miles"
+    	laHeader[3]="1501 to 1600 Miles"
+    	laHeader[4]="1601 to 1700 Miles"
+    	laHeader[5]="1701 to 1800 Miles"
+    	laHeader[6]="1801 to 1900 Miles"
+     	SELECT _TMP7
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="1901 to 2000 Miles"
+    	laHeader[3]="2001 to 2100 Miles"
+    	laHeader[4]="2101 to 2200 Miles"
+    	laHeader[5]="2201 to 2300 Miles"
+    	laHeader[6]="2301 to 2400 Miles"
+     	SELECT _TMP8
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="2401 to 2500 Miles"
+    	laHeader[3]="2501 to 2600 Miles"
+    	laHeader[4]="2601 to 2700 Miles"
+    	laHeader[5]="2701 to 2800 Miles"
+    	laHeader[6]="2801 to 2900 Miles"
+     	SELECT _TMP9
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="2901 to 3000 Miles"
+    	laHeader[3]="3001 to 3100 Miles"
+    	laHeader[4]="3101 to 3200 Miles"
+    	laHeader[5]="3201 to 3300 Miles"
+    	laHeader[6]="3301 to 3400 Miles"
+     	SELECT _TMP10
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+<HR SIZE="0" COLOR="WHITE">
+<div align="center">
+  <center>
+<table border="1" width="80%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="100%" valign="top">
+    ENDTEXT  laHeader[1]=IIF(plCALCCF,"Weight_Cu.Ft","Weight_Lbs")
+     	laHeader[2]="3401 to 3500 Miles"
+    	laHeader[3]="3501 to 3600 Miles"
+    	laHeader[4]="3601 to 3700 Miles"
+    	laHeader[5]="3701 to 3800 Miles"
+    	laHeader[6]="Add 100 miles"
+     	SELECT _TMP11
+    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt align:center'")TEXT&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+
+
+</BODY></HTML>ENDTEXT

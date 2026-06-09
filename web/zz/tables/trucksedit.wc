@@ -1,0 +1,235 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Truck Info</TITLE>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+  
+<script type="text/javascript">
+jQuery.noConflict();
+
+   jQuery(document).ready(function($){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~truckseditret~<%=pcSCR%>~<%=pcTRUCKID%>";
+       document.theForm.submit();
+     }
+    if (i==2) {
+		var Message = "Are you sure you want to delete this Truck?";
+		if (confirm (Message))
+		  {
+			document.theForm.action="/wc.dll?mpmainten~deletetruck~<%=pcSCR%>~<%=pcTRUCKID%>";
+	        document.theForm.submit();
+	      }
+     }   
+
+    if (i==3) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~truckswc~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+  }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.DELETE	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.DELETEON	{	color: #FFFFFF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 30;
+					background-color: #FF0000;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="650">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="19"><font face="Verdana" size="4" color="#FFFFFF">Truck Information</font></b></td>
+  </tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF"><br>	
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td valign="top">
+    <form name="theForm" method="POST">
+<%SELECT _TRUCKS%>    
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="32%" height="19"><font face="Verdana" size="2">Active</font></td>
+    <td width="71%" height="19">
+    <%IF EMPTY(pcMSG) %>
+    <label class="switch"><input type="checkbox" id="togBtn" name="ACTIVE" value="ON" <%=IIF(ACTIVE,'checked','')%>><div class="slider round"></div></label>
+    <b><font face="Verdana" color="#<%=IIF(ACTIVE=.T.,'008000','FF0000')%>"><%=IIF(ACTIVE=.T.,'Active','Not Active')%></b></font>
+    <%ELSE%>
+    &nbsp;&nbsp;<b><font face="Verdana"><%=pcMSG%></font></b>
+    <%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="32%" height="19"><font face="Verdana" size="2">Truck ID</font></td>
+    <td width="71%" height="19"><%IF pnTRUCKID=0%><input type="text" autocomplete="off" name="TRUCKNO" size="11" value="<%=ALLT(TRUCKNO)%>" maxlength="10">&nbsp;<b><font face="Verdana" size="2" color="#0081D3">3 to 10 Characters</font></b>
+    <%ELSE%><b><font face="Verdana" color="#008000"><B><%=ALLT(TRUCKNO)%></font></b><%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="32%" height="18"><font face="Verdana" size="2">Capacity Cu. Ft.</font></td>
+    <td width="71%" height="18"><input type="text" name="VOLUMECF" size="7" value="<%=ALLT(STR(VOLUMECF))%>" maxlength="4"></td>
+  </tr>  
+  <tr>
+    <td width="32%" height="18"><font face="Verdana" size="2">Description</font></td>
+    <td width="71%" height="18"><input type="text" name="CNAME" size="20" value="<%=ALLT(CNAME)%>" maxlength="30"></td>
+  </tr>  
+  <tr>
+    <td width="32%" height="18"><font face="Verdana" size="2">Model</font></td>
+    <td width="71%" height="18"><input type="text" name="MODEL" size="20" value="<%=ALLT(MODEL)%>" maxlength="30"></td>
+  </tr>
+  <tr>
+    <td width="32%" height="19"><font face="Verdana" size="2">VIN</font></td>
+    <td width="71%" height="19"><input type="text" name="VIN" size="20" value="<%=ALLT(VIN)%>"></td>
+  </tr>
+  <tr>
+    <td width="32%" height="19"><font face="Verdana" size="2">Plate No.</font></td>
+    <td width="71%" height="19"><input type="text" name="PLATENO" size="10" value="<%=ALLT(PLATENO)%>"></td>
+  </tr>  
+  <tr>
+    <td width="32%" height="19"><font face="Verdana" size="2">Tire Size</font></td>
+    <td width="71%" height="19"><input type="text" name="TIRE" size="10" value="<%=ALLT(TIRE)%>"></td>
+  </tr>
+  <tr>
+    <td width="32%" height="18"><font face="Verdana" size="2">Year Mfg</font></td>
+    <td width="71%" height="18"><input type="text" name="YEARMFG" size="3" value="<%=ALLT(YEARMFG)%>" maxlength="4"></td>
+  </tr>    
+  <tr>
+    <td width="32%" height="18"><font face="Verdana" size="2">State</font></td>
+    <td width="71%" height="18">
+      <select size="1" name="STATEID" tabindex="6">
+		  <option selected value="<%=lcSTATEID%>"><%=lcSTATE%></option>
+		  	<% SELECT _STATE
+				 	 SCAN %>
+			   	<option value="<%=ALLT(STR(STATEID))%>"><%=ALLT(STATE)%></option>
+				 <% ENDSCAN %>
+		  </select></td>
+  </tr>
+  <% IF plDEPT%>
+  <tr>
+    <td width="32%" height="18"><font face="Verdana" size="2">Department</font></td>
+    <td width="71%" height="18">
+               <select size="1" name="DEPTID">
+				<option selected value="<%=lcDEPTID%>"><%=lcDEPT%></option>
+			   	<option value=""></option>
+		  		 <%	SELECT _DEPT
+				 	 SCAN %>
+			   	<option value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></option>
+				 <% ENDSCAN %>
+				</select></td>
+  </tr>
+  <%ENDIF%>  
+</table>
+    </td>
+    <td>&nbsp;</td>
+    <td valign="top">
+<%	SELECT _TRUCKS%>    
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" height="30" align="center" colspan="2"><b><font face="Verdana" size="2" color="#0081D3">Truck Acquisition</b></font></td>
+ </tr>
+  <tr>
+    <td width="58%"><font face="Verdana" size="2">Purchase Date</font></td>
+    <td width="44%"><input type="text" id="Date1" name="BUYDTE" size="7" value="<%=ALLT(DTOC(BUYDTE))%>"></td>
+ </tr>
+  <tr>
+    <td width="58%"><font face="Verdana" size="2">Purchase Price $</font></td>
+    <td width="44%"><input type="text" name="BUYAMT" size="7" value="<%=ALLT(STR(BUYAMT))%>" maxlength="6"></td>
+ </tr>
+  <tr>
+    <td width="58%"><font face="Verdana" size="2">Purchase Miles</font></td>
+    <td width="44%"><input type="text" name="BUYMILE" size="7" value="<%=ALLT(STR(BUYMILE))%>" maxlength="6"></td>
+ </tr>
+  <tr>
+    <td width="58%"><font face="Verdana" size="2">Sold Date</font></td>
+    <td width="44%"><input type="text" id="Date2" name="SOLDDTE" size="7" value="<%=ALLT(DTOC(SOLDDTE))%>"></td>
+ </tr>
+  <tr>
+    <td width="58%"><font face="Verdana" size="2">Sold Amount $</font></td>
+    <td width="44%"><input type="text" name="SOLDAMT" size="7" value="<%=ALLT(STR(SOLDAMT))%>" maxlength="6"></td>
+ </tr>
+  <tr>
+    <td width="58%"><font face="Verdana" size="2">Sold Miles</font></td>
+    <td width="44%"><input type="text" name="SOLDMILE" size="7" value="<%=ALLT(STR(SOLDMILE))%>" maxlength="6"></td>
+ </tr>
+  </table>
+    </td>
+ </tr>
+</table>
+  <BR>
+<table border="0" width="95%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="16%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Submit" size="20"></td>
+    <td width="22%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(3)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Exit" size="20"></td>
+    <% IF pnLEVEL = 5 AND pnTRUCKID > 0 %>
+    <td width="10%" align="right"><input type="button" CLASS="DELETE" name="B31" onclick="submitFunction(2)" onmouseover="javasctript: this.className='DELETEON'" onmouseout="javasctript: this.className='DELETE'" tabindex="12" value="Delete" size="20"></td> 
+    <%ENDIF%>   
+ </tr>   
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="100%" align="center" height="30" valign="bottom"><b><font face="Verdana" style="font-size:11pt;" color="#0081D3">Internal Notes</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea rows="5" name="NOTES" cols="68"><%=ALLT(NOTES)%></textarea></td>
+ </tr>
+</table>
+</form>
+  &nbsp;</td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="14">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+
+</body>
+</html>

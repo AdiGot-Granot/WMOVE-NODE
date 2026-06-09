@@ -1,0 +1,23 @@
+<html lang="en" style="width: 700px; height: 600px;">
+
+<head>
+<meta http-Equiv="Cache-Control" Content="no-cache">
+<meta http-Equiv="Pragma" Content="no-cache">
+<meta http-Equiv="Expires" Content="0">
+
+</head>
+
+<body BGCOLOR="#F7F7F7">
+<% SELECT _HANDBOOK %>
+<table border="0" style="border-collapse:collapse;" bordercolor="#111111">
+  <tr>
+    <td width="100%" valign="top"><b><font face="Verdana"><%=ALLT(SUBJECT)%></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" valign="top"><%=BODY%></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

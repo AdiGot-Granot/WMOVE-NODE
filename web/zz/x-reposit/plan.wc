@@ -1,0 +1,263 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Movers Arena</title>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+<script language="JavaScript" type="text/JavaScript">
+
+function SubmitPlan() {
+		if (checkData()) {
+			document.theForm.action="/wc.dll?mpreposit~planret~<%=ALLT(pcSCR)%>~<%=ALLT(pcCUSTNO)%>";
+			document.theForm.submit();
+			}
+		else {
+			alert("Please select a plan")
+			}
+      }
+
+function checkData(){
+	frm = document.theForm;
+	for (var i=0; i < frm.length; i=i+1){
+		if (frm.elements[i].checked){
+			return true
+		  }
+	   }
+	}
+
+</script>
+</head>
+
+<body BGCOLOR="#ADBACE">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" height="13">
+  <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#4A698C" height="27" colspan="2">
+    <p align="center"><b>
+    <font face="Arial Rounded MT Bold" size="4" color="#FFFFFF">Movers Arena - 
+    Pricing Plan </font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="355" colspan="2">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" align="center">
+  <tr>
+    <td width="100%"><span class="arial221"><b>
+    <font face="Verdana" size="2" color="#CC0000">Select the Optimal Plan</font></b></span><b><font face="Verdana" size="2"><br>
+    Movers Arena offers seven pricing plans specifically designed to meet your 
+    company's needs.<br>
+    Please select one of the plans. Once you have selected the plan that you 
+    would like to use , you will have to decide how you want to process the 
+    payments to your account. We offer two ways in which transactions can be 
+    processed. <br>
+    <br>
+    Please Select the plan that best meets your company's needs and click on&nbsp; Select Plan. </font></b>
+    <form name="theForm" method="post">
+    <TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="522">
+      <tr>
+        <td width="56" height="24" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">Plan #</font></b></td>
+        <td width="134" height="24" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+        <font face="Verdana" size="2"><b>Deposit</b></font></td>
+        <td width="100" height="24" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+        <font face="Verdana" size="2"><b>
+        Bonus</b></font></td>
+        <td width="121" height="24" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+        <b><font face="Verdana" size="2">Your Credit</font></b></td>
+        <td width="99" height="24" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+        <font face="Verdana" size="2"><b>Save</b></font></td>
+      </tr>
+      <tr>
+        <td width="56" height="24" align="center" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">1.</font></b></td>
+        <td width="134" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$50&nbsp;</font></b></td>
+        <td width="100" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">0&nbsp;</font></b></td>
+        <td width="121" height="24" align="right" BORDERCOLOR="#708090" bgcolor="#CECFCE"><b>
+        <font face="Verdana" size="2">$50&nbsp;</font></b></td>
+        <td width="99" height="24" bgcolor="#FFFFFF" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">0%&nbsp;</font></b></td>
+      </tr>
+      <tr>
+        <td width="56" height="24" align="center" BORDERCOLOR="#708090">
+        <font face="Verdana" size="2"><b>2.</b></font></td>
+        <td width="134" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$100&nbsp;</font></b></td>
+        <td width="100" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$5&nbsp;</font></b></td>
+        <td width="121" height="24" align="right" BORDERCOLOR="#708090" bgcolor="#CECFCE"><b>
+        <font face="Verdana" size="2">$105&nbsp;</font></b></td>
+        <td width="99" height="24" bgcolor="#FFFFFF" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">5%&nbsp;</font></b></td>
+      </tr>
+      <tr>
+        <td width="56" height="24" align="center" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">3.</font></b></td>
+        <td width="134" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$150&nbsp;</font></b></td>
+        <td width="100" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$20&nbsp;</font></b></td>
+        <td width="121" height="24" align="right" BORDERCOLOR="#708090" bgcolor="#CECFCE"><b>
+        <font face="Verdana" size="2">$170&nbsp;</font></b></td>
+        <td width="99" height="24" bgcolor="#FFFFFF" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">12%&nbsp;</font></b></td>
+      </tr>
+      <tr>
+        <td width="56" height="24" align="center" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">4.</font></b></td>
+        <td width="134" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$300&nbsp;</font></b></td>
+        <td width="100" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$57&nbsp;</font></b></td>
+        <td width="121" height="24" align="right" BORDERCOLOR="#708090" bgcolor="#CECFCE"><b>
+        <font face="Verdana" size="2">$357&nbsp;</font></b></td>
+        <td width="99" height="24" bgcolor="#FFFFFF" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">16%&nbsp;</font></b></td>
+      </tr>
+      <tr>
+        <td width="56" height="24" align="center" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">5.</font></b></td>
+        <td width="134" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$500&nbsp;</font></b></td>
+        <td width="100" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$165&nbsp;</font></b></td>
+        <td width="121" height="24" align="right" BORDERCOLOR="#708090" bgcolor="#CECFCE"><b>
+        <font face="Verdana" size="2">$665&nbsp;</font></b></td>
+        <td width="99" height="24" bgcolor="#FFFFFF" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">25%&nbsp;</font></b></td>
+      </tr>
+      <tr>
+        <td width="56" height="24" align="center" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">6.</font></b></td>
+        <td width="134" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$1,000&nbsp;</font></b></td>
+        <td width="100" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$430&nbsp;</font></b></td>
+        <td width="121" height="24" align="right" BORDERCOLOR="#708090" bgcolor="#CECFCE"><b>
+        <font face="Verdana" size="2">$1,430&nbsp;</font></b></td>
+        <td width="99" height="24" bgcolor="#FFFFFF" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">30%&nbsp;</font></b></td>
+      </tr>
+      <tr>
+        <td width="56" height="24" align="center" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">7.</font></b></td>
+        <td width="134" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$1,500&nbsp;</font></b></td>
+        <td width="100" height="24" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">$800&nbsp;</font></b></td>
+        <td width="121" height="24" align="right" BORDERCOLOR="#708090" bgcolor="#CECFCE"><b>
+        <font face="Verdana" size="2">$2,300&nbsp;</font></b></td>
+        <td width="99" height="24" bgcolor="#FFFFFF" align="right" BORDERCOLOR="#708090"><b>
+        <font face="Verdana" size="2">35%&nbsp;</font></b></td>
+      </tr>
+    </table>
+    </form>
+    <table border="0" cellpadding="0" cellspacing="0" width="522">
+      <tr>
+        <td width="100%">
+        <p align="center">
+        &nbsp;</td>
+      </tr>
+    </table>
+    <p><b><font face="Verdana" size="2">
+    <font color="#CC0000">
+    <span class="arial221">Option One: Credit Card Process Over the 
+    Fax<br>
+    </span></font>Please <a href="/zz/reposit/ccform.htm">print</a> and fax back 
+    the credit card information.<br>
+    Usually processed within one hour during business hours (M-F 9:00am-7:00pm 
+    EST).<br>
+    <span style="color: #CC0000">
+    <span class="arial221">
+    <br>
+    <br>
+    </span></span><font color="#CC0000">
+    <span class="arial221">Option Two: </span></font>
+    <span class="arial221">
+    <span style="color: #CC0000">
+    Snail Process<br>
+    </span>
+    </span>Usually processed within two to three business days.<span class="arial221"><span style="color: #CC0000"><br>
+    </span>
+    </span>Choose&nbsp; the plan that best meets your company's needs and 
+    mail a check to:<span style="color: #CC0000"><span class="arial221"><br>
+    </span></span>GRANOT, INC.<span style="color: #CC0000"><br>
+    </span>4045 Sheridan Ave, #384<br>
+    Miami Beach, FL 33140 -3665<br>
+    <br>
+    <br>
+        <table border="0" cellpadding="0" cellspacing="0" width="522">
+      <tr>
+        <td width="100%">
+        <p align="center"><a href="/zz/reposit/ccform.htm">
+        <input type="button" onclick="window.location.href='/zz/reposit/ccform.htm'" value="Credit Card Form" name="btnExit" style="border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:120"></a></td>
+      </tr>
+    </table>
+&nbsp;</font></b></td>
+  </tr>
+</table>    
+    
+    
+    
+    &nbsp;</td>
+  </tr>
+  </table>
+</td>
+</tr>
+<tr>
+    <td width="50%" BGCOLOR="#4A698C" height="15">
+      &nbsp;</td>
+    <td width="50%" BGCOLOR="#4A698C" height="15">
+      &nbsp;</td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    &nbsp;</td>
+ </tr>
+  </table>
+  </center>
+</div>
+
+
+</body>
+
+</html>

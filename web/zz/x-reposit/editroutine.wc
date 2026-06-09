@@ -1,0 +1,257 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Repository Process</title>
+<LINK REL="STYLESHEET" TYPE="text/css" href="/granot/mystyle.css" />
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function sf(){
+	document.theForm.btnExit.focus();
+}
+
+function saveroutine() {
+	var frm=document.theForm ;
+	frm.action='/wc.dll?mpreposit~routineret~<%=ALLT(pcSCR)%>';
+    frm.submit();
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 12pt;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+				  	text-align: left}
+	.txton		{	color: blue;
+				  	font-size: 12pt;
+				  	text-align: left;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+					text-decoration: underline
+  				  	cursor: Hand}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+
+<body onload="sf()" BGCOLOR="#ADBACE">
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="80%" height="348">
+  <tr>
+    <td width="100%" height="15" colspan="3" bgcolor="#FFCF63">
+    </td>
+  </tr>
+  <tr>
+    <td width="11%" BGCOLOR="#CCCCCC" height="27" dir="ltr">
+    <b><font face="Verdana" size="1">&nbsp;<%=ALLT(pcCUSTNO)%></font></b></td>
+    <td width="57%" BGCOLOR="#4A698C" height="27" dir="ltr">
+    <p align="center" dir="ltr">
+    <b><font face="Verdana" size="4" color="#FFFFFF">Moving Leads Service</font></b></td>
+    <td width="26%" BGCOLOR="#CCCCCC" height="24" align="right" dir="ltr">
+    <b><font face="Verdana" size="2">Leads Credit:&nbsp;<%=ALLT(STR(pnLEADSBAL+pnLEADSXBAL))%>&nbsp;&nbsp;</font></b></td>
+
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="234" colspan="3">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+			    <td width="740" height="333" BORDERCOLOR="#708090" valign='top'>
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+	
+		<br>
+
+		<form name="theForm" method="POST">
+		<input type="hidden" name="SCR" size="20" value="<%=ALLT(pcSCR)%>">
+		<div align="center">
+          <center>
+				
+		<br>
+		<table border="0" width="42%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align="center">
+		  <tr>
+		    <td width="25%" align="center">
+            <input type="button" class="BTN" name="btnSave" onclick="saveroutine()" style="width:120" tabindex="1" value="Save">&nbsp;</td>    
+		    <td width="5%" align="center">&nbsp;</td>    
+		    <td width="25%" align="center"><input type="button" class="BTN" name="btnExit" onclick="window.close()" style="width:120" tabindex="2" value="Exit">&nbsp;</td>    
+		  </tr>
+		</table>
+		<br>
+		<table border="0" width="408" cellspacing="0" height="94">
+		 <tr><td valign="top" width="94" height="92">
+			<!-- Type-->
+			<TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="633" height="48">
+			  <tr>
+			    <td width="630" height="10" bgcolor="#4A698C" colspan="5" align="center" BORDERCOLOR="#708090">
+				    <b><font face="Verdana" size="2" color="#FFFFFF">Selected Leads by 
+                    Whole States</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="125" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">State</font></b></td>
+			    <td width="90" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Local</font></b></td>
+			    <td width="140" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Long Distance</font></b></td>
+			    <td width="130" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">International</font></b></td>
+                <td width="145" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Auto Transport</font></b></td>
+			  </tr>
+			  <% SELECT * FROM _RO INTO CURSOR _R1 WHERE !EMPTY(STATE)
+			  	 SCAN%>
+			  <tr>
+			    <td width="125" height="10" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">&nbsp;<%=ALLT(NAME)%><input type="hidden" name="<%=ALLT(STATE)%>" value="<%=ALLT(STATE)%>"></font></b></td>
+			    <td width="90" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%=ALLT(STATE)+'L'%>" value="ON" <%=IIF(LOCAL,"checked","")%>></td>
+			    <td width="140" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%=ALLT(STATE)+'D'%>" value="ON" <%=IIF(LD,"checked","")%>></td>
+			    <td width="130" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%=ALLT(STATE)+'I'%>" value="ON" <%=IIF(INTL,"checked","")%>></td>
+			    <td width="145" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%=ALLT(STATE)+'T'%>" value="ON" <%=IIF(AUTO,"checked","")%>></td>
+			  </tr>
+			  <%ENDSCAN%>
+              <tr>
+			    <td width="630" height="10" bgcolor="#4A698C" colspan="5" align="center" BORDERCOLOR="#708090"></td>
+			  </tr>
+			  <%FOR I=1 TO 10%>
+			  <tr>
+			    <td width="125" height="10" BORDERCOLOR="#708090">
+			      <select size="1" name="S<%=ALLT(STR(I))%>" style="border: 1px solid #52657B; text-align: right; font-family:Verdana; font-size:12px; font-weight:bold">
+					 <option>&nbsp;</option>
+					<%SELECT _STATES
+						SCAN%> 
+						 <option value="<%=ALLT(_STATES.STATE)%>"><%=ALLT(_STATES.NAME)%></option>
+					<%ENDSCAN%>
+				  </select></td>
+			    <td width="90" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='L'+ALLT(STR(I))%>" value="ON"></td>
+			    <td width="140" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='D'+ALLT(STR(I))%>" value="ON"></td>
+			    <td width="130" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='I'+ALLT(STR(I))%>" value="ON"></td>
+			    <td width="145" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='T'+ALLT(STR(I))%>" value="ON"></td>
+			  </tr>
+			  <%NEXT I%>
+              <tr>
+			    <td width="630" height="1" bgcolor="#FFCF63" colspan="5" align="center" BORDERCOLOR="#708090">
+				    &nbsp;</td>
+			  </tr>
+			  </table>
+			  
+			  <br>&nbsp;<font face="Verdana" size="2" color="#CE0000"> </font><TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="633" height="48">
+			  <tr>
+			    <td width="630" height="10" bgcolor="#4A698C" colspan="6" align="center" BORDERCOLOR="#708090">
+				    <b><font face="Verdana" size="2" color="#FFFFFF">Optimize 
+                    Selection by Specifying Areas</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="74" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Zip 
+                Code</font></b></td>
+			    <td width="127" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Radius<br>
+                </font><font face="Verdana" size="1">(50-300 miles)</font></b></td>
+			    <td width="74" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Local</font></b></td>
+			    <td width="124" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Long Distance</font></b></td>
+			    <td width="109" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">International</font></b></td>
+                <td width="122" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Auto Transport</font></b></td>
+			  </tr>
+			  <% SELECT * FROM _RO INTO CURSOR _R2 WHERE EMPTY(STATE)
+			  	 SCAN%>
+			  <tr>
+			    <td width="74" height="10" BORDERCOLOR="#708090" align="center"><input type="text" name="<%='ZZ'+ALLT(STR(RECNO()))%>" size="5" style="border: 1px solid #52657B; text-align: right" VALUE="<%=ALLT(ZIP)%>"></td>
+			    <td width="127" height="10" BORDERCOLOR="#708090" align="center"><input type="text" name="<%='ZR'+ALLT(STR(RECNO()))%>" size="4" style="border: 1px solid #52657B; text-align: right" VALUE="<%=IIF(RADIUS>0,ALLT(STR(RADIUS)),"125")%>">
+                <b><font size="1" face="Verdana">miles</font></b></td>
+			    <td width="74" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='ZL'+ALLT(STR(RECNO()))%>" value="ON" <%=IIF(LOCAL,"checked","")%>></td>
+			    <td width="124" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='ZD'+ALLT(STR(RECNO()))%>" value="ON" <%=IIF(LD,"checked","")%>></td>
+			    <td width="109" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='ZI'+ALLT(STR(RECNO()))%>" value="ON" <%=IIF(INTL,"checked","")%>></td>
+			    <td width="122" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='ZT'+ALLT(STR(RECNO()))%>" value="ON" <%=IIF(AUTO,"checked","")%>></td>
+			  </tr>
+			  <%ENDSCAN%>
+              <tr>
+			    <td width="630" height="1" bgcolor="#FFCF63" colspan="6" align="center" BORDERCOLOR="#708090">
+				    &nbsp;</td>
+			  </tr>
+			  </table>
+			<!-- Type-->
+
+		 </td>
+		 </tr></table>
+		  </center>
+        </div>
+		<!-- Radio-->
+		<!-- Frame Table-->
+		</form>
+ &nbsp;<!-- Buttons ---><!-- Frame Table ---><!-- Menu --></td>
+  </tr>
+</table>
+<!-- frame table -->
+
+
+                &nbsp;</td>
+  </tr>
+</table>
+<!-- frame table -->
+
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#4A698C" height="15" colspan="3">
+    <p align="left"><b><font face="Verdana" size="2" color="#FFFFFF">&nbsp;</font></b><font face="Verdana" size="2"><b><font color="#FFFFFF">User: <%=pcUser%></font> </b>
+    </font></td>
+  </tr>
+   <tr>
+    <td width="100%" height="14" colspan="3" bgcolor="#FFCF63">
+    </td>
+ </tr>
+  </table>
+
+  </center>
+</div>
+
+</body>
+
+</html>

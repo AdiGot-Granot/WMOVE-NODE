@@ -1,0 +1,274 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Trips Calendar</title>
+</head>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+    document.theForm.action="/wc.dll?mpopr~dailytrip~<%=pcSCR%>";
+    document.theForm.submit()
+    }
+
+function submitday(i) {
+	 window.location.href=('/wc.dll?mpopr~tripday~<%=pcSCR%>~'+i);
+    }
+
+function submitday2(i) {
+	 window.location.href=('/wc.dll?mpopr~tripday~<%=pcSCR%>~'+i+'~N');
+    }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TDTOP2	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Verdana;
+					background-color: #336699;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TDTOP3	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Verdana;
+					background-color: #339966;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 80;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 80;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</STYLE>
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" align="center">
+  <tr>
+    <td width="100%"><IMG SRC="/zz/images/topBar.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" align="center" BGCOLOR="#008000"><b><font face="Verdana" size="4" color="#FFFFFF">Trips Calendar</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%"><br>
+<FORM NAME="theForm" method="post">	    
+<table border="1" width="30%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" cellpadding="0">
+ <tr>
+ 	<td BGCOLOR="#336699" align="center" height="25" width="347"><b><font face="Verdana" size="2" color="#FFFFFF">Month/Year</font></b></td>
+ 	<td BGCOLOR="#336699" align="center" height="25" width="377"><b><font face="Verdana" size="2" color="#FFFFFF">Action</font></b></td>
+ </tr>
+ <tr>
+    <td width="347" align="center" height="35">
+    <select size="1" name="MONTH">
+      <option selected value="<%=lcMONTH1%>"><%=lcMONTH%></option>
+      <option value="01">January</option>
+      <option value="02">February</option>
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      <option value="06">June</option>
+      <option value="07">July</option>
+      <option value="08">August</option>
+      <option value="09">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+       </select>&nbsp;&nbsp;
+	 <select size="1" name="YEAR">
+      <option selected><%=lcYEAR%></option>
+      <option><%=ALLT(STR(YEAR(DATE())-2))%></option>      
+      <option><%=ALLT(STR(YEAR(DATE())-1))%></option>
+      <option><%=ALLT(STR(YEAR(DATE())))%></option>
+      <option><%=ALLT(STR(YEAR(DATE())+1))%></option>
+      </select>       
+       </td>
+    <td align="center" height="35" width="377"><input type="submit" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Submit"></td>
+   </tr>
+</table>
+</form>
+<br>&nbsp;&nbsp;<font face="Verdana" size="2" color="#FF0000">Trip number/name in red = Closed Trip</font>
+
+<!-- MONTH-1 TABLE STARTS HERE -->
+<% SELECT _CALD %>
+<table border="1" width="98%" cellspacing="0" align="center">
+  <tr>
+    <td CLASS="TDTOP3" width="14%" height="25">Sunday</td>
+    <td CLASS="TDTOP3" width="14%" height="25">Monday</td>
+    <td CLASS="TDTOP3" width="14%" height="25">Tuesday</td>
+    <td CLASS="TDTOP3" width="14%" height="25">Wednesday</td>
+    <td CLASS="TDTOP3" width="14%" height="25">Thursday</td>
+    <td CLASS="TDTOP3" width="14%" height="25">Friday</td>
+    <td CLASS="TDTOP3" width="14%" height="25">Saturday</td>
+  </tr>
+  <tr>
+   	<% lnDAYS = lnLASTDAY 
+   		lnCURRENTMONTH = MONTH(DATE())%>
+  	<% DO WHILE lnDAYS > 0 %>
+  		<!--- The start of the first week --->
+  		<!--- find the first day of the month and skip the days from the previous month --->
+	    <% FOR X = 1 TO lnSTARTDAY-1 %>
+	       <td width="14%" valign="top" align="center">&nbsp;</td>
+	    <% NEXT X %>
+		    <td width="14%" valign="top" align="center" 
+			    <%=IIF(DAY(DATE())=(lnLASTDAY-lnDAYS+1) AND CMONTH(DATE())=lcMonth,"bordercolor='#FF0000' bordercolorlight='#FF0000' bordercolordark='#FF0000' bgcolor='#FFFF99' style='border-style: solid; border-width: 3'","")%>><!--- The first day of the month --->
+	    	<% 	lnDAYS = lnDAYS -1
+	    		IF lnDAYS < 0
+	    			EXIT
+	    		ENDIF
+	    		DIMENSION laHeader[1]
+	    		laHeader[1]="<u><font style='font-family:Verdana;font-size:14pt;cursor:pointer;' onclick='submitday("+STR(lnLASTDAY-lnDAYS)+")'>"+STR(lnLASTDAY-lnDAYS)+"</font></u>"	    		
+	    		SELECT [<a href='wc.dll?mpopr~TripPrint~]+pcSCR+'~'+ALLT(STR(TRIPID))+[' TARGET='_blank'>]+ALLT(TEXT)+[</a>]+'<br><b>'+ALLTRIM(TRIPNAME)+'</b>' ; 
+	    			FROM _CALD INTO CURSOR __CALD WHERE DAY1=(lnLASTDAY-lnDAYS) 
+	    		RESPONSE.SHOWCURSOR(@laHeader,,,,"WIDTH=12% style='border: none;text-align: center;font-family:Verdana;font-size:10pt;'") %> &nbsp;</td>
+		<!--- Build the rest of the days of the first week -->
+	    <% FOR X = 7 TO lnSTARTDAY+1 STEP -1 %>
+	       <td width="14%" valign="top" align="center" 
+	       		<%=IIF(DAY(DATE())=(lnLASTDAY-lnDAYS+1) AND CMONTH(DATE())=lcMonth,"bordercolor='#FF0000' bordercolorlight='#FF0000' bordercolordark='#FF0000' bgcolor='#FFFF99' style='border-style: solid; border-width: 3'","")%>>
+	       		<%lnDAYS = lnDAYS -1
+	    		IF lnDAYS < 0
+	    			EXIT
+	    		ENDIF
+	    		DIMENSION laHeader[1]
+	    		laHeader[1]="<u><font style='cursor:pointer;' size='4' onclick='submitday("+STR(lnLASTDAY-lnDAYS)+")'>"+STR(lnLASTDAY-lnDAYS)+"</font></u>"
+	    		SELECT [<a href='wc.dll?mpopr~TripPrint~]+pcSCR+'~'+ALLT(STR(TRIPID))+[' TARGET='_blank'>]+ALLT(TEXT)+[</a>]+'<br><b>'+ALLTRIM(TRIPNAME)+'</b>' ; 
+	    			FROM _CALD INTO CURSOR __CALD WHERE DAY1=(lnLASTDAY-lnDAYS) 
+	    		RESPONSE.SHOWCURSOR(@laHeader,,,,"WIDTH=12% style='border: none;text-align: center;font-family:Verdana;font-size:10pt;'") %> &nbsp;</td>
+  		<!--- The end of the first week --->
+	    <% NEXT X %>
+	 </tr>
+  	<!--- Second week and more (totaly 6 rows) --->
+	  <% FOR Y = 1 TO 5 %>
+	  <tr>
+	    <% FOR X = 1 TO 7 %>
+		    <td width="14%" valign="top" align="center" 
+		    	<%=IIF(DAY(DATE())=(lnLASTDAY-lnDAYS+1) AND CMONTH(DATE())=lcMonth,"bordercolor='#FF0000' bordercolorlight='#FF0000' bordercolordark='#FF0000' bgcolor='#FFFF99' style='border-style: solid; border-width: 3'","")%>>
+		    <% lnDAYS = lnDAYS -1
+	    		IF lnDAYS < 0
+	    			EXIT
+	    		ENDIF
+	    		DIMENSION laHeader[1]
+	    		laHeader[1]="<u><font style='font-family:Verdana;font-size:14pt;cursor:pointer;' onclick='submitday("+STR(lnLASTDAY-lnDAYS)+")'>"+STR(lnLASTDAY-lnDAYS)+"</font></u>"
+	    		SELECT [<a href='wc.dll?mpopr~TripPrint~]+pcSCR+'~'+ALLT(STR(TRIPID))+[' TARGET='_blank'>]+ALLT(TEXT)+[</a>]+'<br><b>'+ALLTRIM(TRIPNAME)+'</b>' ; 
+	    			FROM _CALD INTO CURSOR __CALD WHERE DAY1=(lnLASTDAY-lnDAYS)
+	    		RESPONSE.SHOWCURSOR(@laHeader,,,,"WIDTH=12% style='border: none;text-align: center;font-family:Verdana;font-size:10pt;'")%> &nbsp;</td>
+	    <% NEXT X %>
+	 </tr>
+	  <% NEXT Y %>
+	<% ENDDO %>
+</table>
+<!-- end Month -1  -->
+<br>
+<!-- MONTH-2 TABLE STARTS HERE -->
+<% SELECT _CALD2 %>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" height="25"><b><font face="Verdana" color="#0000FF"><%=pcDATE2 %></font></b></td>
+  </tr>
+</table>
+<br>
+<div align="center">
+  <center>
+<table border="1" width="98%" cellspacing="0" bgcolor="#DCDCDC" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td CLASS="TDTOP2" width="14%" height="25">Sunday</td>
+    <td CLASS="TDTOP2" width="14%" height="25">Monday</td>
+    <td CLASS="TDTOP2" width="14%" height="25">Tuesday</td>
+    <td CLASS="TDTOP2" width="14%" height="25">Wednesday</td>
+    <td CLASS="TDTOP2" width="14%" height="25">Thursday</td>
+    <td CLASS="TDTOP2" width="14%" height="25">Friday</td>
+    <td CLASS="TDTOP2" width="14%" height="25">Saturday</td>
+  </tr>
+
+  <tr>
+   	<% lnDAYS = lnLASTDAYx
+   		lnCURRENTMONTH = MONTH(DATE())%>
+  	<% DO WHILE lnDAYS > 0 %>
+  		<!--- The start of the first week --->
+  		<!--- find the first day of the month and skip the days from the previous month --->
+	    <% FOR X = 1 TO lnSTARTDAYx-1 %>
+	       <td width="14%" valign="top" align="center">&nbsp;</td>
+	    <% NEXT X %>
+		    <td width="14%" valign="top" align="center" 
+			    <%=IIF(DAY(DATE())=(lnLASTDAYx-lnDAYS+1) AND CMONTH(DATE())=lcMONTHx,"bordercolor='#FF0000' bordercolorlight='#FF0000' bordercolordark='#FF0000' bgcolor='#FFFF99' style='border-style: solid; border-width: 3'","")%>><!--- The first day of the month --->
+	    	<% 	lnDAYS = lnDAYS -1
+	    		IF lnDAYS < 0
+	    			EXIT
+	    		ENDIF
+	    		DIMENSION laHeader[1]
+	    		laHeader[1]="<u><font style='font-family:Verdana;font-size:14pt;cursor:pointer;' color= '#FFFF00' onclick='submitday2("+STR(lnLASTDAYx-lnDAYS)+")'>"+STR(lnLASTDAYx-lnDAYS)+"</font></u>"	    		
+	    		SELECT [<a href='wc.dll?mpopr~TripPrint~]+pcSCR+'~'+ALLT(STR(TRIPID))+[' TARGET='_blank'>]+TEXT+[</a>]+'<br><b>'+ALLTRIM(TRIPNAME)+'</b>' ; 
+	    			FROM _CALD2 INTO CURSOR __CALD2 WHERE DAY1=(lnLASTDAYx-lnDAYS) 
+	    		RESPONSE.SHOWCURSOR(@laHeader,,,,"WIDTH=12% style='border: none;text-align: center;font-family:Verdana;font-size:10pt;'") %> &nbsp;</td>
+		<!--- Build the rest of the days of the first week -->
+	    <% FOR X = 7 TO lnSTARTDAYx+1 STEP -1 %>
+	       <td width="14%" valign="top" align="center" 
+	       		<%=IIF(DAY(DATE())=(lnLASTDAYx-lnDAYS+1) AND CMONTH(DATE())=lcMONTHx,"bordercolor='#FF0000' bordercolorlight='#FF0000' bordercolordark='#FF0000' bgcolor='#FFFF99' style='border-style: solid; border-width: 3'","")%>>
+	       		<%lnDAYS = lnDAYS -1
+	    		IF lnDAYS < 0
+	    			EXIT
+	    		ENDIF
+	    		DIMENSION laHeader[1]
+	    		laHeader[1]="<u><font style='font-family:Verdana;font-size:14pt;cursor:pointer;' color= '#FFFF00' onclick='submitday2("+STR(lnLASTDAYx-lnDAYS)+")'>"+STR(lnLASTDAYx-lnDAYS)+"</font></u>"
+	    		SELECT [<a href='/wc.dll?mpopr~TripPrint~]+pcSCR+'~'+ALLT(STR(TRIPID))+[' TARGET='_blank'>]+TEXT+[</a>]+'<br><b>'+ALLTRIM(TRIPNAME)+'</b>' ; 
+	    			FROM _CALD2 INTO CURSOR __CALD2 WHERE DAY1=(lnLASTDAYx-lnDAYS) 
+	    		RESPONSE.SHOWCURSOR(@laHeader,,,,"WIDTH=12% style='border: none;text-align: center;font-family:Verdana;font-size:10pt;'") %> &nbsp;</td>
+  		<!--- The end of the first week --->
+	    <% NEXT X %>
+	 </tr>
+  	<!--- Second week and more (totaly 6 rows) --->
+	  <% FOR Y = 1 TO 5 %>
+	  <tr>
+	    <% FOR X = 1 TO 7 %>
+		    <td width="14%" valign="top" align="center" 
+		    	<%=IIF(DAY(DATE())=(lnLASTDAYx-lnDAYS+1) AND CMONTH(DATE())=lcMONTHx,"bordercolor='#FF0000' bordercolorlight='#FF0000' bordercolordark='#FF0000' bgcolor='#FFFF99' style='border-style: solid; border-width: 3'","")%>>
+		    <% lnDAYS = lnDAYS -1
+	    		IF lnDAYS < 0
+	    			EXIT
+	    		ENDIF
+	    		DIMENSION laHeader[1]
+	    		laHeader[1]="<u><font style='font-family:Verdana;font-size:14pt;cursor:pointer;' color= '#FFFF00' onclick='submitday2("+STR(lnLASTDAYx-lnDAYS)+")'>"+STR(lnLASTDAYx-lnDAYS)+"</font></u>"
+	    		SELECT [<a href='/wc.dll?mpopr~TripPrint~]+pcSCR+'~'+ALLT(STR(TRIPID))+[' TARGET='_blank'>]+TEXT+[</a>]+'<br><b>'+ALLTRIM(TRIPNAME)+'</b>' ; 
+	    			FROM _CALD2 INTO CURSOR __CALD2 WHERE DAY1=(lnLASTDAYx-lnDAYS)
+	    		RESPONSE.SHOWCURSOR(@laHeader,,,,"WIDTH=12% style='border: none;text-align: center;font-family:Verdana;font-size:10pt;'")%> &nbsp;</td>
+	    <% NEXT X %>
+	 </tr>
+	  <% NEXT Y %>
+	<% ENDDO %>
+</table>
+  </center>
+</div>
+<!-- end Month -2  -->
+<!-- FRAME BODY Ends -->
+    	</td>
+  	  </tr>
+	</table>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%"><IMG SRC="/zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>

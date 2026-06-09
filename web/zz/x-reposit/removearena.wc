@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Online Estimate</title>
+</head>
+
+<body>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+  <tr>
+    <td width="1%" bgcolor="#396DA5"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="98%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="1%" bgcolor="#396DA5"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+  </tr>
+  <tr>
+    <td width="1%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="98%">
+<!-- Yellow background starts -->
+		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+          <tr>
+            <td width="100%" align="center" valign="bottom"><b>
+            <font face="Verdana" size="4" color="#CE0000">Removal Notice </font>
+            </b> 
+		<hr color="#000000" width="690">
+
+            </td>
+          </tr>
+		</table>
+
+		<div align="center">
+          <center>
+
+		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+          <tr>
+            <td width="100%"><b><font face="Verdana" size="2"><br>
+            You have been removed from the Online Estimates Service. From this 
+            moment you will not receive  estimates over the email.</font></b><p>
+            <b><font face="Verdana" size="2">Check our special plan for the Moving Software - Get <a href="http://www.hellomoving.com/infosys/wc.dll?isutil~EMAILSREC~<%=ALLT(pcCUSTNO)%>~CONTACTUS">free</a>
+            trial.</font></b></p>
+            <p><b><font face="Verdana" size="2">Learn more about <a href="http://www.moversarena.com/wc.dll?mpreposit~arenaterms~<%=ALLT(pcCUSTNO)%>~<%=ALLT(pcCONTACT)%>">Movers Arena</a>.</font></b></p>
+            <p><b><font face="Verdana" size="2"><br>
+            We are sorry to see you leave,</font></b><p><b>
+            <font face="Verdana" size="2"><br>
+            <br>
+            Goodbye <br>
+&nbsp;</font></b></td>
+          </tr>
+</table>
+
+          </center>
+</div>
+
+		<hr color="#000000" width="690">
+
+		<br>
+	
+		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" align="center">
+		    <tr>
+		      <td width="100%"><font size="2" face="Verdana"><b><font color="#000080">
+              Powered by the <i>Online Moving System</a></i>. Need a moving software? Click
+              <a href="http://www.hellomoving.com/infosys/wc.dll?isutil~EMAILSREC~<%=ALLT(pcCUSTNO)%>~CONTACTUS">here</a> for free trial.</font></b></FONT></td>
+		    </tr>
+	  </table>
+		
+<!---Yellow background ends -->
+<br>
+</td>
+    <td width="1%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+  </tr>
+  <tr>
+    <td width="1%" bgcolor="#396DA5"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="98%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="1%" bgcolor="#396DA5"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+  </tr>
+</table>
+</body>
+
+</html>

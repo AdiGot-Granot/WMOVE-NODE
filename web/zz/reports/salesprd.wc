@@ -1,0 +1,242 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Salesmen Performance</title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function SubmitData(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mprep~salesprdwc~<%=pcSCR%>~DATES";
+       document.theForm.submit();
+      }
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					font-weight:700;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #0081D3;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" width="98%">
+  <tr>
+    <td width="96%" BGCOLOR="#0081D3" align="center"><B><font face="Verdana" size="4" color="#FFFFFF">Salesmen Performance</font></B></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+	<!-- frame table -->
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center">
+     <form name="theForm" method="POST"><br>
+<table border="0" width="700" align="center" cellspacing="1" cellpadding="1" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Verdana;font-size:10pt;">
+  <tr>
+	<td width="21" height="30">&nbsp;</td>  
+	<td width="113" height="30"><b>Date Range:</b></td>
+	<td width="101" height="30"><b>From Date:</b></td>
+	<td width="86" height="30"><b>To Date:</b></td>
+	<td width="181" rowspan="2"><input type="button" class="SUBOFF" onclick="SubmitData(1)" name="B46" value="Submit"></td>
+  </tr>
+  <tr>
+	<td width="21">&nbsp;</td>  
+	<td width="113">
+  <select id="rangeSelect">
+    <option value="">-- Select --</option>
+    <option value="today">Today</option>
+    <option value="tomorrow">Tomorrow</option>
+    <option value="yesterday">Yesterday</option>
+    <option value="thisWeek">This Week</option>
+    <option value="lastWeek">Last Week</option>
+	<option value="nextWeek">Next Week</option>    
+    <option value="thisMonth">This Month</option>
+    <option value="lastMonth">Last Month</option>
+    <option value="nextMonth">Next Month</option>
+    <option value="lastYear">Last Year</option>
+    <option value="ytd">Year to Date</option>
+  </select></td>
+	<td width="101"><input type="text" id="Date1" name="DATE1" size="10" value="<%=DTOC(pdDATE1)%>"></td>
+	<td width="86"><input type="text" id="Date2" name="DATE2" size="10" value="<%=DTOC(pdDATE2)%>"></td>
+ </tr>
+</table>
+ <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" cellspacing="0" cellpadding="0" width="99%">
+   <tr>
+    <td width="16%" class="TD1">User</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Total In</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Sent<br>
+    Emails</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Sent <br>
+    Quote</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Visual</td>
+    <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;" colspan="2">Cancel</td>
+    <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;" colspan="2">Book</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;" colspan="2">Local</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;" colspan="2">Long Dist.</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;" colspan="2">Intl</td>    
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;" colspan="2">Auto</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Click<BR> Book</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Booked<br>Estimates $$</td>
+   <% IF pnLEVEL > 3 %>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Customer<br>Payments</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Add Move<br>Payment</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Refund</td>
+   <%ENDIF%>
+ </tr>
+  <% SELECT _LIST
+  		SCAN %>
+  <tr style="line-height:25px;">
+    <td width="16%" class="TD2"><B><%=IIF(EMPTY(NAME),ALLT(USER),ALLT(NAME))%></B><%=IIF(EMPTY(USER),'','  ('+ALLT(USER)+')')%></td>
+    <td width="4%" class="TD3" bgcolor="#FFD680">
+    <% IF pnLEVEL =5 OR ALLT(USER)==pcUSER OR (pnLEVEL=4)%>
+    	<a href="/wc.dll?mprep~salesprdlist~<%=pcSCR%>~<%=ALLT(USER)%>~1~<%=pdDATE1%>~<%=pdDATE2%>" TARGET="_BLANK"><%=ALLT(CIN1)%></a>
+    <% ELSE %>
+    	<%=ALLT(CIN1)%>
+    <% ENDIF %>&nbsp;</td>
+    <td width="4%" class="TD3"><%=ALLT(CEMAIL)%>&nbsp;</td>
+    <td width="4%" class="TD3">
+    <% IF pnLEVEL=5 OR (pnLEVEL=4 and plVIEWALL)%>
+    	<a href="/wc.dll?mprep~salesprdlist~<%=pcSCR%>~<%=ALLT(USER)%>~5~<%=pdDATE1%>~<%=pdDATE2%>" TARGET="_BLANK"><%=ALLT(CEMAIL100)%></a>
+    <% ELSE %>
+    	<%=ALLT(CEMAIL100)%>
+    <% ENDIF %>&nbsp;</td>
+    <td width="3%" class="TD3">
+    <%IF pcCUSTNO='WHITEGLOVE'%>
+    	<%=ALLT(CVISUAL)%>
+    <%ELSE%>    
+       <% IF pnLEVEL =5 OR ALLT(USER)==pcUSER OR (pnLEVEL=4)%>
+    		<a href="/wc.dll?mprep~salesprdlist~<%=pcSCR%>~<%=ALLT(USER)%>~4~<%=pdDATE1%>~<%=pdDATE2%>" TARGET="_BLANK"><%=ALLT(CVISUAL)%></a>
+    <% ELSE %>
+    		<%=ALLT(CVISUAL)%>
+      <% ENDIF %>
+  <%ENDIF%>&nbsp;</td>    
+    <td width="2%" class="TD3"><font color="#FF0000"><%=ALLT(CC)%></font>&nbsp;</td>
+    <td width="5%" class="TD3"><b><%=IIF(EMPTY(CC),'',CCP+'%')%></b>&nbsp;</td>
+    <td width="3%" class="TD3" bgcolor="#ABCAF3"><%=ALLT(CBOOKED)%></font>&nbsp;</td>
+    <td width="4%" class="TD3" bgcolor="#ABCAF3"><b><%=IIF(EMPTY(CBOOKED),'',BOOKEDP+'%')%></b>&nbsp;</td>
+    <td width="3%" class="TD3" bgcolor="#FFE7B5"><%=ALLT(CL)%>&nbsp;</td>
+    <td width="3%" class="TD3" bgcolor="#C6DBF7"><%=ALLT(CL_B)%>&nbsp;</td>
+    <td width="3%" class="TD3" bgcolor="#FFE7B5"><%=ALLT(CD)%>&nbsp;</td>
+    <td width="3%" class="TD3" bgcolor="#C6DBF7"><%=ALLT(CD_B)%>&nbsp;</td>
+    <td width="2%" class="TD3" bgcolor="#FFE7B5"><%=ALLT(CI)%>&nbsp;</td>
+    <td width="2%" class="TD3" bgcolor="#C6DBF7"><%=ALLT(CI_B)%>&nbsp;</td>    
+    <td width="2%" class="TD3" bgcolor="#FFE7B5"><%=ALLT(CT)%>&nbsp;</td>
+    <td width="2%" class="TD3" bgcolor="#C6DBF7"><%=ALLT(CT_B)%>&nbsp;</td>
+    <td width="3%" class="TD3">
+    <% IF pnLEVEL =5 OR ALLT(USER)==pcUSER OR (pnLEVEL=4)%>
+    	<a href="/wc.dll?mprep~salesprdlist~<%=pcSCR%>~<%=ALLT(USER)%>~2~<%=pdDATE1%>~<%=pdDATE2%>" TARGET="_BLANK"><%=ALLT(CBUSER)%></a>
+    <% ELSE %>
+    	<%=ALLT(CBUSER)%>
+    <% ENDIF %>&nbsp;</td>
+    <td width="6%" class="TD3" bgcolor="#ADEBC6"><%=ALLT(CSUBTOTAL)%>&nbsp;</td> 
+   <% IF pnLEVEL > 3%> 
+     <td width="6%" class="TD3" bgcolor="#ADEBC6"><%=ALLT(CPAIDAMT)%>&nbsp;</td> 
+     <td width="6%" class="TD3"><a href="/wc.dll?mprep~salesprdlist~<%=pcSCR%>~<%=ALLT(USER)%>~11~<%=pdDATE1%>~<%=pdDATE2%>" TARGET="_BLANK"><font color="green"><%=ALLT(CPAY1)%></font></a>&nbsp;</td>
+     <td width="6%" class="TD3">
+     <a href="/wc.dll?mprep~salesprdlist~<%=pcSCR%>~<%=ALLT(USER)%>~12~<%=pdDATE1%>~<%=pdDATE2%>" TARGET="_BLANK"><font color="red"><%=ALLT(CPAY2)%></font></a>&nbsp;</td>
+   <%ENDIF%>
+  </tr>
+ <%ENDSCAN%> 
+   <tr>
+     <td width="93%" colspan="22" style="border-bottom: 1px solid #A9A9A9;">&nbsp;</td>
+  </tr>    
+    <% SELECT _SUM 
+    GO TOP %>
+   <tr>
+     <td width="16%">&nbsp;</td>
+     <td width="4%" class="TD3" bgcolor="#FFD680"><%=CIN1%>&nbsp;</td>
+     <td width="4%" class="TD3"><font color="#008000"><%=CEMAIL%></font>&nbsp;</td>
+     <td width="4%" class="TD3"><font color="#008000"><%=CEMAIL100%></font>&nbsp;</td>
+     <td width="3%" class="TD3"><font color="#008000"><%=CVISUAL%></font>&nbsp;</td>
+     <td width="4%" class="TD3"><font color="#FF0000"><%=CC%></font>&nbsp;</td>
+     <td width="5%" class="TD3">&nbsp;</td>
+     <td width="4%" class="TD3" bgcolor="#ABCAF3"><%=CBOOKED%>&nbsp;</td>
+     <td width="4%" class="TD3" bgcolor="#ABCAF3">&nbsp;</td>
+     <td width="3%" class="TD3" bgcolor="#FFE7B5"><%=CL%>&nbsp;</td>
+     <td width="3%" class="TD3" bgcolor="#C6DBF7"><%=CL_B%>&nbsp;</td>
+     <td width="3%" class="TD3" bgcolor="#FFE7B5"><%=CD%>&nbsp;</td>
+     <td width="3%" class="TD3" bgcolor="#C6DBF7"><%=CD_B%>&nbsp;</td>
+     <td width="2%" class="TD3" bgcolor="#FFE7B5"><%=CI%>&nbsp;</td>
+     <td width="2%" class="TD3" bgcolor="#C6DBF7"><%=CI_B%>&nbsp;</td>     
+     <td width="2%" class="TD3" bgcolor="#FFE7B5"><%=CT%>&nbsp;</td>
+     <td width="2%" class="TD3" bgcolor="#C6DBF7"><%=CT_B%>&nbsp;</td>
+     <td width="3%" class="TD3"><% IF pcCUSTNO='AGILITY' AND pnLEVEL=1 %><%ELSE%><%=CBUSER%><%ENDIF%>&nbsp;</td>
+     <td width="6%" class="TD3" bgcolor="#ADEBC6"><%=CSUBTOTAL%>&nbsp;</td>
+   <% IF pnLEVEL > 3%>
+     <td width="6%" class="TD3" bgcolor="#ADEBC6"><%=CPAIDAMT%>&nbsp;</td>
+     <td width="6%" class="TD3"><font color="green"><%=CPAY1%></font>&nbsp;</td>
+     <td width="6%" class="TD3"><font color="red"><%=CPAY2%></font>&nbsp;</td>
+   <%ENDIF%>
+  </tr>
+</table>
+    &nbsp;</td>  
+  </form>
+ </tr>
+</table>
+<!-- frame table -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFF">View By: <%=pcUser%></font></b></td>
+  </tr>
+</table>
+<script language="JavaScript" src="/zz/js/rangeselect.js"></SCRIPT><!--RANGE SELECT-->
+  
+</body>
+</html>

@@ -1,0 +1,823 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><!--IE 11 Compatibility overrite-->
+<meta name="viewport" content="width=*your site width*, initial-scale=0.30">
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>INTERSTATE BILL OF LADING</title>
+
+<style>
+p.fvp {text-align:justify;}
+p.pagebreak {   page-break-after: always;}
+
+.CLEAR {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #0081D3;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.ACCEPT {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #0081D3;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+</style>
+
+</head>
+
+<body>
+<form name="theForm" method="post">
+<table border="0" align="center" style="border-collapse: collapse" width="850">
+  <tr>
+    <td valign="top" width="189"><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcADD1,pcAGADD1)%><BR><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcADD2,pcAGADD2)%><BR>
+    <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcTOLLFREE,pcAGPHONE)%><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),'<BR>US DOT No: '+pcDOT,'<BR>US DOT No: '+pcAGDOT)%>
+    <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),'<BR>ICC/MC No: '+pcICC,'<BR>ICC/MC No: '+pcAGICC)%>
+    <% IF 1=2 %>
+      <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),'<BR>Registration: '+pcREGISTER,'<BR>Registration: '+pcAGREGISTER)%>
+    <%ENDIF%> </td>
+    <td valign="top" align="center" width="465"><font style="font-family:Arial;font-size:16pt;"><b><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcCOMPANY,pcAGCOMPANY)%></b></font>
+    <br><br><br><br><br><br><br><font style="font-family:Arial;font-size:13pt;"><b>INTERSTATE BILL OF LADING CONTRACT</b></font></td>
+    <td valign="top" height="100" width="190">
+<table border="1" align="right" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%" valign="top" height="40"><font style="font-family:Arial;font-size:10pt;">&nbsp;Order No:<br>&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%><%=' - '+pcREVNO%></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="40"><font style="font-family:Arial;font-size:10pt;">&nbsp;Pick-Up Date:<br>&nbsp;<%=_EST.LBOOKDTE%><%=IIF(EMPTY(_EST.LBOOKDTE1),'','-'+DTOC(_EST.LBOOKDTE1))%></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="40"><font style="font-family:Arial;font-size:9pt;">&nbsp;1<SUP>ST</SUP> Available Date for Delivery:<br>&nbsp;
+    <%=IIF(EMPTY(_EST.DLVDTE),'',DTOC(_EST.DLVDTE))%><%=IIF(EMPTY(_EST.DLVDTE1),'','-'+DTOC(_EST.DLVDTE1))%></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="30"><font style="font-family:Arial;font-size:10pt;">&nbsp;Vehicle ID:<br>&nbsp;</font></td>
+ </tr>   
+</table>
+   </td>
+ </tr>
+  </table>
+<table border="0" align="center" style="border-collapse: collapse" width="850">
+  <tr>
+    <td valign="top" width="433">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:9pt;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center"><font style="font-family:Arial;font-size:11pt;"><B>ORIGIN</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25">&nbsp;SHIPPER:&nbsp;<%=ALLT(PROPER(_EST.SNAME))%></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25">&nbsp;ADDRESS:&nbsp;<%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25">&nbsp;FLOOR/APT/LEVEL:&nbsp;<%=IIF(EMPTY(_EST.SFLOOR),'','F: '+ALLT(STR(_EST.SFLOOR)))%>
+    <%=IIF(EMPTY(_EST.SAPT),'',', A: '+ALLT(_EST.SAPT))%><%=IIF(EMPTY(_EST.SSUBLEVEL),'',', L: '+ALLT(_EST.SSUBLEVEL))%></td>
+ </tr> 
+  <tr>
+    <td width="100%" height="25">&nbsp;CITY/STATE/ZIP:&nbsp;<%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25">&nbsp;PHONE:&nbsp;<%=ALLT(_EST.STELH)%><%=IIF(EMPTY(_EST.STELO),'',', '+ALLT(_EST.STELO))%></td>
+ </tr>
+</table>    
+    </td>
+    <td width="5">&nbsp;</td>
+    <td width="406" valign="top">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:9pt;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center"><font style="font-family:Arial;font-size:11pt;"><B>DESTINATION</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25">&nbsp;CONSIGNED TO:&nbsp;<%=ALLT(PROPER(_EST.RNAME))%></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25">&nbsp;ADDRESS:&nbsp;<%=ALLT(_EST.RADD1)%>&nbsp;<%=ALLT(_EST.RADD2)%></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25">&nbsp;FLOOR/APT/LEVEL:&nbsp;<%=IIF(EMPTY(_EST.RFLOOR),'','F: '+ALLT(STR(_EST.RFLOOR)))%>
+    <%=IIF(EMPTY(_EST.RAPT),'',', A: '+ALLT(_EST.RAPT))%><%=IIF(EMPTY(_EST.RSUBLEVEL),'',', L: '+ALLT(_EST.RSUBLEVEL))%></td>
+ </tr> 
+  <tr>
+    <td width="100%" height="25">&nbsp;CITY/STATE/ZIP:&nbsp;<%=ALLT(PROPER(_EST.RCITY))+', '+(_EST.RSTATE)%>&nbsp;<%=ALLT(_EST.RZIP)%></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25">&nbsp;PHONE:&nbsp;<%=ALLT(_EST.RTELH)%><%=IIF(EMPTY(_EST.RTELO),'',', '+ALLT(_EST.RTELO))%></td>
+ </tr>
+</table>    
+    </td>
+  </tr>
+</table>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="850">
+  <tr>
+    <td width="231" valign="top" height="35">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Agent Name:</FONT></td>
+    <td width="226" valign="top" height="35">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Address:</FONT></td>
+    <td width="178" valign="top" height="35">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Phone:</FONT></td>
+    <td width="155" valign="top" height="35">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">US DOT:</FONT></td>
+ </tr>
+</table>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="850">
+  <tr>
+    <td valign="top"><FONT style="font-size:7pt;">&nbsp;</font></td>
+ </tr>
+</table>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="850">
+  <tr>
+    <td valign="top">
+<table align="center" border="0" style="border-collapse: collapse" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" width="100%" colspan="4"><font style="font-family:Arial;font-size:11pt;"><b>SIGN AT LEAST 3 DAYS BEFORE PICK-UP DATE:</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top" width="100%" colspan="4"><p style="text-align:justify;">
+    <font style="font-family:Arial;font-size:10pt;">I, <%=ALLT(PROPER(_EST.SNAME))%>, acknowledge I have read and agree to all the terms and conditions on 
+    both sides of this bill of lading contract. I have received the arbitration information and the booklet: 
+    <a href="https://www.fmcsa.dot.gov/sites/fmcsa.dot.gov/files/RightsandResponsibilitiesBooklet_2022Update.pdf" target="_blank">Your Rights and Responsibilities When you Move</a>
+    and pamphlet <a href="https://www.fmcsa.dot.gov/sites/fmcsa.dot.gov/files/ReadytoMoveBrochure_2022Update.pdf" target="_blank">Ready to Move</a>. I agree to pay for the total
+    charges for moving services. I approved the total estimated charges prior to the moving services beginning.</p></td>
+ </tr>
+ <% IF pnTEMAILID=105 AND plPRINT=.F. %>
+  <tr style="font-family:Arial;font-size:10pt;">
+    <td width="100%" colspan="4"><img src="<%=pcSIGDATA%>"><br>Sign Date:&nbsp;<%=pcEDTE+' ET'%>&nbsp;Sign Name:&nbsp;<%=pcENAME%>&nbsp;&nbsp;IP:&nbsp;<%=pcEIP%></td>
+ </tr> 
+ <%ENDIF%>
+ <% IF plLINK=.T. %>
+  <tr>
+    <td width="9%"><font style="font-family:Arial;font-size:10pt;"><b>Signature:</b></font></td>
+    <td width="33%"><input type="hidden" name="sigData" id="sigData">
+    <canvas id="newSignature" width="350" height="60" style="position: relative;border: 2px solid #ff0000;"></canvas></td>
+    <td width="11%" align="center">
+    <input type="button" onclick="signatureClear()" class="CLEAR" value="Clear"></td>
+    <td width="47%"><font style="font-family:Arial;font-size:10pt;"><b>Customer Name:</b></font> <input type="text" autocomplete="off" name="ENAME" size="22" style="border: 2px solid #FF0000;" maxlength="50"></td>    
+ </tr>
+ <%ENDIF%>    
+</table>
+<table align="center" border="0" style="border-collapse: collapse" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" style="border-top: 1px solid #000000;" height="30" valign="bottom" width="100%" colspan="3"><font style="font-family:Arial;font-size:11pt;"><b>PAYMENT TERMS:</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top" width="100%" colspan="3"><p style="text-align:justify;">
+<% IF !EMPTY(pcAGBOLPAY) %>
+   <%=pcAGBOLPAY%>
+<%ELSE%> 
+   <%IF EMPTY(pcREMPAY) %>
+	<font style="font-family:Arial;font-size:10pt;">Upon booking a deposit is required to be paid. Acceptable payment forms are credit card, cashier`s check, or cash. Prior to pick-up a portion of the balance is due. 
+	Acceptable payment forms are credit card, cashier`s check, cash, postal money order. Balance is due at delivery prior to unloading. Acceptable payment form post money order or Cash.</font>
+   <%ELSE%>
+	  <%=pcREMPAY%>
+   <%ENDIF%>	    
+<%ENDIF%> 		
+	</p></td>
+ </tr>
+ <% IF pnTEMAILID=105 AND plPRINT=.F. %>
+  <tr style="font-family:Arial;font-size:10pt;">
+  <td width="100%" colspan="3"><img src="<%=pcSIGPAY%>"><br>Sign Date:&nbsp;<%=pcEDTE+' ET'%>&nbsp;Sign Name:&nbsp;<%=pcENAME%>&nbsp;&nbsp;IP:&nbsp;<%=pcEIP%></b></td>
+ </tr> 
+ <%ENDIF%> 
+ <% IF plLINK=.T. %> 
+  <tr>
+    <td width="9%"><font style="font-family:Arial;font-size:10pt;"><b>Signature:</b></font></td>
+    <td width="33%"><input type="hidden" name="sigPay" id="sigPay">
+    <canvas id="sigpay" width="350" height="60" style="position: relative;border: 2px solid #ff0000;"></canvas></td>
+    <td width="58%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="signatureClearPay()" class="CLEAR" value="Clear"></td>
+ </tr>
+ <%ENDIF%>   
+</table>	 
+ </td>
+ </tr>
+</table>
+ <br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="850">
+  <tr>
+    <td valign="top">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center"><font style="font-family:Arial;font-size:11pt;"><B>VALUATION OPTIONS</B></td>
+ </tr>
+  <tr>
+    <td width="100%">
+<!--start FVP  -->
+<table border="0" align="center" width="99%" style="border-collapse:collapse;">
+  <tr>
+    <td style="text-align:justify;font-family:Arial;font-size:9pt;line-height:1.3">      
+    <p style="margin:0;"><b>THE CONSUMER MUST SELECT ONE OF THESE OPTIONS FOR THE CARRIER`S LIABILITY FOR LOSS OR DAMAGE TO YOUR HOUSEHOLD GOODS. CUSTOMER`S DECLARATION OF VALUE. 
+    THIS IS A TARIFF LEVEL OF CARRIER LIABILITY -IT IS NOT INSURANCE.</b><hr color="#000000" size="1"></hr>
+    <b><font style="font-size:17pt;color:#000000;"><%=IIF(_CRG.FVPLEVEL=.T.,'&#9745;','')%></font>&nbsp;<font style="font-family:Arial;font-size:9pt;">OPTION 1: FULL VALUE PROTECTION <%=pcFVPVALUE%></font></b><br>
+<table border="1" align="center" bordercolor="#000000" style="border-collapse: collapse" width="99%">
+  <tr>
+    <td width="23%" bgcolor="#DCDCDC"><b><font face="Arial" size="2">Deductible:</font></b></td>
+    <td width="13%" bgcolor="#DCDCDC"><b><font face="Arial" size="2">$<%=_DEDUCT.D0TXT%></font></b> <font size="1" color="#C90000"><%=IIF(ALLT(_CRG.FVPDEDUCT)=ALLT(_DEDUCT.D0TXT) AND _CRG.INSAMT > 0,'(selected)','')%></font></td>
+    <td width="15%" bgcolor="#DCDCDC"><b><font face="Arial" size="2"><%IF VAL(_DEDUCT.D1TXT) > 0 %>$<%=_DEDUCT.D1TXT%></font></b> <font size="1" color="#C90000"><%=IIF(_CRG.FVPDEDUCT=_DEDUCT.D1TXT AND _CRG.INSAMT>0,'(selected)','')%><%ENDIF%></font></td>
+    <td width="13%" bgcolor="#DCDCDC"><b><font face="Arial" size="2"><%IF VAL(_DEDUCT.D2TXT) > 0 %>$<%=_DEDUCT.D2TXT%></font></b> <font size="1" color="#C90000"><%=IIF(_CRG.FVPDEDUCT=_DEDUCT.D2TXT AND _CRG.INSAMT>0,'(selected)','')%><%ENDIF%></td>
+    <td width="11%" bgcolor="#DCDCDC"><b><font face="Arial" size="2"><%IF VAL(_DEDUCT.D3TXT) > 0 %>$<%=_DEDUCT.D3TXT%></font></b> <font size="1" color="#C90000"><%=IIF(_CRG.FVPDEDUCT=_DEDUCT.D3TXT AND _CRG.INSAMT>0,'(selected)','')%><%ENDIF%></td>
+    <td width="13%" bgcolor="#DCDCDC"><b><font face="Arial" size="2"><%IF VAL(_DEDUCT.D4TXT) > 0 %>$<%=_DEDUCT.D4TXT%></font></b> <font size="1" color="#C90000"><%=IIF(_CRG.FVPDEDUCT=_DEDUCT.D4TXT AND _CRG.INSAMT>0,'(selected)','')%><%ENDIF%></td>
+    <td width="12%" bgcolor="#DCDCDC"><b><font face="Arial" size="2"><%IF VAL(_DEDUCT.D5TXT) > 0 %>$<%=_DEDUCT.D5TXT%></font></b> <font size="1" color="#C90000"><%=IIF(_CRG.FVPDEDUCT=_DEDUCT.D5TXT AND _CRG.INSAMT>0,'(selected)','')%><%ENDIF%></td>
+ </tr>
+  <tr style="font-family:Arial;font-size:9pt;">
+    <td width="23%"><b>Valuation:</font></td>
+    <td width="13%">$<%=ALLT(STR(_CRG.D0,9,2))%></b></td>
+    <td width="15%"><%IF VAL(_DEDUCT.D1TXT) > 0 %>$<%=ALLT(STR(_CRG.D1,9,2))%><%ENDIF%></td>
+    <td width="13%"><%IF VAL(_DEDUCT.D2TXT) > 0 %>$<%=ALLT(STR(_CRG.D2,9,2))%><%ENDIF%></td>
+    <td width="11%"><%IF VAL(_DEDUCT.D3TXT) > 0 %>$<%=ALLT(STR(_CRG.D3,9,2))%><%ENDIF%></td>
+    <td width="13%"><%IF VAL(_DEDUCT.D4TXT) > 0 %>$<%=ALLT(STR(_CRG.D4,9,2))%><%ENDIF%></td>
+    <td width="12%"><%IF VAL(_DEDUCT.D5TXT) > 0 %>$<%=ALLT(STR(_CRG.D5,9,2))%><%ENDIF%></td>
+ </tr>
+  <tr style="font-family:Arial;font-size:9pt;">
+    <td width="23%"><b>Estimate Plus<br>Valuation:</b></td>
+    <td width="13%">$<%=ALLT(STR(_CRG.D0+(_EST.SUBTOTAL-_CRG.INSAMT),10,2))%></td>
+    <td width="15%"><%IF VAL(_DEDUCT.D1TXT) > 0 %>$<%=ALLT(STR(_CRG.D1+(_EST.SUBTOTAL-_CRG.INSAMT),10,2))%><%ENDIF%></td>
+    <td width="13%"><%IF VAL(_DEDUCT.D2TXT) > 0 %>$<%=ALLT(STR(_CRG.D2+(_EST.SUBTOTAL-_CRG.INSAMT),10,2))%><%ENDIF%></td>
+    <td width="11%"><%IF VAL(_DEDUCT.D3TXT) > 0 %>$<%=ALLT(STR(_CRG.D3+(_EST.SUBTOTAL-_CRG.INSAMT),10,2))%><%ENDIF%></td>
+    <td width="13%"><%IF VAL(_DEDUCT.D4TXT) > 0 %>$<%=ALLT(STR(_CRG.D4+(_EST.SUBTOTAL-_CRG.INSAMT),10,2))%><%ENDIF%></td>
+    <td width="12%"><%IF VAL(_DEDUCT.D5TXT) > 0 %>$<%=ALLT(STR(_CRG.D5+(_EST.SUBTOTAL-_CRG.INSAMT),10,2))%><%ENDIF%></td>
+ </tr>    
+</table>    
+    The Cost Estimate that you receive from your mover MUST INCLUDE Full (Replacement) Value Protection for the articles that are included in your shipment. 
+    If you wish to waive the Full (Replacement) Value level of protection you must complete the WAIVER of Full (Replacement) Value Protection shown below.<br>
+    Full (Replacement) Value Protection is the most comprehensive plan available for protection of your goods. If any article is lost, destroyed, or damaged while 
+    in your mover's custody, your mover will, at its option, either 1) repair the article to the extent necessary to restore it to the same condition as when it
+    was received by your mover, or pay you for the cost of such repairs; or 2) replace the article with an article of like kind and quality, or pay you for the
+    cost of such a replacement. Under Full (Replacement) Value Protection, if you do not declare a higher replacement value on this form prior to the time of shipment, 
+    the value of your goods will be deemed to be equal to $6.00 multiplied by the weight (in pounds) of the shipment, subject to a minimum valuation for the shipment of $6000. 
+    Under this option, the cost of your move will be composed of a base rate plus an added cost reflecting the cost of providing this full value cargo liability 
+    protection for your shipment. If you wish to declare a higher value for your shipment than these default amounts, you must indicate that value here. 
+    Declaring a higher value may increase the valuation charge in your cost estimate.<br><br>
+    <b>The Total Value of my shipment is:</b> $__________(provided by the customer)<br><br>
+    <b>Dollar Estimate of the cost of your move<br>at Full (Replacement) Value Protection:</b> $___________(provided by carrier)<br><br>
+    I acknowledge that for my shipment I have 1) ACCEPTED the Full (Replacement) Level of protection included in this estimate and declared a 
+    higher total value of my shipment (if appropriate), and 2) received a copy of the 
+    <a href="https://www.fmcsa.dot.gov/sites/fmcsa.dot.gov/files/RightsandResponsibilitiesBooklet_2022Update.pdf" target="_blank">Your Rights and Responsibilities When You Move</a> brochure explaining these provisions.</p></td>
+  </tr>   
+</table>
+
+<% IF _CRG.FVPLEVEL=.T. %><!---FVP-->
+<table border="0" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="99%">
+ <% IF pnTEMAILID=105 AND plPRINT=.F. %>
+  <tr style="font-family:Arial;font-size:10pt;">
+  <td width="100%" colspan="2"><img src="<%=pcSIGINSUR%>"><br>Sign Date:&nbsp;<%=pcEDTE+' ET'%><br>Sign Name:&nbsp;<%=pcENAME%><br>IP:&nbsp;<%=pcEIP%></b></td>
+ </tr> 
+ <%ENDIF%> 
+ <% IF plLINK=.T. %> 
+  <tr>
+    <td width="81%"><font style="font-family:Arial;font-size:10pt;"><b>Signature:</b></font><br>
+    <input type="hidden" name="sigInsur" id="sigInsur">
+    <canvas id="siginsur" width="300" height="60" style="position: relative;border: 2px solid #ff0000;"></canvas></td>
+    <td width="19%">&nbsp;<input type="button" onclick="signatureClearInsur()" class="CLEAR" value="Clear"></td>
+ </tr>
+ <%ENDIF%>
+</table>
+<%ENDIF%>
+<% IF plPRINT=.T. OR plA=.T. %>
+<table border="1" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="99%">
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Customer's Signature</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+  </tr>
+</table>
+<%ENDIF%>
+<table border="0" align="center" width="99%" style="border-collapse:collapse;">
+  <tr>
+    <td style="text-align:justify;font-family:Arial;font-size:9pt;line-height:1.3">
+    <hr color="#000000" size="1"></hr>      
+    <p style="margin:0;"><b><font style="font-size:17pt;color:#000000;"><%=IIF(_CRG.FVPLEVEL=.F.,'&#9745;','')%></font> OPTION 2: RELEASE VALUE</b><br>WAIVER of Full (Replacement) Value Protection. 
+    This lower level of protection is provided at no additional cost beyond the base rate; however, it provides only minimal protection that is considerably less 
+    than the average value of household goods. Under this option, a claim for an article that may be lost, destroyed, or damaged while in your mover`s custody will
+    be settled based on the weight of the individual article multiplied by 60 cents. For example, the settlement for an audio component valued at $1000 that weighs
+    10 pounds would be $6.00 (10 pounds times 60 cents).<br><b>COMPLETE THIS PART ONLY</b> if you wish to WAIVE the Full (Replacement) Level of Protection included in the higher cost estimate provided  above 
+    in Option 1 for your shipment and instead select the LOWER Released Value of 60 Cents Per Pound Per Article; to do so you must initial and sign on the lines below.</p>
+	<table border="0" align="center" style="border-collapse: collapse" width="99%">
+  	  <tr>
+    	<td width="77%"><font style="font-family:Arial;font-size:9pt;"><b>I wish to Release My Shipment to a Maximum Value of 60 Cents per Pound per Article. Customer Initials:</b></font></td>
+    	<td width="23%" style="border-top: 2px solid #000000;border-left: 2px solid #000000;border-right: 2px solid #000000;border-bottom: 2px solid #000000;">
+    	<br>&nbsp;</td>
+  	  </tr>  
+	</table>
+    I acknowledge that for my shipment I have 1) WAIVED the Full (Replacement) Level of protection for which I have received an estimate of charges, and 2) received a 
+    copy of the <a href="https://www.fmcsa.dot.gov/sites/fmcsa.dot.gov/files/RightsandResponsibilitiesBooklet_2022Update.pdf" target="_blank">Your Rights and Responsibilities When You Move</a>
+    brochure explaining these provisions.<br><br><b>Dollar Estimate of the cost of your<br>move under the 60-cents option:</b> $___________(provided by carrier)</td>
+  </tr>   
+</table>
+<% IF _CRG.FVPLEVEL=.F. %><!---RELEASE VALUE 0.60-->
+<table border="0" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="99%">
+ <% IF pnTEMAILID=105 AND plPRINT=.F. %>
+  <tr style="font-family:Arial;font-size:10pt;">
+  <td width="100%" colspan="2"><img src="<%=pcSIGINSUR%>"><br>Sign Date:&nbsp;<%=pcEDTE+' ET'%><br>Sign Name:&nbsp;<%=pcENAME%><br>IP:&nbsp;<%=pcEIP%></b></td>
+ </tr> 
+ <%ENDIF%> 
+ <% IF plLINK=.T. %> 
+  <tr>
+    <td width="81%"><font style="font-family:Arial;font-size:10pt;"><b>Signature:</b></font><br>
+    <input type="hidden" name="sigInsur" id="sigInsur">
+    <canvas id="siginsur" width="300" height="60" style="position: relative;border: 2px solid #ff0000;"></canvas></td>
+    <td width="19%">&nbsp;<input type="button" onclick="signatureClearInsur()" class="CLEAR" value="Clear"></td>
+ </tr>
+ <%ENDIF%>
+</table>
+<%ENDIF%>
+<% IF plPRINT=.T. OR plA=.F. %>
+<table border="1" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="99%">
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Customer's Signature</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+  </tr>
+</table>
+<%ENDIF%>
+<!--end of FVP  -->
+<hr color="#000000" size="1" width="99%"></hr>
+<%IF _EST.VISUALTYPE=3 %>
+<table border="0" align="center" style="border-collapse: collapse;font-family:Arial;" width="99%"> 
+  <tr>
+    <td width="100%"><p style="text-align:justify;"><font style="font-family:Arial;font-size:10pt;"><font style="font-size:11pt;"><B>PHYSICAL SURVEY:</B></font> 
+    <font style="font-size:10pt;">The shipper has elected to waive the physical and virtual survey and signed the waiver agreement before the shipment is loaded in accordance with 49 CFR 375.401 (a).</font></p></td>
+  </tr>
+</table>
+<hr color="#000000" size="1" width="99%"></hr>
+<%ENDIF%>
+<table border="0" align="center" style="border-collapse: collapse" width="99%">
+  <tr>
+    <td align="right" width="67%"><font style="font-family:Arial;font-size:11pt;"><b>TOTAL ESTIMATED CHARGES:</b></font>&nbsp;<br>
+    <font style="font-size:7pt;">Estimates are not guaranteed per 49 CFR   375.403(6)</font>&nbsp;</td>
+    <td width="33%" style="border-top: 2px solid #000000;border-left: 2px solid #000000;border-right: 2px solid #000000;border-bottom: 2px solid #000000;">
+    &nbsp;<font style="font-family:Arial;font-size:11pt;"><b><%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></b></font></td>
+  </tr>
+  <tr>
+    <td align="right" width="67%">&nbsp;<span style="font-size: 11pt"><b><span style="font-family: Arial">ESTIMATED</span></b></span><font style="font-family:Arial;font-size:11pt;"><b> Cu.Ft./Lbs.:</b></font>&nbsp;</td>
+    <td width="33%" height="35" style="border-top: 2px solid #000000;border-left: 2px solid #000000;border-right: 2px solid #000000;border-bottom: 2px solid #000000;">
+    &nbsp;<font style="font-family:Arial;font-size:11pt;"><b><%=IIF(plESTCALCCF,ALLT(STR(_EST.TOTALCF))+' cf.',ALLT(STR(_EST.TOTALLBS))+' lbs.')%></b></font></td>
+  </tr>
+  <tr>
+    <td align="right" width="67%"><font style="font-family:Arial;font-size:11pt;"><b>TOTAL MINIMUM CHARGE:</b></font>&nbsp;</td>
+    <td width="33%" height="35" style="border-top: 2px solid #000000;border-left: 2px solid #000000;border-right: 2px solid #000000;border-bottom: 2px solid #000000;">&nbsp;$</td>
+ </tr>  
+</table>
+   </td>
+ </tr>
+</table>
+    </td>
+    <td valign="top" width="4">&nbsp;</td>
+    <td valign="top" width="411"><center><font style="font-family:Arial;font-size:11pt;"><b>SUMMARY OF  CHARGES</b></font></center>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="2"><font style="font-family:Arial;font-size:11pt;"><B>CUBIC FEET CHARGES:</B></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Base:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=IIF(plESTCALCCF=.T.,ALLT(STR(_EST.TOTALCF)),'_______')%> cu.ft. @ <%=IIF(plESTCALCCF=.T.,'$'+ ALLT(STR(_CRG.I1PERCF,8,2)),'_______')%> per cu.ft.</font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=IIF(plESTCALCCF=.T.,'$'+ALLT(STR(_CRG.I1TOTAL,8,2)),'')%></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Additional:_________ cu.ft. @ $________ per cu.ft.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Additional:_________ cu.ft. @ $________ per cu.ft.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="2"><font style="font-family:Arial;font-size:11pt;"><B>WEIGHT CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Base:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=IIF(plESTCALCCF=.F.,ALLT(STR(_EST.TOTALLBS)),'_______')%> lbs. @ <%=IIF(plESTCALCCF=.F.,'$'+ ALLT(STR(_CRG.I1PERLBS,8,2)),'_______')%> per lbs.</font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=IIF(plESTCALCCF=.F.,'$'+ALLT(STR(_CRG.I1TOTAL,8,2)),'')%></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Additional:___________ lbs. @ $________ per lbs.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Additional:___________ lbs. @ $________ per lbs.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="2"><font style="font-family:Arial;font-size:11pt;"><B>HOURLY CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="bottom" height="25" colspan="2">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><B>Part One:</b></font> 
+    &nbsp;&nbsp;&nbsp;<FONT style="font-family:Arial;font-size:8pt;">__________ Start Time&nbsp;&nbsp;&nbsp;__________ End Time&nbsp;&nbsp;&nbsp;_________ Hours</font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="bottom" height="25" colspan="2">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><B>Part Two:</b></font> 
+    &nbsp;&nbsp;<FONT style="font-family:Arial;font-size:8pt;">__________ Start Time&nbsp;&nbsp;&nbsp;__________ End Time&nbsp;&nbsp;&nbsp;_________ Hours</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">______ hrs. _____ men _____ Trucks @ $______/hr.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">______ hrs. _____ men _____ Trucks @ $______/hr.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;"><B>SERVICE CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Fuel Surcharge: <%=ALLT(STR(_CRG.DIESELP,6,2))+' %'%></font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.DIESEL,8,2))%></font></td>
+ </tr>
+<%IF plOTHERS=.T. AND pnDMAINID > 999 %><!--TARIFF/ACCES CHARGES-->
+  <%SELECT _ESTO
+  SCAN %> 
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLT(_ESTO.CNAME)%></font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_ESTO.PRC,8,2))%></font></td>
+ </tr> 
+  <%ENDSCAN %>
+<!--Others/Remarks Text -->
+      <% IF !EMPTY(_CRG.OTHERS) %>
+   <tr>
+     <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.OTHERS)%></font>&nbsp;</td>
+     <td width="24%" valign="bottom" height="25"></td>
+  </tr>
+      <% ENDIF %>
+      <% IF !EMPTY(_CRG.OTHERS1) %>
+   <tr>
+     <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.OTHERS1)%></font>&nbsp;</td>
+     <td width="24%" valign="bottom" height="25"></td>
+  </tr>
+      <% ENDIF %>        
+      <% IF !EMPTY(_CRG.OTHERS2) %>
+   <tr>
+     <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.OTHERS2)%></font>&nbsp;</td>
+     <td width="24%" valign="bottom" height="25"></td>
+   </tr>
+      <% ENDIF %>        
+<!--end Others Text -->
+   <% IF _CRG.INSAMT > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Valuation Amount of Liability: <%=ALLT(TRANSFORM(_CRG.FVPVALUE,"$,$$$,$$9.99"))%> Deductible:<%=ALLT(TRANSFORM(VAL(_CRG.FVPDEDUCT),"$$,$99"))%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.INSAMT,8,2))%></font></td>
+ </tr>  
+   <% ENDIF %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Valuation Protection at $0.60 per pound per Item:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">INCLUDED</font></td>
+ </tr>
+  
+<%ELSE%> 
+ 
+ 
+  <% IF !EMPTY(_CRG.OTHERS) %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.OTHERS)%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.OTHERSAMT,8,2))%></font></td>
+ </tr>
+  <% ENDIF %>
+  <% IF !EMPTY(_CRG.OTHERS1) %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.OTHERS1)%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.OTHERS1AMT,8,2))%></font></td>
+ </tr>
+  <% ENDIF %>
+  <% IF !EMPTY(_CRG.OTHERS2) %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.OTHERS2)%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.OTHERS2AMT,8,2))%></font></td>
+ </tr>
+  <% ENDIF %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Valuation Protection at $0.60 per pound per Item:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">INCLUDED</font></td>
+ </tr>  
+   <% IF _CRG.INSAMT > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Valuation Amount of Liability: <%=ALLT(TRANSFORM(_CRG.FVPVALUE,"$,$$$,$$9.99"))%> Deductible:<%=ALLT(TRANSFORM(VAL(_CRG.FVPDEDUCT),"$$,$99"))%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.INSAMT,8,2))%></font></td>
+ </tr>
+ <%ENDIF%>
+  <% IF !EMPTY(_CRG.EXTRA1) %>         
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.EXTRA1)%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.EXTRA1AMT,8,2))%></font></td>
+ </tr>
+  <% ENDIF %>
+  <% IF !EMPTY(_CRG.EXTRA2) %>  
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.EXTRA2)%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.EXTRA2AMT,8,2))%></font></td>
+ </tr>
+  <% ENDIF %>
+  <% IF !EMPTY(_CRG.EXTRA3) %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.EXTRA3)%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.EXTRA3AMT,8,2))%></font></td>
+ </tr>
+  <% ENDIF %>
+  
+<%ENDIF%>   
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>     
+</table>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;"><B>PACKING MATERIALS AND LABOR:</B></font></td>
+ </tr>
+  <% IF _CRG.MATTOTAL > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Packing Materials:</font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.MATTOTAL,8,2))%></font></td>
+ </tr>
+ <% ENDIF %>
+ <% IF _CRG.MATTAXAMT > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Materials Sales Tax:&nbsp;<%=ALLT(STR(_CRG.MATTAX,5,3))%>%</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.MATTAXAMT,8,2))%></font></td>
+ </tr>
+ <% ENDIF %>
+ <% IF _CRG.PTOTAL > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Packing Labor: <% IF _CRG.PHRS > 0%><%=ALLT(STR(_CRG.PMEN))%>
+      &nbsp;Packers,&nbsp;<%=ALLT(STR(_CRG.PHRS,6,2))%>&nbsp;hrs,&nbsp;$<%=ALLT(STR(_CRG.PPERHRS,7,2))%>&nbsp;/hrs&nbsp;<% ENDIF %></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.PTOTAL,8,2))%></font></td>
+ </tr>
+ <% ENDIF %>
+ <% IF _CRG.UTOTAL > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Unpacking Labor: <% IF _CRG.UHRS > 0%><%=ALLT(STR(_CRG.UMEN))%>
+      &nbsp;Packers,&nbsp;<%=ALLT(STR(_CRG.UHRS,6,2))%>&nbsp;hrs,&nbsp;$<%=ALLT(STR(_CRG.UPERHRS,7,2))%>&nbsp;/hrs&nbsp;<% ENDIF %></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_CRG.UTOTAL,8,2))%></font></td>
+ </tr>
+ <% ENDIF %>  
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;"><B>DISCOUNTS AND ADJUSTMENTS:</B></font></td>
+ </tr>
+<%IF plOTHERS=.T. AND pnDMAINID > 999 %><!--Discounts-->
+  <%SELECT _ESTD
+    SCAN %> 
+   <tr> 
+     <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLT(_ESTD.CNAME)%></FONT>&nbsp;</td>
+     <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">-<%='$'+ALLT(STR(_ESTD.PRC,8,2))%></FONT>&nbsp;</td>
+  </tr>        
+   <%ENDSCAN %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr> 
+<%ELSE%>
+ 
+ <% IF _CRG.COUPONAMT > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Coupon Discount: <%=ALLT(STR(_CRG.COUPONP,8,2))+' %'%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">- <%='$'+ALLT(STR(_CRG.COUPONAMT,8,2))%></font></td>
+ </tr>
+ <% ENDIF %>
+ <% IF _CRG.SENIORAMT > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Senior Citizen: <%=ALLT(STR(_CRG.SENIORP,8,2))+' %'%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">- <%='$'+ALLT(STR(_CRG.SENIORAMT,8,2))%></font></td>
+ </tr>
+ <% ENDIF %>
+ <% IF _CRG.DISCOUNT > 0 %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=ALLTRIM(_CRG.DISCTXT)%></FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">- <%='$'+ALLT(STR(_CRG.DISCOUNT,8,2))%></font></td>
+ </tr>
+ <% ENDIF %>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr> 
+<%ENDIF%>  
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;"><B>STORAGE CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">____ Days @ cu.ft.  _____ @ $____per cu.ft. per month</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#DCDCDC" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;"><B>SUMMARY OF CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" align="right"><FONT style="font-family:Arial;font-size:10pt;"><b>TOTAL  CHARGES:</b></font>&nbsp;</td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;<span style="font-family: Arial; font-size:9pt">PAYMENTS:</FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;"><%=IIF(pcPAIDAMT='0','','$'+pcPAIDAMT)%></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;<span style="font-family: Arial; font-size:9pt">PAYMENTS:</FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr> 
+  <tr>
+    <td width="76%" valign="bottom" align="right"><FONT style="font-family:Arial;font-size:10pt;"><B>BALANCE DUE:</B></FONT>&nbsp;</td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr> 
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">PRICE ADJUSTMENT:</FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" align="right"><FONT style="font-family:Arial;font-size:9pt;"><b>Payment Collected at Delivery:</b></FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;</td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr> 
+  <tr>
+    <td width="76%" valign="bottom" align="right"><FONT style="font-family:Arial;font-size:9pt;"><b>NEW BALANCE DUE IN 30 DAYS:</b></FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">$</font></td>
+ </tr>   
+</table>
+<hr color="#000000" width="99%" size="1"></hr>
+<table border="0" align="center" style="border-collapse: collapse;font-family:Arial;" width="99%"> 
+  <tr>
+    <td width="100%"><p style="text-align:justify;"><font style="font-family:Arial;font-size:10pt;"><font style="font-size:11pt;"><B>PICK-UP ACKNOWLEDGEMENT:</B></font>
+ <% IF !EMPTY(pcAGBOLPU) %>
+    <%=pcAGBOLPU%>
+<%ELSE%>        
+ <% IF EMPTY(pcREMPU) %>   
+    I, <%=ALLT(PROPER(_EST.SNAME))%>, acknowledge that I carefully read and fully understand the terms and conditions in this Interstate Bill of Lading contract. 
+    I confirm my responsibility for the charges and services listed above and hold all else harmless. I acknowledge that the charges above are based on the actual household goods 
+    shipment weight or volume. I hereby authorize the release of my household goods to the carrier subject to the terms and conditions thereof.</font>
+ <%ELSE%>
+     <%=pcREMPU%>
+ <%ENDIF%>
+<%ENDIF%> 
+    </p></td>
+  </tr>
+</table>
+<table border="1" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="99%">
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Customer's Signature at Pick-Up</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+  </tr>
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Carrier Signature at Pick-Up</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+ </tr>
+</table>
+<hr color="#000000" width="99%" size="1"></hr>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%"><p style="text-align:justify;"><font style="font-family:Arial;font-size:10pt;"><b>Notice of Maximum amount due upon delivery:</b> 
+    Final charges will be based on actual weight or cubic feet of property and services provided or time. Maximum amount to be paid to the carrier and 
+    demanded at destination is the amount of the last issued non-binding estimate plus 10%; or 100% of the last binding estimate issued; plus post 
+    contract services; any remaining balances due will be billed after 30 days of delivery. Payment in full of all charges is due before unloading. 
+    Fees for post contract services must be paid in advance of delivery and prior to unloading.</p></font></td>
+ </tr>
+</table> 
+   </td>
+ </tr>
+</table>
+<center>
+<% IF plLINK=.T. %>
+	<br><input type="button" onclick="signatureSave()" class="ACCEPT" value="Accept and Sign">
+<%ELSE%>
+    <br><font style="font-family:Arial;font-size:10pt;">Print this document via <a href="javascript: window.print()"><b>Printer Friendly</a></b></font>        
+<%ENDIF%>
+</center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="850">
+  <tr>
+    <td width="100%"><hr color="#000000" width="99%" size="1"></td>
+ </tr>
+  <tr>
+    <td width="100%"><p style="text-align:justify;"><font style="font-family:Arial;font-size:10pt;"><FONT style="font-family:Arial;font-size:11pt;"><B>DELIVERY ACKNOWLEDGEMENT:</B></font>
+    Shipper hereby acknowledges that the shipment was received in apparently good condition except as noted on the inventory list. Shipper acknowledges that all the
+    services that were ordered have been performed, have been fully satisfied, and the truck was inspected and nothing has been left behind. Shipper and/or agent has
+    full authority to accept the shipment and enter into this agreement.</font></p></td>
+ </tr>
+</table>
+<table border="1" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="850">
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Customer's Signature at Delivery</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+  </tr>
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Carrier Signature at Delivery</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+ </tr>
+</table>    
+<script src="/zz/js/xsign-2.1.0.min.js"></script>
+<script src="/zz/js/xsigndraw.js"></script>
+<script src="/zz/js/xsigndrawpay.js"></script>
+<script src="/zz/js/xsigndrawinsur.js"></script>
+
+<script>
+signatureCapture();
+signatureCapturePay();
+signatureCaptureInsur();
+
+//check data
+  function checkData(){
+  frm = document.theForm;
+  if (frm.ENAME.value.length < 4 || frm.ENAME.value.indexOf(" ") < 1) {
+      alert("Please type your full name (first & last)");
+	frm.ENAME.focus();
+  }else   	
+  return true;
+ }
+
+function signatureSave() {
+	var canvas = document.getElementById("newSignature");
+	var sigpay = document.getElementById("sigpay");
+	var siginsur = document.getElementById("siginsur");		
+   // save canvas image as data url (png format by default)
+	var sigData = canvas.toDataURL();
+	var sigPay = sigpay.toDataURL();
+	var sigInsur = siginsur.toDataURL();		
+	var n = sigData.length;
+	var d = sigPay.length;
+	var f = sigInsur.length; 	 	 
+          if ((n) < 1100) {
+              alert("Please sign: At Least 3 Days Before Pick-Up");
+              return false;
+       	    }else {
+          if ((d) < 1100) {
+              alert("Please sign: Payments Terms");
+            return false;
+       	  }else {
+          if ((f) < 1100) {
+              alert("Please sign: Valuation Option");
+              return false;
+       	    }else {      	  
+	if (checkData()) {
+	    $("#sigData").val(sigData);$("#sigPay").val(sigPay);$("#sigInsur").val(sigInsur);
+	    document.theForm.action="/wc.dll?mpest~esignbolret~<%=pcREFNO%>~<%=pcCUSTID%>";
+	    document.theForm.submit();
+	}else {   	
+	return false;
+      }	
+   }
+  }
+ }
+}
+ </script>    
+    </td>
+ </tr>
+</table> 
+  </center>
+</div>
+</form>
+<p class="pagebreak">&nbsp;</p>
+<table border="1" align="center" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#000000" width="850">
+  <tr>
+    <td valign="top"><center><font style="font-family:Arial;font-size:11pt;">CONTRACT TERMS AND CONDITIONS OF BILL OF LADING</font></center><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcREMFILE,pcAGBOLTERMS)%></td>
+  </tr>
+</table>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Outgoing Mail Server</title>
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+jQuery( document ).ready(function( $ ) {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 700,
+		maxHeight	: 450,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+
+function SmtpAccSave(par) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~SmtpAccSave~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+
+function SmtpAccTest(par) { 
+  var frm=document.theForm;
+//  alert(par)
+     { 
+    window.open('/wc.dll?mpmainten~SmtpAccTest~<%=pcSCR%>~'+par+'~'+frm.MAILTO.value,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=500,height=350');
+    self.name="main"
+     }
+}
+
+function CopyMe(TextToCopy) {
+  var TempText = document.createElement("input");
+  TempText.value = TextToCopy;
+  document.body.appendChild(TempText);
+  TempText.select();
+  
+  document.execCommand("copy");
+  document.body.removeChild(TempText);
+  
+  alert("SPF Record copied: " + TempText.value);
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	 .button	{	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Arial;
+                    width: 50; 
+                    height: 25; 
+                    cursor: pointer;}
+	 .addnew	{	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Arial;
+                    width: 70; 
+                    height: 25; 
+                    cursor: pointer;}
+                    
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="950">
+  <tr>
+    <td width="100%" align="center" height="25" background="/ZZ/images/bar-green.gif">
+    <a href="javascript:window.close()"><img border="0" src="/zz/images/x-yellow.gif" align="right" width="17" height="18"></a><b><font face="Verdana" color="#FFFFFF">Outgoing Mail Server</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<br>     
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="60%">
+  <tr>
+    <td align="right"><img border="0" src="/zz/images/alert.jpg" width="30" height="30"></td>  
+    <td align="left"><a href="wc.dll?mpmainten~emailserrorlog~<%=pcSCR%>" style="color:blue;" target="_blank"><font face="Verdana" size="2" color="red"><b>Outgoing Emails Error Report</b></font></a></td>
+ </tr>
+</table>
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="5">
+  <tr>
+    <td width="100%" align="center" height="83">	
+ <form name="theForm" method="POST">    			
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="98%">
+  <tr>
+    <td width="3%" align="center" bgcolor="#008000">&nbsp;</td>
+    <td width="18%" align="center" bgcolor="#008000"><b><font face="Verdana" size="2" color="#FFFFFF">Outgoing Mail Server</font></b></td>
+    <td width="25%" align="center" bgcolor="#008000"><font face="Verdana" size="2" color="#FFFFFF" ><b>Email Address</b></font></td>
+    <td width="14%" align="center" bgcolor="#008000"><b><font face="Verdana" size="2" color="#FFFFFF">Email Password</font></b></td>
+    <td width="6%" align="center" bgcolor="#008000"><b><font face="Verdana" size="2" color="#FFFFFF">Active</font></b></td>
+    <td width="8%" align="center" bgcolor="#008000"><b><font face="Verdana" size="2" color="#FFFFFF">Test It</font></b></td>
+    <td width="4%" align="center" bgcolor="#008000"><b><font face="Verdana" size="2" color="#FFFFFF">Del</font></b></td>
+    <td width="5%" align="center">&nbsp;</td>
+ </tr>
+ <%SELECT _SMTPACC 
+ SCAN %>
+  <tr style="line-height:30px;">
+    <td width="3%" align="center"><font style="font-family:Verdana;font-size:9pt;"><%=ALLT(STR(RECNO()))%></font>&nbsp;</td>
+    <td width="18%">&nbsp;<font face="Verdana" size="2"><%=ALLT(PROVNAME)%></font></td>
+    <td width="25%" align="left"><input type="text" autocomplete="off" name="<%='E'+ALLT(STR(SMTPACCID,8)) %>" size="30" value="<%=ALLT(ACCTEMAIL)%>" tabindex="2"></td>
+    <td width="14%" align="center"><input type="text" autocomplete="off" name="<%='P'+ALLT(STR(SMTPACCID,8)) %>" size="11" value="<%=ALLT(XPASS)%>" style="font-family:Arial;font-size:9pt;" onclick='this.value=""' onFocus='this.value=""' tabindex="3"></td>		
+    <td width="6%" align="center"><input type="checkbox" name="<%='A'+ALLT(STR(SMTPACCID,8))%>" value="ON" <%=IIF(ACTIVE,'checked','')%> tabindex="6"></td>
+	<td width="8%" align="center"><% IF SMTPID > 200 %><a href="javascript:SmtpAccTest(<%=ALLT(STR(SMTPACCID,8))%>)"><font style="font-family:Verdana;font-size:10pt;">Test Email</font></a><%ENDIF%></td>	
+	<td width="4%" align="center"><% IF SMTPID > 200 %><input type="checkbox" name="<%='D'+ALLT(STR(SMTPACCID,8))%>" value="ON" tabindex="7"><%ENDIF%></td>	
+	<td width="5%"><input type="button" value="Save" name="B1" onclick="SmtpAccSave(<%=ALLT(STR(SMTPACCID,8))%>)" class="button"></td>	
+  </tr>
+<% ENDSCAN %>
+  <tr>
+    <td align="center" colspan="8"><hr color="#C0C0C0" width="99%" size="1"></hr></td>
+ </tr>
+  <tr>
+    <td width="21%" align="center" colspan="2">
+    <select size="1" name="S1">
+		<option selected>< Select Provider ></option>
+		 <%	SELECT _SP
+		    SCAN %>		      
+		<option value="<%=ALLT(STR(SMTPID))%>"><%=ALLT(SMTPNAME)%></option>
+		 <% ENDSCAN %>
+		</select></td>
+    <td width="25%" align="left"><input type="text" autocomplete="off" name="E1" size="30" value=""></td>
+    <td width="14%" align="center"><input type="text" autocomplete="off" name="P1" size="11" value="" style="font-family:Arial;font-size:9pt;" onclick='this.value=""' onFocus='this.value=""'></td> 
+    <td width="6%" align="center"><input type="checkbox" name="A1" value="ON" tabindex="6"></td>
+	<td width="17%" colspan="3"><input type="button" value="Add New" name="B1" onclick="SmtpAccSave(1)" class="addnew"></td>	
+ </tr>
+</table>
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="52%">&nbsp;</td>
+    <td width="48%"><b><font color="#008000" face="Arial" size="2">Send test email to:</font></b>    
+    <input type="text" name="MAILTO" value="<%=pcMAILTO %>" size="30" tabindex="2"></td>
+ </tr>
+</table>   			
+ </form>        
+<table border="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#C0C0C0" width="98%">
+  <tr>
+    <td width="81%" style="line-height:27px;"><font face="Verdana" size="2">
+    <b>Important!!! Please Read Instructions &amp; Recommendations:</b><br>
+    1. Add SPF TXT Record to your domain DNS to validate your domain as an email sender.<br>v=spf1 ip4:208.68.236.200 ~all
+    &nbsp;<input type="button" style="font-size:9pt;font-weight:bold;font-family:Arial;width:115;height:25;cursor:pointer;" onclick="CopyMe('v=spf1 ip4:208.68.236.200 ~all')" value="Copy SPF Record"><br>
+    <b>Coming Soon:</b> Add <b>DKIM</b> to get seal of email approval.
+    <hr></hr>
+    2. Do not  activate an outgoing email  if you're unsure about the outgoing email setting.<br>    
+    3. It's recommended to integrate email(s) account(s) provided by your  <b>Emails Hosting Company</b>.<br>
+    4. Test your email integration by sending an email from an <b>Estimate</b>.<br>
+    * Test Email  confirms that the email and password match.
+    <hr></hr>
+    <b>Gmail Business (GSuite):</b> <a href="https://www.gmail.com" target="_blank">www.gmail.com</a><br>
+    Outgoing Mail Server: <b>smtp.gmail.com</b>&nbsp;&nbsp;&nbsp;Port: <b>587</b><br>
+    <b>Requires turning on <a href="https://www.google.com/settings/security/lesssecureapps">"Less Secure Apps"</a>.</b> Move the toggle to <b>TURN ON.</b><br>
+    <hr></hr>
+    <b>Microsoft Office 365</b>: <a href="https://login.microsoftonline.com" target="_blank">login.microsoftonline.com</a><br>
+    Outgoing Mail Server: <b>smtp.office365.com</b>&nbsp;&nbsp;&nbsp;Port: <b>587</b><br>
+    <b>Requires Enabling SMTP Client Authentication for each email.</b><br>More 
+    details available here: <a class="fancybox fancybox.iframe" href="/zz/help/office365.htm">How To Enable SMTP Client Authentication</a> 
+    or call Go Daddy support and ask to enable it for all emails.<br>
+    <hr></hr>
+    </hr>
+    Integration availability is upon your agreement with your <b>Emails Hosting Company</b>.</font></td>
+    <td width="19%" valign="top"><font face="Verdana" size="2"><b>Outgoing email integration MAY NOT be compatible 
+    with:</b><br><br><b>1. Gmail (@gmail.com)<br>2. BlueHost.com<br>3. Host Monster<br>4. Host Gator</b><br>5. Yahoo (@Yahoo.com)<br>6. Register.com<br>7. Optimum.com (A.K.A optonline)<br>
+    8. verizon.com/net<br>9. Road Runner<br>10. Hotmail/MSN<br>11. AOL</font></td>
+ </tr>
+</table>
+   &nbsp;</td>
+  </tr>
+</table>
+   </td>
+  </tr>
+  <tr>
+    <td width="100%" height="25" background="/zz/images/bgdown.gif"><font color="#FFFFFF" size="2" face="Arial"><%=pcUSER%>&nbsp;-<%=pcCOMPANY%></font></td>
+  </tr>
+</table>
+  </center>
+</div>
+</body>
+</html>

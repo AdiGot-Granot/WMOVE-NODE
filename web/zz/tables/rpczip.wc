@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Rrpc Discount</title>
+</head>
+<body>
+<p align="center"><align="center"><a href="javascript:window.close()">Close window</a></p>
+<form method="POST" action="/wc.dll?mpmainten~RpcZipRet~<%=pcSCR%>">
+<% SELECT  _RPCZIP %>
+  <p align="center"><font size="4" color="#6B8AAD"><b>Rrpc Discount Table&nbsp;</b></font>&nbsp;&nbsp;
+   <div align="center">
+     <center>
+   <table border="2" width="50%" bgcolor="#6B8AAD" bordercolor="#99CCFF" cellspacing="0" cellpadding="2" bordercolorlight="#6B8AAD" bordercolordark="#6B8AAD" style="border-collapse: collapse">
+    <tr>
+      <td width="25%" bgcolor="#6B8AAD" align="center" bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0">
+        <p align="center"><font color="#FFFFFF"><b>City</b></font></td>
+      <td width="25%" bgcolor="#6B8AAD" align="center" bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0">
+        <font color="#FFFFFF"><b>State</b></font></td>
+      <td width="25%" bgcolor="#6B8AAD" align="center" bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0">
+        <p align="center"><font color="#FFFFFF"><b>Zip Code</b></font></td>
+      <td width="25%" bgcolor="#6B8AAD" align="center" bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0">
+        <font color="#FFFFFF"><b>Discount %</b></font></td>
+   </tr>
+<%SCAN %>
+     <tr bgcolor="#A0CFCF">
+      <td width="25%" align="center"><input NAME="C-<%=ALLT(NO)%>" size="20" VALUE="<%=ALLT(CITY) %>" style="font-size: 9pt"></td>
+      <td width="25%" align="center">
+      <input NAME="S-<%=ALLT(NO)%>" size="4" VALUE="<%=ALLT(STATE) %>" style="font-size: 9pt"></td>
+      <td width="25%" align="center">
+      <input NAME="Z-<%=ALLT(NO)%>" size="8" VALUE="<%=ALLT(ZIP) %>" style="font-size: 9pt"></td>
+      <td width="25%" align="center">
+      <input NAME="D-<%=ALLT(NO)%>" size="7" VALUE="<%=IIF(DISCOUNT=0,'',ALLT(STR(DISCOUNT,8,2))) %>" style="font-size: 9pt"></td>
+     </tr>
+   <% ENDSCAN %>
+ </table>
+     </center>
+</div>
+  <p align="center">
+  <input type="submit" value="Submit" name="B1"> 
+</form>
+</body>

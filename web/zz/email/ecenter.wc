@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+</head>
+
+<body>
+<% IF !EMPTY(lcEMAILHEADER) %>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td><%=lcEMAILHEADER%><br></td>
+  </tr>
+</table>
+<%ENDIF%> 
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td>
+<%IF pcCUSTNO<>'ABCMOVINGI' AND pcCUSTNO<>'BINDINGMOV' AND pcCUSTNO<>'FLATFEE' AND pcCUSTNO<>'HERCMOVE' AND pcCUSTNO<>'OLYMPICVAN' AND pcCUSTNO<>'RIDESAUTO' AND pcCUSTNO<>'RHINORELOC' AND pcCUSTNO<>'RLMOVING' AND pcCUSTNO<>'UNIVERSVL' AND pcCUSTNO<>'USEXPRESS'%>
+<img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100">
+<% ENDIF %>
+<%IF pcCUSTNO='USEXPRESS'%>
+<img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="100%" height="150">
+<% ENDIF %>
+<%IF pcCUSTNO='FLATFEE'%>
+<center><b><font size="7" color="0000A0">Flat Fee Moving</b></font></center>
+<% ENDIF %>
+</td>
+  </tr>
+  <tr>
+    <td align="right"><font face="Verdana" size="2"><%=CDOW(DATE())%>, <%=DATE()%>&nbsp;&nbsp;&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td><font face="Verdana" size="2"><%IF plCLAIMS%><br>RE: <B><%=pcORDNO+' - '+pcCLAIMID%></B><BR><%ENDIF%><BR>
+    <%IF pcCUSTNO<>'ALLIED' AND pcCUSTNO<>'AVMOV' AND pcCUSTNO<>'DALLASMOV' AND pcCUSTNO<>'GMGMOVSER' AND pcCUSTNO<>'HVLPVLUMS' AND pcCUSTNO<>'FIRSTNATIO' AND pcCUSTNO<>'ROMANRELO' AND pcCUSTNO<>'EAGLEMOG' AND pcCUSTNO<>'SAFEVANLI' AND pcCUSTNO<>'USPRIME' AND pcCUSTNO<>'KINGDPRO' %>
+    Dear <%=PROPER(pcSNAME)%>,<%ENDIF%><br><br>
+    <%=pcBODY%><BR>
+<% IF pcTYPE='T' %>
+   <% IF plLINK=.T. AND !EMPTY(FILENAME) %>
+      <%=pcLINK %>
+   <%ELSE%>   	
+      <% IF plLINK=.T. %><b>Click on your job number <%=pcLINK%> to <%=IIF(lcSTATUS='F','update your customer information.','view your estimate.')%></b><br><br><% ENDIF %>
+   <%ENDIF%>   
+<%ELSE%>
+   <% IF plLINK=.T. %><%=pcLINK %><% ENDIF %>
+<% ENDIF %>	
+  Sincerely,<br><br>
+   <%=PROPER(pcFULLNAME)%><br><%=IIF(EMPTY(pcTITLE),'Moving Consultant',pcTITLE)%><br><%=pcCOMPANY%><%=IIF(EMPTY(pcSLOGAN),'','<BR>'+pcSLOGAN)%><BR>
+   <%='Office: '+pcTOLLFREE%>
+   <%=IIF(EMPTY(pcUSERPHONE),'','<BR>Direct: '+pcUSERPHONE)%>
+   <%=IIF(EMPTY(pcFAX),'','<BR>Fax: '+pcFAX)%>
+<%IF pcCUSTNO='SPARTANMO'%><br><%=pcUSEREMAIL%><BR><%=pcWEB%><%ELSE%><BR><a href="mailto:<%=pcUSEREMAIL%>"><%=pcUSEREMAIL%></a>
+<br><a href="<%=pcWEB%>" TARGET="_BLANK"><%=pcWEB%></a><%ENDIF%>
+<%IF pcCUSTNO<>'MOVINGAPT'%><br><%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%><%=IIF(EMPTY(pcICC),"","&nbsp;&nbsp;MC: "+pcICC)%><%=IIF(EMPTY(pcREGISTER),"",IIF(pcCUSTNO='INTLMOVENT',"<BR>FMC: "+pcREGISTER,"<br>Mover Registration: "+pcREGISTER))%><%ENDIF%>
+<%IF pcCUSTNO='FLATFEE'%><BR><a href="http://www.facebook.com/pages/Flat-Fee-Moving-Trucking/414646378597379?fref=ts">http://www.facebook.com/pages/Flat-Fee-Moving-Trucking/414646378597379?fref=ts</a><%ENDIF%>
+</font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td width="100%" align="center"><br><font size="1" face="Verdana">If you no longer wish to receive emails from <%=pcCOMPANY%>, please click 
+	<a target="_blank" href="https://<%=gcSERVERIP%>/wc.dll?mputil~removeemail~&CUSTID=<%=pcCUSTID%>&EMAILTO=<%=pcEMAIL%>&JOBID=<%=pcJOBID%>">unsubscribe</a></font></td>
+ </tr>
+</table>
+
+</body>
+</html>

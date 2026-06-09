@@ -1,0 +1,199 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<TITLE><%=IIF(plCLAIMS,'Claims Email Center','Update Email Center')%></TITLE>
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 750,
+		maxHeight	: 700,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+	
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailsadd~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+      
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailsadd~<%=pcSCR%>~~CLAIMS";
+       document.theForm.submit();
+      }
+     
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailswc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+
+    if (i==6) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailswc~<%=pcSCR%>~CLAIMS";
+       document.theForm.submit();
+      }
+      
+    if (i==4) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+      
+    if (i==5) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailsorder~<%=pcSCR%>";
+       document.theForm.submit();
+      }  
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}  				  	
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7">
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="70%">
+  <tr>
+    <td width="100%"><a class="fancybox fancybox.iframe" href="/zz/help/emailcenter.htm"><img border="0" src="/zz/util/manual.gif" width="32" height="32"></a></td>
+ </tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="70%"> 
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center"><b><font face="Verdana" SIZE="4" color="#FFFFFF"><%=IIF(plCLAIMS,'Claims Email Center','Update Email Center')%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<form name="theForm" method="POST">
+  <input type="HIDDEN" name="CLAIM" value="<%=IIF(plCLAIMS,'CLAIM','')%>">  
+<% IF plDEPTEMAIL %>
+ <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="40%" cellspacing="0" cellpadding="0">
+   <tr>
+     <td height="35">&nbsp;&nbsp;<b><font face="Verdana" size="2">Filter by Department:</font></b>    
+       <select size="1" name="DEPTIDX">
+         <option value=""></option>
+		 <%	SELECT _DEPTEMAIL
+			 SCAN %>
+   			<option value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></option>
+		 <% ENDSCAN %>
+	   </select>
+     </td>
+    <td><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="<%=IIF(plCLAIMS,'submitFunction(6)','submitFunction(3)')%>" value="Submit"></td>
+  </tr>
+</table>		
+<%ENDIF%>
+ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font face="Verdana" size="2"> You got <font color="red"><%=ALLT(STR(RECCOUNT('_TEMAILS')))%></font> Email templates</font></b>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+   <tr>
+     <td width="3%" class="TD1">No</td>
+   <% IF pnCOLEVEL<>3 %>  
+     <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Move Type</td>
+   <%ENDIF%>  
+     <td width="30%" class="TD1" style="border-left: 1px solid #A9A9A9;">Subject</td>  
+   <% IF plDEPT %>  
+     <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;">Department</td>
+   <%ENDIF%>
+     <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">User</td>     
+   <% IF !plCLAIMS %>  
+     <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">Category</td>
+     <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Link</td>
+     <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">E-First</td>  
+     <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">E-Book</td>
+   <%ENDIF%>       
+     <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Action</td>     
+     <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Email ID</td>     
+   </tr>
+ <% SELECT _TEMAILS
+    SCAN %>
+   <tr>
+     <td width="3%" align="center" style="border-bottom: 1px solid #A9A9A9;"><input type="text" name="T<%=ALLT(STR(TEMAILID))%>" size="1" value="<%=IIF(ISNULL(TID),'',ALLT(STR(TID)))%>" style="text-align: right;"></td>
+    <% IF pnCOLEVEL<>3 %>
+     <td width="7%" class="TD2">&nbsp;<%=ALLT(TYP1)%></td>
+    <%ENDIF%> 
+     <td width="30%" class="TD2">&nbsp;<%=ALLT(SUBJECT)%></td>
+   <% IF plDEPT %>  
+     <td width="9%" class="TD3"><B><%=ALLT(DEPT)%></B><font style="color:red;"><%=IIF(DEPTID>0 AND ACTIVEDEPT=.F.,' (not active)','')%></font></td>
+   <%ENDIF%>
+   	 <td width="6%" class="TD2">&nbsp;<B><%=ALLT(USERNAME)%></B></td>	      
+   <% IF !plCLAIMS %>  
+     <td width="8%" class="TD3"><%=ALLT(CATEGORY)%></td>
+     <td width="3%" class="TD3"><font color="#008000" size="4"><b><%=IIF(LINK,'&#10003;','')%></b></font></td>
+     <td width="4%" class="TD3"><font color="#F76A00" size="4"><b><%=IIF(FIRSTMAIL,'&#10003;','')%></b></font></td>
+     <td width="5%" class="TD3"><font color="#A0522D" size="4"><b><%=IIF(EBOOK,'&#10003;','')%></b></font></td>
+   <%ENDIF%>       
+     <td width="7%" class="TD3"><a href="/wc.dll?mpmainten~temailsadd~<%=pcSCR%>~<%=ALLT(STR(TEMAILID))%>~<%=IIF(plCLAIMS,'CLAIMS','')%>"><B>Edit Email</B></a></td>     
+     <td width="6%" class="TD3"><b><%=ALLT(STR(TEMAILID))%></b></td>     
+   </tr>
+ <%ENDSCAN%>  
+</table>
+ <br>
+<table border="0" width="90%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+	<td width="7%" align="center"><input type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(5)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Save Email Order">	</td>
+	<td width="9%" align="center"><input type="button" CLASS="SUBOFF" name="B5" onclick="<%=IIF(plCLAIMS,'submitFunction(2)','submitFunction(1)')%>" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Create New Email"></td>
+	<td width="7%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(4)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>
+    </form>&nbsp;</td>
+</tr>
+  <tr>
+    <td bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+</body>
+</html>

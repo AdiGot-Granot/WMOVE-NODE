@@ -1,0 +1,288 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<title>Zone Prices - Tariff Discounts</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+jQuery( document ).ready(function( $ ) {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 550,
+		maxHeight	: 550,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+function submitFunction(i) {
+
+    if (i==1)  {
+    	document.theForm.action="/wc.dll?mpmainten~TzonePrcRet~<%=pcSCR%>";
+    	document.theForm.submit()
+     }
+
+    if (i==2) {
+    	 document.theForm.action="/wc.dll?mpmainten~TzonePrcAll~<%=pcSCR%>";
+    	document.theForm.submit()
+	}
+	
+    if (i==3) {
+    	 document.theForm.action="/wc.dll?mpmainten~Tperiodsret~<%=pcSCR%>";
+    	document.theForm.submit()
+	}
+    
+    if (i==4) {
+    	document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=+pcSCR%>";
+    	document.theForm.submit()
+   	}
+
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 110;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 110;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="65%">
+  <tr>
+    <td width="100%"><a class="fancybox fancybox.iframe" href="/zz/help/zoneprices.htm"><img border="0" src="zz/util/manual.gif" title="Read about Regions Pricing" width="32" height="32"></a></td>
+ </tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="65%"> 
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="25"><b><font face="Verdana" size="4" color="#FFFFFF">Zone Prices - Tariff Discounts</font></b></td>
+  </tr> 
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="25" align="center"><b><font face="Verdana" size="2">All numbers are in percent values.</font></b></td>
+ </tr>  
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+ <form name="theForm" method="POST">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+      <tr>
+        <td width="49%" valign="top"><center><b><font face="Verdana" size="2">Move between undefined zones (no men's land)</font></b></center>  
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+  <tr>
+    <td width="60%" style="border-bottom: 1px solid #A9A9A9;"><b><font face="Verdana" size="2">Periods</font></b></td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">1</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">2</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">3</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">4</td>
+  </tr>
+  <% SELECT *  FROM _SYSTEM INTO CURSOR __SYS
+  	  SCAN %>
+  <tr>
+    <td width="40%"><font face="Verdana" size="2">Default for all Long Distance moves</font></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="TARDISCP1" size="1" VALUE="<%=ALLT(STR(TARDISCP1)) %>" style="text-align: right;"></td>
+   <% IF pnPERIODS > 1 %>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="TARDISCP2" size="1" VALUE="<%=ALLT(STR(TARDISCP2)) %>" style="text-align: right;"></td>
+   <%ENDIF%>
+   <% IF pnPERIODS > 2 %>    
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="TARDISCP3" size="1" VALUE="<%=ALLT(STR(TARDISCP3)) %>" style="text-align: right;"></td>
+   <%ENDIF%>
+   <% IF pnPERIODS > 3 %>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="TARDISCP4" size="1" VALUE="<%=ALLT(STR(TARDISCP4)) %>" style="text-align: right;"></td>
+   <%ENDIF%>
+ </tr>
+  <% ENDSCAN %>
+</table>
+</td>
+     <td width="1%">&nbsp;</td>
+     <td width="49%"> <center><b><font face="Verdana" size="2">Tariff Period</font></b></center>   
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+  <tr>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;">&nbsp;</td>
+    <td width="40%" class="TD1" style="border-left: 1px solid #A9A9A9;" bgcolor="#FFFFCC" colspan="2">From</td>
+    <td width="40%" class="TD1" style="border-left: 1px solid #A9A9A9;" bgcolor="#FFE7A5" colspan="2">To</td>
+    </tr>
+  <tr>
+    <td width="20%" align="center" style="border-bottom: 1px solid #A9A9A9;"><font face="Verdana" size="2"><b>Period</b></font></td>
+    <td width="20%" align="center" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" bgcolor="#FBBC05"><b><font face="Verdana" size="2">Month</font></b></td>
+    <td width="20%" align="center" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" bgcolor="#FBBC05"><b><font face="Verdana" size="2">Day</font></b></td>
+    <td width="20%" align="center" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" bgcolor="#FBBC05"><b><font face="Verdana" size="2">Month</font></b></td>
+    <td width="20%" align="center" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" bgcolor="#FBBC05"><b><font face="Verdana" size="2">Day</font></b></td>
+  </tr>
+  <tr>
+  <% SELECT _TPERIOD
+	  SCAN %>
+  <tr>
+    <td width="20%" class="TD1"><%=ALLT(STR(P1))%></td>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" align="center"><input type="text" name="<%=ALLT(STR(TPERIODID))+'-MMFROM' %>" size="1" VALUE="<%=ALLT(STR(MMFROM)) %>" style="text-align: right;"></td>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" align="center"><input type="text" name="<%=ALLT(STR(TPERIODID))+'-DDFROM' %>" size="1" VALUE="<%=ALLT(STR(DDFROM)) %>" style="text-align: right;"></td>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" align="center"><input type="text" name="<%=ALLT(STR(TPERIODID))+'-MMTO' %>" size="1" VALUE="<%=ALLT(STR(MMTO)) %>" style="text-align: right;"></td>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" align="center"><input type="text" name="<%=ALLT(STR(TPERIODID))+'-DDTO' %>" size="1" VALUE="<%=ALLT(STR(DDTO)) %>" style="text-align: right;"></td>
+  </tr>
+  <% ENDSCAN %>
+  <% IF pnPERIODS < 4 %>
+  <tr>
+    <td width="20%" class="TD1">&nbsp;</td>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" align="center"><input type="text" name="1-MMFROM" size="1" VALUE="" style="text-align: right;"></td>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" align="center"><input type="text" name="1-DDFROM" size="1" VALUE="" style="text-align: right;"></td>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" align="center"><input type="text" name="1-MMTO" size="1" VALUE="" style="text-align: right;"></td>
+    <td width="20%" style="border-bottom: 1px solid #A9A9A9;border-left: 1px solid #A9A9A9;" align="center"><input type="text" name="1-DDTO" size="1" VALUE="" style="text-align: right;"></td>
+  </tr>
+  <%ENDIF%>
+  <tr>
+    <td width="100%" height="40" align="center" colspan="5"><input id="btnSubmit" type="button" name="B3" onclick="submitFunction(3)" CLASS="SUBOFF" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit Periods"></td>
+  </tr>    
+</table>
+  </td>
+    </tr>
+  </table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="49%" align="center" height="30"><b><font face="Verdana" size="2" color="#006600">Move between defined zones (from zone to zone)</font></b></td>
+    <td width="1%" height="30">&nbsp;</td>
+    <td width="49%" align="center" height="30"><b><font face="Verdana" size="2" color="#083484">Move between a defined zone to an undefined zone (One 
+    zone to anywhere)</font></b></td>
+ </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+   <tr>
+     <td width="49%" valign="top">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+  <tr>
+    <td width="60%" align="center" colspan="2"><input id="btnSubmit0" type="button" CLASS="SUBOFF" name="B4" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Update All"></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="DA1" size="1" style="text-align: right;"></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="DA2" size="1" style="text-align: right;"></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="DA3" size="1" style="text-align: right;"></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="DA4" size="1" style="text-align: right;"></td>
+ </tr>
+</table>
+<hr color="#006600"></hr> 
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+  <tr>
+    <td width="60%" align="center" style="border-bottom: 1px solid #A9A9A9;" colspan="2"><b><font face="Verdana" size="2">Zone Name</font></b></td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">1</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">2</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">3</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">4</td>
+ </tr>
+  <% SELECT _Z2
+	  SCAN %>
+  <tr>
+    <td width="8%" style="border-right: 1px solid #A9A9A9;border-bottom: 1px solid #A9A9A9;">&nbsp;<font face="Verdana" size="2"><%=ALLT(STR(RECNO())) %></font></td>
+    <td width="52%" style="border-bottom: 1px solid #A9A9A9;">&nbsp;<font face="Verdana" size="2"><%=ALLT(CNAME)+', '+ALLT(STATE)%></font></td>
+    <td width="10%" class="TD2"><input type="text" name="<%='Z2'+ALLT(STR(TZONEID))+'1' %>" size="1" VALUE="<%=ALLT(STR(DISCP1)) %>" style="text-align: right;"></td>
+    <% IF pnPERIODS > 1 %>
+    <td width="10%" class="TD2"><input type="text" name="<%='Z2'+ALLT(STR(TZONEID))+'2' %>" size="1" VALUE="<%=ALLT(STR(DISCP2)) %>" style="text-align: right;"></td>
+    <%ENDIF%>
+    <% IF pnPERIODS > 2 %>
+    <td width="10%" class="TD2"><input type="text" name="<%='Z2'+ALLT(STR(TZONEID))+'3' %>" size="1" VALUE="<%=ALLT(STR(DISCP3)) %>" style="text-align: right;"></td>
+    <%ENDIF%>
+    <% IF pnPERIODS > 3 %>
+    <td width="10%" class="TD2"><input type="text" name="<%='Z2'+ALLT(STR(TZONEID))+'4' %>" size="1" VALUE="<%=ALLT(STR(DISCP4)) %>" style="text-align: right;"></td>
+    <%ENDIF%>
+ </tr>
+  <% ENDSCAN %>
+</table>
+</td>
+        <td width="1%">&nbsp;</td>
+        <td width="49%" valign="top">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+  <tr>
+    <td width="60%" align="center" colspan="2"><input id="btnSubmit1" type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Update All"></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="DB1" size="1" style="text-align: right;"></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="DB2" size="1" style="text-align: right;"></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="DB3" size="1" style="text-align: right;"></td>
+    <td width="10%" align="center" style="border-left: 1px solid #A9A9A9;"><input type="text" name="DB4" size="1" style="text-align: right;"></td>
+ </tr>
+ </table>
+<hr color="#083484"></hr>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+  <tr>
+    <td width="60%" align="center" style="border-bottom: 1px solid #A9A9A9;" colspan="2"><b><font face="Verdana" size="2">Zone Name</font></b></td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">1</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">2</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">3</td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">4</td>
+ </tr>
+  <% SELECT _Z1
+	  SCAN %>
+  <tr>
+    <td width="8%" style="border-right: 1px solid #A9A9A9;border-bottom: 1px solid #A9A9A9;">&nbsp;<font face="Verdana" size="2"><%=ALLT(STR(RECNO())) %></font></td>
+    <td width="52%" style="border-bottom: 1px solid #A9A9A9;">&nbsp;<font face="Verdana" size="2"><%=ALLT(CNAME)+', '+ALLT(STATE)%></font></td>
+    <td width="10%" class="TD2"><input type="text" name="<%='Z1'+ALLT(STR(TZONEID))+'1' %>" size="1" VALUE="<%=ALLT(STR(DISCINP1)) %>" style="text-align: right;"></td>
+	<% IF pnPERIODS > 1 %>
+    <td width="10%" class="TD2"><input type="text" name="<%='Z1'+ALLT(STR(TZONEID))+'2' %>" size="1" VALUE="<%=ALLT(STR(DISCINP2)) %>" style="text-align: right;"></td>
+    <%ENDIF%>
+    <% IF pnPERIODS > 2 %>
+    <td width="10%" class="TD2"><input type="text" name="<%='Z1'+ALLT(STR(TZONEID))+'3' %>" size="1" VALUE="<%=ALLT(STR(DISCINP3)) %>" style="text-align: right;"></td>
+    <%ENDIF%>
+    <% IF pnPERIODS > 3 %>
+    <td width="10%" class="TD2"><input type="text" name="<%='Z1'+ALLT(STR(TZONEID))+'4' %>" size="1" VALUE="<%=ALLT(STR(DISCINP4)) %>" style="text-align: right;"></td>
+    <%ENDIF%>
+ </tr>
+  <% ENDSCAN %>
+</table>
+        </td>
+      </tr>
+    </table>
+ <br>
+<table border="0" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="22%" align="center"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="5" value="Submit"></td>    
+    <td width="22%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(4)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>
+  <br>
+    </td>
+  </tr>
+  </table>
+  </td>
+ </tr>
+  <tr>
+    <td bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+</form>
+</body>
+</html>

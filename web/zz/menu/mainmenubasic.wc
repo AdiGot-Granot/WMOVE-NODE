@@ -1,0 +1,206 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Moving System</title>
+
+<script language="JavaScript">
+var msg="Right Click Disabled!";
+function disableIE() {if (document.all) {alert(msg);return false;}
+}
+function disableNS(e) {
+  if (document.layers||(document.getElementById&&!document.all)) {
+    if (e.which==2||e.which==3) {alert(msg);return false;}
+  }
+}
+if (document.layers) {
+  document.captureEvents(Event.MOUSEDOWN);document.onmousedown=disableNS;
+} else {
+  document.onmouseup=disableNS;document.oncontextmenu=disableIE;
+}
+document.oncontextmenu=new Function("alert(msg);return false")
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+<%IF pnLEVEL=2 AND !glDEVELOP AND plSTOP %>
+	if (self.location != top.location) top.location = self.location;
+	window.location.href=('<%=pcOmsAccount%>');	      
+<%ENDIF%>
+
+function submitFunction(i) {
+    if (i==1) window.open('/wc.dll?mv~selectesttype~<%=pcSCR%>','');
+    if (i==2) window.open('/wc.dll?mv~estprocesswc~<%=pcSCR%>','');
+    if (i==3) window.open('/wc.dll?mv~searchwc~<%=pcSCR%>','');
+<% IF !plBLKCALD%>    
+    if (i==5) window.open('/wc.dll?mpopr~dailyopr~<%=pcSCR%>','');
+<%ENDIF%>    
+<%IF pnLEVEL=2 %>
+    if (i==6) window.open('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>','');
+<%ENDIF%>
+<%IF pnLEVEL= 2 OR plASSIGNNEW %>    
+    if (i==12) window.open('/wc.dll?mpscripts~assignnewwc~<%=pcSCR%>','');
+<%ENDIF%>
+<%IF pnLEVEL= 2 OR pnLEVEL > 3 %>    
+    if (i==18) window.open('/wc.dll?mpmainten~handbookwc~<%=pcSCR%>','');
+<%ENDIF%>     
+  }
+
+<% IF pnLEVEL=2 %>
+function leadmarket() {
+     window.open('<%=pcLeadMarketGrid%>')
+  }
+<%ENDIF%>
+
+function newsletter() {
+    window.open('https://eagle.hellomoving.com/zz/help/newsletter.htm');
+	}
+
+function LogOut() {
+    parent.location.href=('/wc.dll?mp~LogOut~<%=pcSCR%>~<%=ALLT(STR(pnCUSTID))%>~<%=ALLT(STR(pnUSERID))%>');
+	self.name="main"}
+
+function chat() {
+    window.open('https://chat.hellomoving.com/?key=<%=pcSCR%>~<%=pcCUSTNO%>~<%=pcUSER%>~<%=ALLT(STR(pnLEVEL))%>~<%=ALLT(pcSERVERNAME)%>');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	font-size: 10pt;
+  				  	font-family: verdana;
+  				  	cursor: pointer;
+					background-color: white;
+					font-weight: bold;
+				  	text-align: left}
+	.txton		{	font-size: 10pt;
+				  	text-align: left;
+  				  	font-family: verdana;
+					background-color: white;
+					text-decoration: underline;
+					font-weight: bold;
+  				  	cursor: pointer;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+					
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500" align="center">
+  <tr>
+    <td width="100%"><IMG SRC="/zz/images/topBar.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FBFBFC">
+	<!-- frame table -->
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Tahoma;" width="95%">
+  <tr>
+    <td width="43%" style="line-height:25px;"><img border="0" src="zz/images/logo_orange.jpg" width="126" height="37"><br>
+    <font style="font-size:11pt;"><b>888-308-0620<br>305-514-0620<br><a href="mailto:info@granot.com" style="color:#0078D7;">info@granot.com</a><br><a Onclick="chat()" style="color:#0078D7;cursor:pointer;">Live Chat</a></b></font></td>
+    <td width="58%" style="line-height:25px;" align="right"><b><font style="font-size:10pt;">Welcome <font color="#0078D7"><%=PROPER(pcREPNAME)%></font><br>
+    Logged in as <font color="#0078D7"><%=pcUSER%></font> (Dept <%=ALLT(pcDEPTUSER)%>)<br><%=CDOW(DATE())%>,&nbsp;<%=DATE()%>
+    <% IF plLEADDIST=.T. %><BR>Lead Rotation is <font color="#0078D7">Turned On</font><%ENDIF%><br><font onclick="LogOut()" style="font-size:10pt;color:#0078D7;cursor:pointer;"><u>Log Out</u></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" height="35" colspan="2" align="center"><font face="Verdana" size="3" color="#000000"><b><U><%=pcTITLEMENU%></U></b></font></td>
+  </tr>  
+</table>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="80%">
+ <% IF !plHOSTING %>
+  <tr>
+	<td width="9%" height="30" style="text-align: center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30"><font class="txtoff" onclick="submitFunction(1)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">New Estimate</font></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+	<td width="9%" height="30" style="text-align: center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30"><font class="txtoff" onclick="submitFunction(2)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Estimates in Process</font></td>
+ </tr>
+<%IF pnLEVEL=2 OR plASSIGNNEW %> 
+  <tr>
+	<td width="9%" height="30" style="text-align: center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30"><font class="txtoff" onclick="submitFunction(12)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Assign New Estimates</font></td>
+ </tr>
+<%ENDIF%> 			  
+  <tr>
+	<td width="9%" height="30" style="text-align: center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30"><font class="txtoff" onclick="submitFunction(3)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Advanced Search</font></td>
+ </tr>
+<% IF !plBLKCALD%>
+  <tr>
+	<td width="9%" height="30" style="text-align: center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30"><font class="txtoff" onclick="submitFunction(5)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Operations Calendar</font></td>
+ </tr>
+<%ENDIF%>
+<%IF pnLEVEL=2 OR pnLEVEL > 3 %>
+  <tr>
+	<td width="9%" height="30" style="text-align: center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30"><font class="txtoff" onclick="submitFunction(18)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Handbook &amp; Workflow</td>
+ </tr>
+<%ENDIF%>
+<%IF pnLEVEL=2 %>
+  <tr>
+	<td width="9%" height="30" style="text-align: center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30"><font class="txtoff" onclick="submitFunction(6)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Maintenance</font></td>
+ </TR>
+<%ENDIF%>
+  <tr>
+	<td width="9%" height="30" style="text-align: center"><img border="0" src="zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30"><font class="txtoff" onclick="newsletter()" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Newsletter
+	<font color="#FF7D39"><i><B>New Update</B></i></font></td>
+ </tr>    
+</table>
+<!-- frame table -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="15">&nbsp;<font face="Verdana" size="2" color="#FFFFFF"><%=pcOMSTITLE%></font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFEFCC" align="center" height="10">
+<% IF pnLEVEL=2 %>
+  <BR>   
+  <table border='0' width='70%' align='center'>
+   	<tr>
+      <td align="center"><b><font style="font-family:Verdana;font-size:10pt;">OMS Account Finances: 
+      Back Soon</font></b></td>
+	</tr>	
+  </table>
+<%ENDIF%>       
+      </td>
+  </tr>
+  <tr>
+    <td width="100%"><IMG SRC="/zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>  
+  </table>
+<table border="0" width="500" align="center">
+  <tr>
+	<td align="center"><font color="#FFFFFF" face="Verdana" size="2"><b><%=pcCOPYRIGHT%></b></font></td>
+ </tr>
+</table>  
+</body>
+</html>

@@ -1,0 +1,376 @@
+<html>
+
+<head>
+<title>Moving System-Entry Form</title>
+<head>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+	if (parent.frames.length > 0) {
+	    parent.location.href = self.document.location}
+
+
+function locatezip() {
+    window.open('/wc.dll?mputil~zipwc~NEW','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=550,height=500');
+self.name="main"}
+
+
+function SubmitEntry() {
+       document.theForm.action="/wc.dll?mpest~entryret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+
+function submitrem() {
+	   document.theForm.action="/wc.dll?mpest~thanksret~<%=pcSCR%>";
+       document.theForm.submit();
+    }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.homeoff	{	color: #FFFFFF;
+				  	font-size: 10pt;
+  				  	background: #008000;
+				  	text-align: center}
+	.homeon	{	color: #FFFF00;
+				  	font-size: 10pt;
+				  	text-align: center;
+  				  	cursor: Hand;
+  				  	font-weight: bold;
+ 				  	text-align: center;
+ 				  	background: #800080
+ 				  	}
+	.TDTOP1	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #316194;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TDBODY1 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #316194;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+</head>
+
+<body onload="window.theForm.SNAME.focus()" BGCOLOR="#316194">
+<br>
+<%IF pnLEVEL=0%>
+   <div align="center">
+     <center>
+     <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700">
+       <tr>
+         <td width="100%" align="center" bgcolor="#FFFFFF">
+		 <a href onclick="submitrem()" style="cursor:hand" title="Click here to return to our home page">
+		 <img border="0" src="<%=pcIMG%>" width="700" height="96"></a></td>
+       </tr>
+     </table>
+     </center>
+   </div>
+<%ENDIF%>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center" height="455">
+  <tr>
+    <td width="700" colspan="3" height="14"><IMG SRC="zz/images/botBar1.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="227" BGCOLOR="#4E6699" align="center" height="25">
+    <td width="438" BGCOLOR="#4E6699" align="left" height="27">
+    <b><font face="Verdana" size="4" color="#FFFFFF">Customer Entry Form</font></b></td>
+  </tr>
+  <tr>
+    <td width="700" bgcolor="#FFFFFF" colspan="3" valign="top" height="374">	
+	<!-- Main -->
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+    <!-- Body & Column -->
+	<form name="theForm" method="post">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="364">
+      <tr>
+        <td width="70%" valign="top" align="center" height="364">
+<br>
+   <table border="2" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber1" height="76" bordercolorlight="#4E6699" bordercolordark="#4E6699">
+    <tr>
+     <td width="100%" height="6">
+      <div align="center">
+        <center>
+      <table border="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" width="470">
+      <tr>
+        <td width="472" height="9" align="center" colspan="5" bgcolor="#4E6699">
+        <b><font face="Verdana" color="#FFFFFF">Personal Information</font></b></td>
+     </tr>
+        <tr>
+          <td width="49"><b><font face="Verdana" size="2">Name:</font></b></td>
+          <td width="109">
+        <input class="textFeilds" style="border:1px solid #316194; font-size:10pt; float:left; background-color:#FFFFCC" name="SNAME" tabindex="1" value="<%=ALLT(_EST.SNAME)%>" size="13"></td>
+          <td width="133"><b><font face="Verdana" size="2">Home Phone:</font></b></td>
+          <td width="71">
+       <input class="textFeilds" style="border:1px solid #316194; font-size:10pt; float:left; background-color:#FFFFCC" name="STELH" tabindex="3" value="<%=ALLT(_EST.STELH)%>" size="12"></td>
+          <td width="104" rowspan="2"><b><font face="Verdana" size="2">&nbsp; 
+          Cell Phone:</font></b><input class="textFeilds" style="border:1px solid #316194; font-size:10pt; float:left; background-color:#FFFFCC" name="RTELH" tabindex="4" value="<%=ALLT(_EST.RTELH)%>" size="10"></td>
+        </tr>
+        <tr>
+          <td width="49"><b><font face="Verdana" size="2">Email:</font></b></td>
+          <td width="109">
+        <input class="textFeilds" style="border:1px solid #316194; font-size:10pt; float:left; background-color:#FFFFCC" name="EMAIL" tabindex="2" value="<%=ALLT(_EST.EMAIL)%>" size="13"></td>
+          <td width="133"><b><font face="Verdana" size="2">Work Phone:</font></b></td>
+          <td width="97">
+       <input class="textFeilds" style="border:1px solid #316194; font-size:10pt; float:left; background-color:#FFFFCC" name="STELO" tabindex="4" value="<%=ALLT(_EST.STELO)%>" size="12"></td>
+        </tr>
+      </table>
+        </center>
+      </div>
+  </td>
+   </tr>
+  </table>
+<br>
+  <table border="2" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber3" height="90" bordercolorlight="#4E6699" bordercolordark="#4E6699">
+    <tr>
+      <td width="100%" height="120">
+        <table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="99%" id="AutoNumber11" height="70">
+          <tr>
+            <td width="100%" height="20" bgcolor="#4E6699" colspan="7">
+            <p align="center"><b><font face="Verdana" color="#FFFFFF">Moving Variables</font></b></td>
+          </tr>
+          <tr>
+            <td width="24%" height="30" ><b><font face="Verdana" size="2">
+            Date of Move:</font></b></td>
+            <td width="25%" height="30" colspan="2"><p align="center">
+              <select size="1" name="MM" tabindex="5" style="background-color: #FFFFCC">
+                <option><%=pcMM%></option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+             </select></font></td>
+            <td width="21%" height="30">
+            <p align="center">
+            <select size="1" name="DD" tabindex="6" style="background-color: #FFFFCC">
+               <option><%=pcDD%></option>
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+               <option>6</option>
+               <option>7</option>
+               <option>8</option>
+               <option>9</option>
+               <option>10</option>
+               <option>11</option>
+               <option>12</option>
+               <option>13</option>
+               <option>14</option>
+               <option>15</option>
+               <option>16</option>
+               <option>17</option>
+               <option>18</option>
+               <option>19</option>
+               <option>20</option>
+               <option>21</option>
+               <option>22</option>
+               <option>23</option>
+               <option>24</option>
+               <option>25</option>
+               <option>26</option>
+               <option>27</option>
+               <option>28</option>
+               <option>29</option>
+               <option>30</option>
+               <option>31</option>
+             </select></td>
+            <td width="33%" height="30" colspan="2" >
+            <p align="left">
+            </font>
+           <select size="1" name="YYYY" tabindex="7" style="background-color: #FFFFCC">
+               <option><%=pcYY%></option>
+               <option selected>2003</option>
+               <option>2004</option>
+               <option>2005</option>
+          </select></td>
+            <td width="43%" height="30" >
+            <p align="left">
+           </font></td>
+          </tr>
+          <tr>
+           <td width="17%" height="30"><b><font face="Verdana" size="2">From <a href="javascript:locatezip()">zip code</a>:</font></b></td>
+           <td width="13%" height="30"><b><font size="2" face="Verdana"> 
+           <input type="text" class="textFeilds" name="SZIP" size="7" style="border:1px solid #316194; font-size:10pt; float:left; background-color:#FFFFCC" tabindex="5" value="<%=ALLT(_EST.SZIP)%>"> </font></b></td>
+           <td width="11%" height="30"><font size="2"><a href="javascript:locatezip()"><img border="0" src="zz/images/magnitude.gif" width="40" height="28" onClick="locatezip()"></a></font></td>
+           <td width="19%" height="30"><b><font face="Verdana" size="2">To <a href="javascript:locatezip()">zip code</a>:</font></b></td>
+           <td width="14%" height="30"><B><font size="2" face="Verdana">
+           <input type="text" class="textFeilds" name="RZIP" size="7" style="border:1px solid #316194; font-size:10pt; float:left; background-color:#FFFFCC" tabindex="6" value="<%=ALLT(_EST.RZIP)%>"></font></td>
+           <td width="16%" height="30"><font size="2"><a href="javascript:locatezip()"><img border="0" src="zz/images/magnitude.gif" width="40" height="28" onClick="locatezip()"></a></font></td>
+           <td width="3%" height="30"><b><font face="Verdana" size="2">&nbsp;</font></b><font size="2" face="Verdana"><b> </b></font></td>
+           <td width="22%" height="30"></td>
+         </tr>
+          <tr>
+            <td width="17%" height="30"><b><font face="Verdana" size="2">Move Volume:</font></b></td>
+            <td width="43%" height="30" colspan="3"><b><font size="2" face="Verdana"> 
+            </font></b><span style="background-color: #FFFFCC">
+            <select size="1" name="ROOMS" tabindex="12" style="background-color: #FFFFCC">
+		        	<option selected>< Select weight of move></option>
+                    <option>Studio</option>
+                    <option>One bedroom</option>
+                    <option>Two bedrooms</option>
+                    <option>Three bedrooms</option>
+                    <option>Four bedrooms</option>
+                    <option>Five bedrooms</option>
+                    <option>Six bedrooms and more</option>
+	     	</select></span></td>
+            <td width="30%" height="30" colspan="2">
+   		    <span style="background-color: #FFFFCC">
+   		    <select size="1" name="LEVEL" tabindex="13" style="background-color: #FFFFCC">
+                    <option selected>Ground Level</option>
+                    <option>Elevator</option>
+                    <option>Stairs</option>
+	     	</select></span></td>
+            <td width="3%" height="30"><b><font face="Verdana" size="2">&nbsp;</font></b></td>
+            <td width="22%" height="30"></td>
+          </tr>
+        </table></td></tr></table>
+<br>
+<div align="center">
+  <center>
+  <table border="2" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber9" bordercolorlight="#4E6699" bordercolordark="#4E6699" height="45">
+    <tr>
+      <td width="100%" height="45">
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="99%" id="AutoNumber12" height="27">
+          <tr>
+            <td width="39%" height="27"><b><font face="Verdana" size="2">Expected Delivery Date:</font></b></td>
+            <td width="19%" height="27">
+            <input name="DLVDTE" size="10" style="border:1px solid #316194; font-size:10pt; float:left;" value="<%=IIF(EMPTY(_EST.DLVDTE),'',ALLT(DTOC(_EST.DLVDTE)))%>" tabindex="8"></td>
+            <td width="7%" height="27"><b><font face="Verdana" size="2">To:</font></b></td>
+            <td width="37%" height="27"><p align="center">
+            <input name="DLVDTE1" size="10" style="border: 1px solid #316194; font-size:10pt; float:left;" value="<%=IIF(EMPTY(_EST.DLVDTE1),'',ALLT(DTOC(_EST.DLVDTE1)))%>" tabindex="9"></td>
+          </tr>
+        </table>
+        </center>
+      </div>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<br>
+  <table border="0" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+      <td width="49%" align="center">
+      <input type="button" CLASS="SUBOFF" name="ENTRYCUST" onclick="SubmitEntry()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="14" value="Continue to Inventory"></td>
+	</tr>
+  </table>
+        <td width="30%" valign="top" height="364">
+     <br>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="200" BGCOLOR="#EFEFDF">
+	<tr>
+      <td><IMG SRC="zz/images/menuFrame_01.gif" width="200" height="10"></td>
+	</tr>
+	<tr>
+	 <td valign="top">
+   <table border="0" width="189" cellspacing="0" align="center">
+	<tr>
+	  <td width="192">
+   <table border="0" width="100%" cellspacing="0">
+	<tr>
+	 <td align="center" width="192"><b><font face="Arial, Helvetica, sans-serif" size="4" color="#316194">Quick Guide</font></b></td>
+	</tr>
+	<tr>
+	 <td width="192"><font face="Verdana" size="2">
+	                 In order to provide you with an accurate  quote, please fill&nbsp;out the information in this page.<br>
+					 The estimate  is based on the distance between the origin and the destination. If you do not know your zip code, 
+                     you can click on the magnitude icon and locate your nearest zip code.</font></td>
+	</tr>
+</table>			
+	<table border="0" width="100%" cellspacing="0">
+	 <tr>
+	   <td CLASS="TDTOP1" colspan="2">Type of Move</td>
+	 </tr>
+	 <tr>
+	   <td CLASS="TDBODY1">
+	   <input type="radio" value="V1" name="optRC" <% IIF(_EST.RC = 'R','checked','')%> checked tabindex="15">Residential</td>
+	   <td CLASS="TDBODY1">
+	   <input type="radio" value="V2" name="optRC" <% IIF(_EST.RC = 'C','checked','')%> tabindex="16">Commercial</td>
+     </tr>
+	</table>	
+   <br>
+	<table border="0" width="100%" cellspacing="0">
+	 <tr>
+	   <td CLASS="TDTOP1">How did you hear about us?</td>
+	 </tr>
+	  <tr>
+		<td CLASS="TDBODY1">
+            <select size="1" name="REF" tabindex="17">
+				<option><%=_EST.REF%></option>
+				<% SELECT RNAME FROM TREF INTO CURSOR _TREF ORDER BY RNAME 
+					SCAN %>
+				<OPTION><%=_TREF.RNAME %></OPTION>
+				<% ENDSCAN %>
+				</select></td>
+	</tr>
+	</table>	
+	<table border="0" width="100%" cellspacing="0">
+	  <tr>
+		<td width="192" align="center"><font size="1" align="center"><%=CDOW(DATE())+' - '+TTOC(datetime())%></font>&nbsp;</td>
+	  </tr>
+	</table>
+	</td>
+	</tr>
+  </table>
+	</td>
+	</tr>
+    <tr>
+      <td><IMG SRC="zz/images/menuFrame_03.gif" width="200" height="10"></td>
+	</tr>
+   </table>
+        </td>
+	  </tr>
+	</table>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+		<table border="0" width="80%" align="center">
+		  <tr>
+		    <td width="100%"><b><font color="#FF0000"><%=pcMSG%></font></b></td>
+		  </tr>
+		</table>
+    </td>
+  </tr>
+</table>
+<!-- frame table -->
+    </td>
+  </tr>
+  <tr>
+    <td width="700" bgcolor="#4E6699" colspan="3" height="23">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="700" colspan="3" bgcolor="#4E6699" height="16"><IMG SRC="zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+</form>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<TITLE>Auto Rate</TITLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) 
+  {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpauto~AutoRateEditRet~<%=pcSCR%>~<%=pcID%>";
+       document.theForm.submit();
+     }
+  }
+
+function exitframe() {
+	parent.location.href=('javascript:window.close()');
+	}
+
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+
+<%SELECT _LIST%>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="650">
+  <tr>
+    <td width="742" height="18" bgcolor="#FF9900"><a onclick="exitframe()">
+    <img border="0" src="/zz/images/x-green.gif" style="cursor:hand;" align="right"></a></td>
+  </tr>
+  <tr>
+    <td width="742" BGCOLOR="#000000" align="center" height="19"><b><font color="#FFFFFF">&nbsp;<%=pcNAME%></font></b></td>
+  </tr>
+ <form name="theForm" method="POST">
+    <td width="100%" align="center" bgcolor="#FFFFFF" valign="top">
+ <!--edit table -->	
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+  <tr valign="top">
+    <td width="8%" align="center" bgcolor="#C0C0C0"><b><font face="Arial" style="font-size: 11pt;"><br>Update</font></b></td>
+    <td width="24%" align="center" bgcolor="#C0C0C0"><b><font face="Arial" style="font-size: 11pt;"><br>Name</font></b></td>
+    <td width="7%" align="center" bgcolor="#C0C0C0"><b><font face="Arial" style="font-size: 11pt;"><br>Miles</font></b></td>
+    <td width="9%" align="center" bgcolor="#C0C0C0"><b><font face="Arial" style="font-size: 11pt;"><br>Rate</font></b></td>
+    <td width="12%" align="center" bgcolor="#C0C0C0"><b><font face="Arial" style="font-size: 11pt;">Per<br>Mile</font></b></td>
+    <td width="15%" align="center" bgcolor="#C0C0C0"><b><font face="Arial" style="font-size: 11pt;"><br>Minimum</font></b></td>
+    <td width="1%" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+ </tr>
+  <%SCAN %>
+ <tr bgcolor="<%=IIF(ODD,'CCCCFF','EEEEEE')%>">
+   <td width="8%" align="center"><input type="checkbox" name="UPD<%=ID2%>" value="ON")><br><%=ID3%></td>
+   <td width="24%"><font face="Arial" size="2"><b><%=STATE+' '+NAME%>&nbsp;</b></font></td>
+   <td width="7%" align="center"><input NAME="MILES<%=ID2%>" size="8" VALUE="<%=ALLT(STR(MILES))%>" ></td>
+   <td width="9%" align="center"><font face="Arial" size="2"><b>A<input NAME="RATEA<%=ID2%>" size="8" VALUE="<%=RATEA%>" ><br>
+   <font face="Arial" size="2" color="#008000">B<input NAME="RATEB<%=ID2%>" size="8" VALUE="<%=RATEB%>" style="border: 1px solid #008000" ><br>
+   <font color="#FF9900">C<input NAME="RATEC<%=ID2%>" size="8" VALUE="<%=RATEC%>" style="border: 1px solid #FF9900" ></font></b></td>
+   <td width="12%" align="center"><font face="Arial" size="2"><b>A<input NAME="PERMILEA<%=ID2%>" size="8" VALUE="<%=PERMILEA%>" ><br>
+   <font face="Arial" size="2" color="#008000">B<input NAME="PERMILEB<%=ID2%>" size="8" VALUE="<%=PERMILEB%>" style="border: 1px solid #008000" size="20" ><br>
+   <font color="#FF9900">C<input NAME="PERMILEC<%=ID2%>" size="8" VALUE="<%=PERMILEC%>" style="border: 1px solid #FF9900" ></font></b></td>
+   <td width="15%" align="center"><font face="Arial" size="2"><b>A<input NAME="MINA<%=ID2%>" size="8" VALUE="<%=MINA%>" ><br>
+   <font size="2" face="Arial" color="#008000">B<input NAME="MINB<%=ID2%>" size="8" VALUE="<%=MINB%>" style="border: 1px solid #008000" ><br>
+   <font color="#FF9900">C<input NAME="MINC<%=ID2%>" size="8" VALUE="<%=MINC%>" style="border: 1px solid #FF9900" ></font></b></td>
+   <td width="1%">&nbsp;</td>
+ </tr>
+  <%ENDSCAN %>
+    </table>
+<!--end edit table -->	
+    <br>
+<table border="0" width="38%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="24%" align="center">
+    <input type="submit" CLASS="SUBOFF" name="B54" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="13" value="Submit"></td>
+    <td width="5%" align="center">&nbsp;</td>
+    <td width="18%" align="center">&nbsp;</td>
+    <td width="74%" align="center">
+    <input type="submit" CLASS="SUBOFF" name="B56" onclick="exitframe()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="15" value="Exit"></td>
+ </tr>
+</table>       
+<!--end  Buttons --->
+    <br></td>
+</form>
+  <tr>
+    <td width="742" bgcolor="#000000" height="14"><b><font size="2" color="white">Modify By:&nbsp;&nbsp;<%=pcID%></font></b></td>
+  </tr>
+  <tr>
+    <td width="742" height="18" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

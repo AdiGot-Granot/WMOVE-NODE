@@ -1,0 +1,159 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Restricted IP</title>
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 600,
+		maxHeight	: 350,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+
+function SaveIP(par) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~restipsave~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~restipsave~<%=pcSCR%>~~WL";
+       document.theForm.submit();
+      }      
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+					font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	 .BUTTON	{	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 70; 
+                    height: 25; 
+                    cursor: pointer;}  				  	
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="50%">
+  <tr>
+    <td width="100%"><a class="fancybox fancybox.iframe" href="/zz/help/restrictip.htm"><img border="0" src="/zz/util/manual.gif" title="Read about restricted IP" width="32" height="32"></a></td>
+  </tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="50%">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" colspan="2"><b><font face="Verdana" size="4" color="#FFFFFF">Restricted IP</font></b></td>
+  </tr>
+  <tr>
+    <td width="38%" height="25" valign="bottom" bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;<font face="Verdana" size="2"><b>My IP is:&nbsp;&nbsp;<%=pcIP%></b></font></td>
+    <td width="62%" height="25" valign="bottom" bgcolor="#FFFFFF"><%IF pcRECS>'0'%><font face="Verdana" size="2"><b>Restricted IP: <%=pcRECS%></b> (500 Limit)</font><%ENDIF%></td>
+  </tr>  
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" colspan="2">
+  <form name="theForm" method="POST">    			
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="12%" class="TD1">IP Name</td>
+    <td width="16%" class="TD1" style="border-left: 1px solid #A9A9A9;">IP Address</td>
+    <td width="14%" class="TD1" style="border-left: 1px solid #A9A9A9;">Block IP Series</td>
+    <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;">Active</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Delete</td>
+    <td width="27%" class="TD1" style="border-left: 1px solid #A9A9A9;">Updated By</td>
+    <td width="19%" class="TD1" style="border-left: 1px solid #A9A9A9;">Action</td>
+ </tr>
+ <%SELECT _RESTIP 
+ 	SCAN %>
+  <tr style="line-height:25px;">
+    <td width="12%" class="TD3"><%=ALLT(CNAME)%></td>
+    <td width="16%" class="TD2"><%=ALLT(IP)%></td>
+    <td width="14%" class="TD2"><label class="switch"><input type="checkbox" id="togBtn" name="<%='B'+ALLT(STR(RESTIPID)) %>" value="ON" <%=IIF(BLKIPSEQ,'checked','')%>><div class="slider round"></div></label></td>
+    <td width="9%" class="TD2"><label class="switch"><input type="checkbox" id="togBtn" name="<%='S'+ALLT(STR(RESTIPID)) %>" value="ON" <%=IIF(ACTIVE,'checked','')%>><div class="slider round"></div></label></td>
+    <td width="10%" class="TD2"><label class="switch"><input type="checkbox" id="togBtn" name="<%='D'+ALLT(STR(RESTIPID)) %>" value="ON"><div class="slider round"></div></label></td>
+    <td width="30%" class="TD3" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(USERNAME+', ')%><%=ALLT(TTOC(ADDDTE))%></td>
+    <td width="19%" class="TD2"><input type="button" class="BUTTON" name="B1" onclick="SaveIP(<%=ALLT(STR(RESTIPID))%>)" value="Save"></td>
+ </tr>
+<% ENDSCAN %>
+  <tr>
+    <td width="100%" colspan="7"><hr color="#A9A9A9" width="99%" size="1"></hr></td>
+ </tr>
+  <tr>
+    <td width="12%" align="center"><input type="text" autocomplete="off" name="CNAME" size="9" value=""></td>
+    <td width="16%" align="center"><input type="text" autocomplete="off" name="IP" size="12" value=""></td>
+    <td width="82%" colspan="5"><input type="button" class="BUTTON" name="B1" onclick="SaveIP(999)" value="Add New"></td>
+ </tr>
+ </table> 
+  <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="40%">
+  <tr>
+    <td height="35">&nbsp;<font style="font-family:Verdana;font-size:11pt;"><b>White List IP:</b></font>&nbsp;&nbsp;<input type="text" autocomplete="off" name="IPADDRESS" size="12" value="">&nbsp;&nbsp;<input type="button" class="BUTTON" name="B1" onclick="submitFunction(2)" value="Submit"></td>
+ </tr> 
+</table>  
+ </form>
+   <% IF pnLEVEL=2 OR pnLEVEL>4 %>    
+    <br><center><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="6" value="Exit"></center><br>
+   <%ENDIF%> 
+    </td>
+ </tr> 
+  <tr>
+    <td bgcolor="#0081D3" colspan="2">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Pay Commission to User - Auto Transport</title>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;					
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD5		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}					
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #556677;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #CCC;
+  color: #000;
+/*  border-color: #000; */
+</style>
+</head>
+
+<body>
+<br><center><b><font face="Arial"><a href="wc.dll?mprep~salesrepwc~<%=pcSCR%>">Exit</a><br><br>Move Date: <%=ldDATE1%> - <%=ldDATE2%><br>Pay Commission to: <%=lcUSER%><br><br>Commission is calculated from the Vehicle Deposit</font></b></center>
+ 
+<form method="POST" action="wc.dll?mprep~autocommret~<%=pcSCR%>">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="90%">
+  <tr>
+    <td width="3%" class="TD1">Job No</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Book Date</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Book By</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Move Date</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Customer</td>
+    <td width="11%" class="TD1" style="border-left: 1px solid #A9A9A9;">Locations</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Agent</td>
+    <td width="14%" class="TD1" style="border-left: 1px solid #A9A9A9;">Company</td>
+    <td width="2%" class="TD1" style="border-left: 1px solid #A9A9A9;">Estimate</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Deposit</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Comm</td>
+    <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Cust. Pay</td>
+    <td width="2%" class="TD1" style="border-left: 1px solid #A9A9A9;">Pay</td>
+ </tr>
+ <% SELECT _LIST 
+    SCAN %>
+  <tr>
+    <td width="3%" class="TD4" align="center"><a href="wc.dll?mprep~printselect~<%=pcSCR%>~<%=+ALLT(_LIST.REFNO)%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a></td>
+    <td width="3%" class="TD2"><b><%=TTOD(BOOKDTE)%></b></td>
+    <td width="3%" class="TD2"><%=PROPER(BOOKUSER)%></td>
+    <td width="4%" class="TD2"><b><%=LBOOKDTE%></b></td>
+    <td width="6%" class="TD2"><%=PROPER(SNAME)%>&nbsp;</td>
+    <td width="11%" class="TD2"><%=PROPER(ALLT(SCITY))+', '+SSTATE%>-<%=PROPER(ALLT(RCITY))+', '+RSTATE%></td>
+    <td width="4%" class="TD2"><%=AGENT%>&nbsp;</td>
+    <td width="14%" class="TD2"><%=ALLT(PROPER(COMPANY))%>&nbsp;</td>
+    <td width="3%" class="TD5"><font COLOR="#008000"><B><%='$'+ALLT(STR(SUBTOTAL))%></B></font>&nbsp;</td>      
+    <td width="3%" class="TD5"><font COLOR="#083484"><B><%='$'+ALLT(STR(DEPOSIT))%></B></font>&nbsp;</td>
+    <td width="3%" class="TD5"><font COLOR="#FF0000"><B><%='$'+ALLT(STR(REPCOMM,8,2))%></B></font>&nbsp;</td>
+    <td width="3%" class="TD5"><font COLOR="#FF0000"><B><%='$'+ALLT(STR(PAYAMT))%></B></font>&nbsp;</td>
+    <td width="2%" class="TD3"><input type="checkbox" name="<%=ALLT(ORDNO)%>" value="ON"></td>
+ </tr>
+ <% ENDSCAN %>
+  <tr style="font-family:Verdana;font-size:10pt;">
+    <td width="48%" align="right" colspan="8"><b>Total:</b>&nbsp;</td>
+    <td width="3%" align="right"><font COLOR="#008000"><B><%=TRANSFORM(pnSUBTOTAL,'$$$,$$9.99')%></B></font>&nbsp;</td>      
+    <td width="3%" align="right"><font COLOR="#083484"><B><%=TRANSFORM(pnDEPOSIT,'$$$,$$9.99')%></B></font>&nbsp;</td>
+    <td width="3%" align="right"><font COLOR="#FF0000"><B><%=TRANSFORM(pnREPCOMM,'$$$,$$9.99')%></B></font>&nbsp;</td>
+    <td width="3%" align="right"><font COLOR="#FF0000"><B><%=TRANSFORM(pnPAIDAMT,'$$$,$$9.99')%></B></font>&nbsp;</td>
+    <td width="2%">&nbsp;</td>
+ </tr>     
+</table>
+<p align="center"><input type="submit" class="SUBOFF" value="Submit" name="B1"></p>
+</form>
+</body>
+</html>

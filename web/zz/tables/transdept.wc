@@ -1,0 +1,93 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Transfer Department Estimates</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>~1');
+	}
+
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="35%">
+  <tr>
+   <td width="100%" BGCOLOR="#0081D3" align="center"><b><font face="Verdana" color="#FFFFFF">Transfer Follow-up Estimates Between Departments</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><BR>
+ <form method="POST" action="wc.dll?mpmainten~transdeptret~<%=pcSCR%>">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="95%" cellspacing="0" cellpadding="0">
+   <tr>
+     <td width="52%">&nbsp;&nbsp;<b><font face="Verdana" size="2">From Department:</font></b>
+   	 <%SELECT _DEPTA
+           GO TOP %>     
+     <select size="1" name="DEPTA">
+	  <option selected></option>
+		 <%	SELECT _DEPTA
+				SCAN %>
+	  <OPTION value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%> - <%=ALLT(STR(CNT1))+' Jobs'%></OPTION>
+		 <% ENDSCAN %>
+	 </select> 
+     </td>
+    <td width="48%">&nbsp;&nbsp;<b><font face="Verdana" size="2">To Department:</font></b>
+    <%SELECT _DEPTB
+          GO TOP %>
+     <select size="1" name="DEPTB">
+	  <option selected></option>
+		<%	SELECT _DEPTB
+			 	 SCAN %>
+	    <OPTION value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%>  - <%=ALLT(STR(CNT1))+' Jobs'%></OPTION>
+		 <% ENDSCAN %>
+	 </select>
+	 </td>
+  </tr>
+ <%IF !EMPTY(pcJOBS)%>  
+   <tr>
+     <td width="100%" colspan="2">&nbsp;&nbsp;<b><font face="Verdana" size="2" color="#008000">You successfully transferred <font color="#000000"><%=pcJOBS%></font> follow-up estimates.</b></font></td>
+  </tr>
+ <%ENDIF%>            
+</table>		
+	<BR>
+<table border="0" width="80%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="26%" align="center"><input type="submit" CLASS="SUBOFF" name="B31" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+	<td width="23%" align="center"><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="SubmitFunction(1)" value="Exit"></td>    
+</table>
+    </td>
+  </tr>
+    </form>
+  <tr>
+    <td width="100%" bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+</body>
+</html>

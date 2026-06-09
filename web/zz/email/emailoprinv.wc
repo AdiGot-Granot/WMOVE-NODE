@@ -1,0 +1,22 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Send Email</title>
+</head>
+
+<body>
+<br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="72%">
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2"><%=ALLT(lcTITLE)%> was sent successfully to:<br><br><%=pcEMAIL%></b></font></td>
+ </tr>
+</table>
+
+<br><br><center><img border="0" src="zz/images/mailsent.gif" width="149" height="103"><br><br><br>
+<b><a href="javascript:window.close()"><font face="Verdana" size="2">Close Window</font></a></b></center>
+
+</body>
+
+</html>

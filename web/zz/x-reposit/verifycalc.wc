@@ -1,0 +1,355 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Moving Leads</title>
+<LINK REL="STYLESHEET" TYPE="text/css" href="/granot/mystyle.css" />
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function sf(){
+	document.theForm.btnContinue.focus();
+}
+
+function VerifyLeads(){
+       frm=document.theForm ;
+		<%IF _S.SERVERID=="PROD"%>
+       		frm.action='https://secure.granot.com/wc.dll?isweb~verifycalcret';
+		<%ELSE%>
+       		frm.action='/wc.dll?isweb~verifycalcret';
+		<%ENDIF%>
+	
+       frm.submit();
+}
+
+
+function recalcleads(){
+	var frama=document.theForm ;
+	for (var i=0; i < frama.length; i++){
+		// validate zip
+		if (frama.elements[i].type=="text" && frama.elements[i].name.charAt(0)=="Z" && frama.elements[i].value!="" && frama.elements[i].value<10000) {
+			alert("Please provide valid five digits zip code (US only)");
+			frama.elements[i].focus();
+			return};
+
+		// validate radius
+		if (frama.elements[i].type=="text" && frama.elements[i].name.charAt(0)=="R" && frama.elements[i].value!="" && frama.elements[i].value<100) {
+			alert("Please provide valid radius (100-300 miles)");
+			frama.elements[i].focus();
+			return};
+			
+		// check zip and radius
+		//if (frama.elements[i].type=="text" && frama.elements[i].name.charAt(0)=="Z" && frama.elements[i].value=="" && frama.elements[i+1].value!="" ) {
+		//	alert("Please provide valid zip code");
+		//	frama.elements[i+1].focus();
+		//	return};
+
+		// check radius and zip
+		if (frama.elements[i].type=="text" && frama.elements[i].name.charAt(0)=="R" && frama.elements[i].value=="" && frama.elements[i-1].value!="" ) {
+			alert("Please provide valid radius (100-300 miles)");
+			frama.elements[i].focus();
+			return};
+			
+		// check zip and leads type selection
+		if (frama.elements[i].type=="text" && frama.elements[i].name.charAt(0)=="Z" && frama.elements[i].value!="" && frama.elements[i+2].checked==false && frama.elements[i+3].checked==false && frama.elements[i+4].checked==false && frama.elements[i+5].checked==false) {
+			alert("Please select at least one type of leads.");
+			frama.elements[i+2].focus();
+			return};
+	}
+	frama.action='/wc.dll?isweb~recalcret';
+    frama.submit();
+
+}
+
+</SCRIPT>
+</head>
+<body bgcolor="#ADBACE" onload="sf()">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="750" height="13">
+  <tr>
+    <td width="100%" height="13" bgcolor="#FFB610">
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#4A698C" height="37"><b>
+    <font face="Arial Rounded MT Bold" size="5" color="#FFFFFF">&nbsp;GRANOT, 
+    INC.</font></b></td>
+  </tr>
+</table>
+  </center>
+</div>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="750" height="26">
+  <tr height="20">
+    <td class="NAVOFF" onclick="windowhref(1)" onmouseover="javasctript: this.className='NAVON'" onmouseout="javasctript: this.className='NAVOFF'" width="771" style="background-color: #CECFCE" height="26">&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="750">
+  <tr>
+    <td width="4" bgcolor="#FFFFFF">&nbsp;</td>
+    <td width="692" bgcolor="#FFFFFF" bordercolor="#C0C0C0">
+    <!--- Body  Starts-->
+    
+			<TABLE CELLPADDING="0" CELLSPACING="3" BORDER="2" BORDERCOLOR="#ffffff" width="740" height="360">
+			  <tr>
+			    <td width="740" height="19" BORDERCOLOR="#708090"><b>
+                &nbsp;<font color="#CE0000" face="Verdana">Moving Leads 
+                Calculator</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="740" height="333" BORDERCOLOR="#708090" valign='top'>
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+	<%IF pcSYSTEM="WEB"%>
+			<TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="100%" height="57">
+          <tr>
+            <td width="23%" bgcolor="#CE0000" height="29" align="center" BORDERCOLOR="#CE0000"><b>
+            <font face="Verdana" color="#FFFFFF">&nbsp;STEP 1</font></b></td>
+            <td width="30%" bgcolor="#CECFCE" height="29" align="center" BORDERCOLOR="#708090"><b>
+            <font face="Verdana" color="#FFFFFF">&nbsp;STEP 2</font></b></td>
+            <td width="24%" bgcolor="#CECFCE" height="29" align="center" BORDERCOLOR="#708090"><b>
+            <font face="Verdana" color="#FFFFFF">&nbsp;Step 3</font></b></td>
+            <td width="53%" bgcolor="#FFFFFF" height="57" align="center" BORDERCOLOR="#708090" rowspan="2">
+            <b><font face="Verdana" color="#CECFCE" size="2">Begin Getting Your 
+            Moving Leads</font></b></td>
+          </tr>
+          <tr>
+            <td width="23%" bgcolor="#FFFFFF" height="28" align="center" BORDERCOLOR="#CE0000"><b>
+            <font face="Verdana" color="#CE0000">Calculator Tool</font></b></td>
+            <td width="30%" bgcolor="#FFFFFF" height="28" align="center" BORDERCOLOR="#708090"><b>
+            <font face="Verdana" color="#C0C0C0">Personal Information</font></b></td>
+            <td width="24%" bgcolor="#FFFFFF" height="28" align="center" BORDERCOLOR="#708090"><b>
+            <font face="Verdana" color="#C0C0C0">Payment</font></b></td>
+          </tr>
+    </table>
+	<%ENDIF%>
+	
+		<br>
+
+		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+          <tr>
+            <td width="100%"><font class="list" face="verdana,arial,sans-serif">
+            <b><font size="2">Verify your selection and click <i>CONTINUE</i>
+            <font color="#CE0000">or</font> 
+            use the Cost Optimization Tool by narrowing your selection to zip 
+            code and radius of operation. This method <font color="#CE0000">
+            saves you money</font> by getting leads from specific places. 
+            Optimize your selection and click on <i>RECALCULATE.<br>
+            </i><br>
+            View the following Example:</b></font></font></td>
+          </tr>
+          <tr>
+            <td width="100%" align="center">
+			  <TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="633" height="48">
+			  <tr>
+			    <td width="630" height="10" bgcolor="#CECFCE" colspan="6" align="center" BORDERCOLOR="#708090">
+				    <b><font face="Verdana" size="2">Example - Cost 
+                    Optimization Tool</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="80" height="10" align="center" BORDERCOLOR="#708090"><b>
+                <font face="Verdana" size="2" color="#808080">Zip</font></b></td>
+			    <td width="82" height="10" align="center" BORDERCOLOR="#708090"><b>
+                <font face="Verdana" size="2" color="#808080">Radius</font></b></td>
+			    <td width="88" height="10" align="center" BORDERCOLOR="#708090"><b>
+                <font face="Verdana" size="2" color="#808080">Local</font></b></td>
+			    <td width="133" height="10" align="center" BORDERCOLOR="#708090"><b>
+                <font face="Verdana" size="2" color="#808080">Long Distance</font></b></td>
+			    <td width="116" height="10" align="center" BORDERCOLOR="#708090"><b>
+                <font face="Verdana" size="2" color="#808080">International</font></b></td>
+                <td width="131" height="10" align="center" BORDERCOLOR="#708090"><b>
+                <font face="Verdana" size="2" color="#808080">Auto Transport</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="80" height="10" BORDERCOLOR="#708090" align="center">
+                <font face="arial" size="-1" color="#808080">75243</font></td>
+			    <td width="82" height="10" BORDERCOLOR="#708090" align="center">
+                <font color="#808080">150
+                <b><font size="1" face="Verdana">miles</font></b></font></td>
+			    <td width="88" height="9" BORDERCOLOR="#708090" align="center">
+                <font color="#808080">
+                <input type="checkbox" value="ON" name="el" checked></font></td>
+			    <td width="133" height="9" BORDERCOLOR="#708090" align="center">
+                <font color="#808080">
+                <input type="checkbox" value="ON" name="ed" checked></font></td>
+			    <td width="116" height="9" BORDERCOLOR="#708090" align="center">
+                <font color="#808080"><input type="checkbox" value="ON"></font></td>
+			    <td width="131" height="9" BORDERCOLOR="#708090" align="center">
+                <font color="#808080"><input type="checkbox" value="ON"></font></td>
+			  </tr>
+			  <tr>
+			    <td width="80" height="10" BORDERCOLOR="#708090" align="center">
+                <font face="arial" size="-1" color="#808080">10105</font></td>
+			    <td width="82" height="10" BORDERCOLOR="#708090" align="center">
+                <font color="#808080">100
+                <b><font size="1" face="Verdana">miles</font></b></font></td>
+			    <td width="88" height="9" BORDERCOLOR="#708090" align="center">
+                <font color="#808080">
+                <input type="checkbox" value="ON" name="el" checked></font></td>
+			    <td width="133" height="9" BORDERCOLOR="#708090" align="center">
+                <font color="#808080">
+                <input type="checkbox" value="ON" name="ed" checked></font></td>
+			    <td width="116" height="9" BORDERCOLOR="#708090" align="center">
+                <font color="#808080">
+                <input type="checkbox" value="ON" name="ei" checked></font></td>
+			    <td width="131" height="9" BORDERCOLOR="#708090" align="center">
+                <font color="#808080"><input type="checkbox" value="ON"></font></td>
+			  </tr>
+			  </table>
+            
+            
+            
+              <hr>
+            
+            
+            
+            </td>
+          </tr>
+    </table>
+	
+		<form name="theForm" method="POST">
+		<input type="hidden" name="SCR" size="20" value="<%=ALLT(pcSCR)%>">
+		<input type="hidden" name="SYSTEM" size="20" value="<%=ALLT(pcSYSTEM)%>">
+		<input type="hidden" name="TEMPDBF" size="20" value="<%=ALLT(pcTEMPDBF)%>">
+		<div align="center">
+          <center>
+				
+		<br>
+		<table border="0" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align="center">
+		  <tr>
+		    <td width="25%" align="center"><input id="btnSubmit0" type="button" class="BTN" name="btnContinue" onclick="VerifyLeads()" style="width:120" tabindex="1" value="Continue">&nbsp;</td>    
+		    <td width="5%" align="center">&nbsp;</td>    
+		    <td width="25%" align="center"><input id="btnSubmit1" type="button" class="BTN" name="btnRecalc" onclick="recalcleads()" style="width:120" tabindex="2" value="Recalculate">&nbsp;</td>    
+		    <td width="5%" align="center">&nbsp;</td>    
+		    <td width="19%" align="right" bgcolor="#CECFCE"><b><font face="Verdana" size="2">Cost:&nbsp;</font></b></td>    
+		    <td width="1%" align="center" bgcolor="#CECFCE">&nbsp;</td>    
+		    <td width="20%" align="left" bgcolor="#CECFCE"><font face="Verdana">
+            <b><font size="2">$</font><input style="border-width:0; width:80; font-family:Verdana; font-size:12px; font-weight:bold; background-color:#CECFCE" type="text" name="COST" value="<%=ALLT(STR(pnCOST,8,2))%>" size="20"></b></td>    
+		  </tr>
+		</table>
+		<br>
+		<table border="0" width="408" cellspacing="0" height="94">
+		 <tr><td valign="top" width="94" height="92">
+			<!-- Type-->
+			<TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="633" height="48">
+			  <tr>
+			    <td width="630" height="10" bgcolor="#4A698C" colspan="5" align="center" BORDERCOLOR="#708090">
+				    <b><font face="Verdana" size="2" color="#FFFFFF">Selected Leads by 
+                    Complete States</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="125" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">State</font></b></td>
+			    <td width="90" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Local</font></b></td>
+			    <td width="140" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Long Distance</font></b></td>
+			    <td width="130" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">International</font></b></td>
+                <td width="145" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Auto Transport</font></b></td>
+			  </tr>
+			  <% SELECT * FROM _R1 INTO CURSOR _R2 WHERE !EMPTY(STATE)
+			  	 SCAN%>
+			  <tr>
+			    <td width="125" height="10" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">&nbsp;<%=ALLT(NAME)%><input type="hidden" name="<%=ALLT(STATE)%>" value="<%=ALLT(STATE)%>"></font></b></td>
+			    <td width="90" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%=ALLT(STATE)+'L'%>" value="ON" <%=IIF(LOCAL,"checked","")%>></td>
+			    <td width="140" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%=ALLT(STATE)+'D'%>" value="ON" <%=IIF(LD,"checked","")%>></td>
+			    <td width="130" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%=ALLT(STATE)+'I'%>" value="ON" <%=IIF(INTL,"checked","")%>></td>
+			    <td width="145" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%=ALLT(STATE)+'T'%>" value="ON" <%=IIF(AUTO,"checked","")%>></td>
+			  </tr>
+			  <%ENDSCAN%>
+              <tr>
+			    <td width="630" height="1" bgcolor="#FFCF63" colspan="5" align="center" BORDERCOLOR="#708090">
+				    &nbsp;</td>
+			  </tr>
+			  </table>
+			  
+			  <br>&nbsp;<font face="Verdana" size="2" color="#CE0000"> <b>New!</b></font><TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="633" height="48">
+			  <tr>
+			    <td width="630" height="10" bgcolor="#4A698C" colspan="6" align="center" BORDERCOLOR="#708090">
+				    <b><font face="Verdana" size="2" color="#FFFFFF">Cost 
+                    Optimization Tool</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="74" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Zip 
+                Code</font></b></td>
+			    <td width="127" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Radius<br>
+                </font><font face="Verdana" size="1">(100-300 miles)</font></b></td>
+			    <td width="74" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Local</font></b></td>
+			    <td width="124" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Long Distance</font></b></td>
+			    <td width="109" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">International</font></b></td>
+                <td width="122" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Auto Transport</font></b></td>
+			  </tr>
+			  <% SELECT * FROM _R1 INTO CURSOR _R3 WHERE EMPTY(STATE)
+			  	 SCAN%>
+			  <tr>
+			    <td width="74" height="10" BORDERCOLOR="#708090" align="center"><input type="text" name="<%='Z'+ALLT(STR(RECNO()))%>" size="5" style="border: 1px solid #52657B; text-align: right" VALUE="<%=ALLT(ZIP)%>"></td>
+			    <td width="127" height="10" BORDERCOLOR="#708090" align="center"><input type="text" name="<%='R'+ALLT(STR(RECNO()))%>" size="4" style="border: 1px solid #52657B; text-align: right" VALUE="<%=IIF(RADIUS>0,ALLT(STR(RADIUS)),"200")%>">
+                <b><font size="1" face="Verdana">miles</font></b></td>
+			    <td width="74" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='L'+ALLT(STR(RECNO()))%>" value="ON" <%=IIF(LOCAL,"checked","")%>></td>
+			    <td width="124" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='D'+ALLT(STR(RECNO()))%>" value="ON" <%=IIF(LD,"checked","")%>></td>
+			    <td width="109" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='I'+ALLT(STR(RECNO()))%>" value="ON" <%=IIF(INTL,"checked","")%>></td>
+			    <td width="122" height="9" BORDERCOLOR="#708090" align="center"><input type="checkbox" name="<%='T'+ALLT(STR(RECNO()))%>" value="ON" <%=IIF(AUTO,"checked","")%>></td>
+			  </tr>
+			  <%ENDSCAN%>
+              <tr>
+			    <td width="630" height="1" bgcolor="#FFCF63" colspan="6" align="center" BORDERCOLOR="#708090">
+				    &nbsp;</td>
+			  </tr>
+			  </table>
+			<!-- Type-->
+
+		 </td>
+		 </tr></table>
+		  </center>
+        </div>
+		<!-- Radio-->
+		<!-- Frame Table-->
+		</form>
+ &nbsp;<!-- Buttons ---><!-- Frame Table ---><!-- Menu --></td>
+  </tr>
+</table>
+<!-- frame table -->
+
+
+                &nbsp;</td>
+			  </tr>
+			  </table>
+    
+    <!--- Body  Ends-->
+    
+    &nbsp;</td>
+     <td width="4" bgcolor="#FFFFFF">&nbsp;</td>
+	</tr>
+</table>
+<TABLE CELLSPACING="0" CELLPADDING="0" width="750" BORDER="0"> 
+  <TR> 
+	<TD BGCOLOR="#FFB610" HEIGHT="5">
+    <IMG HEIGHT="1" ALT="" SRC="../../granot/spacer.htm" WIDTH="1" BORDER="0"></TD>
+	</TR>
+</TABLE> 
+  </center>
+</div>
+
+<div align="center">
+  <center>
+  <p>&nbsp;</p>
+  </center>
+</div>
+
+</body>
+
+</html>

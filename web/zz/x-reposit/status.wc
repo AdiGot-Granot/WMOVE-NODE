@@ -1,0 +1,209 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Repository List Status</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitlist(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~processwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+</head>
+
+<body BGCOLOR="#ADBACE">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="90%" height="26">
+  <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#4A698C" height="30" colspan="2">
+    <p align="center">
+    <font color="#FFFFFF" face="Verdana"><b>
+    <font color="#FFFFFF">Purchased Statement </font></b></font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="355" colspan="2">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	<br>
+	<table border="0" cellpadding="0" cellspacing="0" width="95%">
+      <tr>
+        <td width="100%"><b><font face="Verdana" size="2">Click on the job 
+        number to view estimate's details:</font></b></td>
+      </tr>
+    </table>
+<form name="theForm" method="POST">
+<% SELECT _LIST
+    GO TOP %>
+    <center>
+    <TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="98%" align="center">
+    <tr>
+      <td width="3%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <font face="Verdana" size="2"><b>#</b></font></td>
+      <td width="9%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+      <font face="Verdana" size="2"><b>Reference<br>Job no.</b></font></td>
+      <td width="13%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <font face="Verdana" size="2"><b>Move Date</b></font></td>
+      <td width="14%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <font face="Verdana" size="2"><b>From</b></font></td>
+      <td width="11%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+      <font face="Verdana" size="2"><b>To</b></font></td>
+      <td width="8%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <font face="Verdana" size="2"><b>CF</b></font></td>
+   </tr>
+<%SCAN %>
+    <tr>
+      <td width="3%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=ALLT(STR(NO)) %>.</font></b></td>
+ <%IF TAKEN %>
+      <td width="9%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p></td> 
+<%ELSE %>
+      <td width="9%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" face="Verdana" >AR-<%=MDORDNO %><br>
+        <a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=+ALLT(REFNO)%>" target='_blank'><%=ALLT(ORDNO)%></a>&nbsp;</b></td> 
+<%ENDIF %>
+      <td width="13%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=LBOOKDTE %>&nbsp;&nbsp;<%=LEFT(CDOW(LBOOKDTE),3) %><br><%=MDSOURCE %></font></b></td>
+      <td width="14%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=FROM %></font></b></td>
+      <td width="11%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=TO %></font></b></td>
+      <td width="11%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=ALLT(STR(TOTALCF)) %>&nbsp;cf.</font></b></td>
+    </tr>
+   <% ENDSCAN %>
+    <tr>
+      <td width="58%" bgcolor="#CECFCE" colspan="6" BORDERCOLOR="#708090" align="right">&nbsp;</td>
+    </tr>
+   </table>
+    </center>
+  </div>
+  <br>
+&nbsp;<hr color="#000000" width="60%">
+  <TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="60%" height="153">
+    <tr>
+      <td width="50%" BORDERCOLOR="#708090" height="19"><p align="right"><b>
+      <font face="Verdana" size="2">Company:&nbsp;</font></b></td>
+      <td width="7%" colspan="2" BORDERCOLOR="#708090" height="19"><b>&nbsp;<%=ALLT(pcCOMPANY)%></b>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="50%" BORDERCOLOR="#708090" height="19"><p align="right"><b><font face="Verdana" size="2">Selected By:&nbsp;</font></b></td>
+      <td width="7%" colspan="2" BORDERCOLOR="#708090" height="19"><b>&nbsp;<%=pcUSER%></b>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="98%" BORDERCOLOR="#708090" colspan="3" height="11"></td>
+    </tr>
+    <tr>
+      <td width="50%" BORDERCOLOR="#708090" height="19"><p align="right"><font face="Verdana" size="2"><b>Previous Credit:&nbsp;</b></font></td>
+      <td width="18%" BORDERCOLOR="#708090" align="right" height="19"><b><font color="#006600" face="Verdana" size="2">
+      &nbsp;<%=ALLT(STR(pnLEADSBAL1+pnLEADSXBAL1))%>&nbsp;leads</font></b></td>
+      <td width="30%" BORDERCOLOR="#708090" align="right" height="19">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="50%" BORDERCOLOR="#708090" height="19"><p align="right"><font face="Verdana" size="2"><b>
+      Total Selected Leads:&nbsp;</b></font></td>
+      <td width="18%" align="right" BORDERCOLOR="#708090" height="19"><b><font color="#FF0000" face="Verdana" size="2">
+      &nbsp;<%=ALLT(STR(pnLEADS))%>&nbsp;leads</font></b></td>
+      <td width="30%" BORDERCOLOR="#708090" height="19">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="50%" BORDERCOLOR="#708090" height="19"><p align="right">&nbsp;</td>
+      <td width="18%" align="right" BORDERCOLOR="#708090" height="19"><font face="Verdana" size="2"><b>----------</b></font></td>
+      <td width="30%" BORDERCOLOR="#708090" height="19">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="50%" bgcolor="#CECFCE" BORDERCOLOR="#708090" height="19"><p align="right"><font face="Verdana" size="2"><b>Updated Credit:&nbsp;</b></font></td>
+      <td width="18%" align="right" bgcolor="#CECFCE" BORDERCOLOR="#708090" height="19"><font color="#006600" face="Verdana" size="2"><b>
+      &nbsp;<%=ALLT(STR(pnLEADS1))%>&nbsp;leads</b></font></td>
+      <td width="30%" bgcolor="#CECFCE" align="right" BORDERCOLOR="#708090" height="19">&nbsp;</td>
+    </tr>
+  </table>
+</td>
+</tr>
+</table>
+    <hr color="#000000" width="60%">
+    <BR>
+ <!-- Buttons --->
+    <div align="center">
+      <center>
+<table border="0" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="100%" align="center"><input type="button" CLASS="SUBOFF" name="B5" onclick="submitlist(1)" style="border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:120" tabindex="9" value="Exit"></td>    
+  </tr>
+</table>
+      </center>
+    </div>
+      </center>
+    </div>
+<!-- Buttons --->
+
+<BR>
+
+<!-- frame table -->
+    <font color="#FF0000"><%=pcMSG%></font>
+    <table border="0" cellpadding="0" cellspacing="1" width="100%">
+      <tr>
+        <td width="100%" align="center"><font face="Verdana" size="2"><b>Please print this statement for your 
+        record. Transaction Number: <%=LEFT(ALLT(STR(pnTRNO)),2)%>-<%=SUBST(ALLT(STR(pnTRNO)),3,5)%></b></font><br>&nbsp;</td>
+      </tr>
+    </table>
+</td>
+</tr>
+<tr>
+    <td width="50%" BGCOLOR="#4A698C" height="21">
+      <font color="#FFFFFF" face="Verdana" size="2">
+      <b>&nbsp;User:<%=pcUSER%></b></font></td>
+    <td width="50%" BGCOLOR="#4A698C" height="21">
+      <p align="right"><font color="#FFFFFF" face="Verdana" size="2"><b><%=datetime()%>&nbsp;&nbsp;</b></font></td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    &nbsp;</td>
+ </tr>
+  </center>
+</div>
+
+</body>
+
+</html>

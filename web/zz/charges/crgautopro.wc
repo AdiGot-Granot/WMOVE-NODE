@@ -1,0 +1,795 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=pcORDNO%></title>
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.7" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+ $(".fancybox").fancybox({
+  openEffect : 'elastic',
+  closeEffect : 'elastic',
+  fitToView: false,
+  autoSize: false,
+  nextSpeed: 0, //important
+  prevSpeed: 0, //important
+  afterLoad: function(){
+  // added 50px to avoid scrollbars inside fancybox
+   this.width = ($('.fancybox-iframe').contents().find('html').width())+50;
+   this.height = ($('.fancybox-iframe').contents().find('html').height())+50;
+  }
+
+ }); // fancybox
+}); // ready
+
+<%IF _EST.STATUS='F' OR _EST.STATUS='O' %>
+function SubmitData(i) {
+    if (i==1) {
+	   document.theForm.action="/wc.dll?mpcharge~CrgAutoProRet~<%=pcSCR%>";
+       document.theForm.submit();
+      };
+    if (i==2) { 
+       document.theForm.action="/wc.dll?mpcharge~bookingcrg~<%=pcSCR%>";
+       document.theForm.submit();
+      } ;
+}
+<%ENDIF%>
+
+function deletea() {
+	var Message = "Are you sure you want to continue?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpest~deleteest~<%=pcSCR%>";
+       document.theForm.submit();
+       }
+	}
+
+function cancela() {
+	var Message = "Are you sure you want to continue?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpest~cancelest~<%=pcSCR%>";
+       document.theForm.submit();
+       }
+	}
+
+function extstop() {
+    window.open('/wc.dll?mpest~extstopwc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=450');
+	}
+
+<% IF plUID %>
+function route() {
+    window.open("https://www.centraldispatch.com/protected/listing-search/result?routeBased=0&corridorWidth=&routePickupCity=&routePickupState=&routePickupZip=&route_origination_valid=&routeDeliveryCity=&routeDeliveryState=&routeDeliveryZip=&route_destination_valid=&waypointCity%5B%5D=&waypointCity%5B%5D=&waypointCity%5B%5D=&waypointCity%5B%5D=&waypointCity%5B%5D=&waypointState%5B%5D=&waypointState%5B%5D=&waypointState%5B%5D=&waypointState%5B%5D=&waypointState%5B%5D=&waypointZip%5B%5D=&waypointZip%5B%5D=&waypointZip%5B%5D=&waypointZip%5B%5D=&waypointZip%5B%5D=&waypoint_valid=1&pickupCity=<%=ALLT(_EST.SCITY)%>&pickupRadius=100&pickupState=<%=ALLT(_EST.SSTATE)%>&pickupZip=&pickupAreas%5B%5D=All&origination_valid=1&deliveryCity=<%=ALLT(_EST.RCITY)%>&deliveryRadius=100&deliveryState=<%=ALLT(_EST.RSTATE)%>&deliveryZip=&deliveryAreas%5B%5D=All&destination_valid=1&FatAllowCanada=1&vehicleTypeIds%5B%5D=&trailerType=&vehiclesRun=&minVehicles=1&maxVehicles=&shipWithin=60&paymentType=&minPayPrice=&minPayPerMile=&highlightOnTop=0&postedBy=&highlightPeriod=0&listingsPerPage=100&primarySort=8&secondarySort=5&filterBlocked=0&highlightPreferred=0&pickupCitySearch=1&deliveryCitySearch=1");
+	}
+<%ENDIF%>
+
+function updagent(){
+	document.theForm.action="/wc.dll?mpcharge~updagentwc~<%=pcSCR%>";
+    document.theForm.submit();
+ }
+
+<%IF _EST.LBOOKDTE <= DATE() AND pnLEVEL>=2 AND _EST.LBOOKC %>
+function closeda() {
+	var Message = "Are you sure you want to continue?" ;
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpopr~closedjobret~<%=pcSCR%>~AUTO";
+       document.theForm.submit();
+       }
+	}
+<%ENDIF%>
+
+ function sendemail() {
+    window.open('/wc.dll?mpest~emailcenterwc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=no,copyhistory=no,scrollbars=yes,width=800,height=750');
+ self.name="main"}
+
+function ViewLog() {
+       window.open('/wc.dll?mpest~logfilewc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=850,height=600');
+      }
+
+function emailtoagent() {
+	var Message = "Are you sure you want to send this order to the carrier?";
+	if (confirm (Message)){
+        window.open('/wc.dll?mpest~emailauto~<%=pcSCR%>~<%=pcAGENT%>~EMAILTOAGENT','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=400,height=350');
+     self.name="main"
+       }
+   }
+   
+function emailquote() {
+        window.open('/wc.dll?mpest~emailauto~<%=pcSCR%>~~EMAILTOCUST','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=500,height=350');
+     self.name="main"
+   }
+ 
+function Direction() {
+		window.open("https://maps.google.com/maps?f=d&source=s_d&saddr=<%=pcSADDR%>&daddr=<%=pcRADDR%>");
+	   }
+
+
+function UpdValueB(A, B) {
+  fetch('/wc.dll?mpcharge~UpdValue~<%=pcSCR%>~' + A + '~' + B)
+    .then(() => alert("Selection saved."))
+    .catch(() => alert("Failed to save selection"));
+}
+
+<% IF plUID %>
+function centralauto(c) {
+    window.location.href=('/wc.dll?mpcharge~centralauto~<%=pcSCR%>~'+c);
+}
+<%ENDIF%>
+
+function updcar(par) {
+	 	window.location.href=('/wc.dll?mpcharge~selectautowc~<%=pcSCR%>~'+par);
+  }
+
+<%IF plAUTOZONE AND (pnLEVEL=2 OR pnLEVEL=5) %>
+function UpdTariff() {
+	var Message = "Are you sure you want to Update Tariff?";
+	if (confirm (Message)){
+	   document.theForm.action="/wc.dll?mpauto~UpdTariff~<%=pcSCR%>";
+       document.theForm.submit();
+       }
+	}
+
+function autozonerate() {
+    window.open('/wc.dll?mpauto~AutoZoneRate~<%=pcSCR%>~<%=pcAUTOZPID%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=900,height=400');
+	}
+<%ENDIF%>
+
+function remagent() {
+    window.open('/wc.dll?mpest~remagentwc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=450');
+	}
+
+<%IF plDEPT AND _EST.STATUS<>'D' AND _EST.STATUS<>'C' %>
+function alterDept(c){
+	document.getElementById("dept").innerText=c;	
+    window.open('/wc.dll?mpcharge~UpdValue~<%=pcSCR%>~DEPT~'+c,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=5,height=5');
+}
+<%ENDIF %>
+
+</SCRIPT>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+	jQuery.noConflict();
+	
+   jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+       $("#Date3").datepicker({ numberOfMonths:[1,2] });
+       $("#Date4").datepicker({ numberOfMonths:[1,2] });
+       $("#Date5").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+
+
+<STYLE TYPE="text/css">
+	 .TD1		{	color: #FFF;
+				  	font-size: 10pt;
+  				  	font-weight: bold;
+  				  	font-family: Verdana;
+  				  	background-color:#008000;
+  				  	line-height:25px;}
+     .TD2 	    {	text-align: left;
+				    color: black; 
+				    font-size: 9pt;
+				    font-family: Verdana;
+				    font-weight: bold;}
+	 .TD5		{	font-size: 10pt;
+  				  	font-weight: bold;
+  				  	font-family: Verdana;
+				  	text-align: right;}				    	
+     .FROMTO 	{	text-align: left;
+				    color: black; 
+				    font-size: 10pt;
+				    font-family: Arial;
+				    font-weight: bold;}				  					  	
+	.SUBMIT	 	{	color: #FFFFFF;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 130; 
+                    height: 25; 
+                    cursor: pointer;}			  	
+	.SUBMIT1	{	color: #FFFFFF;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    cursor: pointer;
+                    width: 125; 
+                    height: 25;}
+ 	.SUBOFF	 	{	color: white; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 75;
+                    height: 22;			  	
+					background-color: #FF0000;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.CDROUTE	{	color: white; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 110;
+                    height: 25;			  	
+					background-color: #F76A00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+  	.ACTLOG	 	{	color: white; 
+					font-weight: bold;
+					font-family: Verdana;
+					font-size: 10pt;					
+				  	text-align: center;
+					width: 100;
+                    height: 25;			  	
+					background-color: #0075AD;
+  				  	cursor: pointer;}  				  	  				  	
+
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="1000" height="25">
+  <tr>
+    <td BGCOLOR="#008000" width="213">&nbsp;<font face="Verdana" color="#FFFF00"><b><%=pcBALANCEX%></b></font></td>
+    <td BGCOLOR="#008000" align="center" width="358"><b><font size="4" color="#FFFFFF" face="Verdana">Auto Transport Charges</font></b></td>
+    <td BGCOLOR="#008000" align="right" width="273">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="1000" bgcolor="#FFFFFF" valign="top" colspan="3" height="347" <%IF _EST.STATUS='C'%> background="zz/images/cancel.jpg" <%ENDIF%>
+	    <%IF _EST.STATUS='D'%> background="zz/images/closed.jpg" <%ENDIF%>>
+  <form name="theForm" method="post">    
+ <%SELECT _INVAUTO
+   GO TOP%>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td valign="top" width="71%"><br> 
+ <table border="1" align="center" style="border-collapse: collapse" bordercolor="#C0C0C0" width="97%">
+  <tr>
+    <td width="50%"><b><FONT face="Verdana" size="2">View Map:</FONT> <a target="_blank" href="http://www.google.com/maps?q=<%=ALLT(_EST.SZIP)%>,+USA&sa=X&oi=map&ct=title" TARGET="_BLANK"><FONT face="Verdana" size="2">Google</font></a></td>
+    <td width="50%"><b><FONT face="Verdana" size="2">View Map:</FONT> <a target="_blank" href="http://www.google.com/maps?q=<%=ALLT(_EST.RZIP)%>,+USA&sa=X&oi=map&ct=title" TARGET="_BLANK"><FONT face="Verdana" size="2">Google</font></a></td>
+ </tr>   
+   <tr>
+    <td width="50%" align="center" bgcolor="#008000"><b><FONT face="Verdana" COLOR="FFFFFF">Transport From</FONT></b></td>
+    <td width="50%" align="center" bgcolor="#008000"><b><FONT face="Verdana" COLOR="FFFFFF">Transport To</FONT></b></td>
+  </tr>
+   <tr>
+    <td width="50%" valign="top">
+<!--Moving from -->         
+ <%SELECT _EST%>
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse;line-height:22px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%"><font FACE="Verdana" color="#00008B" size="4"><b><%=ALLT(_EST.SNAME)%></b></font>&nbsp;</td>
+ </tr>
+ <%IF !EMPTY(SPROXY)%>
+  <tr>
+    <td width="100%" class="FROMTO" colspan="3"><font color="#C71585"><%='Proxy: '+ALLT(SPROXY)%></font></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="100%" class="FROMTO"><%=ALLT(SADD1)%>&nbsp;</td>
+ </tr>
+ <%IF !EMPTY(SADD2)%>
+  <tr>
+    <td width="100%" class="FROMTO"><%=ALLT(SADD2)%>&nbsp;</td>
+ </tr>
+ <%ENDIF%>
+ <%IF !EMPTY(SLEVEL)%>
+  <tr>
+    <td width="100%" class="FROMTO"><%=ALLT(PROPER(SLEVEL))%>&nbsp;</td>
+ </tr>
+ <%ENDIF%> 
+  <tr> 
+    <td width="100%" class="FROMTO"><font style="font-size:11pt;" color="#00008B"><%=ALLT(SCITY)+', '+ALLT(SSTATE)+' '+ALLT(SZIP)%>&nbsp;<%=IIF(EMPTY(SCOUNTRY),'',ALLT(SCOUNTRY))%></font></td>
+ </tr>
+ <%IF !EMPTY(STELH) %>
+  <tr>
+ 	<td width="100%" class="FROMTO">
+    <% IF pcCUSTNO<>'SHIPSLINE' %>
+       <%=ALLT(STELH)%>
+ 	<%ELSE%>
+	   <a href="tel:<%=STELH%>"><%=STELH%></a>
+    <%ENDIF%> 	
+ 	</td>
+  </tr>
+ <%ENDIF%>
+ <%IF !EMPTY(STELO)%>
+  <tr>
+ 	<td width="100%" class="FROMTO">
+    <% IF pcCUSTNO<>'SHIPSLINE' %>
+       <%=ALLT(STELO)%>
+ 	<%ELSE%>
+	   <a href="tel:<%=STELO%>"><%=STELO%></a>
+    <%ENDIF%> 	
+ 	</td>
+  </tr>
+ <%ENDIF%> 
+ <%IF !EMPTY(SFAX)%>
+  <tr>
+    <td width="100%" class="FROMTO">Fax:&nbsp;<%=ALLT(SFAX)%></td>
+ </tr>
+<%ENDIF%>
+</table>
+  <!--end Moving from -->     
+    </td>
+    <td width="50%" valign="top">
+<!--Moving To -->         
+ <%SELECT _EST%>
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse;line-height:22px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%"><font FACE="Verdana" color="#00008B" size="4"><b><%=ALLT(_EST.RNAME)%></b></font>&nbsp;</td>
+ </tr>
+ <%IF !EMPTY(RPROXY)%>
+  <tr>
+    <td width="100%" class="FROMTO" colspan="3"><font color="#C71585"><%='Proxy: '+ALLT(RPROXY)%></font></td>
+ </tr>
+ <%ENDIF%> 
+  <tr>
+    <td width="100%" class="FROMTO"><%=ALLT(RADD1)%>&nbsp;</td>
+ </tr>
+ <%IF !EMPTY(RADD2)%>
+  <tr>
+    <td width="100%" class="FROMTO"><%=ALLT(RADD2)%>&nbsp;</td>
+ </tr>
+ <%ENDIF%>
+ <%IF !EMPTY(RLEVEL)%>
+  <tr>
+    <td width="100%" class="FROMTO"><%=ALLT(PROPER(RLEVEL))%>&nbsp;</td>
+ </tr>
+ <%ENDIF%> 
+  <tr> 
+    <td width="100%" class="FROMTO"><font style="font-size:11pt;" color="#00008B"><%=ALLT(RCITY)+', '+ALLT(RSTATE)+' '+ALLT(RZIP)%>&nbsp;<%=IIF(EMPTY(RCOUNTRY),'',ALLT(RCOUNTRY))%></font></td>
+ </tr>
+ <%IF !EMPTY(RTELH) %>
+  <tr>
+    <td width="100%" class="FROMTO"><%=ALLT(RTELH)%></td>
+ </tr>
+ <%ENDIF%>
+ <%IF !EMPTY(RTELO)%>
+  <tr>
+    <td width="100%" class="FROMTO"><%=ALLT(RTELO)%></td>
+ </tr>
+ <%ENDIF%> 
+</table>
+  <!--end Moving To -->    
+    </td>
+  </tr>
+   <tr>
+    <td width="100%" colspan="2">
+   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  	 <tr>
+       <td>
+   <%IF plEMAIL AND _EST.STATUS<>'D' %>
+    &nbsp;<a href="javascript: sendemail()"><FONT FACE="VERDANA" COLOR="#0000FF" SIZE="2"><B><%=ALLT(_EST.EMAIL)%></b></font>&nbsp;<img border="0" src="zz/images/email1.gif" ALT="Email Center" width="18" height="11"></a>
+    &nbsp;&nbsp;<FONT FACE="Arial" COLOR="#000000" SIZE="2"><B><%=pcSENT%></b>&nbsp;<%=IIF(VAL(pcSENT)<2,'email sent','emails sent')%>
+   <%ELSE%>
+    &nbsp;<font color="#999999"><%=ALLT(_EST.EMAIL)%></font><%IF !EMPTY(pcEMAILTITLE)%><font size="2" color="#C90000"> <%='<br>'+ALLT(pcEMAILTITLE)%></font>&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mputil~cancelremoval~&REMOVEID=<%=lnREMOVEID%>&JOBID=<%=ALLT(STR(pnJOBID))%>&USERID=<%=ALLT(STR(pnUSERID))%>"><%=lnREMOVEID%></a><%ENDIF%>
+   <%ENDIF%>       
+       </td>
+       <td width="138">
+	<%IF plEMAIL AND _EST.STATUS<>'D'%>
+	<font face="Arial" size="2" color="#0000FF">Email Quote</FONT> <a href="javascript: emailquote()"><img border="0" src="zz/images/email1.gif" width="18" height="11"></a>
+    <%ENDIF%>       
+       </td>
+    </tr>  
+   </table>    
+    </td>
+  </tr>  
+   <%IF plEMAIL %>
+   <tr>
+    <td width="100%" colspan="2">
+   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  	 <tr style="font-family:Arial;font-size:10pt;">
+       <td width="5%" BGCOLOR="#FFFFFF"><%IF plESIGN %><img border="0" src="zz/images/esign.png" ALT="This job was Esigned" width="25" height="18"><%ENDIF%></td>
+       <td width="27%" valign="top" BGCOLOR="#FFFFFF"><%IF plESIGNNO %><font color="#8C1021"><%=pnESIGNNO%> Esign Pending</font><%ENDIF%><%IF plESIGN %><br><font color="navy"><%=pnESIGNYES%> Esign Received</font><%ENDIF%></td>
+       <td width="33%" valign="top" BGCOLOR="#FFFFFF"><%IF plAGESIGNNO %><font color="#8C1021"><%=pnAGESIGNNO%> Agent Esign Pending</font><%ENDIF%><%IF plAGESIGNPRN %><br><font color="navy"><%=pnAGESIGNPRN%> Agent Esign Received</font><%ENDIF%></td>
+    </tr>  
+   </table>    
+    </td>
+  </tr>
+   <%ENDIF%>  
+ </table>
+ <br>
+  <table border="0" ALIGN="CENTER" width="685" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+     <td height="40" align="center" width="132"><img border="0" src="zz/images/google-map.gif" style="cursor:pointer;" onclick="Direction()" alt="Google Direction" width="78" height="26"></td>
+     <td height="40" align="center" width="240"><%=IIF(!EMPTY(_ESTMEMO.EXTSTOP),'<font size="4" color="#008000">&#10003;</font>','')%>        
+     <input type="button" CLASS="SUBMIT1" name="btnDir" onclick="extstop()"  style="background-color: #A54939;" value="Estimate Notes"></td>
+  <%IF _EST.STATUS='F' OR _EST.STATUS='O' %>
+	 <td height="40" width="182"><input type="button" CLASS="SUBMIT" name="B3" onclick="SubmitData(1)" style="background-color: #7B96B5;" value="Submit Charges"></td>
+  	 <td height="40" align="center" class="TD2" width="123"><a class="fancybox fancybox.iframe" href="wc.dll?mpauto~pricesuggest~<%=pcSCR%>~<%=ALLT(SZIP)%>">Price Suggestion</a></td>	     
+  <% ENDIF %>  	     
+  </tr>
+ </table>
+<%IF plAUTOZONE AND (pnLEVEL=2 OR pnLEVEL=5) %>
+ <BR>
+<table border="1" align="center" width="97%" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td width="32%"><% IF !EMPTY(pcADDDTE) %><FONT COLOR="#BB0000" face="Arial" SIZE="2">Last Price Update: <b><font face="Arial" size="2"><%=pcADDDTE%></b></font></font><%ENDIF%></td>
+    <td width="33%"><input type="text" style="background-color: #FFFFCC; font-size:9pt; color:#008000;font-weight:bold; text-align:right;" name="TPRC" size="3" value="">
+    <input type="button" CLASS="SUBMIT" name="B37" onclick="UpdTariff()" style="background-color: #00C000;" value="Update Tariff"></td>
+    <td width="34%"><font face="Arial" size="2">Zone Rate #: <b><a href="javascript:autozonerate()"><%=pcAUTOZPID%></a></font>   
+    <font color="#008000" size="2" face="Arial"><b><%=pcRATEA%></b></font></td>
+ </tr>
+</table>
+<%ENDIF %>    
+ <!---VEHICLE-->
+ <table border="1" width="685" align="center" style="border-collapse: collapse;" bordercolor="#CCCCCC">
+   <tr>
+	<td class="TD1" width="74">&nbsp;<a onclick="updcar('999')" style="cursor:pointer;"><u>Add New</u></a></td>
+	<td class="TD1" width="241">&nbsp;Vehicle Details</td>
+	<td class="TD1" width="158">&nbsp;Run-Enclosed-Lot No</td>
+	<td class="TD1" align="center" width="64">Deposit</td>
+	<td class="TD1" align="center" width="65">Price</td>
+  </tr>
+  <%SELECT _INVAUTO
+   SCAN %>
+  <tr style="font-family:Verdana;font-size:10pt;">
+	<td width="315" colspan="2"><a onclick="updcar(<%=ALLT(STR(_INVAUTO.INVAUTOID))%>)" style="color:#0000FF;cursor:pointer;"><%=ALLT(_INVAUTO.YEAR)%>&nbsp;<%=ALLT(_INVAUTO.COLOR)%>&nbsp;<%=ALLT(PROPER(_INVAUTO.MAKE))%>&nbsp;<%=ALLT(PROPER(_INVAUTO.MODEL))%><%=IIF(EMPTY(_INVAUTO.TYPE),'',', '+ALLT(_INVAUTO.TYPE))%><%=IIF(EMPTY(_INVAUTO.ENGINE),'',', '+ALLT(_INVAUTO.ENGINE))%></a></td>
+	<td width="158">&nbsp;<%=IIF(_INVAUTO.RUN,'Yes','No')%><%=IIF(_INVAUTO.COVER,'-Yes','-No')%><%=IIF(EMPTY(_INVAUTO.LOTNO),'','-'+ALLT(_INVAUTO.LOTNO))%></td>
+	<td align="center" width="64"><input ID="QQ6" CLASS="QTYOFF" type="text" style="width: 60px; max-width: 100%;background-color:#FFFFCC;font-weight:bold;text-align:right;" name="DEPOSIT_<%=ALLT(STR(_INVAUTO.INVAUTOID))%>" size="20" value="<%=IIF(_INVAUTO.DEPOSIT=0,'',ALLT(STR(_INVAUTO.DEPOSIT,9,2)))%>"></td>
+	<td align="right" width="65"><input ID="QQ5" CLASS="QTYOFF" type="text" style="width: 60px; max-width: 100%;background-color:#FFFFCC;color:#008000;font-weight:bold;text-align:right;" name="UPRC_<%=ALLT(STR(_INVAUTO.INVAUTOID))%>" size="20" value="<%=IIF(_INVAUTO.UPRC=0,'',ALLT(STR(_INVAUTO.UPRC,9,2)))%>"></td>
+  </tr>
+    <% IF !EMPTY(_INVAUTO.VIN) %>
+  <tr style="font-family:Verdana;font-size:10pt;">
+	<td width="669" colspan="5">VIN #:<%=ALLT(_INVAUTO.VIN)%>&nbsp;</td>
+  </tr>
+    <%ENDIF%>  
+    <% IF !EMPTY(_INVAUTO.DLVTYPE) OR !EMPTY(_INVAUTO.NOTES) %>
+  <tr style="font-family:Verdana;font-size:10pt;">
+	<td width="669" colspan="5"><%=IIF(EMPTY(_INVAUTO.DLVTYPE),'','Deliver By: '+ALLT(_INVAUTO.DLVTYPE)+' ')%><%=IIF(EMPTY(_INVAUTO.NOTES),'','Remarks: '+ALLT(_INVAUTO.NOTES))%>&nbsp;</td>
+  </tr>
+    <%ENDIF%>
+ <%ENDSCAN%>   
+</TABLE>
+ <table border="1" width="685" align="center" style="border-collapse: collapse;line-height:25px;" bordercolor="#CCCCCC">
+   <tr>
+	<td colspan="5" class="TD5" width="606"><b>Subtotal:</b></td>
+	<td align="right" width="72"><font face="Verdana" size="2"><b><%='$'+ALLT(STR(pnSUB1,8,2))%></font></b>&nbsp;</td>
+  </tr>   
+   <tr>
+	<td class="TD2" colspan="5" width="606">Terminal Handling - Origin</td>
+	<td align="right" width="72"><input type="text" name="ORIGINAMT" size="4" value="<%=ALLT(STR(_AUTOCRG.ORIGINAMT,8,2))%>" style="text-align: right"></td>
+  </tr>
+   <tr>
+	<td class="TD2" colspan="5" width="606">Terminal Handling - Destination</td>
+	<td align="right" width="72"><input type="text" name="DESTINAMT" size="4" value="<%=ALLT(STR(_AUTOCRG.DESTINAMT,8,2))%>" style="text-align: right"></td>
+  </tr>
+  <% IF _EST.STATUS='O'%>  
+   <tr>
+	<td class="TD2" colspan="5" width="606">Booking &amp; Processing</td>
+	<td align="right" width="72"><input type="text" name="BOOKINGAMT" size="4" value="<%=ALLT(STR(_AUTOCRG.BOOKINGAMT,8,2))%>" style="text-align: right"></td>
+  </tr>
+  <%ENDIF%>    
+   <tr>
+	<td class="TD2" colspan="5" width="606">Others:&nbsp;<input type="text" name="OTHERS1" size="60" value="<%=ALLT(_AUTOCRG.OTHERS1)%>"></td>
+	<td align="right" width="72"><input type="text" name="OTHERS1AMT" size="4" value="<%=ALLT(STR(_AUTOCRG.OTHERS1AMT,8,2))%>" style="text-align: right"></td>
+  </tr>
+  <tr>
+	<td class="TD2" colspan="5" width="606">Others:&nbsp;<input type="text" name="OTHERS2" size="60" value="<%=ALLT(_AUTOCRG.OTHERS2)%>"></td>
+	<td align="right" width="72"><input type="text" name="OTHERS2AMT" size="4" value="<%=ALLT(STR(_AUTOCRG.OTHERS2AMT,8,2))%>" style="text-align: right"></td>
+  </tr>
+   <tr>
+	<td class="TD2" colspan="5" width="606">Others:&nbsp;<input type="text" name="OTHERS3" size="60" value="<%=ALLT(_AUTOCRG.OTHERS3)%>"></td>
+	<td align="right" width="72"><input type="text" name="OTHERS3AMT" size="4" value="<%=ALLT(STR(_AUTOCRG.OTHERS3AMT,8,2))%>" style="text-align: right"></td>
+  </tr>
+   <tr>
+	<td class="TD2" colspan="5" width="606">Others:&nbsp;<input type="text" name="EXTRA1" size="60" value="<%=ALLT(_AUTOCRG.EXTRA1)%>"></td>
+	<td align="right" width="72"><input type="text" name="EXTRA1AMT" size="4" value="<%=ALLT(STR(_AUTOCRG.EXTRA1AMT,8,2))%>" style="text-align: right"></td>
+  </tr>
+   <tr>
+	<td class="TD2" colspan="5" width="606">Others:&nbsp;<input type="text" name="EXTRA2" size="60" value="<%=ALLT(_AUTOCRG.EXTRA2)%>"></td>
+	<td align="right" width="72"><input type="text" name="EXTRA2AMT" size="4" value="<%=ALLT(STR(_AUTOCRG.EXTRA2AMT,8,2))%>" style="text-align: right"></td>
+  </tr>    
+   <tr>
+	<td class="TD2" colspan="5" width="606">Valuation:&nbsp;<input type="text" name="INS" size="60" value="<%=ALLT(_AUTOCRG.INS)%>"></td>
+	<td align="right" width="72"><input type="text" name="INSAMT" size="4" value="<%=ALLT(STR(_AUTOCRG.INSAMT,8,2))%>" style="text-align: right"></td>
+  </tr>
+   <tr>
+	<td colspan="5" class="TD5" width="606"><b>Subtotal:</b></td>
+	<td align="right" width="72"><font face="Verdana" size="2"><b><%='$'+ALLT(STR(pnSUB2,8,2))%></font></b>&nbsp;</td>
+  </tr>
+   <tr>
+	<td class="TD2" colspan="5" width="606">Discount:&nbsp;<input type="text" name="DISCTXT" size="60" value="<%=ALLT(_AUTOCRG.DISCTXT)%>"></td>
+	<td align="right" width="72"><input type="text" name="DISCOUNT" size="4" value="<%=ALLT(STR(_AUTOCRG.DISCOUNT,8,2))%>" style="text-align: right; color:#FF0000; font-weight:bold"></td>
+  </tr>
+   <tr>
+	<td colspan="5" class="TD5" width="606">Total:</td>
+	<td align="right" width="72"><font face="Verdana" size="2"><b><%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></b></font>&nbsp;</td>
+  </tr>
+<%IF pnPAIDAMT <> 0%>  
+   <tr>
+	<td colspan="5" class="TD5" width="606"><font color="#008000">Customer Payment:</font></td>
+	<td align="right" width="72"><font face="Verdana" size="2" color="#008000"><b><%='$'+ALLT(STR(pnPAIDAMT,8,2))%></font></b>&nbsp;</td>
+  </tr>
+   <tr>
+	<td colspan="5" class="TD5" width="606"><font color="#FF0000">Customer Balance:</font></td>
+	<td align="right" width="72"><font face="Verdana" size="2" color="#FF0000"><b><%='$'+ALLT(STR(pnBALANCE,8,2))%></font></b>&nbsp;</td>
+  </tr>
+<% ENDIF %>   
+</table>   
+ <!---VEHICLE-->     
+    </td>
+    <td valign="top" width="29%"><br>
+ <table border="0" align="center" cellpadding="2" style="border-collapse: collapse;line-height:22px;" BGCOLOR="#EFEFDF" width="100%">
+ <%IF _EST.STATUS='O'%>
+   <tr>
+    <td width="100%" align="center" bgcolor="#FF0000" colspan="2"><font face="Verdana" size="5" color="#FFFF00"><b>Job is Booked</b></font></td>
+  </tr> 
+ <%ENDIF%> 
+   <tr>
+    <td width="23%" class="TD2">Job No:</td>
+    <td width="77%"><FONT face="Verdana" color="<%=IIF(_EST.STATUS='F','#993366','#083484')%>" size="5"><b><span id="dept"><%=ALLT(_EST.DEPT)%></span><%=ALLT(_EST.ORDNO)%></font></b></td>
+  </tr>
+ <%IF plDEPT AND _EST.STATUS<>'D' AND _EST.STATUS<>'C' %>  
+   <tr>
+    <td width="100%" class="TD2" colspan="2">Department:
+           <select size="1" name="DEPT" onChange="alterDept(this.value)">
+	        <option value="<%=ALLT(_EST.DEPT)%>" selected><%=ALLT(_EST.DEPT)%></option> 
+		     <% SELECT _DEPARTMENT 
+		     	 GO TOP
+		     	 SCAN %>
+			       <option value="<%=ALLT(_DEPARTMENT.DEPT)%>"><%=ALLT(_DEPARTMENT.DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+	    </select>    
+    </td>
+  </tr>
+ <%ENDIF%>   
+   <tr>
+    <td width="100%" class="TD2" colspan="2">Ref No:&nbsp;<input type="text" name="ORDREF" size="15" value="<%=ALLT(_EST.ORDREF)%>" maxlength="100"></td>
+  </tr>  
+   <tr>
+     <td width="100%" class="TD2" colspan="2">Status:&nbsp;<b><FONT color="<%=IIF(_EST.STATUS='F','#993366','#083484')%>" size="5"><%=pcSTATUSNAME%></font></b>&nbsp;</td>
+  </tr>
+  <%IF pnCOLEVEL > 2 %>
+   <tr>
+     <td width="100%" class="TD2" colspan="2">
+     <%IF _EST.STATUS='F' %><a class="fancybox fancybox.iframe" href="wc.dll?mpcharge~fustatuswc~<%=pcSCR%>">Priority:</a><%ELSE%>Priority:<%ENDIF%> <% IF _EST.FUSTATUS=9 %>General Priority Pool<%ELSE%>Level-<%=ALLT(STR(_EST.FUSTATUS))%><%ENDIF%></td>
+  </tr>
+  <%ENDIF%>  
+   <tr>
+     <td width="100%" class="TD2" colspan="2">Service:
+     <select size="1" name="INTLSERV">
+     		<option value="<%=_EST.INTLSERV%>" selected><%=pcINTLSERV%></option>
+            <option value="DD">Door to Door</option>
+            <option value="DT">Door to Terminal</option>
+            <option value="TT">Terminal to Terminal</option>
+            <option value="TD">Terminal to Door</option>
+  	     	</select></td>
+  </tr>
+   <tr>
+     <td width="100%" class="TD2" colspan="2">Buyer ID: <input type="text" name="BUYERID" autocomplete="off" size="15" value="<%=IIF(_EST.BUYERID=0,'',ALLT(STR(_EST.BUYERID)))%>" maxlength="20"></td>
+  </tr>      
+ <%IF _EST.STATUS='F' OR _EST.STATUS='O' %>            
+   <tr>
+    <td width="100%" align="center" colspan="2"><% IF _EST.STATUS = 'F' OR (!plUNBOOK AND plLBOOKC) %>
+    <input type="button" class="SUBMIT" name="B32" onclick="SubmitData(2)" style="background-color:<%=IIF(_EST.STATUS='F','#EF3821','#008000')%>" value="<%=IIF(plLBOOKC,'Release Booked','Book This Job')%>"><%ENDIF%></td>
+  </tr>
+ <%ENDIF %>
+<%IF _EST.STATUS='F' OR _EST.STATUS='C' %>	 
+   <tr>
+    <td width="100%" class="TD2" height="30" colspan="2">
+    <%IF pcSEQ = '200' OR EMPTY(pcBADLEAD) %>Bad Lead? 
+    <a class="fancybox fancybox.iframe" href="wc.dll?mpcharge~badleadwc~<%=pcSCR%>">Select Why</a>
+	 <%ELSE%><a class="fancybox fancybox.iframe" href="wc.dll?mpcharge~badleadwc~<%=pcSCR%>"><img border="0" alt="Select Bad Lead Reason" src="zz/images/thumbsdown.gif" width="37" height="37"></a> <%=pcBADLEAD%>
+	 <%ENDIF%></td>
+  </tr>
+<%ENDIF%>               
+</table>
+ <table border="0" align="center" cellpadding="2" style="border-collapse: collapse" width="98%" height="50">
+   <tr>
+   <% IF plUID AND (_EST.STATUS='F' OR _EST.STATUS='O') %>
+    <td width="11%" align="center" bgcolor="#FFFFFF">
+    <img border="0" name="emailcar" style="cursor:pointer;" <%IF plUOUT %> src="zz/images/carout.jpg" onclick="centralauto('DEL')" <%ELSE%> src="/zz/images/carin.jpg" onclick="centralauto('')" <%ENDIF %>></td>
+    <td width="25%" bgcolor="#FFFFFF"><input type="button" name="B34" onclick="route()" class="CDROUTE" value="Route Search"></td>
+   <%ENDIF%> 
+    <td width="1%" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>   
+ </table> 
+ <table border="0" align="center" cellpadding="2" style="border-collapse: collapse" BGCOLOR="#EFEFDF" width="100%">
+   <tr>
+     <td width="31%" colspan="2"><b><font face="Verdana" size="2"><font color="<%=IIF(_EST.FUVIP,'#FF0000','#000000')%>">VIP</font></font></b>
+     <input type="checkbox" name="FUVIP" value="ON" onClick="UpdValueB('VIP','')" <%=IIF(_EST.FUVIP,'checked','')%>></td>
+     <td width="34%" class="TD2">Date</td>
+     <td width="38%" class="TD2">Time</td>
+  </tr>
+ <% IF _EST.STATUS='F' OR (_EST.STATUS='O' AND _EST.LBOOKDTE > DATE()) %>
+   <tr>
+     <td width="20%" class="TD2">Follow Up</td>
+     <td width="45%" class="TD2" colspan="2"><input type="text" autocomplete="off" id="Date1" name="NEXTFU" size="20" value="<%=IIF(EMPTY(_EST.NEXTFU),'',_EST.NEXTFU)%>" style="width: 90px; max-width: 100%;background-color: #<%=IIF(_EST.STATUS='O','008000','631C7B')%>;font-weight:BOLD;color:#FFFF00"></td>
+     <td width="38%">
+     <input type="text" name="FUTME" size="7" value="<%=ALLT(_EST.FUTME)%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~FUTME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=500,height=500')" maxlength="20"></td>
+  </tr>
+ <%ENDIF %>
+   <tr>
+     <td width="26%" BGCOLOR="#FF0000"><font style="font-family:Verdana;font-size:9pt;color:#FFFFFF;"><b>Pick Up</b></font></td>
+     <td width="39%" BGCOLOR="#FF0000" colspan="2"><input type="text" <% IF plBLKMOVEDTE AND _EST.STATUS='O' %>READONLY<%ELSE%> id="Date2" <%ENDIF%> autocomplete="off" name="PUDTE" style="width:90px;max-width:100%;color:<%=IIF(_EST.LBOOKDTE<DATE(),'FF0000','000000')%>;" size="20" value="<%=pcPUDTE%>"><br>
+     <input type="text" autocomplete="off" id="Date3" name="LBOOKDTE1" style="width:90px;max-width:100%;color:<%=IIF(_EST.LBOOKDTE1<DATE(),'FF0000','000000')%>;" size="20" value="<%=IIF(EMPTY(_EST.LBOOKDTE1),'',_EST.LBOOKDTE1)%>"></td>
+     <td width="38%" BGCOLOR="#FF0000"><input type="text" name="PUTME" size="7" value="<%=pcPUTME%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~PUTME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')" maxlength="20"></td>
+  </tr>
+ <%IF _EST.STATUS <> 'F' AND _EST.STATUS <> 'C' %> 
+   <tr>
+    <td width="100%" class="TD2" colspan="4"><center>
+	Confirm:<input type="checkbox" name="CONFIRM" onClick="UpdValueB('CONFIRM','')" value="ON" <%=IIF(plCONF,'checked','')%>>&nbsp;&nbsp;&nbsp;&nbsp;
+	Signature:<input type="checkbox" name="LBOOKCW" onClick="UpdValueB('LBOOKCW','')" value="ON" <%=IIF(_EST.LBOOKCW,'checked','')%>></center></td>
+  </tr>
+ <%ENDIF %>
+   <tr>
+    <td width="22%" class="TD2" BGCOLOR="#FFBE42">Request<br>Delivery</td>
+    <td width="43%" class="TD2" BGCOLOR="#FFBE42" colspan="2"><input type="text" autocomplete="off" id="Date4" name="DLVDTE" style="width: 90px; max-width: 100%;" size="20" value="<%=IIF(EMPTY(_EST.DLVDTE),'',_EST.DLVDTE)%>"></td>
+    <td width="38%" BGCOLOR="#FFBE42"><input type="text" autocomplete="off" id="Date5" name="DLVDTE1" style="width: 90px; max-width: 100%;" size="20" value="<%=IIF(EMPTY(_EST.DLVDTE1),'',_EST.DLVDTE1)%>"></td>
+  </tr> 
+ <%IF _EST.STATUS='F' OR _EST.STATUS='O' %>	 
+   <tr>
+    <td width="100%" height="40" align="center" bgcolor="#FFFFFF" colspan="4"><input type="button" CLASS="SUBMIT" name="B3" onclick="SubmitData(1)" style="background-color: #7B96B5;" value="Submit Charges"></td>
+  </tr>
+ <%ENDIF %>            
+  </table>      
+<% IF plREMAGENT%>
+<table border="0" align="center" cellpadding="0" style="border-collapse: collapse" width="80%">
+  <tr>
+    <td width="37%" height="50" align="center"><%=IIF(!EMPTY(_ESTMEMO.REMAGENT),'<font size="4" color="#008000">&#10003;</font>','')%>
+    <input type="button" CLASS="SUBMIT1" name="btnDir" onclick="remagent()" style="background-color: #75DD9E;color:#000000;" value="Carrier Notes"></td>
+ </tr>
+</table>
+<%ENDIF%>  
+ <table border="0" align="center" cellpadding="2" style="border-collapse: collapse" bgcolor="#EFEFDF" bordercolor="#111111" width="98%">
+  <% IF pnLEVEL=2 OR pnLEVEL>3 %>
+   <tr>
+    <td width="100%" align="center" colspan="2" height="23"><b><font style="font-family:verdana;font-size:10pt;">
+    <a class="fancybox fancybox.iframe" href="wc.dll?mpcharge~upduserwc~<%=pcSCR%>">Update Users</a></font></b></td>
+  </tr>
+  <%ENDIF %>
+   <tr>
+    <td width="37%" class="TD2" bgcolor="#DEFFFF" height="23">Represent:</td>
+    <td width="63%" class="TD2" bgcolor="#DEFFFF" height="23"><%=_EST.REP%>&nbsp;</td>
+  </tr>
+   <tr>
+    <td width="37%" class="TD2" bgcolor="#DEFFFF" height="23">User:</td>
+    <td width="63%" class="TD2" bgcolor="#DEFFFF" height="23"><%=_EST.USER%>&nbsp;</td>
+  </tr>
+  <%IF pnLEVEL=>2 AND plCOAGENTS AND plAGENT AND !plBLKAGENTS %>
+	 <tr>
+	  <td width="100%" align="center" colspan="2" height="23"><b><u><font onclick="updagent()" style="font-family:verdana;font-size:10pt;color:#0000FF;cursor:pointer;">Update Carrier</font></u></b></td>
+	</tr>
+  <%ENDIF%>  	  
+<% IF !EMPTY(pcAGENT) %>	             
+    <tr>
+     <td width="100%" class="TD2" bgcolor="#90EE90" colspan="2" height="23">Carrier:&nbsp;<%=pcAGENT%>&nbsp;<font color="red"><%=pcAGACTIVE%></font></td>
+   </tr>
+    <tr>
+     <td width="100%" class="TD2" bgcolor="#90EE90" colspan="2"><%=pcAGCOMPANY%><%=IIF(EMPTY(pcAGCONTACT),'',' - '+pcAGCONTACT)%></td>
+   </tr>
+    <tr>
+     <td width="100%" class="TD2" bgcolor="#90EE90" colspan="2" height="23"><%=pcAGPHONE%></td>
+   </tr>
+    <tr>
+     <td width="100%" class="TD2" bgcolor="#90EE90" colspan="2" height="23"><%=pcAGEMAIL%></td>
+   </tr>
+    <tr>
+     <td width="37%" class="TD2" bgcolor="#90EE90" height="23">Print
+     &nbsp;<img border="0" onclick="Javascript: window.open('/wc.dll?mpest~printautowc~<%=pcSCR%>~<%=pcAGENT%>~PRINTTOAGENT')" style="cursor:pointer;" src="zz/images/Printer.png" width="25" height="25"></td>
+     <td width="63%" class="TD2" bgcolor="#90EE90" height="23">
+     <% IF plACTIVE AND plAGEMAIL %><a href="javascript: emailtoagent()"><img border="0" src="zz/images/email1.gif" width="18" height="11"></a>&nbsp;Email<%ENDIF%></td>
+   </tr>
+<%ENDIF%>     
+	<tr>
+	 <td width="100%" class="TD2" colspan="2" height="23">Reference:&nbsp;<%=_EST.REF%></td>
+   </tr>  	            
+    <tr>
+     <td width="100%" class="TD2" colspan="2" height="23">Distance:&nbsp;<%=ALLT(STR(_CRG.MILES))%>&nbsp;Miles</td>
+   </tr>   
+    <tr>
+     <td width="100%" class="TD2" colspan="2" height="23">Open Date:&nbsp;<%=TTOC(_EST.OPENDTE)%></td>
+   </tr>          
+  </table>    
+    </td>
+ </tr>
+  </table>
+    <br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%"><b><font style="font-family:Verdana;font-size:11pt;color:#000;">Representative's Remarks: 
+    <a class="fancybox fancybox.iframe" href="wc.dll?mpcharge~repnoteaddwc~<%=pcSCR%>">Quick Notes</a></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #FF0000;margin-bottom:8px;width:90%;" rows="4" name="REPNOTESX" cols="100"></textarea>
+    <% SELECT _REPNOTES
+  	   IF RECCOUNT() > 0 %>
+   <table border="0" cellpadding="1" cellspacing="1" style="border-radius:6px;border: 1px solid #000000;width:90%;"> 
+       <% SCAN %>
+   <tr>
+      <td width="21%" style="border-bottom: 1px solid #808080;" valign="top" bgcolor="#F8F8FF"><font style="font-family:Arial;font-size:10pt;"><%=DATE%><br><%=USER%></font>
+      <% IF STAR=.T. %><span style="font-size:24px;color:#FF8C00;">&#9733;</span><%ELSE%><span style="font-size:24px;color:#000000;">&#9734;</span><%ENDIF%></td>
+      <td width="79%" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #808080;"><font style="font-family:Arial;font-size:10pt;"><%=ALLT(NOTES)%></font>&nbsp;</td>
+   </tr>
+    <% ENDSCAN %>
+  </table>
+    <center><a href="wc.dll?mpcharge~ViewRepNotes~<%=pcSCR%>"><font face="verdana" size="2"><b>View Previous Remarks</b></font></a></center>
+    <%ENDIF%>    
+    </td>   
+ </tr>
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top"><b><font style="font-family:Verdana;font-size:11pt;color:#000;"><%=IIF(_ESTMEMO.REMID=0,'Company Policy on Estimate','Add Notes to Company Policy')%></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" valign="top">
+    <textarea rows="4" name="REM" cols="100" style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #000000;width:90%;" <% IF pcCUSTNO='INTERSTA' AND pnLEVEL<5%>READONLY<%ENDIF%>><%=ALLT(_ESTMEMO.REM)%></textarea>
+    <% IF _ESTMEMO.REMID>0 %><br><center><a href="wc.dll?mpcharge~crgremarkspreview~<%=pcSCR%>~<%=ALLT(STR( _ESTMEMO.REMID))%>"><font face="verdana" size="2"><b>Preview Company Policy on Estimate</b></font></a></center><%ENDIF%></td>
+  </tr>
+<%IF pnCOLEVEL >= 3 %> 
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr> 
+  <tr>
+    <td width="100%" valign="top"><b><font style="font-family:Verdana;font-size:11pt;color:#000;">Customer's Remarks</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top"><textarea style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #808080;margin-bottom:8px;width:90%;" rows="4" name="CUNOTESX" cols="100"></textarea>
+    <% SELECT _CUNOTES
+  	   IF RECCOUNT() > 0 %>
+   <table border="0" cellpadding="1" cellspacing="1" style="border-radius:6px;border: 1px solid #808080;width:90%;">
+     <% SCAN %>
+   <tr>
+      <td width="21%" style="border-bottom: 1px solid #808080;" valign="top" bgcolor="#F5F5F5"><font style="font-family:Arial;font-size:10pt;"><%=DATE%><br><%=USER%></font></td>
+      <td width="79%" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #808080;"><font style="font-family:Arial;font-size:10pt;"><%=ALLT(NOTES)%></font>&nbsp;</td>
+   </tr>
+    <% ENDSCAN %>
+  </table>   
+   <center><a href="wc.dll?mpcharge~ViewRepNotes~<%=pcSCR%>~~5"><font face="verdana" size="2"><b>View Previous Remarks</b></font></a></center>
+   <%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr> 
+  <tr>
+    <td width="100%"><b><font style="font-family:Verdana;font-size:11pt;color:#000;">Direction / Operation Details</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top"><textarea style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #000000;width:90%;" rows="4" name="DIR" cols="100"><%=ALLT(_ESTMEMO.DIR)%></textarea></td>
+ </tr>
+<%ENDIF%>     
+</table>
+  <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">  
+  <tr>
+  <%IF _EST.LBOOKDTE <= DATE() AND pnLEVEL>=2 AND _EST.LBOOKC %>
+    <td width="16%" align="center"><input type="button" CLASS="SUBMIT" name="B36" onclick="closeda()" style="background-color: #7BB652;" value="<%=IIF(_EST.STATUS='D','Release Close','Close this Job')%>"></td>
+  <% ENDIF %>
+  <%IF _EST.STATUS='F' OR _EST.STATUS='O' %>	 
+	<td width="14%" align="center"><input type="button" CLASS="SUBMIT" name="B3" onclick="SubmitData(1)" style="background-color: #7B96B5;" value="Submit Charges"></td>    
+  <% ENDIF %>      
+  <%IF (_EST.STATUS='F' OR _EST.STATUS='C') and ((!plBLKCANCEL and !plBLKCANCELU) or (plBLKCANCELU and ALLT(_EST.USER)==pcUSER))  %>
+	<td width="17%" align="center"><input type="button" CLASS="SUBMIT" name="B33" onclick="cancela()" style="background-color: #FFFF00; color:#0000FF" VALUE="<%=IIF(_EST.STATUS='C','Release Cancel','Cancel Estimate')%>"></td>
+  <% ENDIF %>
+  <%IF pnLEVEL=2  or pnLEVEL > 3 %>    
+    <td width="14%" align="center"><input type="button" name="B34" CLASS="ACTLOG" onclick="ViewLog()" value="Activity Log"></td>
+  <% ENDIF %>
+  <%IF (_EST.STATUS='F' OR _EST.STATUS='C') AND (pnLEVEL=2 OR pnLEVEL > 3) %>  
+    <td width="17%" align="center"><input type="button" CLASS="SUBMIT" name="B35" onclick='deletea()' style="background-color: #EF3821;" value="Delete Estimate"></td>
+  <% ENDIF %>
+ </tr>
+</table>
+</form>    
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#993366" colspan="3">&nbsp;<font face="Arial" style="font-size:9pt;color:#FFF;"><%=pcUser%>&nbsp;&nbsp;<%=pcIP%></font></td>
+  </tr>  
+  </table>
+</body>
+</html>

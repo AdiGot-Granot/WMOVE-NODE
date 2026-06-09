@@ -1,0 +1,63 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Add Loads Board</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpsys~addloadboard";
+       document.theForm.submit();
+      }    
+	}
+</SCRIPT>
+
+</head>
+
+<body>
+<br>
+<% IF plVIEW=.F. %>
+<center><b><font face="Arial" size="4">Add Loads Board</font><br>
+<font face="Arial" color="red">You'll need CUSTID & Loads Board Link</font></center><br>
+<form name="theForm" method="post">
+<table width="564" align="center" bordercolor="#111111" border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse">
+  <tr>
+    <td align="center" bgcolor="#F8F8FF" width="76"><b><font face="Arial" size="2">CUST_ID</td>
+    <td align="center" bgcolor="#F8F8FF" width="477"><b><font face="Arial" size="2">Loads Board Link</font></b></td>
+ </tr>
+ <tr>
+   <td align="center" width="76"><input type="text" autocomplete="off" NAME="CUSTID" size="7" VALUE="" maxlength="6" tabindex="1"></td>
+   <td width="477"><input type="text" autocomplete="off" NAME="URL" size="60" VALUE="" tabindex="2"></td>
+ </tr>
+</table>
+<br><center><input type="button" name="B1" STYLE="background-color:#F8F8FF;cursor:pointer;" onclick="submitFunction(1)" value="Add LB Link" tabindex="12"></center><br>
+</form>
+<%ENDIF%>
+<center><font face="Arial" size="4">View All <a href="/wc.dll?mpsys~addloadboard~VIEW">Loads Boards</a></font></center><br>
+<% IF plVIEW=.T. %>
+<table width="704" align="center" bordercolor="#111111" border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse">
+  <tr>
+    <td bgcolor="#FFFAF0" width="121">&nbsp;<b><font face="Arial" size="2">CUST_CODE</font></B></td>
+    <td bgcolor="#FFFAF0" width="93">&nbsp;<b><font face="Arial" size="2">Server</font></b></td>
+    <td bgcolor="#FFFAF0" width="668">&nbsp;<b><font face="Arial" size="2">Load Board Link</font></b></td>
+    <td bgcolor="#FFFAF0" align="center" width="47">&nbsp;<b><font face="Arial" size="2">DEL</font></b></td>
+ </tr>
+ <%SELECT _LB
+   SCAN %>
+ <tr style="line-height:23px;">
+   <td width="121">&nbsp;<font face="Arial" size="2"><%=ALLT(CUSTNO)%></font></td>
+   <td width="93">&nbsp;<font face="Arial" size="2"><%=ALLT(PROD)%></font></td>
+   <td width="668">&nbsp;<a href="<%=ALLT(URL)%>" target="_blank"><font face="Arial" size="2"><%=ALLT(URL)%></font></a></td>
+   <td width="47" align="center"><a href="/wc.dll?mpsys~addloadboard~~DEL~<%=ALLT(STR(BOARDID))%>"><font face="Arial" size="2"><B>DEL</B></font></a></td>
+ </tr>
+ <%ENDSCAN%>
+</table>
+<%ENDIF%>
+<br><center><font face="Arial"><a href="javascript:window.close()">Exit</a></font></center>
+
+</body>
+</html>

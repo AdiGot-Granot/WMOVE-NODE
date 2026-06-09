@@ -1,0 +1,166 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Update Handbook</TITLE>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+jQuery.noConflict();
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~handbookret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+
+   if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~handbookwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+        
+   if (i==3) 
+      { 
+      var Message = "Are you sure you want to delete?";
+	  if (confirm (Message))     
+       	document.theForm.action="/wc.dll?mpmainten~handbookret~<%=pcSCR%>~DEL";
+        document.theForm.submit();
+      }
+    }  
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.DELETE	 	{	color: black; 
+					font-weight: none;
+					font-family: Verdana;
+				  	text-align: center;
+					width: 100;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.DELETEON	{	color: #FFFFFF; 
+					font-weight: bold;
+					font-family: Verdana;
+				  	text-align: center;
+					width: 100;
+					height: 30;
+					background-color: #FF0000;
+					font-size: 10pt;
+  				  	cursor: pointer;}  				  	
+</style>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+
+</head>
+
+<body BGCOLOR="#F7F7F7">
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="780">
+  <tr>
+    <td bgcolor="#0081D3">&nbsp;</td>
+ </tr>
+  <tr valign="top">
+    <td valign="top">    
+	<form name="theForm" method="POST">
+  <input type="HIDDEN" name="HANDBOOKID" value="<%=ALLT(STR(pnHANDBOOKID))%>">	
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" bgcolor="#FFF">
+  <tr>
+    <td width="100%" BGCOLOR="#FFFFFF">
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="760" cellspacing="1" cellpadding="2">
+  <tr>
+    <td width="204" height="35"><font face="Arial" size="2"><b>Move Type:</b></font>
+             <select size="1" name="TYP">
+        	 <% IF pnCOLEVEL=3 %>
+		        <option value="T">Auto Trans</option>
+		     <%ELSE%>
+        		<option value="<%=ALLT(_HB.TYP)%>"><%=ALLT(_HB.TYP1)%></option>		         	
+		        <option value=""></option>
+		        <option value="L">Local</option>
+		        <option value="D">Long Distance</option>
+		        <option value="I">Intenational</option>
+		        <option value="T">Auto Trans</option>
+		     <%ENDIF%>   
+	    </select></td>
+    <td width="201" height="35"><font face="Arial" size="2"><b>User Name:</b></font>
+        <select size="1" name="HUSERID">
+		<option selected value="<%=ALLT(STR(_HB.HUSERID))%>"><%=ALLT(_HB.USERNAME)%></option>
+		<option value=""></option>
+		 <%	SELECT _USERS
+			SCAN %>
+		<OPTION value="<%=ALLT(STR(_USERS.USERID))%>"><%=ALLT(_USERS.USERNAME)%></OPTION>
+		<% ENDSCAN %></select></td>
+   <%IF plDEPT %>	
+    <td width="339" height="35"><font face="Arial" size="2"><b>Department:</b></font>
+	  <select size="1" name="DEPTID">
+       <option selected value="<%=ALLT(STR(_HB.DEPTID))%>"><%=ALLT(_HB.DEPT)+' '+ALLT(_HB.DEPTNAME)%></option>
+	   <option value=""></option>
+       <% SELECT _D
+        	  SCAN%>
+	   <option value="<%=ALLT(STR(_D.DEPTID))%>"><%=ALLT(_D.DEPT)+' '+ALLT(_D.DEPTNAME)%></option>
+       <%ENDSCAN%></select></td>
+   <%ENDIF%>    
+  </tr>
+  <tr>
+    <td height="40" colspan="3" width="754"><b><font face="Arial" size="2">Subject:</font></b>
+    <input name="SUBJECT" size="30" value="<%=ALLT(_HB.SUBJECT)%>" style="border:1px solid #4E6699; font-family:Verdana; font-size:10pt; font-weight:bold"></td>    
+  </tr>      
+</table>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="84%" valign="top"><textarea rows="30" cols="75" name="BODY" tabindex="20" style="border:1px solid #4E6699;"><%=ALLT(_HB.BODY)%></textarea></td>
+  </tr>
+</table>
+ <br>
+<table border="0" align="center" width="90%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="14%" align="center"><INPUT TYPE="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+    <td width="17%" align="center"><input type="submit" CLASS="SUBOFF" name="B56" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+    <td width="17%" align="right"><% IF _HB.HANDBOOKID > 1 %><input type="button" CLASS="DELETE" name="B31" onclick="submitFunction(3)" onmouseover="javasctript: this.className='DELETEON'" onmouseout="javasctript: this.className='DELETE'" tabindex="12" value="Delete"><%ENDIF%></td>
+ </tr>   
+</table>
+&nbsp;</td>
+  </tr>
+   <tr>
+    <td bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>  
+</form>
+  </tr>
+</table>
+</body>
+</html>

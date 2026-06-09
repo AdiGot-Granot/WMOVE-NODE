@@ -1,0 +1,739 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Auto Transport Estimate</title>
+
+<style>
+	p.pagebreak {   page-break-after: always;}
+</style>
+
+</head>
+
+<body>
+<% IF pnDEPOSIT < 1 AND _EST.STATUS='F' AND !plAGENT %><!--QUICK EST NO DEPOSIT-->
+<font style="font-family:Calibri;font-size:11pt;">Hello <%=ALLT(PROPER(_EST.SNAME))%>,<br><br>
+My name is <%=pcREP%>, from <%=pcCOMPANY%> <%=IIF(EMPTY(pcICC),"","MC-"+pcICC)%>.<BR>I am reaching out to you regarding your inquiry to transport your vehicle.<BR><BR>
+Quote: <%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%><BR><br>
+<table style="border-collapse:collapse;font-family:Calibri;font-size:11pt;" border="1" cellSpacing="1" cellPadding="0" width="450">
+  <tr>
+    <td>Pick-up Info:</td>
+    <td>Delivery Info:</td>
+  </tr>
+  <tr>
+    <td><%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>&nbsp;</td>
+    <td><%=ALLT(PROPER(_EST.RCITY))+', '+(_EST.RSTATE)%>&nbsp;</td>
+  </tr>
+</table>
+<br>
+Please bear in mind, the price below is based on a tentative date for pick-up that we received of <%=_EST.LBOOKDTE%>, the origin and destination, as well 
+as supply and demand. We take this into account to provide an accurate rate based on an estimated pick-up of 12 - 72 hours.
+<BR><br>
+<table style="border-collapse:collapse;font-family:Calibri;font-size:11pt;" border="1" cellSpacing="1" cellPadding="0" width="450">
+  <tr>
+    <td width="242">Year / Make / Model</td>
+    <td width="202">Price</td>
+ </tr>
+ <%SELECT _INVAUTO
+       SCAN %>
+  <tr>
+    <td width="242"><%=ALLT(YEAR)+' / '+ALLT(MAKE)+' / '+ALLT(MODEL)%>&nbsp;</td>
+    <td width="202" align="right">&nbsp;<%=IIF(UPRC=0,'','$'+ALLT(STR(UPRC,8,2)))%></td>
+ </tr>
+ <%ENDSCAN%>
+</table>
+<br>
+<u>Depending on your flexibility we can match any lower rate that is all-inclusive.</u><br><br>
+Please contact me, <%=pcREP%>, <%=pcTOLLFREE%> so I can give you a tailored rate based on your requirements.
+You may need your vehicle to arrive after or before a certain date, or picked up by a certain time. I really want to make sure 
+we take everything into account to provide you with the best competitive and service based rate.<br><br>
+Sincerely,<br><br><%=pcREP%><br>*Se Habla Español<br><%=pcTOLLFREE%><br><a href="mailto:<%=pcOUREMAIL%>"><%=pcOUREMAIL%></a><br>
+<%=pcCOMPANY%> <%=IIF(EMPTY(pcICC),"","MC-"+pcICC)%>
+<%=pcADD1%>&nbsp;<%=pcADD2%><br>
+<a href="http://www.fidelityautoshipping.com" style="color: #0563C1;">www.fidelityautoshipping.com</a> | 
+<a href="http://www.transportemiauto.com" style="color: #0563C1;">www.transportemiauto.com</a> | 
+<a href="http://www.canadaautoshipping.net" style="color: #0563C1;">www.canadaautoshipping.net</a><br>
+<font size="2">*PLEASE NOTE: Rates are valid for 5 days from initial quotation<br><br>
+Email Disclaimer: This email and any files transmitted with it are confidential and intended solely for the use of the individual or
+entity to whom they are addressed. If you have received this email in error please notify the sender. This message contains 
+confidential information and is intended only for the individual(s) named. If you are not the intended recipient you are 
+notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is 
+strictly prohibited. Although Fidelity Auto Shipping Co. has taken reasonable precautions to ensure no viruses are present 
+in this email, the company cannot accept responsibility for any loss or damage arising from the use of this email or attachments.</font></font>
+<%ELSE%>
+  <% IF !plAGENT AND _EST.STATUS='F' %>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td width="100%" align="center"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" width="100%" height="100"></td>
+ </tr>
+</table>
+<table cellpadding=0 cellspacing=0 width="700" align="center">
+  <tr>
+    <td><br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#000000" width="100%">
+  <tr>
+   <td width="75%" VALIGN="TOP" align="center" bgcolor="#000000" colspan="2"><b><font style="font-size:17pt;font-family:Calibri;color:#92D050;">
+   <%=IIF(_EST.STATUS='F','Auto Transport Estimate','Auto Transport Job Order')%> <%=IIF(plAGENT,' - Carrier Copy','')%></font></b>&nbsp;</td>
+ </tr>
+  <tr>
+   <td width="37%" VALIGN="TOP">
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse" width="100%">
+   <tr>
+     <td width="36%"><font face="Calibri" size="3"><b>Quote No.:</b></font></td>
+     <td width="64%"><font face="Calibri" size="3"><b><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%>&nbsp;</b></font></td>
+  </tr>
+   <tr>
+     <td width="36%"><font face="Calibri" size="3"><b>Transport Date:</b></font></td>
+     <td width="64%"><font face="Calibri" size="3"><b><%=IIF(EMPTY(_EST.LBOOKDTE1),_EST.LBOOKDTE,'Between '+DTOC(_EST.LBOOKDTE)+' to '+DTOC(_EST.LBOOKDTE1))%></b></font></td>
+  </tr>
+  <% IF !EMPTY(_EST.LBOOKTME)%>
+   <tr>
+     <td width="36%"><font face="Calibri" size="3"><b>Arrival Window:</b></font></td>
+     <td width="64%"><font face="Calibri" size="3"><b><%=_EST.LBOOKTME%></b></font></td>
+  </tr>  
+  <%ENDIF%>
+   <tr>
+     <td width="36%"><font face="Calibri" size="3"><b>Representative:</b></font></td>
+     <td width="64%"><font face="Calibri" size="3"><b><%=IIF(EMPTY(_EST.REP),PROPER(_EST.USER),PROPER(_EST.REP))%>&nbsp;</b></font></td>
+  </tr>
+   <tr>
+     <td width="36%"><font face="Calibri" size="3"><b>Rep. Email:</b></font></td>
+     <td width="64%"><font face="Calibri" size="3"><b><a href="mailto:<%=pcOUREMAIL%>"><%=pcOUREMAIL%></a></b></font>&nbsp;</td>
+   </tr>
+   <tr>
+     <td width="36%"><font face="Calibri" size="3"><b>Mileage:</b></font></td>
+     <td width="64%"><font face="Calibri" size="3"><b><%=IIF(_CRG.MILES > 0,ALLT(STR(_CRG.MILES))+' miles','')%>&nbsp;</b></font></td>
+  </tr>   
+   <tr>
+     <td width="36%"><font face="Calibri" size="3"><b>Type of Service:</b></font></td>
+     <td width="64%"><font face="Calibri" size="3"><b><%=pcINTLSERV%>&nbsp;</b></font></td>
+  </tr>  
+</table>   
+   </td>
+   <td width="38%" VALIGN="TOP">
+<table border="0" cellpadding="3" cellspacing="1" style="border-collapse: collapse" width="100%">
+   <tr>
+     <td width="100%" colspan="2"><font style="font-size:14pt;font-family:Calibri;"><b><%=pcCOMPANY%></b></font>&nbsp;</td>
+  </tr>
+<% IF !EMPTY(pcADD1)%>    
+   <tr>
+     <td width="100%" colspan="2"><font face="Calibri" size="3"><b><%=pcADD1%>&nbsp;<%=pcADD2%></b></font></td>
+  </tr>
+<%ENDIF%>  
+   <tr>
+     <td width="50%"><font face="Calibri" size="3"><b><%=pcTOLLFREE%></b></font></td>
+     <td width="50%"><font face="Calibri" size="3"><b><%=IIF(!EMPTY(pcFAX),'Fax: '+pcFAX,'')%></b></font>&nbsp;</td>
+  </tr>
+   <tr>
+     <td width="50%"><font face="Calibri" size="3"><b><%=IIF(EMPTY(pcICC),"","ICC MC: "+pcICC)%></b></font>&nbsp;</td>
+     <td width="50%"><font face="Calibri" size="3"><b><%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%></b></font>&nbsp;</td>
+  </tr>  
+<% IF !EMPTY(pcOURWEB)%>
+   <tr>
+     <td width="100%" colspan="2"><font face="Calibri" size="3"><b><a href="<%=pcOURWEB%>"><%=pcOURWEB%></a></b></font>&nbsp;</td>
+  </tr>
+<%ENDIF%>   
+</table>   
+   </td>
+ </tr>
+  </table>
+ <br>   
+<table border="1" align="center" width="700" height="100" style="border-collapse: collapse" bordercolor="#000000">
+  <tr>
+	<td height="20" bgcolor="#000000" align="center" width="340"><b><font style="font-size:14pt;font-family:Calibri;color:#92D050;">Origin</font></b></td>
+	<td height="20" bgcolor="#000000" align="center" width="353"><b><font style="font-size:14pt;font-family:Calibri;color:#92D050;">Destination</font></b></td>
+ </tr>
+  <tr>
+	<td valign="top" width="340">
+<table border="0" width="100%" style="border-collapse: collapse" bordercolor="#111111" cellspacing="1" cellpadding="3">
+  <tr>
+   <td colspan="2" align="center" width="100%"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(PROPER(_EST.SNAME))%>&nbsp;</b></font></td>
+ </tr>
+ <%IF !EMPTY(_EST.SLEVEL)%>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Location:</font></td>
+   <td width="131%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.SLEVEL)%></font></td>
+ </tr>
+ <%ENDIF%>  
+ <%IF !EMPTY(_EST.SADD1) OR !EMPTY(_EST.SADD2)%>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Address:</font></td>
+   <td width="131%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%></font></td>
+ </tr>
+ <%ENDIF%> 
+  <tr>
+   <td width="30%"><font style="font-size:11pt;font-family:Calibri;">City, State, Zip:</font></td>
+   <td width="70%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>
+   &nbsp;<%=ALLT(_EST.SZIP)%><%=IIF(EMPTY(_EST.SCOUNTRY),' ','&nbsp;'+ALLT(_EST.SCOUNTRY))%></font></td>
+ </tr>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Phone 1:</font></td>
+   <td width="101%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.STELH)%></font></td>
+ </tr>
+ <%IF !EMPTY(_EST.STELO)%>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Phone 2:</font></td>
+   <td width="101%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.STELO)%></font></td>
+ </tr>
+ <%ENDIF%> 
+ <%IF !EMPTY(_EST.SFAX)%>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Fax:</font></td>
+   <td width="101%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.SFAX)%></font></td>
+ </tr>
+ <%ENDIF%> 
+</table>
+   </td>
+    <td valign="top" width="353">
+<table border="0" width="100%" height="19" style="border-collapse: collapse" bordercolor="#111111" cellspacing="1" cellpadding="3">
+  <tr>
+   <td colspan="2" align="center" width="100%"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(PROPER(_EST.RNAME))%>&nbsp;</b></font></td>
+ </tr>
+ <%IF !EMPTY(_EST.RLEVEL)%>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Location:</font></td>
+   <td width="101%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.RLEVEL)%></font></td>
+ </tr>
+ <%ENDIF%>   
+ <%IF !EMPTY(_EST.RADD1) OR !EMPTY(_EST.RADD2)%>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Address:</font></td>
+   <td width="101%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.RADD1)%>&nbsp;<%=ALLT(_EST.RADD2)%></font></td>
+ </tr>
+ <%ENDIF%> 
+  <tr>
+   <td width="29%"><font style="font-size:11pt;font-family:Calibri;">City, State, Zip:</font></td>
+   <td width="71%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(PROPER(_EST.RCITY))+', '+(_EST.RSTATE)%>
+   &nbsp;<%=ALLT(_EST.RZIP)%><%=IIF(EMPTY(_EST.RCOUNTRY),' ','&nbsp;'+ALLT(_EST.RCOUNTRY))%></font></td>
+ </tr>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Phone 1:</font></td>
+   <td width="101%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.RTELH)%></font></td>
+ </tr>
+ <%IF !EMPTY(_EST.RTELO)%>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Phone 2:</font></td>
+   <td width="101%"><font style="font-size:11pt;font-family:Calibri;"><%=ALLT(_EST.RTELO)%></font>&nbsp;</td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+   <td width="1%"><font style="font-size:11pt;font-family:Calibri;">Email:</font></td>
+   <td width="102%"><font style="font-size:11pt;font-family:Calibri;"><a href="mailto:<%=ALLT(_EST.EMAIL)%>"><%=IIF(EMPTY(_EST.EMAIL),'',ALLT(_EST.EMAIL))%></a></font>&nbsp;</td>
+ </tr>  
+</table>    
+    </td>
+  </tr>
+</table>
+<%IF !EMPTY(pcEXTSTOP)%>  
+    <br>
+<table border="1" align="center" width="100%" style="border-collapse: collapse" bordercolor="#000000">
+  <tr>
+    <td width="33%" align="center" bgcolor="#000000"><b><font style="font-size:14pt;font-family:Calibri;color:#92D050;">Additional Notes</b></font></td>
+ </tr>
+  <tr>
+    <td valign="top" width="33%"><font face="Calibri" color="#000000" size="2"><%=pcEXTSTOP%></FONT>&nbsp;</td>
+ </tr>
+</table>
+<%ENDIF%>
+<%IF plAGENT%>
+<BR>    
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#000000" width="100%">
+  <tr>
+   <td width="19%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Carrier</b></font></td>
+   <td width="19%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Company</b></font></td>
+   <td width="19%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Contact</b></font></td>
+   <td width="18%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Email</b></font></td>
+ </tr>
+  <tr>
+   <td width="19%" align="center"><b><font style="font-size:11pt;font-family:Calibri;"><%=pcAGENT%></b></font>&nbsp;</td>
+   <td width="19%" align="center"><b><font style="font-size:11pt;font-family:Calibri;"><%=pcAGCOMPANY%></b></font>&nbsp;</td>
+   <td width="19%" align="center"><b><font style="font-size:11pt;font-family:Calibri;"><%=pcAGCONTACT%></b></font>&nbsp;</td>
+   <td width="18%" align="center"><b><font style="font-size:11pt;font-family:Calibri;"><%=pcAGEMAIL%></b></font>&nbsp;</td>
+ </tr>
+</table>
+<%ENDIF%>
+    <br>
+<table border="1" width="100%" align="center" bordercolor="#000000" style="border-collapse: collapse">
+  <tr>
+   <td align="center" bgcolor="#000000"><b><font style="font-size:14pt;font-family:Calibri;color:#92D050;">Vehicles</font></b></td>
+ </tr>
+   <tr>
+    <td>
+<table border="1" width="100%" height="1" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse: collapse">
+  <tr>
+    <td width="18%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Year / Make / Model</b></font></td>
+    <td width="8%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Type</b></font></td>
+    <td width="3%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Run</b></font></td>    
+    <td width="5%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Enclosed<br>Svc.</b></font></td>    
+    <td width="23%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Remarks</b></font></td>    
+    <td width="3%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Qty</b></font></td>
+    <td width="8%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Total<br>Price</b></font></td>
+ </tr>
+ <%SELECT _INVAUTO
+       SCAN %>
+  <tr>
+    <td width="18%"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(YEAR)+' / '+ALLT(MAKE)+' / '+ALLT(MODEL)%></b></font>&nbsp;</td>
+    <td width="8%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b><%=TYPE%></b></font>&nbsp;</td>
+    <td width="3%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b><%=IIF(RUN,'Yes',' No')%></b></font>&nbsp;</td>    
+    <td width="5%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b><%=IIF(COVER,'Yes',' No')%></b></font>&nbsp;</td>    
+    <td width="23%"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(REMARKS)%></b></font>&nbsp;</td>    
+    <td width="3%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(STR(QTY))%></b></font>&nbsp;</td>
+    <td width="8%" align="right">&nbsp;<font style="font-size:11pt;font-family:Calibri;color:#3548DD4;"><b>
+    <%IF plAGENT%><%=IIF(UPRC=0,'','$'+ALLT(STR(UPRC-DEPOSIT,8,2)))%><%ELSE%>
+    <%=IIF(UPRC=0,'','$'+ALLT(STR(UPRC,8,2)))%><%ENDIF%></b></font></td>
+ </tr>
+ <%ENDSCAN%>
+<%IF !plAGENT%> 
+ <% IF _AUTOCRG.ORIGINAMT > 0 %>
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Terminal Handling - Origin</b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.ORIGINAMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%>
+ <% IF _AUTOCRG.DESTINAMT > 0 %> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Terminal Handling - Destination</b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.DESTINAMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%>
+ <% IF _AUTOCRG.BOOKINGAMT > 0 AND _EST.STATUS='O'%> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Booking Fee</b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.BOOKINGAMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%> 
+ <% IF _AUTOCRG.OTHERS1AMT > 0 %> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.OTHERS1)%></b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.OTHERS1AMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%> 
+ <% IF _AUTOCRG.OTHERS2AMT > 0 %> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.OTHERS2)%></b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.OTHERS2AMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%> 
+ <% IF _AUTOCRG.OTHERS3AMT > 0 %> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.OTHERS3)%></b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.OTHERS3AMT,8,2))%></b></font></td>
+ </tr> 
+ <%ENDIF%>
+ <% IF _AUTOCRG.EXTRA1AMT > 0 %> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.EXTRA1)%></b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.EXTRA1AMT,8,2))%></b></font></td>
+ </tr> 
+ <%ENDIF%>
+ <% IF _AUTOCRG.EXTRA2AMT > 0 %> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.EXTRA2)%></b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.EXTRA2AMT,8,2))%></b></font></td>
+ </tr> 
+ <%ENDIF%>      
+ <% IF _AUTOCRG.INSAMT > 0 %> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.INS)%></b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.INSAMT,8,2))%></b></font></td>
+ </tr> 
+ <%ENDIF%>
+ <% IF _AUTOCRG.DISCOUNT > 0 %> 
+  <tr>
+   <td width="65%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;color:#FF0000;"><b><%=ALLT(_AUTOCRG.DISCTXT)%></b></font></td>
+   <td width="7%" align="right" height="19"><font size="2" style="font-size:11pt;font-family:Calibri;color:#FF0000;"><b><%='-$'+ALLT(STR(_AUTOCRG.DISCOUNT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%>
+<%ENDIF%>   
+<%IF !plAGENT%>
+  <tr>
+   <td width="64%" height="19" align="right" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Total:</b></font></td>
+   <td width="8%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;color:#548DD4;"><b><%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></b></font></td>
+ </tr>
+ <%ELSE%>
+  <tr>
+   <td width="64%" height="19" align="right" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Total Charge:</b></font></td>
+   <td width="8%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;color:#548DD4;"><b><%='$'+ALLT(STR(pnPRICE,8,2))%></b></font></td>
+ </tr>
+<%ENDIF%>
+<% IF _OPR.PAIDAMT <> 0 AND !plAGENT %>   
+  <tr>
+   <td width="64%" height="19" align="right" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Customer Payment:</b></font></td>
+   <td width="8%" height="19" align="right"><font style="font-size:11pt;font-family:Calibri;color:#008000;"><b><%='$'+ALLT(STR(_OPR.PAIDAMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%>
+ <% IF _OPR.PAIDAMT <> 0 AND plAGENT%>
+  <tr>
+   <td width="64%" height="19" align="right" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Customer Balance:</b></font></td>
+   <td width="8%" height="19" align="right"><font style="font-size:11pt;font-family:Calibri;color:#548DD4;"><b><%='$'+ALLT(STR(_OPR.BALANCE,8,2))%></b></font></td>
+ </tr>              
+ <% ENDIF %>              
+ </table>
+   </td>
+  </tr>
+</table>
+    <br>
+<table border="1" width="100%" align="center" cellpadding="2" style="border-collapse: collapse" bordercolor="#000000" cellspacing="0">
+  <tr>
+	<td width="100%" height="14" bgcolor="#000000" align="center"><font style="font-size:14pt;font-family:Calibri;color:#92D050;">
+	<b><%=IIF(!plAGENT,'Understanding Your Quote','Remarks to Carrier')%></b></font></td>
+ </tr>
+  <tr>
+    <td width="100%" height="15"><font color="#FF0000"><%=pcREMFILE%></font></td>
+ </tr>
+</table>
+    </td>
+ </tr>
+</table>
+
+  <%ELSE%><!--booking form starts here-->
+
+<table style="border-style:solid; border-width:2; border-collapse: collapse;" ALIGN="CENTER" width="700" bordercolor="#000000">
+  <TR> 
+    <TD align="center">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="99%">
+  <tr>
+    <td align="center"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100"><br>
+    <font style="font-size:11pt;font-family:Calibri;"><%=pcCOMPANY%>&nbsp;<%='MC-'+pcICC%>&nbsp;<%=pcADD1%>&nbsp;<%=pcADD2%><br>
+    Phone:&nbsp;<%=pcTOLLFREE%>&nbsp;Fax:&nbsp;<%=pcFAX%><BR>
+    <a href="<%=pcOURWEB%>"><%=pcOURWEB%></A><br><b><U>Booking Service Contract Agreement</U></b></font>
+ <%IF plESIGN AND !plAGENT%>
+    <br><br><b><FONT style="font-size:16pt;font-family:Calibri;color:blue;">&nbsp;  </font>
+    <FONT style="font-size:16pt;font-family:Calibri;" color="#0000FF">Agree & Confirm your Booking with our</font><FONT style="font-size:16pt;font-family:Calibri;color:blue;"> 
+    <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~esignwc~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>">
+    <span style="background-color: #0000FF"><font color="#FFFFFF">Online Electronic Signature</font></span></a></font></b><font color="#FFFFFF"><span style="background-color: #0000FF">
+ <%ENDIF%> </span></font>
+    </td>
+ </tr>
+  <tr>
+    <td width="84%">
+<TABLE width="100%" border="1" align="center" borderColor="#000000" style="BORDER-COLLAPSE: collapse">
+  <TR> 
+    <TD width="48%">&nbsp;<font face="Calibri"><b>Customer:&nbsp;<%=ALLT(PROPER(_EST.SNAME))%></b></font></TD>
+    <TD width="52%">&nbsp;<font face="Calibri"><b>Order No:&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font></TD>
+  </TR>  
+</TABLE>    
+<table width="100%" border="1" style="border-collapse: collapse" borderColor="#000000" cellspacing="1">
+  <tr>
+   <td valign="top" bgcolor="#CCCCCC" colspan="2">&nbsp;<font face="Calibri"><B>Origin</b></font></td>
+   <td valign="top" bgcolor="#CCCCCC" colspan="2">&nbsp;<font face="Calibri"><B>Destination</b></font></td>
+  </tr>
+  <tr>
+   <td valign="top" width="321" colspan="2">&nbsp;<B><font size="2" face="Calibri">Location:</b>&nbsp;<%=ALLT(_EST.SLEVEL)%></font></td>
+   <td valign="top" width="353" colspan="2">&nbsp;<B><font size="2" face="Calibri">Location:</b>&nbsp;<%=ALLT(_EST.RLEVEL)%></font></td>
+  </tr>  
+  <tr>
+   <td valign="top" width="321" colspan="2">&nbsp;<B><font size="2" face="Calibri">Address:</b>&nbsp;<%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%></font></td>
+   <td valign="top" width="353" colspan="2">&nbsp;<B><font size="2" face="Calibri">Address:</b>&nbsp;<%=ALLT(_EST.RADD1)%>&nbsp;<%=ALLT(_EST.RADD2)%></font></td>
+  </tr>  
+  <tr>
+   <td valign="top" width="321" colspan="2">&nbsp;<B><font size="2" face="Calibri">City/State/Zip:</b>&nbsp;<%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%></font></td>
+   <td valign="top" width="353" colspan="2">&nbsp;<B><font size="2" face="Calibri">City/State/Zip:</b>&nbsp;<%=ALLT(PROPER(_EST.RCITY))+', '+(_EST.RSTATE)%>&nbsp;<%=ALLT(_EST.RZIP)%></font></td>
+  </tr>
+  <tr>
+   <td valign="top" width="161">&nbsp;<B><font size="2" face="Calibri">Ph. 1:</B>&nbsp;<%=ALLT(_EST.STELH)%></font></td>
+   <td valign="top" width="160">&nbsp;<B><font size="2" face="Calibri">Ph. 2:</B>&nbsp;<%=ALLT(_EST.STELO)%></font></td>
+   <td valign="top" width="177">&nbsp;<B><font size="2" face="Calibri">Ph. 1:</B>&nbsp;<%=ALLT(_EST.RTELH)%></font></td>
+   <td valign="top" width="176">&nbsp;<B><font size="2" face="Calibri">Ph. 2:</B>&nbsp;<%=ALLT(_EST.RTELO)%></font></td>
+  </tr>
+  <tr>
+   <td valign="top" width="674" colspan="4">&nbsp;<B><font size="2" face="Calibri">Email:</b>&nbsp;<%=ALLT(_EST.EMAIL)%></font></td>
+  </tr>
+  <tr> 
+   <td valign="top" colspan="4">&nbsp;<font size="2" face="Calibri"><b>1<sup>st</sup> Available Pick-UP Dates:</b>
+   <%=IIF(EMPTY(_EST.LBOOKDTE1),_EST.LBOOKDTE,'Between '+DTOC(_EST.LBOOKDTE)+' to '+DTOC(_EST.LBOOKDTE1))%>&nbsp;<%=IIF(EMPTY(_EST.LBOOKTME),'',ALLT(_EST.LBOOKTME))%></font></td>
+ </tr>  
+  <tr> 
+   <td valign="top" colspan="4">&nbsp;<%IF !EMPTY(_ESTMEMO.EXTSTOP)%><B><FONT size="2" face="Calibri">Notes:</b>&nbsp;<%=ALLT(_ESTMEMO.EXTSTOP)%></font><%ENDIF%></td>
+ </tr>
+</table>
+<table border="1" width="100%" align="center" bordercolor="#000000" style="border-collapse: collapse">
+  <tr>
+   <td align="center" align="center" bgcolor="#CCCCCC"><b><font size="2" face="Calibri">List of Vehicle(S) to be Transported</font></b></td>
+ </tr>
+   <tr>
+    <td>
+<table border="1" width="100%" height="1" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse: collapse">
+  <tr>
+    <td width="22%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Year / Make / Model</b></font></td>
+    <td width="6%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Type</b></font></td>
+    <td width="3%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Run</b></font></td>    
+    <td width="6%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Enclosed</b></font></td>    
+    <td width="21%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Remarks</b></font></td>    
+    <td width="3%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Qty</b></font></td>
+    <td width="7%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b>Rate</b></font></td>
+ </tr>
+ <%SELECT _INVAUTO
+       SCAN %>
+  <tr>
+    <td width="22%"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(YEAR)+' / '+ALLT(MAKE)+' / '+ALLT(MODEL)%></b></font>&nbsp;</td>
+    <td width="6%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b><%=TYPE%></b></font>&nbsp;</td>
+    <td width="3%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b><%=IIF(RUN,'Yes',' No')%></b></font>&nbsp;</td>    
+    <td width="6%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b><%=IIF(COVER,'Yes',' No')%></b></font>&nbsp;</td>    
+    <td width="21%"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(REMARKS)%></b></font>&nbsp;</td>    
+    <td width="3%" align="center"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(STR(QTY))%></b></font>&nbsp;</td>
+    <td width="7%" align="right">&nbsp;<font style="font-size:11pt;font-family:Calibri;color:#3548DD4;"><b>
+    <%IF plAGENT%><%=IIF(UPRC=0,'','$'+ALLT(STR(UPRC-DEPOSIT,8,2)))%><%ELSE%>
+    <%=IIF(UPRC=0,'','$'+ALLT(STR(UPRC,8,2)))%><%ENDIF%></b></font></td>
+ </tr>
+ <%ENDSCAN%>
+<%IF !plAGENT%> 
+ <% IF _AUTOCRG.ORIGINAMT > 0 %>
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Terminal Handling - Origin</b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.ORIGINAMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%>
+ <% IF _AUTOCRG.DESTINAMT > 0 %> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Terminal Handling - Destination</b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.DESTINAMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%>
+ <% IF _AUTOCRG.BOOKINGAMT > 0 AND _EST.STATUS='O'%> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Booking Fee</b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.BOOKINGAMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%> 
+ <% IF _AUTOCRG.OTHERS1AMT > 0 %> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.OTHERS1)%></b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.OTHERS1AMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%> 
+ <% IF _AUTOCRG.OTHERS2AMT > 0 %> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.OTHERS2)%></b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.OTHERS2AMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%> 
+ <% IF _AUTOCRG.OTHERS3AMT > 0 %> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.OTHERS3)%></b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.OTHERS3AMT,8,2))%></b></font></td>
+ </tr> 
+ <%ENDIF%>
+ <% IF _AUTOCRG.EXTRA1AMT > 0 %> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.EXTRA1)%></b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.EXTRA1AMT,8,2))%></b></font></td>
+ </tr> 
+ <%ENDIF%> 
+ <% IF _AUTOCRG.EXTRA2AMT > 0 %> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.EXTRA2)%></b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.EXTRA2AMT,8,2))%></b></font></td>
+ </tr> 
+ <%ENDIF%>  
+ <% IF _AUTOCRG.INSAMT > 0 %> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b><%=ALLT(_AUTOCRG.INS)%></b></font></td>
+   <td width="6%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.INSAMT,8,2))%></b></font></td>
+ </tr> 
+ <%ENDIF%>
+ <% IF _AUTOCRG.DISCOUNT > 0 %> 
+  <tr>
+   <td width="66%" height="19" colspan="6"><font style="font-size:11pt;font-family:Calibri;color:#FF0000;"><b><%=ALLT(_AUTOCRG.DISCTXT)%></b></font></td>
+   <td width="6%" align="right" height="19"><font size="2" style="font-size:11pt;font-family:Calibri;color:#FF0000;"><b><%='-$'+ALLT(STR(_AUTOCRG.DISCOUNT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%>
+<%ENDIF%>   
+<%IF !plAGENT%>
+  <tr>
+   <td width="65%" height="19" align="right" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Total:</b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;color:#548DD4;"><b><%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></b></font></td>
+ </tr>
+ <%ELSE%>
+  <tr>
+   <td width="65%" height="19" align="right" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Total Charge:</b></font></td>
+   <td width="7%" align="right" height="19"><font style="font-size:11pt;font-family:Calibri;color:#548DD4;"><b><%='$'+ALLT(STR(pnPRICE,8,2))%></b></font></td>
+ </tr>
+<%ENDIF%>
+<% IF _OPR.PAIDAMT <> 0 AND !plAGENT %>   
+  <tr>
+   <td width="65%" height="19" align="right" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Customer Payment:</b></font></td>
+   <td width="7%" height="19" align="right"><font style="font-size:11pt;font-family:Calibri;color:#008000;"><b><%='$'+ALLT(STR(_OPR.PAIDAMT,8,2))%></b></font></td>
+ </tr>
+ <%ENDIF%>
+ <% IF _OPR.PAIDAMT <> 0 AND plAGENT%>
+  <tr>
+   <td width="65%" height="19" align="right" colspan="6"><font style="font-size:11pt;font-family:Calibri;"><b>Customer Balance:</b></font></td>
+   <td width="7%" height="19" align="right"><font style="font-size:11pt;font-family:Calibri;color:#548DD4;"><b><%='$'+ALLT(STR(_OPR.BALANCE,8,2))%></b></font></td>
+ </tr>              
+ <% ENDIF %>              
+ </table>
+    </td>
+  </tr>
+</table>
+   </td>
+ </tr> 
+</table>
+   </TD>
+ </TR>
+</TABLE>
+<table border="1" width="700" align="center" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr>
+    <td width="39%" height="30" valign="bottom"><i>X</i>_____________________________</td>
+    <td width="42%" height="30" valign="bottom"><i>X</i>________________________________</td>
+    <td width="19%" height="30" valign="bottom"><i>X</i>____________</td>
+ </tr>
+  <tr>
+    <td width="39%" align="center"><font face="Calibri" size="2">Print Name</font></td>
+    <td width="42%" align="center"><font face="Calibri" size="2">Sign Name</font></td>
+    <td width="19%" align="center"><font face="Calibri" size="2">Date</font></td>
+ </tr> 
+</table>      
+<center><B><font style="font-size:9pt;font-family:Calibri;"><font color="red">PLEASE RETURN THIS FORM COMPLETED, SIGNED, AND DATED IF NOT COMPLETED ELECTRONICALLY.</font> Page 1 of 3<br>
+VIA FAX: <%=pcFAX%> OR MAILTO: <%=pcCOMPANY%>, <%=pcADD1%>&nbsp;<%=pcADD2%></FONT></B></center>
+<p class="pagebreak">&nbsp;</p>
+<table style="border-style:solid; border-width:2; border-collapse: collapse;" ALIGN="CENTER" width="700" bordercolor="#000000">
+  <TR> 
+    <TD width="350">&nbsp;<font face="Calibri"><b>Customer Name:&nbsp;<%=ALLT(PROPER(_EST.SNAME))%></b></font></TD>
+    <TD width="350">&nbsp;<font face="Calibri"><b>Order No:&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font></TD>
+ </TR>
+  <TR> 
+    <TD colspan="2"><p class="MsoNormal" style="text-align:justify"><%=pcREMFILE%></p></TD>
+ </TR>
+<%IF plESIGN AND !plAGENT%>
+  <tr>
+    <td colspan="2" align="center"><FONT style="font-size:13pt;font-family:Calibri;color:blue;"><b>&nbsp; Agree & Confirm your Booking with our 
+	<a href="https://<%=pcSERVERIP%>/wc.dll?mpest~esignwc~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>">Online Electronic Signature</a></b></font></td>
+ </tr>
+<%ENDIF%>  
+</TABLE>
+<table border="1" width="700" align="center" cellpadding="0" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr>
+    <td width="39%"><i>X</i>_____________________________</td>
+    <td width="42%"><i>X</i>________________________________</td>
+    <td width="19%"><i>X</i>____________</td>
+ </tr>
+  <tr>
+    <td width="39%" align="center"><font face="Calibri" size="2">Print Name</font></td>
+    <td width="42%" align="center"><font face="Calibri" size="2">Sign Name</font></td>
+    <td width="19%" align="center"><font face="Calibri" size="2">Date</font></td>
+ </tr> 
+</table>      
+<center><B><font style="font-size:9pt;font-family:Calibri;"><font color="red">PLEASE RETURN THIS FORM COMPLETED, SIGNED, AND DATED IF NOT COMPLETED ELECTRONICALLY.</font> Page 2 of 3<br>
+VIA FAX: <%=pcFAX%> OR MAILTO: <%=pcCOMPANY%>, <%=pcADD1%>&nbsp;<%=pcADD2%></FONT></B></center>
+<p class="pagebreak">&nbsp;</p>
+   <% DO CASE 			
+			CASE pcDEPT='H'
+				lcDEPTABBR='FASC'
+			OTHERWISE
+				lcDEPTABBR='DCT'
+   ENDCASE%> 
+<table style="border-style:solid; border-width:2; border-collapse: collapse;" align="center" width="700" bordercolor="#000000">
+  <TR> 
+    <TD align="center"><font style="font-size:11pt;font-family:Calibri;"><b><u>Payment Disclosure Agreement</u></b></font> 
+<table border="1" align="center" style="border-collapse: collapse" borderColor="#000000" width="98%" cellpadding="2" cellspacing="1">
+  <tr>
+   <td width="50%">&nbsp;<font face="Calibri"><b>Customer Name:&nbsp;<%=ALLT(PROPER(_EST.SNAME))%></b></font></td>
+   <td width="50%">&nbsp;<font face="Calibri"><b>Order No:&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font></td>
+  </tr>
+  <tr>
+   <td colspan="2"><font style="font-size:11pt;font-family:Calibri;">Vehicle Transportation Cost: <%='$'+ALLT(STR(_EST.SUBTOTAL-_AUTOCRG.BOOKINGAMT,8,2))%> / 
+   Booking Fee due to <%=lcDEPTABBR%>: <%='$'+ALLT(STR(_AUTOCRG.BOOKINGAMT,8,2))%> / 
+  <% IF pnDEPOSIT > 0 %>Total Charged: <%='$'+ALLT(STR(pnDEPOSIT,8,2))%><%ELSE%>Balance Due to Carrier: <%='$'+ALLT(STR(_EST.SUBTOTAL-_AUTOCRG.BOOKINGAMT,8,2))%><%ENDIF%><br><BR>
+   <center><u>Methods of Payment</u></center>
+   The booking fee required to <%=lcDEPTABBR%> is due at the time of booking the service. Acceptable methods of payment include: Cash, 
+   Cashier’s Check, US Postal Money Order, or any major credit card (Visa, Master Card, American Express, and Discover). 
+   The Vehicle Transportation Cost should be made payable to the carrier at the time of delivery in the form of Cash, Cashier’s Check, 
+   or US Postal Money Order only, unless prepaid ahead of time.</FONT></td>
+  </tr>
+ </table>
+<table border="1" style="border-collapse: collapse" bordercolor="#000000" align="center" width="98%">
+  <tr>
+    <td width="100%" ALIGN="CENTER" colspan="2"><FONT FACE="Calibri">
+    PLEASE SIGN THE CREDIT CARD SLIP AND INCLUDE THE REQUESTED INFORMATION BELOW.</FONT></td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="2"><br><font style="font-size:11pt;font-family:Calibri;">
+    I, _____________________________ agree to pay the subsequent charge to <%=pcCOMPANY%>,<BR>
+    <font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Print Cardholder's Name</font><br>
+    (hereinafter referred to as “<%=lcDEPTABBR%>”), for the booking fee by <%=lcDEPTABBR%>. I have read, understand, and fully accept the 
+    <%=pcCOMPANY%> Terms and Conditions prior to entering into and/or signing this Agreement.</font></td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="2" align="center"><font face="Calibri"><b>Order No:&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font></td>
+    </tr>
+  <tr>
+    <td width="48%">&nbsp;<font style="font-size:11pt;font-family:Calibri;"><b>Description:</b></td>
+    <td width="52%">&nbsp;<font style="font-size:11pt;font-family:Calibri;"><b>Amount:</b></td>
+  </tr>
+  <tr>
+    <td width="48%">&nbsp;<font style="font-size:11pt;font-family:Calibri;">Vehicle Transportation Cost:</font></td>
+    <td width="52%">&nbsp;<font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_EST.SUBTOTAL-_AUTOCRG.BOOKINGAMT,8,2))%></b></font></td>
+  </tr>
+  <tr>
+    <td width="48%">&nbsp;<font style="font-size:11pt;font-family:Calibri;">Booking Fee:</font></td>
+    <td width="52%">&nbsp;<font style="font-size:11pt;font-family:Calibri;"><b><%='$'+ALLT(STR(_AUTOCRG.BOOKINGAMT,8,2))%></b></font></td>
+  </tr>   
+  <tr>
+    <td width="48%" height="25" valign="bottom" align="right"><font style="font-size:11pt;font-family:Calibri;"><b>Total Charged:</B></font>&nbsp;</td>
+    <td width="52%" height="25" valign="bottom">&nbsp;<font style="font-size:11pt;font-family:Calibri;"><b>
+    <% IF pnDEPOSIT > 0 %><%='$'+ALLT(STR(pnDEPOSIT,8,2))%><%ELSE%><%='$'+ALLT(STR(_AUTOCRG.BOOKINGAMT,8,2))%><%ENDIF%></b></font></td>
+  </tr>
+  <tr>
+    <td width="100%" align="center" height="25" valign="bottom" colspan="2"><font style="font-size:10.5pt;font-family:Calibri;"><b>*Any outstanding
+    balances will be due on delivery date C.O.D as described under "Methods of Payment" above.*</b></font></td>
+  </tr>  
+  <tr>
+    <td width="50%" height="25" valign="bottom" align="center"><b><font style="font-size:11pt;font-family:Calibri;">Date: ______/______/_______</font></b></td>
+    <td width="50%" height="25" valign="bottom"><b><font style="font-size:11pt;font-family:Calibri;">Please check one: VISA [_] MC [_] AMEX [_] DISC [_]</font></b></td>
+  </tr>     
+</table>
+<table border="1" style="border-collapse: collapse" bordercolor="#000000" align="center" width="98%">
+  <tr>
+    <td width="100%"><B><FONT style="font-size:11pt;font-family:Calibri;">Billing Address, City, State &amp; Zip Code:<br>
+    ______________________________________________________________________________<br><br>
+    Card # ______________________________________________ EXP DATE:_____/_____ Security Code: _______</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%"><FONT style="line-height:20px;font-size:10pt;font-family:Calibri;"><B>Purchaser Please Sign Below:</b>
+    Cardholder acknowledges receipt of goods and/or services in the amount of the total shown here and agrees to perform 
+    the obligations set forth in the Cardholder's agreement with the issuer.<br>
+	<b>Services Rendered:</b> The customer acknowledges that they are paying <%=lcDEPTABBR%> for a booking, and not a transportation fee. 
+	<%=lcDEPTABBR%> provides services to facilitate a booking of reservations for a consideration. <%=lcDEPTABBR%> makes no warranty for the reservation service.<br>
+	<b>Refund & Cancellation Policy:</b> To cancel a booking, all requests must be made online via: <a href="https://fidelityautoshipping.com/cancel/" target="_blank">https://fidelityautoshipping.com/cancel/</a>.
+	Should Customer cancel order within 24 hours of booking request, <%=lcDEPTABBR%> will refund Customer all monies received minus any fees incurred to <%=lcDEPTABBR%>
+	during that time if applicable. All booking requests within the forty-eight (48) contiguous states excluding ocean shipments in effect longer than 24 hours without 
+	reservation can be cancelled but are subject to an administrative fee of $80.00. All bookings with reservations regardless of dates will be unable to be cancelled 
+	and therefore non-refundable as services have been rendered as outlined in clause number 30. In the event of Customer`s refusal for release of cargo for Carrier 
+	will not invalidate the agreement. Should Customer cancel any International and/or Ocean booking request after twenty-four (24) hours of initial booking, 
+	order cancellations are subject to an additional administrative fee of 20% of the total invoice as outlined in the payment agreement.</font></td>
+  </tr>
+</TABLE>
+   </TD>
+ </TR>
+</TABLE>
+<table border="1" width="700" align="center" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr>
+    <td width="39%"><br><i>X</i>_____________________________</td>
+    <td width="42%"><br><i>X</i>________________________________</td>
+    <td width="19%"><br><i>X</i>____________</td>
+ </tr>
+  <tr>
+    <td width="39%" align="center"><font face="Calibri" size="2">Print Name</font></td>
+    <td width="42%" align="center"><font face="Calibri" size="2">Sign Name</font></td>
+    <td width="19%" align="center"><font face="Calibri" size="2">Date</font></td>
+ </tr> 
+</table>      
+<center><B><font style="font-size:9pt;font-family:Calibri;"><font color="red">
+PLEASE RETURN THIS FORM COMPLETED, SIGNED, AND DATED IF NOT COMPLETED 
+ELECTRONICALLY</font> Page 3 of 3<br>
+VIA FAX: <%=pcFAX%> OR MAILTO: <%=pcCOMPANY%>, <%=pcADD1%>&nbsp;<%=pcADD2%></FONT></B></center>
+
+  <%ENDIF%>
+<%ENDIF%>
+<%IF !EMPTY(pcEMAIL)%>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="100%" align="center"><br><font size="1" face="Verdana">If you no longer wish to receive emails from <%=pcCOMPANY%>, please
+    click on <a href="https://<%=gcSERVERIP%>/wc.dll?mputil~removeemail~&CUSTID=<%=pcCUSTID%>&EMAILTO=<%=pcEMAIL%>&JOBID=<%=pcJOBID%>">Unsubscribe</a></font></font></td>
+ </tr>
+</table>
+<%ENDIF%>
+</body>
+</html>

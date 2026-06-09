@@ -1,0 +1,149 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Tariff Calculator</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~TariffTestRateWc~<%=pcSCR%>~<%=pcDMAINID%>~<%=IIF(plCALCCF ,'CF','LBS')%>";
+       document.theForm.submit();
+      }
+	}
+
+function FindZip(par) {
+   frm = document.theForm;
+   if (par=='SZIP'){      
+      var cSR='S'
+   }else{
+      var cSR='R'
+   }
+//   alert(cSR);
+   window.open('/wc.dll?mputil~ZipWc~&SR='+cSR,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=550,height=500');   
+   self.name="main"
+}
+
+</SCRIPT>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script><!--DATE PICKER-->
+<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.ui/1.8.5/jquery-ui.min.js"></script><!--DATE PICKER-->
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=2.1.2" media="screen">
+  
+<script type="text/javascript">
+	jQuery.noConflict();
+
+   jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+   
+</script>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 70;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 70;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="800">
+  <tr>
+    <td width="100%" align="center" height="25" background="/ZZ/images/bar-green.gif"><a href="javascript:window.close()">
+    <img border="0" src="/zz/images/x-yellow.gif" align="right" width="17" height="18"></A>
+    <font face="Arial" color="#FFFF00"><b>Tariff Calculator</b></font></td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" align="center"><BR>
+<form name="theForm" method="POST">    
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+   <tr>
+     <td width="19%"><a href="javascript:FindZip('SZIP')"><font face="Arial" color="#0000FF" size="2"><b>From Zip:</a></b></font> <input NAME="SZIP" size="3" value="<%=pcSZIP%>"></td>
+     <td width="15%"><a href="javascript:FindZip('RZIP')"><font face="Arial" color="#0000FF" size="2"><b>To Zip:</a></b></font> <input NAME="RZIP" size="3" value="<%=pcRZIP%>"></td>
+     <td width="23%"><font face="Arial" size="2"><b>Move Date:</b></font> <input id="Date1" NAME="DATE1" size="7" value="<%=DTOC(pdDATE1)%>"></td>
+     <td width="11%"><font face="Arial" size="2"><b><%=IIF(plCALCCF,'CF:','LBS:')%></b></font>
+     <% IF plCALCCF %>
+     <input NAME="CF" size="3" value="<%=ALLT(STR(pnCF))%>">
+     <%ELSE%>
+     <input NAME="LBS" size="3" value="<%=ALLT(STR(pnLBS))%>"></td>
+     <%ENDIF%>  
+     <td width="21%"><input type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+  </tr>
+</table>
+</form>
+   <br>
+<table border="1" align="center" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#CCCCCC" width="98%">
+   <tr>
+     <td width="49%" colspan="5"><b>Tariff ID: <font size="4" color="#008000"><%=pcDMAINID%></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cu.Ft.-Lbs Ratio: <font size="4" color="#008000"><%=pnCFRATIO%></font>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tariff Rate by: <font size="4" color="#008000"><%=IIF(plCALCCF,'Cu.Ft','Lbs')%></font></b></td>
+ </tr>
+   <tr>
+     <td width="11%">From Zone:  <b><font size="4" color="#008000"><%=pcAREA1%></font></b></td>
+     <td width="38%" colspan="4"><font size="3"><b><%=pcSSTATE%>, <%=PROPER(pcSCITY)%></b></font></td>
+  </tr>
+   <tr>
+     <td width="11%">To Zone:  <b><font size="4" color="#008000"><%=pcAREA2%></font></b></td>
+     <td width="24%" colspan="3"><font size="3"><b><%=pcRSTATE%>, <%=PROPER(pcRCITY)%></b></font></td>
+     <td width="14%">
+        <%IF plCALCCF AND pnPERCF > pnPERCFx AND pnMINMILES> 0 %><b><font color="#0000FF" size="2"><%=ALLT(STR(pnPERCFx,7,2))%></font></b>&nbsp;<b><font color="#FF0000">/</font></b>&nbsp;<b><font color="#0000FF" size="2"><%=ALLT(STR(pnMINMILES))%></font></b>&nbsp;<b><font color="#FF0000">x</font></b>&nbsp;<b><font color="#0000FF" size="2"><%=ALLT(STR(pnMILES))%></font></b>&nbsp;=&nbsp;<b><font color="#008000">$<%=ALLT(STR(pnPERCF,7,2))%></font></b>&nbsp;Per cf<%ENDIF%>
+        <%IF !plCALCCF AND pnPERLBS > pnPERLBSx AND pnMINMILES> 0 %><b><font color="#0000FF" size="2"><%=ALLT(STR(pnPERLBSx,7,2))%></font></b>&nbsp;<b><font color="#FF0000">/</font></b>&nbsp;<b><font color="#0000FF" size="2"><%=ALLT(STR(pnMINMILES))%></font></b>&nbsp;<b><font color="#FF0000">x</font></b>&nbsp;<b><font color="#0000FF" size="2"><%=ALLT(STR(pnMILES))%></font></b>&nbsp;=&nbsp;<b><font color="#008000">$<%=ALLT(STR(pnPERLBS,7,2))%></font></b>&nbsp;Per cf<%ENDIF%>
+       </td>
+  </tr>
+   <tr>
+     <td width="49%" colspan="5">Distance: <B><font size="3" color="#008000"><%=pcMILES%></font> miles</b><%IF pnMINMILES > 0 %>&nbsp;&nbsp;&nbsp;&nbsp;Minimum Miles: <b><font color="#0000FF"><%=ALLT(STR(pnMINMILES))%></font></b><%ENDIF%></td>
+  </tr>  
+   <tr>
+     <td width="11%">Period: <b><font size="4" color="#008000"><%=ALLT(STR(pnPERIOD))%></font></b></td>
+     <td width="38%" colspan="4"><font size="3" color="#008000"><B><%=pcDAYS%></B></font>&nbsp;</td>
+  </tr>
+   <tr>
+     <td width="11%" bgcolor="#<%=IIF(plCALCCF,'F0F8FF','FFFFFF')%>">Rate per Cu.Ft.:</td>
+     <td width="8%" bgcolor="#<%=IIF(plCALCCF,'F0F8FF','FFFFFF')%>"><font size="3" color="#<%=IIF(plCALCCF,'008000','000000')%>"><B><%='$'+ALLT(STR(pnPERCF,6,2))%> per cf</b></font></td>
+     <td width="5%" bgcolor="#<%=IIF(plCALCCF,'F0F8FF','FFFFFF')%>"><font size="3"><b><%=ALLT(STR(pnCF))%>&nbsp;cf.</b></font></td>
+    <td width="25%" bgcolor="#<%=IIF(plCALCCF,'F0F8FF','FFFFFF')%>" colspan="2"><%IF plCALCCF AND pnPERCF > pnPERCFx AND pnMINMILES > 0 %><font color="#0000FF" size="2"><%=pnPERCFx%></font>&nbsp;per/cf<%ENDIF%></td>
+  </tr>
+   <tr>
+     <td width="11%" bgcolor="#<%=IIF(!plCALCCF,'F0F8FF','FFFFFF')%>">Rate per Lbs:</td>
+     <td width="8%" bgcolor="#<%=IIF(!plCALCCF,'F0F8FF','FFFFFF')%>"><font size="3" color="#<%=IIF(!plCALCCF,'008000','000000')%>"><B><%='$'+ALLT(STR(pnPERLBS,6,2))%>&nbsp;per lbs</B></font></td>
+     <td width="5%" bgcolor="#<%=IIF(!plCALCCF,'F0F8FF','FFFFFF')%>"><font size="3"><b><%=ALLT(STR(pnLBS))%>&nbsp;lbs.</b></font></td>
+     <td width="25%" bgcolor="#<%=IIF(!plCALCCF,'F0F8FF','FFFFFF')%>" colspan="2"><%IF !plCALCCF AND pnPERLBS > pnPERLBSx AND pnMINMILES> 0 %><b><font color="#0000FF" size="2"><%=pnPERLBSx%></font></b>&nbsp;per/lbs<%ENDIF%></td>
+  </tr>
+   <tr>
+     <td width="49%" colspan="5">Price: <B><font size="4" color="#008000"><%=ALLTRIM(TRANSFORM(pnI1TOTAL,'@$ 999,999,999.99'))%></font>&nbsp;&nbsp;<font size="2" color="#FF0000"><%=pcMIN%></font></b></td>
+  </tr>  
+</table>   
+  <BR>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+   <tr>
+     <td width="100%"> 	<% SELECT _VZONE
+       Dimension laHeader[5]
+       laHeader[1]='Tariff'
+       laHeader[2]='Zone'              
+       laHeader[3]='State'
+       laHeader[4]='Zip - Miles'
+       laHeader[5]='Radius'
+       Response.ShowCursor(@laHeader,,.F.,,"width='60%' style='font-family:Arial;font-size: 11pt;'")
+	%></td>
+  </tr>
+</table>
+  &nbsp;</td>
+ </tr>
+  <tr>
+    <td width="100%" height="25" background="/zz/images/bgdown.gif">&nbsp;</td>
+ </tr>
+</table>
+</body>
+</html>

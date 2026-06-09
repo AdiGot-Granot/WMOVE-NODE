@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Material Sale</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitmat(i) {
+    if (i==1) document.theForm.action="/wc.dll?mpopr~matsaleret~<%=pcSCR%>";
+    document.theForm.submit()
+
+    if (i==2) document.theForm.action="/wc.dll?mpopr~oprwc~<%=pcSCR%>";
+    document.theForm.submit()
+    }
+
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="50%">
+  <tr>
+    <td width="100%"><IMG SRC="zz/images/topBaropr.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#BEBE99" align="center"><b><font face="Verdana" size="4" color="#000080">Materials Sale</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<table border="0" align="center" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="50%"><b><font face="Arial" size="2"><b>&nbsp;Customer:&nbsp;<%=pcSNAME%></b></font></td>
+    <td width="50%" align="right"><b><font face="Arial" size="2">Job No: <%=ALLT(pcDEPT)+ALLT(pcORDNO)%>&nbsp;&nbsp;</font></b></td>
+ </tr>
+</table> 
+  <BR> 
+<form name="theForm" method="post">
+<table border="1" width="90%" align="center" bordercolor="#000000" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+  <tr>
+    <td width="32%" bgcolor="#BEBE99" align="center"><font style="font-size:11pt;font-family:Verdana;"><b>Item</b></font></td>
+    <td width="4%" bgcolor="#BEBE99" align="center"><font style="font-size:11pt;font-family:Verdana;"><b>Qty</b></font></td>
+    <td width="15%" bgcolor="#BEBE99" align="center"><font style="font-size:11pt;font-family:Verdana;"><b><%=IIF(pcTYPE<>'D','Local Price','Long D. Price')%></b></font>&nbsp;</td>
+  </tr>
+  <% SELECT _OPRMAT1
+  	 SCAN %>
+  <tr>
+    <td width="32%" bgcolor="#FFFFFF">&nbsp;<b><font size="2" face="Verdana"><%=ALLT(ITEM)%></b></td>
+    <td width="4%" bgcolor="#FFFFFF" align="center">
+    <input type="text" name="QTY<%=ALLT(ID)%>" size="1" value="<%=IIF(QTY=0,'',ALLT(STR(QTY)))%>" style="text-align: center; color:#000080"></td>
+    <td width="15%" bgcolor="#FFFFFF" align="right"><b><font size="2" face="Verdana" color="#008000">$<%=ALLT(STR(PRICE,6,2))%></font></b>&nbsp;</td>
+  <% ENDSCAN%>
+</table>
+ <br>
+<table border="0" width="80%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="19%" align="center">
+	<input type="button" CLASS="SUBOFF" name="B3" onclick="submitmat(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+	<td width="19%" align="center">
+	<input type="button" CLASS="SUBOFF" name="B3" onclick="submitmat(2)" onmouseover="javasctript: this.className='SUBONEXIT'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+ </tr>
+</table>
+</form>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#008000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%"><IMG SRC="zz/images/botBaropr.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+  </center>
+</div>
+</body>
+</html>

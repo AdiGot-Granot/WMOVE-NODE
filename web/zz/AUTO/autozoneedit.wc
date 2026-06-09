@@ -1,0 +1,130 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<TITLE>Zone Edit</TITLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpauto~AutozoneEditRet~<%=pcSCR%>~<%=pcAUTOZID%>";
+       document.theForm.submit();
+     }
+    if (i==2) 
+	 {
+		var Message = "Are you sure you want to delete this Zone?";
+		if (confirm (Message))
+		  {
+			document.theForm.action="/wc.dll?mpauto~DeleteAutoZone~<%=pcSCR%>~<%=pcAUTOZID%>";
+	        document.theForm.submit();
+	      }
+     }
+  
+    if (i==3) 
+     { 
+       parent.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>');
+     }    
+  
+  }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON1	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FF0000;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<%SELECT _AUTOZONE%>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="450">
+  <tr>
+    <td width="100%" height="18" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#000000" align="center" height="19"><b><font color="#FFFFFF"><%=pcNAME%></font></b></td>
+  </tr>
+  </tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF" valign="top"><br>
+ <form name="theForm" method="POST">
+<input type="hidden" name="AUTOZID" value="<%=pcAUTOZID%>">
+<table border="0" align="center" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="20%" height="19" bgcolor="#F7F7E7"><b><font size="2">Zone ID:</font></b></td>
+    <td width="80%" height="19"><b><%=pcAUTOZID%>&nbsp;</b></td>
+ </tr>
+  <tr>
+    <td width="20%" bgcolor="#F7F7E7"><font size="2"><b>Name:</b></font></td>
+    <td width="80%"><input type="text" name="CNAME" size="40" value="<%=ALLT(CNAME)%>" maxlength="25"></td>
+ </tr>
+  <tr>
+    <td width="20%" height="19" bgcolor="#F7F7E7"><b><font size="2">State:</font></b></td>
+    <td width="80%" height="19">
+               <select size="1" name="STATEID">
+		  		<option selected value="<%=ALLT(STR(pnSTATEID))%>"><%=ALLT(pcSTATE)%></option>
+		  		 <%	SELECT _STATES
+				 	 SCAN %>
+			   		<option value="<%=ALLT(STR(STATEID))%>"><%=ALLT(STATECODE)%></option>
+				 <% ENDSCAN %>
+				</select></td>
+ </tr>
+ <%SELECT _AUTOZONE%>
+  <tr>
+    <td width="20%" height="19" bgcolor="#F7F7E7"><font size="2"><b>Zip code:</b></font></td>
+    <td width="80%" height="19"><input type="text" name="ZIP" size="8" value="<%=ALLT(ZIP)%>" maxlength="5"></td>
+ </tr>
+  <tr>
+    <td width="20%" height="19" bgcolor="#F7F7E7"><font size="2"><b>Radius:</b></font></td>
+    <td width="80%" height="19"><input type="text" name="RADIUS" size="8" value="<%=IIF(RADIUS=0,'',ALLT(STR(RADIUS)))%>" maxlength="4">&nbsp;miles</td>
+ </tr>
+</table>
+  <br>
+<table border="0" width="85%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><input type="button" CLASS="SUBOFF" name="B54" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+    <td align="center"><input type="button" CLASS="SUBOFF" name="B57" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Delete"></td>
+    <td align="center"><input type="button" CLASS="SUBOFF" name="B56" onclick="submitFunction(3)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+ </tr>
+</table>
+</form>       
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#000000" height="14"><b><font size="2" color="white">Modify By:&nbsp;&nbsp;<%=pcUser%></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFEFCC"><b><font color="#FF0000" face="Arial Rounded MT Bold"><%=pcMSG%></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" height="18" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

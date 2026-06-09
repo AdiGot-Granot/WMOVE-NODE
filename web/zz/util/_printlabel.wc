@@ -1,0 +1,55 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Print Labels</title>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+  				  	font-family: Verdana;
+				  	text-align: left}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699"><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="80%">
+   <tr>
+    <td width="100%" align="center" BGCOLOR="#008200"><font face="Verdana" color="#FFFFFF"><B>Print Labels</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+     <form name="theForm" method="POST" action="/wc.dll?mputil~printlabel~<%=pcSCR%>~PRINT" target="_blank"> 		
+<table border="1" width="98%" align="center" cellspacing="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td width="24%" class="TD1" height="20"><B>From Number:</B> <input type="text" autocomplete="off" name="START" size="3" value="" tabindex="1"></td>
+    <td width="25%" class="TD1" height="20"><B>To Number:</B> <input type="text" autocomplete="off" name="END" size="3" value="" tabindex="2"></td>
+ </tr>
+</table>
+ <br>  
+<center><input type="submit" CLASS="SUBOFF" name="btnSubmit" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit" onclick="javascript:self.close()"></center>	
+</form>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<TITLE>Auto Rate</TITLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpauto~AutoZonePrcEditRet~<%=pcSCR%>~<%=pcAUTOZID%>";
+       document.theForm.submit();
+     }
+     
+    if (i==2) 
+     { 
+       parent.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>');
+     }    
+     
+  }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<%SELECT _LIST%>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500">
+  <tr>
+    <td width="500" height="18" bgcolor="#FF9900" colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="74" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF">ID</font></b></b></td>  
+    <td width="51" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF">State</font></b></td>
+    <td width="62" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF">Zip</font></b></td>
+    <td width="84" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF">Radius</font></b></td>
+    <td width="229" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF">Name</font></b></td>
+  </tr>
+  <tr>
+    <td width="74" BGCOLOR="#000000" align="center" height="19"><b><font color="#FFFFFF">&nbsp;<%=pcAUTOZID%></font></b></td>  
+    <td width="51" BGCOLOR="#000000" align="center" height="19"><b><font color="#FFFFFF">&nbsp;<%=pcSTATE%></font></b></td>
+    <td width="62" BGCOLOR="#000000" align="center" height="19"><b><font color="#FFFFFF">&nbsp;<%=pcZIP%></font></b></td>
+    <td width="84" BGCOLOR="#000000" align="center" height="19"><b><font color="#FFFFFF">&nbsp;<%=pcRADIUS%></font></b></td>
+    <td width="229" BGCOLOR="#000000" align="center" height="19"><b><font color="#FFFFFF">&nbsp;<%=pcNAME%></font></b></td>
+  </tr>
+    <td width="500" align="center" bgcolor="#FFFFFF" valign="top" colspan="5"><br>
+ <form name="theForm" method="POST">    
+   <table border="1" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="99%">
+      <tr>
+        <td width="8%" align="center" bgcolor="#C0C0C0"><b><font size="2" face="Arial">ID</font></b></td>
+        <td width="8%" align="center" bgcolor="#C0C0C0"><b><font size="2" face="Arial">State</font></b></td>
+        <td width="11%" align="center" bgcolor="#C0C0C0"><b><font size="2" face="Arial">Zip</font></b></td>
+        <td width="9%" align="center" bgcolor="#C0C0C0"><b><font size="2" face="Arial">Radius</font></b></td>
+        <td width="37%" align="center" bgcolor="#C0C0C0"><b><font size="2" face="Arial">Name</font></b></td>
+        <td width="13%" align="center" bgcolor="#C0C0C0"><b><font size="2" face="Arial">Rate</font></b></td>
+        <td width="14%" align="center" bgcolor="#C0C0C0"><b><font face="Arial" size="2">Update</font></b></td>
+      </tr>
+  <%SCAN %>
+        <tr bgcolor="<%=IIF(ODD,'CCCCFF','EEEEEE')%>">
+        <td width="8%" align="center"><font size="1" color="#808080"><%=ALLT(STR(AUTOZID2))%>&nbsp;</font></td>
+        <td width="8%"><font face="Arial" size="1"><%=STATE%></font>&nbsp;</td>
+        <td width="11%"><font face="Arial" size="2"><%=ZIP%></font>&nbsp;</td>
+        <td width="9%" align="center"><font face="Arial" size="1"><%=IIF(RADIUS=0,'',ALLT(STR(RADIUS)))%></font>&nbsp;</td>
+        <td width="37%"><font face="Arial" size="1"><%=CNAME%></font>&nbsp;</td>
+        <td width="13%" align="center"><input NAME="<%=ALLT(STR(AUTOZPID))%>" size="5" VALUE="<%=IIF(RATEA=0,'',ALLT(STR(RATEA,7,2)))%>" style="color: #008000; font-weight: bold; text-align:right"></td>
+        <td width="14%" align="center"><font face="Arial" size="1"><%=ADDDTE%></font>&nbsp;</td>
+      </tr>
+  <%ENDSCAN %>
+    </table>
+    <br>
+<table border="0" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><input type="submit" CLASS="SUBOFF" name="B54" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+    <td align="center"><input type="submit" CLASS="SUBOFF" name="B56" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+ </tr>
+</table>
+  </form>       
+    </td>
+  <tr>
+    <td width="500" bgcolor="#000000" height="14" colspan="5"><b><font size="2" color="white">Modify By:&nbsp;&nbsp;<%=pcUSER%></font></b></td>
+  </tr>
+  <tr>
+    <td width="500" height="18" bgcolor="#FF9900" colspan="5">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

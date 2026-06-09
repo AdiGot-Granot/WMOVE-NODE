@@ -1,0 +1,88 @@
+<html lang="en" style="width: 200px; height: 250px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Follow-Up Priorities</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+
+function FuStatus(par) {
+    //   alert("This photo was taken in "+par+".");
+       document.theForm.action="/wc.dll?mpcharge~fustatusret~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+	}
+
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+
+.inputoff	{width:80%;
+    	 	 padding: 3px 3px;
+	    	 margin: 2px 0;
+	    	 box-sizing: border-box;
+	    	 border: px solid #ccc;
+	    	 background-color: #EBEBEC;
+	    	 border-radius: 5px;
+	    	 box-shadow: 2px 2px grey;
+	    	 cursor:pointer;}
+.inputon	{width:80%;
+    	 	 padding: 3px 3px;
+	    	 margin: 2px 0;
+	    	 box-sizing: border-box;
+	    	 border: px solid #ccc;
+	    	 background-color: #EBEBEC;
+	    	 border-radius: 5px;
+	    	 box-shadow: 2px 2px #000;
+	    	 cursor:pointer;}    	     	  				  	
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="1" align="center" style="border-collapse:double;width:220px;height:250px;" bordercolor="#4E6699">
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<form name="theForm" method="POST" target="_top">
+<table border="0" align="center" width="98%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;" bordercolor="#111111">
+<%IF pnFUSTATUS > 0%>
+  <tr>
+    <td height="40" colspan="2"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(0)"><font style="font-family:Arial;font-size:10pt;"><b>No Priority</b></font></div></center></td>
+ </tr>   
+ <%ENDIF%>
+  <tr>
+    <td height="40"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(1)" onmouseover="javasctript: this.className='inputon'" onmouseout="javasctript: this.className='inputoff'">
+    <font style="font-family:Arial;font-size:10pt;color:#B50000;"><b>Priority 1 <% IF pnFUSTATUS=1 %><font size="4">&#10003;</font><%ENDIF%></b></font></div></center></td>
+    <td height="40"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(5)" onmouseover="javasctript: this.className='inputon'" onmouseout="javasctript: this.className='inputoff'">
+    <font style="font-family:Arial;font-size:10pt;color:#631C7B;"><b>Priority 5 <% IF pnFUSTATUS=5 %><font size="4">&#10003;</font><%ENDIF%></b></font></div></center></td>
+ </tr>
+  <tr>
+    <td height="40"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(2)" onmouseover="javasctript: this.className='inputon'" onmouseout="javasctript: this.className='inputoff'">
+    <font style="font-family:Arial;font-size:10pt;color:#003842;"><b>Priority 2 <% IF pnFUSTATUS=2 %><font size="4">&#10003;</font><%ENDIF%></b></font></div></center></td>
+    <td height="40"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(6)" onmouseover="javasctript: this.className='inputon'" onmouseout="javasctript: this.className='inputoff'">
+    <font style="font-family:Arial;font-size:10pt;color:#000080;"><b>Priority 6 <% IF pnFUSTATUS=6 %><font size="4">&#10003;</font><%ENDIF%></b></font></div></center></td>
+ </tr>
+  <tr>
+    <td height="40"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(3)" onmouseover="javasctript: this.className='inputon'" onmouseout="javasctript: this.className='inputoff'">
+    <font style="font-family:Arial;font-size:10pt;color:#089263;"><b>Priority 3 <% IF pnFUSTATUS=3 %><font size="4">&#10003;</font><%ENDIF%></b></font></div></center></td>
+    <td height="40"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(7)" onmouseover="javasctript: this.className='inputon'" onmouseout="javasctript: this.className='inputoff'">
+    <font style="font-family:Arial;font-size:10pt;color:#006600;"><b>Priority 7 <% IF pnFUSTATUS=7 %><font size="4">&#10003;</font><%ENDIF%></b></font></div></center></td>
+ </tr>
+  <tr>
+    <td height="40"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(4)" onmouseover="javasctript: this.className='inputon'" onmouseout="javasctript: this.className='inputoff'">
+    <font style="font-family:Arial;font-size:10pt;color:#083484;"><b>Priority 4 <% IF pnFUSTATUS=4 %><font size="4">&#10003;</font><%ENDIF%></b></font></div></center></td>
+    <td height="40"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(8)" onmouseover="javasctript: this.className='inputon'" onmouseout="javasctript: this.className='inputoff'">
+    <font style="font-family:Arial;font-size:10pt;color:#990099;"><b>Priority 8 <% IF pnFUSTATUS=8 %><font size="4">&#10003;</font><%ENDIF%></b></font></div></center></td>
+ </tr>
+  <tr>
+    <td height="40" colspan="2"><center><div class="inputoff" name="FUSTATUS" onclick="FuStatus(9)"><font style="font-family:Arial;font-size:10pt;"><b>General Priority Pool</b></font></div></center></td>
+ </tr> 
+</table>
+</form>
+    </td>
+  </tr>
+  </table>
+</body>
+</html>

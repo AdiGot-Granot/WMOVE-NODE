@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=IIF(!plDISCOUNT,'Services List','Discounts List')%></title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i){
+  if (i==1) { 
+   document.theForm.action="/wc.dll?mpcharge~chargeswc~<%=pcSCR%>";
+   document.theForm.submit()
+     } ;     
+}
+
+function Save(par) 
+      { 
+       document.theForm.action="/wc.dll?mpcharge~servicesret~<%=pcSCR%>~~"+par;
+       document.theForm.submit();
+      }
+
+function SaveDisc(par) 
+      { 
+       document.theForm.action="/wc.dll?mpcharge~servicesret~<%=pcSCR%>~DISCOUNT~"+par;
+       document.theForm.submit();
+      }
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	 .button	{	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Arial;
+                    width: 70; 
+                    height: 25; 
+                    cursor: pointer;}  				  	
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="650">
+  <tr>
+    <td><IMG SRC="zz/images/topBar.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center" height="22"><b><font face="Verdana" size="4" color="#FFFFFF"><%=IIF(!plDISCOUNT,'Services List','Discounts List')%></font></b></td>
+  </tr>  
+  <tr>
+    <td bgcolor="#FFFFFF">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="25%" height="30"><b><font face="Arial" size="2">Job No:&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></font></b></td>
+    <td width="41%" height="30"><b><font face="Arial" size="2">Customer:&nbsp;<%=_EST.SNAME%></font></b></td>
+    <td width="34%" height="30"><b><font face="Arial">Total Estimate:&nbsp;<%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></font></b></td>
+ </tr>
+</table>    
+  <form name="theForm" method="post">
+<!--Services-->
+<%IF !plDISCOUNT%>      
+<table border="1" align="center" width="95%" bordercolor="#C0C0C0" style="border-collapse: collapse" cellspacing="1" cellpadding="1">
+  <tr>
+    <td width="56%" bgcolor="#008000" align="center"><b><font face="Arial" color="#FFFFFF">Service Description</font></b></td>
+    <td width="11%" bgcolor="#008000" align="center"><b><font face="Arial" color="#FFFFFF">Price</font></b></td>
+    <td width="8%" bgcolor="#008000" align="center"><b><font face="Arial" color="#FFFFFF">Del</font></b></td>
+    <td width="15%" bgcolor="#008000" align="center"><b><font face="Arial" color="#FFFFFF">Save</font></b></td>
+  </tr>
+  <% SELECT _SERV
+  	 SCAN %>
+ <tr>
+    <td width="56%" bgcolor="#FFFFFF"><input NAME="<%='S'+ALLT(STR(SERVICEID))%>" autocomplete="off" size="50" VALUE="<%=ALLT(SERVICE)%>" style="font-size: 10pt;"></td>
+    <td width="11%" bgcolor="#FFFFFF" align="right"><input NAME="<%='A'+ALLT(STR(SERVICEID))%>" autocomplete="off" size="5" VALUE="<%=ALLT(STR(SERVAMT,8,2))%>" style="text-align: Right;font-size: 10pt;color:#008000;"></td>
+    <td width="8%" bgcolor="#FFFFFF" align="center"><% IF SERVICEID > 1000 %><input type="checkbox" name="<%='D'+ALLT(STR(SERVICEID))%>" value="ON"><%ENDIF%></td>
+    <td width="15%" bgcolor="#FFFFFF" align="center"><input type="button" class="button" name="B1" onclick="Save(<%=ALLT(STR(SERVICEID))%>)" value="Save"></td>
+ </tr>   
+  <% ENDSCAN%>  
+</table>
+<!--Discounts-->
+<%ELSE%>
+<table border="1" align="center" width="95%" bordercolor="#C0C0C0" style="border-collapse: collapse" cellspacing="1" cellpadding="1">
+  <tr>
+    <td width="56%" bgcolor="#008000" align="center"><b>
+    <font face="Arial" color="#FFFFFF">Discount Description</font></b></td>
+    <td width="11%" bgcolor="#008000" align="center"><b><font face="Arial" color="#FFFFFF">Price</font></b></td>
+    <td width="8%" bgcolor="#008000" align="center"><b><font face="Arial" color="#FFFFFF">Del</font></b></td>
+    <td width="15%" bgcolor="#008000" align="center"><b><font face="Arial" color="#FFFFFF">Save</font></b></td>
+  </tr>
+  <% SELECT _DISC
+  	 SCAN %>
+ <tr>
+    <td width="56%" bgcolor="#FFFFFF"><input NAME="<%='S'+ALLT(STR(SERVICEID))%>" autocomplete="off" size="50" VALUE="<%=ALLT(SERVICE)%>" style="font-size: 10pt;"></td>
+    <td width="11%" bgcolor="#FFFFFF" align="right"><input NAME="<%='A'+ALLT(STR(SERVICEID))%>" autocomplete="off" size="5" VALUE="<%=ALLT(STR(SERVAMT,8,2))%>" style="text-align: Right;font-size: 10pt;color:#FF0000;"></td>
+    <td width="8%" bgcolor="#FFFFFF" align="center"><% IF SERVICEID > 1000 %><input type="checkbox" name="<%='D'+ALLT(STR(SERVICEID))%>" value="ON"><%ENDIF%></td>
+    <td width="15%" bgcolor="#FFFFFF" align="center"><input type="button" class="button" name="B1" onclick="SaveDisc(<%=ALLT(STR(SERVICEID))%>)" value="Save"></td>
+ </tr>   
+  <% ENDSCAN%>  
+</table>
+<%ENDIF%>
+<br>
+<table border="0" align="center" width="80%" style="border-collapse: collapse" bordercolor="#111111" value="ON">
+   <tr>
+	 <td width="19%" align="center"><input id="btnSubmit" type="button" CLASS="SUBOFF" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Go to Charges"></td>
+  </tr>
+</table>
+</form>      
+    </td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>

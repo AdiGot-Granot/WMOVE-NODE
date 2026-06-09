@@ -1,0 +1,146 @@
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Representative Remarks</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function UpdValueB(A, B) {
+  		fetch('/wc.dll?mpcharge~UpdValue~<%=pcSCR%>~' + A + '~' + B)
+	} 
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+  	.star 		{font-size: 32px;
+  				 cursor: pointer;
+  				 user-select: none;
+  				 transition: color 0.2s ease;}
+    .on 		{color: #FF8C00;}
+    .off 		{color: #000000;}
+    .status-msg {display: inline-block;
+    			 margin-left: 10px;
+    			 font-size: 12pt;
+    			 font-family:Verdana;
+    			 color: #000;
+    			 opacity: 0;
+    			 transition: opacity 0.4s ease;}
+    .status-msg.show {opacity: 1;}
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 80;
+					background-color: #F0F0F0;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body>
+<center><font face="Arial"><a href="javascript:history.go(-1)"><b>Go Back</b></a></font></center><br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="80%">
+    <tr>
+      <td width="2%" class="TD1">Star</td>
+      <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Job No.</td>
+      <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">Remark Date</td>
+      <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Category</td>      
+      <td width="32%" class="TD1" style="border-left: 1px solid #A9A9A9;">Remark</td>      
+      <td width="2%" class="TD1" style="border-left: 1px solid #A9A9A9;">IP</td>
+     <% IF pnLEVEL=2 OR pnLEVEL=5 %>
+      <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Action</td>
+     <%ENDIF%>        
+   </tr>
+  <% SELECT _REPNOTES  
+     SCAN %>
+     <tr>
+      <td width="2%" align="center" style="border-bottom: 1px solid #A9A9A9;">
+<% IF pcCUSTNO<>'SAFESHIP' AND NOTECODE < 5 %>
+      <span class="star star-toggle off" data-key="<%=ALLTRIM(STR(REPNOTESID))%>" data-on="<%=IIF(STAR=.T.,'1','0')%>"><%=IIF(STAR=.T.,'&#9733;','&#9734;')%></span>
+<%ENDIF%></td>
+      <td width="3%" class="TD2"><%=ALLT(JOB_NO)%></td>
+      <td width="8%" class="TD2"><%=DATE%><br><%=ALLT(USER)%></td>
+      <td width="5%" class="TD2"><%=ALLT(CATEGORY)%></td>      
+      <td width="32%" class="TD2"><font color="navy"><%=ALLT(NOTES)%></font></td>      
+      <td width="2%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=ALLT(IP)%></td>
+     <% IF pnLEVEL=2 OR pnLEVEL=5 %>
+      <td width="3%" align="center" style="border-left: 1px solid #A9A9A9;border-bottom: 1px solid #A9A9A9;"><a href="wc.dll?mpcharge~ViewRepNotes~<%=pcSCR%>~~~<%=ALLTRIM(STR(REPNOTESID))%>"><font face="verdana" size="2">Delete</font></a></td>
+     <%ENDIF%>      
+    </tr>
+   <% ENDSCAN %>
+</table>
+<table border="0" align="center" style="border-collapse:collapse;" cellspacing="0" cellpadding="0" width="80%">
+   <tr>
+     <td><font style="font-family: Arial;font-size:9pt;"><span id="statusMsg" class="status-msg"></span></td>
+  </tr>
+</table> 
+<br><center><font face="Arial"><a href="javascript:history.go(-1)"><b>Go Back</b></a></font></center>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function showStatus(msg) {
+  const el = document.getElementById("statusMsg");
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add("show");
+  setTimeout(() => el.classList.remove("show"), 1500);
+}
+
+// Render one star's visual state and optionally notify backend
+function setStarState(el, on, notify) {
+  el.classList.toggle("on", on);
+  el.classList.toggle("off", !on);
+  el.innerHTML = on ? "&#9733;" : "&#9734;";  // &#9733; / &#9734;
+  el.dataset.on = on ? "1" : "0";
+
+  if (notify) {
+    showStatus(on ? "STAR ON" : "STAR OFF");
+    const key = el.dataset.key || "star";
+    const val = on ? 1 : 0;
+    if (typeof UpdValueB === "function") {
+      UpdValueB(key, val);       // call your existing function (defined elsewhere)
+    } else {
+      console.warn("UpdValueB is not defined; skipping backend call.", { key, val });
+    }
+  }
+}
+
+// Initialize and wire up all stars
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize all stars from their data-on or class
+  document.querySelectorAll(".star-toggle").forEach(el => {
+    const initialOn = el.dataset.on === "1" || el.classList.contains("on");
+    setStarState(el, initialOn, false);
+  });
+
+  // Event delegation: handle clicks on any .star-toggle in the document
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest(".star-toggle");
+    if (!el) return;
+    const currentOn = el.dataset.on === "1" || el.classList.contains("on");
+    setStarState(el, !currentOn, true);
+  });
+});
+</SCRIPT>
+</body>
+</html>

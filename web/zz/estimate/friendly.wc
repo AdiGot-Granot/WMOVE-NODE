@@ -1,0 +1,51 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+</head>
+
+<body>
+<table border="0" style="border-collapse: collapse;" bordercolor="#111111" width="500" cellspacing="1" cellpadding="2">
+  <tr>
+    <td align="center"><%=pcCOMPANY%><BR><%=pcADD1%><BR><%=pcADD2%><BR>Phone: <%=pcTOLLFREE%><%=IIF(!EMPTY(pcFAX),'&nbsp;&nbsp;&nbsp;Fax:&nbsp;'+pcFAX,'')%><BR>
+    <%=IIF(!EMPTY(pcDOT),"DOT #: "+pcDOT,"")%><%=IIF(!EMPTY(pcICC),"&nbsp;&nbsp;MC #: "+pcICC,"")%>
+    <%=IIF(!EMPTY(pcREGISTER),"&nbsp;&nbsp;Registration: "+pcREGISTER,"")%></td>
+  </tr>
+  <tr>
+    <td><BR><font style="font-size:11pt;">Hello <%=ALLT(LEFT(ALLTRIM(_EST.SNAME),AT(' ',_EST.SNAME,1)))%>,<br><br>   
+<%IF pcCUSTNO<>'USEXPRESS' AND pcCUSTNO<>'SAFEBOUND' AND pcCUSTNO<>'HVLPVLUMS' AND pcCUSTNO<>'NORTHAME' %>
+    Thank you for your interest in <%=pcCOMPANY%> moving services.<br>
+    <b>Please click on your reference number <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~FriendlyIn~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>"><B><%=pcORDNO%></B></A>
+    to view your moving estimate.</B><br><BR>
+<%ENDIF%>
+<%IF pcCUSTNO='USEXPRESS'%>
+	Thank you for giving <%=pcCOMPANY%> this opportunity to help make your move a success.<BR>
+	Please click on the following reference number <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~FriendlyIn~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>"><B><%=pcORDNO%></B></A>
+	to view your moving proposal online.<BR><BR>
+<%ENDIF%>
+<%IF pcCUSTNO='SAFEBOUND'%>
+    Thank you for your interest in <%=pcCOMPANY%> - MOVING MADE SIMPLE!<br>
+    <B>Please click on your reference number <a style="color:#0563C1;" href="https://<%=pcSERVERIP%>/wc.dll?mpest~FriendlyIn~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>"><B><%=pcORDNO%></B></A> 
+    to view your moving estimate.</B><BR><BR>
+<%ENDIF%>
+<%IF pcCUSTNO='HVLPVLUMS'%>
+	Thank you for your interest in <%=pcCOMPANY%> and allowing us the opportunity to provide you with your free estimate.<br><br>
+	Please click on your reference number <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~FriendlyIn~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>"><B><%=pcORDNO%></B></A> to view your moving estimate.<br><br>
+	If you have any questions please feel free to contact us at <%=pcTOLLFREE%>.  Make sure you have your reference number <b><%=pcORDNO%></b> ready when calling for faster service.<br><br>
+	We look forward to assisting you with all of your relocation needs.<br><br>
+<%ENDIF%>
+<%IF pcCUSTNO='NORTHAME'%>
+	Thank you for updating us on your moving situation and taking the time to put together your moving estimate.<br><br>
+	If you CLICK your reference number <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~FriendlyIn~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>"><B><%=pcORDNO%></B></A>
+	you can view your moving estimate. The estimate will show the pricing breakdowns and explain our services. Please call your account manager if you have 
+	any questions or specific requests.<br><br>Please note: If you wait to reserve your move prices can change based on demand & availability. 
+	Ask your moving agent to hold your price if your strongly considering moving forward.<br><br>
+<%ENDIF%>
+    Thank You and Best Regards,<br><br><%=pcREP%><%=IIF(EMPTY(pcUSERPHONE),'','<BR>'+pcUSERPHONE)%><%=IIF(EMPTY(pcTITLE),'','<BR>'+pcTITLE)%><br>
+    <%=pcCOMPANY%><%=IIF(EMPTY(pcSLOGAN),'','<BR>'+pcSLOGAN)%><BR><%=pcTOLLFREE%>&nbsp;<%=pcPHONEEXT%><br>
+	<a href="mailto:<%=pcOUREMAIL%>"><%=pcOUREMAIL%></a><br>
+    <a href="<%=pcOURWEB%>" TARGET="_BLANK"><%=pcOURWEB%></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

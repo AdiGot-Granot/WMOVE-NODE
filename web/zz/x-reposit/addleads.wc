@@ -1,0 +1,158 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Secure Payment</title>
+<LINK REL="STYLESHEET" TYPE="text/css" href="/granot/mystyle.css" />
+<script language="JavaScript" type="text/JavaScript">
+
+function selectamt() {
+       document.theForm.action="/wc.dll?mpreposit~addleadsret~<%=ALLT(pcSCR)%>";
+       document.theForm.submit();
+	}
+
+</script>
+</head>
+
+<body  BGCOLOR="#ADBACE">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="84%" height="1">
+  <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#4A698C" height="27" colspan="2">
+    <p align="center"><b>
+    <font face="Arial Rounded MT Bold" size="4" color="#FFFFFF">Moving Leads 
+    Service</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="300" colspan="2">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="93%">
+	  <tr>
+	    <td width="100%">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" align="center" height="302">
+  <tr>
+    <td width="100%">
+    <p dir="ltr" align="left"><span class="arial221"><b>
+    <font face="Verdana" size="2" color="#CC0000">Add new Leads:<br>
+    </font><font face="Verdana" size="2">&nbsp;<br>
+    Please
+    Select the desired quantity of leads and click continue. </font></b></span><b><font face="Verdana" size="2">&nbsp;<FORM NAME="theForm" method="post">
+	<input type="hidden" name="LEADS" value="<%=ALLT(STR(pnLEADS))%>">
+	<input type="hidden" name="COST" value="<%=ALLT(STR(pnCOST,8,2))%>">
+    <TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="57%" height="74" align="center">
+     <tr>
+        <td width="20%" height="22" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p dir="ltr"><font size="2"><b>
+        Select One</b></font></td>
+        <td width="34%" height="22" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+        <font size="2"><b>Leads Quantity</b></font></td>
+        <td width="25%" height="22" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+        <b><font size="2" face="Verdana">Amount</font></b></td>
+      </tr>
+     <% IF pnLEADS>0 %>
+     <tr>
+        <td width="20%" height="22" align="center" BORDERCOLOR="#708090">
+        <input type="radio" value="VM" name="R1" checked></font></b></td>
+        <td width="34%" height="22" align="center" BORDERCOLOR="#708090"><b><font size="2"><%=ALLT(STR(pnLEADS))%>&nbsp;<font size="1">(Appx. for one month)</font></b></td>
+        <td width="25%" height="22" align="center" BORDERCOLOR="#708090"><b><font size="2">$<%=ALLT(STR(pnCOST,8,2))%></font></b></td>
+        </tr>
+     <tr>
+        <td width="20%" height="22" align="center" BORDERCOLOR="#708090">
+        <input type="radio" value="VW" name="R1"></font></b></td>
+        <td width="34%" height="22" align="center" BORDERCOLOR="#708090"><b><font size="2"><%=ALLT(STR(pnLEADS/2))%>&nbsp;<font size="1">(Appx. for two weeks)</font></b></td>
+        <td width="25%" height="22" align="center" BORDERCOLOR="#708090"><b><font size="2">$<%=ALLT(STR(pnCOST/2,8,2))%>&nbsp;</font></b></td>
+        </tr>
+     <tr>
+        <td width="79%" height="10" align="center" BORDERCOLOR="#708090" colspan="3" bgcolor="#4A698C"></td>
+     </tr>
+      <% ENDIF%>
+     <tr>
+        <td width="99" height="22" align="center" BORDERCOLOR="#708090">
+        <input type="radio" value="V1" name="R1" tabindex="2"></font></b></td>
+        <td width="191" height="22" align="center" BORDERCOLOR="#708090">
+        <b>
+        <font size="2"><%=ALLT(STR(200/gnLEADPRC))%> </font>
+        <font size="1">leads</font></b></td>
+        <td width="90" height="22" align="right" BORDERCOLOR="#708090"><b><font size="2">
+        $200.00&nbsp;</font></b></td>
+        </tr>
+    <tr>
+        <td width="99" height="22" align="center" BORDERCOLOR="#708090">
+        <input type="radio" value="V2" name="R1" tabindex="4"></font></b></td>
+        <td width="191" height="22" align="center" BORDERCOLOR="#708090">
+        <font size="2"><b><%=ALLT(STR(500/gnLEADPRC))%> </b></font>
+    <b>
+        <font size="1" face="Verdana">leads</font></b></td>
+        <td width="90" height="22" align="right" BORDERCOLOR="#708090"><b><font size="2">
+        $500.00&nbsp;</font></b></td>
+        </tr>
+     <tr>
+        <td width="99" height="22" align="center" BORDERCOLOR="#708090">
+        <input type="radio" value="V3" name="R1" tabindex="5"></font></b></td>
+        <td width="191" height="22" align="center" BORDERCOLOR="#708090"><b><font size="2">
+        <%=ALLT(STR(750/gnLEADPRC))%> </font>
+        <font size="1" face="Verdana">leads</font></b></td>
+        <td width="90" height="22" align="right" BORDERCOLOR="#708090"><b><font size="2">
+        $750.00&nbsp;</font></b></td>
+        </tr>
+      <tr>
+        <td width="99" height="18" align="center" BORDERCOLOR="#708090">
+        <input onclick="Bonus()" type="radio" value="V4" name="R1" tabindex="6"></font></b></td>
+        <td width="191" height="18" align="center" BORDERCOLOR="#708090"><b><font size="2">
+        <%=ALLT(STR(1000/gnLEADPRC))%> </font><font size="1" face="Verdana">leads</font></b></td>
+        <td width="90" height="18" align="right" BORDERCOLOR="#708090"><b><font size="2">
+        $1,000.00&nbsp;</font></b></td>
+      </tr>
+      <br>
+&nbsp;</font></b></p>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" height="19">
+      <tr>
+        <td width="100%" height="1" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="100%" height="1" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="100%" height="1" align="center">
+        <input type="button" value="Continue" name="btnPay" onclick="selectamt()" class="BTN" style="width:150" tabindex="6"></tr>
+      <tr>
+        <td width="100%" height="1" align="center">
+        </td>
+      </tr>
+      </table>
+    </td>
+  </tr>
+</table> 
+</form>   
+    
+    
+    
+    &nbsp;</td>
+  </tr>
+  </table>
+</td>
+</tr>
+<tr>
+    <td width="50%" BGCOLOR="#4A698C" height="15">
+      &nbsp;</td>
+    <td width="50%" BGCOLOR="#4A698C" height="15">
+      &nbsp;</td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    &nbsp;</td>
+ </tr>
+  </table>
+  </center>
+</div>
+
+
+</body>
+
+</html>

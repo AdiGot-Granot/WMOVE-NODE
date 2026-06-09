@@ -1,0 +1,421 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title><%=pcPHASENAME%>-Operations Calendar</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function blkdates() {
+    window.open('/wc.dll?mpopr~blkdateswc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=yes,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=1000,height=500');
+	}
+	
+function blkvis() {
+    window.open('/wc.dll?mpopr~blkdateswc~<%=pcSCR%>~VISUAL','EANITHING','toolbar=no,location=no,directories=no,status=yes,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=1000,height=500');
+	}
+	
+function submitday(D,M) {
+	 window.location.href=('/wc.dll?mpopr~dailyopr~<%=pcSCR%>~'+D+'~'+M);
+    }
+
+
+function submitopr() {
+   	document.theForm.elements['oprday'].value = eval(0);
+   	document.theForm.SUBMITCALD.style.visibility="hidden";   	
+   	document.theForm.action="/wc.dll?mpopr~dailyopr~<%=pcSCR%>";
+    document.theForm.submit();
+    }
+
+function datenow() {
+ 	 document.theForm.DATENOW.style.visibility="hidden";
+	 document.theForm.action="/wc.dll?mpopr~dailyopr~<%=pcSCR%>~~DATENOW";
+	 document.theForm.submit();
+    }
+
+function thisweek() {
+ 	 document.theForm.THISWEEK.style.visibility="hidden";
+	 document.theForm.action="/wc.dll?mpopr~dailyopr~<%=pcSCR%>~~THISWEEK";
+	 document.theForm.submit();
+    }
+
+function monthup() {
+ 	 document.theForm.MONTHUP.style.visibility="hidden";
+	 document.theForm.action="/wc.dll?mpopr~dailyopr~<%=pcSCR%>~~UP";
+	 document.theForm.submit();
+    }
+
+function monthdown() {
+ 	 document.theForm.MONTHDOWN.style.visibility="hidden";
+	 document.theForm.action="/wc.dll?mpopr~dailyopr~<%=pcSCR%>~~DOWN";
+	 document.theForm.submit();
+    }
+
+function monththis() {
+ 	 document.theForm.MONTHTHIS.style.visibility="hidden";
+	 document.theForm.action="/wc.dll?mpopr~dailyopr~<%=pcSCR%>~~TODAY";
+	 document.theForm.submit();
+    }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TDTOP1	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Verdana;
+					background-color: #083484;
+  				  	font-weight: bold;}				
+	.TDTOP2	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Verdana;
+					background-color: #083484;
+  				  	font-weight: bold;
+  				  	border-style: none;
+ 					border-color: #000} 
+	.QUICK	 	{	color: black; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 115;
+					height: 25;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.DATENOW	{	color: black; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 25;
+					background-color: #CCCCCC;
+					border-color: #FF0000;
+					font-size: 10pt;
+  				  	cursor: pointer;}  				  	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+
+</STYLE>
+
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" align="center">
+  <tr>
+    <td width="100%" colspan="3"><IMG SRC="zz/images/topBar.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="33%" BGCOLOR="#008000"><b><font face="Verdana">
+	<%IF lcJOBPHASE=='P1' OR lcJOBPHASE=='P2' OR lcJOBPHASE='P3' OR lcJOBPHASE=='P10'%><font color="#FFFFFF">&nbsp;Booked Jobs (Pick-up):</font>&nbsp;<FONT color="#FFFF00"><%=ALLT(STR(pnJOBPU))%></font><%ENDIF%>
+	<%IF lcJOBPHASE=='P5'%><font color="#FFFFFF">&nbsp;Visual:&nbsp;<FONT color="#FFFF00"><%=ALLT(STR(pnVISUAL))%></font><%ENDIF%></b></td>
+    <td width="33%" align="center" BGCOLOR="#008000"><b><font face="Verdana" size="4" color="#FFFFFF">Operations Calendar</font></b></td>
+    <td width="34%" BGCOLOR="#008000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" colspan="3">
+	<!-- frame table - starting-->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+<!-- FRAME BODY Starts -->
+
+ 	<FORM NAME="theForm" method="post">
+    <input type="hidden" name="oprday" value="">
+<table border="0" align="center" width="99%" cellspacing="0" style="border-collapse: collapse" bordercolor="#000">
+  <tr>
+    <td width="22%" valign="top">
+<table border="0" align="center" width="98%" style="border-collapse: collapse" cellspacing="1" bordercolor="#CCCCCC">
+ <tr>
+ 	<td valign="top"><font face="Verdana" size="2">Confirmed:<font style="font-size:15pt;color:#226A21;"><b>&#10003;</b></font><br>
+ 	E-Signed:<b><font style="font-size:15pt;color:#F76A00;">&#10003;</font></B><br>Job Docs:<b><font style="font-size:15pt;">&#10003;</font></B><br>
+ 	Bill of Lading:<b><font style="font-size:15pt;color:#FF00FF;">&#10003;</font></B></font></td>
+ 	<td valign="top" style="line-height:23px;"><font face="Verdana" size="2">International: <font size="4" face="Webdings">&#241;</font><br>Auto Transport: <font size="4" face="Webdings">&#118;</font><br>
+ 	Payment Received: <font color="green"><b>$$$$<br></b></font>Balance Due: <font color="red"><b>$$$$</b></font></font></td>
+ </tr>
+</TABLE>    
+    </td>
+    <td width="53%" valign="top">
+    <!--BUTTONS and SELECTION START-->
+<table border="0" width="98%" align="center" cellspacing="1" bordercolor="#CCCCCC">
+ <tr>
+ 	<td align="center" height="45"><input type="button" CLASS="DATENOW" name="DATENOW" ONCLICK="datenow()" value="Today"></td>
+ 	<td align="center" height="45"><input type="button" CLASS="QUICK" name="THISWEEK" ONCLICK="thisweek()" value="This Week"></td>
+ 	<td align="center" height="45"><input type="button" CLASS="QUICK" name="MONTHDOWN" ONCLICK="monthdown()" value="Previous Month"></td>
+ 	<td align="center" height="45"><input type="button" CLASS="QUICK" name="MONTHTHIS" ONCLICK="monththis()" value="This Month"></td>
+ 	<td align="center" height="45"><input type="button" CLASS="QUICK" name="MONTHUP" ONCLICK="monthup()" value="Next Month"></td>
+ </tr>
+</TABLE>
+<table border="1" width="98%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" cellpadding="0">
+ <tr>
+ 	<td CLASS="TDTOP1" width="23%" height="25">Job Phase</td>
+ 	<td CLASS="TDTOP1" width="18%" height="25">Month/Year</td>
+    <%IF plDEPT %>    
+ 	<td CLASS="TDTOP1" width="8%" height="25">Dept</td>
+    <%ENDIF%>    
+ 	<td CLASS="TDTOP1" width="10%" height="25">User</td>
+    <%IF pnCOLEVEL <> 3 %>
+ 	<td CLASS="TDTOP1" width="13%" height="25">Job Type</td>
+    <%ENDIF%>
+ 	<td CLASS="TDTOP1" width="13%" height="25">Action</td>
+ </tr>
+ <tr>	    
+     <td width="23%" height="35" align="center">
+       <select size="1" name="JOBPHASE">
+       <option value="<%=pcJOBPHASE%>"><%=pcPHASENAME%></option>
+       <option value="P1">Booked Jobs</option>
+       <option value="P2">Booked Jobs Pick-Up</option>
+       <% IF plAGENT %>
+       <option value="P3">Booked Jobs Without Agents</option>
+       <option value="P4">Jobs Assigned to Agents</option>
+       <%ENDIF%>
+       <option value="P13">Booked Jobs On Hold</option>       
+       <% IF pnCOLEVEL>3 %>
+       <option value="P5">Visual Estimates</option>
+       <option value="P6">Boxes Delivery</option>
+       <option value="P7">Packing</option>
+       <option value="P11">Booked Jobs Request Delivery</option>
+       <%ENDIF%>
+       <% IF pnCOLEVEL>4 AND pnLEVEL>2 %>
+       <option value="P8">Delivery</option>
+       <option value="P9">Trucks Calendar</option>
+       <%ENDIF%>
+       <% IF plQA %>
+       <option value="P10">Booked Jobs for QA</option>
+       <option value="P14">QA Appointment</option>       
+       <%ENDIF%>
+       <option value="P12">Estimates by Move Date</option>
+       </select>
+     </td>
+    <td width="18%" height="35" align="center">
+    <select size="1" name="MONTH">
+      <option selected value="<%=lcMONTH1%>"><%=lcMONTH%></option>
+      <option value="01">January</option>
+      <option value="02">February</option>
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      <option value="06">June</option>
+      <option value="07">July</option>
+      <option value="08">August</option>
+      <option value="09">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+       </select>&nbsp;&nbsp;
+	  <select size="1" name="YEAR">
+      <option selected><%=lcYEAR%></option>
+     <%IF pnLEVEL > 1 %>
+      <option><%=ALLT(STR(YEAR(DATE())-5))%></option>
+	  <option><%=ALLT(STR(YEAR(DATE())-4))%></option>     
+      <option><%=ALLT(STR(YEAR(DATE())-3))%></option>
+      <option><%=ALLT(STR(YEAR(DATE())-2))%></option>     
+      <option><%=ALLT(STR(YEAR(DATE())-1))%></option>
+     <%ENDIF %>
+      <option><%=ALLT(STR(YEAR(DATE())))%></option>
+      <option><%=ALLT(STR(YEAR(DATE())+1))%></option>
+      </select>       
+       </td>
+    <%IF plDEPT %>    
+    <td width="8%" height="35" align="center">
+    <select size="1" name="DEPT">
+        <option selected><%=ALLT(pcDEPT1)%></option>
+       <% SELECT _DEPARTMENT
+  		 SCAN %>
+	      <option><%=ALLT(DEPT)%></option>
+       <% ENDSCAN%>
+      </select></td>
+    <%ENDIF %>    
+    <td width="10%" height="35" align="center">
+    <select size="1" name="USER">
+        <option selected><%=pcUSER1 %></option>
+       <% SELECT _USERS
+  		 SCAN %>
+	      <option><%=ALLT(USER)%></option>
+       <% ENDSCAN%>
+      </select></td>
+  <%IF pnCOLEVEL <> 3 AND lcJOBPHASE<>'P9' %>    
+    <td width="13%" height="35" align="center">
+    <select size="1" name="JOBTYPE">
+      <option selected><%=pcJOBTYPE%></option>
+      <option>All</option>
+      <option>Local</option>
+      <option>Long Distance</option>
+	  <option>International</option>      
+      <option>Auto Transport</option>
+      <option>Commercial</option>
+      <option>Military</option>
+       </select></td>
+  <%ENDIF%>    
+    <td width="13%" height="35" align="center"><input type="button" CLASS="SUBOFF" name="SUBMITCALD" onclick="submitopr(0)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Submit"></td>
+   </tr>
+</table>
+    <!--BUTTONS and SELECTION END-->    
+    </td>
+    <td width="24%">
+<% IF pnCOLEVEL<>3 AND pnLEVEL>1 AND (lcJOBPHASE=='P1' OR lcJOBPHASE=='P2' OR lcJOBPHASE=='P3' OR lcJOBPHASE=='P5') %>
+<table border="0" align="center" width="90%" style="border-collapse: collapse" cellspacing="1" bordercolor="#CCCCCC">
+  <% IF lcJOBPHASE=='P5' %>
+ <tr>
+ 	<td align="center"><a href="javascript: blkvis()"><FONT FACE="VERDANA" COLOR="#0000FF" SIZE="3"><B>Block Visual Estimates Days/Limit Visuals</b></font></a></td>
+ </tr>
+ <%ELSE%>
+ <tr>
+ 	<td align="center"><a href="javascript: blkdates()"><FONT FACE="VERDANA" COLOR="#0000FF" SIZE="3"><B>Block Pick-Up Days/Limit Booking</b></font></a></td>
+ </tr>
+ <%ENDIF%> 
+</TABLE>
+<%ENDIF%>    
+    </td>
+  </tr>
+</table>
+ <BR>  
+<table border="1" align="center" width="98%" cellspacing="0" style="border-collapse: collapse" bordercolor="#000">
+  <tr>
+    <td CLASS="TDTOP2" height="25" width="14%" align="center">Sunday</td>
+    <td CLASS="TDTOP2" height="25" width="14%" align="center">Monday</td>
+    <td CLASS="TDTOP2" height="25" width="14%" align="center">Tuesday</td>
+    <td CLASS="TDTOP2" height="25" width="14%" align="center">Wednesday</td>
+    <td CLASS="TDTOP2" height="25" width="14%" align="center">Thursday</td>
+    <td CLASS="TDTOP2" height="25" width="14%" align="center">Friday</td>
+    <td CLASS="TDTOP2" height="25" width="14%" align="center">Saturday</td>
+  </tr>
+   <%FOR W=1 TO 6%>
+   <tr>
+    <%FOR D=1 TO 7%>
+    <td width="14%" bgcolor="#E2E6E9" valign="top" align="center">
+ <!---CALD START--->
+<TABLE style="border-collapse:collapse;" <%=IIF(DAY(DATE())=DAY(pdDTE) AND MONTH(DATE())=MONTH(pdDTE),"bordercolor='#FF0000' border='3'","bordercolor='#000000' border='0'")%> WIDTH="99%" CELLPADDING="1" CELLSPACING="1">
+  <TR style="font-family:Verdana;font-size:14pt;color:#FFFFFF;">
+    <TD <%IF MONTH(pdDTE)=pnMMVIEW %>bgcolor="#083484"<%ENDIF%> <%IF MONTH(pdDTE)<>pnMMVIEW%>bgcolor="#A9A9A9"<%ENDIF%> align="center">
+    <% IF lcJOBPHASE <>'P9' AND lcJOBPHASE <>'P10' AND lcJOBPHASE <>'P11' AND lcJOBPHASE <>'P12' AND lcJOBPHASE <>'P14' %>
+      <%IF MONTH(pdDTE)<>pnMMVIEW%><%=LEFT(CMONTH(pdDTE),3)%><%ENDIF%> <u><font style="cursor:pointer;" onclick='submitday(<%=ALLT(STR(DAY(pdDTE)))%>,<%=ALLT(STR(MONTH(pdDTE)))%>)'><%=ALLT(STR(DAY(pdDTE)))%></u></font>
+    <%ELSE%>
+       <%=STR(DAY(pdDTE))%>
+    <%ENDIF%>&nbsp;</Td>
+ </TR>
+</table>
+<TABLE style="border-collapse:collapse;" <%=IIF(DAY(DATE())=DAY(pdDTE) AND MONTH(DATE())=MONTH(pdDTE),"bordercolor='#FF0000' border='3'","bordercolor='#000000' border='2'")%> WIDTH="99%" CELLPADDING="1" CELLSPACING="1">
+<% IF lcJOBPHASE=='P1' OR lcJOBPHASE=='P2' OR lcJOBPHASE=='P3' OR lcJOBPHASE=='P4' OR lcJOBPHASE=='P10' %>
+	<% pnJOBS=0%> 
+	<% pnLIMIT=0%> 
+	<% SELECT BLKDATE,JOBS,LIMIT FROM  _CALD WHERE (DTE=pdDTE AND !EMPTY(BLKDATE)) OR (DTE=pdDTE AND DTE=BLKDATE) INTO CURSOR _B%>
+  	 	<%GO BOTT %>
+	  	<%pnJOBS=JOBS%>
+	  	<%pnLIMIT=LIMIT%>
+	<% IF !EMPTY(BLKDATE)%>
+  <TR>
+   <TD align="center" height="50" bgcolor="yellow"><b><font face="Verdana" color="black"><%IF pnLIMIT > 0%>Booking Limited to <font color="black"><%=ALLT(STR(pnLIMIT))%><%ELSE%>Booking blocked <br>on this day<%ENDIF%></font><b></TD>
+ </TR>
+    <%ENDIF%>
+<%ENDIF%>    
+ <% SELECT * from  _CALD WHERE DTE=pdDTE AND VAL(ORDNO)>99999 INTO CURSOR _A%>
+  <%SELECT _A %>
+ <%SCAN%>
+ 	 <% IF lcJOBPHASE<>'P9' %>
+ <TR>
+  <TD bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'ECE6FF','FBFBFC')%>" style="font-family:Arial;text-align:center;">
+  <% IF lcJOBPHASE=='P1' OR lcJOBPHASE=='P2' OR lcJOBPHASE=='P3' OR lcJOBPHASE=='P4' OR lcJOBPHASE=='P10' OR lcJOBPHASE=='P13' %>
+      <% IF ONHOLD=.T. %><font style="background-color:#000000;font-size:13pt;color:#FFFFFF;"><b>Move On Hold</font></b><br><%ENDIF%>
+  <%ENDIF%>  
+     <font style="font-size:11pt;"><font style="background-color:yellow;"><%=ALLT(STR(RECNO()))%>.</font>&nbsp;<b><%=ALLT(DEPT)%></font>&nbsp;<a href="wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" TARGET="_blank"><font style="font-size:11pt;"><%=ALLT(ORDNO)%></font></a>
+     <font style="font-size:10pt;"><%=ALLT(CODE1)%><%=IIF(TYPE='I','&nbsp;<font size="4" face="Webdings">&#241;</font>','')%><%=IIF(TYPE='T','&nbsp;<font size="4" face="Webdings">&#118;</font>','')%>
+  <% IF lcJOBPHASE<>'P11' AND lcJOBPHASE<>'P12' AND lcJOBPHASE<>'P14' %>
+  	 <b><%=IIF(CONFIRM=.T.,'<font style="font-size:15pt;color: #226A21;">&#10003;</font>','')%>&nbsp;<%=IIF(CODE='pu' AND LBOOKCW=.T.,'<font style="font-size:15pt;color: #F76A00;">&#10003;</font>','')%>&nbsp;<%=IIF(CODE='pu' AND RCVDOC=.T.,'<font style="font-size:15pt;color:#000000;">&#10003;</font>','')%>&nbsp;<%=IIF(CODE='pu' AND BOLOK=.T.,'<font style="font-size:15pt;color:#FF00FF;">&#10003;</font>','')%></b>
+  <%ENDIF%>	 
+     <%=IIF(lcJOBPHASE=='P14' AND !EMPTY(NEXTFU),'<br>'+DTOC(NEXTFU),'')%><%=IIF(!EMPTY(TME),'<br>'+TME,'')%><br><%=ALLT(SNAME)%></b><BR>
+     <b><%=ALLT(PROPER(SCITY))+', <font color="#0000FF">'+ALLT(SSTATE)+'</font>'+IIF(TYPE='I' AND !EMPTY(SCOUNTRY),' '+ALLT(SCOUNTRY),'')%></b><BR>
+     <b><%=ALLT(PROPER(RCITY))+', <font color="#0000FF">'+ALLT(RSTATE)+'</font>'+IIF(TYPE='I' AND !EMPTY(RCOUNTRY),' '+ALLT(RCOUNTRY),'')%></b>
+  <%IF lcJOBPHASE=='P11'%>
+     <%IF !EMPTY(DLVDTE2)%><br><b><font color="#A52A2A"><%=DLVDTE1%> - <%=DLVDTE2%></b></font><%ENDIF%>
+     <%=IIF(DLVIMM=.T.,'<br><b><font color="red">Deliver Now</font></b>','')%>
+     <%IF JOBCODE='d1' AND !EMPTY(JOBDTE) %><br><b>Delivery Scheduled: <%=JOBDTE%></b><%ENDIF%>
+  <%ENDIF%>
+     <% IF (lcJOBPHASE=='P1' OR lcJOBPHASE=='P2' OR lcJOBPHASE=='P3' OR lcJOBPHASE=='P4' OR lcJOBPHASE=='P10') AND (TYPE='L' OR TYPE='R') %>
+     <br><b><font color="#0359D4"><%=IIF(LVAN >0,ALLT(STR(LVAN))+' Truck/s | ','')%><%=IIF(LMEN >0,ALLT(STR(LMEN))+' Workers | ','')%><%=IIF(LHRS >0,ALLT(STR(LHRS))+' Hours','')%></font></b>
+     <%ENDIF%>
+     <% IF lcJOBPHASE=='P5' OR lcJOBPHASE=='P12' %><b><%=IIF(FUSTATUS < 9,'<br>Prior-'+ALLT(STR(FUSTATUS)),'')%></b><%=IIF(VISUALTYPE=2,'<br><b><font color=navy>**Virtual**</b></font>','')%><%=IIF(EMPTY(ESTIMATOR),'','<br>Estimator: '+ALLT(ESTIMATOR))%><%=IIF(VISIT=.T.,'<br>Visit Completed','')%><%ENDIF%>
+     <% IF lcJOBPHASE=='P5' %><br><font color="green"><B><%=MOVEDTE%></B></font><%ENDIF%>
+     <% IF lcJOBPHASE=='P4' OR lcJOBPHASE=='P5' OR lcJOBPHASE=='P6' OR lcJOBPHASE=='P7' %>
+       <%=IIF(STATUS='F','<br><b><font color="red">Job not Booked</font></b>','')%><%=IIF(STATUS='C','<br><b><font color="red">Job Cancelled</font></b>','')%>
+     <%ENDIF%>
+     <% IF lcJOBPHASE=='P6' OR lcJOBPHASE=='P7' %><%=IIF(EMPTY(AGENT),'','<BR>Carrier: '+ALLT(AGENT))%><%ENDIF%>
+	 
+  <% IF lcJOBPHASE<>'P5' AND lcJOBPHASE<>'P6' AND lcJOBPHASE<>'P7' AND lcJOBPHASE<>'P11' AND lcJOBPHASE<>'P12' AND lcJOBPHASE<>'P14' %>
+     <BR>
+     <% IF pnLEVEL>2 AND (CODE='d1' OR CODE='d2') %>
+     	<%=IIF(TYPE<>'I',ALLT(STR(MILES))+' miles&nbsp;/&nbsp;','')%><%='<b>'+ALLT(STR(TOTALCF))+' cf (load)</b>'%><%=IIF(BALANCE>0,'&nbsp;/&nbsp;<font color="red"><b>$$$$</b></font>','')%>
+     <%ELSE%>
+        <% IF pnLEVEL>2 AND OPRCF > 0 %>
+           <%=IIF(TYPE<>'I',ALLT(STR(MILES))+' miles&nbsp;/&nbsp;','')%><b><%=IIF(CALCCF=.T.,ALLT(STR(OPRCF))+' cf (job)',ALLT(STR(OPRLBS))+' lbs (job)')%><%=IIF(BALANCE>0,'&nbsp;/&nbsp;<font color="red">$$$$</font>','')%></b>
+        <%ELSE%>
+           <%=IIF(TYPE<>'I',ALLT(STR(MILES))+' miles','')%><b><%IF pnLEVEL>1 AND TYPE<>'T'%><%=IIF(CALCCF=.T.,'&nbsp;/&nbsp;'+ALLT(STR(CF))+' cf',ALLT(STR(LBS))+' lbs')%>
+           <%=IIF(PAIDAMT>0,'&nbsp;/&nbsp;<font color="green">$$$$</font>','')%><%ENDIF%>
+           <font color="#4B0082"><%=IIF(EMPTY(LBOOKDTE1),'','<br>2<sup>nd</sup> Pick-Up: '+DTOC(LBOOKDTE1))%></font></b>
+        <%ENDIF%>
+     <%ENDIF%>
+     
+     <% IF lcJOBPHASE=='P10' %><%=IIF(EMPTY(QAUSER),'','<br><b>QA: '+ALLT(QAUSER)+'</b>')%><%=IIF(QASAVE=3,'<br><b>QA Done:</b> <font size="5" face="Wingdings" color="#008000">&#254;</font>','')%><%ENDIF%>
+	 <%=IIF(DLVIMM=.T.,'<br><b><font color="red">Deliver Now</font></b>','')%>
+	 <%=IIF(STGNEED=.T. AND lcJOBPHASE<>'P8','<br><b><font color="#A52A2A">Need Storage</font></b>','')%>	 
+     <%=IIF(EMPTY(AGENT),'','<BR><b>Carrier: '+ALLT(AGENT)+'</b>')%>
+     <% IF pnLEVEL>2 %><%=IIF(EMPTY(TRIPNO),'','<BR><b>Trip: '+ALLT(TRIPNO)+'</b>')%><%ENDIF%>
+     <%=IIF(EMPTY(STATUS1),'','<BR><b><font style="background-color:#F7F0B9;">'+ALLT(STATUS1)+'</font></b>')%>
+  <%ENDIF%>
+     <% IF lcJOBPHASE=='P14' %><%=IIF(EMPTY(QAUSER),'','<br><b>QA: '+ALLT(QAUSER)+'</b>')%><%=IIF(QASAVE=3,'<br><b>QA Done:</b> <font size="5" face="Wingdings" color="#008000">&#254;</font>','')%><%ENDIF%>   
+   </font> 
+  </TD>
+ </TR>
+ <%ELSE%><!--TRUCKS CALD-->
+ <TR>
+    <TD bgcolor="#F7F7E7" style="border-width:2;text-align:center;"><font face="Arial" size="2">
+    <% IF pnLEVEL>2 %><a href="wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" TARGET="_blank"><%=JOBNO%></a><%ELSE%><%=JOBNO%><%ENDIF%><BR>
+    <B><%=ALLT(OPRCODE)%></B><BR><%=SNAME%><BR><%=SCITY+', '+SSTATE%><BR><%=RCITY+', '+RSTATE%>
+	<% IF TOTALCF>0 %><BR><b><%=ALLT(STR(TOTALCF))+' cf'%></B><%ENDIF%>
+	<% IF STATUS='D' %><BR><b><font color="#FF0000"><%=STS%></b></font><%ENDIF%>
+	<br>Truck: <font color="#083484"><b><%=ALLT(TRUCKNO)%></b></font>
+	<% IF !EMPTY(DRIVER) %><br>Driver: <font color="#F76A00"><b><%=ALLT(DRIVER)%></b></font><%ENDIF%>	
+	<% IF !EMPTY(AGENT) %><br>Agent: <font color="#00574F"><b><%=ALLT(AGENT)%></b></font><%ENDIF%></font></TD>
+ </TR>
+ <%ENDIF%>
+ <%ENDSCAN%>
+</TABLE>     
+    </td>
+   <%pdDTE=pdDTE+1%>	
+<%ENDFOR%>    
+  </tr>
+<%ENDFOR %>  
+</table>
+<br>
+   </td>
+  </tr>
+ </table>
+</form>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" colspan="3"><font size="2" color="white">&nbsp;User: <%=pcUSER%></font></td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="3"><IMG SRC="zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=RIGHT(pcORDNO,3)%></title>
+<LINK REL="STYLESHEET" TYPE="text/css" href="/zz/inventory/invstyle.css">
+
+<script language="javascript">
+function SubmitInv(i)
+  {  
+    if (i==1) 
+      {
+      	document.theForm.action="/wc.dll?mpinv~invautoxmlret~<%=pcSCR%>~CLOSE";
+      	document.theForm.submit();
+      }
+  }
+  
+</script>
+
+</head>
+
+<STYLE TYPE="text/css">
+ 	.SUBMITOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 200;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBMITON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 200;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+
+<!--<body onload="javascript: window.btnSubmitInv.focus() <%=IIF(plCLOSE,'javascript: window.close()','')%>" BGCOLOR="#4E6699"> -->
+<body bgColor="#4E6699" <%=IIF(plCLOSE,"onload='javascript: window.close()'","")%>>
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="541" height="214">
+  <tr>
+    <td width="541" colspan="3" height="16">
+    <IMG SRC="zz/images/topBar.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="183" BGCOLOR="#008000" height="23"><b><font face="Verdana" size="2" color="#FFFFFF">&nbsp;<%=ALLT(pcSNAME)%></font></b></td>
+    <td width="252" BGCOLOR="#008000" align="center" height="23"><b>
+    <font color="#FFFFFF" face="Verdana" size="2">Auto Transport</font></b></td>
+    <td width="106" BGCOLOR="#008000" align="right" height="23"><b><font face="Verdana" size="2" color="#FFFFFF">Reference:&nbsp;<%=ALLT(pcDEPT+pcORDNO)%>&nbsp;</font></b></td>
+  </tr>
+  <tr>
+    <td width="541" bgcolor="#FFFFFF" colspan="3" height="152">
+<!-- frame table  Starts-->
+   <br>
+		<table border="1" cellspacing="0" width="523" cellpadding="0" align="center" height="48">
+		  <tr>
+		    <td width="102" bgcolor="#336699" align="center" height="19"><b>
+            <font face="Verdana" color="#FFFFFF" size="2">Make / Model</font></b></td>
+		    <td width="82" bgcolor="#336699" align="center" height="19"><b>
+            <font face="Verdana" color="#FFFFFF" size="2">Year</font></b></td>
+		    <td width="44" bgcolor="#336699" align="center" height="19">
+	        <b><font face="Verdana" color="#FFFFFF" size="2">Qty.</font></b></td>
+		    <td width="93" bgcolor="#336699" align="center" height="19">
+	        <b><font face="Verdana" color="#FFFFFF" size="2">Type</font></b></td>
+		    <td width="114" bgcolor="#336699" align="center" height="19">
+	        <b><font face="Verdana" color="#FFFFFF" size="2">Condition</font></b></td>
+		    <td width="74" bgcolor="#336699" align="center" height="19"><% IF pnLevel>0 %><font size="2" face="Verdana">
+            </font>
+	        <b><font size="2" face="Verdana" color="#FFFFFF">Unit Price</font></b><font size="2" face="Verdana"><% ENDIF %></font></td>
+		  </tr>
+<form name="theForm" method="post">
+
+			<% SELECT _INVAUTO
+				SCAN %>
+		  <tr>
+		    <td width="102" height="25">
+	        <input type="text" name="MODEL<%=ALLT(ID)%>" style="width:80" value="<%=ALLT(MODEL)%>" size="20"></td>
+		    <td width="82" height="25">
+            <input ID="QQ" CLASS="QTYOFF" type="text" name="YEAR<%=ALLT(ID)%>" style="width:40" value="<%=ALLT(YEAR)%>" size="20"></td>
+		    <td width="44" height="25">
+            <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY<%=ALLT(ID)%>" style="width:30" value="<%=ALLT(STR(QTY))%>" maxlength="1" size="20"></td>
+		    <td width="93" height="25"><select size="1" name="TYPE<%=ALLT(ID)%>" style="width:80">
+	    	        <option selected><%=TYPE%></option>
+	        	    <option>Sedan</option>
+	        	    <option>SUV</option>
+		            <option>Mini-Van</option>
+		            <option>Van</option>
+		            <option>Pick-Up</option>
+		            <option>Truck</option>
+	            </select></td>
+		    <td width="114" height="25">
+    	        <select size="1" name="RUN<%=ALLT(ID)%>" style="width:80">
+		            <option selected><%=RUNNING%></option>
+		            <option>Running</option>
+		            <option>Not Running</option>
+	            </select></td>
+		    <td width="74" height="25"><% IF pnLevel>0 %><font face="Arial" color="#FFFFFF">$<input ID="QQ" CLASS="QTYOFF" type="text" name="UPRC<%=ALLT(ID)%>" size="5" value="<%=IIF(UPRC=0,'',ALLT(STR(UPRC)))%>"></font></b><% ENDIF %></td>
+		  </tr>
+			<% ENDSCAN %>
+		</table>
+</form>
+
+	<p align="center"><br>
+
+    <input id="btnSubmitInv" type="button" onclick="SubmitInv(1)" size="10" value="Submit Auto Transport" name="btnSubmit" onmouseover="javasctript: this.className='SUBMITON'" onmouseout="javasctript: this.className='SUBMITOFF'"><br>
+
+<!-- frame table  Ends-->
+&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="541" bgcolor="#993366" colspan="3" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="541" colspan="3" height="4"><IMG SRC="zz/images/botBar.gif" width="100%" height="2">&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+</body>
+
+</html>

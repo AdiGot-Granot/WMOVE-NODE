@@ -1,0 +1,97 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Storage Statement</title>
+
+</head>
+
+<body>
+<table width="700" border="1" align="center" style="border-collapse: collapse" bordercolor="#31557B">
+  <tr> 
+    <td width="100%" valign="top"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100"><br><br>
+<table border="0" align="center" width="98%" bordercolor="#4E6699" style="border-collapse: collapse">
+  <tr>
+    <td align="center"><font color="#000080" face="Verdana"><b>Storage Statement <%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font></td>
+ </tr>
+</table>              
+<table border="1" align="center" width="98%" style="border-collapse: collapse" bordercolor="#31557B" cellspacing="1" cellpadding="2">
+  <tr>
+    <td width="25%" align="CENTER"><b><font face="Verdana" color="#000084" size="2">Customer Billing Information</font></b>&nbsp;</td>
+    <td width="25%" align="CENTER"><font face="Verdana" color="#000080" size="2"><b>Storage Information</b></font></td>
+ </tr>
+  <tr>  
+    <td width="50%" valign="top"><b><font face="Verdana" size="2"><font color="#000084"><%=ALLT(pcCNAME)%></font></b><br>
+    <%=ALLT(pcADD1)%><br><%=ALLT(pcADD2)%><br><%=ALLT(pcPHONE)%><BR><%=ALLT(pcBILLEMAIL)%></font></td>
+    <td width="50%" valign="top"><b><font face="Verdana" size="2"><font color="#000084"><%=ALLT(pcSCOMPANY)%></font></b><BR>
+    <%=ALLT(pcSTGADD)%><BR><%=ALLT(pcSPHONE)%></font></td>
+ </tr>
+</table>
+<br>
+<table border="0" align="center" width="690" bordercolor="#4E6699" style="border-collapse: collapse">
+  <tr>
+    <td width="403" align="center"><font color="#000080" face="Verdana"><b>Storage Invoices</b></font></td>
+    <td width="283" align="center"><font color="#000080" face="Verdana"><b>Storage Payments</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top" width="403">
+<table border="1" align="center" cellpadding="2" cellspacing="0" style="border-collapse: collapse;font-family:Arial;font-size:9pt;" bordercolor="#31557B" width="100%">
+  <tr>
+    <td width="3%"><b>Inv #</b></td>
+    <td width="5%"><b>Invoice Date</b></td>
+    <td width="9%"><b>Prev. Balance</b></td>
+    <td width="11%"><b>Invoice Amount</b></td>
+    <td width="5%"><b>Due Date</b></td>
+  </tr>
+  	<% SELECT _STGINV
+	   SCAN %>
+  <tr>
+    <td width="3%">&nbsp;<%=ALLT(STR(INVNO))%></td>
+    <td width="5%"><%=ALLT(CRUNDTE)%>&nbsp;</td>
+    <td width="9%" ALIGN="RIGHT"><%='$'+ALLT(STR(BALSTG,8,2))%>&nbsp;</td>
+    <td width="11%" ALIGN="RIGHT"><%='$'+ALLT(STR(TOTALINV,8,2))%>&nbsp;</td>
+    <td width="5%"><%=ALLT(CBILLDTE)%>&nbsp;</td>
+ </tr>
+    <%ENDSCAN%>
+</table>    
+    </td>
+    <td valign="top" width="283">
+<table border="1" align="center" cellpadding="2" cellspacing="0" style="border-collapse: collapse;font-family:Arial;font-size:9pt;" bordercolor="#31557B" width="98%">
+  <tr>
+    <td width="11%"><b>Pay Date</b></td>
+    <td width="15%"><b>Amount</b></td>
+    <td width="9%"><b>Method</b></td>
+    <td width="14%"><b>Confirm #</b></td>
+  </tr>
+  	<% SELECT _STGPAY
+	   SCAN %>  
+  <tr>
+    <td width="11%"><%=ALLT(CPAIDDTE)%>&nbsp;</td>
+    <td width="15%" ALIGN="RIGHT"><%='$'+ALLT(STR(PAYSTG,8,2))%>&nbsp;</td>
+    <td width="9%"><%=ALLT(CTYPE)%>&nbsp;</td>
+    <td width="14%"><%=ALLT(REF)%>&nbsp;</td>
+ </tr>
+   <%ENDSCAN%>
+</table>    
+    </td>
+ </tr> 
+</table>
+ <br>
+<table border="0" align="center" width="98%" bordercolor="#4E6699" style="border-collapse: collapse;font-family:Arial;font-size:10pt;line-height:25px;">
+  <tr>
+    <td><b>Total Storage Invoices: $<%=pnTOTALINV%> (not including previous balance)</b></td>
+  </tr>
+  <tr>
+    <td><b>Total Storage Payments: $<%=IIF(pnPAYSTG>0,pnPAYSTG,'')%></b></td>
+  </tr>
+  <tr>
+    <td><b>Storage Balance: $<%=pnBALSTG%></b></td>
+  </tr>    
+</table>  
+  &nbsp;</td>
+ </tr>
+</table>
+   
+</body>
+</html>

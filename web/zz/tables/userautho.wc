@@ -1,0 +1,239 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>User Restrictions &amp; Privileges</TITLE>
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~userauthoret~<%=pcSCR%>~<%=ALLT(lcUSERID)%>";
+       document.theForm.submit();
+     }
+    if (i==2) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~userswc~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+  }
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<% SELECT _USER %>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="900">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="19"><font face="Verdana" size="4" color="#FFFFFF">User Restrictions &amp; Privileges</font></b></td>
+  </tr>
+    <td width="100%" bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;<b><font style="font-family:Verdana;font-size:11pt;line-height:25px;">User: <%=ALLT(USERNAME)%><%=IIF(!EMPTY(NAME),', '+ALLT(NAME),'')%></font></b><br>
+    <form name="theForm" method="POST">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="49%" valign="top">
+<table border="0" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#CCCCCC" width="100%">
+  <tr>
+    <td width="100%" colspan="2" bgcolor="#F7F7F7">&nbsp;<font face="Verdana" size="3"><b>Restrictions</b></font></td>
+ </tr> 
+  <tr>
+    <td width="86%">Block Cancel Estimates <font color="#FF0000">(to myself &amp; Other Users)</font></td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKCANCEL" value="ON" <%=IIF(BLKCANCEL=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Cancel Estimates <font color="#FF0000">to Other Users Only</font></td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKCANCELU" value="ON" <%=IIF(BLKCANCELU=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Change Move Date <font color="#FF0000">(after booking)</font></td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKMOVEDTE" value="ON" <%=IIF(BLKMOVEDTE=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Release Booked Job</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="UNBOOK" value="ON" <%=IIF(UNBOOK=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <%IF pnCOLEVEL <> 3 %> 
+  <tr>
+    <td width="86%">Block Change Volume/Weight</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKVOLUME" value="ON" <%=IIF(BLKVOLUME=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Change Rate per cf/lbs</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKRATE" value="ON" <%=IIF(BLKRATE=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="86%">Block Access to Payment Page</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKPAY" value="ON" <%=IIF(BLKPAY=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Update Payment</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKUPDPAY" value="ON" <%=IIF(BLKUPDPAY=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Operation Calendar</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKCALD" value="ON" <%=IIF(BLKCALD=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Change Lead Source</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKREFER" value="ON" <%=IIF(BLKREFER=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Customer Name</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKSNAME" value="ON" <%=IIF(BLKSNAME=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Sending Moving Estimate</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKEMAIL" value="ON" <%=IIF(BLKEMAIL=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Sending Bill of Lading</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKBOL" value="ON" <%=IIF(BLKBOL=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr> 
+ <%IF pnCOLEVEL <> 3 %>
+  <tr>
+    <td width="86%">Block View Flat Rate <font color="#FF0000">(Local Move)</font></td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKFLAT" value="ON" <%=IIF(BLKFLAT=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <%ENDIF%>      
+ <%IF plCOAGENTS AND _USER.LEVELID>2 %> 
+  <tr>
+    <td width="86%">Block Agents &amp; Agents Selection</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKAGENTS" value="ON" <%=IIF(BLKAGENTS=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <% ENDIF %>   
+ <%IF pnCOLEVEL > 3 AND _USER.LEVELID>2 %> 
+  <tr>
+    <td width="86%">Block Close Jobs</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKCLOSE" value="ON" <%=IIF(BLKCLOSE=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Submit Completion</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKEDITOPR" value="ON" <%=IIF(BLKEDITOPR=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <% ENDIF %>
+ <%IF pnCOLEVEL=7 %>
+  <tr>
+    <td width="86%">Block Salesman Performance</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKPERFORM" value="ON" <%=IIF(BLKPERFORM=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Block Future Operation</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKFUOPR" value="ON" <%=IIF(BLKFUOPR=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <% ENDIF %>          
+</table>
+    </td>
+    <td width="1%" valign="top">&nbsp;</td>
+    <td width="50%" valign="top">
+<table border="0" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#CCCCCC" width="100%">
+  <tr>
+    <td width="100%" colspan="2" bgcolor="#F7F7F7">&nbsp;<font face="Verdana" size="3"><b>Privileges</b></font></td>
+ </tr> 
+  <tr>
+    <td width="86%">Show User in Assign/Reassign Users List</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="SALES" value="ON" <%=IIF(SALES=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <%IF _USER.LEVELID < 4 %>
+  <tr>
+    <td width="86%">Assign New Estimates</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="ASSIGNNEW" value="ON" <%=IIF(ASSIGNNEW=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <%ENDIF%>
+ <%IF pnCOLEVEL <> 3 %>
+  <tr>
+    <td width="86%">Allow Update Inventory on Booked Job</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="UPDBOOK" value="ON" <%=IIF(UPDBOOK=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="86%">View Payment/Charge CC</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="ACCT" value="ON" <%=IIF(ACCT=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Turn Off Sound Alert</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="SOUNDOFF" value="ON" <%=IIF(SOUNDOFF=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Show User Full Name on Printed Estimate</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="UNAME" value="ON" <%=IIF(UNAME=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">User Signature on Moving Estimate for Booked Jobs</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="REPSIGN" value="ON" <%=IIF(REPSIGN=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <%IF pnCOLEVEL > 4 AND plCOSTORAGE AND _USER.LEVELID > 2 %>
+  <tr>
+    <td width="86%">Storage Management</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="STORAGE" value="ON" <%=IIF(STORAGE=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+<% ENDIF %> 
+<%IF pnCOLEVEL > 4 AND _USER.LEVELID=4 %> 
+  <tr>
+    <td width="86%">Supervisor Access to Full Reports Menu</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="ADMIN" value="ON" <%=IIF(ADMIN=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">Supervisor Access to Claims Reports</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="CLAIMS" value="ON" <%=IIF(CLAIMS=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+<% ENDIF %>
+<% IF pnCOLEVEL > 4 %>
+  <tr>
+    <td width="86%">Quality Assurance</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="QA" value="ON" <%=IIF(QA=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+<% ENDIF %>
+<% IF plLIDINSUR=.T. %>
+  <tr>
+    <td width="86%">Manual Post to UMIS</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="INSPOST" value="ON" <%=IIF(INSPOST=.T.,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+<% ENDIF %>           
+</table>    
+    </td>
+ </tr>
+</table>
+ <BR> 
+<table border="0" align="center" width="80%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="16%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Submit" size="20"></td>
+    <td width="19%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Exit" size="20"></td>
+ </tr>   
+</table>
+</form>
+  &nbsp;</td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="14">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+
+</body>
+</html>

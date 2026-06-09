@@ -1,0 +1,18 @@
+Movers Arena - system failure
+
+Movers Arena - Online Services (http://www.moversarena.com)
+_________________________________________________________________
+
+We have experienced a problem with your order!
+
+A System Error has occurred.
+
+Please wait a few minutes and re-try your transaction as follows:
+1) Return to the order form to your filled out on the site.
+2) Re-enter your information.
+3) Click the 'Submit' or 'Order' button once again.
+
+If you receive this message an additional time please contact:
+<MerchantName> at <MerchantPhone>, or E-mail us at <MerchantEmail>
+
+<UserDefinedFields>

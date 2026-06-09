@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Carrier Invoice</title>
+</head>
+
+<body>
+<table border="2" align="center" style="border-collapse: collapse" width="100%" bordercolordark="#4E6699" bordercolorlight="#4E6699">
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+  <table border="0" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" cellpadding="0">
+    <tr>
+	 <td width="100%" align="center"><font face="verdana" color="#083484" size="4"><b><%=pcCOMPANY%></font></b></td>
+   </tr>    
+    <tr>
+	 <td width="100%" align="center"><font face="verdana" size="2"><b>&nbsp;<%=pcADD1%>&nbsp;<%=pcADD2%></b></font></td>
+   </tr>
+    <tr>
+	 <td width="100%" align="center"><b><font face="verdana" size="2"><%=pcTOLLFREE%>&nbsp;Fax:&nbsp;<%=pcFAX%>&nbsp;<%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%>&nbsp;
+     <%=IIF(EMPTY(pcICC),"","ICC MC: "+pcICC)%>&nbsp;<%=IIF(!EMPTY(pcREGISTER),"Registration #: "+pcREGISTER,"")%></td>
+   </tr>	
+  </table>
+    <br>    
+  <table border="2" align="center" style="border-collapse: collapse" width="98%" cellpadding="2">
+   <tr>
+    <td width="38%" ALIGN="CENTER" colspan="8" align="center"><b><font face="Verdana" size="3"><U>Carrier Invoice</u> - <%=pcAGNAME%></font></b></td>
+    </tr>
+   <tr>
+    <td width="3%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Job No.</font></b></td>
+    <td width="5%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Pick Up Date</font></b></td>
+    <td width="7%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Cust. Name</font></b></td>
+    <td width="5%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Total Job</font></b></td>
+    <td width="4%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Comm. Option</font></b></td>
+    <td width="4%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Total Comm.</font></b></td>
+    <td width="5%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Cust. Payment</font></b></td>
+    <td width="5%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Balance to Pay</font></b></td>
+   </tr>
+  <%SELECT _AG
+    SCAN%>
+   <tr>
+    <td width="3%" ALIGN="CENTER"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=ALLT(DEPT)+ALLT(ORDNO)%></b></font></td>
+    <td width="5%" ALIGN="CENTER"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=DTE%></b></font></td>
+    <td width="7%"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=ALLT(SNAME)%></b></font></td>
+    <td width="5%" ALIGN="CENTER"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=ALLT(STR(TOTALCF))+' cf'%></b></font></td>
+    <td width="4%" align="right"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;
+    <% IF !EMPTY(AGPERCENT)%><%=ALLT(STR(AGPERCENT,6,2))+' %'%><% ENDIF%>
+    <% IF !EMPTY(AGPERCF)%><%='$'+ALLT(STR(AGPERCF,6,2))+' /cf'%><% ENDIF%>
+    <% IF !EMPTY(AGPERLBS)%><%='$'+ALLT(STR(AGPERLBS,6,2))+' /lbs'%><% ENDIF%>
+    <% IF !EMPTY(AGFLAT)%><%='$'+ALLT(STR(AGFLAT))+' (flat)'%><% ENDIF%>
+    </B></FONT></td>
+    <td width="4%" align="right"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=IIF(COMMTOTAL=0,' ','$'+ALLT(STR(COMMTOTAL,10,2)))%></b></font></td>
+    <td width="5%" align="right"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%='$'+ALLT(STR(BALANCE+BALSTG,8,2))%></b></font></td>
+    <td width="5%" align="right"><font face="Verdana" style="font-size: 9pt"><b><%=IIF(AGBALANCE<0,'*','**')%>&nbsp;&nbsp;&nbsp;<%='$'+ALLT(STR(AGBALANCE,8,2))%></b></font></td>
+   </tr>
+   <% ENDSCAN%>
+   <tr>
+    <td width="38%" ALIGN="RIGHT" colspan="8">&nbsp;</td>
+  </tr>
+   <tr>
+    <td width="33%" ALIGN="RIGHT" colspan="7"><b><font face="Verdana" size="2">Balance:&nbsp;</b></font></td>
+    <td width="5%" align="right"><b><font face="Verdana" size="2">&nbsp;<%='$'+ALLT(STR(pnAGBALANCE,8,2))%></b></font></td>
+  </tr>
+   <tr>
+    <td width="13%" colspan="3"><font face="Verdana" size="2">** Payments to Our Company</font></td>
+    <td width="25%" colspan="5"><font face="Verdana" size="2">* Payments to Agent/Carrier</font></td>
+  </tr>  
+  </table><br><p align="left"><font face="Verdana" size="2">&nbsp;&nbsp;Signature&nbsp;________________________________
+    &nbsp;&nbsp;Date&nbsp;________________</font></p></td>
+  </tr>
+</table>
+</td></tr></table>
+</body>
+</html>

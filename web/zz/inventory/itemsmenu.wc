@@ -1,0 +1,103 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Inventory Items Categories</title>
+
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+	if (i==1)
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;}												
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="20%"> 
+  <tr>
+    <td BGCOLOR="#0081D3" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Inventory Items Categories</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><br>
+<FORM NAME="theForm" method="post">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="15%" class="TD1">Category</td>
+ </tr>
+<% SELECT _LIST
+   SCAN%>
+  <tr style="line-height:22px;">
+    <td width="11%" class="TD2">&nbsp;<a href="/wc.dll?mpmainten~itemslistwc~<%=pcSCR%>~<%=ALLTRIM(ROOMCODE)%>"><%=ALLTRIM(CNAME)%></a></td>          
+ </tr>
+  <% ENDSCAN %>
+  <% IF plINVROOM %>
+  <tr style="line-height:22px;">
+    <td width="11%" class="TD2">&nbsp;<a href="/wc.dll?mpmainten~RoomsInvNameWc~<%=pcSCR%>">Room Name</a></td>          
+ </tr>
+  <% ENDIF %>
+  <tr>
+    <td width="15%" class="TD1">Print Items List</td>
+ </tr>  
+  <tr style="line-height:22px;">
+    <td width="11%" class="TD2">&nbsp;<a href="/wc.dll?mpmainten~tinvprint~<%=pcSCR%>~ABC" target="_blank">Inventory Items by A B C</a></td>          
+ </tr>
+  <tr style="line-height:22px;">
+    <td width="11%" class="TD3">&nbsp;<a href="/wc.dll?mpmainten~tinvprint~<%=pcSCR%>" target="_blank">Inventory Items by Category</a></td>          
+ </tr>   
+</table>    
+  <BR>
+<table border="0" align="center" style="border-collapse: collapse" width="95%">
+  <tr>
+    <td align="center"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="B4" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+  </tr>
+ </table>    
+</form>    
+    <br></td>
+  </tr>
+  <tr>
+    <td bgcolor="#0081D3" height="15">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+</table>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<html>
+
+<head>
+<style>
+<!--
+.textbox_skin{
+font-family:Arial; font-size:12px; font-color:#000000;
+border:1px #000000 solid;
+}
+.button_skin{
+font-family:Arial; font-size:12px; font-color:#000000;
+border:1px #000000 solid;
+}
+-->
+</style>
+<title>Color Picker</title>
+</head>
+
+<body>
+<div id="colorpicker" style="position: absolute; top: 0; left: 0;">
+<table border="0" cellspacing="0" cellpadding="4" width="500" height="270">
+    <tr>
+      <td width="486" bgcolor="#006600" colspan="2">
+<script language="JavaScript">
+<!--
+function ShowColorPicker(showit){
+colorpicker.style.visibility=showit;
+}
+
+function SelectColor(thecolor){
+var pageproperty=window.opener.pp
+eval("window.opener." + pageproperty + "('#" + thecolor + "');");
+}
+
+
+function ChangeColor(thecolor){
+var r=parseInt(thecolor.substring(0, 2), 16);
+var g=parseInt(thecolor.substring(2, 4), 16);
+var b=parseInt(thecolor.substring(4, 6), 16);
+document.showcolor.hexcolor.value="#" + thecolor;
+document.showcolor.rgbcolor.value=r + ", " + g + ", " + b;
+}
+
+var hexbase=new Array("00", "33", "66", "99", "CC", "FF");
+var currcolor;
+document.write("<table cellspacing=\"1\" style=\"margin-top:5px; margin-left:5px; margin-right:5px; cursor:hand;\" bordercolor=\"#FFFFFF\"><tr>");
+for(b=0;b<=2;b++){
+for(d=0;d<=5;d++){
+for(i=0;i<=5;i++){
+currcolor=hexbase[d] + hexbase[i] + hexbase[b];
+document.write("<td style=\"cursor:hand; width:10px; height:10px;\" onClick=\"SelectColor('" + currcolor + "');\" onMousemove=\"ChangeColor('" + currcolor + "');\" bgcolor=\"#" + currcolor + "\"></td>");
+}
+for(j=0;j<=5;j++){
+currcolor=hexbase[d] + hexbase[b] + hexbase[j];
+document.write("<td style=\"cursor:hand; width:10px; height:10px;\" onClick=\"SelectColor('" + currcolor + "');\" onMousemove=\"ChangeColor('" + currcolor + "');\" bgcolor=\"#" + currcolor + "\"></td>");
+}
+for(k=0;k<=5;k++){
+currcolor=hexbase[k] + hexbase[b] + hexbase[d];
+document.write("<td style=\"cursor:hand; width:10px; height:10px;\" onClick=\"SelectColor('" + currcolor + "');\" onMousemove=\"ChangeColor('" + currcolor + "');\" bgcolor=\"#" + currcolor + "\"></td>");
+}
+for(i=0;i<=5;i++){
+currcolor=hexbase[d] + hexbase[i] + hexbase[b+3];
+document.write("<td style=\"cursor:hand; width:10px; height:10px;\" onClick=\"SelectColor('" + currcolor + "');\" onMousemove=\"ChangeColor('" + currcolor + "');\" bgcolor=\"#" + currcolor + "\"></td>");
+}
+for(j=0;j<=5;j++){
+currcolor=hexbase[d] + hexbase[b+3] + hexbase[j];
+document.write("<td style=\"cursor:hand; width:10px; height:10px;\" onClick=\"SelectColor('" + currcolor + "');\" onMousemove=\"ChangeColor('" + currcolor + "');\" bgcolor=\"#" + currcolor + "\"></td>");
+}
+for(k=0;k<=5;k++){
+currcolor=hexbase[k] + hexbase[b+3] + hexbase[d];
+document.write("<td style=\"cursor:hand; width:10px; height:10px;\" onClick=\"currentcolor='" + currcolor + "'\" onMousemove=\"ChangeColor('" + currcolor + "');\" bgcolor=\"#" + currcolor + "\"></td>");
+}
+document.write("</tr>");
+}
+ }
+document.write("</tr><tr><td colspan=\"36\">");
+//-->
+</script>
+<form name="showcolor">
+  <p><font face="Arial" size="1"><font color="#FFFFFF">Hex Color:</font> <input type="text" name="hexcolor" size="8" readonly class="textbox_skin">&nbsp;
+  <font color="#FFFFFF">RGB Color: </font> <input type="text" name="rgbcolor" size="15" readonly class="textbox_skin"></font></p>
+</form>
+<script language="JavaScript">
+<!--
+document.write("</td></tr></table>");
+//-->
+</script>
+</td>
+    </tr>
+  </table>
+  </div>
+</body>
+
+</html>

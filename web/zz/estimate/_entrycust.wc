@@ -1,0 +1,297 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Customer Free Online Quote</title>
+<head>
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script><!--DATE PICKER-->
+<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.ui/1.8.5/jquery-ui.min.js"></script><!--DATE PICKER-->
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=2.1.2" media="screen">
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+	if (parent.frames.length > 0) {
+	    parent.location.href = self.document.location}
+
+
+function FindZip(par) {
+   frm = document.theForm;
+   if (par=='SZIP'){      
+      var cSR='S'
+   }else{
+      var cSR='R'
+   }
+   window.open('/wc.dll?mputil~ZipWc~&SR='+cSR,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=550,height=500');
+   self.name="main"
+}
+
+function checkData(){
+	frm = document.theForm;
+	return  lengthValid(frm.SNAME, 4,"full name")
+			&& emailValid(frm.EMAIL, 4,"email")
+			&& lengthValid(frm.STELH, 9,"ten digits phone number") 			
+			&& zipValid(frm.SZIP, 5, "five digits origin zip code - US only") 
+			&& zipValid(frm.RZIP, 5, "five digits destination zip code - US only")	
+			&& lengthValid(frm.LBOOKDTE, 3,"expected date of move")
+	<% IF VAL(_EST.ORDNO) < 100000 %>
+			&&  selectValid(frm.ROOMS,"number of rooms");
+    <%ENDIF%>
+ }
+
+<%IF VAL(_EST.ORDNO) < 100000 AND !plBLKREF %>
+function CHKREF(){
+		frm = document.theForm;
+		if(frm.REF[frm.REF.selectedIndex].text=='') {
+			alert("Please select how did you hear about us?");
+			frm.REF.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+<%ENDIF%>
+
+function SubmitEntry(){
+    if (checkData()<%IF VAL(_EST.ORDNO) < 100000 AND !plBLKREF %>&&CHKREF()<% ENDIF%>) {
+       document.theForm.ENTRYCUST.style.visibility="hidden";
+       document.theForm.action="/wc.dll?mpest~entryret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+}      
+
+function homepage() {
+	   document.theForm.action="/wc.dll?mpest~homepagewc~<%=pcSCR%>";
+       document.theForm.submit();
+    }
+
+Image1= new Image(100,125);
+Image1.src = "/zz/images/home1.jpg";
+Image2 = new Image(100,125);
+Image2.src = "/zz/images/home.jpg";
+
+function SwapOut() {
+  document.imageflip1.src = Image1.src; return true;
+}
+
+function SwapBack() {
+  document.imageflip1.src = Image2.src; return true;
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.homeoff {	    color: #FFFFFF;
+				  	font-size: 10pt;
+  				  	background: #008000;
+				  	text-align: center;}
+	.homeon	 {	    color: #FFFF00;
+				  	font-size: 10pt;
+				  	text-align: center;
+  				  	cursor: Hand;
+  				  	font-weight: bold;
+ 				  	text-align: center;
+ 				  	background: #800080;}
+	 .SUBMIT {	    color: #000000;
+				  	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 160; 
+                    height: 25; 
+                    cursor: pointer;}	
+</style>
+</head>
+<body onload="window.theForm.SNAME.focus()" BGCOLOR="#316194">
+     <table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="700">
+       <tr>
+         <td BGCOLOR="#FFFFFF" width="100%"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100"></td>
+       </tr>
+     </table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+  <tr>
+    <td width="208" BGCOLOR="#4E6699" align="left" height="25">
+    <img border="0" src="/zz/images/home.jpg" name="imageflip1" onMouseOver="SwapOut()" onMouseOut="SwapBack()" onclick="homepage()" style="cursor:pointer;" border="0" width="24" height="23">
+    <b><font face="Verdana" size="2" color="#FFFFFF">&lt;--Home Page</font></b></td>
+    <td width="457" BGCOLOR="#4E6699" align="left" height="27"><b><font face="Verdana" size="4" color="#FFFFFF">
+    Customer Free Online Quote</font></b></td>
+  </tr>
+  <tr>
+    <td width="700" bgcolor="#FFFFFF" colspan="2" valign="top"><br>	
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+	<td width="100%" align="center"><font face="Verdana" size="2">Fill out the 
+    Free Estimate Form to receive our competitive moving quote.</font></td>
+ </tr>
+</table>
+  <br>
+<table width="98%" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+   <td width="12" height="12"><img name="boxtlc" src="zz/images/boxtlc.jpg" border="0" width="12" height="12"></td>
+   <td height="12" background="zz/images/boxtbg.jpg"><img src="zz/images/boxtbg.jpg" width="4" height="12"></td>
+   <td width="12" height="12"><img name="boxtrc" src="zz/images/boxtrc.jpg" border="0" width="12" height="12"></td>
+ </tr>
+  <tr> 
+   <td width="12" background="zz/images/boxlbg.jpg"><img src="zz/images/boxlbg.jpg" width="12" height="2"></td>
+  <td><form name="theForm" method="post"> 
+<div align="center">
+  <center> 
+<table border="0" style="border-collapse: collapse" bgcolor="#EFEFF7" bordercolor="#111111" width="658" cellspacing="1" cellpadding="2">
+  <tr>
+   <td bgcolor="#FFFFFF" width="280" colspan="2"><b><font face="Arial" size="2"><u>Customer Information</u></FONT></B></td>
+   <td bgcolor="#FFFFFF" width="367" colspan="2"><b><font face="Arial" size="2"><u>Moving Details</u></FONT></B></td>
+   </tr>
+  <tr>
+   <td width="120"><b><font face="Arial" size="2">Customer Name:<font color="#FF0000">*</font></font></b></td>
+   <td width="155"><input class="textFeilds" style="border:1px solid #316194; font-size:10pt;background-color:#FFFFCC" name="SNAME" tabindex="1" value="<%=ALLT(_EST.SNAME)%>" size="20"></td>
+   <td width="149"><b><font face="Arial" size="2">Origin Street Address:</font></b></td>
+   <td width="213"><input class="textFeilds" style="border:1px solid #316194; font-size:10pt;" name="SADD1" tabindex="7" value="<%=ALLT(_EST.SADD1)%>" size="20"></td>
+   </tr>
+  <tr>
+   <td width="120"><b><font face="Arial" size="2">Email:<font color="#FF0000">*</font></font></b></td>
+   <td width="155">
+   <input class="textFeilds" style="border:1px solid #316194; font-size:10pt; background-color:#FFFFCC" name="EMAIL" tabindex="2" value="<%=ALLT(_EST.EMAIL)%>" size="20"></td>
+   <td width="149"><b><font face="Arial" size="2">Location:</font></b></td>
+   <td width="213">
+   <select size="1" name="SLEVEL" tabindex="8" style="font-size: 9pt">
+		  <option value="" selected>Select Level</option>
+		   <option value="">House</option>
+           <option value="">Townhouse</option>
+           <option value="">Apartment</option>
+           <option value="">Condo</option>
+		   <option value="">Storage</option>
+		   <option value=""></option>
+		  </select>&nbsp;&nbsp;<b><font face="Arial" size="2">Floor:</font></b> <input class="textFeilds" style="border:1px solid #316194; font-size:10pt;" name="SFLOOR" tabindex="7" value="<%=IIF(_EST.SFLOOR=0,'',ALLT(STR(_EST.SFLOOR)))%>" size="1"></td>
+   </tr>
+  <tr>
+   <td width="120"><b><font face="Arial" size="2">Home Phone:<font color="#FF0000">*</font></font></b></td>
+   <td width="155">
+   <input class="textFeilds" style="border:1px solid #316194; font-size:10pt;background-color:#FFFFCC" name="STELH" tabindex="3" value="<%=ALLT(_EST.STELH)%>" size="20"></td>
+   <td width="149"><b><font face="Arial" size="2">Origin Zip Code:</font></b><font color="#FF0000">*</font></td>
+   <td width="213">
+   <input type="text" class="textFeilds" name="SZIP" style="border:1px solid #316194;width:50px;font-size:10pt;background-color:#FFFFCC;" tabindex="9" value="<%=ALLT(_EST.SZIP)%>" size="20"></td>
+   </tr>   
+  <tr>
+   <td width="120"><b><font face="Arial" size="2">Cell Phone:</font></b></td>
+   <td width="155">
+   <input class="textFeilds" style="border:1px solid #316194; font-size:10pt;" name="RTELH" tabindex="4" value="<%=ALLT(_EST.RTELH)%>" size="20"></td>
+   <td width="149"><b><font face="Arial" size="2">Destination Street<br>Address:</font></b></td>
+   <td width="213">
+   <input class="textFeilds" style="border:1px solid #316194; font-size:10pt;" name="RADD1" tabindex="10" value="<%=ALLT(_EST.RADD1)%>" size="20"></td>
+   </tr>
+  <tr>
+   <td width="120"><b><font face="Arial" size="2">Work Phone:</font></b></td>
+   <td width="155">
+   <input class="textFeilds" style="border:1px solid #316194; font-size:10pt;" name="STELO" tabindex="5" value="<%=ALLT(_EST.STELO)%>" size="20"></td>
+   <td width="149"></b><b><font face="Arial" size="2">Location:</font></b></td>
+   <td width="213">
+   <select size="1" name="RLEVEL" tabindex="11" style="font-size: 9pt">
+		  <option value="" selected>Select Level</option>
+		   <option value="">House</option>
+           <option value="">Townhouse</option>
+           <option value="">Apartment</option>
+           <option value="">Condo</option>
+		   <option value="">Storage</option>
+		   <option value=""></option>
+		  </select>&nbsp;&nbsp;<b><font face="Arial" size="2">Floor:</font></b> <input class="textFeilds" style="border:1px solid #316194; font-size:10pt;" name="RFLOOR" tabindex="7" value="<%=IIF(_EST.RFLOOR=0,'',ALLT(STR(_EST.RFLOOR)))%>" size="1"></td>
+   </tr>
+  <tr>
+   <td width="120"><b><font face="Arial" size="2">Best Time to Call:</font></b></td>
+   <td width="155"><input type="text" name="FUTME" size="8" value="<%=ALLT(_EST.FUTME)%>" style="border:1px solid #316194; font-size:10pt;cursor:hand" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~FUTME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=500,height=500')" maxlength="20" tabindex="6"></td>
+   <td width="149"><b><font face="Arial" size="2">Destination <a href="javascript:FindZip('RZIP')">Zip Code</a>:</font></b><font color="#FF0000">*</font></td>
+   <td width="213">
+   <input type="text" class="textFeilds" name="RZIP" style="border:1px solid #316194;width:50px;font-size:10pt;background-color:#FFFFCC;" tabindex="12" value="<%=ALLT(_EST.RZIP)%>" size="20"></td>
+   </tr>
+  <tr>
+   <td width="280" colspan="2">&nbsp;</td>
+   <td width="149"><b><font face="Arial" size="2">Date of Move:</font></b><font color="#FF0000">*</font></td>
+   <td width="213"><input name="LBOOKDTE" autocomplete="off" id="Date1" size="10" value="<%=IIF(EMPTY(_EST.LBOOKDTE),'',ALLT(DTOC(_EST.LBOOKDTE)))%>" style="background-color: #FFFFCC; border:1px solid #316194;" tabindex="13"></td>
+   </tr>
+  </table>
+  </center>
+</div>
+<br>
+<div align="center">
+  <center> 
+<table border="0" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#111111" bgcolor="#EFEFF7" width="100%" cellspacing="1" cellpadding="2">
+  <% IF VAL(_EST.ORDNO) < 100000 %>
+  <tr>
+   <td width="38%" height="19" bgcolor="#EFEFF7"><b>Number of Rooms:<font color="#FF0000">*</font></b></td>
+   <td width="62%" height="19" bgcolor="#EFEFF7" colspan="2"><span style="background-color: #FFFFCC">
+         <select size="1" name="ROOMS" tabindex="14" style="background-color: #FFFFCC">
+		   <option selected>< Select Number of Rooms></option>
+           <option>Studio</option>
+           <option>Partial Home</option>
+           <option>One bedroom</option>
+           <option>Two bedrooms</option>
+           <option>Three bedrooms</option>
+           <option>Four bedrooms</option>
+           <option>Five bedrooms</option>
+           <option>Six bedrooms and more</option>
+	       <option>Office Move</option>
+	  </select></span></td>
+   </tr>
+  <% ENDIF %> 
+  <%IF VAL(_EST.ORDNO) < 100000 AND !plBLKREF %>
+  <tr>
+   <td width="38%" height="19" bgcolor="#EFEFF7"><b>How did you hear about us?<font color="#FF0000">*</font></b></td>
+   <td width="62%" height="19" bgcolor="#EFEFF7" colspan="2">
+   <select size="1" name="REF" tabindex="15" style="background-color: #FFFFCC">
+     	<option selected></option>
+     	<option><%=_EST.REF%></option>
+		<% SELECT _TREF 
+			SCAN %>
+	<OPTION><%=_TREF.RNAME %></OPTION>
+		<% ENDSCAN %>
+	</select>
+   </td>
+ </tr>
+  <% ENDIF %>   
+  <tr>
+   <td width="38%" bgcolor="#EFEFF7"><b>Requested Delivery Date:<br><font size="1">(Confirm with Customer Service)</font></b></td>
+   <td width="26%" bgcolor="#EFEFF7"><input name="DLVDTE" size="10" style="border:1px solid #316194; font-size:10pt; float:left;" value="<%=IIF(EMPTY(_EST.DLVDTE),'',ALLT(DTOC(_EST.DLVDTE)))%>" tabindex="16">&nbsp;<b>To:</b></td>
+   <td width="36%" bgcolor="#EFEFF7"><input name="DLVDTE1" size="10" style="border: 1px solid #316194; font-size:10pt; float:left;" value="<%=IIF(EMPTY(_EST.DLVDTE1),'',ALLT(DTOC(_EST.DLVDTE1)))%>" tabindex="17"></td>
+   </tr>  
+</table>
+  </center>
+</div>
+  </td>
+  <td width="12" background="zz/images/boxrbg.jpg"><img src="zz/images/boxrbg.jpg" width="12" height="1"></td>
+ </tr>
+  <tr> 
+   <td width="12" height="12"><img name="boxblc" src="zz/images/boxblc.jpg" border="0" width="12" height="12"></td>
+   <td height="12" background="zz/images/boxbbg.jpg">
+   <img src="zz/images/boxbbg.jpg" width="3" height="12"></td>
+   <td width="12" height="12"><img name="boxbrc" src="zz/images/boxbrc.jpg" border="0" width="12" height="12"></td>
+ </tr>
+</table>
+<br>
+  <table border="0" width="40%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+      <td width="49%" align="center">
+      <input type="button" CLASS="SUBMIT" name="ENTRYCUST" onclick="SubmitEntry()" style="background-color: #EFEFF7;" tabindex="16" value="Continue to Inventory"></td>
+	</tr>
+  </table>
+  <br>
+<table border="0" width="80%" align="center">
+  <tr>
+	<td width="100%"><b><font font="Arial" color="#FF0000"><%=pcMSG%></font></b></td>
+ </tr>
+</table>  
+  </form>
+ </td>
+ </tr>
+  <tr>
+    <td width="700" bgcolor="#4E6699" colspan="2" height="23">&nbsp;</td>
+  </tr>
+  </table>
+
+</body>
+</html>

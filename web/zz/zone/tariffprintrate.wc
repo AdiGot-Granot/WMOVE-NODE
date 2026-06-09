@@ -1,0 +1,116 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Print Tariff</TITLE>
+
+</head>
+
+<body BGCOLOR="#F7F7F7">
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="800">
+  <tr>
+    <td width="746" bgcolor="#FFFFFF" ALIGN="CENTER" colspan="4"><B><font style="font-size:11pt;font-family:Verdana;"><%=pcCOMPANY%> Tariff ID <font color="#FF0000"><%=pcDmainId%></font></font></b></td>
+    </tr>
+</TABLE>
+ <BR>
+<% SELECT DISTIN AREA1 FROM _R INTO CURSOR _R1
+      SCAN
+      pcAREA=ALLT(AREA1) %>
+   <%SELECT _PERIODS
+     SCAN
+      pnPERIOD=PID
+      pcPERIOD=ALLT(STR(pnPERIOD))
+      pcDAYS=_PERIODS.CDAYS %>
+<table border="2" align="center" bordercolor="#CCCCCC" width="800">
+  <tr>
+    <td width="788" bgcolor="#FFFFFF" colspan="12" height="21">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+   <tr>
+     <td width="100%" bgcolor="#FFFFFF">&nbsp;<font face="Arial" SIZE="4"><b>From 
+     Zone: <FONT color="#F76A00"><%=pcAREA%></FONT>&nbsp;&nbsp;
+     <%='Period '+pcPERIOD%>:&nbsp;&nbsp;&nbsp;<FONT color="#F76A00"><%=pcDAYS%></FONT></b></font></td>
+  </tr>        
+</table>
+    </td>
+   </tr>        
+   <tr style="font-size:9pt;font-family:Verdana;">
+     <td width="141" bgcolor="#FFFFFF" colspan="2" height="19">&nbsp;</td>
+     <td width="54" bgcolor="#FFFFFF" align="center" height="19"><b>A</b></td>
+     <td width="52" bgcolor="#FFFFFF" align="center" height="19"><b>B</b></td>
+     <td width="62" bgcolor="#FFFFFF" align="center" height="19"><b>C</b></td>
+     <td width="61" bgcolor="#FFFFFF" align="center" height="19"><b>D</b></td>
+     <td width="46" bgcolor="#FFFFFF" align="center" height="19"><b>E</b></td>
+     <td width="53" bgcolor="#FFFFFF" align="center" height="19"><b>F</b></td>
+  <% IF plG%>  
+     <td width="60" bgcolor="#FFFFFF" align="center" height="19"><b>G</b></td>  
+  <% ENDIF%>
+  <% IF plH%>  
+     <td width="54" bgcolor="#FFFFFF" align="center" height="19"><b>H</b></td>
+  <% ENDIF%>
+  <% IF plI%>  
+     <td width="55" bgcolor="#FFFFFF" align="center" height="19"><b>I</b></td>
+  <% ENDIF%>
+ <% IF plJ%> 
+     <td width="90" bgcolor="#FFFFFF" align="center" height="19"><b>J</b></td>
+ <% ENDIF%>
+    </tr>
+ <% SELECT _M%>
+    <tr style="font-size:9pt;font-family:Verdana;">
+      <td width="57" bgcolor="#F0F8FF" height="19"><b>To Zone</b></td>
+      <td width="27" bgcolor="#F0F8FF" height="19"><b>Min&nbsp;<%=pcMINVOLUME%></b></td>
+      <td width="54" align="center" bgcolor="#F0F8FF" height="19"><%=A%></td>
+      <td width="52" align="center" bgcolor="#F0F8FF" height="19"><%=B%></td>
+      <td width="62" align="center" bgcolor="#F0F8FF" height="19"><%=C%></td>
+      <td width="61" align="center" bgcolor="#F0F8FF" height="19"><%=D%></td>
+      <td width="46" align="center" bgcolor="#F0F8FF" height="19"><%=E%></td>
+      <td width="53" align="center" bgcolor="#F0F8FF" height="19"><%=F%></td>
+  <% IF plG%>  
+      <td width="60" align="center" bgcolor="#F0F8FF" height="19"><%=G%></td>
+  <% ENDIF%>
+  <% IF plH%>  
+      <td width="54" align="center" bgcolor="#F0F8FF" height="19"><%=H%></td>
+  <% ENDIF%>
+  <% IF plI%>  
+      <td width="55" align="center" bgcolor="#F0F8FF" height="19"><%=I%></td>
+  <% ENDIF%>
+  <% IF plJ%>  
+      <td width="90" align="center" bgcolor="#F0F8FF" height="19"><%=J%></td>
+  <% ENDIF%>  
+   </tr>
+  <% SELECT * FROM _R WHERE PERIOD=pnPERIOD AND ALLT(AREA1)==pcAREA INTO CURSOR _R2
+     SCAN
+     pcAREA=AREA1 %>
+    <tr>
+      <td width="57" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><font size="2"><%=AREA2%></font></td>
+      <td width="27" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center">
+      <%=IIF(plMINVOL=.T.,ALLT(STR(MINPRC)),'$'+ALLT(STR(MINPRC,8,2)))%>&nbsp;<%=IIF(plMINVOL=.T.,pcMINVOLUME,'')%></td>
+      <td width="54" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(A,6,2))%>&nbsp;</td>
+      <td width="52" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(B,6,2))%>&nbsp;</td>
+      <td width="62" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(C,6,2))%>&nbsp;</td>
+      <td width="61" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(D,6,2))%>&nbsp;</td>
+      <td width="46" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(E,6,2))%>&nbsp;</td>
+      <td width="53" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(F,6,2))%>&nbsp;</td>
+  <% IF plG%>     
+      <td width="60" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(G,6,2))%>&nbsp;</td>
+  <% ENDIF%>
+  <% IF plH%>    
+      <td width="54" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(H,6,2))%>&nbsp;</td>
+  <% ENDIF%>
+  <% IF plI%>    
+      <td width="55" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(I,6,2))%>&nbsp;</td>
+  <% ENDIF%>
+  <% IF plJ%>    
+      <td width="90" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','EEEEEE')%>" height="19" align="center"><%=ALLT(STR(J,6,2))%>&nbsp;</td>
+  <% ENDIF%>  
+   </tr>
+   <%ENDSCAN%>
+</table>
+      <hr color="#000000" width="650"></hr>
+<DIV style="page-break-after:always"></DIV>
+  <%ENDSCAN%>
+<%ENDSCAN%>
+      <hr color="#000000" width="650"></hr>
+<DIV style="page-break-after:always"></DIV>
+</body>
+
+</html>

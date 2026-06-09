@@ -1,0 +1,162 @@
+# Save this file to the server and run it in PowerShell:
+#   powershell -ExecutionPolicy Bypass -File create_testmap.ps1
+
+$html = @'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetBnB - Sitter Map</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Segoe UI,sans-serif;background:#FAFAF8;color:#1B1B1B}
+.hdr{background:#fff;border-bottom:1px solid #E6E4DF;padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-size:22px;font-weight:700;color:#0F6E56}
+.lay{display:grid;grid-template-columns:320px 1fr;height:calc(100vh - 56px)}
+.pnl{overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:#FAFAF8}
+.bx{background:#fff;border:1px solid #E6E4DF;border-radius:14px;padding:16px}
+.bx h3{font-size:14px;font-weight:600;margin-bottom:12px}
+.fld{margin-bottom:12px}
+.fld label{display:block;font-size:11px;font-weight:600;color:#71716E;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.fld select{width:100%;padding:9px 11px;border:1px solid #E6E4DF;border-radius:10px;font-size:13px;background:#FAFAF8;outline:none}
+.rr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.rn{font-size:24px;font-weight:700;color:#0F6E56}
+input[type=range]{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:#E6E4DF;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#1D9E75;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2);cursor:pointer}
+.cps{display:flex;flex-wrap:wrap;gap:5px}
+.cp{padding:4px 11px;border-radius:16px;border:1px solid #E6E4DF;background:#fff;font-size:11px;font-weight:500;cursor:pointer;color:#71716E}
+.cp.on{background:#E1F5EE;border-color:#1D9E75;color:#0F6E56}
+.btn{width:100%;padding:11px;background:#1D9E75;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px}
+.btn:hover{background:#0F6E56}
+.sts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.st{background:#F4F3EF;border-radius:10px;padding:8px;text-align:center}
+.st b{display:block;font-size:18px;font-weight:700;color:#0F6E56}
+.st small{font-size:10px;color:#A3A39F;text-transform:uppercase}
+.cd{background:#fff;border:1px solid #E6E4DF;border-radius:10px;padding:12px 14px;display:flex;gap:10px;align-items:center;cursor:pointer;margin-bottom:8px}
+.cd:hover{border-color:#1D9E75;box-shadow:0 3px 10px rgba(0,0,0,.05)}
+.av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;flex-shrink:0}
+.cd .nfo{flex:1;min-width:0}
+.nm{font-weight:600;font-size:13px}
+.ct{font-size:11px;color:#71716E}
+.tgs{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}
+.tg{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500}
+.dst{text-align:right;flex-shrink:0}
+.dv{font-size:17px;font-weight:700}
+.du{font-size:10px;color:#A3A39F}
+.dl{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#378ADD;text-decoration:none;margin-top:2px}
+.emp{text-align:center;padding:28px 12px;color:#71716E;font-size:13px}
+#map{width:100%;height:100%;min-height:500px}
+.lgd{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.95);border-radius:10px;padding:10px 14px;font-size:12px;z-index:800;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.li{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.dot{width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 3px rgba(0,0,0,.2)}
+@media(max-width:768px){.lay{grid-template-columns:1fr}.pnl{max-height:45vh}#map{min-height:55vh}}
+</style>
+</head>
+<body>
+<div class="hdr"><div class="logo">PetBnB</div><div style="font-size:12px;color:#71716E">Sitter radius search</div></div>
+<div class="lay">
+<div class="pnl">
+<div class="bx">
+<h3>Find sitters nearby</h3>
+<div class="fld"><label>Search from</label>
+<select id="loc">
+<%SELECT _LIST
+SCAN%)
+   <option value="<%=lat+','+lng</%>"><%=zipcode%></option>
+<%ENDSCAN%>
+</select></div>
+<div class="fld"><div class="rr"><label style="margin:0">Radius</label><div><span class="rn" id="rv">5</span><span style="font-size:13px;color:#71716E;margin-left:3px">km</span></div></div>
+<input type="range" id="rng" min="1" max="80" value="5" step="1"></div>
+<div class="fld"><label>Locations</label><div class="cps" id="cps">
+<div class="cp on" data-s="all">All</div>
+<div class="cp" data-s="Florida</div>
+<div class="cp" data-s="New York"></div>
+<div class="cp" data-s="California"></div>
+<div class="cp" data-s="New Jercy"></div>
+<div class="cp" data-s="Texas"></div>
+<div class="cp" data-s="Chicago"></div>
+</div></div>
+<button class="btn" onclick="doSearch()">Search sitters</button>
+</div>
+<div class="sts"><div class="st"><b id="s1">0</b><small>Found</small></div><div class="st"><b id="s2">-</b><small>Nearest</small></div><div class="st"><b id="s3">-</b><small>Avg price</small></div></div>
+<div id="list"></div>
+</div>
+<div style="border-radius:14px;overflow:hidden;border:1px solid #E6E4DF;box-shadow:0 4px 12px rgba(0,0,0,.06);position:relative">
+<div id="map"></div>
+<div class="lgd">
+<div class="li"><div class="dot" style="background:#D85A30"></div> Your location</div>
+<div class="li"><div class="dot" style="background:#1D9E75"></div> In range</div>
+<div class="li" style="margin:0"><div class="dot" style="background:#B4B2A9"></div> Out of range</div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+var S=[
+<%SELECT _LIST
+MM=11
+SCAN
+%)
+
+  {id:11,nm:"Michal Alon",lat:32.085,lng:34.774,city:"Tel Aviv",rad:5,svc:["Dog Walking","Pet Sitting"],px:[60,150],un:["walk","day"],ini:"MA",clr:"#378ADD"},
+<%ENDSCAN%>
+
+
+
+{id:12,nm:"Ori Shapira",lat:32.146,lng:34.839,city:"Ramat HaSharon",rad:10,svc:["Dog Walking","Doggy Day Care"],px:[55,120],un:["walk","day"],ini:"OS",clr:"#1D9E75"},
+{id:13,nm:"Tomer Haim",lat:31.97,lng:34.789,city:"Rishon LeZion",rad:6,svc:["Boarding","Drop-In Visit"],px:[180,70],un:["day","visit"],ini:"TH",clr:"#D85A30"},
+{id:14,nm:"Liora Friedman",lat:32.087,lng:34.783,city:"Tel Aviv",rad:4,svc:["House Sitting","Dog Walking"],px:[200,70],un:["day","walk"],ini:"LF",clr:"#534AB7"},
+{id:15,nm:"Amit Dahan",lat:32.79,lng:34.994,city:"Haifa",rad:10,svc:["Dog Walking","Boarding"],px:[50,160],un:["walk","day"],ini:"AD",clr:"#D4537E"},
+{id:16,nm:"Sapir Yosef",lat:31.765,lng:35.221,city:"Jerusalem",rad:5,svc:["Pet Sitting","Drop-In Visit"],px:[140,65],un:["day","visit"],ini:"SY",clr:"#BA7517"},
+{id:17,nm:"Gal Avraham",lat:32.185,lng:34.871,city:"Ra'anana",rad:7,svc:["Dog Walking","Doggy Day Care"],px:[55,110],un:["walk","day"],ini:"GA",clr:"#1D9E75"},
+{id:18,nm:"Noam Barak",lat:31.893,lng:34.811,city:"Rehovot",rad:12,svc:["Boarding","Pet Sitting"],px:[140,120],un:["day","day"],ini:"NB",clr:"#378ADD"},
+{id:19,nm:"Yael Navon",lat:32.329,lng:34.856,city:"Netanya",rad:5,svc:["Dog Walking","House Sitting"],px:[45,170],un:["walk","day"],ini:"YN",clr:"#D85A30"},
+{id:20,nm:"Ido Zohar",lat:29.558,lng:34.952,city:"Eilat",rad:15,svc:["Dog Walking","Boarding"],px:[80,220],un:["walk","day"],ini:"IZ",clr:"#534AB7"}
+];
+var TC={"Dog Walking":{bg:"#E1F5EE",tx:"#0F6E56"},"Pet Sitting":{bg:"#E6F1FB",tx:"#185FA5"},"Boarding":{bg:"#FAEEDA",tx:"#854F0B"},"Drop-In Visit":{bg:"#EEEDFE",tx:"#534AB7"},"Doggy Day Care":{bg:"#FBEAF0",tx:"#993556"},"House Sitting":{bg:"#FAECE7",tx:"#993C1D"}};
+function hav(a,b,c,d){var R=6371,dL=(c-a)*Math.PI/180,dG=(d-b)*Math.PI/180,x=Math.sin(dL/2)*Math.sin(dL/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dG/2)*Math.sin(dG/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))}
+var mymap=L.map('map').setView([32.07,34.78],12);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18,attribution:'OSM CARTO'}).addTo(mymap);
+var crc,cmk,mks=[],asvc='all';
+function mi(h,s){return L.divIcon({html:h,iconSize:[s,s],iconAnchor:[s/2,s/2],className:''})}
+document.getElementById('rng').addEventListener('input',function(){document.getElementById('rv').textContent=this.value});
+document.querySelectorAll('.cp').forEach(function(c){c.addEventListener('click',function(){document.querySelectorAll('.cp').forEach(function(x){x.classList.remove('on')});this.classList.add('on');asvc=this.dataset.s})});
+function doSearch(){
+var v=document.getElementById('loc').value.split(',').map(Number),lat=v[0],lng=v[1],km=parseInt(document.getElementById('rng').value);
+if(crc)mymap.removeLayer(crc);if(cmk)mymap.removeLayer(cmk);mks.forEach(function(m){mymap.removeLayer(m)});mks=[];
+crc=L.circle([lat,lng],{radius:km*1000,color:'#D85A30',weight:1.5,fillColor:'#D85A30',fillOpacity:.06,dashArray:'8 5'}).addTo(mymap);
+cmk=L.marker([lat,lng],{icon:mi('<div style="width:18px;height:18px;background:#D85A30;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(216,90,48,.5)"></div>',18),zIndexOffset:1000}).addTo(mymap).bindPopup('<b>Your location</b>');
+var fd=[],bds=L.latLngBounds([[lat,lng]]);
+S.forEach(function(s){
+if(asvc!='all'&&s.svc.indexOf(asvc)<0)return;
+var dist=hav(lat,lng,s.lat,s.lng),inR=dist<=km,bg=inR?'#1D9E75':'#B4B2A9',sh=inR?'rgba(29,158,117,.35)':'rgba(0,0,0,.15)';
+var mk=L.marker([s.lat,s.lng],{icon:mi('<div style="width:14px;height:14px;background:'+bg+';border:2.5px solid #fff;border-radius:50%;box-shadow:0 2px 6px '+sh+'"></div>',14)}).addTo(mymap);
+var tg=s.svc.map(function(sv,i){var c=TC[sv]||{bg:'#f0f0f0',tx:'#333'};return '<span style="display:inline-block;background:'+c.bg+';color:'+c.tx+';font-size:10px;padding:2px 6px;border-radius:8px;margin:1px 2px">'+sv+' '+s.px[i]+'ILS/'+s.un[i]+'</span>'}).join('');
+var du='https://www.google.com/maps/dir/?api=1&origin='+lat+','+lng+'&destination='+s.lat+','+s.lng+'&travelmode=driving';
+mk.bindPopup('<div style="min-width:180px"><b>'+s.nm+'</b><br><span style="color:#888;font-size:12px">'+s.city+' - '+dist.toFixed(1)+' km</span><br><span style="color:#888;font-size:11px">Radius: '+s.rad+' km</span><div style="margin:6px 0">'+tg+'</div><a href="'+du+'" target="_blank" style="font-size:12px;color:#378ADD">Get directions</a></div>');
+mks.push(mk);if(inR){fd.push({nm:s.nm,lat:s.lat,lng:s.lng,city:s.city,rad:s.rad,svc:s.svc,px:s.px,un:s.un,ini:s.ini,clr:s.clr,dist:dist});bds.extend([s.lat,s.lng])}
+});
+fd.sort(function(a,b){return a.dist-b.dist});
+if(!fd.length)bds.extend(crc.getBounds());
+mymap.fitBounds(bds,{padding:[50,50]});
+document.getElementById('s1').textContent=fd.length;
+document.getElementById('s2').textContent=fd.length?fd[0].dist.toFixed(1)+'km':'-';
+if(fd.length){var ap=fd.reduce(function(t,f){return t.concat(f.px)},[]),ag=Math.round(ap.reduce(function(a,b){return a+b},0)/ap.length);document.getElementById('s3').textContent=ag+'ILS'}else{document.getElementById('s3').textContent='-'}
+var el=document.getElementById('list');
+if(!fd.length){el.innerHTML='<div class="emp">No sitters within '+km+' km. Try a larger radius.</div>';return}
+el.innerHTML=fd.map(function(s){
+var tg=s.svc.map(function(sv,i){var c=TC[sv]||{bg:'#f0f0f0',tx:'#333'};return '<span class="tg" style="background:'+c.bg+';color:'+c.tx+'">'+sv+' '+s.px[i]+'ILS/'+s.un[i]+'</span>'}).join('');
+var du='https://www.google.com/maps/dir/?api=1&origin='+lat+','+lng+'&destination='+s.lat+','+s.lng+'&travelmode=driving';
+return '<div class="cd" onclick="mymap.setView(['+s.lat+','+s.lng+'],14)"><div class="av" style="background:'+s.clr+'12;color:'+s.clr+'">'+s.ini+'</div><div class="nfo"><div class="nm">'+s.nm+'</div><div class="ct">'+s.city+' - covers '+s.rad+' km</div><div class="tgs">'+tg+'</div><a class="dl" href="'+du+'" target="_blank" onclick="event.stopPropagation()">Get directions</a></div><div class="dst"><div class="dv">'+s.dist.toFixed(1)+'</div><div class="du">km</div></div></div>'
+}).join('');
+}
+doSearch();
+</script>
+</body>
+</html>
+'@
+
+$html | Out-File -FilePath 'D:\WEB\PETBNB\testmap.htm' -Encoding UTF8 -Force
+Write-Host "Done! testmap.htm created at D:\WEB\PETBNB\" -ForegroundColor Green

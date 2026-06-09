@@ -1,0 +1,164 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Main Menu</title>
+<script language="JavaScript">
+function submitFunction(i) {
+    if (i==1)  window.open('/mamenu/selectesttype','');
+    if (i==2)  window.open('/wc.dll?mv~estprocesswc~<%= scr %>','');
+    if (i==3)  window.open('/wc.dll?mv~searchwc~<%= scr %>','');
+    if (i==40) window.open('/wc.dll?mpest~recurringlist~<%= scr %>','');
+    if (i==8)  window.open('/wc.dll?mprep~repmenuwc~<%= scr %>','');
+    if (i==5)  window.open('/wc.dll?mprep~reptaskswc~<%= scr %>','');
+    if (i==6)  window.open('/wc.dll?mpmainten~maintenwc~<%= scr %>','');
+    if (i==7)  window.open('/wc.dll?mv~oprmenuwc~<%= scr %>','');
+    if (i==9)  window.open('/wc.dll?mpagent~agprocesswc~<%= scr %>','');
+    if (i==10) window.open('/wc.dll?mpstg~stgprocesswc~<%= scr %>','');
+    if (i==11) window.open('/wc.dll?mprep~followupwc~<%= scr %>','');
+    if (i==17) window.open('/wc.dll?mprep~recentaccess~<%= scr %>~MAINMENU','');
+    if (i==18) window.open('/wc.dll?mpmainten~handbookwc~<%= scr %>','');
+    if (i==12) window.open('/wc.dll?mpscripts~assignnewwc~<%= scr %>','');
+    if (i==26) window.open('/wc.dll?mv~AssignNewList~<%= scr %>','');
+    if (i==20) window.open('/wc.dll?mpopr~futureoprwc~<%= scr %>','');
+    if (i==21) window.open('/wc.dll?mprep~salesprdwc~<%= scr %>','');
+    if (i==25) window.open('/wc.dll?mpauto~autoleadsprcwc~<%= scr %>','');
+}
+function OprCald()  { window.open('/wc.dll?mpopr~dailyopr~<%= scr %>'); }
+function oprbooked(){ window.open('/wc.dll?mpopr~oprbookedwc~<%= scr %>','EANITHING','toolbar=no,location=no,status=no,menubar=no,resizable=no,scrollbars=yes,width=450,height=250'); }
+function newsletter(){ window.open('https://eagle.hellomoving.com/zz/help/newsletter.htm'); }
+function chat()     { window.open('https://chat.hellomoving.com/?key=<%= scr %>'); }
+function LogOut()   { parent.location.href='/mplogin/logout'; }
+</script>
+<STYLE TYPE="text/css">
+	.txtoff { font-size:10pt; font-family:verdana; cursor:pointer; background-color:white; font-weight:bold; text-align:left; }
+	.txton  { font-size:10pt; text-align:left; font-family:verdana; background-color:white; text-decoration:underline; font-weight:bold; cursor:pointer; }
+	A:hover { text-decoration:nounderline; }
+	A       { text-decoration:underline; color:blue; }
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="530" align="center">
+  <tr><td width="100%"><IMG SRC="/zz/images/topBar.gif" width="530" height="14"></td></tr>
+  <tr><td width="100%" BGCOLOR="#008000" align="center">&nbsp;</td></tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="100%">
+<table border="0" align="center" width="95%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Tahoma;">
+  <tr>
+    <td width="43%" style="line-height:25px;"><img border="0" src="/zz/images/logo_orange.jpg" width="126" height="37"><br>
+    <font style="font-size:11pt;"><b>888-308-0620<br>305-514-0620<br><a href="mailto:info@granot.com" style="color:#0078D7;">info@granot.com</a><br><a Onclick="chat()" style="color:#0078D7;cursor:pointer;">Live Chat</a></b></font></td>
+    <td width="58%" style="line-height:25px;" align="right"><b><font style="font-size:10pt;">Welcome <font color="#0078D7"><%= repName %></font><br>
+    Logged in as <font color="#0078D7"><%= userName %></font> (Dept <%= deptUser %>)<br><%= dow %>,&nbsp;<%= dateStr %>
+    <% if (flags.leadDist) { %><BR>Lead Rotation is <font color="#0078D7">Turned On</font><% } %><br><font onclick="LogOut()" style="font-size:10pt;color:#0078D7;cursor:pointer;"><u>Log Out</u></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" height="35" colspan="2" align="center"><font face="Verdana" size="3" color="#000000"><b><U><%= title %></U></b></font></td>
+  </tr>
+</table>
+  <form name="theForm" method="POST" action="/wc.dll?mv~searchret~<%= scr %>~QSEARCH" target="_blank">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="90%">
+  <tr>
+    <td width="20%" height="45"></td>
+    <td width="27%" height="45"><input type="text" name="VALUE" placeholder="Quick Search" autocomplete="off" onclick='this.value=""' size="20"></td>
+    <td width="31%" height="45"><input type="image" style="cursor:pointer;" src="/zz/images/qsearch2.gif" border="0" width="35" height="35" alt="Quick Search"></td>
+ </tr>
+</table>
+  </form>
+<table border="0" width="95%" cellpadding="0" cellspacing="0" align="center">
+  <tr>
+    <td valign="top" width="48%">
+<!-- Menu A START -->
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+ <% if (!flags.hosting) { %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(1)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">New Estimate</font></td></tr>
+ <% } %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(2)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Estimates In Process</font></td></tr>
+ <% if (coLevel===3 && level===2) { %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(25)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Vehicle Leads Pricing</font></td></tr>
+ <% } %>
+ <% if (level===2 || level>3 || flags.assignNew) { %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(<%= coLevel===3 ? 26 : 12 %>)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Assign New Estimates</font></td></tr>
+ <% } %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(3)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Advanced Search</font></td></tr>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(40)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Recurring Customers</font></td></tr>
+ <% if (!flags.blkCald) { %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="63%" height="30"><font class="txtoff" onclick="OprCald()" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Operations Calendar</font></td>
+	<td width="28%" height="30"><img border="0" src="/zz/util/calendr.gif" <% if (level===2||level===5) { %>onclick="oprbooked()" style="cursor:pointer;" title="Summary of current and future estimates"<% } %> width="23" height="26"></td></tr>
+ <% } %>
+ <% if (coLevel===7 && !flags.blkFuopr) { %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(20)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Future Operation</font></td></tr>
+ <% } %>
+ <% if (coLevel===7 && !flags.blkPerform) { %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(21)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Salesmen Performance</font></td></tr>
+ <% } %>
+ <% if (level===2 || level===5) { %>
+  <tr><td width="9%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="91%" height="30" colspan="2"><font class="txtoff" onclick="submitFunction(6)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Maintenance</font></td></tr>
+ <% } %>
+</table>
+<!-- Menu A END -->
+    </td>
+    <td valign="top" width="50%">
+<!-- Menu B START -->
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+ <% if (level>2) { %>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="submitFunction(7)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Operation</font></td></tr>
+ <% } %>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="submitFunction(8)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Reports</font></td></tr>
+ <% if (flags.coAgents && level>=2 && !flags.blkAgents) { %>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="submitFunction(9)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Agents</font></td></tr>
+ <% } %>
+ <% if ((flags.coStorage && level===5) || flags.storageMng) { %>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="submitFunction(10)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Storage</font></td></tr>
+ <% } %>
+ <% if (coLevel>3) { %>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="submitFunction(5)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Tasks to Complete <%= tasks %><font color="#EA4335"><%= userTask %></font></font></td></tr>
+ <% } %>
+ <% if (coLevel>2) { %>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="submitFunction(11)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Follow-Up Menu <%= fuCnt %></font></td></tr>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="submitFunction(17)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Recent Accessed Jobs</font></td></tr>
+ <% } %>
+ <% if (level===2 || level>3) { %>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="submitFunction(18)" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Handbook &amp; Workflow</font></td></tr>
+ <% } %>
+  <tr><td width="8%" height="30" align="center"><img border="0" src="/zz/images/n-point.gif" width="10" height="10"></td>
+	<td width="92%" height="30"><font class="txtoff" onclick="newsletter()" onmouseover="this.className='txton'" onmouseout="this.className='txtoff'">Newsletter <font color="#008000"><i><B>New Update</B></i></font></font></td></tr>
+</table>
+<!-- Menu B END -->
+    </td>
+ </tr>
+</table>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="530" align="center">
+  <tr><td width="100%" bgcolor="#993366" height="15">&nbsp;<font face="Verdana" size="2" color="#FFFFFF"><%= omsTitle %></font></td></tr>
+  <tr><td width="100%" bgcolor="#FFEFCC" align="center" height="10">&nbsp;</td></tr>
+  <tr><td width="100%"><IMG SRC="/zz/images/botBar.gif" width="530" height="14"></td></tr>
+</table>
+<table border="0" width="530" align="center">
+  <tr><td align="center"><font color="#FFFFFF" face="Verdana" size="2"><b><%= copyright %></b></font></td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>User Info</TITLE>
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<script type="text/javascript">
+
+jQuery( document ).ready(function( $ ) {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 700,
+		maxHeight	: 200,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+   
+</script>
+  
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function CHKLENGTH() {
+    const frm = document.theForm;
+    const usernameElem = frm.USERNAME || document.querySelector("[name='USERNAME']");
+    const userpass = frm.USERPASS.value.trim();
+    let username = "";
+    let isInput = false;
+
+    // check user input field
+    if (usernameElem && usernameElem.tagName.toLowerCase() === "input") {
+        username = usernameElem.value.trim();
+        isInput = true;
+    } else {
+        // check user text (skip valid)
+        isInput = false;
+    }
+
+    // validate user as input
+    if (isInput && username.length < 3) {
+        alert("Please enter User Name!");
+        usernameElem.focus();
+        return false;
+    }
+
+    // validate password
+    if (userpass.length < 3) {
+        alert("Please enter Password!");
+        frm.USERPASS.focus();
+        return false;
+    }
+
+    return true;
+}
+
+function submitFunction(i) {
+    if (i==1 &&CHKLENGTH()) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~userseditret~<%=pcSCR%>~<%=ALLT(lcUSERID)%>";
+       document.theForm.submit();
+     }
+    
+    if (i==3) 
+	 {
+		var Message = "Are you sure you want to delete this User?";
+		if (confirm (Message))
+		  {
+			document.theForm.action="/wc.dll?mpmainten~deleteuser~<%=pcSCR%>~<%=lcUSERID%>";
+	        document.theForm.submit();
+	      }
+     }
+   
+    if (i==2) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~userswc~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+  }
+
+</SCRIPT>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+
+<script type="text/javascript">
+jQuery.noConflict();
+
+   jQuery(document).ready(function($){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<STYLE TYPE="text/css">
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #0081D3;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+
+.DELETE {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #BB0000;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #000; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.DELETE:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="800">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="19"><font face="Verdana" size="4" color="#FFFFFF">User Information</font></b></td>
+  </tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF"><br>	
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="57%" valign="top">
+    <form name="theForm" method="POST">
+    <input type="hidden" name="DEL" value="<%=plDEL%>">
+<%SELECT _USERS%>    
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Active</font></td>
+    <td width="77%" height="19">
+    <%IF EMPTY(pcMSG) AND (lnUSERID <> pnUSERID OR lnUSERID=0) %>
+    <label class="switch"><input type="checkbox" id="togBtn" name="ACTIVE" value="ON" <%=IIF(ACTIVE,'checked','')%>><div class="slider round"></div></label>
+    <b><font face="Verdana" color="#<%=IIF(ACTIVE=.T.,'008000','FF0000')%>"><%=IIF(ACTIVE=.T.,'Active','Not Active')%></font></b>
+    <%ELSE%>
+    &nbsp;&nbsp;<b><font face="Verdana"><%=pcMSG%></font></b>
+    <%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">User Name</font></td>
+    <td width="77%" height="19">
+    <%IF lnUSERID=0 %><input type="text" autocomplete="off" name="USERNAME" size="11" value="<%=ALLT(USERNAME)%>" maxlength="10">
+    &nbsp;&nbsp;<b><font face="Verdana" size="2" color="#0081D3">3 to 10 Characters</font></b>
+    <%ELSE%><font face="Verdana" color="#008000"><b><%=ALLT(USERNAME)%></b></font><%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Password</font></td>
+    <td width="77%" height="19"><input type="text" autocomplete="off" name="USERPASS" size="11" onclick='this.value=""' onFocus='this.value=""' value="<%=ALLT(USERPASS)%>" maxlength="10">
+    &nbsp;&nbsp;<b><font face="Verdana" size="2" color="#0081D3">3 to 10 Characters</font></b></td>
+  </tr>
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Position</font></td>
+    <td width="77%" height="19">
+        <select size="1" name="LEVELID">
+		<option selected value="<%=ALLT(STR(_USERS.LEVELID))%>"><%=lcLEVEL%></option>
+   		  <option value="1">Salesperson</option>
+   		<%IF pnLEVEL=2%>
+   		  <option value="2">Administrator</option>
+   		<%ELSE%>  
+   		  <option value="3">Dispatcher</option>
+   		  <option value="4">Supervisor</option>
+   		  <option value="5">Administrator</option>
+   		<%ENDIF%>
+		</select>    
+    </td>
+  </tr>    
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">First Name</font></td>
+    <td width="77%" height="19"><input type="text" name="FIRSTNAME" size="19" value="<%=ALLT(FIRSTNAME)%>"></td>
+  </tr>
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Last Name</font></td>
+    <td width="77%" height="19"><input type="text" name="LASTNAME" size="19" value="<%=ALLT(LASTNAME)%>" maxlength="20"></td>
+  </tr>
+  <tr>
+    <td width="24%" height="18"><font face="Verdana" size="2">Title</font></td>
+    <td width="77%" height="18"><input type="text" name="TITLE" size="25" value="<%=ALLT(TITLE)%>" maxlength="30"></td>
+  </tr>  
+  <tr>
+    <td width="24%" height="18"><font face="Verdana" size="2">Email</font></td>
+    <td width="77%" height="18"><input type="text" name="EMAIL" size="30" value="<%=ALLT(EMAIL)%>"></td>
+  </tr>      
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Phone</font></td>
+    <td width="77%" height="19"><input type="text" name="PHONE" size="30" value="<%=ALLT(PHONE)%>"></td>
+  </tr>  
+  <tr>
+    <td width="24%" height="18"><font face="Verdana" size="2">Phone Ext.</font></td>
+    <td width="77%" height="18"><input type="text" name="EXT" size="2" value="<%=ALLT(EXT)%>"></td>
+  </tr>
+  <% IF pnCOLEVEL>3 %>
+  <tr>
+    <td width="30%" height="18"><font face="Verdana" size="2">Visual Estimator</font></td>
+    <td width="70%" height="18"><input type="checkbox" name="ESTIMATOR" value="ON" <%=IIF(ESTIMATOR,'checked','')%>></td>
+  </tr>
+  <%ENDIF%>
+  <% IF plDEPT %>
+  <tr>
+    <td width="24%" height="18"><font face="Verdana" size="2">Department</font></td>
+    <td width="77%" height="18">
+        <select size="1" name="DEPTID">
+		<option selected value="<%=ALLT(STR(lnDEPTID))%>"><%=lcDEPT%></option>
+		 <%	SELECT _DEPT
+			 SCAN %>
+   				<option value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></option>
+			<% ENDSCAN %>
+		</select><font face="Verdana" size="2">&nbsp;&nbsp;View All Department Estimates</font>
+		<input type="checkbox" name="VIEWALL" value="ON" <%=IIF(_USERS.VIEWALL,'checked','')%> tabindex="11">    
+    </td>
+  </tr>
+  <%ENDIF%>
+  <% IF pnCOLEVEL<>3%>                    
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Inventory Form</font></td>
+    <td width="77%" height="19">
+        <select size="1" name="INVFORM">
+		<option selected value="<%=ALLT(STR(lnINVFORM))%>"><%=lcINVFORM%></option>
+     	<option value="0">0-Room Category</option>	 
+     	<option value="1">1-Alphabet Order</option>
+     	<option value="7">7-Advanced Inventory</option>
+     	<% IF plINVROOM %>
+     	<option value="6">6-Room Name</option>
+     	<%ENDIF%>
+		</select></td>
+  </tr>  
+  <%ENDIF%>
+  <% IF pcCUSTNO='MOVINGAPT' OR pcCUSTNO='ALLIANCEMS' %>
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Merchant</font></td>
+    <td width="77%" height="19">
+        <select size="1" name="MERCHANTID">
+        <option value=""></option>
+		<option selected value="<%=lcMERCHANTID%>"><%=lcCNAME%></option>
+		 <%	SELECT _MR
+			 SCAN %>
+   				<option value="<%=ALLT(STR(MERCHANTID))%>"><%=ALLT(CNAME)%></option>
+			<% ENDSCAN %>
+		</select></td>
+  </tr>  
+  <%ENDIF%>
+  <% IF pnCOLEVEL>3 %>
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Email Category</font></td>
+    <td width="77%" height="19">
+      <select size="1" name="CATID">
+		<option selected value="<%=lcCATID%>"><%=lcCATEGORY%></option>
+	 	<option value=""></option>
+     	<option value="1">Sales</option>	 
+     	<option value="2">Operation</option>
+     	<option value="3">Cust. Service</option>
+     	<option value="4">Accounting</option>
+     	<option value="6">Admin All</option>
+     	<% IF pnCOLEVEL > 4 %>
+     	<option value="5">QA</option>
+     	<%ENDIF%>
+  		</select></td>
+  </tr>  
+  <%ENDIF%>
+ <% IF lnUSERID > 1000 %>
+  <tr>
+    <td width="100%" height="19" colspan="2"><font face="Verdana" size="2">Allow User Access from IP: <a class="fancybox fancybox.iframe" href="/wc.dll?mpmainten~restipwc~<%=pcSCR%>~<%=ALLT(STR(lnUSERID))%>">Add/Update IP</a> 
+    <% IF plRECS=.T. %><br>User has <b><%=pcRECS%></b> active IP(s)<%ENDIF%></font></td>
+  </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="30%" height="18"><font face="Verdana" size="2">Created On</font></td>
+    <td width="70%" height="18"><font face="Verdana" size="2"><%=TTOD(_USERS.OPENDTE)%></font></td>
+  </tr>         
+</table>        
+    </td>
+    <td width="1%">&nbsp;</td>
+    <td width="42%" valign="top">
+    <%SELECT _USERS%>
+  <%IF pnCOLEVEL > 5%>         
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="2"><b><font style="font-family:Verdana;font-size:10pt;color:#0081D3">Booking Commission</font><br><font style="font-family:Verdana;font-size:9pt;">Calculated from Total Job</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" colspan="2"><font face="Verdana" size="2" color="#0081D3"><b>Calculate from Estimate Total</b></font>&nbsp;<input type="checkbox" name="COMMEST" value="ON" <%=IIF(COMMEST,'checked','')%> tabindex="11"></td>
+ </tr>
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">Local/Intrastate</font></td>
+    <td width="33%"><input type="text" name="COMML" size="2" value="<%=ALLT(STR(COMML,7,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">Long Distance</font></td>
+    <td width="33%"><input type="text" name="COMMLD" size="2" value="<%=ALLT(STR(COMMLD,7,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">International</font></td>
+    <td width="33%"><input type="text" name="COMMINT" size="2" value="<%=ALLT(STR(COMMINT,7,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">Auto Transport: Flat </font></td>
+    <td width="33%"><input type="text" name="AUTOFLAT" size="2" value="<%=ALLT(STR(AUTOFLAT,7,2))%>"><font face="Verdana" size="2">$</font></td>
+  </tr>  
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">Auto Transport: Vehicle Deposit</font></td>
+    <td width="33%"><input type="text" name="COMMAUTO" size="2" value="<%=ALLT(STR(COMMAUTO,7,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">Visual Estimate</font></td>
+    <td width="33%"><input type="text" name="COMMVISUAL" size="2" value="<%=ALLT(STR(COMMVISUAL,7,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">Job Done By Agent</font></td>
+    <td width="33%"><input type="text" name="COMMAG" size="2" value="<%=ALLT(STR(COMMAG,5,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">Weekly Salary</font></td>
+    <td width="33%"><input type="text" name="WEEKCOMM" size="2" value="<%=ALLT(STR(WEEKCOMM))%>"><font face="Verdana" size="2">$</font></td>
+ </tr>
+  <tr>
+    <td width="69%"><font face="Verdana" size="2">Start Salary Date</font></td>
+    <td width="33%"><input type="text" id="Date1" name="WEEKSTART" autocomplete="off" size="7" value="<%=IIF(EMPTY(WEEKSTART),'',ALLT(DTOC(WEEKSTART)))%>"></td>
+  </tr>
+</table>
+  <%ENDIF%>
+ <%IF pnCOLEVEL=3%>  
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="2"><b><font style="font-family:Verdana;font-size:10pt;color:#0081D3">Booking Commission</font></b></td>
+ </tr>
+  <tr>
+    <td width="58%"><font face="Verdana" size="2">Flat Commission </font></td>
+    <td width="44%"><input type="text" name="AUTOFLAT" size="2" value="<%=ALLT(STR(AUTOFLAT,7,2))%>"><font face="Verdana" size="2">$</font></td>
+  </tr>  
+  <tr>
+    <td width="58%"><font face="Verdana" size="2">Vehicle Deposit</font></td>
+    <td width="44%"><input type="text" name="COMMAUTO" size="2" value="<%=ALLT(STR(COMMAUTO,7,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+</table>
+ <%ENDIF%>
+    </td>
+ </tr>
+</table> 
+<table border="0" width="90%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="16%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" tabindex="12" value="Submit" size="20"></td>
+    <td width="19%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(2)" tabindex="12" value="Exit" size="20"></td>
+    <td width="13%" align="right"><%IF lnUSERID > 0 AND lnUSERID <> pnUSERID %><input type="button" CLASS="DELETE" name="B31" onclick="submitFunction(3)" tabindex="12" value="Delete" size="20"><%ENDIF%></td>
+ </tr>   
+</table>
+ <br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="16%" valign="top"><b><font face="Verdana" style="font-size:10pt;">Internal Notes:</font></b></td>
+    <td width="84%"><textarea rows="5" name="NOTES" cols="65"><%=ALLT(NOTES)%></textarea></td>
+ </tr>
+</table>
+</form>
+  &nbsp;</td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="14">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+
+</body>
+</html>

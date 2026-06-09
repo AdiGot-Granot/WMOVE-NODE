@@ -1,0 +1,192 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Advanced Search</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      {
+       document.theForm.SEARCH_1.style.visibility="hidden"; 
+       document.theForm.action="/wc.dll?mv~searchret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       window.location.href=('/wc.dll?mv~selectesttype~<%=pcSCR%>');
+      }      
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body onload="javascript: window.theForm.ORDNO.focus()" BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="540" align="center">
+  <tr>
+    <td width="540" colspan="2" height="14"><IMG SRC="zz/images/topBar.gif" width="540" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center"><font face="Verdana" size="4" color="#FFFFFF"><b>Advanced Search</b></font></td>
+  </tr>  
+  <tr>
+    <td width="540" bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%"><br>
+    <form name="theForm" method="POST">
+<table border="1" align="center" width="95%" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td>
+	<table border="0" width="100%" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+	  <tr>
+		<td width="14%"><font face="Arial" color="#00574F">Job No:</font></td>
+		<td width="25%"><input type="text" name="ORDNO" autocomplete="off" size="11" style="float: left"></td>
+		<td width="4%"><input type="checkbox" name="HISTORY" value="ON"></td>
+		<td width="25%"><font color="#00574F" size="3" face="Arial"><b>Search in History</b></font></td>
+		<%IF pnCOLEVEL > 4 AND pnLEVEL > 2%>
+		<td width="4%"><input type="checkbox" name="TRIP" value="ON"></td>
+		<td width="15%"><font face="Arial" size="2" color="#000080">Search in Trip</font></td>
+		<%ENDIF%>
+	 </tr>
+	  <tr>
+		<td width="86%" colspan="6"><b><font color="#FF0000" face="Arial"><%=pcJOBNOMSG%></font></b></td>
+	 </tr> 	  
+	</table>    
+    </td>
+ </tr>
+</table>    
+ <BR>
+<table border="1" align="center" width="95%" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td>
+	<table border="0" width="100%" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" cellpadding="3">
+	  <tr>
+	    <td width="26%"><font face="Arial" color="#00574F">Customer Name:</font></td>
+	    <td width="33%"><input name="SNAME" size="20" style="float: left"></td>
+	    <td width="41%"><input type="checkbox" name="C1" value="ON"><font face="Arial" size="2" color="#000080">Search within the name</font></td>
+	  </tr>
+	</table>
+  </td>
+  </tr>
+   <tr>
+    <td height="22">
+	<table border="0" width="100%" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" cellpadding="3">
+	  <tr>
+	    <td width="26%" height="22"><font face="Arial" color="#00574F">Customer Email:</font></td>
+	    <td width="33%" height="22"><input name="EMAIL" size="20" style="float: left"></td>
+	    <td width="41%" height="22"><input type="checkbox" name="C2" value="ON"><font face="Arial" size="2" color="#000080">Search within the email</font></td>
+	  </tr>
+	</table>
+	</td>
+  </tr>
+   <tr>
+     <td>
+	 <table border="0" width="509" cellpadding="3" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+	   <tr>
+	    <td width="125"><font face="Arial" color="#00574F">Customer Phone:</font></td>
+	    <td width="369"><input name="PHONE" size="12" style="float: left"></td>
+	  </tr>
+	</table>
+  </td>
+ </tr>
+   <tr>
+     <td>
+	 <table border="0" width="509" cellpadding="3" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+	   <tr>
+	    <td width="124"><font face="Arial" color="#00574F">Job Ref No:</font></td>
+	    <td width="370"><input type="text" name="ORDREF" size="20" style="float: left"></td>
+	  </tr>
+	</table>
+  </td>
+ </tr> 
+  <% IF pnLEVEL>1 %> 
+  <tr>
+    <td>
+	<table border="0" width="100%" cellpadding="3" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+	  <tr>
+	    <td width="26%"><font face="Arial" color="#00574F">Credit Card:</font></td>
+	    <td width="74%"><input name="CCNO" size="11" style="float: left">&nbsp;<font face="Arial" color="#00574F" size="2">(Last 4 Digit)</font></td>
+	  </tr>
+	</table>
+  </td>
+ </tr>
+ <%ENDIF%>
+  <% IF pnCOLEVEL > 4 AND pnLEVEL > 2 %>			        			      
+	  <tr>
+    	<td height="23">
+	<table border="0" width="100%" cellpadding="3" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+	  <tr>
+	  <% IF plSTGON %>
+		<td width="26%"><font face="Arial" color="#00574F">Storage Lot No:</font></td>
+		<td width="24%"><input name="LOTNO" size="11"></td>  
+	  <%ENDIF%>	
+		<td width="15%"><font face="Arial" color="#00574F">Claim ID:</font></td>
+		<td width="35%"><input name="CLAIMID" size="3"></td>
+	 </tr>
+	</table>
+   </td>
+ </tr>
+  <%ENDIF%>
+   <tr>
+     <td height="23">
+	 <table border="0" width="100%" cellpadding="3" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+	   <tr>
+	    <td width="15%"><font face="Arial" color="#00574F">Country:</font></td>
+	    <td width="31%"><i><font color="#000080" size="2">From:</font></i> <input name="SCOUNTRY" size="11"></td>
+	    <td width="54%"><i><font color="#000080" size="2">To:</font></i> <input name="RCOUNTRY" size="11"></td>
+	  </tr>
+	</table>          
+	</td>
+  </tr>	   
+</table>     
+ <br>
+<table border="0" align="center" width="95%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="33%" align="center"><input id="" type="button" CLASS="SUBOFF" name="SEARCH_1" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+    <% IF !plHOSTING %>
+    <td width="33%" align="center"><input type="button" CLASS="SUBOFF" name="B4" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="New Estimate"></td>    
+    <%ENDIF%>
+    <td width="33%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="javascript: window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>    
+ </tr>
+</table> 
+</form>    
+    </td>
+ </tr>
+</table>
+  </td>
+ </tr>
+  <tr>
+    <td width="540" bgcolor="#993366" height="15">&nbsp;<font face="Verdana" size="2" color="#FFF">View By: <%=pcUSER%></font></td>
+  </tr>
+  <tr>
+    <td width="540" bgcolor="#FFEFCC"><b><font color="#FF0000" face="Arial"><%=pcMSG%></font></b></td>
+  </tr>
+  <tr>
+    <td width="540" height="14"><IMG SRC="zz/images/botBar.gif" width="540" height="14"></td>
+  </tr>
+</table>
+</body>
+
+</html>

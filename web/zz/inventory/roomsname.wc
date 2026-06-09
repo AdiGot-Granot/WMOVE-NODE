@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Create Room Names</title>
+</head>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function closeform() {
+	window.close()}	
+
+function submitFunction(i) {
+    if (i==1) document.theForm.action="/wc.dll?mpinv~INVROOMSRET~<%=pcSCR%>";
+    		  var _w=window.opener;
+    		  _w.refreshInv();
+    		  document.theForm.submit()
+    }
+    
+</SCRIPT>
+
+<body>
+
+<table border="1" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" width="70%">
+  <tr>
+    <td width="100%" bgcolor="#1C5D33" align="center" style="border-style: none; border-width: medium">
+    <b><font face="Verdana" color="#FFFFFF" size="4">Job No.:&nbsp;<%=ALLT(pcDEPT)+pcORDNO%></font></b>&nbsp;</td>
+ </tr>
+</table>
+<br>
+<FORM NAME="theForm" method="post">
+<table border="2" align="center" width="50%" bordercolor="#CCCCCC" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+  <tr>
+    <td width="6%" bgcolor="#1C5D33" align="center"><font face="Verdana" color="#FFFFFF">#</font></td>
+    <td width="50%" bgcolor="#1C5D33" align="center"><b><font face="Verdana" color="#FFFFFF">Rooms Name</font></b></td>
+  </tr>
+  <% SELECT _EI 
+  	 SCAN %>
+  <tr style="line-height:25px;">
+    <td width="6%" align="right"><font face="Verdana" size="2"><%=ALLT(STR(RECNO()))%>&nbsp;</td>
+    <td width="50%" bgcolor="#FFFFFF" align="center"><font face="Verdana" color="#FFFFFF" size="3">
+    <input type="text" name="EI-<%=ALLT(STR(_EI.INVROOMID))%>" size="37" value="<%=ALLT(_EI.ROOMNAME)%>" maxlength="25"></td>
+  <% ENDSCAN%>
+</table>
+<br>
+<table border="0" align="center" width="50%" cellspacing="0" cellpadding="0" bordercolor="#5A7D9C" style="border-collapse: collapse">
+  <tr>
+    <td width="33%" align="center"><input type="button" name="btnSubmit" onclick="submitFunction(1)" value="Submit Rooms Name" size="15" style="cursor:pointer;"></td>
+ </tr>
+</table>
+</FORM>
+</body>
+
+</html>

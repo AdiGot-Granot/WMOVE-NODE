@@ -1,0 +1,137 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Online Estimate</title>
+</head>
+
+<body>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+  <tr>
+    <td width="1%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="98%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="1%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+  </tr>
+  <tr>
+    <td width="1%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="98%">
+<!-- Yellow background starts -->
+		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+          <tr>
+            <td width="100%" align="center" valign="bottom"><b>
+            <font color="#CE0000" size="4" face="Verdana">Online Estimate</font><font color="#001C4A" size="4" face="Verdana"> </font>
+            </b> 
+		<hr color="#000000" width="690">
+
+            </td>
+          </tr>
+		</table>
+
+		<div align="center">
+          <center>
+
+		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+          <tr>
+            <td width="100%"><font face="Verdana" size="2"><b>Dear <%=ALLT(_COMPANY.CONTACT)%>,<br>
+            <br>
+            Movers Arena Priority Service notifies you on the following new 
+            estimate. <br>
+            Be now the number-one buyer.</b></font></td>
+          </tr>
+</table>
+
+          </center>
+</div>
+
+<br>
+	<div align="center">
+      <center>
+	<table border="3" width="80%" bordercolorlight="#FFCF63" bordercolordark="#FFCF63"><tr><td>
+		<table border="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="183">
+		  <tr>
+		    <td width="3%" height="26">&nbsp;</td>
+		    <td width="39%" height="26" align="right"><b><font face="Verdana" size="2">Move Date:&nbsp;</font></b></td>
+		    <td width="58%" height="26"><b><font face="Verdana" size="2"><%=_EST.LBOOKDTE %>&nbsp;<%=CDOW(_EST.LBOOKDTE) %>&nbsp;</font></b></td>
+		  </tr>
+		  <tr>
+		    <td width="3%" height="26">&nbsp;</td>
+		    <td width="39%" height="26" align="right"><b><font face="Verdana" size="2">Moving From:&nbsp;</font></b></td>
+		    <td width="58%" height="26"><b><font face="Verdana" size="2"><%=ALLT(_EST.SSTATENAME)+' - '+ALLT(_EST.SCITY)+IIF(_EST.TYPE='I',' - '+ALLT(_EST.SCOUNTRY),'') %>&nbsp;</font></b></td>
+		  </tr>
+		  <tr>
+		    <td width="3%" height="26">&nbsp;</td>
+		    <td width="39%" height="26" align="right"><b><font face="Verdana" size="2">Moving To:&nbsp;</font></b></td>
+		    <td width="58%" height="26"><b><font face="Verdana" size="2"><%=ALLT(_EST.RSTATENAME)+' - '+ALLT(_EST.RCITY)+IIF(_EST.TYPE='I',' - '+ALLT(_EST.RCOUNTRY),'') %>&nbsp;</font></b></td>
+		  </tr>
+		  <tr>
+		    <td width="3%" height="26">&nbsp;</td>
+		    <td width="39%" height="26" align="right"><b><font face="Verdana" size="2">Volume&nbsp;:</font></b></td>
+		    <td width="58%" height="26"><a href="http://www.moversarena.com/wc.dll?mpreposit~invarena~<%=ALLT(_EST.REFNO)%>" TARGET="_blank"><b><font face="Verdana" size="2"><%=IIF(_EST.TOTALCF=0,'',ALLT(STR(_EST.TOTALCF))+' cf.') %></font></b></a></td>
+		  </tr>
+		  <tr>
+		    <td width="3%" height="26">&nbsp;</td>
+		    <td width="39%" height="26" align="right"><b><font face="Verdana" size="2">Miles:&nbsp;</font></b></td>
+		    <td width="58%" height="26"><b><font face="Verdana" size="2"><%=IIF(_EST.MILES=0,'',ALLT(STR(_EST.MILES))+' miles')%></font></b>&nbsp;</td>
+		  </tr>
+		  <tr>
+		    <td width="3%" height="26">&nbsp;</td>
+		    <td width="39%" height="26" align="right"><b><font face="Verdana" size="2">Estimate 
+            ID:&nbsp;</font></b></td>
+		    <td width="58%" height="26"><b><font face="Verdana" size="2">AR-<%=_EST.ORDNO %>&nbsp;</td>
+		  </tr>
+		  <tr>
+		    <td width="3%" height="26">&nbsp;</td>
+		    <td width="39%" height="26" align="right"><b><font face="Verdana" size="2">
+            Estimate Created:&nbsp;</font></b></td>
+		    <td width="58%" height="26"><b><font face="Verdana" size="2"><%=DTOC(_EST.OPENDTE)%></font>&nbsp;</td>
+		  </tr>
+		</table>
+			</td></tr></table>
+      </center>
+</div>
+<br>
+          &nbsp;<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="25%" align="center"><b><a href="http://www.moversarena.com/wc.dll?mpreposit~arenain~<%=ALLT(_EST.REFNO)%>~<%=ALLT(pcCUSTNO)%>~FAVORITES~?<%=SYS(2015)%>">
+            <font size="2" face="Verdana">Click Here to Get This Estimate<%IF pnRATE=0%> For Free!!!<%ENDIF%></font></a></b></td>    
+		  </tr>
+		</table>
+<br>
+		<hr color="#000000" width="690">
+
+		<br>
+	
+		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" align="center">
+		    <tr>
+		      <td width="100%"><b><font face="Verdana" size="2">1. View <a href="http://www.moversarena.com/wc.dll?mpreposit~arenaterms~<%=ALLT(pcCUSTNO)%>~<%=ALLT(_COMPANY.CONTACT)%>">prices</a>, 
+              terms, and special plans.</font></b><font size="2" face="Verdana"><b><br>
+              2. View and modify <a href="http://www.moversarena.com/wc.dll?mpreposit~arenain~<%=ALLT(_EST.REFNO)%>~<%=ALLT(pcCUSTNO)%>~RULESWC~?<%=SYS(2015)%>">favorites</a>.<br>
+              3. Customer Service: <a href="mailto:estimates@moversarena.com">
+              estimates@moversarena.com</a>.<br>
+              <%IF !plDBF%>4. <a href="http://www.moversarena.com/wc.dll?mpreposit~removearena~<%=ALLT(pcCUSTNO)%>~<%=ALLT(_COMPANY.CONTACT)%>~REMOVE~?<%=SYS(2015)%>">Remove</a> from mail list.<br><%ENDIF%>
+              <br>&nbsp;<%IF _COMPANY.DOTNOTICE%><br><%ENDIF%>
+              <br><font color="#000080">
+              Powered by the <i>Online Moving System</a></i>.<%IF plARENA%> Need a moving software? Click
+              <a href="http://www.hellomoving.com/infosys/wc.dll?isutil~EMAILSREC~<%=ALLT(pcCUSTNO)%>~CONTACTUS">here</a> for free trial.<%ENDIF%></font></b></FONT></td>
+		    </tr>
+	  </table>
+		
+<!---Yellow background ends -->
+<br>
+</td>
+    <td width="1%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+  </tr>
+  <tr>
+    <td width="1%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="98%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+    <td width="1%" bgcolor="#4A698C"><IMG HEIGHT="5" SRC="spacer.htm" WIDTH="1" BORDER="0"></td>
+  </tr>
+</table>
+</body>
+
+</html>

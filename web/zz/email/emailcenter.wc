@@ -1,0 +1,246 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/zz/editor/main.css">
+
+<title>Email Center-<%=RIGHT(pcORDNO,4)%></title>
+<script language="JavaScript">
+
+function SubmitEmail() {
+	document.theForm.SUBMIT_1.style.visibility="hidden";
+	document.theForm.SUBMIT_2.style.visibility="hidden";	
+    document.theForm.action="/wc.dll?mpest~emailcenterret~&SCR=<%=pcSCR%>&ACTION=EMAIL"
+    document.theForm.submit()
+    }
+
+function ViewEmail(r) {
+    document.theForm.action="/wc.dll?mpest~emailcenterret~&SCR=<%=pcSCR%>&ACTION=VIEW&RADIO="+r
+    document.theForm.submit()
+    }
+
+//function UpdateEmail() {
+//	    window.location.href=('/wc.dll?mpmainten~temailswc~<%=pcSCR%>~<%=SYS(2015)%>');
+//	}
+
+function OpenClose(e){
+	if (document.getElementById(e).style.position=='relative'){
+		document.getElementById(e).style.position='absolute';
+		document.getElementById(e).style.visibility='hidden';
+		document.getElementById('oc').innerText="open";
+	}else{
+		document.getElementById(e).style.position='relative';
+		document.getElementById(e).style.visibility='visible';
+		document.getElementById('oc').innerText="close";
+	}
+}
+ 
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="730" align="center">
+ <TR>
+  <TD bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="730">
+  <tr>
+    <td width="100%" align="center" bgcolor="#008000" height="23"><b><font color="#FFFFFF" face="Verdana">Email Center</font></b></td>
+  </tr>
+</table>
+<br>
+<form name="theForm" method="post">
+<table border="1" cellpadding="0" cellspacing="0" style="font-family:Arial;font-size:10pt;border-collapse: collapse" bordercolor="#808080" width="670" align="center">
+  <tr>
+    <td width="58" height="19">Customer:</td>
+    <td width="164" height="19">&nbsp;<b><%=pcSNAME%></b></td>
+    <td width="77" height="19">Email To:</td>
+    <td width="211" height="19">&nbsp;<b><%=pcEMAIL%></b></td>
+    <td width="108" height="19">Job #: <b><%=ALLT(pcDEPT)+ALLT(pcORDNO)%></b></td>
+  </tr>
+  <tr>
+    <td width="58" height="19">Sender:</td>
+    <td width="164" height="19">&nbsp;<b><%=pcUSER%></td>
+    <td width="77" height="19">Email From:</td>
+    <td width="211" height="19">&nbsp;<b><%=pcUSEREMAIL%></b></td>
+    <td width="108" height="19"><input type="checkbox" name="CC" value="ON">CC</td>
+  </tr>
+</table>
+<br>
+<table border="0" width="50%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align='center'>
+  <tr>
+    <%IF _EST.STATUS <> 'C' AND _EST.STATUS <> 'D'%>
+    <td width="32%" align="center">
+    <%IF EMPTY(pcUSEREMAIL)%><B><FONT COLOR="RED">Missing From Email</FONT></B><%ELSE%>             
+    <input type="button" CLASS="SUBOFF" name="SUBMIT_1" onclick="SubmitEmail()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Send Email"><%ENDIF%></td>
+    <%ENDIF%>
+    <td width="3%" align="center">&nbsp;</td>
+	<%IF _EST.STATUS <> 'C' AND _EST.STATUS <> 'D'%>
+    <td width="31%" align="center">            
+    <input type="button" CLASS="SUBOFF" name="btnExit" onclick="window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Exit"></td>
+    <%ENDIF%>            
+  </tr>
+</table>
+<BR>
+<table border="1" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#808080" width="650" align="center">
+  <tr>
+    <td width="222" height="12"><font style="font-family:Arial;font-size:10pt;">Add text to the emails' header -</font></td>
+    <td width="223" height="12"><a href="javascript:OpenClose('emailheader')" align="center" style="font-family:Arial;font-size:10pt;cursor:pointer;">
+    <div id="oc" style="width: 65; height: 19">open</div></a></td>
+  </tr>
+  <tr id="emailheader" style="position:absolute; visibility:hidden">
+    <td width="443" height="16" colspan="2"><textarea rows="4" name="EMAILHEADER" cols="77"></textarea></td>
+  </tr>
+</table>
+<br>
+<table border="1" align="center" cellspacing="1" style="border-collapse:collapse;" bordercolor="#808080" width="670">
+  <tr>
+    <td width="18" align="center" height="26"><b><FONT FACE="Arial" size="2">#</font></b></td>
+    <td width="381" align="center" height="26"><b><FONT FACE="Arial" size="2">Subject</b></td>
+    <td width="46" align="center" height="26"><b><FONT FACE="Arial" size="2">Select</b></td>
+    <td width="56" align="center" height="26"><b><font FACE="Arial" size="2">Link to<br><%=IIF(pnCOLEVEL<>3,'Inventory','Estimate')%></font></b></td>
+    <td width="46" align="center" height="26"><b><font FACE="Arial" size="2">E-Sign</font></b></td>
+    <td width="56" align="center" height="26"><b><font face="Arial" size="2">E-Quote</font></b></td>
+  </tr>
+<% SELECT _T
+	SCAN%>
+  <tr style="line-height:23px;">
+    <td width="18" align="center" height="26"><font style="font-family:Arial;font-size:10pt;"><%=ALLT(STR(RECNO()))%>.</font></td>
+    <td width="379" height="26">&nbsp;<font style="font-family:Arial;font-size:10pt;color:#0000FF;cursor:pointer;" onclick="ViewEmail('<%=ALLT(STR(TEMAILID))%>')"><u><%=ALLT(SUBJECT)%></u></font>&nbsp;</td>
+    <td width="46" align="center" height="26">
+    <% IF !EMPTY(SUBJECT)%><input type="radio" value="<%=ALLT(STR(TEMAILID))%>" name="R1"><%ENDIF%></td>
+    <td width="56" align="center" height="26"><input type="checkbox" name="C<%=ALLT(STR(TEMAILID))%>" value="ON" <%=IIF(LINK,'checked','')%>></td>
+    <td width="46" align="center" height="26">&nbsp;</td>
+    <td width="56" align="center" height="26">&nbsp;</td>
+  </tr>
+<%ENDSCAN %>
+ <%IF !plBLKEMAIL %>
+  <tr>
+    <td width="18" align="center" height="26"></td>
+    <td width="379" height="26"><font style="font-family:Arial;font-size:10pt;color:#0000FF;cursor:pointer;" onclick="ViewEmail('100')">
+    <%IF pcTYPE<>'T'%><%=IIF(_EST.STATUS='F','&nbsp;<u>Moving Estimate</u>','&nbsp;<u>Moving Estimate - Booked</u>')%><%ELSE%>
+    <%=IIF(_EST.STATUS='F','<u>Vehicle Transport Quote</u>','<u>Vehicle Transport Order for Service</u>')%><%ENDIF%></font></td>
+    <td width="46" align="center" height="26"><input type="radio" value="100" name="R1" checked></td>
+    <td width="56" align="center" height="26"></td>
+    <td width="46" align="center" height="26"><%IF (pcCUSTNO='NATIONALMG' OR pcCUSTNO='WHITEGLOVE' OR pcCUSTNO='PATRIOTMOV' OR pcCUSTNO='ALLCOASTMO') AND _EST.STATUS='F'%><%ELSE%><input type="checkbox" name="ESIGN" value="ON" <%=IIF(_EST.STATUS='O','checked','')%>><%ENDIF%></td>
+    <td width="56" align="center" height="26"><% IF plEQUOTE %><input type="checkbox" name="FRIENDLY" value="ON" <%=IIF(pcCUSTNO='VANTAGE' OR pcCUSTNO='SKYVANLI','checked','')%>><%ENDIF%></td>
+  </tr>
+ <%ENDIF%> 
+ <%IF !plBLKBOL AND pcTYPE='D' AND _EST.STATUS='O' AND pdMOVEDTE>= DATE() %>
+  <tr>
+    <td width="18" align="center" height="26"></td>
+    <td width="379" height="26"><font style="font-family:Arial;font-size:10pt;color:#0000FF;">Interstate Bill of Lading</font></td>
+    <td width="46" align="center" height="26"><input type="radio" value="105" name="R1"></td>
+    <td width="56" align="center" height="26"></td>
+    <td width="46" align="center" height="26"></td>
+    <td width="56" align="center" height="26"></td>
+  </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="18" align="center" height="26"></td>
+    <td width="583" height="26" colspan="5">&nbsp;<font style="font-family:Arial;font-size:10pt;color:#0000FF;cursor:pointer;" onclick="ViewEmail('200')"><u>Free Text Email</u></font></td>
+  </tr>
+</table>
+<br>
+<table border="0" width="50%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align='center'>
+  <tr>
+    <%IF _EST.STATUS <> 'C' AND _EST.STATUS <> 'D'%>
+    <td width="32%" align="center">
+    <%IF EMPTY(pcUSEREMAIL)%><B><FONT COLOR="RED">Missing From Email</FONT></B><%ELSE%>             
+    <input type="button" CLASS="SUBOFF" name="SUBMIT_2" onclick="SubmitEmail()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Send Email"><%ENDIF%></td>
+    <%ENDIF%>
+    <td width="4%" align="center">&nbsp;</td>
+    <%IF _EST.STATUS <> 'C' AND _EST.STATUS <> 'D'%>
+    <td width="30%" align="center">            
+    <input type="button" CLASS="SUBOFF" name="btnExit" onclick="window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Exit"></td>
+    <%ENDIF%>            
+  </tr>
+</table>
+</form>
+<center><b><font size="2" face="Verdana">Previous Emails</font></b></center>
+<table border="1" align="center" cellSpacing="1" cellPadding="2" style="border-collapse:collapse;font-family:Verdana;font-size:8pt;" bordercolor="#C0C0C0" width="98%">
+  <tr style="background-color:#008000;">
+	<td width="1%" height="23">&nbsp;</td>  
+    <td width="18%" height="23">&nbsp;<font color="#FFFFFF"><b>Sent Date</b></font></td>
+    <td width="21%" height="23">&nbsp;<font color="#FFFFFF"><b>Emailed To</b></font></td>
+    <td width="27%" height="23">&nbsp;<font color="#FFFFFF"><b>Subject</b></font></td>
+    <% IF pnCOLEVEL > 2 %>
+    <td width="9%" height="23" align="center"><font color="#FFFFFF"><b>Text</b></font></td>
+    <%ENDIF%>
+    <td width="7%" height="23" align="center"><font color="#FFFFFF"><b>Ebook</b></font></td>
+    <td width="13%" height="23">&nbsp;<font color="#FFFFFF"><b>Esign Details</b></font></td>
+ </tr>
+  <% SELECT _L
+     SCAN%>
+ <tr>
+   <td width="1%">&nbsp;<%=EID%></td> 
+   <td width="18%">&nbsp;<%=SENTDTE%>&nbsp;<%=SENTTME%><br>&nbsp;<b><%=ALLT(SENTBY)%></b></td>
+   <td width="21%">&nbsp;<%=ALLT(EMAILEDTO)%></td>
+   <td width="27%">&nbsp;<%=ALLT(SUBJECT)%></td>
+   <% IF pnCOLEVEL > 2 %>
+   <td width="9%">&nbsp;
+      <% IF CTOD(SENTDTE) >= DATE()-3 AND pdMOVEDTE>= DATE() %>
+         <% IF (TEMAILID=100 OR TEMAILID=101 OR TEMAILID>10000) OR pnLEVEL>1 AND (TEMAILID=400 OR TEMAILID=401 ) %>
+   <a style="cursor:pointer;" onclick="window.open('/wc.dll?mpest~friendlyin~<%=pcREFNO%>~<%=ALLT(STR(pnCUSTID*23))%>~<%=ALLT(STR(LOGEMAILID))%>~TEXT','_BLANK','scrollbars=no,toolbar=no,menubar=no,location=no,directories=no,status=no,width=500,height=350')">Text Link</a>
+   		 <%ENDIF%>
+      <%ENDIF%></td>
+   <%ENDIF%>  
+   <td width="7%" align="center"><%IF BOOK=.T. %><font style="font-size:14pt;color:#2F4F4F;"><b>&#10003;</b></font><%ENDIF%></td>
+   <td width="13%">&nbsp;
+   <%IF !EMPTY(ENAME)%>
+   		<%IF pnLEVEL=1 AND (TEMAILID=400 OR TEMAILID=401)%><%=ALLT(EIP)%><%ELSE%><%=ALLT(ENAME)%><BR>&nbsp;<%=CEDTE%><%ENDIF%>
+   <%ENDIF%></td>
+ </tr>
+ <%ENDSCAN %>
+</table>
+ <br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" bgcolor="#9C3063">&nbsp;</td>
+  </tr>
+</table>
+   </td>
+  </tr>
+</table>
+</body>
+</html>

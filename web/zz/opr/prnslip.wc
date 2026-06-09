@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Moving- Order Slip</title>
+</head>
+
+<BODY onload="javascript: window.print()">
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+   <TD align="center" width="100%"><FONT face="Verdana" size="2">This slip 
+   printout is for the Moving Team.<br><B><font size="4" color="red">Please call Customer 24 hours in Advance!!!</B></font></font></TD>
+ </tr>
+</TABLE> 
+<table border="1" align="center" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+   <TD Align="center" bgColor="#C0C0C0" width="14%" height="16"><FONT face="Verdana" size="2">Status</FONT></TD>
+   <TD Align="center" bgColor="#C0C0C0" width="10%" height="16"><FONT face="Verdana" size="2">Miles</font></TD>
+   <TD Align="center" bgColor="#C0C0C0" width="12%" height="16"><FONT face="Verdana" size="2">Job No.</FONT></TD>
+   <TD Align="center" bgColor="#C0C0C0" width="19%" height="16"><font face="Verdana" size="2">Customer Name.</font></TD>
+   <TD Align="center" bgColor="#C0C0C0" width="40%" height="16"><FONT face="Arial" color="#FF0000" size="2">Date Customer Can Receive Delivery</FONT></TD>
+ </tr>
+  <tr>
+    <TD Align="center" width="14%" height="16"><b><FONT face="Verdana" color="green" size="2"><%=pcSTATUS%></FONT></b></TD>
+    <TD Align="center" width="5%" height="16"><b><font face="Verdana" size="4"><%=ALLT(STR(_CRG.MILES))%></font></b></TD>
+    <TD Align="center" width="17%" height="16"><B><FONT face="Verdana" color="#000000" size="5"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></FONT></B></TD>
+    <TD Align="center" width="24%" height="16"><B><FONT face="Verdana" color="#000000" size="4"><%=ALLT(_EST.SNAME)%></FONT></B></TD>
+    <TD Align="center" width="40%" height="16"><b><FONT face="Verdana" color="#ff0033" size="3"><%=pcESTDLVDTE%></FONT></b></TD>
+ </tr>
+  <tr>
+    <td width="100%" colspan="5">
+<table border="1" cellpadding="3" cellspacing="3" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="47%"><FONT face="Verdana" size="2">Pick-Up:</FONT> <b><FONT face="Verdana" size="4"><%=pcPUDTE%></FONT></B></td>
+    <td width="53%"><FONT face="Verdana" size="2">
+    <% IF pcCODENAME='Estimate'%><%ELSE%><%=IIF(pcCODE='d1','Delivery 1: ','Delivery 2: ')%><%ENDIF%></FONT>
+    <b><FONT face="Verdana" size="4"><%=pcDLVDTE%></FONT></B>&nbsp;</td>
+ </tr>
+</table></td>
+   </tr>
+   <tr>
+     <td width="100%" colspan="5">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="47%" VALIGN="TOP">
+<table border="0" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" cellpadding="2">
+  <tr>
+	<td><font face="Verdana" size="4"><b><%=ALLT(_EST.SNAME)%></b></font></td>
+ </tr>
+  <%IF !EMPTY(_EST.SADD1) OR !EMPTY(_EST.SADD2)%>  
+  <tr>
+	<td><font face="Verdana" size="2"><%=ALLT(_EST.SADD1)%><BR><%=ALLT(_EST.SADD2)%></font></td>
+ </tr>
+  <%ENDIF%>
+  <%IF !EMPTY(_EST.SLEVEL) OR !EMPTY(_EST.SSUBLEVEL)%> 
+  <tr>
+	<td><font face="Verdana" size="2"><%=ALLT(PROPER(_EST.SLEVEL))%><%=IIF(EMPTY(_EST.SSUBLEVEL),'',' / '+ALLT(_EST.SSUBLEVEL))%></font></td>
+ </tr>
+ <%ENDIF%>  
+  <%IF !EMPTY(_EST.SFLOOR) OR !EMPTY(_EST.SAPT)%>
+  <tr>
+	<td><font face="Verdana" size="2"><%='Floor: '+ALLT(STR(_EST.SFLOOR))%>&nbsp;<%=' Apt: '+ALLT(_EST.SAPT)%></font></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+	<td><font face="Verdana"><font size="5"><b><%=ALLT(_EST.SCITY)+', '+(_EST.SSTATE)%></font>&nbsp;&nbsp;<%=ALLT(_EST.SZIP)%><%=IIF(EMPTY(_EST.SCOUNTRY),'',' ,'+ALLT(_EST.SCOUNTRY))%></B></font></td>
+ </tr>
+  <tr>
+	<td><font face="Verdana" size="2">Phone 1: <B><%=ALLT(_EST.STELH)%></B><%=IIF(EMPTY(_EST.STELO),'','&nbsp;&nbsp;Phone 2: <B>'+ALLT(_EST.STELO))+'</B>'%></font></td>
+ </tr>
+ <%IF !EMPTY(_EST.SPROXY)%>
+  <tr>
+	<td><font face="Verdana">Proxy: <font color="#C71585"><b><%=ALLT(_EST.SPROXY)%></b></font></font></td>
+ </tr>
+ <%ENDIF%> 
+  <tr>
+	<td><font face="Verdana" size="5"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=IIF(_EST.TOTALCF=0,'',ALLT(STR(_EST.TOTALCF))+' cf.')%></b></font>
+	<font face="Verdana" size="2"><b>&nbsp;<%=IIF(_OPR.ACTCUFT=0,'( Estimate )','( Actual )')%></b></font></td>
+ </tr>
+</table>              
+   </td>
+    <td  valign="top" width="53%">
+<table border="0" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" cellpadding="2">
+  <tr>
+	<td><font face="Verdana" size="4"><b><%=ALLT(_EST.RNAME)%></b></font></td>
+ </tr>
+  <%IF !EMPTY(_EST.RADD1) OR !EMPTY(_EST.RADD2)%>  
+  <tr>
+	<td><font face="Verdana" size="2"><%=ALLT(_EST.RADD1)%><BR><%=ALLT(_EST.RADD2)%></font></td>
+ </tr>
+  <%ENDIF%>
+  <%IF !EMPTY(_EST.RLEVEL) OR !EMPTY(_EST.RSUBLEVEL)%> 
+  <tr>
+	<td><font face="Verdana" size="2"><%=ALLT(PROPER(_EST.RLEVEL))%><%=IIF(EMPTY(_EST.RSUBLEVEL),'',' / '+ALLT(_EST.RSUBLEVEL))%></font></td>
+ </tr>
+ <%ENDIF%>    
+  <%IF !EMPTY(_EST.RFLOOR) OR !EMPTY(_EST.RAPT)%>  
+  <tr>
+	<td><font face="Verdana" size="2"><%='Floor: '+ALLT(STR(_EST.RFLOOR))%>&nbsp;<%=' Apt: '+ALLT(_EST.RAPT)%></font></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+	<td><font face="Verdana"><font size="5"><b><%=ALLT(_EST.RCITY)+', '+(_EST.RSTATE)%></font>&nbsp;&nbsp;<%=ALLT(_EST.RZIP)%><%=IIF(EMPTY(_EST.RCOUNTRY),'',' ,'+ALLT(_EST.RCOUNTRY))%></B></font></td>
+ </tr>
+  <tr>
+	<td><font face="Verdana" size="2">Cell: <B><%=ALLT(_EST.RTELH)%></B><%=IIF(EMPTY(_EST.STELO),'','&nbsp;&nbsp;Phone 2: <B>'+ALLT(_EST.RTELO))+'</B>'%></font></td>
+ </tr>
+ <%IF !EMPTY(_EST.RPROXY)%>
+  <tr>
+	<td><font face="Verdana">Proxy: <font color="#C71585"><b><%=ALLT(_EST.RPROXY)%></b></font></font></td>
+ </tr>
+ <%ENDIF%> 
+ </table></TD>
+       </td></tr>
+            <tr>
+              <td width="100%" colspan="2">
+<table border="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" width="100%" cellspacing="2">
+  <tr>
+    <td width="34%"><FONT face="Verdana" color="#000000" size="2">Delivery Company:&nbsp;<b><FONT face="Verdana" size="5"><%=ALLT(pcAGENT)%>&nbsp;&nbsp;<font size="2"><%=IIF(plSUBAGENT,'( Holder )','')%></b></font></FONT></td>
+    <td width="33%"><FONT face="Verdana" color="#000000" size="2">Driver:_______________</FONT></td>
+    <td width="33%">X_____________________</td>
+ </tr>
+  <tr>
+    <td width="34%"><%IF pnTRIPID > 0%><b><FONT face="Verdana" color="#000000">Trip: <FONT SIZE="4"><%=pcTRIPNO%></font>&nbsp;&nbsp;<%=pcCTRIPDTE%></FONT></b><%ENDIF%></td>
+    <td width="33%"><FONT face="Verdana" color="#000000" size="2">Phone #:_______________</FONT></td>
+    <td width="33%"><FONT face="Verdana" color="#000000" size="2">Phone #:_______________</FONT></td>
+ </tr> 
+  <tr>
+    <td width="45%"><% IF !EMPTY(_STG.LOCATION) %>
+    <FONT face="Verdana" size="2"><B>Location:&nbsp;<%=pcSTGNO%> - <FONT SIZE="3"><%=ALLT(_STG.LOCATION)%></B></FONT><%ENDIF%></td>
+    <td width="32%"><FONT face="Verdana" size="2"><B>Total For Services&nbsp;<%=IIF(_OPR.ACTTOTAL=0,'( estimate )','')%></td>
+    <td width="23%" ALIGN="RIGHT"><FONT face="Verdana" color="#008000" size="5"><B>$<%=IIF(_OPR.ACTTOTAL=0,ALLT(STR(_EST.SUBTOTAL,8,2)),ALLT(STR(_OPR.ACTTOTAL,8,2)))%></td>
+ </tr>
+  <tr>
+    <td width="45%"><%IF !EMPTY(_STG.LOTNO) OR !EMPTY(_STG.LOTNO1) %>
+    <FONT face="Verdana" color="#000000" size="2"><B>Lot/Color/Sticker: <font size="3"><%=_STG.LOTNO%>/<%=ALLT(_STG.LOTCOLOR)%>/<%=ALLT(STR(_STG.LOTFROM))%>-<%=ALLT(STR(_STG.LOTTO))%><br>
+    <FONT face="Verdana" color="#000000" size="2"><B>Lot1/Color/Sticker: <font size="3"><%=_STG.LOTNO1%>/<%=ALLT(_STG.LOTCOLOR1)%>/<%=ALLT(STR(_STG.LOTFROM1))%>-<%=ALLT(STR(_STG.LOTTO1))%></B></FONT><%ENDIF%></td>
+    <td width="32%"><FONT face="Verdana" size="2"><b>Customer Payments</b></td>
+    <td width="23%" ALIGN="RIGHT"><B><FONT face="Verdana" color="#000080" size="5">-$<%=_OPR.PAIDAMT%></font></b></td>
+ </tr>
+  <tr>
+    <td width="45%"><% IF _STG.CRATES > 0 %>
+    <FONT face="Verdana" color="#000000" size="2"><B>Crates/Items&nbsp;-&nbsp;&nbsp;<font size="3"><%=ALLT(STR(_STG.CRATES))%></FONT></B><%ENDIF%></td>
+    <td width="32%"><b><font face="Verdana" size="2">Customer Move Balance</font></b></td>
+    <td width="23%" ALIGN="RIGHT"><B><FONT face="Verdana" color="#FF0033" size="5">$<%=_OPR.BALANCE%></font></b></td>
+ </tr>
+ <%IF _OPR.BALSTG > 0 %>               
+  <tr>
+    <td width="45%">&nbsp;</td>
+    <td width="32%"><b><font face="Verdana" size="2">Customer Storage Balance</font></b></td>
+    <td width="23%" ALIGN="RIGHT"><B><FONT face="Verdana" color="#FF0033" size="5">$<%=_OPR.BALSTG%></font></b></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="100%" colspan="3">
+    <%SELECT _LIST
+      SCAN %> 
+     <font face="Verdana" size="2"><B><%=OPRCODE%></B><%=ID%><%=', '+NAME%></font>
+     <%ENDSCAN%>
+    <%SELECT _TRUCK
+      SCAN %> 
+     <br><font face="Verdana" size="2"><B><%='Truck: '+TRUCKNO%></B><%=IIF(EMPTY(DRIVER),'',', '+DRIVER)%></font>
+    <%ENDSCAN%>     
+     </td>
+ </tr>                                 
+  <tr>
+    <td width="100%" colspan="3"><FONT face="Verdana" color="#000000" size="2"><%=IIF(pcCUSTNO='WHITEGLOVE','Driver Instruction:','Operation Notes:')%><B>
+    <br><br>&nbsp;<font size="3"><%=IIF(pcCUSTNO='NOBELVAN' OR pcCUSTNO='IMOVEINC' OR pcCUSTNO='WECAREFORU' OR pcCUSTNO='WHITEGLOVE' OR pcCUSTNO='FAMILYMVG',pcOFFICEREM,pcREMARKS)%></FONT></B></td>
+ </tr>
+</table>
+   </td>
+  </tr>
+</table>
+   </td>
+ </tr>
+</table>
+  <p align="center"><font face="Verdana" size="1">Information from&nbsp;<%=pcCODENAME%>&nbsp;&nbsp;by: <%=pcUSER%>&nbsp;&nbsp;printed date: <%=DATETIME()%></font></p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta http-equiv="Content-Language" content="en-us">
+
+<title>Leads Mng Menu</title>
+</head>
+
+<body bgcolor="#4E6699">
+<font color="#FFFFFF"><b>&nbsp;&nbsp;&nbsp;&nbsp;Click F5 to refresh</b></font><BR>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="200" id="AutoNumber1" height="86">
+  <tr>
+    <td width="100%" height="12" bgcolor="#FF9900">
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" height="61">
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#0000FF" width="103%" id="AutoNumber2">
+      <tr>
+        <td width="100%" colspan="3" bgcolor="#000000">
+        <p align="center"><font color="#FFFFFF"><b>Auto Terminals</b></font></td>
+      </tr>
+      <tr>
+        <td width="100%" bgcolor="#C0C0C0" colspan="3"><b><font face="Arial" size="2">
+        <a target="MainWindow" href="/wc.dll?mpauto~TerminalsEditWc~<%=pcSCR%>~ADD_NEW">Add Terminal</a>      
+      </tr>
+      <tr>
+        <td width="15%" bgcolor="#C0C0C0"><b><font size="2">ID</font></b></td>
+        <td width="20%" bgcolor="#C0C0C0"><b><font size="2">State</font></b>&nbsp;</td>
+        <td width="65%" bgcolor="#C0C0C0"><b><font size="2">Name</font></b>&nbsp;</td>
+      </tr>
+<% SELECT _CUST
+   SCAN%>
+     <tr>
+      <td width="65%" bgcolor="#FFFFFF" ><b><font size="1" face="Arial">&nbsp;<a target="_PARENT" href="/wc.dll?mpleads~LeadsMngEditWc~<%=pcSCR%>~<%=CUSTNO%>"><%=CUSTNO%></a></font></B>&nbsp;</td>
+      <td width="35%" bgcolor="#FFFFFF" ><b><font size="1" face="Arial"><%=ALLTRIM(STR(CNT))%></font>&nbsp;</td>
+    </tr>
+<% ENDSCAN%>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" height="13" bgcolor="#FF9900">
+    &nbsp;</td>
+  </tr>
+</table>
+</body>
+
+</html>

@@ -1,0 +1,494 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=pcORDNO%></title>
+
+<script type="text/javascript" src="/zz/js/showselect.js"></script><!--HIDE DROPDOWN SHOW INPUT-->
+<script type="text/javascript" src="/zz/util/tabber.js"></script><!---TAB--->
+<link rel="stylesheet" href="/zz/util/tabpay.css?v=1.1.2" TYPE="text/css" MEDIA="screen"><!---TAB--->
+
+<script language="JavaScript" src="zz/util/formcheck.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+jQuery.noConflict();
+
+jQuery( document ).ready(function( $ ) {
+    $('#BN').hide();
+
+     $('#BANKNAME').change(function () {
+        if ($('#BANKNAME option:selected').text() == "Other"){
+            $('#BN').show();
+            $('#BANKNAME').hide();
+        }
+         else { 
+              $('#BN').hide();
+         }
+	});
+		         
+});	
+
+
+function UpdatePayment() {
+//	if (checkdate()) {
+		document.theForm.btnUpdate.style.visibility="hidden";
+		document.theForm.action="/wc.dll?mpopr~paymentsret~<%=pcSCR%>";
+		document.theForm.submit();  
+//	    } 
+	}
+
+
+function showcc(obj) {
+	if (document.getElementById(obj).style.visibility=='hidden') {
+		document.getElementById(obj).style.position='static';
+		document.getElementById(obj).style.visibility='visible';
+	}else{
+		document.getElementById(obj).style.position='absolute';
+		document.getElementById(obj).style.visibility='hidden';
+
+	}
+}
+
+</SCRIPT>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 8pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					background-color: #FFCF63;
+				  	text-align: center;
+				  	border: 1px solid #708090}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+  				  	font-family: Verdana;
+  				  	font-weight: bold;}
+	.TD3		{	color: #000000;
+				  	font-size: 8pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+				  	text-align: right;
+				  	border: 1px solid #708090}
+	.TD4		{	color: #000000;
+				  	font-size: 8pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+				  	text-align: left;
+				  	border: 1px solid #708090}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}				  					  	
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: #CC0000}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="860" align="center">
+  <tr>
+    <td width="30%" BGCOLOR="#008000"><b><font face="Verdana" color="#FFFF00"><%=pcBALANCEX%><%=pcBALSTGX%></font></b></td>
+    <td width="45%" BGCOLOR="#008000" align="center"><b><font face="Verdana" color="#FFFFFF">&nbsp;Payments</font></b></td>
+    <td width="25%" BGCOLOR="#008000" align="right"><b><font face="Verdana" color="#FFFF00"><%=IIF(plCLAIMSX=.T.,'CLAIM','')%><%=IIF(_EST.STATUS='D','&nbsp;&nbsp;&nbsp;Job Closed','')%></font></b>&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="3"><BR>
+<form name="theForm" method="POST">
+	<input type="hidden" name="PAYID" value="<%=pcPAYID%>">    
+<table border="1" align="center" width="98%" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+ 	<td width="49%"><b><font size="2" face="Verdana">Customer: <font color="#993366"><%=pcSNAME%></font></font></b></td>
+ 	<td width="51%"><b><font size="2" face="Verdana">Job No: <font color="#993366"><%=ALLT(pcDEPT)+ALLT(pcORDNO)%></font></font></b></td>
+  </tr>
+</table>
+<br>
+<table border="0" align="center" width="98%" style="border-collapse: collapse" bordercolor="#111111">  
+  <tr>
+    <td width="50%" valign="top">
+<table border="1" align="center" width="100%" style="border-collapse: collapse" bordercolor="#C0C0C0">  
+  <tr>
+    <td width="49%" align="center" height="25" bgcolor="#FFCF63"><b><font face="Verdana" size="2" color="#0000FF">Add/Update Payment</font></b></td>
+ </tr>
+  <tr>
+    <td width="49%" valign="top">   
+    <% SELECT _PAY %>
+<table border="0" cellspacing="0" cellpadding="3" width="100%" style="border-collapse: collapse;line-height:25px;" bordercolor="#111111">
+ <tr>
+   <td class="TD2" width="47%">Payment Date:</td>
+   <td width="28%"><% IF CCPROCESS=.T. %><font face="Verdana" size="2"><%=ALLT(CPAIDDTE)%></font><%ELSE%>
+   <input type="text" id="Date1" name="PAIDDTE" size="9" value="<%=ALLT(CPAIDDTE)%>" tabindex="1"><%ENDIF%></td>
+ <% IF plDEPT %> 			
+   <td class="TD2" width="25%">Dept:
+   			<select size="1" name="DEPTID">
+	        <option selected value="<%=pcDEPTIDPAY%>"><%=pcDEPTPAY%></option> 
+		     <% SELECT _DEPARTMENT 
+		     	 GO TOP
+		     	 SCAN %>
+			       <OPTION value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+    </select></td>
+ <% ENDIF %> 			
+    <% SELECT _PAY %>
+  </tr>
+  <tr>
+	<td class="TD2" width="47%">Payment Method:</td>
+	<td height="19" width="53%" colspan="2">
+		<select size="1" name="CTYPE" tabindex="2">
+			<option value="<%=pcTYC%>" selected><%=pcTY%></option>
+			<option value="CC">Credit Card</option>
+			<option value="CK">Check</option>
+            <option value="CA">Cash</option>
+            <option value="CS">Cashier Check</option>
+            <option value="DD">Direct Deposit</option>
+            <option value="MO">Money Order</option>
+            <option value="WT">Wire Transfer</option>
+            <option value="PP">PayPal</option>
+            <option value="QP">Quick Pay</option>
+            <option value="ZL">Zelle</option>
+            <option value="VM">Venmo</option>
+            <option value="EC">eCheck</option>
+            <option value="CP">CashApp</option>
+            <option value="GP">Google Pay</option>
+     	</select></td>
+  </tr>
+   <tr>
+	 <td class="TD2" width="47%">Payment Deposit:</td>
+	 <td class="TD2" width="53%" colspan="2"><% IF PAYID=0%><input type="checkbox" name="RSRV" value="ON"><%ELSE%><%=IIF(RSRV=.T.,'Yes','No')%><%ENDIF%></td>
+  </tr> 
+   <tr>
+	 <td class="TD2" width="47%" style="background-color: #EBEBEC;">Move Payment:</td>
+	 <td class="TD2" width="53%" style="background-color: #EBEBEC;" colspan="2"><% IF PAYID=0%><input type="text" name="PAYAMT" size="5" maxlength="8" value="<%=ALLT(STR(PAYAMT,8,2))%>" tabindex="4"><%ELSE%><%=ALLT(STR(PAYAMT,8,2))%><%ENDIF%></td>
+  </tr>
+      <% IF plJOBSTG AND _EST.STATUS <> 'F' %>    			
+  <tr>
+	<td class="TD2" style="background-color: #FFEFCC;" width="47%">Storage Payment:</td>
+	<td class="TD2" width="53%" style="background-color: #FFEFCC;" colspan="2"><% IF PAYID=0%><input type="text" name="PAYSTG" size="5" maxlength="8" value="<%=ALLT(STR(PAYSTG,8,2))%>" tabindex="6"><%ELSE%><%=ALLT(STR(PAYSTG,8,2))%><%ENDIF%></td>
+ </tr>
+     <% ENDIF %>
+     <% IF plAGENT AND _EST.STATUS <> 'F' %>    			
+  <tr>
+	<td class="TD2" style="background-color: #E7FFE7;" width="47%">Agent/Broker Payment:</td>
+	<td class="TD2" width="53%" style="background-color: #E7FFE7;" colspan="2"><% IF PAYID=0%><input type="text" name="PAYAGENT" size="5" maxlength="8" value="<%=ALLT(STR(PAYAGENT,8,2))%>" tabindex="6"><%ELSE%><%=ALLT(STR(PAYAGENT,8,2))%><%ENDIF%></td>
+ </tr>
+     <% ENDIF %>
+   <tr>
+	 <td class="TD2" width="47%">Confirmation No.:</td>
+	 <td width="53%" colspan="2"><% IF CCPROCESS=.T. %><b><font face="Verdana" size="2"><%=ALLT(REF)%></font></b><%ELSE%>
+	 <input type="text" name="REF" size="12" maxlength="16" value="<%=ALLT(REF)%>" tabindex="3"><%ENDIF%></td>
+  </tr>             
+  <tr>
+	<td class="TD2" height="19" width="47%">Payment Remark:</td>
+	<td height="19" width="53%" colspan="2"><input SIZE="25" MAXLENGTH="80" name="NOTES" value="<%=NOTES%>" tabindex="8" style="font-size: 9pt"></td>
+ </tr>
+  <% IF !plBLKUPDPAY AND _EST.STATUS<>'D' %>	
+  <tr>
+	<td align="center" height="38" width="100%" colspan="3"><input type="button" CLASS="SUBOFF" name="btnUpdate" onclick="UpdatePayment()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" style="width:120" value="Update Payment"></td>
+ </tr>
+  <tr>
+	<td height="25" width="100%" colspan="3"><font face="Verdana" size="2">Note: To cancel a wrong payment, please enter the wrong amount in negative (i.e, -150) and then enter the correct amount.</font></td>
+ </tr>
+ <% ENDIF %>					
+</table>    
+     </td>
+ </tr>
+</table>
+    </td>
+    <td width="1%" valign="top">&nbsp;</td>
+    <td width="49%" valign="top">
+<div class="tabber"><!--TAB 1-->
+ <div class="tabbertab">
+ <h2>Credit Card Information</h2>
+    <% SELECT _PAY %>	  							 
+<TABLE BORDER="0" CELLPADDING="1" CELLSPACING="2" BORDERCOLOR="#ADBACE" WIDTH="407" style="border-collapse:collapse;line-height:25px;">
+		 <tr>
+		  <td class="TD2" width="152">Cardholder Name:</td>
+		  <td colspan="3" width="245"><% IF CCPROCESS=.T. %><b><font face="Verdana" size="2"><%=ALLT(CCNAME)%></font></b><%ELSE%>
+		  <input name="CCNAME" class="TXT" MAXLENGTH=50 value="<%=ALLT(CCNAME)%>" tabindex="10" size="25"><%ENDIF%></td>
+		</tr>
+		 <tr>
+		  <td class="TD2" height="17" width="152">Billing Address:</td>
+      	  <td colspan="3" width="245"><input class="TXT" MAXLENGTH="36" name="CCADD" value="<%=ALLT(CCADD)%>" tabindex="11" size="25"></td>
+		</tr>
+         <tr>
+      	  <td class="TD2" height="17" width="152">City/State:</td>
+      	  <td colspan="3" width="245"><input class="TXT" MAXLENGTH="25" name="CCCITY" value="<%=ALLT(CCCITY)%>" tabindex="12" size="18">
+      	   	  <select name="CCSTATEID" size="1" tabindex="13">
+      	      <option selected value="<%=ALLT(STR(_PAY.CCSTATEID))%>"><%=_PAY.CCSTATE%></option>
+              <option value="0"></option>
+     	  			<%	SELECT _STATE
+					    SCAN %>
+              <option value="<%=ALLT(STR(STATEID))%>"><%=ALLT(STATE)%></option>
+                    <% ENDSCAN %>
+            </select></td>
+	  	</tr>
+	  	<% SELECT _PAY %>
+         <tr>
+      	  <td class="TD2" width="152">Zip Code:</td>
+      	  <td width="45"><input class="TXT" name="CCZIP" value="<%=ALLT(CCZIP)%>" tabindex="14" size="5" maxlength="6"></td>
+      	  <td width="61" align="right"><font style="font-family:Verdana;font-size:9pt;"><b>Country:</b></font></td>      	  
+      	  <td width="131"><select name="CCCOUNTRY" size="1" style="font-size: 9pt" tabindex="15">
+              <option value="USA" selected>USA</option>
+              <option value="USA">CANADA</option>
+              <option value="OTHER">OTHER</option>
+            </select></td>
+	  	</tr>
+            <tr>
+      		 <td class="TD2" width="152">Phone:</td>
+      		 <td colspan="3" width="245"><input class="TXT" name="CCPHONE" tabindex="16" size="15" maxlength="10" value="<%=ALLT(CCPHONE)%>"><b><font face="Verdana" size="1">(Ex. 2125551212)</font></b></td>
+	  	   </tr>
+            <tr>
+      		 <td class="TD2" width="152">Email:</td>
+      		 <td colspan="3" width="245"><input class="TXT" autocomplete="off" name="CCEMAIL" tabindex="16" size="25" maxlength="40" value="<%=ALLT(CCEMAIL)%>"></td>
+	  	   </tr>
+			<tr>
+			 <td class="TD2" width="152">Type:</td>
+			 <td colspan="3" width="245"><select class="TXT" name="CREDITCO" size="1" tabindex="17">
+              <option selected><%=CREDITCO%></option>
+              <option>Visa</option>
+              <option>Master Card</option>
+              <option>AMEX</option>
+              <option>Discover</option>
+            </select></td>
+		</tr>
+		   <tr>
+    		 <td class="TD2" width="152">Credit Card No.:</td>
+			 <td class="TD2" width="245" colspan="3">
+		 <%  IF PAYID > 0  AND pcCUSTNO='MOVINGAPT'%>
+			 &nbsp;<%=LEFT(CREDITNO,4)%>-xxxx-xxxx-<%=RIGHT(ALLT(CREDITNO),4)%>
+		 <%ELSE%>	 
+			 <% IF PAYID > 0 AND CCPROCESS=.T.  %>
+			 	<%=LEFT(CREDITNO,4)%>-xxxx-xxxx-<%=RIGHT(ALLT(CREDITNO),4)%>
+		 	<%ELSE%>	 
+			 	<input type="text" class="TXT" name="CREDITNO" size="25" maxlength="16" value="<%=ALLT(CREDITNO)%>" tabindex="18">
+		 	<%ENDIF%>		    
+		 <%ENDIF%>		    
+			 </td>
+		  </tr>  
+		   <tr>
+			 <td class="TD2" width="152">Security Code:</td>
+			 <td class="TD2" width="245" colspan="3">
+		 <% IF PAYID > 0 AND CCPROCESS=.T. AND VAL(CCCODE) > 99 %>&nbsp;xxx<%ELSE%>
+		 	<input type="text" class="TXT" name="CCCODE" size="5" maxlength="4" tabindex="19" value="<%=ALLT(CCCODE)%>">
+		 <%ENDIF%>	  
+             </td>
+		  </tr>
+           <tr>
+			<td class="TD2" width="152">Expiration Date:</td>
+      		<td colspan="3" width="245"><select name="EXPMONTH" size="1" tabindex="20">
+              <option selected value="<%=ALLT(EXPMONTH)%>"><%=ALLT(EXPMONTH)%></option>
+              <option>01</option>
+              <option>02</option>
+              <option>03</option>
+              <option>04</option>
+              <option>05</option>
+              <option>06</option>
+              <option>07</option>
+              <option>08</option>
+              <option>09</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+            </select>
+            <select name="EXPYEAR" size="1" tabindex="21">
+              <option selected value="<%=ALLT(EXPYEAR)%>"><%=ALLT(EXPYEAR)%></option>
+      	  			<%	SELECT _YEAR
+					    SCAN %>
+   				    <option value="<%=YYYY%>"><%=YYYY%></option>
+   				    <%ENDSCAN%>             
+            </select>          
+     					</td>
+    				</tr>
+<%IF plCCPROCESS %>    				
+	<tr>
+      <td align="center" colspan="4" width="396">
+    <%IF plACCT OR pnLEVEL=2 OR pnLEVEL=5 %>
+    <center><font face="verdana" size="2"><b>Go to Processing Page:</b></font>
+        <select name="select" id="jumpMenu" tabindex="22">
+              <option selected>--Select Merchant--</option>
+              <%SELECT _M
+                SCAN%>
+              <option value="/wc.dll?mpopr~ccformwc~<%=pcSCR%>~<%=ALLT(STR(MERCHANTID))%>~<%=pcPAYID%>"><%=CNAME%></option>
+              <%ENDSCAN%>
+            </select></center>
+    <%ENDIF%>      
+      </td>
+ </tr>
+<%ENDIF%> 
+</table>    
+ </div>
+<div class="tabbertab"><!--TAB 2-->
+ <h2>ACH Information</h2>
+ <% SELECT _PAY %>
+<TABLE CELLPADDING="1" CELLSPACING="2" BORDER="0" BORDERCOLOR="#ADBACE" WIDTH="100%" style="border-collapse:collapse;line-height:25px;">
+  <tr>
+	<td class="TD2" width="367" colspan="2"><b>Billing address is same as on credit card</td>
+ </tr>
+  <tr>
+	<td class="TD2" width="124">Account Name:</td>
+	<td height="16" width="243"><input type="text" class="TXT" name="ACCTNAME" autocomplete="off" size="25" maxlength="50" value="<%=ALLT(ACCTNAME)%>" tabindex="23"></td>
+ </tr>
+  <tr>
+	<td class="TD2" width="124">Bank Name:</td>
+	<td width="243">
+	<select size="1" name="BANKNAME" id="BANKNAME" tabindex="24">
+	        <option value="<%=ALLT(BANKNAME)%>" selected><%=ALLT(BANKNAME)%></option>	
+			<option value=""></option>
+    		<option>Bank of America</option>
+    		<option>BankUnited</option>    		
+     		<option>Capital One</option>    		
+     		<option>Chase</option>
+     		<option>Citigroup Inc</option>
+     		<option>HSBC Bank</option>
+     		<option>PNC Financial</option>     		     		
+     		<option>SunTrust</option>		  		
+     		<option>TD Bank</option>     		
+     		<option>Wells Fargo</option>
+     		<option>Other</option>     		
+		</select><input type="text" class="TXT" name="OTHERBANK" id="BN" autocomplete="off" size="25" maxlength="50" value="" tabindex="25"></td>
+ </tr>
+  <tr>
+	<td class="TD2" width="124">Routing No.:</td>
+	<td class="TD2" width="243"><%IF PAYID > 0 AND (pnLEVEL=5 OR pnLEVEL=2) %><%=ALLT(ABACODE)%><%ELSE%><input type="text" class="TXT" name="ABACODE" autocomplete="off" size="20" maxlength="9" tabindex="26" value="<%=ALLT(ABACODE)%>"><%ENDIF%></td>
+ </tr>
+  <tr>
+	<td class="TD2" height="16" width="124">Account No.:</td>
+	<td class="TD2" width="243"><%IF PAYID > 0 AND (pnLEVEL=5 OR pnLEVEL=2) %><%=ALLT(BANKACCT)%><%ELSE%><input type="text" class="TXT" name="BANKACCT" autocomplete="off" size="20" maxlength="20" tabindex="27" value="<%=ALLT(BANKACCT)%>"><%ENDIF%></td>
+ </tr>  
+</table> 
+ </div>
+</div>
+    
+    </td>
+ </tr>
+</table>
+</form>  
+    </td>
+  </tr>
+  <tr>
+    <td width="700" bgcolor="#FFFFFF" align="center" colspan="3">
+<table border="1" width="860" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td width="100%" bgcolor="#4E6699" align="center"><b><font face="Verdana" size="2" color="#FFFFFF">Payment Records</font></b>
+ </tr>
+  <tr>
+    <td>
+<TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="858" align="center" bgcolor="#FFFFFF">
+  <tr>
+    <td width="61" class="TD1" height="13">TRNO</td>
+    <td width="80" class="TD1" height="13">Date</td>
+    <td width="34" class="TD1" height="13">Type</td>
+    <td width="71" class="TD1" height="13">Move</td>
+   <% IF plCCPROCESS=.T. %> 
+    <td width="61" class="TD1" height="13">CC Proc.<br>Fee</td>
+   <%ENDIF%> 
+    <td width="62" class="TD1" height="13">Storage</td>
+    <td width="62" class="TD1" height="13">Agent</td>
+    <td width="75" class="TD1" height="13">Confirm#</td>
+    <td width="138" class="TD1" height="13">Remarks</td>
+    <td width="55" class="TD1" height="13">Proc. By</td>
+    <td width="55" class="TD1" height="13">Edit By</td>
+    <td width="50" class="TD1" height="13">CC<br>Proc.</td>
+ </tr>
+	<% SELECT _PAY1
+		SCAN %>
+  <tr>
+    <td width="61" class="TD3" height="18">
+   	<%=IIF(plACCT OR pnLEVEL=5 OR pnLEVEL=2,'<a href="/wc.dll?mpopr~paymentswc~'+pcSCR+'~'+ALLT(STR(PAYID))+'">'+PADL(ALLT(STR(NO)),3,'0')+IIF(EMPTY(DEPT),'','-'+ALLT(DEPT))+'</a>',PADL(ALLT(STR(NO)),3,'0')+IIF(EMPTY(DEPT),'','-'+ALLT(DEPT)))%>&nbsp;</td>
+    <td width="80" class="TD4" height="18"><%=ALLT(CPAIDDTE)%></td>
+    <td width="34" class="TD4" height="18">&nbsp;<%=ALLT(CTYPE)%>&nbsp;</td>
+    <td width="71" class="TD3" height="18"><%=ALLT(STR(PAYAMT,8,2))%>&nbsp;</td>
+  <% IF plCCPROCESS=.T. %>  
+    <td width="61" class="TD3" height="18"><%=ALLT(STR(CCPROCFEE,6,2))%>&nbsp;</td>
+  <%ENDIF%>  
+    <td width="62" class="TD3" height="18"><%=ALLT(STR(PAYSTG,8,2))%>&nbsp;</td>
+    <td width="62" class="TD3" height="18"><%=ALLT(STR(PAYAGENT,8,2))%>&nbsp;</td>
+    <td width="75" class="TD4" height="18"><%=ALLT(REF)%>&nbsp;</td>
+    <td width="138" class="TD4" height="18"><%=ALLT(NOTES)%>&nbsp;</td>
+    <td width="55" class="TD4" height="18">&nbsp;<%=ALLT(PAIDUSER)%></td>
+    <td width="55" class="TD4" height="18">&nbsp;<%=ALLT(ADDUSER)%></td>
+    <td width="50" class="TD4" height="18" style="text-align:center;"><%=IIF(CCPROCESS,'<a href="javascript: showcc('+ALLT(STR(PAYID))+')">Yes</a>','')%>&nbsp;</td>
+  </tr>
+  <% IF CCPROCESS %>
+   <tr id="<%=ALLT(STR(PAYID))%>" style="position:absolute;visibility:hidden">
+   <td class="TD3" height="11" colspan="9" width="674">
+<TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="110%" align="center" bgcolor="#FFFFFF">
+  <tr>
+    <td width="15%" class="TD1" style="background-color: #52657B"><font color="#FFFFFF">Name</font></td>
+    <td width="9%" class="TD1" style="background-color: #52657B"><font color="#FFFFFF">Type</font></td>
+    <td width="10%" class="TD1" style="background-color: #52657B"><font color="#FFFFFF">Auth. code</font></td>
+    <td width="9%" class="TD1" style="background-color: #52657B"><font color="#FFFFFF">Confirm</font></td>
+    <td width="8%" class="TD1" style="background-color: #52657B"><font color="#FFFFFF">Merchant</font></td>
+    <td width="12%" class="TD1" style="background-color: #52657B"><font color="#FFFFFF">IP</font></td>
+    <td width="10%" class="TD1" style="background-color: #52657B"><font color="#FFFFFF">Proc. By</font></td>
+ </tr>
+  <tr>
+    <td width="15%" class="TD4">&nbsp;<%=ALLT(CCNAME)%></td>
+    <td width="9%" class="TD4">&nbsp;<%=ALLT(CREDITCO)%>-<%=RIGHT(ALLT(CREDITNO),4)%></td>
+    <td width="10%" class="TD4">&nbsp;<%=ALLT(REF)%></td>
+    <td width="9%" class="TD4">&nbsp;<a href="/wc.dll?mpopr~payconfirm~<%=pcSCR%>~<%=ALLT(STR(PAYID))%>" target="_blank"><%=ALLTRIM(CTRANSNO)%></a></td>
+    <td width="8%" class="TD4">&nbsp;<%=ALLT(CNAME)%></td>
+    <td width="12%" class="TD4">&nbsp;<%=ALLT(IP)%></td>
+    <td width="10%" class="TD4">&nbsp;<%=ALLT(PAIDUSER)%></td>
+ </tr>
+</table>
+   </td>
+  </tr>
+	<%ENDIF%>
+ <%ENDSCAN%>
+</table>    
+    </td>
+ </tr>
+</table>   
+    </td>
+  </tr>
+</table>
+
+<script>
+document.getElementById("jumpMenu").addEventListener("change", function () {
+  if (!this.value) return;
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // Mobile: open in same tab
+    window.location.href = this.value;
+  } else {
+    // Desktop: open in new tab
+    window.open(this.value, "_blank", "noopener,noreferrer");
+  }
+
+  this.selectedIndex = 0; // optional reset
+});
+</script>
+
+</body>
+</html>

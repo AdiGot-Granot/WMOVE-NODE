@@ -1,0 +1,86 @@
+.tabberlive .tabbertabhide {
+ display:none;
+}
+
+.tabber {
+}
+
+.tabberlive {
+ margin-top:0.1em;
+ width: 1007px;
+}
+
+ul.tabbernav
+{
+ margin:0;
+ padding: 3px 0;
+ border-bottom: 1px solid #FFFFFF;
+ font-family: Verdana;
+ font-size: 10pt;
+ font-weight:700;
+}
+
+ul.tabbernav li
+{
+ list-style: none;
+ margin: 0;
+ display: inline;
+}
+
+ul.tabbernav li a
+{
+ padding: 3px 0.5em;
+ margin-left: 3px;
+ border: 1px solid #FFFFFF;
+ border-bottom: none;
+ background: #FFFFFF;
+ text-decoration: none;
+}
+
+ul.tabbernav li a:link { color: #0000FF; }
+ul.tabbernav li a:visited { color: #0000FF; }
+
+ul.tabbernav li a:hover
+{
+ color: #000;
+ background: #FFFFFF;
+ border-color: #FFFFFF;
+}
+
+ul.tabbernav li.tabberactive a
+{
+ background-color: #FFCF63;
+ border-bottom: 1px solid #FFFFFF;
+}
+
+ul.tabbernav li.tabberactive a:hover
+{
+ color: #000000;
+ background: #FFFFFF;
+ border-bottom: 1px solid #FFFFFF;
+}
+
+.tabberlive .tabbertab {
+ border-left:1px solid #FFFFFF; 
+ border-right:1px solid #FFFFFF; 
+ border-bottom:1px solid #FFFFFF; 
+ padding:3px; 
+ border-top:0px none; 
+
+}
+
+.tabberlive .tabbertab h2 {
+ display:none;
+}
+.tabberlive .tabbertab h3 {
+ display:none;
+}
+
+.tabberlive#tab1 {
+}
+.tabberlive#tab2 {
+}
+.tabberlive#tab2 .tabbertab {
+ height:200px;
+ overflow:auto;
+}

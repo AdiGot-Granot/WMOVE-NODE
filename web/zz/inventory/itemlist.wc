@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<title>Inventory List</title>
+</head>
+
+<body bgcolor="#4A659C">
+<div align="center">
+  <center>
+<table border="1" width="100%" cellspacing="1">
+    <td width="100%" bgcolor="#EFEFDF" colspan="5">
+			<table border="1" width="98%" align="center" cellspacing="0">
+			  <tr>
+		   <td width="34%" bgcolor="#008000" >&nbsp;</td>
+		   <td width="33%" bgcolor="#008000" align="center"><font color="#FFFFFF" face="Verdana"><b>Article List</font></b></td>
+		   <td width="17%" bgcolor="#008000" align="center">&nbsp;</td>
+		   <td width="16%" bgcolor="#008000" align="center"><a href="javascript:window.close()">
+    <img border="0" src="/zz/images/x.gif" align="right"></a></td>
+		      </tr>
+			  <tr>
+    		     <td width="34%" bgcolor="#FFFFFF" valign="top">
+			    <%  Dimension laHeader[3]
+			    	laHeader[1]="Qty"
+			    	laHeader[2]="Items"
+			    	laHeader[3]=IIF(plCALCCF,"CuFt","Lbs")
+			     	SELECT _T1 
+			    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt'")%>&nbsp;</td>
+	    	     <td width="33%" bgcolor="#FFFFFF" valign="top">
+			    <%SELECT _T2 
+			    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt'")%>&nbsp;</td>
+		         <td width="33%" bgcolor="#FFFFFF" valign="top" colspan="2">
+			    <%SELECT _T3 
+			    	Response.ShowCursor(@laHeader,,,,"style='font-size: 8pt'")%>&nbsp;</td>
+		      </tr>
+			</table>
+    </td>
+  </tr>
+	</table>
+
+  </center>
+</div>
+
+<br>
+
+</body>
+
+</html>

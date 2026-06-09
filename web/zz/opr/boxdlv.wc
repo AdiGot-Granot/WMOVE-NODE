@@ -1,0 +1,336 @@
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/zz/editor/main.css">
+
+<title>Box Delivery-<%=pcORDNO%></title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" /><!--CONF CHECKBOX-->
+  
+<script type="text/javascript">
+   jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });            
+   });
+</script>
+
+<!--DROPDOWN AGENT SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN AGENT SEARCH-->
+
+<script type="text/javascript">
+      jQuery( document ).ready(function( $ ) {  
+      $('.agent-select').select2({
+          placeholder: 'Select Agent',
+          allowClear: true
+      });
+  });
+</script>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function jobCard(i) {
+    if (i==1) window.location.href=('/wc.dll?mpopr~boxdlvwc~<%=pcSCR%>');
+    if (i==2) window.location.href=('/wc.dll?mpopr~packdaywc~<%=pcSCR%>');
+    if (i==3) window.location.href=('/wc.dll?mpopr~pickupwc~<%=pcSCR%>');
+    if (i==4) window.location.href=('/wc.dll?mpopr~oprwc~<%=pcSCR%>');
+//    if (i==5) window.location.href=('/wc.dll?mpopr~claimswc~<%=pcSCR%>');
+//    if (i==6) window.location.href=('/wc.dll?mpstg~stgwc~<%=pcSCR%>');
+//    if (i==7) window.location.href=('/wc.dll?mpopr~wageswc~<%=pcSCR%>');
+}
+
+function submitBX(i) {
+    if (i==1) { document.theForm.action="/wc.dll?mpopr~boxdlvret~<%=pcSCR%>";
+                document.theForm.submit();
+    }
+    if (i==2){
+      window.open('/wc.dll?mpopr~mpwwc~<%=pcSCR%>~BX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=600');
+    self.name="main"}
+    if (i==3){
+      window.open('/wc.dll?mpopr~truckswc~<%=pcSCR%>~BX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=720,height=600');
+    self.name="main"}
+}
+
+</SCRIPT>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+
+<STYLE TYPE="text/css">
+
+/* Card */
+.nav-card {
+  display: inline-block;
+  padding: 10px 22px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #F7F7E7;
+  font-family: Arial;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #000000;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: border-color 0.18s, color 0.18s, background 0.18s, box-shadow 0.18s;
+}
+ 
+/*Hover state */
+.nav-card:hover {
+  border-color: #000;
+  color: #000;
+  background: #FFBE42;
+}
+ 
+/* Active / selected state */
+.nav-card.active {
+  border-color: #000;
+  color: #000000;
+  background: #F7F0B9;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.12);
+}
+
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #0081D3;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+
+</style>
+</head>
+
+<BODY bgColor="#4e6699">
+<br><br>
+<TABLE cellSpacing="0" cellPadding="0" align="center" width="850" bgColor="#4e6699" border="0">
+  <tr>
+    <td width="20%" align="center" height="25"><a onclick="jobCard(1)"><span class="nav-card active">Box Delivery</span></a></td>
+    <% IF plPKDAY=.T. %>
+    <td width="20%" align="center" height="25"><a onclick="jobCard(2)"><span class="nav-card">Packing Day</span></a></td>
+    <%ENDIF%>
+    <td width="20%" align="center" height="25"><a onclick="jobCard(3)"><span class="nav-card">Job Pick-Up</span></a></td>
+    <td width="20%" align="center" height="25"><span class="nav-card">Delivery 1</span></td>
+    <td width="20%" align="center" height="25">&nbsp;</td>
+  </tr>
+</TABLE>
+ <br>
+<TABLE cellSpacing="0" cellPadding="0" align="center" width="850" bgColor="#ffffff" border="0">
+  <tr>
+    <td width="100%" align="center" bgcolor="#3366CC" height="25"><font style="font-family:Verdana;font-weight:bold;color:#FFF;">Box Delivery</font></td>
+  </tr>
+</TABLE>
+<TABLE cellSpacing="0" cellPadding="0" align="center" width="850" bgColor="#ffffff" border="0">
+  <TR>
+    <TD><br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="98%" cellspacing="0" cellpadding="0">
+   <tr>
+     <td width="62%">&nbsp;<b>Address: <%=ALLT(_EST.SNAME)%></b></td>
+     <td width="16%" style="border-left: 1px solid #808080;">&nbsp;<b>Job Number:</b></td>
+     <td width="22%">&nbsp;<b><font style="font-size:12pt;color:#F76A00;"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></font></b></td>
+  </tr>
+   <tr>
+     <td width="62%">&nbsp;<%=ALLT(_EST.SADD1)+' '+ALLT(_EST.SADD2) %>,<%=IIF(EMPTY(_EST.SAPT),'',' A: '+ALLT(_EST.SAPT)+', ')%><%=IIF(EMPTY(_EST.SFLOOR),'',' F: '+ALLT(STR(_EST.SFLOOR))+', ')%>
+     &nbsp;<%=ALLT(PROPER(_EST.SCITY))%>,&nbsp;<%=ALLT(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%><%=IIF(EMPTY(_EST.SCOUNTRY),'',' '+ALLT(_EST.SCOUNTRY))%></td>
+     <td width="16%" style="border-left: 1px solid #808080;">&nbsp;<b>Job Status:</b></td>
+     <td width="22%">&nbsp;<b><%=pcSTATUSNAME%></b></td>
+  </tr>
+   <tr>
+     <td width="62%">&nbsp;<%=ALLT(_EST.STELH)%><%=IIF(EMPTY(_EST.STELO),'',' / '+ALLT(_EST.STELO))%><%=IIF(EMPTY(_EST.RTELH),'',' / '+ALLT(_EST.RTELH))%></td>
+     <td width="16%" style="border-left: 1px solid #808080;">&nbsp;</td>
+     <td width="22%">&nbsp;</td>
+  </tr>      
+</table>
+ <br>     
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#808080" width="98%">
+  <tr>
+    <td valign="top">
+<FORM NAME="theForm" METHOD="POST">    
+<table border="0" cellpadding="3" cellspacing="1" style="border-collapse: collapse;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="5"><b><u><font size="3">Job Parameters</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="19%"><b>Job Date/Time:</b></td>
+    <td width="11%" ><input type="text" autocomplete="off" id="Date1" name="DTEBX" size="8" value="<%=_BX.DTE%>" tabindex="1" maxlength="15"></td>
+    <td width="24%" style="border-right: 1px solid #808080;"><input type="text" name="TMEBX" size="8" value="<%=ALLT(_BX.TME)%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~TMEBX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')"  tabindex="2" maxlength="20"></td>
+    <td width="18%">Job Start Time:</td>
+    <td width="28%"><input type="text" name="STARTTMEBX" size="8" value="<%=_BX.STARTTME%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~STARTTMEBX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')" maxlength="20" readonly tabindex="6"></td>
+ </tr> 
+  <tr>
+    <td width="19%"><b>Confirm Job:</b></td>
+    <td width="35%" style="border-right: 1px solid #808080;" colspan="2"><label class="switch"><input type="checkbox" id="togBtn" name="CONFBX" value="ON" <%=IIF(_BX.CONFIRM,'checked','')%> tabindex="3"><div class="slider round"></div></label></td>
+    <td width="18%">Job Finish Time:</td>
+    <td width="28%"><input type="text" name="ENDTMEBX" size="8" value="<%=_BX.ENDTME%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~ENDTMEBX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')" maxlength="20" reaonly tabindex="7"></td>
+ </tr> 
+  <tr>
+    <td width="19%">Required Workers:</td>
+    <td width="35%" style="border-right: 1px solid #808080;" colspan="2">
+	<select size="1" name="JMENBX" tabindex="4">
+	  <option value="<%=ALLT(STR(_BX.JMEN))%>" selected><%=ALLT(STR(_BX.JMEN))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+		  <option>11</option>
+		  <option>12</option>
+		  <option>13</option>
+		  <option>14</option>
+		  <option>15</option>
+		  <option>16</option>
+		  <option>17</option>
+		  <option>18</option>
+		  <option>19</option>
+		  <option>20</option>		  
+    </select></td>
+    <td width="18%">Workers Pay Hours:</td>
+    <td width="28%"><input type="text" name="HRSBX" style="width:50px;" value="<%=ALLT(STR(_BX.HRS,6,2))%>" tabindex="8" size="20"></td>
+ </tr>
+  <tr>
+    <td width="19%">Required Truck(s):</td>
+    <td width="35%" style="border-right: 1px solid #808080;" colspan="2">
+	<select size="1" name="JTRUCKBX" tabindex="5">
+	  <option value="<%=ALLT(STR(_BX.JTRUCK))%>" selected><%=ALLT(STR(_BX.JTRUCK))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+    </select></td>
+    <td width="17%">&nbsp;</td>
+    <td width="29%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="54%" align="left" style="border-right: 1px solid #808080;" colspan="3">&nbsp;<b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitBX(2)" style="cursor:pointer;">Assign Workers</a></font></u></b></td>
+    <td width="46%" align="left" colspan="2">&nbsp;<b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitBX(3)" style="cursor:pointer;">Assign Trucks</a></font></u></b></td>
+  </tr>    
+  <tr>
+    <td width="54%" valign="top" style="border-right: 1px solid #808080;" colspan="3">
+    <table border="1" align="center" cellSpacing="0" cellPadding="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="95%">
+      <tr>
+        <td width="55%" height="23" bgcolor="#3366CC" align="left">&nbsp;<font color="#FFFFFF"><b>Workers</b></font></td>
+        <td width="25%" height="23" bgcolor="#3366CC" align="left">&nbsp;<font color="#FFFFFF"><b>Code</b></font></td>
+     </tr>
+      <%SELECT _MPWBX
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="55%">&nbsp;<%=ALLT(ID)%><%=IIF(EMPTY(NAME),'',' - <b>'+ALLT(NAME)+'</b>')%></td>
+        <td width="25%">&nbsp;<%=ALLT(OPRCODE)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>    
+    </td>
+    <td width="46%" valign="top" colspan="2">
+    <table border="1" align="center" cellSpacing="1" cellPadding="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="95%">
+      <tr>
+        <td width="38%" height="23" bgcolor="#3366CC" align="left">&nbsp;<font color="#FFFFFF"><b>Truck</b></font></td>
+        <td width="42%" height="23" bgcolor="#3366CC" align="left">&nbsp;<font color="#FFFFFF"><b>Driver</b></font></td>
+     </tr>
+      <%SELECT _TRBX
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="38%">&nbsp;<%=ALLT(TRUCK)%></td>
+        <td width="42%">&nbsp;<%=ALLT(DRIVER)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>    
+    </td>
+  </tr>  
+  </table>	
+  <% IF plAGENT AND !plBLKAGENTS %>
+  <br>  
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%"> 
+  <tr>
+    <td width="100%" colspan="5"><b><font face="Verdana" size="2">Agent:</font></b>
+	<select size="1" name="AGENTIDBX" tabindex="10" class="agent-select" style="width: 450px;">
+	  <option value="<%=pnAGENTIDBX%>" selected><%=pcAGCOMPANYBX%></option> 
+	    <option></option>
+	    <% SELECT _TAGENT 
+	       GO TOP 
+	   	 SCAN %>
+	   <option value="<%=ALLT(STR(AGENTID))%>"><%=ALLT(AGENT)%>&nbsp;&nbsp;***&nbsp;&nbsp;<%=ALLT(COMPANY)%></option>
+       <% ENDSCAN %>  
+    </select></td>
+  </tr>
+</table>    
+  <%ENDIF%>  
+  </td>
+ </tr>
+</table> 
+ <br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%" align="center"><b><u><font face="Verdana">Internal Office Remarks</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea rows="18" name="REMBX" cols="60" tabindex="7"><%=ALLT(_BX.REMARKS)%></textarea></td>
+ </tr>
+</table>
+<% IF _EST.STATUS<>'D' %>
+ <br>
+<table border="0" align="center" width="90%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="100%" align="center"><input type="button" CLASS="SUBOFF" name="B7" onclick="submitBX(1)" value="Submit"></td>    
+ </TR>
+</TABLE>
+<%ENDIF%>  
+ &nbsp;</td>
+ </tr>
+</table>
+</form>
+<TABLE cellSpacing="0" cellPadding="0" align="center" width="850" bgColor="#ffffff" border="0">
+  <tr>
+    <td width="100%" align="center" bgcolor="#3366CC" height="25">&nbsp;</td>
+  </tr>
+</TABLE>   
+</BODY>
+</HTML>

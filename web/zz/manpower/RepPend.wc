@@ -1,0 +1,204 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Pay Commission to Rep</title>
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function recalculate(i) {
+    if (i==1) document.theForm.action=
+       "/wc.dll?mpopr~recalculatesales~<%=pcSCR %>";
+    document.theForm.submit()
+    }
+
+function checkData(){
+			frm = document.theForm;
+			return lengthValid(frm.REF,1,"Please enter Reference to complete the payment") ;
+		}
+
+function Exit(i) {
+          document.theForm.action="/wc.dll?mv~paysalesmanwc~<%=pcSCR%>" ;
+          document.theForm.submit();
+      }
+
+function submitfunction(i) {
+		if (checkData()) {
+          document.theForm.action="/wc.dll?mpopr~paysalesret~<%=pcSCR%>" ;
+          document.theForm.submit();
+      }
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/topBaropr.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#bebe99" align="center" height="20"><b><font face="Verdana" size="4" color="#993366">Pay Commission to Rep</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%"><br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="32%" height="25">&nbsp;<font face="Verdana" size="2"><b>Representative: <%=pcREP%>&nbsp;,&nbsp;<%=pcREPNAME%></b></font></td>
+    <td width="20%" height="25"><font face="Verdana" size="2" color="#008000"><b><% IF plSORTBY=.F. %>List by Move Date<%ELSE%>List by Book Date<%ENDIF%></b></font></td>
+    <td width="48%" height="25"><font face="Verdana" size="2"><b>Total Records:&nbsp;<font color="008000"><%=pcRECORDS%></font></b></font></td>    
+  </tr>
+</table>
+   <FORM NAME="theForm" method="post">		
+<table border="2" align="center" width="98%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;line-height:25px;" bordercolor="#6B8AAD">
+    <tr>
+      <td width="5%" align="center"><b><font face="Arial" size="2" color="#993366">Job No</font></b></td>
+      <td width="7%" align="center"><b><font face="Arial" size="2" color="#993366">Type</font></b></td>
+      <td width="10%" align="center"><b><font face="Arial" size="2" color="#993366">Customer</font></b></td>
+      <td width="6%" align="center"><b><font face="Arial" size="2" color="#993366">Move Date</font></b></td>
+      <td width="7%" align="center"><b><font face="Arial" size="2" color="#993366">Book Date</font></b></td>
+      <td width="3%" align="center"><b><font face="Arial" size="2" color="#993366">Week</font></b></td>
+      <td width="7%" align="center"><b><font face="Arial" size="2" color="#993366">Amount</font></b></td>
+      <td width="8%" align="center"><b><font face="Arial" size="2" color="#993366">Estimate</font></b></td>
+      <td width="8%" align="center"><b><font face="Arial" size="2" color="#993366">Job Total</font></b></td>
+      <td width="8%" align="center"><b><font face="Arial" size="2" color="#993366">Cust. Pay</font></b></td>
+      <td width="8%" align="center"><b><font face="Arial" size="2" color="#993366">Balance</font></b></td>
+      <td width="19%" align="center"><b><font face="Arial" size="2" color="#993366">Remarks</font></b></td>
+      <td width="10%" align="center"><b><font face="Arial" size="2" color="#993366">To Pay</font></b></td>
+    </tr>    
+	<% SELECT _REPPAY
+	     SCAN %>
+    <tr>
+      <td width="5%" align="center"><b><font face="Arial" size="2"><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a></font></b>&nbsp;</td>
+      <td width="7%" align="center"><b><font style="font-family:Arial;font-size:9pt;"><%=ALLT(CTYPE) %></font></B>&nbsp;</td>
+      <td width="10%" align="left">&nbsp;<b><font style="font-family:Arial;font-size:10pt;"><%=ALLT(PROPER(SNAME))%></font></b></td>
+      <td width="6%" align="center"><b><font face="Arial" size="2" color="#<%=IIF(plSORTBY=.F.,'008000','000000')%>"><%=DTOC(MOVEDTE) %>&nbsp;</font></B></td>
+      <td width="7%" align="center"><b><font face="Arial" size="2" color="#<%=IIF(plSORTBY=.T.,'008000','000000')%>"><%=IIF(EMPTY(BOOKDTE),'',DTOC(BOOKDTE))%></font></b>&nbsp;</td>
+      <td width="3%" align="center"><b><font face="Arial" size="2"><%=IIF(WEEKNO=0,' ',ALLT(STR(WEEKNO))) %>&nbsp;</FONT></B></td>
+      <td width="7%" align="RIGHT"><%IF PAID=.T.%><b><font face="Arial" size="2" color="#008000"><%='$'+ALLT(STR(PAIDAMT,10,2))%>-PAID</font></b><%ELSE%><input NAME="<%='p'+ALLT(STR(RECNO())) %>" size="4" VALUE="<%=IIF(PAIDAMT=0,' ',ALLT(STR(PAIDAMT,10,2))) %>" style="text-align: Right;"><%ENDIF%></td>
+      <td width="8%" align="right"><b><font face="Arial" size="2"><%=IIF(SUBTOTAL=0,' ','$'+ALLT(STR(SUBTOTAL,10,2))) %>&nbsp;</FONT></B></td>
+      <td width="8%" align="right"><b><font face="Arial" size="2"><%=IIF(ACTTOTAL=0,' ','$'+ALLT(STR(ACTTOTAL,10,2))) %>&nbsp;</FONT></B></td>      
+      <td width="8%" align="right"><b><font face="Arial" color="#008000" size="2"><%=IIF(CPAIDAMT=0,' ','$'+ALLT(STR(CPAIDAMT,10,2)))%>&nbsp;</FONT></B></td>
+      <td width="8%" align="right"><b><font face="Arial" color="#FF0000" size="2"><%=IIF(BALANCE=0,' ','$'+ALLT(STR(BALANCE,10,2)))%>&nbsp;</FONT></B></td>
+      <td width="19%" align="left">&nbsp;<input NAME="<%='n'+ALLT(STR(RECNO())) %>" size="35" VALUE="<%=ALLT(NOTES) %>"></td>
+      <td width="10%" align="center"><%IF PAID=.F.%><input type="checkbox" name="<%='t'+ALLT(STR(RECNO())) %>" value="ON" checked><%ENDIF%></td> 
+    </tr>
+ 	<% ENDSCAN %>
+     <tr>
+      <td width="88%" height="30" colspan="11">&nbsp;</td>
+      <td width="19%" height="30" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="recalculate(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Recalculate"></td>
+      <td width="88%" height="30">&nbsp;</td>
+   </tr>
+</table>
+	<br>
+<table border="2" align="center" width="90%" cellpadding="0" cellspacing="1" style="border-collapse: collapse" bordercolor="#6B8AAD">
+    <tr>
+      <td width="15%" align="center"><b><font face="Arial" size="2" color="#993366">Total Commission</font></b></td>
+      <td width="17%" align="center"><b><font face="Arial" size="2" color="#993366">Estimates Total</font></b></td>
+      <td width="16%" align="center"><b><font face="Arial" size="2" color="#993366">Job Total</font></b></td>
+      <td width="16%" align="center"><b><font face="Arial" size="2" color="#993366">Total Customer Payments</font></b></td>
+      <td width="16%" align="center"><b><font face="Arial" size="2" color="#993366">Balance</font></b></td>
+    </tr>
+     <tr>
+      <td width="15%" align="right"><font style="font-family:Arial;font-size:11pt;color:#FF0000;"><b>$<%=STR(pnCOMM,10,2)%></b></font>&nbsp;</td>
+      <td width="17%" align="right"><font style="font-family:Arial;font-size:11pt;color:#008000;"><b>$<%=STR(pnSUBTOTAL,10,2)%></b></font>&nbsp;</td>
+      <td width="16%" align="right"><font style="font-family:Arial;font-size:11pt;color:#008000;"><b>$<%=STR(pnACTTOTAL,10,2)%></b></font>&nbsp;</td>
+      <td width="16%" align="right"><font style="font-family:Arial;font-size:11pt;color:#008000;"><b>$<%=STR(pnCPAIDAMT,10,2)%></b></font>&nbsp;</td>
+      <td width="16%" align="right"><font style="font-family:Arial;font-size:11pt;color:#FF0000;"><b>$<%=STR(pnBALANCE,10,2)%></b></font>&nbsp;</td>
+   </tr>
+</table>
+ <br>	
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="100%"><font face="Verdana" size="2"><b>Payment To:&nbsp;<%=pcREP%>&nbsp;,&nbsp;<%=pcREPNAME%></b></td>
+ </tr>
+</table>
+<table border="2" width="90%" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="14%" align="center" height="29"><b><font size="2" color="#993366" face="Arial">Paid Date</font></b></td>
+      <td width="20%" align="center" height="29"><b><font size="2" color="#993366" face="Arial">Type of Payment</font></b></td>
+      <td width="26%" align="center" height="29"><b><font size="2" color="#993366" face="Arial">Reference/ Check No.</font></b></td>
+      <td width="11%" align="center" height="29"><b><font size="2" color="#993366" face="Arial">Amount</font></b></td>
+      <td width="29%" align="center" height="29"><b><font size="2" color="#993366" face="Arial">Remarks</font></b></td>
+    </tr>
+    <tr>
+      <td width="14%" align="center"><input NAME="PAIDDTE" id="Date1" size="10" VALUE="<%=DTOC(DATE())%>"></td>
+      <td width="20%" align="center">
+      <select size="1" name="TYPE" tabindex="28">
+	       	 <option>Check</option>
+		     <option>Cash</option>
+		     <option>Credit Card</option>
+       		 <option>Money Order</option>
+        </select></td>
+      <td width="26%" align="center"><input NAME="REF" style="background-color:#FFFFCC" size="25" VALUE=""></td>
+      <td width="11%" align="center"><input NAME="PAYAMT" size="5" VALUE="<%=STR(pnCOMM1,10,2) %>" style="text-align:right;"></td>
+      <td width="29%" align="center"><input NAME="REMARKS" size="25" value=""></td>
+    </tr>
+</table>
+  <p><font color="#FF0000"><b><%=pcMSG%></font></b></p>
+   <br>
+<table border="0" width="60%" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="49%" align="center">
+	<input type="button" CLASS="SUBOFF" name="B3" onclick="submitfunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+    <td width="49%" align="center">
+    <input type="button" CLASS="SUBOFF" name="B3" onclick="Exit(1)" onmouseover="javasctript: this.className='SUBONEXIT'" onmouseout="javasctript: this.className='SUBOFF'" value="Payroll Menu"></td>
+  </tr>
+</table>
+    </td></tr></table>
+    </td></tr>
+	</form>  
+  <tr>
+    <td width="100%" bgcolor="#993366" height="20"><font size="2" color="white">User: <%=pcUser%></font></td>
+  </tr>
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>

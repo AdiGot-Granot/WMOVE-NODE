@@ -1,0 +1,158 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Print/Email Storage Invoices</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) {
+       document.theForm.action="/wc.dll?mpstg~stgemailret~<%=pcSCR%>~<%=pcIRUNDTE%>~<%=pcSTORAGEID%>";
+       document.theForm.submit();
+ }      
+    if (i==2) {
+       document.theForm.action="/wc.dll?mpstg~stgprocesswc~<%=pcSCR%>";
+       document.theForm.submit();
+ }      
+  }
+ 
+checked=false;
+function checkedAll (theForm) {
+	var aa= document.getElementById('theForm');
+	 if (checked == false)
+          {
+           checked = true
+          }
+        else
+          {
+          checked = false
+          }
+	for (var i =0; i < aa.elements.length; i++) 
+	{
+	 aa.elements[i].checked = checked;
+	}
+      }
+
+function CheckBoxes(FormName, CheckValue){
+   if(!document.forms[FormName])
+      return;
+   var objCheckBoxes = document.getElementsByTagName('input');
+   if(!objCheckBoxes)
+      return;
+   var countCheckBoxes = objCheckBoxes.length;
+   if(!countCheckBoxes)
+      objCheckBoxes.checked = CheckValue;
+   else
+      for(var i = 0; i < countCheckBoxes; i++)
+      objCheckBoxes[i].checked = CheckValue;
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD5		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}					
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body>
+<% SELECT _STGINV 
+	GO TOP %>
+<table border="0" width="30%" align="center" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" cellspacing="0" bordercolor="#111111">
+  <tr>
+    <td width="100%" style="line-height:27px;" colspan="3" align="center"><b><font size="4">Print/Email Storage Invoices</font></b></td>
+ </tr>
+  <tr style="line-height:27px;">
+    <td width="27%"><b>Storage: <font color="#4E6699"><%=pcSTGNO%></font><b></td>
+    <td width="37%"><b>Customers in Cycle: <font color="#4E6699"><%=ALLTRIM(STR(RECCOUNT())) %></font></b></td>
+    <td width="36%"><b>Cycle Date: <font color="#083484"><%=RUNDTE%></font></b></td>
+   </tr>
+</table>
+<form name="theForm" method="post">
+<table border="0" align="center" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td height="30" valign="bottom"><font face="Verdana" size="2"><b>Select/Deselect All</b></font> <input type="checkbox" name="checkall" onclick="CheckBoxes('theForm',this.checked);" value="ON"></td>
+ </tr>
+</table>
+<table border="0" width="60%" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111">
+    <tr>
+      <td width="4%" class="TD1">Print</td>
+      <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Email</td>
+      <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Job No.</td>      
+      <td width="14%" class="TD1" style="border-left: 1px solid #A9A9A9;">Customer</td>
+      <td width="16%" class="TD1" style="border-left: 1px solid #A9A9A9;">Email</td>
+      <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Invoice</td>      
+      <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Balance</td>      
+      <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">Payment</td>
+   </tr>
+  <% SCAN %>
+     <tr>
+      <td width="4%" class="TD3"><input type="checkbox" name="<%='P'+ALLT(ORDNO)%>" value="ON" <%=IIF(PRINTX,'checked','')%>></td>
+      <td width="4%" class="TD3" style="border-left: 1px solid #A9A9A9;"><% IF EMAILX %><input type="checkbox" name="<%='E'+ALLT(ORDNO)%>" value="ON" checked><%ENDIF%></td>
+      <td width="5%" class="TD5"><%=ALLT(DEPT)+ALLT(ORDNO)%></td>      
+      <td width="14%" class="TD2"><%=ALLT(PROPER(CNAME))%></td>
+      <td width="16%" class="TD2" style="border-left: 1px solid #A9A9A9;"><%=IIF(EMAILX,ALLT(EMAIL),'')%></td>
+      <td width="6%" class="TD4"><b><font color="#008000"><%='$'+ALLT(STR(TOTALINV,8,2))%></b></td>      
+      <td width="6%" class="TD4"><b><font color="#FF0000"><%='$'+ALLT(STR(BALSTG,8,2))%></font></b></td>      
+      <td width="8%" class="TD3" style="border-left: 1px solid #A9A9A9;"><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>~PMT" target="_blank">Make a Payment</a></td>
+    </tr>
+   <% ENDSCAN %>
+</table>
+ <br>
+<table border="0" align="center" width="30%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit Process"></td>    
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B2" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>    
+ </tr>
+</table>
+</form>
+</body>
+</html>

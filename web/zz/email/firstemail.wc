@@ -1,0 +1,37 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=pcSUBJECT%></title>
+</head>
+
+<body>
+<table border="0" ALIGN="left" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100"></td>
+  </tr>
+  <tr>
+    <td align="right"><font face="Verdana" size="2"><%=CDOW(DATE())%>, <%=DATE()%>&nbsp;&nbsp;&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td><br>Dear <%=PROPER(pcSNAME)%>,<br><%=pcBODY%><BR>
+<font face="Verdana" size="2">
+    <% IF plLINK=.T. %>You can access your estimate number <b><%=pcLINK %></b> and update your move information and inventory.<br><br><% ENDIF %>
+    Sincerely,
+ <% IF pnUSERID>0 %><br><%=PROPER(pcFULLNAME)%><br><%=IIF(EMPTY(pcTITLE),'Moving Consultant',pcTITLE)%><%ENDIF%>
+   <br><%=pcCOMPANY%><%=IIF(EMPTY(pcSLOGAN),'','<br>'+pcSLOGAN)%><br><%=pcTOLLFREE%>
+   <%=IIF(EMPTY(pcUSERPHONE),'','<br>'+pcUSERPHONE)%>
+   <br><a href="mailto:<%=pcOUREMAIL%>"><%=pcOUREMAIL%></a>
+   <br><a href="<%=pcOURWEB%>" TARGET="_BLANK"><%=pcOURWEB%></a>
+   <br><%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%><%=IIF(EMPTY(pcICC),"","&nbsp;&nbsp;MC: "+pcICC)%><%=IIF(EMPTY(pcREGISTER),"",IIF(pcCUSTNO='INTLMOVENT',"<BR>FMC: "+pcREGISTER,"<br>Mover Registration: "+pcREGISTER))%>
+ </font></td>
+  </tr>
+  <tr>
+    <td width="100%" align="center"><br><font size="1" face="Verdana">If you no longer wish to receive emails from <%=pcCOMPANY%>, please click 
+	<a target="_blank" href="https://<%=gcSERVERIP%>/wc.dll?mputil~removeemail~&CUSTID=<%=pcCUSTID%>&EMAILTO=<%=pcEMAIL%>&JOBID=<%=pcJOBID%>">unsubscribe</a></font></td>
+ </tr>
+</table>
+
+</body>
+</html>

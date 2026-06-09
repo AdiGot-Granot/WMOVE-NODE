@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Payroll Menu</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mv~payrollmenuret~<%=pcSCR%>~1');
+    if (i==2) window.location.href=('/wc.dll?mv~payrollmenuret~<%=pcSCR%>~2');
+    if (i==3) window.location.href=('/wc.dll?mv~payrollmenuret~<%=pcSCR%>~3');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 12pt;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+				  	text-align: left}
+	.txton		{	color: blue;
+				  	font-size: 12pt;
+				  	text-align: left;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+					text-decoration: underline
+  				  	cursor: Hand}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500" align="center">
+  <tr>
+    <td width="100%" colspan="2">
+    <IMG SRC="zz/images/topBaropr.gif" width="500" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#bebe99" colspan="2">
+    <a href="javascript:window.close()">
+    <img border="0" src="zz/images/x.gif" align="right" width="17" height="18"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" colspan="2">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+
+		<br>
+		
+		        <!-- Title -->
+        	<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="60%" BGCOLOR="#EFEFDF" align="center">
+	          <tr>
+    	        <td width="100%">
+                <IMG SRC="zz/images/menuFrame_01.gif" width="300" height="10"></td>
+	          </tr>
+	          <tr>
+	            <td width="100%" valign="top" align="center">
+	         	<!-- column  Data -->
+
+					<font size="5" color="#000080" face="Verdana">Payroll menu
+	         	<!-- column  Data-->
+				</font>
+				</td>
+	          </tr>
+    	      <tr>
+        	    <td width="100%">
+                <IMG SRC="zz/images/menuFrame_03.gif" width="300" height="10"></td>
+	          </tr>
+    	    </table>
+          	<!-- Title -->
+
+		<br>
+		
+	<!-- Frame Table --->
+	<!-- Menu -->
+		<table border="0" width="80%" cellpadding="0" cellspacing="0" align="center">
+		    <tr><td valign="top" width="100%">
+
+			  <!-- Menu A-->
+				<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+				  <tr>
+				    <td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+				    <td width="90%" height="30"><font class="txtoff" onclick="SubmitFunction(1)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">
+                    Salesmen Payroll </font></td>
+				  </tr>
+				  <tr>
+				    <td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+				    <td width="90%" height="30"><font class="txtoff" onclick="SubmitFunction(2)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">
+                    Workers Payroll</font></td>
+				  </tr>
+				  <tr>
+				    <td width="10%" height="30" style="text-align: center"><img border="0" src="zz/images/point.gif" width="8" height="7"></td>
+				    <td width="90%" height="30">&nbsp;</td>
+				  </tr>
+				</table>
+				
+		  <!-- Menu A-->
+
+ 		  </table>
+	<!-- Menu -->
+
+	<br>
+
+	<!-- Command Buttons -->
+
+    </td>
+  </tr>
+</table>
+<!-- frame table -->
+
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" bgcolor="#993366">
+    <p align="left"><font size="2" color="white" align="left">User: <%=pcUser%>&nbsp;  </font></td>
+    <td width="50%" bgcolor="#993366">
+     <p align="right"><font size="1" color="white" align="right">Eastern: <font size="2" color="white" align="right"><%=datetime()%></font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFEFCC" align="center" colspan="2">
+    
+    <!-- Show Cursor -->
+	 <br>
+	 <table border="0" width="70%" align="center" cellspacing="0" cellpadding="0" align="center">
+  		<tr>
+    	<td width="100%">
+	   </td>
+	  </tr>
+	</table>
+
+    <!-- Show Cursor -->
+    
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="2">
+    <IMG ALT="" SRC="zz/images/botBar.gif" width="500" height="14"></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

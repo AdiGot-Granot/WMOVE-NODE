@@ -1,0 +1,449 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Claims Form-<%=RIGHT(pcORDNO,4)%></title>
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.7" media="screen" />
+<!---lightbox--->
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+ $(".fancybox").fancybox({
+  openEffect : 'elastic',
+  closeEffect : 'elastic',
+  fitToView: false,
+  autoSize: false,
+  nextSpeed: 0, //important
+  prevSpeed: 0, //important
+  afterLoad: function(){
+  // added 50px to avoid scrollbars inside fancybox
+   this.width = ($('.fancybox-iframe').contents().find('html').width())+50;
+   this.height = ($('.fancybox-iframe').contents().find('html').height())+50;
+  }
+
+ }); // fancybox
+}); // ready
+
+function submitclaim() {
+    document.theForm.action="/wc.dll?mpopr~claimsret~<%=pcSCR%>";
+    document.theForm.submit() 
+    }
+
+function sendemail() {
+    window.open('/wc.dll?mpest~claimscenterwc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=no,copyhistory=no,scrollbars=yes,width=750,height=600');
+self.name="main"}
+
+</SCRIPT>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+	jQuery.noConflict();
+
+   jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+       $("#Date3").datepicker({ numberOfMonths:[1,2] });
+       
+   });
+</script>
+
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #FFFFFF;
+				  	font-size: 9pt;
+					font-weight: bold;
+					background-color: #008000;
+  				  	font-family: Verdana;
+  				  	text-align: center;}
+	.TD2		{	color: #000000;
+				  	font-size: 9pt;
+  				  	font-family: Verdana;}  				  	
+	.TDTOP1	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Verdana;
+					background-color: #993366;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TDBODY1 	{	text-align: center;
+					color: yellow; 
+					font-size: 10pt;
+					font-family: Verdana;
+					background-color: #993366;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<% SELECT _CLAIMS%>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="800" align="center">
+  <tr>
+    <td colspan="3"><IMG SRC="zz/images/topBaropr.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="246" BGCOLOR="#BEBE99"><b><font face="Verdana" color="#FFFF00"><%=pcBALANCEX%><%=pcBALSTGX%></font></b></td>
+    <td width="209" BGCOLOR="#BEBE99" align="center"><b><font size="4" color="#000080" face="Verdana">Claim</font></b></td>
+    <td width="241" BGCOLOR="#BEBE99" align="center"><b><font face="Verdana" color="#FFFF00"><%=pcCLOSEDX%></font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="3">
+    <%IF !EMPTY(CCLOSEDDTE)%><CENTER><font size="6" color="#FF0000" face="Verdana"><b>This Claim is Closed</b></font></CENTER><%ENDIF%>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+	<td width="100%"> 
+	<form name="theForm" method="post">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="70%" valign="top"><br>    
+<table border="1" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+	<td bgcolor="#008000" align="center"><b><font style="font-family:Verdana;font-size:11pt;color:#FFF;">Move Details</font></b></td>
+ </tr>
+  <tr>
+    <td valign="top">
+<table border="0" width="100%" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;line-height:23px;" bordercolor="#111111" cellspacing="1">
+  <tr>
+	<td width="117">Customer:</td>
+	<td width="442" colspan="3"><font style="font-size:11pt;"><b><%=ALLT(PROPER(_EST.SNAME))%></b></font></td>
+ </tr>
+ <%IF !EMPTY(_EST.SADD1) OR !EMPTY(_EST.SADD2)%>
+  <tr>
+	<td width="117">Address From:</td>
+	<td width="442" colspan="3"><%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%></td>
+ </tr>
+ <%ENDIF%>
+ <tr>
+	<td width="117">City/State:</td>
+	<td width="442" colspan="3"><%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%></td>
+ </tr>
+ <%IF !EMPTY(_EST.RADD1) OR !EMPTY(_EST.RADD2)%>
+  <tr>
+	<td width="117">Address To:</td>
+	<td width="442" colspan="3"><%=ALLT(_EST.RADD1)%>&nbsp;<%=ALLT(_EST.RADD2)%></td>
+ </tr>
+ <%ENDIF%>  
+  <tr>
+	<td width="117">City/State:</td>
+	<td width="442" colspan="3"><%=ALLT(PROPER(_EST.RCITY))+', '+(_EST.RSTATE)%>&nbsp;<%=ALLT(_EST.RZIP)%></td>
+ </tr>
+ <% IF !EMPTY(_EST.RTELH)%>
+  <tr>
+	<td width="117">Mobile:</td>
+	<td width="442" colspan="3"><%=ALLT(_EST.RTELH)%></td>
+ </tr>
+ <%ENDIF%>
+ <% IF !EMPTY(_EST.RTELO)%>
+  <tr>
+	<td width="117">Phone:</td>
+	<td width="442" colspan="3"><%=ALLT(_EST.RTELO)%></td>
+ </tr> 
+ <%ENDIF%>
+  <tr>
+	<td width="562" colspan="4" bgcolor="#008000" align="center"><b><font style="font-family:Verdana;font-size:11pt;color:#FFF;">Claim Address</font></b></td>
+ </tr>   
+  <tr>
+	<td width="117"><font face="verdana" size="2">Address:</font></td>
+	<td width="442" colspan="3"><input type="text" name="ADD1" size="25" value="<%=ALLT(ADD1)%>"></td>
+ </tr>
+  <tr>
+	<td width="117">&nbsp;</td>
+	<td width="442" colspan="3"><input type="text" name="ADD2" size="25" value="<%=ALLT(ADD2)%>"></td>
+ </tr>
+  <tr>
+	<td width="117"><font face="verdana" size="2">City/State/Zip:</font></td>
+	<td width="129"><input type="text" name="CITY" size="15" value="<%=ALLT(CITY)%>"></td>
+	<td width="41"><input type="text" name="STATE" size="2" value="<%=ALLT(STATE)%>"></td>
+	<td width="270"><input type="text" name="ZIP" size="4" value="<%=ALLT(ZIP)%>"></td>
+ </tr>
+  <tr>
+	<td width="117"><font face="verdana" size="2">Phone 1:</font></td>
+	<td width="442" colspan="3"><input type="text" name="PHONE1" size="15" value="<%=ALLT(PHONE1)%>"></td>
+ </tr>
+  <tr>
+	<td width="117"><font face="verdana" size="2">Phone 2:</font></td>
+	<td width="442" colspan="3"><input type="text" name="PHONE2" size="15" value="<%=ALLT(PHONE2)%>"></td>
+ </tr> 
+  <tr>
+	<td width="117"><font face="verdana" size="2">Phone 3:</font></td>
+	<td width="442" colspan="3"><input type="text" name="PHONE3" size="15" value="<%=ALLT(PHONE3)%>"></td>
+ </tr>    
+  <tr>
+	<td width="117"><font face="verdana" size="2">Fax:</font></td>
+	<td width="442" colspan="3"><input type="text" name="FAX" size="15" value="<%=ALLT(FAX)%>"></td>
+ </tr> 
+  <tr>
+	<td width="117"><font face="verdana" size="2">Email:</font></td>
+	<td width="442" colspan="3"><input type="text" name="EMAIL" size="25" value="<%=ALLT(EMAIL)%>">
+	<%IF plEMAIL%>
+	 <a href="javascript: sendemail()"><img border="0" src="zz/images/email1.gif" ALT="Claim Email Center" width="18" height="11"></a>&nbsp;&nbsp<b><%=pcSENT%></b>&nbsp;<%=IIF(VAL(pcSENT)<2,'email sent','emails sent')%>
+	<%ENDIF%>
+	<%IF plESIGN %>
+    <br><img border="0" src="zz/images/esign.png" ALT="Esigned Doc" width="25" height="18"><font face="Verdana" size="2" color="navy"><%=pnESIGNYES%> Esign Received</font>
+  <%ENDIF%>	 
+	</td>
+ </tr>   
+</table>    
+    </td>
+ </tr> 
+</table>
+<table border="0" align="center" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="19%" height="40" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitclaim()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit Claim"></td>    
+ </tr>
+</table>
+<table border="1" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td bgcolor="#008000" align="center"><b><font face="Verdana" color="#FFFFFF">Claim Details</font></b></td>
+    <td bgcolor="#008000" align="center"><b><font face="Verdana" color="#FFFFFF">Claim Reason &amp; Outcome</font></b></td>
+ </tr>
+  <tr>
+	<td width="50%" valign="top">
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+   <tr>
+     <td width="53%"><font face="verdana" size="2">Follow-Up Date:</font></td>
+     <td width="43%" align="right"><input type="text" id="Date1" name="CFUDTE" style="width: 90px; max-width: 100%;" value="<%=IIF(EMPTY(CFUDTE),DATE(),ALLT(CFUDTE))%>" size="20"></td>
+  </tr>  
+   <tr>
+     <td width="53%"><font face="verdana" size="2">Refund Date:</font></td>
+     <td width="43%" align="right"><input type="text" id="Date2" name="CREFUNDDTE" style="width: 90px; max-width: 100%;" value="<%=IIF(EMPTY(CREFUNDDTE),'',ALLT(CREFUNDDTE))%>" size="20"></td>
+  </tr>      
+   <tr>
+     <td width="53%"><font face="verdana" size="2">Refund Amount:</font></td>
+     <td width="43%" align="right"><font face="verdana" size="2">$</font><input type="text" name="REFUNDAMT" size="7" STYLE="TEXT-ALIGN:RIGHT;" value="<%=ALLT(STR(REFUNDAMT,8,2))%>"></td>
+  </tr>
+   <tr>
+     <td width="53%"><font face="verdana" size="2">Total Expense:</font></td>
+     <td width="43%" align="right"><font face="verdana" size="2">$</font><input type="text" name="EXPTOTAL" size="7" STYLE="TEXT-ALIGN:RIGHT;" value="<%=ALLT(STR(EXPTOTAL,7,2))%>"></td>
+  </tr>  
+   <tr>
+     <td width="53%"><font face="verdana" size="2">Check No.:</font></td>
+     <td width="43%" align="right"><input type="text" name="CHECKNO" size="7" STYLE="TEXT-ALIGN:RIGHT;" value="<%=ALLT(CHECKNO)%>"></td>
+  </tr>  
+   <tr>
+     <td width="53%"><font face="verdana" size="2">Close Date:</font>&nbsp;&nbsp;&nbsp;</td>
+     <td width="43%" align="right"><input type="text" id="Date3" name="CCLOSEDDTE" style="width: 90px; max-width: 100%;" value="<%=IIF(EMPTY(CCLOSEDDTE),'',ALLT(CCLOSEDDTE))%>" size="20"></td>
+  </tr>  
+</table>
+    </td>
+	<td width="50%" valign="top">
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+   <tr>
+     <td><font face="verdana" size="2"><%=pcREASONTXT%></font></td>
+  </tr>
+</table>
+   </td> 
+ </tr>
+</table>
+  </td>
+<td width="30%" valign="top"><br>
+<table border="0" align="center" width="98%" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1" height="15">Job No.</td>
+	<td CLASS="TDTOP1" height="15">Claim No.</td>
+ </tr>
+  <tr>
+	<td CLASS="TDBODY1" height="16"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></td>
+	<td CLASS="TDBODY1" height="16"><%=ALLT(STR(CLAIMNO))%></td>
+ </tr>
+</table>
+ <BR>
+<table border="0" align="center" width="98%" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1" height="15">Status</td>
+	<td CLASS="TDTOP1" height="15">Move Date</td>
+ </tr>
+  <tr>
+	<td CLASS="TDBODY1" height="16"><%=ALLT(_EST.ST)%></td>
+	<td CLASS="TDBODY1" height="16"><%=pcPUDTE%></td>
+ </tr>
+</table>
+ <BR> 
+<table border="0" align="center" width="98%" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1" height="16">Estimate Volume</td>
+ </tr>
+  <tr>
+	<td CLASS="TDBODY1" height="15"><%=ALLT(STR(_EST.TOTALCF))+' cf'%>&nbsp;/&nbsp;<%=ALLT(STR(_EST.TOTALLBS))+' lbs'%><br><%='$'+ALLT(STR(_EST.SUBTOTAL,10,2))%></td>
+ </tr>
+</table>
+ <br>
+<table border="0" align="center" width="98%" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1" height="16">Job Volume</td>
+ </tr>
+  <tr>
+	<td CLASS="TDBODY1" height="15"><%=ALLT(STR(_OPR.ACTCUFT))+' cf'%>&nbsp;/&nbsp;<%=ALLT(STR(_OPR.ACTLBS))+' lbs'%><br><%='$'+ALLT(STR(_OPR.ACTTOTAL,10,2))%></td>
+ </tr>
+</table>
+ <br>
+<table border="0" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+	<td CLASS="TDTOP1" height="16" colspan="2">Job Finance</td>
+ </tr>
+  <tr>
+	<td bgcolor="#993366" style="line-height:23px;"><font style="font-family:Verdana;font-size:10pt;color:yellow;"><b>
+	Move Payments:<br>Move Balance:<br>Storage Balance:</b></font></td>
+	<td bgcolor="#993366" style="text-align:right;line-height:23px;"><font style="font-family:Verdana;font-size:10pt;color:yellow;"><b>
+	<%='$'+ALLT(STR(_OPR.PAIDAMT,10,2))%>&nbsp;<br><%='$'+ALLT(STR(_OPR.BALANCE,10,2))%>&nbsp;<br><%='$'+ALLT(STR(_OPR.BALSTG,10,2))%>&nbsp;</b></font></td>
+ </tr>   
+</table>
+ <BR>
+<table border="0" align="center" width="98%" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1" height="15" width="93">User</td>
+	<td CLASS="TDTOP1" height="15" width="93">Rep</td>
+ </tr>
+  <tr>
+	<td CLASS="TDBODY1" height="16" width="93"><%=ALLT(_EST.USER)%></td>
+	<td CLASS="TDBODY1" height="16" width="93"><%=ALLT(_EST.REP)%></td>
+ </tr>
+</table>
+<%IF !EMPTY(_EST.ESTIMATOR)%>
+ <BR>
+<table border="0" align="center" width="98%" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1" height="15" width="93">Estimator</td>
+	<td CLASS="TDTOP1" height="15" width="93">Visual</td>
+ </tr>
+  <tr>
+	<td CLASS="TDBODY1" height="16" width="93"><%=ALLT(_EST.ESTIMATOR)%></td>
+	<td CLASS="TDBODY1" height="16" width="93"><%=_EST.ESTIMDTE%></td>
+ </tr>
+</table>
+<%ENDIF%>
+ <BR>
+<table border="0" align="center" width="98%" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1" height="15" colspan="2">Claim Open By/Date</td>
+ </tr>
+  <tr>
+	<td CLASS="TDBODY1" height="16" width="93"><%=ALLT(OPENUSER)%></td>
+	<td CLASS="TDBODY1" height="16" width="93"><%=COPENDTE%></td>
+ </tr>
+</table>
+ <br> 
+<table border="0" align="center" width="98%" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1" height="15">Move Type/Location</td>
+ </tr>
+  <tr>
+	<td CLASS="TDBODY1" height="16" width="186"><%=ALLT(_EST.TY)%>, <%=pcRC%></td>
+ </tr>
+</table>
+ <br>
+<table border="1" align="center" width="98%" cellspacing="1" bordercolor="#993366" style="border-collapse: collapse" cellpadding="2">
+ <tr>
+   <td colspan="2"><center><font face="Verdana" size="2"><b><a class="fancybox fancybox.iframe" href="/wc.dll?mpopr~claimreasonwc~<%=pcSCR%>">Select Claim Reason</a></b></font></center></td>
+ </tr>
+</table>
+   </td>
+  </tr>
+</table>
+   </td>
+ </tr>
+  <tr>
+    <td width="100%"><br>&nbsp;&nbsp;<b><font style="font-family:Verdana;font-size:11pt;">Workers Assigned to Job</font></b><br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#C0C0C0" width="99%" cellspacing="1" cellpadding="2">
+    <tr>
+      <td width="13%" class="TD1">Box Delivery<br><font color="#FFFF00"><%=pcDTEBX%></font></td>
+      <td width="12%" class="TD1">Packing Day<br><font color="#FFFF00"><%=pcDTEPK%></font></td>
+      <td width="11%" class="TD1">Pick Up<br><font color="#FFFF00"><%=pcDTEPU%></font></td>
+      <td width="11%" class="TD1">Delivery 1<br><font color="#FFFF00"><%=pcDTED1%></font></td>
+      <td width="10%" class="TD1">Delivery 2<br><font color="#FFFF00"><%=pcDTED2%></font></td>
+  </tr>
+    <tr>
+      <td width="13%" valign="top" class="TD2"><%=pcBX%>&nbsp;</td>
+      <td width="12%" valign="top" class="TD2"><%=pcPK%>&nbsp;</td>
+      <td width="11%" valign="top" class="TD2"><%=pcPU%>&nbsp;</td>
+      <td width="11%" valign="top" class="TD2"><%=pcD1%>&nbsp;</td>
+      <td width="10%" valign="top" class="TD2"><%=pcD2%>&nbsp;</td>
+   </tr>
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+   <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%"><b><font style="font-family:Verdana;font-size:11pt;color:#000;">Customer Claim</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #000000;width:90%;" name="CUSTREM" rows="4" cols="90"><%=ALLT(_CLAIMS.CUSTREM)%></textarea></td>   
+ </tr>
+  <tr>
+   <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%"><b><font style="font-family:Verdana;font-size:11pt;color:#000;">Office Remarks</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #000000;width:90%;" name="OFFICEREM" rows="4" cols="90"><%=ALLT(_CLAIMS.OFFICEREM)%></textarea></td>   
+ </tr>
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr> 
+  <tr>
+    <td width="100%" valign="top"><b><font style="font-family:Verdana;font-size:11pt;color:#000;">Internal Office Remarks</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top"><textarea style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #808080;margin-bottom:8px;width:90%;" rows="4" name="REMARKSX" cols="100"></textarea>
+   <% SELECT _REPNOTES
+      IF RECCOUNT() > 0 %>
+   <table border="0" cellpadding="1" cellspacing="1" style="border-radius:6px;border: 1px solid #808080;width:90%;">
+     <% SCAN %>
+   <tr>
+      <td width="23%" style="border-bottom: 1px solid #808080;" valign="top" bgcolor="#F5F5F5"><font style="font-family:Arial;font-size:10pt;"><%=DATE%><br><%=USER%></font></td>
+      <td width="77%" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #808080;"><font style="font-family:Arial;font-size:10pt;"><%=ALLT(NOTES)%></font>&nbsp;</td>
+   </tr>
+    <% ENDSCAN %>
+  </table>
+   <center><a href="wc.dll?mpcharge~ViewRepNotes~<%=pcSCR%>~~4"><font face="verdana" size="2"><b>View Previous Remarks</b></font></a></center>
+   <%ENDIF%></td>
+ </tr> 
+</table>
+    </td>
+  </tr>
+</table>
+</form>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#008000" colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3"><IMG SRC="zz/images/botBaropr.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>

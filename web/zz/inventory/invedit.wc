@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>INV ADMIN</title>
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 600,
+		maxHeight	: 300,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+
+function closeform() {
+	window.close()}	
+
+function submitFunction(i) {
+    if (i==1) document.theForm.action="/wc.dll?mpscripts~ITEMSLISTRET~<%=pcSCR%>~<%=pcCODE%>";
+    		  document.theForm.submit()
+    }
+    
+</SCRIPT>
+</head>
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;" bordercolor="#111111" width="400">
+  <tr>
+    <td width="40"><a class="fancybox fancybox.iframe" href="/zz/help/invtable.htm"><img border="0" src="zz/util/manual.gif" title="Read about Inventory Table" width="32" height="32"></a></td>
+    <td width="360" align="center"><b><font face="Verdana" color="#000" size="5"><%=pcCodeName%></font></b>&nbsp;</td>
+ </tr>
+</table>
+<FORM NAME="theForm" method="post">
+<table border="1" width="800" bordercolor="#0081D3" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+  <tr>
+    <td width="25" bgcolor="#0081D3" align="center"><font face="Verdana" color="#FFFFFF">#</font></td>
+    <td width="361" bgcolor="#0081D3" align="center"><b><font face="Verdana" color="#FFFFFF">Item Description</font></b></td>
+    <td width="72" bgcolor="#0081D3" align="center"><b><font face="Verdana" color="#FFFFFF"><%=IIF(plCOCALCCF,"Cu.Ft.","Lbs")%></font></b>&nbsp;</td>
+    <td bgcolor="#0081D3" align="center" width="64"><b><font face="Verdana" color="#FFFFFF">Bulky</font></b></td>
+    <td bgcolor="#0081D3" align="center" width="113"><b><font face="Verdana" color="#FFFFFF">Need Pack</font></b></td>
+    <td width="123" bgcolor="#0081D3" align="center"><b><font face="Verdana" color="#FFFFFF">Code</font></b></td>    
+    <td width="34" bgcolor="#0081D3" align="center"><b><font face="Verdana" color="#FFFFFF">Del</font></b></td>
+  </tr>
+  <% SELECT _TINV 
+  	 SCAN %>
+  <tr style="line-height:25px;">
+    <td width="25" align="left">&nbsp;<font face="Verdana" size="2"><%=ALLT(NO)%>.</font></td>
+    <td width="361">&nbsp;<input type="text" autocomplete="off" name="I-<%=ALLT(STR(TINVID))%>" size="40" value="<%=ALLT(ITEM)%>" maxlength="50"></td>
+    <td width="72" align="center"><input type="text" name="C-<%=ALLT(STR(TINVID))%>" size="4" value="<%IF plCALCCF=.T.%><%=ALLT(STR(CUFT,8,2))%><%ELSE%><%=ALLT(STR(LBS,8,2))%><% ENDIF%>"></td>
+    <td width="64" align="center"><input type="checkbox" name="<%='B-'+ALLT(STR(TINVID))%>" value="ON" <%=IIF(BULKY,'checked','')%>></td>    
+    <td width="113" align="center"><input type="checkbox" name="<%='P-'+ALLT(STR(TINVID))%>" value="ON" <%=IIF(NEEDPACK,'checked','')%>></td>    
+    <td width="123" align="center">
+		<select size="1" name="<%='M-'+ALLT(STR(TINVID))%>">
+			<option value="<%=ALLT(_TINV.CODE)%>" selected><%=ALLT(_TINVCODE.NAME)%></option>
+			<% SELECT _ALLCODES
+				SCAN %>
+					<option value="<%=ALLT(_ALLCODES.CODE)%>"><%=ALLT(_ALLCODES.NAME)%></option>
+			<%ENDSCAN%>
+		</select>&nbsp;</td>
+   <% SELECT _TINV%>
+   <td width="34" bgcolor="#FF0000" align="center"><% IF !EMPTY(ITEM) %><input type="checkbox" name="<%='D-'+ALLT(STR(TINVID))%>" value="ON"><%ENDIF%></td>
+  </tr>
+  <% ENDSCAN%>
+</table>
+<br>
+  <table border="0" width="500" cellspacing="0" cellpadding="0" bordercolor="#0081D3" style="border-collapse: collapse">
+    <tr>
+      <td width="33%" align="center"><input type="button" name="btnSubmit" onclick="submitFunction(1)" value="Submit inventory list" size="15" style="cursor:pointer;"></td>
+    </tr>
+  </table>
+</FORM>
+</body>
+
+</html>

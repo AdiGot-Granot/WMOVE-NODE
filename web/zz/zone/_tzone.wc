@@ -1,0 +1,212 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<script language="JavaScript" src="/zz/util/statemap.js"></SCRIPT>
+
+<title>Zone Table-Regions</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+jQuery( document ).ready(function( $ ) {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 550,
+		maxHeight	: 400,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+function submitFunction(i) {
+
+     if (i==1) 
+     { 
+      	document.theForm.action="/wc.dll?mpmainten~TzoneRet~<%=pcSCR%>";
+       	document.theForm.submit();
+     }
+
+
+    if (i==2) 
+    {
+    	document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=+pcSCR%>";
+    	document.theForm.submit()
+
+    }
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="600">
+  <tr>
+    <td width="100%"><a class="fancybox fancybox.iframe" href="/zz/help/zone.htm"><img border="0" src="zz/util/manual.gif" title="Read about Regions" width="32" height="32"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" align="center" height="25" background="/ZZ/images/bar-green.gif">
+    <a onclick="submitFunction(2)"><img border="0" src="/zz/images/x-yellow.gif" align="right" style="cursor:pointer;" width="17" height="18"></a><b><font face="Verdana" color="#FFFFFF">Zone Table - Areas of operation</font></b></td>
+  </tr>  
+  <tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF">
+    <font face="Verdana" style="font-size: 9pt"><b>Click on a state to view outline, main cities and zip codes.</b></font><br>
+    <IMG height=200 src="zz/images/MAP_USA.gif" width=350 useMap=#map border=0>
+     <MAP name=map> 
+     <AREA title="Alabama (AL)" shape=POLY coords=218,112,233,112,235,122,234,128,236,130,237,133,235,136,235,142,220,141,222,146,219,148,219,144,217,144,216,121,218,118 
+     onclick="al()">
+     <AREA title="Alaska (AK)" shape=POLY coords=21,150,35,143,44,146,54,146,55,168,59,174,63,176,71,186,66,187,62,182,56,177,51,173,43,174,39,179,32,183,20,189,8,195,21,185,29,179,27,176,22,173,14,164,20,163,18,160,23,155 
+     onclick="ak()">
+     <AREA title="Arizona (AZ)" shape=POLY coords=93,139,93,97,65,97,65,103,62,104,60,106,63,110,63,114,63,119,61,122,61,129,67,132,73,133,79,137,82,139 
+     onclick="az()">
+     <AREA title="Arkansas (AR)" shape=POLY coords=180,101,206,101,204,104,208,104,208,106,206,108,205,112,204,114,203,116,199,121,199,127,184,127,184,122,180,120,180,118 
+     onclick="ar()">
+     <AREA title="California (CA)" shape=POLY coords=28,59,28,80,61,113,62,118,60,123,60,126,60,129,50,129,43,125,34,118,27,115,20,104,16,95,13,88,8,78,3,72,6,65,2,60 
+     onclick="ca()">
+     <AREA title="Colorado (CO)" shape=RECT coords=94,68,136,97 onclick="co()">
+     <AREA title="Connecticut (CT)" shape=RECT coords=332,78,347,89 onclick="ct()">
+     <AREA title="Connecticut (CT)" shape=POLY coords=304,60,313,60,313,64,303,66 onclick="ca()">
+     <AREA title="Delaware (DE)" shape=RECT coords=332,106,347,117 onclick="de()">
+     <AREA title="District of Columbia (DC)" shape=RECT coords=332,133,347,144 onclick="dc()">
+     <AREA title="Florida (FL)" shape=POLY coords=221,142,235,142,238,143,249,144,253,145,255,144,258,148,266,174,263,186,258,185,257,180,251,173,249,168,249,162,249,154,245,153,241,148,238,150,233,150,230,147,223,146 
+     onclick="fl()">
+     <AREA title="Georgia (GA)" shape=POLY coords=237,143,249,143,249,144,254,144,257,142,259,133,259,132,256,126,251,120,245,113,246,112,233,112,235,121,234,126,237,130,237,133,236,136 
+     onclick="ga()">
+     <AREA title="Hawaii (HI)" shape=POLY coords=88,167,102,171,113,177,119,186,114,193,108,194,107,187,94,183,95,173 onclick="hi()">
+     <AREA title="Idaho (ID)" shape=POLY coords=48,7,47,28,50,33,48,38,46,42,47,43,47,58,82,59,82,41,79,41,75,41,71,41,68,39,68,35,64,34,61,32,63,25,60,24,55,21,53,13,53,8 
+     onclick="idaho()">
+     <AREA title="Illinois (IL)" shape=POLY coords=205,57,218,57,222,62,221,80,220,80,221,83,221,86,218,88,219,89,218,92,214,96,210,96,210,93,205,88,206,85,204,82,198,75,199,71,202,67,202,65,207,61 
+     onclick="il()">
+     <AREA title="Indiana (IN)" shape=POLY coords=223,62,237,62,237,83,233,85,232,87,229,90,227,89,222,90,219,90,219,88,222,86,221,80,222,79 
+     onclick="indi()">
+     <AREA title="Iowa (IA)" shape=POLY coords=174,71,168,54,169,49,200,49,199,52,202,55,205,58,206,61,204,63,201,64,201,66,201,67,200,69,198,71 
+     onclick="ia()">
+     <AREA title="Kansas (KS)" shape=POLY coords=136,75,176,75,179,83,179,96,136,96 onclick="ks()">
+     <AREA title="Kentucky (KY)" shape=POLY coords=212,100,218,100,218,99,246,99,252,93,252,91,249,88,251,87,248,85,243,85,238,82,234,85,229,90,226,90,220,90,214,97,212,96 
+     onclick="ky()">
+     <AREA title="Louisiana (LA)" shape=POLY coords=184,127,199,127,200,132,199,136,198,139,198,141,209,142,208,144,209,145,210,149,209,154,200,156,195,150,194,152,185,150,185,145,186,141,184,135 
+     onclick="la()">
+     <AREA title="Maine (ME)" shape=POLY coords=328,21,336,21,338,36,343,38,341,39,338,42,330,44,325,47,320,51,318,48,318,38,318,36,321,32,324,24 
+     onclick="me()">
+     <AREA title="Maryland (MD)" shape=RECT coords=332,120,347,131 onclick="md()">
+     <AREA title="Massachusetts (MA)" shape=RECT coords=332,50,347,61 onclick="ma()">
+     <AREA title="Massachusetts (MA)" shape=POLY coords=306,54,317,55,319,54,320,62,318,63,316,59,304,59 onclick="ma()">
+     <AREA title="Michigan (MI)" shape=POLY coords=227,61,247,61,252,52,249,43,244,47,243,45,246,41,246,35,238,31,243,30,241,26,233,24,226,26,220,23,217,21,216,19,205,26,216,29,222,35,225,32,236,30,234,36,226,41 
+     onclick="mi()">
+     <AREA title="Minnesota (MN)" shape=POLY coords=165,8,165,15,167,18,167,27,170,30,167,31,167,34,170,35,169,48,200,48,199,46,191,39,190,32,193,29,194,25,208,15,206,14,191,11,184,11,180,9,177,3,176,8 
+     onclick="mn()">
+     <AREA title="Mississippi (MS)" shape=POLY coords=206,112,217,112,217,118,216,120,216,142,217,145,212,146,209,146,209,144,209,142,198,141,201,133,200,129,200,121 
+     onclick="ms()">
+     <AREA title="Missouri (MO)" shape=POLY coords=174,71,179,81,179,96,180,101,206,101,206,103,208,103,210,100,212,98,210,96,210,93,206,89,204,87,205,86,206,85,205,83,203,82,202,80,199,77,198,76,198,71 
+     onclick="mo()">
+     <AREA title="Montana (MT)" shape=POLY coords=53,7,53,14,56,20,59,23,63,24,62,33,66,32,68,37,71,40,74,42,77,39,78,40,81,40,84,37,99,37,123,37,123,7 
+     onclick="mt()">
+     <AREA title="Nebraska (NE)" shape=POLY coords=136,74,136,67,125,67,125,53,156,53,168,55,172,67,174,74 onclick="ne()">
+     <AREA title="Nevada (NV)" shape=POLY coords=64,59,29,59,29,81,44,95,61,112,60,104,65,103,64,96 onclick="nv()">
+     <AREA title="New Hampshire (NH)" shape=RECT coords=288,16,302,27 onclick="nh()">
+     <AREA title="New Hampshire (NH)" shape=POLY coords=305,38,305,48,306,53,310,53,310,48,314,38 onclick="nh()">
+     <AREA title="New Jersey (NJ)" shape=RECT coords=332,92,347,103 onclick="nj()">
+     <AREA title="New Jersey (NJ)" shape=POLY coords=296,65,300,67,298,71,300,72,300,78,295,81,292,78,297,73,295,69 onclick="nj()">
+     <AREA title="New Mexico (NM)" shape=POLY coords=94,97,130,97,130,134,110,134,107,136,99,134,99,139,94,139 onclick="nm()">
+     <AREA title="New York (NY)" shape=POLY coords=268,59,268,57,272,54,271,50,286,50,288,47,288,43,294,37,304,38,304,47,305,49,304,55,304,58,302,67,296,64,293,60,292,59 
+     onclick="ny()">
+     <AREA title="North Carolina (NC)" shape=POLY coords=241,111,243,107,248,107,250,104,256,103,257,100,290,100,293,108,289,112,286,115,281,115,278,119,274,119,268,114,262,113,260,111,251,110,250,110,247,111 
+     onclick="nc()">
+     <AREA title="North Dakota (ND)" shape=POLY coords=124,8,124,30,169,30,168,28,167,27,167,19,166,16,165,15,164,8 onclick="nd()">
+     <AREA title="Ohio (OH)" shape=POLY coords=238,62,238,81,243,84,248,84,250,86,253,83,255,81,261,75,262,71,262,61,254,63,249,63,246,62 
+     onclick="oh()">
+     <AREA title="Oklahoma (OK)" shape=POLY coords=179,97,130,97,130,100,147,100,149,103,149,116,155,117,160,119,167,120,171,121,176,119,180,120,180,103 
+     onclick="ok()">
+     <AREA title="Oregon (OR)" shape=POLY coords=46,59,47,54,47,48,45,42,47,37,50,34,47,29,41,29,35,29,32,31,27,31,23,32,17,32,17,35,14,32,12,29,7,29,6,37,5,44,5,51,5,59 
+     onclick="or()">
+     <AREA title="Pennsylvania (PA)" shape=POLY coords=263,59,267,59,267,60,293,60,296,64,294,69,296,73,291,77,263,77 onclick="pa()">
+     <AREA title="Rhode Island (RI)" shape=RECT coords=332,64,347,75 onclick="ri()">
+     <AREA title="Rhode Island (RI)" shape=RECT coords=314,60,316,64 onclick="ri()">
+     <AREA title="South Carolina (SC)" shape=POLY coords=247,112,251,110,260,111,261,114,268,114,274,120,270,126,261,133,258,130,256,125,246,113 
+     onclick="sc()">
+     <AREA title="South Dakota (SD)" shape=POLY coords=124,52,124,31,167,31,167,34,169,35,168,49,168,54,163,53,155,52 onclick="sd()">
+     <AREA title="Tennessee (TN)" shape=POLY coords=211,100,218,100,219,100,255,100,255,103,249,104,248,106,244,107,242,108,240,111,206,111,206,108,208,107,208,104 
+     onclick="tn()">
+     <AREA title="Texas (TX)" shape=POLY coords=110,134,131,134,131,100,147,100,149,103,149,115,156,118,161,120,166,120,172,121,177,120,180,121,183,121,183,136,186,141,184,145,184,150,177,155,166,163,163,172,164,180,153,176,151,167,145,160,144,155,139,151,132,150,129,156,125,154,121,150,118,144 
+     onclick="tx()">
+     <AREA title="Utah (UT)" shape=POLY coords=65,59,65,96,94,96,94,67,83,68,84,59 onclick="ut()">
+     <AREA title="Vermont (VT)" shape=RECT coords=306,16,320,27 onclick="vt()">
+     <AREA title="Vermont (VT)" shape=POLY coords=317,37,315,37,311,48,310,53,316,54,320,52,318,48 onclick="vt()">
+     <AREA title="Virginia (VA)" shape=POLY coords=248,99,253,93,256,95,260,95,263,93,267,86,272,83,276,77,283,83,281,86,287,90,286,95,289,99 
+     onclick="va()">
+     <AREA title="Washington (WA)" shape=POLY coords=47,7,47,29,36,29,32,30,28,32,24,32,21,31,18,32,16,34,14,31,12,28,7,28,7,24,5,19,2,14,8,14,12,15,15,15,14,7 
+     onclick="wa()">
+     <AREA title="West Virginia (WV)" shape=POLY coords=251,87,250,88,253,91,254,93,258,94,263,92,267,86,272,83,276,78,269,79,268,77,261,76,256,80,255,82,253,83 
+     onclick="wv()">
+     <AREA title="Wisconsin (WI)" shape=POLY coords=195,25,194,29,190,33,191,39,201,47,201,51,200,52,205,57,220,56,224,38,218,40,221,36,218,31,214,29,205,27,201,22 
+     onclick="wi()">
+     <AREA title="Wyoming (WY)" shape=RECT coords=83,38,124,68 onclick="wy()"></MAP></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+ <form name="theForm" method="POST">
+<table border="1" align="center" cellpadding="1" cellspacing="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="98%">
+  <tr>
+    <td width="6%" align="center" bgcolor="#008000"><font color="#FFFFFF"><b>#</b></font></td>
+    <td width="9%" align="center" bgcolor="#008000"><font color="#FFFFFF"><b>State</b></font></td>
+    <td width="36%" align="center" bgcolor="#008000"><font color="#FFFFFF"><b>City</b></font></td>    
+    <td width="15%" align="center" bgcolor="#008000"><font color="#FFFFFF"><b>Zip Code</b></font></td>
+    <td width="18%" align="center" bgcolor="#008000"><font color="#FFFFFF"><b>Radius</b></font></td>
+    <td width="22%" align="center" bgcolor="#008000"><font color="#FFFFFF"><b>
+    Delete</b></font></td>
+ </tr>
+<% SELECT _TZONE
+  SCAN %>
+  <tr>
+    <td width="6%" align="center"><b><%=ALLT(STR(RECNO()))%></b>&nbsp;</td>
+    <td width="9%" align="center"><input NAME="<%='S-'+ALLT(STR(TzoneId))%>" size="1" VALUE="<%=ALLT(STATE)%>" tabindex="1"></td>
+    <td width="42%">
+    <input NAME="<%='N-'+ALLT(STR(TzoneId))%>" size="25" VALUE="<%=ALLT(CNAME)%>" tabindex="3"></td>
+    <td width="5%" align="center"><input NAME="<%='Z-'+ALLT(STR(TzoneId))%>" size="3" VALUE="<%=ALLT(ZIP)%>" tabindex="2" maxlength="5"></td>    
+    <td width="18%" align="center"><input NAME="<%='R-'+ALLT(STR(TzoneId))%>" size="2" VALUE="<%=ALLT(STR(RADIUS))%>" tabindex="4" maxlength="4">miles</td>
+    <td width="22%" align="center"><% IF TZONEID>0 %><input type="checkbox" name="<%='D-'+ALLT(STR(TzoneId))%>" value="ON"><%ENDIF%></td>
+ </tr>
+<% ENDSCAN %>
+    </table>			
+		<BR>
+<table border="0" align="center" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="22%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+	<td width="22%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>    
+ </tr>
+</table>
+ </form>    
+   </td>
+ </tr>
+  <tr>
+    <td width="100%" colspan="2" background="/zz/images/bgdown.gif">&nbsp;</td>
+  </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Manual Invoice Charge</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitA() {
+      { 
+       document.theForm.action="/wc.dll?mpstg~manualcrgret~<%=pcSCR%>";
+       document.theForm.submit();
+      } ;
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="85%" align="center">
+   <tr>
+    <td width="100%" align="center" BGCOLOR="#008200" height="18"><B><font face="Verdana" color="#FFFFFF" size="3">Add Storage Fee</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">	
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center">
+     <form name="theForm" method="POST"> 		
+<table border="1" align="center" width="95%" cellspacing="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" bordercolorlight="#4E6699" bordercolordark="#4E6699">
+  <tr>
+	<td width="51%" height="20" colspan="2"><font face="Verdana" size="2">Invoice Date: <%=DATE()%></font></td>
+	<td width="49%" height="20"><font face="Verdana" size="2">Last Move Payment:&nbsp;<FONT color="#008000"><%=lcLASTPAY%> - <%=lcPAYAMT%></font></td>
+ </tr>
+  <tr>
+	<td width="51%" height="20" colspan="2"><FONT face="Verdana" size="2">Next Bill Date: </font>
+	<input type="text" name="BILLDTE" size="8" value="<%=ALLT(DTOC(_STG.BILLDTE))%>" tabindex="15" style="font-size: 9pt"></td>
+	<td width="49%" height="20"><font face="Verdana" size="2">Move Balance:<FONT color="#FF0000"><%=lcBALANCE%></font></td>
+ </tr>
+  <tr>
+	<td width="51%" height="20" colspan="2"><font face="Verdana" size="2">Storage Fee:</FONT>&nbsp;<input type="text" name="STGAMT" size="8" value="<%=ALLT(STR(_STG.STGAMT,8,2))%>" tabindex="3" style="font-size: 9pt"></td>
+	<td width="49%" height="20"><font face="Verdana" size="2">Last Storage Payment:&nbsp;<FONT color="#008000"><%=lcLASTSTG%> - <%=lcPAYSTG%></font></td>
+ </tr>
+  <tr>
+	<td width="24%" height="20"><font face="Verdana" size="2">Late Fee:</font>&nbsp;<input type="text" name="LATEAMT" size="4" maxlength="8" tabindex="4" style="font-size: 9pt" value="<%=ALLT(STR(_STGINV.LATEAMT,6,2))%>"></td>
+	<td width="27%" height="20"><font face="Verdana" size="2">Tax:</font>&nbsp;<input type="text" name="TAX" size="6" maxlength="8" tabindex="5" style="font-size: 9pt" value="<%=ALLT(STR(pnTAX,6,3))%>">%</td>
+	<td width="49%" height="20"><font face="Verdana" size="2">Storage Balance:<b><FONT color="#FF0000"><%=lcBALSTG%></b></font></td>
+ </tr>
+  <tr>
+	<td width="51%" height="20" colspan="2"><font face="Verdana" size="2">Remarks:</FONT>&nbsp;<input SIZE="25" MAXLENGTH="36" name="REMARKS" tabindex="6" style="font-size: 9pt"></td>
+	<td width="49%" height="20">&nbsp;</td>
+ </tr>
+  <tr>
+	<td width="100%" height="20" colspan="3">
+<table border="0" align="center" width="40%" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0" cellpadding="0">
+  <tr>
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitA()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+	<td width="2%" align="center">&nbsp;</td>
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="javascript: window.close()" onmouseover="javasctript: this.className='SUBONEXIT'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+ </tr>
+</table>
+    </td>
+  </tr>
+	</table>	
+</form>
+</td></tr>
+    </tr></table></td>
+  </tr>
+  <tr>
+  <td width="100%" bgcolor="#FFEFCC">
+		<table border="1" width="98%" cellspacing="0" align="center"><tr><td>
+			<table border="0" width="100%" cellspacing="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111">
+			  <tr>
+		    	<td width="100%" bgcolor="#008200" align="center"><font color="#FFFFFF" face="Verdana"><b>Previous Charges</b></font></td>
+			  </tr>
+			</table>
+			<table border="1" bgcolor="#FFFFFF" width="100%" cellspacing="0">
+			  <tr>
+			    <td width="5%" bgcolor="#4E6699"><b><font face="Arial" size="2" color="#FFFFFF">Invoice Date</font></b></td>
+			    <td width="6%" bgcolor="#4E6699"><b><font face="Arial" size="2" color="#FFFFFF">Due Date</font></b></td>
+			    <td width="5%" bgcolor="#4E6699"><b><font face="Arial" size="2" color="#FFFFFF">Storage Fee</font></b></td>
+			    <td width="5%" bgcolor="#4E6699"><b><font face="Arial" size="2" color="#FFFFFF">Late Fee</font></b></td>
+			    <td width="4%" bgcolor="#4E6699"><b><font face="Arial" size="2" color="#FFFFFF">Sales Tax</font></b></td>
+			    <td width="5%" bgcolor="#4E6699"><b><font face="Arial" size="2" color="#FFFFFF">User</font></b></td>
+			    <td width="11%" bgcolor="#4E6699"><b><font face="Arial" size="2" color="#FFFFFF">Remarks</font></b></td>
+			  </tr>
+	<% SELECT _STGINV1
+	   SCAN %>		  
+			  <tr>
+			    <td width="5%"><b><font face="Arial" size="2"><%=RUNDTE%></font></b>&nbsp;</td>
+			    <td width="6%"><b><font face="Arial" size="2"><%=BILLDTE%></font></b>&nbsp;</td>
+			    <td width="5%"><b><font face="Arial" size="2"><%=ALLT(STR(STGAMT,8,2))%></font></b>&nbsp;</td>
+			    <td width="5%"><b><font face="Arial" size="2"><%=ALLT(STR(LATEAMT,8,2))%></font></b>&nbsp;</td>
+			    <td width="4%"><b><font face="Arial" size="2"><%=ALLT(STR(TAXAMT,8,2))%></font></b>&nbsp;</td>
+			    <td width="5%"><b><font face="Arial" size="2"><%=USER%></font></b>&nbsp;</td>
+			    <td width="11%"><b><font face="Arial" size="2"><%=REMARKS%></font></b>&nbsp;</td>
+			  </tr>
+	<% ENDSCAN %>
+			</table>
+	</td></tr></table>            
+    </td>
+  </tr>
+  </table>
+</body>
+</html>

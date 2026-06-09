@@ -1,0 +1,297 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Department</TITLE>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/zz/editor/main.css">
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+jQuery.noConflict();
+
+jQuery( document ).ready(function( $ ) {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 600,
+		maxHeight	: 550,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+
+function submitFunction(i) 
+  {
+    if (i==21) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~depteditret~<%=pcSCR%>~<%=ALLT(lcDEPTID)%>";
+       document.theForm.submit();
+    }
+    if (i==2) 
+	 {
+		var Message = "Are you sure you want to delete this Department?";
+		if (confirm (Message))
+		  {
+			document.theForm.action="/wc.dll?mpmainten~deletedept~<%=pcSCR%>~<%=ALLT(lcDEPTID)%>";
+	        document.theForm.submit();
+	      }
+     }
+
+    if (i==3) 
+     { 
+       //parent.location.href = self.document.location;
+       parent.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>');
+     }
+  }
+
+function esignbody() {
+    window.open('/wc.dll?mpmainten~esignbodywc~<%=pcSCR%>~<%=lcDEPTID%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=550');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+		
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+
+</head>
+<body BGCOLOR="#4E6699">
+<a class="fancybox fancybox.iframe" href="/zz/help/depttable.htm"><img border="0" src="zz/util/manual.gif" title="Read about Department Table" width="32" height="32"></a>
+<%SELECT _DEPARTMENT%>
+<div align="left">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td height="16" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+  <tr>
+    <td BGCOLOR="#000000" align="center"><b><font color="#FFFFFF">&nbsp;<%=pcDEPTNAME%></font></b></td>
+  </tr>
+  <form name="theForm" method="POST" action="/wc.dll?mpmainten~depteditret~<%=pcSCR%>~<%=ALLT(lcDEPTID)%>"> 
+   <input type="hidden" name="DEL" value="<%=plDEL%>">   
+  <td width="700" bgcolor="#FFFFFF">&nbsp;<b><font color="#FF0000" face="Arial"><%=pcMSG%></font></b>
+  
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="686">
+  <tr>
+    <td valign="top" colspan="2" width="684"><%IF plDEL%><b><font color="#FF0000" face="Verdana" size="5">&nbsp;&nbsp;DELETED</font></b><%ENDIF%></td>
+ </tr>
+  <tr>
+    <td width="412" valign="top">
+<table border="0" style="border-collapse: collapse;line-height:25px;" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">Active</font></b></td>
+    <TD height="19" bgcolor="#ECECEC" width="266"><input type="checkbox" name="ACTIVE" value="ON" <%=IIF(ACTIVE,'checked','')%> tabindex="11">
+    <b><font face="Arial" COLOR="<%=IIF(ACTIVE=.T.,'008000','FF0000')%>"><%=IIF(ACTIVE=.T.,'Department is active','Department is not active')%> <font color="#000000"><%=IIF(DEPTMAIN=.T.,'(Default)','')%></font></font></b></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">Code</font></b></td>
+    <TD height="19" bgcolor="#ECECEC" width="266">
+    <%IF lnDEPTID > 0%> 
+      <FONT style="font-family: Arial; font-size: 12pt;"><B><%=ALLT(DEPT)%></b></font>
+    <%ELSE%>  
+      <input type="text" name="DEPT" size="3" value="<%=ALLT(DEPT)%>" maxlength="2">
+      <b><font FACE="Arial" size="2" color="#BB0000">A to Z / AA to ZZ</font></b>
+    <%ENDIF%>
+   </td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">Group</font></b></td>
+    <TD height="19" bgcolor="#ECECEC" width="266"><input type="text" name="GRP" size="1" value="<%=ALLT(STR(GRP))%>" maxlength="2">
+    <b><font FACE="Arial" size="2" color="#FF0000">1 to 99</font></b></td>
+ </tr> 
+  <tr>
+    <td width="110" height="18" bgcolor="#ECECEC"><b><font size="2" face="Arial">Company</font></b></td>
+    <td width="266" height="18" bgcolor="#ECECEC"><input type="text" name="DEPTNAME" size="35" value="<%=ALLT(DEPTNAME)%>"></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">Address</font></b></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="ADD1" size="35" value="<%=ALLT(ADD1)%>"></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">City</font></b></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="CITY" size="35" value="<%=ALLT(CITY)%>"></td>
+ </tr>
+  <tr>
+     <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">State</font></b></td>
+     <td width="266" height="19" bgcolor="#ECECEC">
+               <select size="1" name="STATEID">
+		  		<option selected value="<%=ALLT(STR(pnSTATEID))%>"><%=ALLT(_department.STATE)%></option>
+		  		 <%	SELECT _STATE
+				 	 SCAN %>
+			   		<option value="<%=ALLT(STR(STATEID))%>"><%=ALLT(STATE)%></option>
+				 <% ENDSCAN %>
+				</select>
+	 <%	SELECT _DEPARTMENT%><b><font face="Arial" size="2">Zip Code</font></b>
+		 <input name="ZIP" size="7" value="<%=ALLT(ZIP)%>"></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">Toll Free</font></b></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="TOLLFREE" size="29" value="<%=ALLT(TOLLFREE)%>"></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">Phone</font></b></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="PHONE" size="29" value="<%=ALLT(PHONE)%>"></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">Fax</font></b></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="FAX" size="29" value="<%=ALLT(FAX)%>"></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><font size="2" face="Arial"><b>Email</b></font></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="EMAIL" size="35" value="<%=ALLT(EMAIL)%>"></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><font size="2" face="Arial"><b>Website</b></font></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="WEB" size="35" value="<%=ALLT(WEB)%>"></td>
+ </tr>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><font size="2" face="Arial"><b>Company Slogan</b></font></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" autocomplete="off" name="SLOGAN" size="35" value="<%=ALLT(SLOGAN)%>"></td>
+ </tr> 
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><b><font size="2" face="Arial">Owner/Manager</font></b></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="CONTACT" size="29" value="<%=ALLT(CONTACT)%>"></td>
+ </tr>
+ <% IF plESUBJECT=.T. %> 
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><font size="2" face="Arial"><b>Email Subject</b></font></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" autocomplete="off" name="ESUBJECT" size="35" value="<%=ALLT(ESUBJECT)%>"></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="110" height="19" bgcolor="#ECECEC"><font size="2" face="Arial"><b>Web Redirect <font color="#800080">*</font></b></font></td>
+    <td width="266" height="19" bgcolor="#ECECEC"><input type="text" name="WEBREDIRECT" size="29" value="<%=ALLT(WEBREDIRECT)%>"></td>
+ </tr>                    
+</table>    
+    <font color="#800080">&nbsp;*</font> <font face="Arial" size="2">Redirect to your  &quot;thank you&quot; web page.</font>
+   </td>
+    <td width="270" valign="top">
+<table border="0" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" height="30" valign="bottom" colspan="2"><font face="Arial" color="#0359D4"><b>Department License</b></font></td>
+ </tr>
+  <tr>
+    <td width="33%" height="19" bgcolor="#ECECEC"><b><font face="Arial" size="2">DOT #</font></b></td>
+    <td width="67%" height="19" bgcolor="#ECECEC"><input type="text" name="DOT" size="14" value="<%=ALLT(DOT)%>"></td>
+ </tr>
+  <tr>
+    <td width="33%" height="19" bgcolor="#ECECEC"><b><font face="Arial" size="2">ICC MC #</font></b></td>
+    <td width="67%" height="19" bgcolor="#ECECEC"><input type="text" name="ICC" size="14" value="<%=ALLT(ICC)%>"></td>
+ </tr>
+  <tr>
+    <td width="33%" height="19" bgcolor="#ECECEC"><b><font face="Arial" size="2">Registration #</font></b></td>
+    <td width="67%" height="19" bgcolor="#ECECEC"><input type="text" name="REGISTER" size="14" value="<%=ALLT(REGISTER)%>"></td>
+ </tr>
+  <tr>
+    <td width="100%" height="13" colspan="2"></td>
+ </tr>
+</table> 
+<% IF pnCOLEVEL > 3 %>
+<table border="0" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse:collapse;line-height:25px;font-family:Arial;font-size:9pt;" bordercolor="#111111" width="100%">
+	<% IF 1=2 AND plDIESELP=.T. %>
+  <tr>
+    <td bgcolor="#ECECEC"><input type="text" name="DIESELP" size="2" value="<%=ALLT(STR(DIESELP,6,2))%>" tabindex="8">%</td>
+    <td bgcolor="#ECECEC"><font size="2"><b>Calculate Fuel Surcharge</b></font></td>
+ </tr>
+    <%ENDIF%>
+  <tr>
+    <td bgcolor="#ECECEC"><input type="text" name="MATTAX" size="2" maxlength="7" value="<%=ALLT(STR(MATTAX,7,3))%>" tabindex="9">%</td>
+    <td bgcolor="#ECECEC"><font size="2"><b>Add Sales Tax on Materials</b></font></td>
+ </tr>
+   <%IF plMERCHANT=.T. %>
+  <tr>
+    <td bgcolor="#ECECEC"><input type="text" name="CCPROCP" size="2" value="<%=ALLT(STR(CCPROCP,6,2))%>" tabindex="10">%</td>
+    <td bgcolor="#ECECEC"><font size="2"><b>Add Credit Card Processing*</b></font></td>
+ </tr>
+  <tr>
+    <td width="100%" height="1" colspan="2">*(Valid with active merchant)</td>
+ </tr> 
+   <%ENDIF%> 
+</table>
+<% ENDIF %>
+<% IF plESIGNTXT=.T. AND lnDEPTID > 0 %>
+<table border="0" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" height="13"></td>
+ </tr> 
+  <tr>
+    <td width="100%" align="center"><u><b><font Face="Arial" onclick="esignbody()" style="cursor:pointer;" color="#0000FF">Electronic Signature Policy</font></b></u></td>
+ </tr>
+</table>
+<%ENDIF%>    
+    </td>
+ </tr>
+</table>
+<%IF !plDEL %>
+ <br>
+<table border="0" align="center" width="70%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="32%" align="center">
+    <input type="submit" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="13" value="Submit" size="20"></td>    
+    <td width="32%" align="center">
+    <input type="button" CLASS="SUBOFF" name="B55" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="14" value="Delete" size="20"></td>    
+	<td width="32%" align="center">
+    <input type="button" CLASS="SUBOFF" name="B53" onclick="submitFunction(3)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="15" value="Exit" size="20"></td>
+</table>
+<%ENDIF%>
+   <br>
+<table border="0" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td align="center"><font Face="Arial" size="2" color="#000080"><b>Thank You Message to Customer After Inventory</b></font></td>
+ </tr>
+  <tr>
+    <td><textarea rows="10" name="THANKSTXT" cols="68"><%=ALLT(THANKSTXT)%></textarea></td>
+ </tr>
+</table>
+  <br></td>
+</form>
+  <tr>
+    <td width="600" bgcolor="#000000" height="14"><b><font size="2" color="white">Modify By:&nbsp;&nbsp;<%=pcUser%></font></b></td>
+  </tr>
+  <tr>
+    <td width="600" bgcolor="#FFEFCC"></td>
+  </tr>
+  <tr>
+    <td width="600" height="16" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Access denied</title>
+<style>body{font-family:Arial,sans-serif;background:#efefec;color:#1c1c1c;padding:12%;text-align:center;}</style></head>
+<body>
+  <h2>Access denied</h2>
+  <p>You don't have permission to view this page<% if (typeof privCode !== 'undefined' && privCode) { %> (requires <code><%= privCode %></code>)<% } %>.</p>
+  <p><a href="/">Return home</a> &nbsp;·&nbsp; <a href="/mplogin/logout">Sign out</a></p>
+</body>
+</html>

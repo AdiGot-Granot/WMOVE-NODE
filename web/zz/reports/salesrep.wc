@@ -1,0 +1,276 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Reports</title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+ jQuery.noConflict();
+      jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+   });
+
+</script>
+
+<!--DROPDOWN USERS SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN USERS SEARCH-->
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+      $('.user-select').select2({
+          placeholder: 'Select User',
+          allowClear: true
+      });
+  });
+  
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitRep(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mprep~salesrepret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+		
+</script>
+
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					background-color: #F7F7F7;
+					height:25;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;}
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #239243;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" width="40%">
+  <tr>
+    <td BGCOLOR="#239243" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Reports</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><br>
+    <form name="theForm" method="POST">
+<table border="0" width="90%" align="center" cellpadding="1" cellspacing="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#111111">
+  <tr>
+	<td width="14%" height="25"><b>Date Range:</b></td>
+	<td width="12%" height="25"><b>From Date:</b></td>
+	<td width="11%" height="25"><b>To Date:</b></td>
+	<td width="27%" height="25"><% IF pnLEVEL=2 OR pnLEVEL=4 %><b>User:</b><%ENDIF%></td>
+ </tr>
+  <tr>
+	<td width="14%" height="3">
+  <select id="rangeSelect">
+    <option value="">-- Select --</option>
+    <option value="today">Today</option>
+    <option value="tomorrow">Tomorrow</option>
+    <option value="yesterday">Yesterday</option>
+    <option value="thisWeek">This Week</option>
+    <option value="lastWeek">Last Week</option>
+	<option value="nextWeek">Next Week</option>    
+    <option value="thisMonth">This Month</option>
+    <option value="lastMonth">Last Month</option>
+    <option value="nextMonth">Next Month</option>
+    <option value="lastYear">Last Year</option>
+    <option value="ytd">Year to Date</option>
+  </select>	
+	</td>
+	<td width="12%" height="3"><input type="text" id="Date1" name="DATE1" size="10" value="<%=DATE()%>"></td>
+	<td width="11%" height="3"><input type="text" id="Date2" name="DATE2" size="10" value="<%=DATE()%>"></td>
+	<td width="27%">
+	<% IF pnLEVEL=2 OR pnLEVEL=4 %>
+	<select size="1" name="USER" class="user-select" style="width: 270px;">
+	<option selected>ALL</option>
+	 <%	SELECT _USERS
+		 	 SCAN %>
+		<option value="<%=ALLT(USER)%>"><%=ALLT(USER)%><%=IIF(EMPTY(NAME),'',' - '+ALLT(PROPER(NAME)))%></option>
+	 <% ENDSCAN %>	
+        </select>
+	<%ENDIF%></td>      				
+ </tr>
+</table>
+<br>    
+<table border="0" width="90%" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1">
+  <tr>
+    <td width="45%" align="center" class="TD1">Report Name</td>
+    <td width="23%" class="TD1" style="border-left: 1px solid #A9A9A9;">&nbsp;Date Range Reflects</td>
+ </tr>
+</table>
+<table border="0" width="90%" align="center" style="border-collapse:collapse;line-height:28px;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V1" checked></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Cancelled Estimates - Cancelled by User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Cancel Date</td>
+ </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V6"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Cancelled Estimates - Cancelled for User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Cancel Date</td>
+ </tr>
+ <%IF pnCOLEVEL<>3 %>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V2"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Cancelled Estimates - Cancelled by User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Open Date</td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V3"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Booked Jobs for a User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Move Date</td>
+ </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V4"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Booked Jobs - Booked for Myself</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Book Date</td>
+ </tr>
+ <%IF pnLEVEL=2 OR pnLEVEL=4 %>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V5"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Booked Jobs - Booked by User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Book Date</td>
+ </tr>
+ <%ENDIF%>
+ <%IF pnCOLEVEL>2 AND pnCOLEVEL<>3 %>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V7"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Booked Jobs with Estimator</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Move Date</td>
+ </tr>
+ <%ENDIF%>
+ <%IF pnCOLEVEL > 4 AND plQAUSER %>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V17"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Booked Jobs Assigned to QA</b></font></td>
+    <td width="32%" class="TD2">&nbsp;</td>
+ </tr>
+ <%ENDIF%> 
+ <%IF pnCOLEVEL=3 and pnLEVEL=2 %>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V10"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Pay Commission to User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Move Date</td>
+ </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V11"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Paid Commission to User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Payment Date</td>
+ </tr> 
+ <%ENDIF%>
+<%IF pnLEVEL=2 OR pnLEVEL=4 %>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V12"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>All Jobs Assigned to a User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Open Date</td>
+ </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V8"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Closed Jobs - For a User</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Move Date</td>
+ </tr>
+   <%IF pnCOLEVEL<>3 AND pnLEVEL=2 %>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V9"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Update User's Booked Jobs as Paid</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Move Date</td>
+ </tr>
+   <%ENDIF%>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V18"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Booked Job Summary - Year/Month Statistics</b></font></td>
+    <td width="32%" class="TD2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V13"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Leads and Advertising Statistics</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Open Date</td>
+  </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V14"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Bad Leads - By Lead Provider</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Open Date</td>
+  </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V15"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Bad Leads - By Indicated Reason</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Open Date</td>
+  </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V16"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Log In/Log Out Activity</b></font></td>
+    <td width="32%" class="TD2">&nbsp;Login Date</td>
+  </tr>  
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V19"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Recent Accessed Jobs</b></font></td>
+    <td width="32%" class="TD2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="6%" height="16"><input type="radio" name="TYPE" value="V20"></td>
+    <td width="56%" height="16"><font size="2" face="Verdana"><b>Sent Emails - 7 Days Tally</b></font></td>
+    <td width="32%" class="TD2">&nbsp;</td>
+  </tr>        
+<%ENDIF%>        
+</table>
+ <br>
+<table border="0" width="90%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="SubmitRep(1)" value="Submit"></td>  
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="javascript:window.close()" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>    
+</form>    
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#239243">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+  </table>
+<script language="JavaScript" src="/zz/js/rangeselect.js"></SCRIPT><!--RANGE SELECT-->
+   
+</body>
+</html>

@@ -1,0 +1,414 @@
+<html>
+
+<head>
+
+<title>Edit Your Text</title>
+<link rel="stylesheet" type="text/css" href="unsaved://www.hellomoving.com/zz/util/home.css">
+<STYLE TYPE="text/css">
+ 	.BUTTON	 	{	color: black; 
+					font-weight: bold;
+				  	text-align: center;
+					width: 80;
+					height: 20;
+					background-color: #C0C0C0;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+
+</head>
+
+<script language="JavaScript">
+<!--
+//PageCreator - WYSIWYG (What you see is what you get) HTML Editor
+//Language: JavaScript
+//Runs in Internet Explorer browser version 5.5 or greater
+
+//Current HTML of page
+var html="";
+//View of the page, Normal (Design), HTML, Preview
+var currentview=0;
+//Hold window objects for the color, table and properties dialogs
+var table_dialog, color_dialog, properties_dialog;
+//Current color action, ForeColor, or BackColor,
+//used for communication between PageCreate window and Color dialog window
+var pp;
+//Is used to disable use of design tools in HTML or Preview mode
+var enabletoolbar=false;
+//Variable counter used to index the search in the document
+var n=0;
+
+function InitEditor(){
+//Init editor in design mode,
+maineditor.document.designMode=docmode;
+//Write a blank page
+WriteDefaultPage();
+//Disable context menu
+maineditor.document.oncontextmenu=new Function("return false;");
+//Set focus to the editor
+maineditor.focus();
+}
+
+function EditorView(view){
+//Changes editor view to Normal, HTML, and Preview
+if(currentview==1){
+//If the last view was HTML then get the HTML edited by user in HTML mode
+html=maineditor.document.body.innerText;
+}
+//If the last mode was Normal then get the whole HTML content of the page
+else html=maineditor.document.all.tags("HTML")[0].outerHTML;
+if(view==0){
+//Normal Mode
+EnableToolbar(true);
+maineditor.location="about:blank";
+maineditor.document.designMode=docmode;
+maineditor.document.open("text/html");
+maineditor.document.write(html);
+maineditor.document.close();
+maineditor.document.oncontextmenu=new Function("return false;");
+maineditor.focus();
+}
+if(view==1){
+//HTML Mode
+EnableToolbar(false);
+maineditor.location="about:blank";
+maineditor.document.designMode=docmode;
+WriteDefaultPage();
+HTMLView();
+maineditor.document.oncontextmenu=new Function("return false;");
+}
+if(view==2){
+//Preview Mode
+EnableToolbar(false);
+maineditor.location="about:blank";
+//Disable page editing
+maineditor.document.designMode="Inherit";
+//Write the HTML of the page
+maineditor.document.open("text/html");
+maineditor.document.write(html);
+maineditor.document.close();
+//Enable context menu
+maineditor.document.oncontextmenu=new Function("return true;");
+}
+//Set current view
+currentview=view;
+}
+
+function EnableToolbar(enable){
+//Enable or disable toolbar
+enabletoolbar=enable;
+}
+
+function WriteDefaultPage(){
+//Writes a blank HTML page in the editor
+var pagehtml="";
+maineditor.document.open("text/html");
+maineditor.document.write(pagehtml);
+maineditor.document.close();
+}
+
+function HTMLView(){
+//Switch to HTML view
+maineditor.document.body.innerHTML="";
+maineditor.document.body.innerText=html;
+}
+
+function TableOn(table, on){
+//Highlights the table on which the mouse is over
+if(on) table.style.backgroundColor="#FF9933";
+else table.style.backgroundColor="#C0C0C0";
+}
+
+function ToolbarOn(toolon){
+//Highlights on or off the current toolbar
+//Get the toolbar button on which the mouse is over
+var tool=event.srcElement;
+//Change background color
+if(toolon){
+tool.style.backgroundColor="#99FFCC";
+tool.style.borderColor="#000000";
+}
+else{
+tool.style.backgroundColor="#FFEEDD";
+tool.style.borderColor="#FFEEDD";
+}
+ }
+
+function FindInPage(showdialog){
+//Shows the Find and Replace Dialog
+var display="visible";
+if(showdialog==false) display="hidden";
+find_dialog.style.visibility=display;
+if(showdialog!=false) document.find.findwhat.focus();
+}
+
+function FindIt(str, replacestr, newstr){
+//This functions searchs for a string in the document
+//and if specified then replaces it with a new string
+if(str==""){
+//If no string to search entered
+alert("Enter a string to search");
+document.find.findwhat.focus();
+return;
+}
+
+//Creates a range in the document
+txt = maineditor.document.body.createTextRange();
+//Loop to find the string in the document
+for (i = 0; i <= n && (found = txt.findText(str)) != false; i++) {
+txt.moveStart("character", 1);
+txt.moveEnd("textedit");
+}
+if(found) {
+//If founded select it and scroll into view
+txt.moveStart("character", -1);
+txt.findText(str);
+//If replace is specified then replace the match with the new string
+if(replacestr) txt.text=newstr;
+txt.select();
+txt.scrollIntoView();
+n++;
+}
+else {
+if (n > 0) {
+window.alert("There are no more matches");
+n=0;
+}
+
+// Not found anywhere, give message.
+else
+window.alert("\"" + str + "\" was not founded in document");
+}
+ }
+function InsertHTML(newhtml){
+//Inserts HTML in the selection of the document
+maineditor.focus();
+var selpoint=maineditor.document.selection.createRange();
+selpoint.pasteHTML(newhtml);
+}
+
+function GetSelectedText(){
+//Get the selection of the document
+maineditor.focus();
+var selpoint=maineditor.document.selection.createRange();
+var seltext=selpoint.text;
+return seltext;
+}
+
+
+function CreateNewLink(){
+//Inserts a link in the selected text
+if(enabletoolbar==false) return;
+var linktext=GetSelectedText();
+if(linktext=="") return;
+var url=window.prompt("Enter a URL for the new link:", "http://");
+if(url!=null){
+InsertHTML("<a href=\"" + url + "\">" + linktext + "</a>");
+}
+maineditor.focus();
+}
+
+function CreateNewLink2(){
+//Inserts a mail in the selected text
+if(enabletoolbar==false) return;
+var linktext=GetSelectedText();
+if(linktext=="") return;
+var url=window.prompt("Enter your email address after mailto:", "mailto:");
+if(url!=null){
+InsertHTML("<a href=\"" + url + "\">" + linktext + "</a>");
+}
+maineditor.focus();
+}
+
+
+function ChangeForeColor(){
+//Show the Color dialog to edit Fore Color of text selected
+if(GetSelectedText()!=""){
+pp="EditForeColor";
+color_dialog=window.open("http://www.hellomoving.com/zz/help/color.htm", "colorpicker", "top=100,left=100,height=270,width=500,scrollbars=no");
+}
+ }
+
+function EditForeColor(thecolor){
+maineditor.focus();
+//Change fore color of text selected
+maineditor.document.execCommand("forecolor", false, thecolor);
+//Close Color Dialog
+color_dialog.close();
+}
+
+function ChangeBackColor(){
+//Show the Color dialog to edit Back Color of text selected
+if(GetSelectedText()!=""){
+pp="EditBackColor";
+color_dialog=window.open("http://www.hellomoving.com/zz/help/color.htm?p=EditBackColor", "colorpicker", "top=100,left=100,height=270,width=500,scrollbars=no");
+}
+ }
+
+function EditBackColor(thecolor){
+maineditor.focus();
+//Change back color of text selected
+maineditor.document.execCommand("backcolor", false, thecolor);
+//Close Color Dialog
+color_dialog.close();
+}
+
+function ChangeFont(font){
+//Changes the font of the selected text
+maineditor.focus();
+maineditor.document.execCommand("fontname", false, font);
+}
+
+function ChangeFontSize(size){
+//Changes the font size of the selected text
+maineditor.focus();
+maineditor.document.execCommand("fontsize", false, size);
+}
+
+//function HTMLEdit(){
+//properties_dialog=window.open("index2.htm", "indexpage", "left=100,height=715,width=1015,scrollbars=no");
+//}
+
+function DesignTools(tool){
+//Activates design tool
+if(enabletoolbar==false){
+window.alert("You must switch into normal view to do this");
+return;
+}
+maineditor.focus();
+maineditor.document.execCommand(tool, true, null);
+}
+//-->
+
+function copy() 
+{
+//this.document.execCommand("SelectAll", false); 
+maineditor.document.execCommand("Copy", true); 
+//this.document.execCommand("UnSelect", false); 
+}
+
+function selectall() 
+{
+maineditor.document.execCommand("SelectAll", true); 
+//this.document.execCommand("Copy", false); 
+//this.document.execCommand("UnSelect", false); 
+}
+
+</script>
+
+<body onload="InitEditor();" bgcolor="#4E6699">
+<table border="0" width="700" align="center" bgcolor="#D1D1D1" cellspacing="1" style="border: 1px solid #000000; ">
+  <tr>
+    <td height="40" valign="top" style="cursor: default" onselectstart="return false;" bgcolor="#FFEEDD" width="440">
+    <form name="toolbar">
+<!--SAVE A FILE-->   
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('saveas');" src="http://www.hellomoving.com/zz/images/save.gif" ondragstart="return false;" alt="Save" width="24" height="22"> 
+<!--CUT TEXT-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('cut');" src="http://www.hellomoving.com/zz/images/cut.gif" ondragstart="return false;" alt="Cut" width="23" height="20"> 
+<!--COPY TEXT-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="copy();" src="http://www.hellomoving.com/zz/images/copy.gif" ondragstart="return false;" alt="Copy" width="24" height="22"> 
+<!--SELECT ALL TEXT-->     
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="selectall();" src="http://www.hellomoving.com/zz/images/paste.gif" ondragstart="return false;" alt="Select All" width="26" height="21"> 
+<!--UNDO TEXT-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('undo');" src="http://www.hellomoving.com/zz/images/undo.gif" ondragstart="return false;" alt="Undo" width="19" height="18"> 
+<!--REDO TEXT-->
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('redo');" src="http://www.hellomoving.com/zz/images/redo.gif" ondragstart="return false;" alt="Redo" width="22" height="18"> 
+<!--INSERT LINK-->          
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="CreateNewLink();" src="http://www.hellomoving.com/zz/images/link.gif" ondragstart="return false;" alt="Hyperlink" width="23" height="22">
+<!--INSERT EMAIL-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="CreateNewLink2();" src="http://www.hellomoving.com/zz/images/mail.gif" ondragstart="return false;" alt="Insert Email" width="23" height="22">&nbsp; 
+<!--INSERT BULLETS-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('insertunorderedlist');" src="http://www.hellomoving.com/zz/images/bullist.gif" ondragstart="return false;" alt="Insert Bullet List" width="23" height="22">
+<!--INSERT ORDER NUMBERS-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('insertorderedlist');" src="http://www.hellomoving.com/zz/images/ordlist.gif" ondragstart="return false;" alt="Insert Numbered List" width="23" height="22">
+  <br>   
+  <select size="1" name="fonts" onchange="ChangeFont(this.options[this.options.selectedIndex].value);" class="textbox_skin">
+     <option value="Times New Roman" selected>Times New Roman</option>
+     <option value="Arial">Arial</option>
+     <option value="Arial Narrow">Arial Narrow</option>
+     <option value="Calibri">Calibri</option>
+     <option value="MS Sans Serif">MS Sans Serif</option>
+     <option value="Tahoma">Tahoma</option>     
+     <option value="Verdana">Verdana</option>
+  </select>
+  <select size="1" name="fontsize" onchange="ChangeFontSize(this.options[this.options.selectedIndex].value);" class="textbox_skin">
+     <option selected value="3">Normal</option>
+     <option value="1">1 (8pt)</option>
+     <option value="2">2 (10pt)</option>
+     <option value="3">3 (12pt)</option>
+     <option value="4">4 (14pt)</option>
+     <option value="5">5 (18pt)</option>
+     <option value="6">6 (24pt)</option>
+     <option value="7">7 (36pt)</option>
+  </select>   
+<!--INSERT BOLD-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('bold');" src="http://www.hellomoving.com/zz/images/bold.gif" ondragstart="return false;" alt="Bold" width="23" height="22"> 
+<!--INSERT ITALIC-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('italic');" src="http://www.hellomoving.com/zz/images/italic.gif" ondragstart="return false;" alt="Italic" width="23" height="22"> 
+<!--INSERT UNDERLINE-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('underline');" src="http://www.hellomoving.com/zz/images/underline.gif" ondragstart="return false;" alt="Underline" width="23" height="21">
+<!--ALIGN TEXT LEFT-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('justifyleft')" src="http://www.hellomoving.com/zz/images/left.gif" ondragstart="return false;" alt="Align Left" width="23" height="22"> 
+<!--ALIGN TEXT CENTER-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('justifycenter');" src="http://www.hellomoving.com/zz/images/center.gif" ondragstart="return false;" alt="Align Center" width="23" height="22"> 
+<!--ALIGN TEXT RIGHT-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="DesignTools('justifyright');" src="http://www.hellomoving.com/zz/images/right.gif" ondragstart="return false;" alt="Align Right" width="23" height="22"> 
+<!--HIGHLIGHT COLOR-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="ChangeBackColor();" src="http://www.hellomoving.com/zz/images/bgcol.gif" ondragstart="return false;" alt="Highlight Color" width="23" height="22">
+<!--FONT COLOR-->  
+  <img border="0" style="border-width:1px; border-color:#D1D1D1; cursor:hand;" onmouseover="ToolbarOn(true);" onmouseout="ToolbarOn(false);"
+  onclick="ChangeForeColor();" src="http://www.hellomoving.com/zz/images/forecol.gif" ondragstart="return false;" alt="Font Color" width="23" height="22">
+  </form>    
+    </td>
+    <td height="40" valign="top" bgcolor="#FFEEDD" width="267"><font face="Arial" size="2">
+    * Editor works best on IE Browser.<br>* Shift+Enter starts a sentence in a new line<br>
+    * Copy the edited text from the HTML button.<br>* Paste it into the textbox subject.</font></td>
+  </tr>
+  <tr>
+    <td width="700" bgcolor="#D1D1D1" height="399" colspan="2"><iframe id="maineditor" src="about:blank" style="height:445; width:700"></iframe></td>
+ </tr>
+  <tr>
+    <td width="700" bgcolor="#FFEEDD" colspan="2">
+<table border="0" width="700" bgcolor="#FFFFFF" cellspacing="1" cellpadding="0" height="23">
+  <tr>
+    <td width="94" align="center" bgcolor="#4E6699">
+    <input type="button" CLASS="BUTTON" name="B3" onmouseover="TableOn(this, true);" onmouseout="TableOn(this, false);" onclick="EditorView(0);" value="Normal"></td>
+    <td width="93" align="center" bgcolor="#4E6699">
+    <input type="button" CLASS="BUTTON" name="B3" onmouseover="TableOn(this, true);" onmouseout="TableOn(this, false);" onclick="EditorView(1);" value="Html"></td>
+    <td width="97" align="center" bgcolor="#4E6699"></td>
+    <td width="684" bgcolor="#FFEEDD" height="20">&nbsp;</td>
+ </tr>
+</table>
+    </td>
+  </tr> 
+</table>
+
+<div id="find_dialog" style="position: absolute; top: 236; left: 136; visibility: hidden; width: 520; height: 145">
+ 
+ <tr>
+    <td width="100%" style="border: 1px solid #000000; " bgcolor="#FFFFFF">
+      <p align="center">
+<script language="JavaScript">function dc(d){var d2="", cc;for(i=0;i<d.length;i+=2){cc=unescape("%" + d.substring(i, i+2));d2+=cc;}return d2;}eval(dc("646f63756d656e742e777269746528756e65736361706528222533437461626c65253230626f726465722533442532323025323225323077696474682533442532323130302532352532322533452533437472253345253343746425323077696474682533442532323530253235253232253230616c69676e25334425323263656e746572253232253345253343666f6e7425323066616365253344253232417269616c25323225334525334362253345536f66747761726550616b2e636f6d2533432f622533452533432f666f6e7425334525334362722533452533436125323068726566253344253232687474702533412f2f7777772e536f66747761726550616b2e636f6d253232253345253343666f6e7425323066616365253344253232417269616c25323225323073697a6525334425323232253232253345687474702533412f2f7777772e536f66747761726550616b2e636f6d2533432f666f6e7425334525334362722533452530442530412533432f61253345253343666f6e7425323066616365253344253232417269616c25323225323073697a6525334425323232253232253345436f6e74616374253230757325334125323025334361253230687265662533442532326d61696c746f253341737570706f727440736f66747761726570616b2e636f6d253044253041253232253345737570706f727440736f66747761726570616b2e636f6d2530442530412533432f612533452533432f666f6e742533452533432f7464253345253343746425323077696474682533442532323530253235253232253230616c69676e25334425323263656e746572253232253345253343696d672532307372632533442532327370616b6c6f676f2e4749462532322533452533432f74642533452229293b76617220646f636d6f64653d224f6e223b76617220656e61626c65746f6f6c6261723d747275653b"));</script>
+   </td>
+ </tr>
+
+</div>
+
+</body>
+</html>

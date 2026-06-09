@@ -1,0 +1,148 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Storage Invoices</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+    document.theForm.action="/wc.dll?mpstg~stgbillret~<%=pcSCR%>~<%=pcSTORAGEID%>";
+    document.theForm.submit() 
+   }
+
+function CheckBoxes(FormName, CheckValue){
+   if(!document.forms[FormName])
+      return;
+   var objCheckBoxes = document.getElementsByTagName('input');
+   if(!objCheckBoxes)
+      return;
+   var countCheckBoxes = objCheckBoxes.length;
+   if(!countCheckBoxes)
+      objCheckBoxes.checked = CheckValue;
+   else
+      for(var i = 0; i < countCheckBoxes; i++)
+      objCheckBoxes[i].checked = CheckValue;
+}
+   
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD5		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}					
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body>
+<table border="0" width="35%" align="center" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" cellspacing="0" bordercolor="#111111">
+  <tr>
+    <td width="100%" style="line-height:27px;" colspan="3" align="center"><b><font size="4">Storage Invoices Cycle</font></td>
+ </tr>
+  <tr style="line-height:27px;">
+    <td width="30%"><b>Storage: <font color="#4E6699"><%=pcSTGNO%></font><b></td>
+    <td width="33%"><b>Customers in Cycle: <font color="#4E6699"><%=ALLTRIM(STR(RECCOUNT()))%></font></b></td>
+    <td width="37%"><b>Invoice Due Date: <font color="#4E6699"><%=pdNEXTBILLDTE %></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25" valign="bottom" colspan="3"><b>Last Payment color code:
+    &nbsp;&nbsp;<font color="#7BB652">Over 30 days</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF9900">Over 60 days</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0000">Over 90 days</font></b></td>
+ </tr>
+</table>
+<form name="theForm" method="post">
+<table border="0" align="center" width="80%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td height="30" valign="bottom"><font face="Verdana" size="2"><b>Select/Deselect All</b></font> <input name="checkall" type="checkbox" onclick="CheckBoxes('theForm',this.checked);" value="ON" /></td>
+ </tr>
+</table>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="80%">
+    <tr>
+      <td width="4%" class="TD1">Process</td>
+      <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Late Fee</td>
+      <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Job No.</td>      
+      <td width="15%" class="TD1" style="border-left: 1px solid #A9A9A9;">Customer</td>
+      <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Balance</td>
+      <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Monthly</td>
+      <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Late Fee</td>
+      <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Tax</td>
+      <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Invoice</td>      
+      <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Date In</td>      
+      <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Bill 
+      Date</td>      
+      <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Date Out</td>
+      <td width="11%" class="TD1" style="border-left: 1px solid #A9A9A9;">Last Payment</td>
+   </tr>
+  <% SELECT _STG
+     SCAN %>
+     <tr>
+      <td width="4%" class="TD3"><input type="checkbox" name="P<%=ALLT(ORDNO)%>" value="ON" checked></td>
+      <td width="5%" class="TD3" style="border-left: 1px solid #A9A9A9;"><% IF LATEFEE %><input type="checkbox" name="L<%=ALLT(ORDNO)%>" value="ON" <%=IIF(LATEFEE,'checked','')%>><% ENDIF %></td>
+      <td width="5%" class="TD5">&nbsp;<a href="wc.dll?mpstg~stgselect~<%=pcSCR%>~<%=+ALLT(REFNO)%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a></td>      
+      <td width="15%" class="TD2">&nbsp;<%=ALLT(PROPER(CNAME))%></td>
+      <td width="5%" class="TD4"><b><%=IIF(BALSTG=0,' ','$'+PADL(ALLT(STR(BALSTG,8,2)),8,' ')) %></b>&nbsp;</td>
+      <td width="5%" class="TD4"><b><FONT color="#7B2021">$<%=MONTHFEE%></font></b>&nbsp;</td>
+      <td width="5%" class="TD4"><b><FONT color="#7B2021"><%=IIF(LATEAMT=0,' ','$'+ALLT(STR(LATEAMT,8,2)))%></font></b>&nbsp;</td>
+      <td width="4%" class="TD4"><b><FONT color="#7B2021"><%=IIF(TAXAMT=0,' ','$'+ALLT(STR(TAXAMT,8,2)))%></font></b>&nbsp;</td>
+      <td width="6%" class="TD4"><b>$<%=INVTOTAL%></b></td>      
+      <td width="6%" class="TD5"><%=CINDTE%></td>      
+      <td width="7%" class="TD5"><%=CBILLDTE%></td>      
+      <td width="6%" class="TD5"><%=CDLVDTE1%><%=IIF(EMPTY(CDLVDTE2),'','<BR>'+CDLVDTE2)%></td>
+      <td width="11%" class="TD2"><b><FONT COLOR="#<%=COLOR1%>"><% IF LASTPAY=0 OR EMPTY(LASTPAYDTE)%><%ELSE%><%=TTOD(LASTPAYDTE)%>: <%=IIF(LASTPAY=0,' ','$'+ALLT(STR(LASTPAY,8,2)))%><%ENDIF%></font></b></td>
+    </tr>
+   <% ENDSCAN %>
+</table>
+ <br>
+<table border="0" width="40%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'"	value="Submit"></td>    
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B2" onclick="javascript:history.go(-1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>    
+ </tr>
+</table>
+  </form>
+</body>
+</html>

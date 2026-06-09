@@ -1,0 +1,12 @@
+
+<html>
+<FRAMESET rows="0,*" border="0" frameborder="0">
+	<FRAME NAME = "TOP" src="/zz/util/spacer.htm" NORESIZE target="contents">
+	<FRAMESET cols='215,*'>
+		<FRAME NAME="MENU" SRC="/wc.dll?mpmainten~deptmenuwc~<%=pcSCR%>" NORESIZE>
+		<FRAME NAME="MainWindow" SRC="/wc.dll?mpmainten~depteditwc~<%=pcSCR%>~<%=ALLT(lcDEPTID)%>">
+	</FRAMESET>
+    <noframes>
+    </noframes>
+</FRAMESET>
+</html>

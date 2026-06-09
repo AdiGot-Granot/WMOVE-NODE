@@ -1,0 +1,83 @@
+<html lang="en" style="width: 600px; height: 600px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Bad Lead Reason</title>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 20;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 20;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" align="center" style="border-collapse:collapse;width:600px;height:600px;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#F7F0B9" align="center"><b><font face="Verdana" size="2">Bad Lead Reason: Select One</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+<form name="theForm" method="POST" action="/wc.dll?mpcharge~badleadret~<%=pcSCR%>" target="_top">
+<table border="0" align="center" width="98%" cellspacing="0" cellpadding="0" style="border-collapse: collapse" bordercolor="#C0C0C0">
+   <tr>
+	<td width="50%" valign="top" align="center">
+<table border="1" align="center" width="95%" cellspacing="1" cellpadding="2" style="border-collapse: collapse" bordercolor="#C0C0C0">
+ <% SELECT * FROM _BADLEADDESC WHERE SEQ<22 INTO CURSOR _BADLEADDESC1 
+    SELECT _BADLEADDESC1
+ 	SCAN %>
+   <tr>
+	<td><input type="radio" name="DESCID" value="<%=ALLT(STR(DESCID))%>" <%=IIF(DESCID=pnDESCID,'checked','')%>>
+	<font style="font-family:Arial;font-size:10pt;"><font color="#<%=IIF(DESCID=pnDESCID,'FF0000','000000')%>"><%=ALLT(DESCNAME)%></font>
+	<% IF (DESCID=pnDESCID)%>&nbsp;|&nbsp;<b><a href="/wc.dll?mpcharge~badleadret~<%=pcSCR%>~200" target="_top">Undo</a></font></b><%ENDIF%></td>
+  </tr>
+ <%ENDSCAN%>
+</table>	
+	</td>
+	<td width="50%" valign="top" align="center">
+<table border="1" align="center" width="95%" cellspacing="1" cellpadding="2" style="border-collapse: collapse" bordercolor="#C0C0C0">
+ <% SELECT * FROM _BADLEADDESC WHERE SEQ>21 INTO CURSOR _BADLEADDESC2 
+    SELECT _BADLEADDESC2
+ 	SCAN %>
+   <tr>
+	<td><input type="radio" name="DESCID" value="<%=ALLT(STR(DESCID))%>" <%=IIF(DESCID=pnDESCID,'checked','')%>>
+	<font style="font-family:Arial;font-size:10pt;"><font color="#<%=IIF(DESCID=pnDESCID,'FF0000','000000')%>"><%=ALLT(DESCNAME)%></font>
+	<% IF (DESCID=pnDESCID)%>&nbsp;|&nbsp;<b><a href="/wc.dll?mpcharge~badleadret~<%=pcSCR%>~200" target="_top">Undo</a></font></b><%ENDIF%></td>
+  </tr>
+ <%ENDSCAN%>
+</table>	
+	</td>
+  </tr>
+ </table>
+<table border="0" align="center" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font style="font-size:7pt;">&nbsp;</font></td>    
+ </tr>  
+  <tr>
+    <td align="center"><input type="submit" CLASS="SUBOFF" name="B3" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+ </tr>
+</table>
+</form>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="15"><font size="2" color="#FFFFFF">User:&nbsp;<%=pcUSER%></font></td>
+  </tr>
+  </table>
+</body>
+</html>

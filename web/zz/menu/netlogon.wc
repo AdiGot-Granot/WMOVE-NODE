@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Network Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  /* Right-Click Disable */
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    alert('Right Click Disabled!');
+  });
+
+  /* Caps Lock Detection */
+  ['keydown', 'keyup'].forEach((evt) => {
+    document.addEventListener(evt, (e) => {
+      document.getElementById('divMayus').style.visibility =
+        e.getModifierState('CapsLock') ? 'visible' : 'hidden';
+    });
+  });
+
+  /* Focus the Network ID field */
+  document.querySelector('input[name="LOGON_USER"]').focus();
+});
+</script>
+
+<script language="JavaScript" src="/ZZ/UTIL/formcheck.js"> </script>
+
+<script language="Javascript">
+function checkData(){
+	frm = document.theForm;
+	return lengthValid(frm.LOGON_USER, 2,"User Name") 
+	&& lengthValid(frm.PASSWORD, 2,"Password")
+	}
+
+function logon() {
+//     alert("aaa");
+		if (checkData()) {
+	        frm.LOGON.style.visibility="hidden";
+//          alert("checkdata");
+			frm.action="/wc.dll?mp~netlogonret~<%=pcSCR%>";  
+			frm.submit();
+			}
+      }
+</script>
+
+<style>
+  :root {
+    --primary: #0081D3;
+    --primary-light: #2B5E94;
+    --accent: #D94F4F;
+    --text: #1E2A38;
+    --text-muted: #6B7D93;
+    --border: #D4DAE2;
+    --input-bg: #F7F9FB;
+    --radius: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Mobile-first base styles */
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F7F7F7;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(43,94,148,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(217,79,79,0.06) 0%, transparent 60%);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
+    color: var(--text);
+}
+
+  .login-wrapper {
+    width: 100%;
+    margin-top: 120px;
+    animation: slideUp 0.5s ease-out;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .login-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(26, 58, 92, 0.10), 0 1px 3px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .login-header {
+    background: var(--primary);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .login-header .icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .login-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+
+  .login-header p {
+    font-size: 15px;
+    color: #fff;
+    margin-top: 2px;
+  }
+
+  .login-body {
+    padding: 28px 24px;
+  }
+
+  .field {
+    margin-bottom: 22px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 7px;
+  }
+
+  .field label .hint {
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-left: 4px;
+  }
+
+  .input-wrap input {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--input-bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap input:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(43,94,148,0.10);
+  }
+
+  .input-wrap input::placeholder {
+    color: #A8B5C4;
+  }
+
+  #divMayus {
+    visibility: hidden;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .checkbox-row label {
+    font-size: 15px;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .btn-login {
+    width: 100%;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  }
+
+  .btn-login:hover {
+    background: var(--primary-light);
+    box-shadow: 0 4px 16px rgba(26,58,92,0.20);
+  }
+
+  .btn-login:active {
+    transform: scale(0.98);
+  }
+
+  .login-footer {
+    text-align: center;
+    padding: 0 24px 28px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* Desktop */
+  @media (min-width: 769px) {
+    body { padding: 24px; }
+    .login-wrapper { max-width: 460px; }
+    .login-header { padding: 28px 32px; }
+    .login-body { padding: 32px 40px; }
+    .input-wrap input { width: 85%; }
+    .checkbox-row { padding-left: 2px; }
+    .btn-login { width: 85%; }
+    .login-footer { padding: 0 40px 28px; }
+  }
+</style>
+</head>
+
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+
+      <div class="login-header">
+        <div>
+	  <h1>Granot Moving Software</h1>
+          <h1>Network Login</h1>
+          <p>Enter Network credentials to continue</p>
+        </div>
+      </div>
+
+ 	<form name="theForm" method="POST" class="login-body">     
+	<input type="hidden" name="SCRXX" size="17"  value="<%=pcSCRXX%>">
+	<input type="hidden" name="CUSTID" size="17" tabindex="3" value="<%=pnCUSTID%>">
+	<input type="hidden" name="SCR13" size="17" tabindex="3" value="<%=pcSCR13%>">
+        <div class="field">
+          <label>Network ID <span class="hint">(Case Sensitive)</span></label>
+          <div class="input-wrap">
+            <input type="text" name="LOGON_USER" placeholder="Enter Network ID" value="<%=pcLOGON_USER%>" onclick='this.value=""' autocomplete="off" size="20">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <div class="input-wrap">
+            <input type="password" name="PASSWORD" placeholder="Enter Password" value="<%=pcPASSWORD%>" onclick='this.value=""' maxlength="15" size="20">
+          </div>
+          <div id="divMayus">Caps Lock is ON</div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" name="SAVEPASS" value="ON" id="savepass" style="width:25px;height:25px;" <%=IIF(plSAVE,'checked','')%>>
+          <label for="savepass">Save Password</label>
+        </div>
+
+        <button type="submit" class="btn-login" name="LOGON" value="Login" onclick="logon()">Login</button>
+
+      </form>
+      <div id="loginError" style="text-align:center; padding:0 20px 15px; font-size:14px; font-weight:600; color:red;"><%=pcMSG%></div>
+      <div class="login-footer">Authorized Users only. Access is monitored.</div>
+
+    </div>
+  </div>
+</body>
+</html>

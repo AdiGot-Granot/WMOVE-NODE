@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Set email as Special Document</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpsys~updemaildoc~<%=pcSCR%>~B";
+       document.theForm.submit();
+      }
+    if (i==2) 
+     { 
+       document.theForm.action="/wc.dll?mpsys~updemaildoc~<%=pcSCR%>~D";
+       document.theForm.submit();       
+     }
+ }	
+</SCRIPT>
+</head>
+
+<body>
+<br>
+<form name="theForm" method="POST">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="60%">
+  <tr>
+    <td width="50%" height="50" align="center"><b><font face="Arial" size="4">Set email as Special Document with <font color="#800080">Basic Esign</font></font></b></td>
+    <td width="50%" height="50" align="center"><b><font face="Arial" size="4">Set email as Special Document with <font color="#008000">Digital Esign</font></font></b></td>
+  </tr>
+  <tr>
+   <td>
+<table width="50%" align="center" bordercolor="#800080" border="2" cellspacing="0" cellpadding="2" style="border-collapse: collapse">
+  <tr>
+    <td width="17%" align="center" bgcolor="#800080" bordercolorlight="#800080" bordercolordark="#800080"><b><font face="Arial" size="2" color="#FFFFFF">File Name</font></b></td>
+    <td width="9%" align="center" bgcolor="#800080" bordercolorlight="#800080" bordercolordark="#800080"><b><font color="#FFFFFF" face="Arial" size="2">Email ID</font></b></td>
+ </tr>
+ <tr>
+   <td width="17%"><input autocomplete="off" NAME="FILENAMEA" size="10" VALUE="" tabindex="1"></td>
+   <td width="9%" align="center"><input autocomplete="off" NAME="TEMAILIDA" size="10" VALUE="" maxlength="6" tabindex="2"></td>
+ </tr>
+</table>   
+  <br><center><input type="button" name="B45" onclick="submitFunction(1)" style="text-align:center;font-family:Arial;font-weight:bold;color:white;width:70;height:25;background-color:#800080;font-size:10pt;cursor: pointer;" value="Basic"></center></td>
+   <td>
+<table width="50%" align="center" bordercolor="#008000" border="2" cellspacing="0" cellpadding="2" style="border-collapse: collapse">
+  <tr>
+    <td width="17%" align="center" bgcolor="#008000" bordercolorlight="#008000" bordercolordark="#008000"><b><font face="Arial" size="2" color="#FFFFFF">File Name</font></b></td>
+    <td width="9%" align="center" bgcolor="#008000" bordercolorlight="#008000" bordercolordark="#008000"><b><font color="#FFFFFF" face="Arial" size="2">Email ID</font></b></td>
+ </tr>
+ <tr>
+   <td width="17%"><input autocomplete="off" NAME="FILENAMEB" size="10" VALUE="" tabindex="1"></td>
+   <td width="9%" align="center"><input autocomplete="off" NAME="TEMAILIDB" size="10" VALUE="" maxlength="6" tabindex="2"></td>
+ </tr>
+</table>   
+   <br><center><input type="button" name="B45" onclick="submitFunction(2)" style="text-align:center;font-family:Arial;font-weight:bold;color:white;width:70;height:25;background-color:#008000;font-size:10pt;cursor: pointer;" value="Digital"></center></td>
+ </tr>
+</table>
+</form>
+
+<br><center><font face="Arial"><a href="javascript:window.close()">Exit</a></font></center>
+
+</body>
+</html>

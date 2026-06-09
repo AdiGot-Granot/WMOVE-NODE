@@ -1,0 +1,275 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Moving System</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~repmenuwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~menuwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 12pt;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+				  	text-align: left}
+	.txton		{	color: blue;
+				  	font-size: 12pt;
+				  	text-align: left;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+					text-decoration: underline
+  				  	cursor: Hand}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="80%">
+  <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="zz/images/BotBar8.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#001E4C" height="25">
+    <p align="center"><font color="#FFFFFF" face="Arial Rounded MT Bold">
+    <font size="4"><a href="javascript:window.close()">
+    <img border="0" src="zz/images/x.gif" align="right" width="17" height="18"></a><font color="#FFFFFF">Purchased</font> 
+    Jobs Report</font></font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="200">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    <p align="center"></td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+	
+	<br>
+	<form name="theForm" method="POST">
+		<!-- Frame Table-->
+		<!-- Parameters-->
+		<div align="center">
+          <center>
+		<table border="1" width="70%" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+		 <tr><td valign="top">
+			<!-- Dates-->
+			<div align="center">
+              <center>
+			<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" height="23">
+			  <tr>
+			    <td width="20%" height="3" bgcolor="#001C4A">
+	            <b><font face="Verdana" size="2" color="#FFFFFF">Dates : </font></b></td>
+			    <td width="40%" height="3" align="right">
+                <font color="#000080"><i>
+                <font size="2" face="Verdana">From</font><font face="Arial">:</font></i><input type="text" name="DATE1" size="11" value="<%=DATE()-30%>"></font></td>
+			    <td width="40%" height="3" align="right"><i>
+                <font color="#000080" size="2" face="Verdana">To</font><font face="Arial" color="#000080">:</font></i><font color="#000080"><input type="text" name="DATE2" size="11" value="<%=DATE()%>"></font></td>
+			  </tr>
+			</table>
+			  </center>
+            </div>
+			<!-- Dates-->
+		</td></tr></table>
+		  </center>
+	<br>
+        </div>
+		<!-- Radio-->
+		<div align="center">
+          <center>
+		<table border="1" width="80%" cellspacing="0" height="1" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+		 <tr><td valign="top" width="50%" height="33">
+	
+			<!-- Status-->
+			<div align="center">
+              <center>
+			<table border="0" width="100%" cellspacing="0" cellpadding="3" height="71" style="border-collapse: collapse" bordercolor="#111111">
+			  <tr>
+			    <td width="100%" height="20" colspan="2" bgcolor="#001E4C">
+                <p align="center"><font color="#FFFFFF"><b>Report List</b></font></td>
+			    </tr>
+			 <%IF plBK_SALE%>
+			  <tr>
+			    <td width="5%" height="20"><input class="chkon" type="radio" name="STATUS" value="V1" checked></td>
+			    <td width="95%" height="20">All Estimates</td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="9"><input type="radio" name="STATUS" value="V2" ></td>
+			    <td width="95%" height="9">Pending to Sale List</td>
+			  </tr>
+               <tr>
+			    <td width="5%" height="28">
+                <input type="radio" name="STATUS" value="V3"></td>
+			    <td width="95%" height="28">Sold List</td>
+			  </tr>
+               <tr>
+			    <td width="5%" height="10">
+                <input type="radio" name="STATUS" value="V4"></td>
+			    <td width="95%" height="10">Incomplete/Duplicate Estimates</td>
+			  </tr>
+			<%ENDIF%>
+			 <%IF !plBK_SALE%>
+               <tr>
+			    <td width="5%" height="10">
+                <input type="radio" name="STATUS" value="V5"></td>
+			    <td width="95%" height="10"><font face="Arial" size="2">Import 
+                Estimates</font></td>
+			  </tr>
+			<%ENDIF%>
+               <tr>
+			    <td width="5%" height="10">
+                <input type="radio" name="STATUS" value="V6"></td>
+			    <td width="95%" height="10"><font face="Arial" size="2">
+                Statement Report</font></td>
+			  </tr>
+			  </table>
+			  </center>
+            </div>
+			<!-- Status-->
+	
+		 </td><td valign="top" width="50%" height="1">
+
+			<!-- Sort-->
+			<table border="0" width="100%" align="center" cellspacing="0" cellpadding="3" height="107">
+			  <tr>
+			    <td width="100%" height="20" colspan="2" bgcolor="#001E4C">
+                <p align="center"><font color="#FFFFFF"><b>Sort By</b></font></td>
+			    </tr>
+			  <tr>
+			    <td width="5%" height="20"><input class="chkon" type="radio" name="SORT" value="V1" checked></td>
+			    <td width="95%" height="20"><font face="Arial" size="2">Transaction No.</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="20"><input type="radio" name="SORT" value="V2"></td>
+			    <td width="95%" height="20"><font face="Arial" size="2">Move Date.</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="27">
+                <input type="radio" name="SORT" value="V3"></td>
+			    <td width="95%" height="27"><font face="Arial" size="2">Job No.</font></td>
+			  </tr>
+			  <tr>
+			    <td width="5%" height="27">
+                &nbsp;</td>
+			    <td width="95%" height="27">&nbsp;</td>
+			  </tr>
+			  </table>
+			<!-- Sort-->
+		    <p>&nbsp;</td></tr></table>
+		  </center>
+        </div>
+		<!-- Radio-->
+		<!-- Frame Table-->
+		</form>
+
+		<!-- Buttons --->
+		<div align="center">
+          <center>
+		<table border="0" width="50%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="24%" align="center">
+            <input id="btnSubmit" type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Submit"></td>    
+		    <td width="2%" ></td>    
+		    <td width="24%" align="center">
+            <input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="10" value="Exit"></td>    
+		  </tr>
+		</table>
+		  </center>
+    </div>
+	</td>
+  </tr>
+</table>
+<!-- frame table -->
+
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#CCCCCC" height="15">
+
+	<br>
+	 <%SELECT _LIST 
+	    IF RECCOUNT() > 0
+            MM=FCOUNT()
+            Dimension laHeader[MM]
+            FOR I = 1 TO FCOUNT()
+                  laHeader[I]=LOWER(FIELD(I))
+            ENDFOR
+	        RESPONSE.SHOWCURSOR(@laHeader,,,,"WIDTH=100% style='font-size: 10pt; text-align: center; font-family: Times new Roman; border: none;'") 
+	     ENDIF %> <br>
+
+	</td>
+  </tr>
+<tr>
+    <td width="50%" BGCOLOR="#001E4C" height="15">
+      <font color="#FFFFFF">
+      <b>User:<%=pcUSER%></b></font></td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="zz/images/botBarep.gif" width="100%" height="14"></td>
+ </tr>
+  </table>
+
+  </center>
+</div>
+
+</body>
+
+</html>

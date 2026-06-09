@@ -1,0 +1,134 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=pcTITLE%></title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitData() {
+          document.theForm.SUBMIT_1.style.visibility="hidden";
+          document.theForm.action="/wc.dll?mpagent~assignbookret~<%=pcSCR%>~<%=lcMODUL%>";
+          document.theForm.submit();
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.RELEASE		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.RETRIEVE		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #ECE6FF;
+					border-bottom: 1px solid #A9A9A9;}						
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	font-size: 10pt;
+					font-weight: bold;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}					
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #556677;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #0081D3;
+  color: #FFF;
+/*  border-color: #000; */
+}
+</style>
+
+</head>
+
+<body>
+
+<center><a href="/wc.dll?mpagent~agprocesswc~<%=pcSCR%>"><font face="Arial" size="4">Exit</font></a><br><br>
+<font size="5" color="#556677" face="Arial"><b><%=pcTITLE%></FONT><br>
+<font face="Arial" size="2">*VIP=Loads Board for Exclusive Agents (different access link).</font></B>
+<form name="theForm" method="post">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="85%">
+  <tr>
+    <td width="4%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>">Job No.</td>
+    <td width="5%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Type</td>
+    <td width="9%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Move Date</td>
+    <td width="15%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Move From</td>
+    <td width="14%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Move To</td>
+    <td width="3%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Miles</td>
+    <td width="3%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">CF</td>
+    <td width="4%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Lbs</td>        
+    <td width="5%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Estimate</td>
+    <td width="5%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Paid Amt</td>
+    <td width="5%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">Balance</td>
+    <td width="5%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;"><%=IIF(lcMODUL='V2','Release','Retrieve')%>&nbsp;</td>
+    <td width="3%" class="<%=IIF(lcMODUL='V2','RELEASE','RETRIEVE')%>" style="border-left: 1px solid #A9A9A9;">VIP*</td>
+ </tr>
+<%SELECT _LIST
+  SCAN %>
+    <tr>
+     <td width="4%" class="TD4"><a target="_blank" href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=+ALLT(REFNO)%>"><%=ALLT(DEPT)+ALLT(ORDNO)%></a></td>
+     <td width="5%" class="TD2">&nbsp;<%=ALLT(TYPE1)%></td>
+     <td width="9%" class="TD2">&nbsp;<%=ALLT(LBOOKDTE)%><%=IIF(EMPTY(_LIST.LBOOKDTE1),'',' - '+DTOC(_LIST.LBOOKDTE1)) %></td>
+     <td width="15%" class="TD2">&nbsp;<%=ALLT(FROM)%></td>
+     <td width="14%" class="TD2">&nbsp;<%=ALLT(TO)%></td>
+     <td width="3%" class="TD3"><%=ALLT(STR(MILES,5))%>&nbsp;</td>
+     <td width="3%" class="TD3"><%=ALLT(STR(TOTALCF,8))%>&nbsp;</td>
+     <td width="4%" class="TD3"><%=ALLT(STR(TOTALLBS,7))%>&nbsp;</td>          
+     <td width="5%" class="TD3"><%='$'+ALLT(STR(SUBTOTAL,8,2))%>&nbsp;</td>
+     <td width="5%" class="TD3"><font color="#008000"><%='$'+ALLT(STR(PAIDAMT,8,2))%></font>&nbsp;</td>
+     <td width="5%" class="TD3"><font color="#FF0000"><%='$'+ALLT(STR(BALANCE,8,2))%></font>&nbsp;</td>
+     <td width="5%" class="TD4" style="border-left: 1px solid #A9A9A9;"><input type="checkbox" name="<%='R'+ALLT(ORDNO) %>" value="ON"></td>
+     <td width="3%" class="TD4" style="border-left: 1px solid #A9A9A9;"><% IF lcMODUL='V2'%><input type="checkbox" name="<%='V'+ALLT(ORDNO) %>" value="ON"><%ELSE%><%=IIF(AGVIP=.T.,'Yes','')%><%ENDIF%></td>
+    </tr>
+<% ENDSCAN %>
+<% IF lcMODUL='V2' %>
+    <tr>
+     <td width="50%" class="TD4" colspan="6">&nbsp;</td>
+     <td width="3%" class="TD3"><%=ALLT(STR(_LIST1.TOTALCF,7))%>&nbsp;</td>
+     <td width="4%" class="TD3"><%=ALLT(STR(_LIST1.TOTALLBS,7))%>&nbsp;</td>          
+     <td width="5%" class="TD3"><%='$'+ALLT(STR(_LIST1.SUBTOTAL,8,2))%>&nbsp;</td>
+     <td width="5%" class="TD3"><font color="#008000"><%='$'+ALLT(STR(_LIST1.PAIDAMT,8,2))%></font>&nbsp;</td>
+     <td width="5%" class="TD3"><font color="#FF0000"><%='$'+ALLT(STR(_LIST1.BALANCE,8,2))%></font>&nbsp;</td>
+     <td width="8%" class="TD4" style="border-left: 1px solid #A9A9A9;" colspan="2">&nbsp;</td>
+    </tr>
+<%ENDIF%>    
+</table>
+<p align="center"><input type="button" class="SUBOFF" onclick="SubmitData()" name="SUBMIT_1" value="Submit"></p>
+</form>
+<p align="center"><a href="/wc.dll?mpagent~agprocesswc~<%=pcSCR%>"><font face="Arial" size="4">Exit</font></a></p>
+
+</body>
+</html>

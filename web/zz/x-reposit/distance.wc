@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Find Distance</title>
+<script language="JavaScript">
+
+function submitdistance() {
+       document.theForm.action="/wc.dll?mpreposit~distancewc";
+       document.theForm.submit();
+      }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500" align="center"><TR>
+  <TD bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500" height="26">
+  <tr>
+    <td width="100%" align="center" bgcolor="#6B8AAD" height="20"><b>
+    <font color="#FFFFFF" face="Verdana">Find Distance</font></b></td>
+  </tr>
+</table>
+<br>
+<form name="theForm" method="POST">
+      <div align="center">
+        <center>
+      <table border="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" width="95%" height="66">
+        <tr>
+          <td width="13%" height="16"><b><font face="Verdana" size="2">From zip:</font></b></td>
+          <td width="12%" align="center" height="16"><b><font face="Verdana">
+          <input type="text" name="ZIP1" size="5" style="border: 1px solid #52657B; " value="<%=pcZIP1%>"></font></b></td>
+          <td width="9%" height="16"><b><font face="Verdana" size="2">&nbsp;To zip:</font></b></td>
+          <td width="14%" align="center" height="16"><b><font face="Verdana">
+          <input type="text" name="ZIP2" size="5" style="border: 1px solid #52657B; " value="<%=pcZIP2%>"></font></b></td>
+          <td width="21%" height="16"></td>
+        </tr>
+        <tr>
+          <td width="13%" height="19"><b><font face="Verdana" size="2">City-State:</font></b></td>
+          <td width="21%" colspan="2" height="19"><b><%=pcCITYSTATE1%>&nbsp;</b></td>
+          <td width="18%" align="center" height="19"><b><%=pcCITYSTATE2%></b></td>
+          <td width="17%" align="center" height="19">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="13%" height="19"><b><font face="Verdana" size="2">Distance:</font></b></td>
+          <td width="21%" colspan="2" height="19"><b><font face="Verdana" size="2"><%=pcMILES%>&nbsp;Miles</b></font></td>
+          <td width="35%" colspan="2" height="19">
+          <p align="center">&nbsp;</td>
+        </tr>
+      </table>
+        </center>
+    </div>
+<!-- Buttons --->
+<br>
+<table border="0" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align='center'>
+  <tr>
+    <td width="32%" align="center">
+      <input type="button" CLASS="SUBOFF" name="btnExit" onclick="submitdistance()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Submit"></td>
+  </tr>
+</table>
+</form>
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" bgcolor="#6B8AAD">&nbsp;</td>
+  </tr>
+</table>
+</td></tr></table>
+</body>
+
+</html>

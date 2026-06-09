@@ -1,0 +1,202 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=pcORDNO%></title>
+
+<script language="javascript">
+
+function updcar(par) { 
+       document.theForm.action="/wc.dll?mpinv~invautoret~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+  
+function delcar(par) {
+	var Message = "Are you sure you want to delete this vehicle?";
+	if (confirm (Message)){
+	 	window.location.href=('/wc.dll?mpinv~invautoret~<%=pcSCR%>~'+par+'~DELETE');
+  }
+}
+
+</script>
+
+</head>
+
+<STYLE TYPE="text/css">
+ 	.TD1	 	{	background-color: #336699;
+ 					text-align: center;
+ 					font-weight: bold;
+ 					font-family: Verdana;
+ 					font-size: 10pt;
+ 					color: #FFF;
+ 					height:22;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	 .BUTTON	{	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 65; 
+                    height: 25; 
+                    cursor: pointer;}  				  	
+</style>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="1000">
+  <tr>
+    <td align="center" BGCOLOR="#008000"><b><font color="#FFFFFF" face="Verdana" size="4">Add/Update Vehicle</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">
+<table border="0" width="95%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="22%" height="30"><b><font face="Verdana" size="2">Job No: <%=pcDEPT+pcORDNO%></b></font></td>
+    <td width="75%" height="30"><b><font face="Verdana" size="2"><b>Customer:&nbsp;<%=PROPER(pcSNAME)%></b></font>&nbsp;</td>
+ </tr>
+</table>    
+<form name="theForm" method="post">    
+<div align="center">
+  <center>    
+<table border="1" width="98%" style="border-collapse: collapse;" bordercolor="#CCCCCC">
+  <tr>
+  	<td width="6%" class="TD1">Year</td>
+	<td width="9%" class="TD1">Make</td>
+	<td width="9%" class="TD1">Model</td>
+	<td width="9%" class="TD1">Color</td>
+	<td width="12%" class="TD1">Type</td>	
+	<td width="8%" class="TD1">Engine</td>
+	<td width="4%" class="TD1">Run</td>
+	<td width="7%" class="TD1">Enclosed</td>
+	<td width="4%" class="TD1">Qty</td>
+	<td width="6%" class="TD1">Price</td>
+	<td width="13%" class="TD1" colspan="2">Action</td>
+ </tr>
+  <% SELECT _INVAUTO
+			SCAN %>
+  <tr style="line-height:23px;">
+	<td width="6%" align="center">
+	<select size="1" name="YEAR<%=ALLT(STR(INVAUTOID))%>">
+	    <option><%=_INVAUTO.YEAR%></option>
+   	<%SELECT _Y
+    		SCAN%>
+	<option value="<%=_Y.YEAR%>"><%=_Y.YEAR%></option>
+	<%ENDSCAN%>
+	  <% SELECT _INVAUTO %>
+    </select></td>  
+	<td width="9%" ALIGN="CENTER"><input type="text" name="MAKE<%=ALLT(STR(INVAUTOID))%>" size="1" style="width:90px;" value="<%=ALLT(MAKE)%>"></td>
+	<td width="9%" align="center"><input type="text" name="MODEL<%=ALLT(STR(INVAUTOID))%>" size="1" style="width:90px;" value="<%=ALLT(MODEL)%>"></td>
+	<td width="9%" align="center">
+    <select size="1" name="COLOR<%=ALLT(STR(INVAUTOID))%>">
+	    <option><%=_INVAUTO.COLOR%></option>
+		<option>Beige</option>
+		<option>Black</option>
+		<option>Blue</option>
+		<option>Bronze</option>
+		<option>Brown</option>
+		<option>Burgundy</option>
+		<option>Charcoal</option>
+		<option>Gold</option>
+		<option>Gray</option>
+		<option>Green</option>
+		<option>Magenta</option>
+		<option>Maroon</option>
+		<option>Navy</option>
+		<option>Orange</option>
+		<option>Other</option>
+		<option>Pink</option>
+		<option>Purple</option>
+		<option>Red</option>
+		<option>Silver</option>
+		<option>Tan</option>
+		<option>Teal</option>
+		<option>White</option>
+		<option>Yellow</option>
+		</select></td>
+	<td width="12%" align="center">
+    	   <select size="1" name="TYPE<%=ALLT(STR(INVAUTOID))%>">
+	    	     <option selected><%=TYPE%></option>
+	        	 <option>Sedan</option>
+	        	 <option>Large Sedan</option>
+	        	 <option>Convertible</option>
+	        	 <option>Coupe</option>
+	        	 <option>Classic</option>
+	        	 <option>Crossover</option>	        	 
+	        	 <option>SUV</option>
+	        	 <option>Small SUV</option>	        	 
+   	        	 <option>Large SUV</option>
+   	        	 <option>Exta LG SUV</option>
+		         <option>Van</option>
+		         <option>Minivan</option>
+		         <option>Tall Van</option>
+		         <option>Extra Large Van</option>
+		         <option>Pickup</option>
+		         <option>Small Pickup</option>
+		         <option>Large Pickup</option>
+		         <option>Extra LG Pickup</option>
+		         <option>RV</option>
+		         <option>Travel Trailer</option>
+		         <option>Camper Van</option> 
+		         <option>Golf Cart</option>		         
+		         <option>ATV</option>
+		         <option>UTV</option>
+		         <option>S. Wagon</option>
+		         <option>Truck</option>
+		         <option>Ambulance</option>
+		         <option>Trike (3 wheel)</option>
+		         <option>Motorcycle</option>
+		         <option>Sail Boat</option>
+		         <option>Power Boat</option>
+		         <option>Speed Boat</option>
+		         <option>Jet Ski</option>
+		         <option>Armored</option>
+		         <option>Heavy Equ.</option>
+		         <option>Other</option>		         
+	        </select></td>	
+	<td width="8%" align="center">
+	<select size="1" name="ENGINE<%=ALLT(STR(INVAUTOID))%>">
+	    <option><%=_INVAUTO.ENGINE%></option>
+	    <option>Gasoline</option>
+	    <option>Diesel</option>
+		<option>Hybrid</option>
+		<option>Electric</option>
+		</select></td>
+	<td width="4%" align="center"><input type="checkbox" name="RUN<%=ALLT(STR(INVAUTOID))%>" value="ON" <%=IIF(RUN,'checked','')%>></td>
+	<td width="7%" align="center"><input type="checkbox" name="COVER<%=ALLT(STR(INVAUTOID))%>" value="ON" <%=IIF(COVER,'checked','')%>></td>
+	<td width="4%" align="center"><input type="text" name="QTY<%=ALLT(STR(INVAUTOID))%>" size="1" value="<%=ALLT(STR(QTY))%>" style="width:30px;text-align:right;" maxlength="1"></td>
+	<td width="6%" align="center"><b><font face="Verdana" size="2">$</font><input type="text" name="UPRC<%=ALLT(STR(INVAUTOID))%>" size="3" value="<%=IIF(UPRC=0,'',ALLT(STR(UPRC)))%>" style="width:45px;text-align:right;" maxlength="4"></td>
+	<td width="7%" align="center"><input type="button" class="button" name="B1" onclick="updcar(<%=ALLT(STR(_INVAUTO.INVAUTOID))%>)" value="Save"></td>
+	<td width="6%" align="center"><% IF _INVAUTO.INVAUTOID>999 %><input type="button" class="button" name="B1" onclick="delcar(<%=ALLT(STR(_INVAUTO.INVAUTOID))%>)" style="background-color:#FF0000;color:#FFFFFF;" value="Delete"><%ENDIF%></td>
+ </tr>
+<% ENDSCAN %>
+</TABLE>
+  </center>					
+</div>
+</form>
+<br></td>
+  </tr>
+  <tr>
+    <td width="500" bgcolor="#993366">&nbsp;</td>
+  </tr>
+</table>
+  </center>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta name="ROBOTS" content="NOARCHIVE">
+</head>
+
+<body>
+<center>
+<table width="700" border="0" style="border-collapse:collapse;font-size:11pt; font-family:Tahoma; font-color: #000000;" cellspacing="1">
+<tr>
+<td><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100"></td>
+</tr>
+<tr>
+<td valign="top"><br>Dear <b><%=ALLT(PROPER(_EST.SNAME))%></b>,<br><br>
+<font color="#01567E"><b><%=pcCOMPANY%></b></font> is one of the most reputable interstate moving companies around and trusted by countless families and businesses every year to handle their 
+interstate move. Even the simplest long-distance move can be stressful for a family or business. By choosing <font color="#01567E"><b><%=pcCOMPANY%></b></font> as your interstate mover, you can 
+rest assured knowing that you will be receiving the highest degree of service available when 
+it comes to your interstate move.<br><br>
+You may be thinking, “That’s nice and all, but why, with so many interstate moving companies to choose from, why should I choose</font>
+<font color="#01567E"><b><%=pcCOMPANY%></b></font>?”. Thankfully, the reasoning is clear. With over 18 years of experience in 
+moving individuals, families and employees all over the country, <font color="#01567E"><b><%=pcCOMPANY%></b></font> 
+has the know how it takes to ensure that your interstate moving experience 
+is of the utmost quality.<br><br>
+Please call us for an estimate or click your job # <b><%=pcLINK%></b> to fill out your inventory.</p><br>
+Sincerely,<br>
+<font color="#01567E"><b><%=pcCOMPANY%></b></font><br>
+Toll Free: <b><%=pcTOLLFREE%></b></font><br>
+Web: <a href="<%=pcOURWEB%>" target="_blank"><b><%=pcOURWEB%></b></a></td></tr></table></center>
+</body>
+</html>

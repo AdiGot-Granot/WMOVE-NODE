@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>States Sold Estimates</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+
+</SCRIPT>
+</head>
+
+<body>
+<p align="center"><b><font color="#6B8AAD" size="6">States Sold Estimates</font><font color="#800000" size="3"><br>
+</font></b>
+<form method="POST" action="/wc.dll?mpreposit~statesoldwc">
+</p>
+<table width="40%" bordercolor="#99CCFF" align="center" border="2" cellspacing="0" cellpadding="2" bordercolorlight="#6B8AAD" bordercolordark="#6B8AAD" style="border-collapse: collapse">
+    <tr>
+      <td width="10%" align="center" bordercolor="#6B8AAD">From Date:</td>
+      <td width="10%" align="center" bordercolor="#6B8AAD">
+      <input NAME="DATE1" size="10" tabindex="1" value="<%=LDDATE1%>"></td>
+      <td width="10%" align="center" bordercolor="#6B8AAD">To Date:</td>
+      <td width="12%" align="center" bordercolor="#6B8AAD">
+      <input NAME="DATE2" size="10" tabindex="1" value="<%=LDDATE2%>"></td>
+   </tr>
+ </table>
+<p align="center">
+  <input type="submit" value="Submit" name="B1" tabindex="8"></p>
+<table width="80%" bordercolor="#99CCFF" align="center" border="2" cellspacing="0" cellpadding="2" bordercolorlight="#6B8AAD" bordercolordark="#6B8AAD" style="border-collapse: collapse">
+    <tr>
+      <td width="7%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD">
+      <font size="2" face="Arial" color="#FFFFFF"><b>States</b></font></td>
+      <td width="10%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="3">
+      <font size="2" face="Arial" color="#FFFFFF"><b>Total</b></font></td>
+      <td width="12%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="2">
+      <font size="2" face="Arial" color="#FFFFFF"><b>Local</b></font></td>
+      <td width="13%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="2">
+      <font size="2" face="Arial" color="#FFFFFF"><b>Long Distance</b></font></td>
+      <td width="11%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="2">
+      <font size="2" face="Arial" color="#FFFFFF"><b>International</b></font></td>
+      <td width="13%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="2">
+      <font size="2" face="Arial" color="#FFFFFF"><b>Auto Transport</b></font></td>
+      <td width="12%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="5">
+      <b><font face="Arial" size="2" color="#FFFFFF">Not Sold</font></b></td>
+   </tr>
+  <tr>
+      <td width="7%" align="center" bordercolor="#6B8AAD">&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6">
+      <b><font face="Arial" size="2">Cust.</font></b></td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#DEE7DE">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#DEE7DE">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="5%" align="center" bordercolor="#6B8AAD" bgcolor="#D6D3CE">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#D6D3CE">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#FFFFCC">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#FFFFCC">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#FFCC66">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#FFCC66">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="1%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">L</font></b></td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">LD</font></b></td>
+      <td width="1%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">I</font></b></td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">T</font></b></td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">S</font></b></td>
+      </tr>
+  <% SELECT _LIST
+    SCAN %>
+    <tr>
+      <td width="11%" align="left" bordercolor="#6B8AAD" bgcolor="#FFFFFF"><b><%=STATE%></b>&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6"><b><%=CUST%></b>&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6"><b><%=S%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6"><b><%=S1%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#DEE7DE"><b><%=L%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#DEE7DE"><b><%=L1%></b>&nbsp;</td>
+      <td width="5%" align="center" bordercolor="#6B8AAD" bgcolor="#D6D3CE"><b><%=D%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#D6D3CE"><b><%=D1%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#FFFFCC"><b><%=I%></b>&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#FFFFCC"><b><%=I1%></b>&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#FFCC66"><b><%=T%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#FFCC66"><b><%=T1%></b>&nbsp;</td>
+      <td width="1%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=NSL%></b>&nbsp;</td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=NSD%></b>&nbsp;</td>
+      <td width="1%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=NSI%></b>&nbsp;</td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=NST%></b>&nbsp;</td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=NS%></b>&nbsp;</td>
+   </tr>
+   <% ENDSCAN
+   SELECT _LIST1 %>   
+    <tr>
+      <td width="7%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD">
+      <font size="2" face="Arial" color="#FFFFFF"><b>States</b></font></td>
+      <td width="10%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="3">
+      <font size="2" face="Arial" color="#FFFFFF"><b>Total</b></font></td>
+      <td width="12%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="2">
+      <font size="2" face="Arial" color="#FFFFFF"><b>Local</b></font></td>
+      <td width="13%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="2">
+      <font size="2" face="Arial" color="#FFFFFF"><b>Long Distance</b></font></td>
+      <td width="11%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="2">
+      <font size="2" face="Arial" color="#FFFFFF"><b>International</b></font></td>
+      <td width="13%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="2">
+      <font size="2" face="Arial" color="#FFFFFF"><b>Auto Transport</b></font></td>
+      <td width="12%" bgcolor="#6B8AAD" align="center" bordercolor="#6B8AAD" colspan="5">
+      <b><font face="Arial" size="2" color="#FFFFFF">Not Sold</font></b></td>
+   </tr>
+  <tr>
+      <td width="7%" align="center" bordercolor="#6B8AAD">&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6">
+      <b><font face="Arial" size="2">Cust.</font></b></td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#DEE7DE">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#DEE7DE">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="5%" align="center" bordercolor="#6B8AAD" bgcolor="#D6D3CE">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#D6D3CE">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#FFFFCC">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#FFFFCC">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#FFCC66">
+      <b><font face="Arial" size="2">Enter</font></b></td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#FFCC66">
+      <b><font face="Arial" size="2">Sold</font></b></td>
+      <td width="1%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">L</font></b></td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">LD</font></b></td>
+      <td width="1%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">I</font></b></td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">T</font></b></td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF">
+      <b><font face="Arial" size="2">S</font></b></td>
+      </tr>     
+     <tr>
+      <td width="11%" align="left" bordercolor="#6B8AAD" bgcolor="#FFFFFF">&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6"><b><%=ALLT(STR(CUST))%></b>&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6"><b><%=ALLT(STR(S))%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#ADE3C6"><b><%=ALLT(STR(S1))%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#DEE7DE"><b><%=ALLT(STR(L))%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#DEE7DE"><b><%=ALLT(STR(L1))%></b>&nbsp;</td>
+      <td width="5%" align="center" bordercolor="#6B8AAD" bgcolor="#D6D3CE"><b><%=ALLT(STR(D))%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#D6D3CE"><b><%=ALLT(STR(D1))%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#FFFFCC"><b><%=ALLT(STR(I))%></b>&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#FFFFCC"><b><%=ALLT(STR(I1))%></b>&nbsp;</td>
+      <td width="3%" align="center" bordercolor="#6B8AAD" bgcolor="#FFCC66"><b><%=ALLT(STR(T))%></b>&nbsp;</td>
+      <td width="4%" align="center" bordercolor="#6B8AAD" bgcolor="#FFCC66"><b><%=ALLT(STR(T1))%></b>&nbsp;</td>
+      <td width="1%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=ALLT(STR(NSL))%></b>&nbsp;</td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=ALLT(STR(NSD))%></b>&nbsp;</td>
+      <td width="1%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=ALLT(STR(NSI))%></b>&nbsp;</td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=ALLT(STR(NST))%></b>&nbsp;</td>
+      <td width="2%" align="center" bordercolor="#6B8AAD" bgcolor="#CCFFFF"><b><%=ALLT(STR(NS))%></b>&nbsp;</td>
+   </tr>
+ </table>
+<p align="center">
+  <input type="submit" value="Submit" name="B1" tabindex="8"></p>
+</form>
+</font></p>
+</body>

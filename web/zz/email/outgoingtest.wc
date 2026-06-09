@@ -1,0 +1,14 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Outgoing Email</title>
+</head>
+
+<body>
+
+<br>
+<center><b><font face="Arial">This email confirms a match between the email address <font color="#0000FF"><%=lcSENDEREMAIL%></font> and the email password.<br><br>You can activate this email account.</b></font></center>
+
+</body>
+</html>

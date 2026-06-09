@@ -1,0 +1,221 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Update Email Subject</TITLE>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+jQuery.noConflict();
+
+jQuery( document ).ready(function( $ ) {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 750,
+		maxHeight	: 750,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailsret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+
+   if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailswc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    
+    }  
+
+function toggleDropdown() {
+  var TYP = document.getElementById("TYP");
+  var TUSERID = document.getElementById("TUSERID");
+  var CATID = document.getElementById("CATID");
+  var checkbox = document.getElementById("EBOOK");            
+  var checkbox = document.getElementById("check1");
+
+  if (checkbox.checked) {
+     TYP.style.display = "none"; // Hide the dropdown
+     TUSERID.style.display = "none"; // Hide the dropdown
+     CATID.style.display = "none"; // Hide the dropdown
+     EBOOK.style.display = "none"; // Hide the dropdown                
+                     
+  } else {
+     TYP.style.display = "block"; // Show the dropdown
+     TUSERID.style.display = "block"; // Show the dropdown
+     CATID.style.display = "block"; // Show the dropdown
+     EBOOK.style.display = "block"; // Show the dropdown                
+  }
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+  /* Hide the dropdown by default */
+     #dropdown {display: none;}
+  				  	
+</style>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+
+</head>
+
+<body BGCOLOR="#F7F7F7">
+
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="850">
+  <tr valign="top">
+    <td valign="top">    
+	<form name="theForm" method="POST">
+  <input type="HIDDEN" name="TEMAILID" value="<%=ALLT(STR(pnTEMAILID))%>">	
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bgcolor="#F7F7E7" bordercolor="#111111" width="100%"> 
+  <tr>
+    <td width="100%">
+<% IF FIRSTMAIL=.F. %>    
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#FF00FF" width="97%" cellspacing="1" cellpadding="2">
+  <tr>
+  <%IF pnCOLEVEL<>3 %>
+    <td width="32%" style="line-height:30px;"><font face="Arial" size="2"><b>Move Type:</b></font>
+             <select size="1" name="TYP" id="TYP">
+        		<option  value="<%=ALLT(_TEMAIL.TYP)%>"><%=ALLT(_TEMAIL.TYP1)%></option>
+		        <option value=""></option>
+		        <option value="L">Local</option>
+		        <option value="D">Long Distance</option>
+		        <option value="I">Intenational</option>
+		        <option value="T">Auto Trans</option>
+	    </select></td>
+  <%ENDIF%>    
+    <td width="28%" style="line-height:30px;"><font face="Arial" size="2"><b>User Name:</b></font>
+        <select size="1" name="TUSERID" id="TUSERID">
+		<option selected value="<%=ALLT(STR(_TEMAIL.TUSERID))%>"><%=ALLT(_TEMAIL.USERNAME)%></option>
+		<option value=""></option>
+		 <%	SELECT _USERS
+			SCAN %>
+		<OPTION value="<%=ALLT(STR(_USERS.USERID))%>"><%=ALLT(_USERS.USERNAME)%></OPTION>
+		<% ENDSCAN %></select></td>
+  <% IF pnCOLEVEL>3 %>	
+    <td width="24%" style="line-height:30px;"><font face="Arial" size="2"><b>Category:</b></font>
+        <select size="1" name="CATID" id="CATID">
+		<option selected value="<%=ALLT(STR(_TEMAIL.CATID))%>"><%=ALLT(_TEMAIL.CATEGORY)%></option>
+	 	<option value=""></option>
+     	<option value="1">Sales</option>	 
+     	<option value="2">Operation</option>
+     	<option value="3">Cust. Service</option>
+     	<option value="4">Accounting</option>
+     	<% IF pnCOLEVEL > 4 %>
+     	<option value="5">QA</option>
+     	<%ENDIF%>
+  		</select></td>
+ <%ENDIF%>	
+    <td width="14%" style="line-height:30px;"><b><font face="Arial" size="2">ID: (<%=ALLT(STR(_TEMAIL.TEMAILID))%>)</font></b></td>
+  </tr>  
+</table>
+<%ENDIF%>
+<%IF plDEPT %>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#FF00FF" width="97%" cellspacing="1" cellpadding="2">
+  <tr>
+    <td width="100%" style="line-height:30px;"><font face="Arial" size="2"><b>Department:</b></font>
+	  <select size="1" name="DEPTID">
+       <option selected value="<%=ALLT(STR(_TEMAIL.DEPTID))%>"><%=ALLT(_TEMAIL.DEPT)+' '+ALLT(_TEMAIL.DEPTNAME)%></option>
+	   <option value=""></option>
+       <% SELECT _D
+        	  SCAN%>
+	   <option value="<%=ALLT(STR(_D.DEPTID))%>"><%=ALLT(_D.DEPT)+' '+ALLT(_D.DEPTNAME)%></option>
+       <%ENDSCAN%></select></td>
+  </tr>  
+</table>
+<%ENDIF%>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#FF00FF" width="97%" cellspacing="1" cellpadding="2">
+<%SELECT _TEMAIL%>  
+  <tr>
+    <td width="100%" style="line-height:30px;" colspan="2"><b><font face="Arial" size="2">Email Subject:</font></b>
+    <input name="SUBJECT" size="60" value="<%=ALLT(SUBJECT)%>" style="border:1px solid #4E6699; font-family:Verdana; font-size:10pt; font-weight:bold"  maxlength="80"></td>
+ </tr>
+  <tr>
+    <td width="55%"><b><font face="Arial" size="2"><input type="checkbox" name="LINK" value="ON" <%=IIF(LINK,'CHECKED','')%>>
+    <% IF !EMPTY(FILENAME) AND VIEWDOC=.F. %>
+       Add Link to Special Document
+    <%ELSE%>   
+      Add <%IF pnCOLEVEL<>3 %> "Update Your Inventory" Link<%ELSE%>Link to View/Update Estimate<%ENDIF%>
+    <%ENDIF%></font></b></td>
+    <td width="43%"><% IF pnTEMAILID > 1 %><input type="checkbox" name="DEL" value="ON"><b><font face="Arial" size="2" color="#DC143C">Delete Email</font></b><%ENDIF%></td>  
+  </tr>
+  <tr>
+    <td width="55%"><% IF pnTEMAILID > 1 AND EMPTY(FILENAME) AND VIEWDOC=.F. AND EBOOK=.F. AND plEMAILFILE=.T. %><input id="check1" type="checkbox" name="FIRSTMAIL" onclick="toggleDropdown()" value="ON" <%=IIF(FIRSTMAIL,'CHECKED','')%>>
+    <b><font face="Arial" size="2">Set as Automatic Email for New Estimates</font></b><%ENDIF%></td>
+    <td width="43%"><% IF pnTEMAILID > 1 AND EMPTY(FILENAME) AND VIEWDOC=.F. AND FIRSTMAIL=.F. %><input id="EBOOK" type="checkbox" name="EBOOK" value="ON" <%=IIF(EBOOK,'CHECKED','')%>><b><font face="Arial" size="2">Set as Automatic Book Email</font></b><%ENDIF%></td>  
+  </tr>
+</table>
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#FF00FF" width="98%">
+  <tr>
+    <td width="81%" valign="top">
+    <textarea rows="30" cols="80" name="BODY" tabindex="20" style="border:1px solid #4E6699;"><%=ALLT(BODY)%></textarea></td>
+    <td width="17%" valign="top" align="right"><b><font face="Arial" size="2">Add <a class="fancybox fancybox.iframe" href="/zz/help/Keywords.htm">Keywords</a>:<br>
+     <font color="#008000">
+     <% IF pnTEMAILID > 1 AND plFIRSTMAIL=.T. %>JOBNO<br>CLIENTNAME<br>CLIENTTO<br>MOVEDAY<BR>MOVEDATE<br>MOVETIME<br>FROMADD<br>TOADD<br>FROMSTATE<br>ORG-STATENAME<br>TOSTATE<br>DEST-STATENAME<BR>FROMCOUNTRY<br>TOCOUNTRY<br>TOTALJOB<%ENDIF%>
+     <% IF plFIRSTMAIL=.F. %>
+       JOBNO<br>TODAY-DATE<br>CLIENTNAME<br>CLIENTTO<br>OFULLNAME<br>DFULLNAME<br>MOVEDAY<BR>MOVEDATE<br>MOVEDTE2<BR>MOVETIME<br>FROMADD<br>TOADD<br>FROMSTATE<br>ORG-STATENAME<br>TOSTATE<br>DEST-STATENAME<BR>FROMCOUNTRY<br>TOCOUNTRY<br>TOTALJOB     
+         <br>ESTUSER<br>UFIRSTNAME<BR>USER-PHONE<BR>PHONE1<BR>PHONE2<BR>PHONE3<br>MOBILE<br>FOLLOW-UP<BR>FOLLOW-TIME<br>REF-NO
+           <%IF pnCOLEVEL <> 3 %><BR>LOCAL-VAN<BR>LOCAL-MEN<BR>LOCAL-PERHRS<BR>RATE-PER<BR>TOTALCF<br>TOTALLBS<br>ESTIMATOR<br>VISUALDAY<BR>VISUALDATE<br>VISUALTIME<br>DLVDATEA
+         <br>DLVDATEB<br>PACKDATE<br>PACKTIME<br>DISCOUNT-TEXT<br>DISCOUNT-AMT<br>JOBAMOUNT<BR>PAYMENTS<br>MOVE-BALANCE<%ENDIF%><%ENDIF%>
+     </b></font></font></td>
+  </tr>
+</table>  
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#00FFFF" width="98%">
+  <tr>
+    <td align="center" height="45"><INPUT TYPE="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="10" value="Submit"></td>
+    <td align="center" height="45"><input type="submit" CLASS="SUBOFF" name="B56" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="13" value="Exit"></td>
+  </tr>
+</table>
+&nbsp;</td>
+  </tr>
+</table>  
+</form>
+  </tr>
+</table>
+</body>
+</html>

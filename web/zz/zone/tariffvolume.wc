@@ -1,0 +1,164 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Tariff Volume & Periods</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~TariffVolumeRet~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~TariffPeriodsRet~<%=+pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~TariffMenuWc~<%=+pcSCR%>";
+       document.theForm.submit();
+      }
+
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}					
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" width="50%">
+ <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Tariff Volume & Periods</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<table border="0" width="300" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td height="30" width="116"><b><font face="Verdana" size="2">Tariff ID: <%=pcDMAINID%></font></b></td>    
+	<td height="30" width="160"><b><font face="Verdana" size="2">CF / Lbs Ratio: <%=ALLT(STR(pnCFRATIO,7,2))%></font></b></td>    
+</table>   
+  <form name="theForm" method="POST">    
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="47%" valign="top">
+ <!---VOLUME-->
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+   <tr>
+     <td align="center" BGCOLOR="#F7F7F7" colspan="3"><font face="Verdana"><b>Tariff Volume</b></font></td>
+  </tr>
+   <tr>
+     <td width="11%" class="TD1"><b>Column</b></td>
+     <td width="18%" class="TD1"><b><%=IIF(plCOCALCCF,'Cubic Feet','Weight')%></b></td>
+     <td width="21%" class="TD1"><b><%=IIF(plCOCALCCF,'Weight','Cubic Feet')%></b></td>
+  </tr>
+    <% SELECT _V 
+       SCAN %>
+   <tr style="line-height:25px;">
+     <td width="11%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><B><%=VCODE%></B></td>
+     <td width="18%" class="TD3" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>">UP TO <input NAME="<%=ALLT(STR(DVOLUMEID))%>" VALUE="<%=ALLT(STR(V1)) %>" style="width:50px;text-align: right;" tabindex="1" size="20"></td>
+     <td width="17%" class="TD2" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><B><%=ALLT(STR(V2)) %></B></td>
+   </tr>
+   <% ENDSCAN%>
+   </table>			
+<!---END VOLUME---><br>
+<table border="0" width="70%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="3" value="Submit Volume"></td>    
+</table>  
+    </td>
+    <td width="53%" valign="top">
+ <!---PERIODS--->
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+  <tr>
+     <td align="center" BGCOLOR="#F7F7F7" colspan="5"><font face="Verdana"><b>Tariff Periods</b></font>&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="18%" align="center" bgcolor="#F7F7F7">&nbsp;</td>
+    <td width="36%" align="center" colspan="2" bgcolor="#F7F7F7"><b><font size="2" face="Verdana">From</font></b></td>
+    <td width="46%" align="center" colspan="2" bgcolor="#F7F7F7"><b><font size="2" face="Verdana">To</font></b></td>
+ </tr>
+  <tr>
+    <td width="18%" class="TD1"><b>Period</b></td>
+    <td width="18%" class="TD1"><b>Month</b></td>
+    <td width="18%" class="TD1"><b>Day</b></td>
+    <td width="22%" class="TD1"><b>Month</b></td>
+    <td width="24%" class="TD1"><b>Day</b></td>
+  </tr>
+  <% SELECT _P
+	  SCAN %>
+  <tr>
+	<td width="18%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><b><%=ALLT(STR(PID))%></b>&nbsp;</td>
+	<td width="18%" class="TD2" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input type="text" style="width:30px;text-align: right;" name="<%='MMFROM'+ALLT(STR(PID)) %>" VALUE="<%=ALLT(STR(MMFROM)) %>" size="20"></td>
+	<td width="18%" class="TD2" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input type="text" style="width:30px;text-align: right;" name="<%='DDFROM'+ALLT(STR(PID)) %>" VALUE="<%=ALLT(STR(DDFROM)) %>" size="20"></td>
+	<td width="22%" class="TD2" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input type="text" style="width:30px;text-align: right;" name="<%='MMTO'+ALLT(STR(PID)) %>" VALUE="<%=ALLT(STR(MMTO)) %>" size="20"></td>
+	<td width="24%" class="TD2" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input type="text" style="width:30px;text-align: right;" name="<%='DDTO'+ALLT(STR(PID)) %>" VALUE="<%=ALLT(STR(DDTO)) %>" size="20"></td>
+ </tr>
+  <% ENDSCAN %>
+</table>
+<br>
+<table border="0" width="70%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="3" value="Submit Periods"></td>    
+</table>
+<!---END PERIODS-->    
+    </td>
+ </tr>
+</table>    
+    <BR>
+<table border="0" width="70%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(3)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="3" value="Exit"></td>    
+</table>    
+   </form> </td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+ </tr>
+</table>
+</body>
+</html>

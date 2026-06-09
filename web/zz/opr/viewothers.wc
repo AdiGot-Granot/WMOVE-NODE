@@ -1,0 +1,66 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>View Others</title>
+</head>
+<body BGCOLOR="#4E6699">
+<% SELECT _CRG%>
+<table border="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="90%" height="172"> 
+ <tr>
+  <td width="100%" bgcolor="#6B8AAD" align="center" height="22"><b>
+  <font face="Verdana" color="#FFFFFF">Charges Info&nbsp;-&nbsp;<%=ALLT(DEPT)+ALLT(ORDNO)%></font></b></td>
+ </tr>
+  <tr>
+   <td width="100%" valign="top" bgcolor="#FFFFFF" height="103"><br>
+   <div align="center">
+     <center>
+  
+  <table border="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber1" cellspacing="1" cellpadding="2">
+   <tr>
+    <td width="14%"><font face="Arial" size="2"><b>&nbsp;Others:</b></font></td>
+    <td width="76%"><font face="Arial" size="2"><b>&nbsp;<%=ALLT(OTHERS)%></b></font></td>
+    <td width="10%" align="right"><font face="Arial" color="#008000" size="2"><b>&nbsp;<%='$'+ALLT(STR(OTHERSAMT,10,2))%></b></font></td>
+  </tr>
+   <tr>
+    <td width="14%"><font face="Arial" size="2"><b>&nbsp;Others 1:</b></font></td>
+    <td width="76%"><font face="Arial" size="2"><b>&nbsp;<%=ALLT(OTHERS1)%></b></font></td>
+    <td width="10%" align="right"><font face="Arial" color="#008000" size="2"><b>&nbsp;<%='$'+ALLT(STR(OTHERS1AMT,10,2))%></b></font></td>
+  </tr>
+   <tr>
+    <td width="14%"><font face="Arial" size="2"><b>&nbsp;Others 2:</b></font></td>
+    <td width="76%"><font face="Arial" size="2"><b>&nbsp;<%=ALLT(OTHERS2)%></b></font></td>
+    <td width="10%" align="right"><font face="Arial" color="#008000" size="2"><b>&nbsp;<%='$'+ALLT(STR(OTHERS2AMT,10,2))%></b></font></td>
+  </tr>
+   <tr>
+    <td width="14%"><font face="Arial" size="2"><b>&nbsp;Extra&nbsp;&nbsp; 1:</b></font></td>
+    <td width="76%"><font face="Arial" size="2"><b>&nbsp;<%=ALLT(EXTRA1)%></b></font></td>
+    <td width="10%" align="right"><font face="Arial" color="#008000" size="2"><b>&nbsp;<%='$'+ALLT(STR(EXTRA1AMT,10,2))%></b></font></td>
+  </tr>
+   <tr>
+    <td width="14%"><font face="Arial" size="2"><b>&nbsp;Extra&nbsp;&nbsp; 2:</b></font></td>
+    <td width="76%"><font face="Arial" size="2"><b>&nbsp;<%=ALLT(EXTRA2)%></b></font></td>
+    <td width="10%" align="right"><font face="Arial" color="#008000" size="2"><b>&nbsp;<%='$'+ALLT(STR(EXTRA2AMT,10,2))%></b></font></td>
+   </tr>
+   <tr>
+    <td width="14%"><font face="Arial" size="2"><b>&nbsp;Extra&nbsp;&nbsp; 3:</b></font></td>
+    <td width="76%"><font face="Arial" size="2"><b>&nbsp;<%=ALLT(EXTRA3)%></b></font></td>
+    <td width="10%" align="right"><font face="Arial" color="#008000" size="2"><b>&nbsp;<%='$'+ALLT(STR(EXTRA3AMT,10,2))%></b></font></td>
+   </tr>   
+   <tr>
+    <td width="100%" colspan="3"><HR color="#008000"></HR></td>
+    </tr>
+   <tr>
+    <td width="90%" colspan="2"><font face="Arial" size="2"><B>&nbsp;Total Others:</font></td>
+    <td width="10%" align="right"><font face="Arial" color="#008000" size="2"><B>&nbsp;<%='$'+ALLT(STR(OTHERSAMT+OTHERS1AMT+OTHERS2AMT+EXTRA1AMT+EXTRA2AMT+EXTRA3AMT,10,2))%></B></font></td>
+  </tr>
+  </table></center>
+   </div>
+   <br></td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#6B8AAD" height="19">&nbsp;</td>
+  </tr>
+  </table>
+</body>
+</html>

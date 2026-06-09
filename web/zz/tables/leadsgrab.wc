@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Leads Grabbing & Posting</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function Pop3Save(par) { 
+       document.theForm.action="/wc.dll?mpmainten~LeadapiSave~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+	
+function SubmitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>~1');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	border-bottom: 1px solid #A9A9A9;}					
+	.SUBMIT		{	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 70; 
+                    height: 25; 
+                    cursor: pointer;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="30%">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center"><b><font face="Verdana" color="#FFFFFF">Leads Grabbing &amp; Posting</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+  <form name="theForm" method="POST">    
+<table border="0" align="center" cellpadding="1" cellspacing="1" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="95%">
+   <tr>
+     <td width="36%" class="TD1">Leads  Email Key</td>
+     <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">Dept</td>
+     <td width="11%" class="TD1" style="border-left: 1px solid #A9A9A9;">Action</td>
+  </tr>
+<% SELECT _APIKEY 
+   SCAN%>  			
+   <tr>
+     <td width="36%" class="TD3"><input name="<%='U'+ALLT(STR(APIKEYID))%>" size="40" value="<%=ALLT(APIKEY)%>"></td>
+     <td width="8%" class="TD2">
+     <%IF plDEPT%>
+            <select size="1" name="<%='D'+ALLT(STR(APIKEYID))%>" tabindex="5">
+	        <option selected value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></option> 
+		     <% SELECT _DEPARTMENT 
+		     	 SCAN %>
+			       <OPTION value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select>
+     <%ELSE%><b><font face="Verdana" size="2"><%=ALLT(DEPT)%></B></FONT>
+     <%ENDIF%></td>    
+     <td width="11%" class="TD2"><input type="button" CLASS="SUBMIT" name="B4" onclick="Pop3Save(<%=ALLT(STR(_APIKEY.APIKEYID))%>)" value="Save"></td>
+  </tr>
+<% ENDSCAN %> 
+</table>
+ <br>
+<table border="0" width="80%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="23%" align="center"><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="SubmitFunction(1)" value="Exit"></td>    
+</table>
+ </form>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+</body>
+</html>

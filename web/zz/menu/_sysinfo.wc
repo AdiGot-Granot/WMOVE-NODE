@@ -1,0 +1,214 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Company Info</TITLE>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+jQuery.noConflict();
+
+jQuery( document ).ready(function( $ ) {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 700,
+		maxHeight	: 550,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+
+function submitFunction(i) 
+  {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~sysinforet~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+
+    if (i==2) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+  }
+
+function esignbody() {
+    window.open('/wc.dll?mpmainten~esignbodywc~<%=pcSCR%>~<%=lcDEPTID%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=550');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+		
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<%SELECT _SYSTEM%>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="800">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="19"><font face="Verdana" size="4" color="#FFFFFF">Company Information</font></b></td>
+  </tr>
+ <form name="theForm" method="POST">
+    <td width="100%" align="center" bgcolor="#FFFFFF"><br>	
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="61%" valign="top">
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="35%" height="19"><font face="Verdana" size="2">Company Name</font></td>
+    <td width="66%" height="19"><input type="text" name="COMPANY" size="40" value="<%=ALLT(COMPANY)%>" tabindex="1"></td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Verdana" size="2">Company Address</font></td>
+    <td width="66%" height="19"><input type="text" name="MAILADD1" size="40" value="<%=ALLT(MAILADD1)%>" tabindex="2"></td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Verdana" size="2">City, State, Zip Code</font></td>
+    <td width="66%" height="19"><input type="text" name="MAILADD2" size="40" value="<%=ALLT(MAILADD2)%>" tabindex="3"></td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Verdana" size="2">Company Phone</font></td>
+    <td width="66%" height="19"><input type="text" name="TOLLFREE" size="40" value="<%=ALLT(TOLLFREE)%>" tabindex="4"></td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Verdana" size="2">Company Fax</font></td>
+    <td width="66%" height="19"><input type="text" name="FAX" size="40" value="<%=ALLT(FAX)%>" tabindex="5"></td>
+  </tr>
+  <tr>
+    <td width="35%" height="18"><font face="Verdana" size="2">Company Email</font></td>
+    <td width="66%" height="18"><input type="text" name="EMAIL" size="40" value="<%=ALLT(EMAIL)%>" tabindex="6"></td>
+  </tr>
+  <tr>
+    <td width="35%" height="18"><font face="Verdana" size="2">Company Website</font></td>
+    <td width="66%" height="18"><input type="text" name="WEB" size="40" value="<%=ALLT(WEB)%>" tabindex="7"></td>
+  </tr>
+  <%IF !plDEPT%>
+  <tr>
+    <td width="35%" height="19"><font face="Verdana" size="2">Company Slogan</font></td>
+    <td width="66%" height="19"><input type="text" name="SLOGAN" size="40" value="<%=pcSLOGAN%>" tabindex="8"></td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Verdana" size="2">Web Redirect</font></td>
+    <td width="66%" height="19"><input type="text" name="WEBREDIRECT" size="40" value="<%=pcWEBREDIRECT%>" tabindex="9"></td>
+  </tr>
+  <%ENDIF%>
+  <% IF plESUBJECT=.T. %>
+  <tr>
+    <td width="35%" height="19"><font face="Verdana" size="2">Email Subject</font></td>
+    <td width="66%" height="19"><input type="text" autocomplete="off" name="ESUBJECT" size="40" value="<%=ALLT(ESUBJECT)%>" tabindex="10"></td>
+  </tr>
+  <%ENDIF%>  
+</table>
+<%SELECT _SYSTEM%>    
+    </td>
+    <td width="1%">&nbsp;</td>
+    <td width="38%" valign="top">
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Arial;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="2"><font face="Verdana" size="2" color="#0081D3"><b>Company License</b></font></td>
+ </tr>
+  <tr>
+    <td width="53%"><font face="Verdana" size="2">US DOT</font></td>
+    <td width="49%"><input type="text" name="DOT" size="12" value="<%=ALLT(DOT)%>" tabindex="11"></td>
+ </tr>
+  <tr>
+    <td width="53%"><font face="Verdana" size="2">ICC MC</font></td>
+    <td width="49%"><input type="text" name="ICC" size="12" value="<%=ALLT(ICC)%>" tabindex="12"></td>
+ </tr>
+  <tr>
+    <td width="53%"><font face="Verdana">State Registration</font></td>
+    <td width="49%"><input type="text" name="REGISTER" size="12" value="<%=ALLT(REGISTER)%>" tabindex="13"></td>
+ </tr>
+  <tr>
+    <td width="100%" height="16" colspan="2"></td>
+ </tr>
+ <% IF pnCOLEVEL=3 OR !EMPTY(UID)%>
+  <tr>
+    <td width="100%" align="center" colspan="2"><font face="Verdana" size="2" color="#0081D3"><b>Central Dispatch Integration</b></font></td>
+ </tr>
+  <tr>
+    <td width="102%" colspan="2"><font face="Verdana" size="2">UID: <%=ALLT(UID)%></font></td>
+ </tr>
+  <tr>
+    <td width="102%" colspan="2"><font face="Verdana" size="2">UEmail: <%=ALLT(UEMAIL)%></font></td>
+ </tr>
+ <%ENDIF%>  
+</table>
+ <BR>
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Arial;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center"><u><b><font Face="Verdana" onclick="esignbody()" style="cursor:pointer;" color="#0000FF">Electronic Signature Policy</font></b></u></td>
+ </tr>
+</table>
+    </td>
+ </tr>
+</table>
+      <BR>
+<table border="0" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="32%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Submit" size="20"></td>
+    <td width="32%" align="center"><input type="submit" CLASS="SUBOFF" name="B53" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="13" value="Exit"></td>
+ </tr>   
+</table>
+<%IF !plDEPT%>
+  <BR>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" style="font-size:11pt;" color="#0081D3">Thank You Message to Customer After Inventory</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea rows="7" name="THANKSTXT" cols="65"><%=pcTHANKSTXT%></textarea></td>
+ </tr>
+</table>
+<%ENDIF%>
+</form>
+  &nbsp;</td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="14">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+
+</body>
+</html>

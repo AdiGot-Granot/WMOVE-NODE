@@ -1,0 +1,120 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Assign Future Booked Jobs to QA</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function CHKUSER(){
+		frm = document.theForm;
+		if(frm.QAUSER[frm.QAUSER.selectedIndex].text=='') {
+			alert("Please Select QA User!");
+			frm.QAUSER.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+
+function submitFunction(i) {
+		    if (i==1 &&CHKUSER())
+		      { 
+               document.theForm.action="/wc.dll?mv~AssignQARet~<%=pcSCR%>";
+   		       document.theForm.submit();
+		      }
+	    }
+		
+function CheckBoxes(FormName, CheckValue){
+   if(!document.forms[FormName])
+      return;
+   var objCheckBoxes = document.getElementsByTagName('input');
+   if(!objCheckBoxes)
+      return;
+   var countCheckBoxes = objCheckBoxes.length;
+   if(!countCheckBoxes)
+      objCheckBoxes.checked = CheckValue;
+   else
+      for(var i = 0; i < countCheckBoxes; i++)
+      objCheckBoxes[i].checked = CheckValue;
+}
+		
+</SCRIPT>
+
+</head>
+
+<body>
+  <p align="center"><br>
+    <%	SELECT _LIST
+    	lnRecCount = RecCount() %>
+  <font face="Arial" size="4"><b>Assign  Booked Jobs to QA<br>Total Jobs:&nbsp;<b><%=ALLT(STR(lnRecCount))%></b></font></p>
+<% IF lnRecCount > 0 %>
+<form name="theForm" method="POST">
+  <% IF pnLEVEL=5 %>
+<table border="0" align="center" style="border-collapse: collapse" width="90%">
+  <tr>
+    <td width="6%"><b><font face="Verdana" size="2">Assign to:</b></font></td>
+    <td width="41%">
+     <select size="1" name="QAUSER">
+     <OPTION value=""></OPTION>
+	     <% SELECT _QAUSER
+	         SCAN %>
+		       <OPTION value="<%=QAUSER%>"><%=QAUSER%></OPTION>
+	     <% ENDSCAN %>
+   	   </select></td>
+    <td width="53%"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(1)" style="width: 100;cursor: pointer;" value="Submit"></td>
+  </tr>
+</table>
+  <%ENDIF%>
+<%ENDIF%>
+<div align="center">
+  <center>
+ <table border="1" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#C0C0C0" width="90%">
+    <tr style="background-color:#0081D3;font-family:Verdana;font-size:10pt;font-weight:bold;color:#FFFFFF;">
+      <td width="4%" align="center">Assign <% IF pnLEVEL=5 %><input type="checkbox" name="checkall" onclick="CheckBoxes('theForm',this.checked);" value="ON"><%ENDIF%></td>
+      <td width="3%" align="center">Job No</td>
+      <td width="5%" align="center">Book Date</td>
+      <td width="8%" align="center">Move Date</td>
+      <td width="7%" align="center">User/Rep</td>
+      <td width="9%" align="center">Customer</td>
+      <td width="10%" align="center">Moving From</td>
+      <td width="10%" align="center">Moving To</td>
+      <td width="10%" align="center" colspan="2">Req. Delivery/Dlv Now</td>
+      <td width="4%" align="center">Volume</td>
+      <td width="4%" align="center">Estimate</td>
+      <td width="5%" align="center">Open Date</td>
+    </tr>
+   <% SELECT _LIST 
+    	   SCAN %>
+      <tr style="font-family:Arial;font-size:10pt;">
+      <td width="4%" align="center"><% IF pnLEVEL=5 %><input type="checkbox" name="<%=ALLT(ORDNO)%>" value="ON"><%ENDIF%></td>
+      <td width="3%" align="center"><b><a href="/wc.dll?mprep~printselect~<%=pcSCR+'~'+ALLT(REFNO)%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a></b>&nbsp;</td>
+      <td width="5%" align="center"><% IF BOOKDTE>DATE()-4%><b><font color="#FF0000"><%=BOOKDTE%></font></b><%ELSE%><%=BOOKDTE%><%ENDIF%>&nbsp;</td>
+      <td width="8%" align="center"><b><%=LBOOKDTE%></b><%=IIF(EMPTY(LBOOKDTE1),'',' - '+DTOC(LBOOKDTE1))%>&nbsp;</td>
+      <td width="7%" height="18"><%=ALLT(USER)%>/<%=ALLT(REP)%></td>
+      <td width="9%" height="18"><b><%=ALLT(SNAME)%></B></td>
+      <td width="10%" height="18"><%=ALLT(PROPER(SCITY))%><%=', '+ALLT(SSTATE)%></td>
+      <td width="10%" height="18"><%=ALLT(PROPER(RCITY))%><%=', '+ALLT(RSTATE)%></td>
+      <td width="7%" align="center"><%=IIF(EMPTY(DLVDTE),'',DTOC(DLVDTE))%>&nbsp;</td>
+      <td width="3%" align="center"><b><%=IIF(DLVIMM=.T., 'Yes','')%></b>&nbsp;</td>
+      <td width="4%" height="18" align="right"><%=IIF(CALCCF=.T.,ALLT(STR(TOTALCF))+' cf',ALLT(STR(TOTALLBS))+' lbs')%></td>
+      <td width="4%" height="18" align="right"><b><%=IIF(SUBTOTAL=0,' ','$'+ALLT(STR(SUBTOTAL))) %></b>&nbsp;</td>
+      <td width="5%" align="center"><%=OPEN_DATE%>&nbsp;</td>
+    </tr>
+    <% ENDSCAN %>
+</table>
+  </center>
+</div>
+<% IF lnRecCount > 0 %>
+  <BR>
+<table border="0" align="center" style="border-collapse: collapse" width="75%">
+  <tr>
+    <td width="100%" ALIGN="CENTER"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(1)" style="width: 100;cursor: pointer;" value="Submit"></td>
+  </tr>
+</table>
+</form>
+<%ENDIF%>
+</body>
+</html>

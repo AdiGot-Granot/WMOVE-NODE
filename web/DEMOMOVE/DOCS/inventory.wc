@@ -1,0 +1,113 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Inventory List</title>
+
+<% IF pnTEMAILID=110 %>
+<script>
+  setTimeout(() => {
+    window.location.href = '/expired.htm'; // or any fallback page
+  }, 30000); // 210 seconds
+</script>
+<%ENDIF%>
+
+</head>
+
+<body>
+
+<table align="center" style="border-collapse: collapse;" cellpadding="0" width="800" border="0">
+  <tr>
+    <td width="400" valign="top" align="center"><img src="https://topnationrelocation.com/wp-content/uploads/2026/01/logo-2048x484.webp" border="0" alt="" width="348" height="80"></td>
+    <td width="400" valign="top" align="right"><span style="font-family:Arial,sans-serif;line-height:27px;"><b><%=pcCOMPANY%></b>&nbsp;<br>
+    <span style="font-size:10pt;"><%=pcADD1%>&nbsp;<%=pcADD2%>&nbsp;<br><%=pcTOLLFREE%>&nbsp;<br>US DOT: <%=pcDOT%><%=IIF(EMPTY(pcICC),"","ICC MC: "+pcICC)%>&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td colspan="2"><br><span style="font-family:Arial,sans-serif;font-size:11pt;">Hello <%=ALLT(LEFT(ALLTRIM(_EST.SNAME),AT(' ',_EST.SNAME,1)))%>,<br><br>
+    Please review your inventory list and sign to confirm the accuracy of the items you're moving. Your scheduled move date is <%=_EST.LBOOKDTE%>.</td>
+ </tr> 
+</table>
+<%SELECT _T1.* FROM _T1 INTO CURSOR _T READWRITE
+  APPEND FROM DBF('_T2')
+  APPEND FROM DBF('_T3')
+  SELECT COUNT(ITEM) AS ITEMS,SUM(VAL(QTY)) AS PCS FROM _T INTO CURSOR _T4%>
+  
+<br><center><font style="FONT-FAMILY: Arial, sans-serif;FONT-WEIGHT:bold;">Inventory List for Job # <%=ALLT(_EST.ORDNO)%><br><%=ALLT(STR(ITEMS))%> Items <%=ALLT(STR(PCS))%> Pieces</font></center><br>    
+<table border="1" align="center" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#C0C0C0" width="800">
+  <tr>
+    <td width="69" align="center" height="27"><b>Quantity</b></td>
+    <td width="537" align="center" height="27"><b>Item Description</b></td>
+    <td width="68" align="center" height="27"><b>Bulky</b></td>
+    <td width="63" align="center" height="27"><b>Packing</b></td>
+ </tr>
+  <%SELECT _T
+    SCAN %>
+  <tr>
+    <td width="69" align="center" height="25"><%=QTY%>&nbsp;</td>
+    <td width="537" height="25"><font style="font-size:9pt;"><%=ITEM%></font>&nbsp;</td>
+    <td width="68" align="center" height="25"><font style="font-size:14pt;"><%=IIF(BULKY=1,'&#10003;','')%></font></td>
+    <td width="63" align="center" height="25"><font style="font-size:14pt;"><%=IIF(NEEDPACK=1,'&#10003;','')%></font></td>              
+ </tr>
+<%ENDSCAN %>
+</table>
+ <br>
+ <form name="theForm" method="post">
+<table border="0" align="center" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Tahoma;font-size:10pt;" bordercolor="#111111" width="800">
+   <% IF pnTEMAILID=110 %>
+    <tr>
+    <td width="694" colspan="3"><img src="<%=pcSIGDATA%>"><br>Signature Date:&nbsp;<%=pcEDTE+' ET'%><br>Signature Name:&nbsp;<%=pcENAME%><br>Signature IP:&nbsp;<%=pcEIP%><br>
+    Print or save this document via <a href="javascript: window.print()"><b>Printer Friendly</a></b>.</td>
+   </tr>
+   <%ELSE%>   
+    <tr>
+     <td width="68"><br>Signature:</td>
+     <td width="328"><br><input type="hidden" name="sigData" id="sigData">
+     <canvas id="newSignature" width="300" height="60" style="position: relative;border: 2px solid #000000;"></canvas>&nbsp;</td>
+     <td width="288"><br>Name: <input type="text" autocomplete="off" name="ENAME" size="20" style="border: 1px solid #000000;" maxlength="50"></td>
+   </tr>
+    <tr>
+     <td colspan="3" height="40" valign="bottom" align="center"><input type="button" onclick="signatureSave()" style="width:125;height:25;font-family:Arial;font-size:10pt;font-weight:bold;color:#0000FF;cursor:pointer;" value="Accept and Sign">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="signatureClear()" style="width:60;height:25;font-family:Arial;font-size:10pt;font-weight:bold;cursor:pointer;" value="Clear"></td>
+   </tr>
+   <%ENDIF%>
+</table>   
+</form> 
+
+<script src="/zz/js/xsign-2.1.0.min.js"></script>
+<script src="/zz/js/xsigndraw.js?v=1.2.3"></script>
+
+<script>
+signatureCapture();
+
+//check data
+  function checkData(){
+  frm = document.theForm;
+  if (frm.ENAME.value.length < 4 || frm.ENAME.value.indexOf(" ") < 1) {
+      alert("Please type your full name (first & last)");
+	frm.ENAME.focus();
+  }else   	
+  return true;
+ }
+
+function signatureSave() {
+	var canvas = document.getElementById("newSignature");
+   // save canvas image as data url (png format by default)
+	var sigData = canvas.toDataURL();
+	var n = sigData.length; 
+             if ((n) < 1100) {
+        	 alert("Please sign your name");
+        	 return false;
+       		 }else {
+	if (checkData()) {
+	    $("#sigData").val(sigData);
+	    document.theForm.action="/wc.dll?mpest~esigndocret~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcTEMAILID%>";
+	    document.theForm.submit();
+	}else {   	
+	return false;
+      }	
+  }
+}
+
+</script>
+
+</body>
+</html>

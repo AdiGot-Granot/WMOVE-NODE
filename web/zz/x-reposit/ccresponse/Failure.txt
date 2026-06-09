@@ -1,0 +1,27 @@
+Movers Arena - payment failed
+
+Movers Arena - Online Services (http://www.moversarena.com)
+_________________________________________________________________
+
+We have experienced a problem with your order!
+
+An invalid credit card number has been entered.
+
+<AuthorizationResponse>
+
+There are a few possible reasons for this, they are as follows: 
+1) There has been a mistake in entering the credit card number
+  a) Return to the order form to your filled out on the site.
+  b) Re-enter your information.
+  c) Double check to see that number appears exactly as it does on your credit card.
+  d) Click the 'Submit' or 'Order' button once again.
+2) The site from who you are making the purchase does not accept your type of credit card.
+  a) Return to the order form to your filled out on the site.
+  b) If you have an alternate type of credit card - enter this information.
+  c) Click the 'Submit' or 'Order' button once again.
+
+If continue to have problems or if you have questions please contact:
+<MerchantName> at <MerchantPhone>, or E-mail us at <MerchantEmail>
+
+<UserDefinedFields>
+

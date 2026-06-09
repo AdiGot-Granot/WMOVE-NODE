@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="noarchive">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #F2F4F7;
+      font-family: 'DM Sans', sans-serif;
+      color: #1A1F2E;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      max-width: 600px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: #1B3A6B;
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .check-icon {
+      width: 40px;
+      height: 40px;
+      background: #2ECC71;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .check-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      stroke-width: 3;
+      fill: none;
+    }
+
+    .card-header-text h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: 0.01em;
+    }
+
+    .card-header-text p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 2px;
+    }
+
+    .card-body {
+      padding: 32px 36px;
+    }
+
+    .greeting {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .greeting strong {
+      color: #1A1F2E;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      background: #F8F9FB;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .detail-item label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8A94A6;
+      margin-bottom: 4px;
+    }
+
+    .detail-item span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1A1F2E;
+    }
+
+    .detail-item.highlight span {
+      font-family: 'DM Mono', monospace;
+      font-size: 22px;
+      font-weight: 500;
+      color: #1B3A6B;
+    }
+
+    .detail-item.full {
+      grid-column: 1 / -1;
+    }
+
+    .ref-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .ref-badge {
+      flex: 1;
+      background: #EEF2FF;
+      border: 1px solid #C7D2FE;
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+
+    .ref-badge label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6366F1;
+      margin-bottom: 3px;
+    }
+
+    .ref-badge span {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: #1A1F2E;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #EAEDF2;
+      margin-bottom: 20px;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .company-block {
+      background: #F8F9FB;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .company-block strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1B3A6B;
+      margin-bottom: 4px;
+    }
+
+    .company-block a {
+      color: #1B3A6B;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="card-header-text">
+        <h1>Payment Successful</h1>
+        <p>Your transaction has been processed</p>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <p class="greeting">Dear <strong><%=pcSNAME%></strong>,<br>
+      Your payment was successfully processed. Please keep this confirmation for your records.</p>
+
+      <div class="detail-grid">
+        <div class="detail-item highlight full">
+          <label>Amount Charged</label>
+          <span>$<%=pcTRANSACTIONAMOUNT%></span>
+        </div>
+        <div class="detail-item">
+          <label>Job Number</label>
+          <span><%=pcDEPT%><%=pcORDNO%></span>
+        </div>
+        <div class="detail-item">
+          <label>Payment Method</label>
+          <span><%=pcTYPE%> ending in <%=RIGHT(pcACCOUNTNUM,4)%></span>
+        </div>
+        <div class="detail-item">
+          <label>CARDHOLDER</label>
+          <span><%=pcSJNAME%></span>
+        </div>
+        <div class="detail-item">
+          <label>Date &amp; Time</label>
+          <span><%=pcPAIDDTE%> ET</span>
+        </div>
+      </div>
+
+      <div class="ref-row">
+        <div class="ref-badge">
+          <label>Authorization Ref</label>
+          <span><%=lcAUTHORIZE%></span>
+        </div>
+        <div class="ref-badge">
+          <label>Transaction ID</label>
+          <span><%=lcCTRANSNO%></span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <p class="footer-note">Thank you for choosing <%=pcCOMPANY%>. If you have any questions about this charge, please contact us.</p>
+
+      <div class="company-block">
+        <strong><%=pcCOMPANY%></strong>
+        <%=pcADD1%><br><%=pcADD2%><br>
+        <a href="tel:<%=pcTOLLFREE%>"><%=pcTOLLFREE%></a><br>
+        <a href="mailto:<%=pcOUREMAIL%>"><%=pcOUREMAIL%></a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

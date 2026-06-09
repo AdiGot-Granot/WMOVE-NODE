@@ -1,0 +1,234 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Online Estimates</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitlist(i) {
+    if (i==1) 
+      { 
+   		if (checkData()) {
+	       document.theForm.action="/wc.dll?mpreposit~joblistret~<%=pcSCR%>~JOBS";
+	       document.theForm.submit();
+	     }
+		else {
+			alert("Please select at least one estimate")
+			}
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~processwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+
+function movingdirectory(SRC) {
+    window.open('/zz/reposit/'&&eval(SRC)&&'.htm','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=350,height=300');
+self.name="main"}
+
+function checkData(){
+	frm = document.theForm;
+	for (var i=0; i < frm.length; i=i+1){
+		if (frm.elements[i].checked){
+			return true
+		  }
+	   }
+	}
+
+function signup() {
+       window.location.href='/wc.dll?mpreposit~signupwc~<%=ALLT(pcCUSTNO)%>~<%=ALLT(pcCONTACT)%>~?<%=SYS(2015)%>~aac';
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style></head>
+
+<body  BGCOLOR="#ADBACE">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" height="1">
+  <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td width="83%" BGCOLOR="#4A698C" height="24">
+    <p align="center"><b><font face="Verdana" color="#FFFFFF">Estimates 
+    Listing</font></b></td>
+    <td width="17%" BGCOLOR="#CECFCE" height="24" align="right">
+    <b><font face="Verdana" size="2">Leads Credit:&nbsp;<%=ALLT(STR(pnLEADSBAL+pnLEADSXBAL))%>&nbsp;&nbsp;&nbsp;</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="291" colspan="2">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+<%IF !plDBF%>
+	<br>
+		<table border="0" width="924" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" height="31">
+		  <tr>
+		    <td width="924" align="left" height="31"><b>
+            <font face="Verdana" size="2">Welcome!<br>
+            Movers 
+            arena</font><font face="Verdana" color="#000000" size="2">
+            </font><font face="Verdana" size="2">is a 
+            no-commitment service offering high quality moving estimates (leads).<br>
+            You have a complimentary credit of 
+            <font color="#FF0000">$<%=ALLT(STR(pnBALANCE,9,2))%></font>.  </font>
+            </b></td>    
+		  </tr>
+		  <tr>
+		    <td width="924" align="center" height="31"><font face="Verdana"><b>
+            <input id="btnSubmit0" type="button" CLASS="SUBOFF" name="btnSubmit" onclick="signup()" style="cursor:hand;border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:200" tabindex="9" value="Sign Me Up for Free"></b></font></td>    
+		  </tr>
+		</table>
+	<br>
+<%ENDIF%>
+<form name="theForm" method="POST">
+    <TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="98%" align="center">
+    <tr>
+      <td width="3%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">#</font></b></td>
+      <td width="15%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">Source<br>Estimate Date</font></b></td>
+      <td width="12%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">Move Date</font></b></td>
+      <td width="18%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b>
+      <font size="2" face="Verdana">From</font></b></td>
+      <td width="17%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+      <b>
+      <font size="2" face="Verdana">To</font></b></td>
+      <td width="8%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">Volume</font></b></td>
+      <td width="9%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">Miles</font></b></td>
+      <td width="10%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">Shared<br>&nbsp;(max 8)</font></b></td>
+   </tr>
+<% SELECT _LISTX	
+SCAN 
+		lcbgcolor="#FFFFCC" 
+		DO CASE 
+			CASE TYPE='D'
+				lcbgcolor='#FFFFCC'
+			CASE TYPE='L'
+				lcbgcolor='CEFFCE'
+			CASE TYPE='R'
+				lcbgcolor='CEFFCE'
+			CASE TYPE='I'
+				lcbgcolor='#E0E0E0'
+			CASE TYPE='T'
+				lcbgcolor='#F5F5F5'
+			OTHERWISE
+				lcbgcolor='#FFFFCC'
+		ENDCASE%>
+    <tr bgcolor="<%=IIF(REFNO=pcREFNO,'#FFFFFF',lcbgcolor)%>" onmouseover="this.style.background='#CECFCE'" onmouseout="this.style.background='<%=lcbgcolor%>'">
+      <td width="3%" BORDERCOLOR="#708090">
+        <p><b><font size="2" face="Verdana" ><%=ALLT(STR(NO)) %>.</font></b></td>
+      <td width="15%" BORDERCOLOR="#708090">
+        <p><b><font size="1" face="Verdana"><u><%=ALLT(MDSOURCE)%></u><br>Created-<%=OPENDTE%></font></b></td>
+      <td width="12%" BORDERCOLOR="#708090"><p>
+      <font color=<%=IIF(LBOOKDTE=DATE(),"#FF0000","#000000")%> face="Verdana"><b>
+      <font size="2"><%=LBOOKDTE %>&nbsp;<br>
+        </font>
+        </b><font size="2"><b><%=CDOW(LBOOKDTE)%></b></font></font></td>
+      <td width="18%" BORDERCOLOR="#708090">
+        <p><b><font size="2" face="Verdana" ><%=FROM %><font color="#33CC33"></font></font></b></td>
+      <td width="17%" BORDERCOLOR="#708090">
+        <p><font size="2" face="Verdana" ><b><%=TO %><font color="#33CC33">&nbsp;&nbsp;</font></b></td>
+      <td width="8%" BORDERCOLOR="#708090"><p><font size="2" face="Verdana" ><b><%IF TYPE!='T'%>
+        <a href="/wc.dll?mpreposit~invarena~<%=ALLT(REFNO)%>" TARGET="_blank"><%=IIF(TOTALCF=0,'',ALLT(STR(TOTALCF))+' cf.') %></a>
+        <%ELSE%>
+        	Auto
+        <%ENDIF%>
+        </b></td>
+      <td width="9%" BORDERCOLOR="#708090">
+        <p><font face="Verdana"><b><font size="2" ><%=IIF(MILES=0,'',ALLT(STR(MILES))+' miles')%></font></font></td>
+     
+	 <td width="10%" align="center" BORDERCOLOR="#708090">
+	 	<input type="checkbox" name="<%=ALLT(ORDNO) %>" value="ON" <%=IIF(REFNO=pcREFNO,'checked','')%></td>
+    </tr>
+   <% ENDSCAN %>
+   </table>
+</form>
+</td>
+</tr>
+</table>
+ <br>
+		<!-- Buttons --->
+		<div align="center">
+          <center>
+<%IF plDBF%>
+		<table border="0" width="32%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="25%" align="center"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="btnSubmit" onclick="submitlist(1)" style="cursor:hand;border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:120" tabindex="9" value="Continue"></td>    
+		    <td width="25%" align="center"><input type="button" CLASS="SUBOFF" name="ntbExit" onclick="submitlist(2)" style="cursor:hand;border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:120" tabindex="10" value="Exit"></td>    
+		  </tr>
+		</table>
+<%ENDIF%>
+<br>			
+		  </center>
+    </div>
+		<div align="center">
+		  </center>
+    </div>
+</td>
+</tr>
+<tr>
+    <td width="83%" BGCOLOR="#4A698C" height="15">
+      <b>
+      <font color="#FFFFFF" face="Verdana" size="2">
+      &nbsp;User:<%=pcUSER%></font></b></td>
+    <td width="17%" BGCOLOR="#4A698C" height="15">
+      <p align="right"><b><font color="#FFFFFF" face="Verdana" size="1"><%=datetime()%>&nbsp;&nbsp;</font></b></td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    &nbsp;</td>
+ </tr>
+  </table>
+  </center>
+</div>
+
+
+</body>
+
+</html>

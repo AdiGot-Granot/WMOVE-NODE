@@ -1,0 +1,254 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Materials Delivery Form</title>
+
+</head>
+
+<body>
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" width="700">
+  <tr>
+    <td width="100%"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>?t=<%=ALLT(STR(SECONDS(),12,3))%>" alt="" width="100%" height="100"></td>
+ </tr>
+</table>
+<table border="1" width="700" ALIGN="CENTER" bordercolor="#4E6699">
+  <tr> 
+  <td><BR>
+<table border="1" width="98%" align="center" cellspacing="0" style="border-collapse: collapse" cellpadding="0" bordercolor="#4E6699">
+  <tr>
+	<td width="100%" height="30" align="center" colspan="2"><b><font face="Verdana" color="#000084" size="4">Packing Materials Delivery <%=pcORDNO1%></font></b></td>
+ </tr>
+  <tr>
+	<td width="48%" valign="top">
+<table border="0" cellspacing="1" cellpadding="3" style="border-collapse:collapse;font-family:Arial;font-size:10pt;line-height:20px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%"><b><%=pcCOMPANY%></b></td>
+  </tr>
+  <tr>
+    <td width="100%"><b><%=pcADD1%></b></td>
+  </tr>
+  <tr>
+    <td width="100%"><b><%=pcADD2%></b></td>
+  </tr>
+  <tr>
+    <td width="100%"><b><%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%><%=IIF(EMPTY(pcICC),"","&nbsp;&nbsp;&nbsp;MC: "+pcICC)%></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><b><%=IIF(!EMPTY(pcREGISTER),"Registration #: "+pcREGISTER,"")%></b></td>
+ </tr>  
+  <tr>
+    <td width="100%">Email: <a href="mailto:<%=pcCOMPEMAIL%>" style="text-decoration:none;"><%=pcCOMPEMAIL%></a></td>
+  </tr>
+ <%IF !EMPTY(pcOURWEB)%> 
+  <tr>
+    <td width="100%">Web: <a href="<%=pcOURWEB%>" style="text-decoration:none;" target="_blank"><%=pcOURWEB%></a></td>
+  </tr>
+ <%ENDIF%>        
+</table>	
+	</td>
+	<td width="52%" valign="top">
+<table border="0" cellspacing="1" cellpadding="3" style="border-collapse:collapse;font-family:Arial;font-size:10pt;line-height:20px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="31%"><b>Customer Rep:</b></td>
+    <td width="69%"><b><%=pcREP%></b></td>
+  </tr>
+  <tr>
+    <td width="31%"><b>Phone:</b></td>
+    <td width="69%"><b><%=pcTOLLFREE%>&nbsp;<%=pcPHONEEXT%></b></td>
+  </tr>
+  <% IF !EMPTY(pcUSERPHONE)%>
+  <tr>
+    <td width="31%"><b>Direct:</b></td>
+    <td width="69%"><b><%=pcUSERPHONE%></b></td>
+  </tr>
+  <%ENDIF%>       
+  <tr>
+    <td width="31%"><b>Email:</b></td>
+    <td width="69%"><a href="mailto:<%=lcREPEMAIL%>" style="text-decoration:none;"><%=lcREPEMAIL%></a></td>
+  </tr>  
+</table>	
+	</td>
+ </tr>
+</table>  
+<br>
+<table border="1" width="676" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#4E6699" cellpadding="0">
+  <tr>
+    <td valign="top" width="322">
+<table border="0" width="320" cellspacing="1" cellpadding="3" style="border-collapse:collapse;font-family:Arial;font-size:10pt;line-height:20px;" bordercolor="#111111">
+  <tr>
+	<td colspan="2" width="314"><u><font face="Verdana" size="3" color="#000084"><b>Materials Delivery Address:</b></font></td>
+ </tr>
+  <%IF !EMPTY(_EST.BOXDTE)%>
+  <tr>
+    <td width="101">Box Delivery:</td>
+    <td width="208"><b><%=CDOW(_EST.BOXDTE)%>,&nbsp;<%=_EST.BOXDTE%>&nbsp;<%=(_EST.BOXTME)%></b></td>
+ </tr>
+  <%ENDIF%> 
+  <%IF !EMPTY(_EST.PBOOKDTE)%>
+    <tr>
+     <td width="101">Packing Day:</td>
+     <td width="208"><b><%=CDOW(_EST.PBOOKDTE)%>,&nbsp;<%=_EST.PBOOKDTE%>&nbsp;<%=(_EST.PBOOKTME)%></b></td>
+    </tr>
+  <%ENDIF%>   
+  <tr>
+	<td width="101">Customer:</td>
+	<td width="208"><b><%=ALLT(PROPER(_EST.SNAME))%>&nbsp;</b></td>
+ </tr>
+  <%IF !EMPTY(_EST.SADD1) OR !EMPTY(_EST.SADD2)%>  
+  <tr>
+	<td width="101">Address:</td>
+	<td width="208"><%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%></td>
+ </tr>
+  <%ENDIF%>  
+  <tr>
+	<td width="101">Level/Floor/Apt:</td>
+	<td width="208"><%=ALLT(PROPER(_EST.SLEVEL))%><%=IIF(EMPTY(_EST.SSUBLEVEL),'','/'+ALLT(_EST.SSUBLEVEL))%><%=IIF(EMPTY(_EST.SFLOOR),'',', Floor: '+ALLT(STR(_EST.SFLOOR)))%> 
+    <%=IIF(EMPTY(_EST.SAPT),'',', Apt: '+ALLT(_EST.SAPT))%></td>
+ </tr>
+  <tr>
+	<td width="101">City, State, Zip</td>
+	<td width="208"><%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%></td>
+ </tr>
+ <%IF !EMPTY(_EST.RTELH)%>
+  <tr>
+	<td width="101">Cell Phone:</td>
+	<td width="208"><%=ALLT(_EST.RTELH)%></td>
+ </tr>
+ <%ENDIF%> 
+  <tr>
+	<td width="101">Contact Phone1:</td>
+	<td width="208"><%=ALLT(_EST.STELH)%></td>
+ </tr>
+ <%IF !EMPTY(_EST.STELO)%>
+  <tr>
+	<td width="101">Contact Phone2:</td>
+	<td width="208"><%=ALLT(_EST.STELO)%></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+	<td width="111">Email:</td>
+	<td width="191"><a href="mailto:<%=ALLT(_EST.EMAIL)%>" style="text-decoration:none;"><%=IIF(EMPTY(_EST.EMAIL),'',ALLT(_EST.EMAIL))%></a></td>
+ </tr>    
+</table>
+    </td>
+    <td valign="top" width="351">
+<table border="0" cellspacing="1" cellpadding="3" style="border-collapse:collapse;font-family:Arial;font-size:10pt;line-height:20px;" width="100%">
+  <tr>
+    <td width="100%" colspan="2"><b><font face="Verdana" size="3" color="#000084"><u>Materials Pricing</u></font></b></td>
+ </tr> 
+  <% IF _CRG.MATTOTAL > 0 %>
+    <tr>
+     <td width="73%"><b>Materials Price:</b></td>
+     <td width="27%" align="right"><b><%='$'+ALLT(STR(_CRG.MATTOTAL,8,2))%></b></td>
+    </tr>
+  <%ENDIF%>
+  <% IF _CRG.MATTAXAMT > 0 %>
+    <tr>
+     <td width="73%"><b>Sales Tax:&nbsp;<%=ALLT(STR(_CRG.MATTAX,5,3))%>%</b></td>
+     <td width="27%" align="right"><b><%='$'+ALLT(STR(_CRG.MATTAXAMT,8,2))%></b></td>
+   </tr>
+    <tr>
+     <td width="73%"><b>Total Price:</b></td>
+     <td width="27%" align="right"><b><%='$'+ALLT(STR(_CRG.MATTOTAL+_CRG.MATTAXAMT,8,2))%></b></td>
+   </tr>
+  <%ENDIF%>         
+</table>
+    </td>
+  </tr>
+</table>
+ <%IF !EMPTY(_ESTMEMO.EXTSTOP) AND pcCUSTNO<>'VIVO'%>
+   <br>
+<table border="1" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#4E6699" cellpadding="0">
+  <tr>
+	<td width="100%" align="center"><b><font face="Verdana" color="#000084">Extra Stop / Notes</font></b></td>
+ </tr>
+  <tr>
+	<td width="100%"><%=ALLT(_ESTMEMO.EXTSTOP)%>&nbsp;</td>
+ </tr>
+</table>
+ <%ENDIF%>
+ <%IF plVIEWDIR AND !EMPTY(_ESTMEMO.DIR)%>
+   <br>
+<table border="1" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#4E6699" cellpadding="0">
+  <tr>
+	<td width="100%" align="center"><b><font face="Verdana" color="#000084">Direction</font></b></td>
+ </tr>
+  <tr>
+	<td width="100%"><%=_ESTMEMO.DIR%>&nbsp;</td>
+ </tr>
+</table>
+ <%ENDIF%>
+  <br>
+<table border="1" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#4E6699" cellpadding="0">
+  <tr>
+    <td align="center" colspan="3"><font color="#000084" face="Verdana"><b>Packing Material List</b></font></td>
+ </tr>
+  <tr>
+    <td width="33%" valign="top">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:9pt;line-height:18px;" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="10%" bgcolor="#E9E9EA" align="center"><b>Qty</b></td>
+              <td width="70%" bgcolor="#E9E9EA" align="center"><b>Material</b></td>
+              <td width="20%" bgcolor="#E9E9EA" align="center"><b>Unit<br>Price $</b></td>
+            </tr>
+      <%SELECT _MAT1
+         SCAN %>
+            <tr>
+              <td width="10%" align="center"><%=QTY%>&nbsp;</td>
+              <td width="70%"><%=ITEM%>&nbsp;</td>
+              <td width="20%" align="right"><%=ALLT(STR(PRICE,6,2)) %>&nbsp;</td>
+            </tr>
+      <%ENDSCAN %>
+          </table>    
+    </td>
+	<td width="33%" valign="top">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:9pt;line-height:18px;" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="10%" bgcolor="#E9E9EA" align="center"><b>Qty</b></td>
+              <td width="70%" bgcolor="#E9E9EA" align="center"><b>Material</b></td>
+              <td width="20%" bgcolor="#E9E9EA" align="center"><b>Unit<br>Price $</b></td>
+            </tr>
+      <%SELECT _MAT2
+         SCAN %>
+            <tr>
+              <td width="10%" align="center"><%=QTY%>&nbsp;</td>
+              <td width="70%"><%=ITEM%>&nbsp;</td>
+              <td width="20%" align="right"><%=ALLT(STR(PRICE,6,2)) %>&nbsp;</td>
+            </tr>
+      <%ENDSCAN %>
+          </table>	
+	</td>
+	<td width="33%" valign="top">
+          <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:9pt;line-height:18px;" bordercolor="#C0C0C0" width="100%">
+            <tr>
+              <td width="10%" bgcolor="#E9E9EA" align="center"><b>Qty</b></td>
+              <td width="70%" bgcolor="#E9E9EA" align="center"><b>Material</b></td>
+              <td width="20%" bgcolor="#E9E9EA" align="center"><b>Unit<br>Price $</b></td>
+            </tr>
+      <%SELECT _MAT3
+         SCAN %>
+            <tr>
+              <td width="10%" align="center"><%=QTY%>&nbsp;</td>
+              <td width="70%"><%=ITEM%>&nbsp;</td>
+              <td width="20%" align="right"><%=ALLT(STR(PRICE,6,2)) %>&nbsp;</td>
+            </tr>
+      <%ENDSCAN %>
+          </table>	
+	</td>
+ </tr>
+</table>
+  <br>
+<table border="0" width="98%" align="center" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr>
+    <td width="39%" height="15"><br>_____________________________<br><font face="Verdana" size="2">Customer Name</font></td>
+    <td width="42%" height="15"><br>________________________________<br><font face="Verdana" size="2">Customer Signature</font></td>
+    <td width="19%" height="15"><br>____________<br><font face="Verdana" size="2">Date</font></td>
+ </tr>
+</table>   
+   </td>
+ </tr>
+  </table>
+</center>
+</body>
+</html>

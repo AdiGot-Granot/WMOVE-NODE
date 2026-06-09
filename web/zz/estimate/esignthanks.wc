@@ -1,0 +1,34 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Electronic Signature End</title>
+
+<style>
+p.pagebreak {   page-break-after: always;}
+</style>
+
+</head>
+<body>
+<br>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" cellspacing="1" cellpadding="2">
+  <tr>
+    <td width="100%"><font face="Arial" size="2">Dear <%=pcENAME%>,<br><br>
+    Thank you for signing the document. Here is the information you submitted:<br><br><%=pcESIGN%><BR>
+    <p style="line-height: 20px;"><img border="0" src="zz/images/accept.gif" width="127" height="44"><br>
+    <img src="<%=pcSIGPIC%>"><br>
+    Document Emailed On: <b><%=CDOW(_E.SENTDTE)%>, <%=_E.SENTDTE%> (ET)</b><br>
+    Document Signature Name: <b><%=pcENAME%></b><br>
+    Document Signature Email: <b><%=pcEEMAIL%></b><br>
+    Document Signature Date: <b><%=CDOW(pdEDTE)%>, <%=pdEDTE%> (ET)</b><br>
+    Document Signature IP Address: <b><%=pcEIP%></b></p><br>
+  <% IF pcCUSTNO=='MOVERVAN' AND lcDEPT=='MV'%>
+	 <img src="https://ecaptainvl.com/_functions/get_Email?job=<%=lcORDNO%>&email=<%=pcEEMAIL%>&name=<%=pcENAME%>"></img><br>
+  <%ENDIF%>
+    Thank you for choosing <%=pcCOMPANY%>.<br><br>
+    Click on <a href="javascript: window.print()"><b>Printer Friendly</a></b> to print or download this document for future reference.</font></td>
+ </tr>
+</table>
+<p class="pagebreak">&nbsp;</p>
+</body>
+</html>

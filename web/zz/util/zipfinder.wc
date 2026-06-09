@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Zip Code Finder</title>
+
+<!--DROPDOWN STATE SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN STATE SEARCH-->
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+      $('.state-select').select2({
+          placeholder: 'Select State',
+          allowClear: true
+      });
+  });
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function closeform() {
+        window.close();
+self.name="main"}
+
+ function submitFunction(i) {
+    if (i==1) document.zipform.action="/wc.dll?mputil~ZipWc~&SR=<%=pcSR%>";
+    document.zipform.submit()
+    }
+
+function transfer(zip, city, state) {
+    var _w = null;
+    _w = self.opener;
+    <% IF pcSR='S' %>
+        _w.document.forms[0].SZIP.value   = zip;
+        if (city  != null) _w.document.forms[0].SCITY.value  = city;
+        if (state != null) _w.document.forms[0].SSTATE.value = state;
+        window.close();
+    <% ELSE %>
+        _w.document.forms[0].RZIP.value   = zip;
+        if (city  != null) _w.document.forms[0].RCITY.value  = city;
+        if (state != null) _w.document.forms[0].RSTATE.value = state;
+        window.close();
+    <% ENDIF %>
+}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					border-bottom: 1px solid #A9A9A9;}
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #0081D3;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}
+
+</style>
+
+</head>
+<body BGCOLOR="#F7F7F7" onload="javascript: window.zipform.CITY.focus()"><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" bordercolor="#111111" width="80%">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center"><b><font face="Verdana" color="#FFFFFF">Zip Code Finder</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+<form Name="zipform" method="POST">
+<input type="hidden" name="SR" size="17" tabindex="3" value="<%=pcSR%>"><!--SR='S' OR 'R' - SZIP or RZIP   -->
+
+<table border="0" align="center" cellpadding="1" cellspacing="1" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="80%">
+  <tr style="line-height:25px;">
+	<td width="37%">&nbsp;&nbsp;<b><font face="Verdana" size="2">City:</font></b></td>
+	<td width="67%"><input type="text" name="CITY" size="20" Value="<%=pcCITY%>" tabindex="1"></td>
+ </tr>
+  <tr style="line-height:25px;">
+	<td width="37%">&nbsp;&nbsp;<b><font face="Verdana" size="2">State:</font></b></td>
+	<td width="67%">
+	<select size="1" name="STATE" class="state-select" style="width: 170px;">
+		<option value="<%=pcSTATECODE%>"><%=pcSTATECODE%></option>
+		<% SELECT _STATE
+		   SCAN %>
+   		<option value="<%=ALLT(STATECODE)%>"><%=ALLT(PROPER(STATE))%></option>
+	    <% ENDSCAN %>
+		</select>	
+	</td>
+ </tr>
+<% IF !EMPTY(pcCITY) OR !EMPTY(pcSTATECODE) %> 
+  <tr style="line-height:25px;">
+	<td colspan="2" align="center"><b><font face="Verdana" color="#FF0000" style="font-size: 10pt"><%=pcMSG%></b></font></td>
+ </tr>
+<%ENDIF%> 
+</table>
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(1)" value="Submit"></td>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B4" onclick="window.close()" value="Exit"></td>
+ </tr>
+</table>
+ </form>
+<br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" width="95%">
+  <tr>
+    <td class="TD1">Zip Code</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;">City</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;">State</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;">Area Code</td>
+  </tr>
+  <%  SELECT _ZIP
+      SCAN %>
+  <tr style="line-height:20px;">
+    <td class="TD3" align="center"><a href="javascript:transfer('<%=ALLT(ZIP)%>','<%=ALLT(CITY)%>','<%=ALLT(STATE)%>')"><%=ALLT(ZIP)%></a></td>
+    <td class="TD2"><%=ALLT(CITY)%></td>
+    <td class="TD2" align="center"><%=ALLT(STATE)%></td>
+    <td class="TD2"><%=ALLT(AREACODE)%></td>
+  </tr>
+ <%ENDSCAN%>   
+</table> 
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3">&nbsp;</td>
+  </tr>
+  </table>
+</body>
+</html>

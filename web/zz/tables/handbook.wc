@@ -1,0 +1,179 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Handbook & Workflow</TITLE>
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+	
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~handbookadd~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+           
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~handbookseq~<%=pcSCR%>";
+       document.theForm.submit();
+      } 
+	
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~handbookwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+	
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 500,
+		maxHeight	: 300,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+	
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.SUBMITOFF	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBMITON	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+  				  	
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7">
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="45%">
+  <tr>
+    <td width="100%"><a class="fancybox fancybox.iframe" href="/zz/help/handbook.htm"><img border="0" src="/zz/util/manual.gif" title="Read about Handbook & Workflow" width="32" height="32"></a></td>
+  </tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="45%"> 
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center"><b><font face="Verdana" SIZE="4" color="#FFFFFF">Handbook & Workflow</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<form name="theForm" method="POST">
+<% IF plDEPTHAND %>
+ <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="419" cellspacing="0" cellpadding="0">
+   <tr>
+     <td height="35" width="230">&nbsp;&nbsp;<b><font face="Verdana" size="2">Filter by Department:</font></b>    
+       <select size="1" name="DEPTIDX">
+         <option value=""></option>
+		 <%	SELECT _DEPTHAND
+			 SCAN %>
+   			<option value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></option>
+		 <% ENDSCAN %>
+	   </select>
+     </td>
+    <td width="187"><input type="button" CLASS="SUBMITOFF" name="B45" onmouseover="javasctript: this.className='SUBMITON'" onmouseout="javasctript: this.className='SUBMITOFF'" onclick="submitFunction(3)" value="Submit"></td>
+  </tr>
+</table>
+<%ENDIF%>
+ <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" width="98%">
+   <tr>
+     <td width="3%" class="TD1">No</td>
+     <% IF plDEPTHAND %>  
+     <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Dept</td>
+     <%ENDIF%>
+     <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;">Move Type</td>
+     <td width="26%" class="TD1" style="border-left: 1px solid #A9A9A9;">Subject</td>  
+     <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">User</td>            
+     <td width="11%" class="TD1" style="border-left: 1px solid #A9A9A9;">Action</td>     
+   </tr>
+ <% SELECT _HB
+    SCAN %>
+   <tr style="line-height:23px;">
+     <td width="3%" align="center" style="border-bottom: 1px solid #A9A9A9;"><input type="text" autocomplete="off" name="S<%=ALLT(STR(HANDBOOKID))%>" size="1" value="<%=IIF(ISNULL(SEQ),'',ALLT(STR(SEQ)))%>" style="text-align: center"></td>
+     <% IF plDEPTHAND %>  
+     <td width="3%" class="TD3" style="border-bottom: 1px solid #A9A9A9;"><B><%=ALLT(DEPT)%></B></td>
+     <%ENDIF%>
+     <td width="10%" class="TD2">&nbsp;<%=ALLT(TYP1)%></td>     
+     <td width="26%" class="TD2">&nbsp;<%=ALLT(SUBJECT)%></td>
+   	 <td width="8%" class="TD2">&nbsp;<B><%=ALLT(USERNAME)%></B></td>       
+     <td width="11%" class="TD3" style="border-bottom: 1px solid #A9A9A9;"><a href="wc.dll?mpmainten~handbookadd~<%=pcSCR%>~<%=ALLT(STR(HANDBOOKID))%>"><font face="Arial" size="2"><B>Edit Handbook</B></font></a></td>     
+   </tr>
+ <%ENDSCAN%>  
+</table>
+ <br>
+<table border="0" width="733" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+	<td align="center" width="174"><input type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Save Order"></td>
+	<td align="center" width="388"><input type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Create New"></td>
+	<td align="center" width="165"><input type="button" CLASS="SUBOFF" name="B3" onclick="javascript: window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>
+    </form>&nbsp;</td>
+</tr>
+  <tr>
+    <td bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+</body>
+</html>

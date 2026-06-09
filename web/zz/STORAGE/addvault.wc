@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Vault Location in Storage</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpstg~vaultret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpstg~vaultwc~<%=pcSCR%>~A";
+       document.theForm.submit();
+      }
+    }
+
+</SCRIPT>
+
+</head>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+<body bgcolor="#F7F7F7">
+<table border="1" width="100%" bordercolor="#C0C0C0" cellspacing="1" bgcolor="#FFFFFF" cellpadding="1" style="border-collapse: collapse">
+  <tr>
+    <td width="28%"><font style="font-family:Verdana;font-size:10pt;"><b>Job No: <%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font></td>
+    <td width="27%"><font style="font-family:Verdana;font-size:10pt;"><b>Filter by Section:</b></font>
+	<select size="1" name="D1">
+        <option></option>        
+        <option value="A">A</option>
+        <option value="A">B</option>
+        <option value="A">C</option>
+        <option value="A">D</option>
+	</select></td>
+  </tr>  
+</table>
+<form name="theForm" method="post">
+<br>
+<table border="1" width="100%" bordercolor="#C0C0C0" cellspacing="1" bgcolor="#FFFFFF" cellpadding="1" style="border-collapse: collapse">
+  <tr>
+    <td width="11%" bgcolor="#BEBE99" align="center"><b><font face="Verdana" size="2">Vacant Vault Location</font></b></td>
+    <td width="12%" bgcolor="#BEBE99" align="center"><b><font face="Verdana" size="2">Assign</font></b></td>
+  </tr>
+ <% SELECT _VLTS
+ 	SCAN %>
+  <tr>
+    <td width="11%">&nbsp;<font face="Verdana" size="2"><B><%=ALLT(SPACENO)%></b></font></td>
+    <td width="12%" align="center"><input type="checkbox" name="<%='V'+ALLT(STR(VAULTID))%>" value="ON"></td>
+  </tr>
+ <% ENDSCAN %>
+</table>
+<br>
+<table border="1" align="center" width="100%" bordercolor="#C0C0C0" cellspacing="1" bgcolor="#FFFFFF" cellpadding="1" style="border-collapse: collapse">
+  <tr>
+    <td width="36%"><font face="verdana" size="2"><b>Add Vault Location: Section, Front Line, Row, Level:</b></font></td>
+    <td width="26%">&nbsp;
+    <select size="1" name="SECTION">
+        <option></option>        
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+	</select>--
+    <select size="1" name="LINE">
+		<option></option>        
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>        
+	</select>--
+    <select size="1" name="ROW">
+		<option></option>        
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>                                                                
+	</select>--	
+    <select size="1" name="LEVEL">
+		<option></option>        
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+	</select>				    
+    </td>
+  </tr>  
+</table>    
+<br>
+ <table border="0" align="center" width="25%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+   <tr>
+    <td width="100%" align="center"><input type="button" CLASS="SUBOFF" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+  </tr>
+ </table>
+</form>
+</body>
+</html>

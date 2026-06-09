@@ -1,0 +1,117 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Process Multiple Payments</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) 
+  {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpopr~multipaywc~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+    if (i==2) 
+	 {
+		var Message = "Are you ready to process payments?";
+		if (confirm (Message))
+		  {
+			document.theForm.action="/wc.dll?mpopr~multipayret~<%=pcSCR%>";
+	        document.theForm.submit();
+	      }
+     }
+ }
+ 
+</SCRIPT>
+
+<style>
+	.TD1		{	color: #FFFFFF;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+				  	text-align: CENTER}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+  				  	font-family: Verdana;} 	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 125;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 125;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}  				  	 	
+</style>
+
+</head>
+
+<body>
+
+<br><center><a href="wc.dll?mv~oprmenuwc~<%=pcSCR%>"><font face="Arial" size="4">Exit</font></a><br><br>
+<font face="Arial" size="4"><b>Process Multiple Payments: <%=ALLT(STR(pnRECORDS2))%> Out of <%=ALLT(STR(pnRECORDS1))%></b></font></center><BR>
+<form name="theForm" method="POST">
+<table border="0" align="center" width="25%" bordercolor="#C0C0C0" cellspacing="1" cellpadding="2" style="border-collapse: collapse">
+  <tr>
+    <td width="15%"><font face="Arial" size="4">Merchant:</font>&nbsp;
+    <select size="1" name="MERCHANTID">
+        <option value=""></option>
+        <option selected value="<%=pcMERCHANTID%>"><%=pcCNAME%></option>
+		 <%	SELECT _MR
+			 SCAN %>
+   				<option value="<%=ALLT(STR(MERCHANTID))%>"><%=ALLT(CNAME)%></option>
+			<% ENDSCAN %>
+		</select></td>
+    <td width="10%" align="left"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="13" value="Submit"></td>
+ </tr>
+  <tr>
+    <td width="25%" colspan="2"><font face="Arial" size="2"><b>*Pay amount includes processing fee</b></font></td>
+ </tr> 
+</table>
+  <br>    
+<table border="1" align="center" width="1129" bordercolor="#C0C0C0" cellspacing="1" cellpadding="2" style="border-collapse: collapse">
+  <tr style="background-color:#0081D3;">
+    <td class="TD1" width="62">Select</td>
+    <td class="TD1" width="90">Job No</td>
+    <td class="TD1" width="208">Cardholder</td>
+    <td class="TD1" width="145">CC Last 4</td>
+    <td class="TD1" width="193">Pay Date</td>
+    <td class="TD1" width="90">Process By</td>
+    <td class="TD1" width="102">Pay Amount*</td>
+    <td class="TD1" width="93">Book Date</td>
+    <td class="TD1" width="90">Move Date</td>
+ </tr>
+  <% SELECT _LIST 
+     SCAN %>
+  <tr>
+    <td align="center" width="62"><input type="checkbox" name="<%='P'+ALLT(STR(PAYID))%>" value="ON" checked></td> 
+    <td class="TD3" width="90">&nbsp;<a href="wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target="_blank"><%=ALLT(DEPT)+ALLT(ORDNO)%></A></td>
+    <td class="TD3" width="208"><%=ALLT(CCNAME)%>&nbsp;</td>
+    <td class="TD3" width="145"><%=CREDITCO%>-<%=CREDITNO%>&nbsp;</td>
+    <td class="TD3" align="center" width="193"><%=PAIDDTE%>&nbsp;</td>
+    <td class="TD3" width="90"><%=ALLT(USERNAME)%>&nbsp;</td>
+    <td class="TD3" align="right" width="102"><b><%='$'+ALLT(STR(PAYAMT+CCPROCFEE,8,2))%></b>&nbsp;</td>
+    <td class="TD3" align="center" width="93"><%=DTOC(BOOKDTE)%>&nbsp;</td>
+    <td class="TD3" align="center" width="90"><%=LBOOKDTE%>&nbsp;</td>
+ </tr>
+  <% ENDSCAN %>
+</table>
+ <br>
+<table border="0" align="center" width="25%" bordercolor="#C0C0C0" cellspacing="1" cellpadding="2" style="border-collapse: collapse">
+  <tr>
+    <td width="10%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="13" value="Process Payment"></td>
+ </tr>
+</table>
+   </form>    
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+<html>
+<FRAMESET rows="0,*" border="0" frameborder="0">
+	<FRAME NAME = "TOP" src="/zz/util/spacer.htm" NORESIZE target="contents">
+	<FRAMESET cols='292,*'>
+		<FRAME NAME="MENU" SRC="/wc.dll?mpauto~AutoZoneMenuWc~<%=pcSCR%>" NORESIZE>
+		<FRAME NAME="MainWindow" SRC="/wc.dll?mpauto~AutoZonePrcEditWc~<%=pcSCR%>~<%=pcAUTOZID%>">
+	</FRAMESET>
+    <noframes>
+    </noframes>
+</FRAMESET>
+</html>

@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Closed Trips</title>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+</style>
+
+</head>
+
+<body>
+<br><center><a href="/wc.dll?mv~oprmenuwc~<%=pcSCR%>"><font face="Verdana">Exit</font></a><br><br>
+<font face="Verdana"><b><%=ALLT(STR(RECCOUNT()))%> Closed Trips</b></font></center>
+  <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="75%">
+  <tr>
+    <td width="13%" class="TD1">Departure Date/Time</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Open By</td>
+    <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">Trip Name/No</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Jobs</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">Volume (cf)</td>
+    <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;">Truck #</td>
+    <td width="11%" class="TD1" style="border-left: 1px solid #A9A9A9;">Driver</td>
+    <td width="11%" class="TD1" style="border-left: 1px solid #A9A9A9;">Mile Start/End</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Deposit</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">Reopen Trip</td>
+    <td width="4%" class="TD1" style="border-left: 1px solid #A9A9A9;">Delete</td>    
+  </tr>
+<%  SELECT _TRIPS 
+  SCAN %>  
+  <tr>
+    <td width="13%" class="TD3"><%=ALLT(CTRIPDTE)%>&nbsp;&nbsp;<%=ALLT(TRIPTME)%></td>
+    <td width="7%" class="TD2"><%=ALLT(OPENUSER)%></td>
+    <td width="8%" class="TD2"><b><%=ALLT(TRIPNO)%></b></td>
+    <td width="4%" class="TD4"><%=ALLT(STR(JOBS))%></td>
+    <td width="6%" class="TD4"><%=ALLT(STR(CF))%></td>
+    <td width="9%" class="TD2">&nbsp;<%=ALLT(TRUCKNO)%></td>
+    <td width="11%" class="TD2">&nbsp;<%=ALLT(TRIPNAME)%></td>
+    <td width="11%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=ALLT(STR(MILESTART))%>&nbsp;-&nbsp;<%=ALLT(STR(MILEEND))%></td> 
+    <td width="7%" class="TD4"><%=IIF(DEPOSIT=0,' ','$'+ALLT(STR(DEPOSIT,7,2)))%></td>    
+    <td width="7%" class="TD3" style="border-left: 1px solid #A9A9A9;"><a href="/wc.dll?mpopr~TripStatus~<%=+pcSCR%>~<%=ALLT(STR(TRIPID)) %>"><b>Reopen</b></a></td>
+    <td width="5%" class="TD3" style="border-left: 1px solid #A9A9A9;"><a href="/wc.dll?mpopr~TripStatus~<%=+pcSCR%>~<%=ALLT(STR(TRIPID))%>~~DELETE"><b>Delete</b></a></td>    
+  </tr>
+<% ENDSCAN %>
+</table>
+
+</body>
+</html>

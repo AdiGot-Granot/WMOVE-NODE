@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="https://dev.hellomoving.com/zz/js/signature.js"></script>
+    
+</head>
+<body>    
+
+<div id="canvas">
+<canvas class="roundCorners" id="newSignature" width="350" height="60" style="position: relative; border: 1px solid #c4caac;"></canvas>
+</div>
+
+
+<script>
+signatureCapture();
+</script>
+
+<button type="button" onclick="signatureSave()">Save signature</button>
+<button type="button" onclick="signatureClear()">Clear signature</button>
+</br>
+Saved Image
+</br>
+<img id="saveSignature" alt="Saved image png"/>
+
+</body>
+</html>

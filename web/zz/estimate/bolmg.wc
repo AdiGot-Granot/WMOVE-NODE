@@ -1,0 +1,550 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><!--IE 11 Compatibility overrite-->
+<meta name="viewport" content="width=*your site width*, initial-scale=0.30">
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>INTERSTATE BILL OF LADING</title>
+
+<style>
+p.pagebreak {   page-break-after: always;}
+</style>
+
+</head>
+
+<body>
+
+<table border="0" align="center" style="border-collapse: collapse" width="850">
+  <tr>
+    <td valign="top" width="228"><font style="font-family:Arial;font-size:12pt;"><b><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcCOMPANY,pcAGCOMPANY)%></b></font><BR>
+    <font style="font-family:Arial;font-size:10pt;">
+    <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcADD1,pcAGADD1)%><BR><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcADD2,pcAGADD2)%><BR>
+    <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcTOLLFREE,pcAGPHONE)%><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),'<BR>US DOT No: '+pcDOT,'<BR>US DOT No: '+pcAGDOT)%>
+    <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),'<BR>ICC/MC No: '+pcICC,'<BR>ICC/MC No: '+pcAGICC)%></font></td>
+    <td valign="top" align="center" width="426">
+    <br><br><br><br><br><br><br><font style="font-family:Arial;font-size:14pt;"><b>INTERSTATE BILL OF LADING CONTRACT</b></font></td>
+    <td valign="top" height="100" width="190">
+<table border="1" align="right" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%" valign="top" height="40"><font size="2">&nbsp;Order No:<br>&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%><%=' - '+pcREVNO%></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="40"><font size="2">&nbsp;Pickup Date:<br>&nbsp;<%=_EST.LBOOKDTE%><%=IIF(EMPTY(_EST.LBOOKDTE1),'','-'+DTOC(_EST.LBOOKDTE1))%></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="40"><font size="2">&nbsp;1<SUP>ST</SUP> date available for delivery:<br>&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="40"><font size="2">&nbsp;Vehicle ID:<br>&nbsp;</font></td>
+ </tr>   
+</table>
+   </td>
+ </tr>
+  </table>
+<table border="0" align="center" style="border-collapse: collapse" width="850">
+  <tr>
+    <td valign="top" width="408">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center"><font style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>ORIGIN</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="30">&nbsp;<span style="font-family: Arial; font-size: 7pt">NAME:</font>
+    &nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=ALLT(PROPER(_EST.SNAME))%></FONT></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="30">&nbsp;<FONT style="font-family:Arial;font-size:7pt;">ADDRESS:</FONT>
+    &nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%>
+	<%=IIF(EMPTY(_EST.SFLOOR),'',' F: '+ALLT(STR(_EST.SFLOOR)))%><%=IIF(EMPTY(_EST.SAPT),'',', A: '+ALLT(_EST.SAPT))%>
+	<%=IIF(EMPTY(_EST.SSUBLEVEL),'',', L: '+ALLT(_EST.SSUBLEVEL))%></FONT></td>
+ </tr> 
+  <tr>
+    <td width="100%" valign="top" height="30">&nbsp;<FONT style="font-family:Arial;font-size:7pt;">CITY/STATE/ZIP:</FONT>
+    &nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%></FONT></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="30">&nbsp;<FONT style="font-family:Arial;font-size:7pt;">PHONE:</FONT>
+    &nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=ALLT(_EST.STELH)%><%=IIF(EMPTY(_EST.STELO),'',', '+ALLT(_EST.STELO))%></FONT></td>
+ </tr>
+</table>    
+    </td>
+    <td width="6">&nbsp;</td>
+    <td width="430" valign="top">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center"><font style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>DESTINATION</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="30">&nbsp;<span style="font-family: Arial; font-size: 7pt">NAME:</FONT>
+    &nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=ALLT(PROPER(_EST.RNAME))%></FONT></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="30">&nbsp;<FONT style="font-family:Arial;font-size:7pt;">ADDRESS:</FONT>
+    &nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=ALLT(_EST.RADD1)%>&nbsp;<%=ALLT(_EST.RADD2)%>
+    <%=IIF(EMPTY(_EST.RFLOOR),'',' F: '+ALLT(STR(_EST.RFLOOR)))%><%=IIF(EMPTY(_EST.RAPT),'',', A: '+ALLT(_EST.RAPT))%>
+    <%=IIF(EMPTY(_EST.RSUBLEVEL),'',', L: '+ALLT(_EST.RSUBLEVEL))%></FONT></td>
+ </tr> 
+  <tr>
+    <td width="100%" valign="top" height="30">&nbsp;<FONT style="font-family:Arial;font-size:7pt;">CITY/STATE/ZIP:</FONT>
+    &nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=ALLT(PROPER(_EST.RCITY))+', '+(_EST.RSTATE)%>&nbsp;<%=ALLT(_EST.RZIP)%></FONT></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top" height="30">&nbsp;<FONT style="font-family:Arial;font-size:7pt;">PHONE:</FONT>
+    &nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=ALLT(_EST.RTELH)%><%=IIF(EMPTY(_EST.RTELO),'',', '+ALLT(_EST.RTELO))%></FONT></td>
+ </tr>
+</table>    
+    </td>
+  </tr>
+</table>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="850">
+  <tr>
+    <td width="231" valign="top" height="35">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Agent Name:</FONT></td>
+    <td width="226" valign="top" height="35">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Address:</FONT></td>
+    <td width="178" valign="top" height="35">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Phone:</FONT></td>
+    <td width="155" valign="top" height="35">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">US DOT:</FONT></td>
+ </tr>
+</table>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="850">
+  <tr>
+    <td valign="top">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%">
+<table border="0" align="center" style="border-collapse: collapse" width="98%">
+  <tr>
+    <td valign="top" bgcolor="#000000"><font style="font-family:Arial;font-size:9pt;color:#FFFFFF;"><b>A. FORM / TERMS OF PAYMENT:</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top"><p style="text-align:justify;"><% IF !EMPTY(pcAGBOLPAY) %><%=pcAGBOLPAY%><%ELSE%><%=pcREMPAY%><%ENDIF%></p></td>
+  </tr>  
+</table>
+ <form name="theForm" method="post">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="98%">
+ <% IF pnLOGEMAILID > 1000 %>
+  <tr style="font-family:Arial;font-size:9pt;">
+    <td width="100%" colspan="3"><img src="<%=pcSIGPAY%>"><br>Signature Date: <%=pcEDTE+' ET'%><br>Signature Name:&nbsp;<%=pcENAME%>&nbsp;&nbsp;IP:&nbsp;<%=pcEIP%></b></td>
+ </tr> 
+ <%ENDIF%> 
+ <% IF plLINK=.T. %> 
+  <tr>
+    <td width="12%"><font style="font-family:Arial;font-size:10pt;"><b>Sign:</b></font></td>
+    <td width="69%"><input type="hidden" name="sigPay" id="sigPay">
+    <canvas id="sigpay" width="300" height="60" style="position: relative;border: 2px solid #ff0000;"></canvas></td>
+    <td width="19%">&nbsp;&nbsp;<input type="button" onclick="signatureClearPay()" style="width:60;height:25;font-family:Arial;font-size:10pt;font-weight:bold;cursor:pointer;" value="Clear"></td>
+ </tr>
+ <%ENDIF%>
+</table>
+<table border="0" align="center" style="border-collapse: collapse" width="98%">
+  <tr>
+    <td valign="top" colspan="3" bgcolor="#000000" width="100%"><font style="font-family:Arial;font-size:9pt;color:#FFFFFF;"><b>B. TOTAL ESTIMATED CHARGES AND MINIMUM CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td valign="top" colspan="3" width="100%"><p style="text-align:justify;">
+    <font style="font-family:Arial;font-size:8pt;">By this reference bill of lading and estimate and all their terms, conditions, and estimated charges are combined and incorporated by reference in accordance 
+    with 49 CFR 375.505(b)(17). The total estimated charges for service is not a guarantee of the final total actual charges - which may increase or decrease based 
+    upon actual services performed, quantity of items shipped, accessorial services, destination services, and/or weight of shipment. Carrier may use agents/independent
+    sub-contractors on all orders. Unless customer purchased an "exclusive use of the vehicle" option, there is no guarantee that the property will not be temporarily
+    stored or offloaded and reloaded onto a different vehicle then performed pickup and consolidated with other shipments or transported by a subcontractor.</font></p></td>
+ </tr>
+</table>
+<table border="0" align="center" style="border-collapse: collapse" width="98%">
+  <tr>
+    <td align="right" width="67%"><font style="font-family:Arial;font-size:11pt;"><b>TOTAL ESTIMATED CHARGES:</b></font>&nbsp;<br>
+    <font style="font-size:7pt;">Estimates are not guaranteed per 49 CFR   375.403(6)</font>&nbsp;</td>
+    <td width="33%" style="border-top: 2px solid #000000;border-left: 2px solid #000000;border-right: 2px solid #000000;border-bottom: 2px solid #000000;">
+    &nbsp;<font style="font-family:Arial;font-size:11pt;"><b><%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></b></font></td>
+  </tr>
+  <tr>
+    <td align="right" width="67%">&nbsp;<font style="font-family:Arial;font-size:11pt;"><b>MINIMUM Cu.Ft./Lbs.:</b></font>&nbsp;</td>
+    <td width="33%" height="35" style="border-top: 2px solid #000000;border-left: 2px solid #000000;border-right: 2px solid #000000;border-bottom: 2px solid #000000;">
+    &nbsp;<font style="font-family:Arial;font-size:11pt;"><b><%=IIF(plESTCALCCF,ALLT(STR(_EST.TOTALCF))+' cf.',ALLT(STR(_EST.TOTALLBS))+' lbs.')%></b></font></td>
+  </tr>
+  <tr>
+    <td align="right" width="67%"><font style="font-family:Arial;font-size:11pt;"><b>TOTAL MINIMUM CHARGE:</b></font>&nbsp;</td>
+    <td width="33%" height="35" style="border-top: 2px solid #000000;border-left: 2px solid #000000;border-right: 2px solid #000000;border-bottom: 2px solid #000000;">&nbsp;$</td>
+ </tr>
+</table>
+<hr color="#000000" width="98%" size="1"></hr> 
+<table border="0" align="center" style="border-collapse: collapse" width="98%">
+  <tr>
+    <td width="100%" bgcolor="#000000" colspan="3"><font style="font-family:Arial;font-size:9pt;color:#FFFFFF;"><b>C. OPTIONAL ACCESSORIAL SERVICES ORDERED:</b></font></td>
+  </tr>
+  <tr>
+    <td width="34%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <span style="font-family: Arial; font-size:9pt;">STORAGE</span></td>
+    <td width="37%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:9pt;">SHUTTLE</font></td>
+    <td width="29%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:9pt;">STAIRS</font></td>
+  </tr>
+  <tr>
+    <td width="34%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:9pt;">MOTORCYCLE</font></td>
+    <td width="37%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:9pt;">LONG CARRY</font></td>
+    <td width="29%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:9pt;">PIANO</font></td>
+  </tr>  
+  <tr>
+    <td width="34%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <span style="font-family: Arial; font-size:9pt;">FULL VALUATION</span></td>
+    <td width="37%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:9pt;">EXTRA INSURANCE</font></td>
+    <td width="29%" height="30"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:9pt;">BULKY</font></td>
+  </tr>  
+  <tr>
+    <td width="100%" height="20" colspan="3"><span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:9pt;">OTHER __________
+    <span style="font-size:22pt;font-family:Times New Roman">&#9633;</span> <font style="font-family:Arial;font-size:10pt;">P.G.S pickup/delivery $____________</font></td>
+ </tr>    
+</table>
+    <hr color="#000000" width="98%" size="1"></hr>
+<table border="0" align="center" style="border-collapse: collapse" width="98%">
+  <tr>
+    <td valign="top" bgcolor="#000000" width="100%"><font style="font-family:Arial;font-size:9pt;color:#FFFFFF;"><B>D. DISCLOSURES AND AGREED TERMS FOR DELIVERY:</B></font></td>
+ </tr>
+  <tr>
+    <td valign="top" width="100%"><p style="text-align:justify;"> 
+    <font style="font-family:Arial;font-size:8pt;">Packing materials/labor are not included and will be charged extra per items ordered on the packing materials list. All charges including additional
+    services will be charged based on the full tariff rates.<BR><U><B>Filing of claims:</B></U> <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcCOMPANY,pcAGCOMPANY)%> shall not be liable for the loss or damage of the goods unless 
+    claim is made in writing supported by proof of ownership, value, and weight. All outstanding monies due to carrier must be paid in full before any claim
+    can be made. Claims must be filed within 9 months of delivery or demand thereof is refused and must be limited to the destination descriptions of damages
+    for each item on the inventory logs.<BR><U><B>Special Services:</B></U> Shipper will be notified of final charges prior to delivery and while in transit. 
+    On interstate moves an 18 wheeler may be used to deliver the property. If destination address does not have access for an 18 wheeler the shipper will 
+    be required to pay for shuttle service. Full re-handling/delivery fees are applied when <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcCOMPANY,pcAGCOMPANY)%> must make a second attempt to deliver the property 
+    if for any reason the shipper did not accept delivery on the first attempt. For all estimates there may be additional charges for flights of stairs, 
+    elevators, extra drop-offs or pickups, re-delivery, long carries, and shuttles for residences in restrictive areas.</font></p></td>
+ </tr>
+  <tr>
+    <td valign="top" bgcolor="#000000" width="100%"><font style="font-family:Arial;font-size:9pt;color:#FFFFFF;"><b>E. NOTICE OF AGREED PICK UP AND DELIVERY PERIODS:</B></font></td>
+ </tr>  
+  <tr>
+    <td valign="top" width="100%"><p style="text-align:justify;"> 
+    <font style="font-family:Arial;font-size:8pt;">Guaranteed pickup and delivery dates are an optional service available for purchase. Pickup and delivery dates are not guaranteed unless the optional Premium
+    Guaranteed Service (P.G.S.) is purchased. In compliance with 49 CFR Section 375.505(b)(6) the non-guaranteed 
+    <b>Standard Service (S.S.) delivery "period of time"
+    is up to thirty (30) business weekdays, not including storage time, beginning on the first date indicated as available for delivery (not the date of pickup)</b>. 
+    The date above indicated as "1st available for delivery" is first date of the delivery period of time and not the promised delivery date. Per diem delay rate 
+    is $30.00 (thirty dollars) per business weekday. Business days do not include holidays or weekends. Unless P.G.S. is purchased, estimated delivery period is up to thirty
+    business days from date indicated as first available for delivery.</font></p></td>
+ </tr>
+  <tr>
+    <td valign="top" bgcolor="#000000" width="100%"><font style="font-family:Arial;font-size:9pt;color:#FFFFFF;"><b>SIGN AT LEAST 3 DAYS BEFORE PICKUP DATE:</font></b></td>
+ </tr>  
+  <tr>
+    <td valign="top" width="100%"><p style="text-align:justify;">
+    <font style="font-family:Arial;font-size:8pt; font-weight:700; font-style:italic">I acknowledge I have read and agree to all the terms and conditions on both sides of this bill of lading contract.
+    I have received the arbitration information and the booklet: Your Rights and Responsibilities When you Move and pamphlet Ready to Move. I agree to pay for the total
+    charges for moving services. I approved the total estimated charges prior to the moving services beginning.</font></p></td>
+ </tr>  
+</table>
+<table border="0" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="100%">
+ <% IF pnLOGEMAILID > 1000 %>
+  <tr style="font-family:Arial;font-size:10pt;">
+    <td width="100%" colspan="3"><img src="<%=pcSIGDATA%>"><br>Signature Date: <%=pcEDTE+' ET'%><br>Signature Name:&nbsp;<%=pcENAME%>&nbsp;&nbsp;IP:&nbsp;<%=pcEIP%></b></td>
+ </tr> 
+ <%ENDIF%>
+ <% IF plLINK=.T. %>
+  <tr>
+    <td width="100%" height="30" colspan="3"><font style="font-family:Arial;font-size:10pt;"><b>Name:</b></font> 
+    <input type="text" placeholder="Customer Name:" autocomplete="off" name="ENAME" size="20" style="border: 2px solid #FF0000;" maxlength="50"></td>
+ </tr> 
+  <tr>
+    <td width="11%"><font style="font-family:Arial;font-size:10pt;"><b>Sign:</b></font></td>
+    <td width="70%"><input type="hidden" name="sigData" id="sigData">
+    <canvas id="newSignature" width="300" height="60" style="position: relative;border: 2px solid #ff0000;"></canvas></td>
+    <td width="19%">&nbsp;&nbsp;<input type="button" onclick="signatureClear()" style="width:60;height:25;font-family:Arial;font-size:10pt;font-weight:bold;cursor:pointer;" value="Clear"></td>
+ </tr>
+ <%ENDIF%>
+</table>
+ <% IF plLINK=.T. %>
+<br><center><input type="button" onclick="signatureSave()" style="width:125;height:25;font-family:Arial;font-size:10pt;font-weight:bold;color:#0000FF;cursor:pointer;" value="Accept and Sign"></center>
+ <%ENDIF%>
+<script src="/zz/js/xsign-2.1.0.min.js"></script>
+<script src="/zz/js/xsigndraw.js"></script>
+<script src="/zz/js/xsigndrawpay.js"></script>
+
+<script>
+signatureCapture();
+signatureCapturePay();
+
+//check data
+  function checkData(){
+  frm = document.theForm;
+  if (frm.ENAME.value.length < 4 || frm.ENAME.value.indexOf(" ") < 1) {
+      alert("Please type your full name (first & last)");
+	frm.ENAME.focus();
+  }else   	
+  return true;
+ }
+
+function signatureSave() {
+	var canvas = document.getElementById("newSignature");
+	var sigpay = document.getElementById("sigpay");	
+   // save canvas image as data url (png format by default)
+	var sigData = canvas.toDataURL();
+	var sigPay = sigpay.toDataURL();	
+	var n = sigData.length;
+	var d = sigPay.length; 	 
+          if ((n) < 1000) {
+              alert("Please sign: At Least 3 Days Before Pick-Up");
+              return false;
+       	    }else {
+          if ((d) < 1000) {
+              alert("Please sign: Payments Terms");
+            return false;
+       	  }else {
+	if (checkData()) {
+	    $("#sigData").val(sigData);$("#sigPay").val(sigPay);
+	    document.theForm.action="/wc.dll?mpest~esignbolret~<%=pcREFNO%>~<%=pcCUSTID%>";
+	    document.theForm.submit();
+	}else {   	
+	return false;
+      }	
+  }
+ }
+}
+
+ </script>    
+	 
+</form>
+<table border="1" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="98%">
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;<%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),PROPER(pcCOMPANY),PROPER(pcAGCOMPANY))%> Representative Signature:</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+ </tr>
+</table>    
+    </td>
+ </tr>
+</table>
+    </td>
+    <td width="4" height="1000">&nbsp;&nbsp;&nbsp;</td>    
+    <td valign="top" width="411"><center><font style="font-family:Arial;font-size:13pt;"><b>SUMMARY OF ACTUAL CHARGES/RECEIPT</b></font></center>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center" colspan="2"><font style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>WEIGHT CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Base:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=IIF(plESTCALCCF=.F.,ALLT(STR(_EST.TOTALLBS)),'_______')%> lbs. @ <%=IIF(plESTCALCCF=.F.,'$'+ ALLT(STR(_CRG.I1PERLBS,8,2)),'_______')%> per lbs.</font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=IIF(plESTCALCCF=.F.,'$'+ALLT(STR(_CRG.I1TOTAL,8,2)),'')%></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Additional:________________ lbs. @ $___________ per lbs.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Additional:________________ lbs. @ $___________ per lbs.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center" colspan="2"><font style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>CUBIC FEET CHARGES:</B></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Base:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=IIF(plESTCALCCF=.T.,ALLT(STR(_EST.TOTALCF)),'_______')%> cu.ft. @ <%=IIF(plESTCALCCF=.T.,'$'+ ALLT(STR(_CRG.I1PERCF,8,2)),'_______')%> per cu.ft.</font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%=IIF(plESTCALCCF=.T.,'$'+ALLT(STR(_CRG.I1TOTAL,8,2)),'')%></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Additional:_____________ cu.ft. @ $___________ per cu.ft.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Additional:_____________ cu.ft. @ $___________ per cu.ft.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center" colspan="2"><font style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>HOURLY CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="bottom" height="25" colspan="2">&nbsp;<FONT style="font-family:Arial;font-size:8pt;"><B>Part One:</b></font> 
+    &nbsp;&nbsp;&nbsp;<FONT style="font-family:Arial;font-size:8pt;">__________ Start Time&nbsp;&nbsp;&nbsp;__________ End Time&nbsp;&nbsp;&nbsp;_________ Hours</font></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="bottom" height="25" colspan="2">&nbsp;<FONT style="font-family:Arial;font-size:8pt;"><B>Part Two:</b></font> 
+    &nbsp;&nbsp;<FONT style="font-family:Arial;font-size:8pt;">__________ Start Time&nbsp;&nbsp;&nbsp; 
+    __________ End Time&nbsp;&nbsp;&nbsp;_________ Hours</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">________ hrs. ______ men _____ Trucks @ $________/hr.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">________ hrs. ______ men _____ Trucks @ $________/hr.</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>PACKING MATERIALS AND LABOR:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Total material and Packing (see attached materials price list):</font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Full Packing Service:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>OTHER SERVICES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Fuel Surcharge:</font></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Stairs:&nbsp;$________________Origin  $___________Destination</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Long Carry:&nbsp;$____________Origin  $___________Destination</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Shuttle:&nbsp;$________________Origin  $___________Destination</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Misc. Bulky Items:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Split pickup/delivery or extra stop-off:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>  
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">P.G.S. pickup/delivery service:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Valuation at $0.60 per pound per Item:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">INCLUDED FREE</font></td>
+ </tr>  
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr> 
+</table>    
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>STORAGE CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">______ Days @ cu.ft.  ______ @ $______per cu.ft. per month</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">Other:</FONT></td>
+    <td width="24%" valign="bottom" height="25">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%"><p style="text-align:justify;"><font style="font-family:Arial;font-size:8pt;"><b>Notice of Maximum amount due upon delivery:</b> 
+    Final charges will be based on actual weight or cubic feet of property and services provided or time. Maximum amount to be paid to <%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcCOMPANY,pcAGCOMPANY)%> and 
+    demanded at destination is the amount of the last issued non-binding estimate plus 10%; or 100% of the last binding estimate issued; plus post 
+    contract services; any remaining balances due will be billed after 30 days of delivery. 
+    <b>Payment in full of all charges is due before unloading.</b> 
+    Fees for post contract services must be paid in advance of delivery and prior to unloading. 
+    <b>Conversion formula:</b> Conversion from weight to cubic feet, 
+    or vice versa, be a multiple of 7 to perform the calculations for the total charges.</p></font></td>
+ </tr>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center" colspan="2"><FONT style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>SUMMARY OF CHARGES:</B></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" align="right"><FONT style="font-family:Arial;font-size:10pt;"><b>GRAND TOTAL:</b></font>&nbsp;</td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;<span style="font-family: Arial; font-size:9pt">PARTIAL PAYMENT:</FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;"><%IF pcCUSTNO<>'AOTSMOVING'%>$<%ELSE%><%=IIF(pcPAIDAMT='0','','$'+pcPAIDAMT)%><%ENDIF%></font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">PARTIAL PAYMENT:</FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;</td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;</td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr> 
+  <tr>
+    <td width="76%" valign="bottom" align="right"><FONT style="font-family:Arial;font-size:10pt;"><B>BALANCE DUE:</B></FONT>&nbsp;</td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;</td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr> 
+  <tr>
+    <td width="76%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:9pt;">PRICE ADJUSTMENT:</FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>
+  <tr>
+    <td width="76%" valign="bottom" align="right"><FONT style="font-family:Arial;font-size:9pt;"><b>NEW BALANCE DUE IN 30 DAYS:</b></FONT></td>
+    <td width="24%" valign="bottom">&nbsp;<FONT style="font-family:Arial;font-size:8pt;">$</font></td>
+ </tr>   
+</table>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#000000" align="center"><FONT style="font-family:Arial;font-size:11pt;color:#FFFFFF;"><B>DELIVERY ACKNOWLEDGEMENT:</B></font></td>
+ </tr>
+  <tr>
+    <td width="100%">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%"><p style="text-align:justify;"><font style="font-family:Arial;font-size:8pt;">
+    Shipper hereby acknowledges that the shipment was received in apparently good condition
+    <b> 
+    <i>except</i></b> as noted on the inventory list. Shipper acknowledges that all the
+    services that were ordered have been performed, have been fully satisfied, and the truck was inspected and nothing has been left behind. Shipper and/or agent has
+    full authority to accept the shipment and enter into this agreement.</font></p></td>
+ </tr>
+</table>    
+<table border="1" ALIGN="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#000000" width="98%">
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Customer's Signature at Delivery</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+  </tr>
+  <tr>
+    <td width="67%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;<%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),PROPER(pcCOMPANY),PROPER(pcAGCOMPANY))%> Signature at Delivery</FONT></td>
+    <td width="33%" valign="top" height="35"><FONT style="font-family:Arial;font-size:8pt;">&nbsp;Date</FONT></td>
+ </tr>
+</table>   
+   </td>
+ </tr>
+</table>    
+    </td>
+ </tr>
+</table> 
+  </center>
+</div>
+<% IF pcCUSTNO<>'SAFEWAYMS' AND pcCUSTNO<>'AOTSMOVING' AND pcCUSTNO<>'IDEALMOV' %>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="850">
+  <tr>
+    <td valign="top"><FONT style="font-family:Arial;font-size:8pt;">Law Offices of Michael Garcia <span style="font-size:8pt;font-family:Times New Roman">&#169;</span> 2004-2024 All rights reserved. www.michaelgarcialaw.com. version 06-2022</font></td>
+ </tr>
+</table>
+<%ENDIF%>
+<p class="pagebreak">&nbsp;</p>
+<table border="1" align="center" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#000000" width="850">
+  <tr>
+    <td valign="top"><%=IIF(plCARRIER=.F. OR EMPTY(pcAGENT),pcREMFILE,pcAGBOLTERMS)%>&nbsp;</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

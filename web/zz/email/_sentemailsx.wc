@@ -1,0 +1,56 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Sent Emails - 7 Days Tally</title>
+
+</head>
+<body BGCOLOR="#6B8AAD">
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="700" background="/zz/images/bar-red-black.gif">
+  <tr>
+    <td width="100%" height="25" align="center"><b><font face="Verdana" color="#FFFFFF">Sent Emails - 7 Days Tally</font></b></td>
+ </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><br>
+<table border="2" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD" width="98%" height="49">
+  <tr>
+    <td width="10%" align="center" height="25"><font face="Verdana" style="font-size: 9pt;"><b>Today</B></font></td>
+    <td width="12%" align="center" height="25"><font face="Verdana" style="font-size: 9pt;"><b>Yesterday</B></font></td>
+    <td width="13%" align="center" height="25"><font face="Verdana" style="font-size: 9pt;"><b>2 Days Ago</B></font></td>
+    <td width="12%" align="center" height="25"><font face="Verdana" style="font-size: 9pt;"><b>3 Days Ago</B></font></td>
+    <td width="12%" align="center" height="25"><font face="Verdana" style="font-size: 9pt;"><b>4 Days Ago</B></font></td>
+    <td width="13%" align="center" height="25"><font face="Verdana" style="font-size: 9pt;"><b>5 Days Ago</B></font></td>
+    <td width="12%" align="center" height="25"><font face="Verdana" style="font-size: 9pt;"><b>6 Days Ago</B></font></td>
+    <td width="12%" align="center" height="25"><font face="Verdana" style="font-size: 9pt;"><b>7 Days Ago</B></font></td>
+ </tr>
+  <tr>
+    <td width="10%" align="center" height="19"><font face="Verdana" style="font-size: 9pt;"><b><%=pcD0%></b></font>&nbsp;</td>
+    <td width="12%" align="center" height="19"><font face="Verdana" style="font-size: 9pt;"><b><%=pcD1%></b></font>&nbsp;</td>
+    <td width="13%" align="center" height="19"><font face="Verdana" style="font-size: 9pt;"><b><%=pcD2%></b></font>&nbsp;</td>
+    <td width="12%" align="center" height="19"><font face="Verdana" style="font-size: 9pt;"><b><%=pcD3%></b></font>&nbsp;</td>
+    <td width="12%" align="center" height="19"><font face="Verdana" style="font-size: 9pt;"><b><%=pcD4%></b></font>&nbsp;</td>
+    <td width="13%" align="center" height="19"><font face="Verdana" style="font-size: 9pt;"><b><%=pcD5%></b></font>&nbsp;</td>
+    <td width="12%" align="center" height="19"><font face="Verdana" style="font-size: 9pt;"><b><%=pcD6%></b></font>&nbsp;</td>
+    <td width="12%" align="center" height="19"><font face="Verdana" style="font-size: 9pt;"><b><%=pcD7%></b></font>&nbsp;</td>
+  </tr>
+</table>
+<% IF plSMTPACC %>
+<BR>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD" width="90%">
+  <tr>
+    <td width="50%">
+      <%SELECT _MS
+        Response.ShowCursor(,,.T.,,"style='font-family: Verdana;color: #000000;font-size: 9pt'")%> &nbsp;</td>
+ </tr>
+</table>
+<%ENDIF%>
+<BR><center><font face="Verdana" onclick="javascript:history.go(-1)" STYLE="cursor:pointer;" color="#0000FF"><u><b>Exit</b></u></center>
+   </td>
+ </tr>
+  <tr>
+   <td background="/zz/images/bar-dark-gold.gif" width="100%" height="25"><font face="Arial" size="2"><%=pcUSER%> - <%=pcCOMPANY%></font></td>
+ </tr>
+</table>
+</body>
+
+</html>

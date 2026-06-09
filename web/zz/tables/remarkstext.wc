@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+<title>Update Policy Remarks</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.SUBMIT_1.style.visibility="hidden";
+       document.theForm.action="/wc.dll?mpmainten~remarksupdret~<%=pcSCR%>~<%=ALLT(STR(REMID))%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~remarkswc~<%=pcSCR%>";
+       document.theForm.submit();
+      }      
+	}
+
+<% IF pnREMID>0 AND DEPTID>0 AND ACTIVEDEPT=.F. %>	
+function delremid() {
+       document.theForm.action="/wc.dll?mpmainten~remarksupdret~<%=pcSCR%>~<%=ALLT(STR(REMID))%>~DEL";
+       document.theForm.submit();
+      }
+<%ENDIF%>
+	
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.DELETE	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.DELETEON	{	color: #FFFFFF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 30;
+					background-color: #FF0000;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="70%">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Update Your Policy Remarks</font></b></td>
+  </tr>
+  <tr>
+    <td width="98%" bgcolor="#FFFFFF">
+<%SELECT _REMARKS%>
+<br>
+  <table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" cellspacing="1" cellpadding="1" width="98%">
+    <tr>
+      <td width="33%" ALIGN="CENTER" bgcolor="#0081D3"><b><font face="Verdana" color="#FFFFFF">
+    <%=CTYPE%><%=IIF(!EMPTY(DEPT),' - '+ALLT(DEPT),'')%><%=IIF(!EMPTY(lcSTS),' - '+lcSTS,'')%><%=IIF(!EMPTY(lcBINDING),' - '+lcBINDING,'')%><%=IIF(!EMPTY(lcRCM),' - '+lcRCM,'')%><%=IIF(!EMPTY(SERVTYPE),' - '+CSERVTYPE,'')%></B></FONT>&nbsp;</td>
+  </tr>
+    <tr>
+      <td width="98%">
+  <form name="theForm" method="post">
+  <input type="HIDDEN" name="TYP" value="<%=TYP%>">
+  <input type="HIDDEN" name="DEPTID" value="<%=ALLT(STR(DEPTID))%>">
+  <input type="HIDDEN" name="STS" value="<%=ALLT(STR(STS))%>">
+  <input type="HIDDEN" name="BINDING" value="<%=ALLT(STR(BINDING))%>">
+  <input type="HIDDEN" name="RCM" value="<%=ALLT(STR(RCM))%>">
+  <input type="HIDDEN" name="SERVTYPE" value="<%=SERVTYPE%>">      
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+   <tr>
+     <td width="100%"><textarea rows="25" name="BODY" cols="80"><%=pcBODY%></textarea></td>
+  </tr>
+</table>
+   <BR>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="70%">
+   <tr>
+     <td width="23%" align="center"><input id="btnSubmit3" type="button" CLASS="SUBOFF" onclick="submitFunction(1)" name="SUBMIT_1" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+     <td width="22%" align="center"><input id="btnSubmit5" type="button" CLASS="SUBOFF" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+  <% IF pnREMID>0 AND DEPTID>0 AND ACTIVEDEPT=.F. %>   
+     <td width="22%" align="RIGHT"><input id="btnSubmit5" type="button" CLASS="DELETE" onclick="delremid()" onmouseover="javasctript: this.className='DELETEON'" onmouseout="javasctript: this.className='DELETE'" value="Delete"></td>
+  <%ENDIF%>
+  </tr>
+</table>
+</form>      
+     </td>
+   </tr>
+  </table>
+<br>
+  </td>
+ </tr>
+ <tr>
+    <td width="100%" bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+</body>
+</html>

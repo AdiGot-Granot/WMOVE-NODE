@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function sendemail(email) {
+        window.open(email);
+        self.name="main"}
+
+function storagea() {
+	<%IF plSTGON AND plCOMPLETION %>
+		window.location.href=('/wc.dll?mpstg~stgwc~<%=pcSCR%>');
+	<%ELSE%>
+	    alert("Please enter Job Completion before continuing!");
+	<%ENDIF%>
+  }
+
+function claimsa() {
+	<%IF plCLAIMSX=.F. %>
+	   var Message = "Are you sure you want to open a claim form?";
+	   if (confirm (Message)){
+		   window.location.href=('/wc.dll?mpopr~claimswc~<%=pcSCR%>');
+	       }
+	<%ELSE%>
+		   window.location.href=('/wc.dll?mpopr~claimswc~<%=pcSCR%>');
+	<%ENDIF%>
+	}
+
+
+function submitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpcharge~chargeswc~<%=pcSCR%>');
+    if (i==2) window.location.href=('/wc.dll?mpopr~dlvwc~<%=pcSCR%>');
+    if (i==3) window.location.href=('/wc.dll?mpopr~paymentswc~<%=pcSCR%>~OPR');
+    if (i==4) window.location.href=('/wc.dll?mpopr~oprwc~<%=pcSCR%>');
+    if (i==5) window.location.href=('/wc.dll?mpopr~claimswc~<%=pcSCR%>');
+    if (i==6) window.location.href=('/wc.dll?mpstg~stgwc~<%=pcSCR%>');
+    if (i==7) window.location.href=('/wc.dll?mpopr~wageswc~<%=pcSCR%>');
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TDNAV        {	color: #083484;
+				  	text-align: center;
+				  	font-size: 10pt;
+   				  	font-weight: bold;	
+	                font-family: Verdana;
+					cursor: pointer;}
+</STYLE>
+</head>
+
+<body>
+
+<table border="2" align="center" bgcolor="#BEBE99" style="border-collapse: collapse;line-height:23px;" bordercolor="#FFFFFF" width="800" cellspacing="1" cellpadding="2">
+   <tr>
+     <td width="74" CLASS="TDNAV" onClick="submitFunction(1)" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Charges</td>
+     <td width="72" CLASS="TDNAV" onClick="submitFunction(2)" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Delivery</td>
+     <td width="74" CLASS="TDNAV" onclick="Javascript: window.open('/wc.dll?mpopr~prnslipwc~<%=pcSCR%>~pu','')" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Print Slip</td>
+     <td width="65" CLASS="TDNAV" onClick="submitFunction(7)" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Wages</td>
+     <td width="120" CLASS="TDNAV" onClick="submitFunction(4)" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Job Completion</td>
+   <%IF !plBLKPAY%>
+     <td width="86" CLASS="TDNAV" onClick="submitFunction(3)" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Payments</td>
+   <%ENDIF%>
+     <td width="74" CLASS="TDNAV" onClick="claimsa()" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Claim</td>
+   <%IF plSTGON%>
+     <td width="74" CLASS="TDNAV" onClick="storagea()" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Storage</td>
+   <%ENDIF%>
+     <td width="37" CLASS="TDNAV" onClick="javascript: window.close()" onmouseover="this.style.background='#FFFF00'" onmouseout="this.style.background='#BEBE99'">Exit</td>
+    </tr>
+  </table>

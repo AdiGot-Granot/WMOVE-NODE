@@ -1,0 +1,178 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<% IF plNAVHB=.T. %>
+<script type="text/javascript">
+
+//Contents for menu follow up
+var menu=new Array()
+<% SELECT _HB
+   SCAN%>
+menu[<%=ALLT(STR(HANDBOOKID))%>]='<a class="fancybox fancybox.iframe" href="/wc.dll?mpmainten~handbooktxt~<%=pcSCR%>~<%=ALLT(STR(HANDBOOKID))%>"><b><font size="2" face="Verdana" color="#0000FF"><%=ALLT(SUBJECT)%></b></font></a>'
+<%ENDSCAN%>
+
+var menuwidth='165px' //default menu width
+var menubgcolor='white'  //menu bgcolor
+var disappeardelay=250  //menu disappear speed onMouseout (in miliseconds)
+var hidemenu_onclick="yes" //hide menu when user clicks within menu?
+
+</script>
+
+<%ENDIF%>
+
+<script language="JavaScript" src="/zz/util/dropmenu.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpest~entrywc~<%=pcSCR%>~~<%=pcDEPT%>');
+    if (i==6) window.location.href=('/wc.dll?mpest~entryautowc~<%=pcSCR%>');    
+    if (i==2) window.location.href=('/wc.dll?mpinv~invwc~<%=pcSCR%>~~<%=SYS(3)%>');
+    if (i==8) window.location.href=('/wc.dll?mpinv~invwc~<%=pcSCR%>~~<%=SYS(3)%>~NL');    
+    if (i==3) window.location.href=('/wc.dll?mpcharge~chargeswc~<%=pcSCR%>');
+    if (i==4) window.location.href=('/wc.dll?mpopr~paymentswc~<%=pcSCR%>');
+    if (i==5) window.location.href=('/wc.dll?mpopr~dlvwc~<%=pcSCR%>');
+    if (i==7) window.open('/wc.dll?mpcharge~jobtaskwc~<%=pcSCR%>');
+    if (i==9) window.open('/wc.dll?mpest~printautowc~<%=pcSCR%>');
+    if (i==10) window.open('/wc.dll?mpest~prnestwc~<%=pcSCR%>');        
+}
+
+function claimsa() {
+	var Message = "Are you sure you want to open a claim form?";
+	if (confirm (Message)){
+       window.open('/wc.dll?mpopr~claimswc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=no,copyhistory=no,scrollbars=yes,width=750,height=550');
+      }
+	}
+	
+function assignnew() {
+    window.open('/wc.dll?mpscripts~AssignNewWc~<%=pcSCR%>~~~NAV"','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=no,copyhistory=no,scrollbars=yes,width=750,height=550');
+self.name="main"}
+
+function gotnew() {
+    window.open('/wc.dll?mv~gotnewwc~<%=pcSCR%>~G1','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=no,copyhistory=no,scrollbars=yes,width=800,height=550');
+self.name="main"}
+
+
+function gotrecuring() {
+    window.open('/wc.dll?mv~gotnewwc~<%=pcSCR%>~G2','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=no,copyhistory=no,scrollbars=yes,width=850,height=550');
+self.name="main"}
+
+function gotfualert() {
+    window.open('/wc.dll?mv~gotnewwc~<%=pcSCR%>~G3','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=no,copyhistory=no,scrollbars=yes,width=900,height=500');
+self.name="main"}
+
+function gotesign() {
+    window.open('/wc.dll?mv~gotnewwc~<%=pcSCR%>~G4','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=no,copyhistory=no,scrollbars=yes,width=1300,height=550');
+self.name="main"}
+
+
+
+//function playSound() {
+//     document.all.sound.src = "zz/util/gotmsg.wav";
+//}
+
+function play() {
+		var sample = document.getElementById("foobar");
+		sample.play();
+	}	
+
+</SCRIPT>
+
+<style type="text/css">
+
+#dropmenudiv{
+border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; border-bottom:0px solid black; position:absolute;
+line-height:25px;
+z-index:100; font-style:normal; font-variant:normal; font-weight:normal; font-size:12px; font-family:Verdana
+}
+
+#dropmenudiv a{
+width: 100%;
+display: block;
+text-indent: 3px;
+border-bottom: 1px solid black;
+padding: 1px 0;
+text-decoration: none;
+font-weight: bold;
+}
+
+#dropmenudiv a:hover{ /*hover background color*/
+background-color: yellow;
+}
+
+</style>
+
+<STYLE TYPE="text/css">
+	.TDNAV        {	color: #FFFFFF;
+				  	text-align: center;
+				  	font-size: 10pt;
+   				  	font-weight: bold;	
+	                font-family: Verdana;
+					cursor: pointer;}
+	.TDNAV1       {	color: #FF0000;
+				  	text-align: center;
+				  	font-size: 10pt;
+   				  	font-weight: bold;	
+	                font-family: Verdana;
+					cursor: pointer;}
+
+</STYLE>
+
+</head>
+
+<body <%=IIF(plSOUNDOFF=.F. AND (plGOTMAIL OR plGOTLEAD OR plGOTNEW OR plGOTESIGN OR plFUALERT),'onload="play()"','')%>>
+<audio id="foobar" src="zz/util/chimes.wav" preload="auto"></audio>
+<!-- tab1 -->
+<table border="2" align="center" bgcolor="#006400" bordercolor="#FFFFFF" style="border-collapse: collapse;line-height:23px;" width="1150" cellspacing="1" cellpadding="2">
+  <tr>  
+    <td CLASS="TDNAV" onClick="<%IF pcTYPE='T'%>submitFunction(6)<%ELSE%>submitFunction(1)<%ENDIF%>" onmouseover="javascript: this.className='TDNAV1'" onmouseout="javascript: this.className='TDNAV'" height="25" width="111">Entry Form</td>
+ <%IF pcTYPE <>'T'%>
+    <td CLASS="TDNAV" onClick="submitFunction(2)" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="91">Inventory</td>
+    <% IF pdLBOOKDTE>=DATE() %>
+    <td CLASS="TDNAV" onClick="submitFunction(8)" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="155">Items not Moving</td>
+    <% ENDIF %>
+ <% ENDIF %>
+  <% IF plNAVHB=.T. %>
+    <td align="center" height="25" width="90"><a class="TDNAV" style="text-decoration:none;" onClick="return clickreturnvalue()" onMouseover="dropdownmenu(this, event, menu, '250px')" onMouseout="delayhidemenu()">Handbook</td>
+  <%ENDIF%> 
+    <td CLASS="TDNAV" onClick="<%IF pcTYPE='T'%>submitFunction(9)<%ELSE%>submitFunction(10)<%ENDIF%>" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="133">Printed Estimate</td>
+ <%IF pcTYPE='D' AND pcSTATUS='O' AND pnLEVEL >=2 %>
+    <td CLASS="TDNAV" onclick="Javascript: window.open('/wc.dll?mpest~bolwc~<%=pcSCR%>~PRINT','')" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="106">Bill of Lading</td>
+ <% ENDIF %>   
+    <td CLASS="TDNAV" onClick="submitFunction(3)" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="75">Charges</td>
+  <%IF pnCOLEVEL > 3 AND pcTYPE<>'T' AND (pcSTATUS='O' OR pcSTATUS='S' OR (pcSTATUS='F' AND pdLBOOKDTE=>DATE())) %>       
+    <td CLASS="TDNAV" onClick="submitFunction(7)" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="88">Tasks List</td>
+ <%ENDIF%>    
+ <%IF !plBLKPAY%>
+    <td CLASS="TDNAV" onClick="submitFunction(4)" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="86">Payments</td>
+ <% ENDIF %>
+ <%IF pnLEVEL > 3 AND pcCUSTNO='MOVINGAPT' AND pcSTATUS<>'C' OR (pcTYPE='T' AND pcSTATUS='O' AND pnLEVEL > 1) %>
+    <td CLASS="TDNAV" onClick="claimsa()" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="58">Claims</td>
+ <%ENDIF%>
+ <%IF pcTYPE='T' OR pnLEVEL < 3 OR pcSTATUS='F' OR pcSTATUS='C'%>
+ <%ELSE%>
+    <td CLASS="TDNAV" onClick="submitFunction(5)" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" width="90">Operations</td>
+ <%ENDIF%>
+    <td CLASS="TDNAV" onmouseover="javascript: this.className='TDNAV1'"  onmouseout="javascript: this.className='TDNAV'" height="25" style="cursor:pointer;" onClick="javascript: window.close()" align="right" width="41">
+    Exit</td>
+ </tr>
+</table>
+<% IF plGOTMAIL OR plGOTLEAD OR plGOTNEW OR plGOTESIGN OR plFUALERT %>
+<table border="2" align="center" bgcolor="#FFFFFF" bordercolor="#778899" style="border-collapse: collapse;line-height:17px;" bordercolor="#111111" width="1150" height="25" cellspacing="1" cellpadding="2">
+  <tr>
+    <td width="49%">    
+    <MARQUEE width="100%" style="COLOR: #002d7e; FONT-FAMILY: Verdana;" DIRECTION="RIGHT" BEHAVIOR="slide" scrollAmount=10 width=230 bgColor=#ffffff>
+	<%IF plGOTMAIL%><img border="0" src="zz/images/reddot.gif" width="14" height="14">&nbsp;<a href="javascript: gotrecuring()" style="text-decoration:none;"><FONT FACE="verdana" color="#631C7B" size="2"><B>NEW RECURRING</B></font></a>&nbsp;&nbsp;<%ENDIF%>
+	<%IF plGOTLEAD AND (pnLEVEL=2 OR pnLEVEL > 3 OR plASSIGNNEW) %><img border="0" src="zz/images/reddot.gif" width="14" height="14">&nbsp;<a href="javascript: assignnew()" style="text-decoration:none;"><FONT FACE="verdana" color="#008000" size="2"><B>NEW LEADS TO ASSIGN</B></font></a><%ENDIF%>
+	<%IF plGOTESIGN%><img border="0" src="zz/images/reddot.gif" width="14" height="14">&nbsp;<a href="javascript: gotesign()" style="text-decoration:none;"><FONT FACE="verdana" color="#FF8C00" size="2"><B>YOU GOT ESIGN</B></font></a><%ENDIF%></MARQUEE></td>
+    <td width="1%" bgcolor="#A9A9A9">&nbsp;</td>
+    <td width="50%">
+    <MARQUEE width="100%" style="COLOR: #002d7e; FONT-FAMILY: Verdana;" BEHAVIOR="slide" scrollAmount=10 width=230 bgColor=#ffffff>
+	<%IF plFUALERT%>&nbsp;<img border="0" src="zz/images/reddot.gif" width="14" height="14">&nbsp;<a href="javascript: gotfualert()" style="text-decoration:none;"><FONT FACE="verdana" color="#FF0000" size="2"><B>FOLLOW-UP ALERT(<%=pcFUALERT%>)</B></font></a>&nbsp;<%ENDIF%>    
+	<%IF plGOTNEW%><img border="0" src="zz/images/reddot.gif" width="14" height="14">&nbsp;<a href="javascript: gotnew()" style="text-decoration:none;"><FONT FACE="verdana" color="#083484" size="2"><B>YOU GOT LEADS</B></font></a><%ENDIF%></MARQUEE></td>
+ </tr>
+</table>
+<%ENDIF%><!--end  tab1 -->

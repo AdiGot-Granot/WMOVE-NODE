@@ -1,0 +1,163 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Rooms Volume</title>
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 550,
+		maxHeight	: 300,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>~1');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: left;
+					border-bottom: 1px solid #A9A9A9;}	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="30%">
+ <tr>
+  <td width="46%"><a class="fancybox fancybox.iframe" href="/zz/help/roomsvolume.htm"><img border="0" src="zz/util/manual.gif" title="Read about Rooms Volume" width="32" height="32"></a></td>
+</tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="30%"> 
+  <tr>
+    <td BGCOLOR="#0081D3" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Rooms Volume</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><br>
+<form method="POST" action="wc.dll?mpmainten~roomsret~<%=pcSCR%>">
+  <% SELECT _ROOMS
+    GO TOP %>		
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="14%" class="TD1">CF-LBS Ratio: <%=pnCOCFRATIO%></td>
+    <td width="9%" class="TD1" style="border-left: 1px solid #A9A9A9;"><%=IIF(plCALCCF,'Cubic Feet','Weight')%></td>
+    <td width="10%" class="TD1" style="border-left: 1px solid #A9A9A9;"><%=IIF(plCALCCF,'Weight','Cubic Feet')%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">Studio</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="STU" size="3" VALUE="<%=ALLT(STR(STU))%>" tabindex="1"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(STU1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">Partial Home</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="PAR" size="3" VALUE="<%=ALLT(STR(PAR))%>" tabindex="2"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(PAR1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">One Bedroom</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="ONE" size="3" VALUE="<%=ALLT(STR(ONE))%>" tabindex="3"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(ONE1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">Two Bedroom</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="TWO" size="3" VALUE="<%=ALLT(STR(TWO))%>" tabindex="3"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(TWO1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">Three Bedroom</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="THR" size="3" VALUE="<%=ALLT(STR(THR))%>" tabindex="5"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(THR1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">Four Bedroom</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="FOU" size="3" VALUE="<%=ALLT(STR(FOU))%>" tabindex="6"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(FOU1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">Five Bedroom</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="FIV" size="3" VALUE="<%=ALLT(STR(FIV))%>" tabindex="7"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(FIV1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">Six Bedrooms and More</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="SIX" size="3" VALUE="<%=ALLT(STR(SIX))%>" tabindex="8"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(SIX1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">Office Move</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="OFF" size="3" VALUE="<%=ALLT(STR(OFF))%>" tabindex="9"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(OFF1))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">20 ft. container - INTL Move</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="FT2" size="3" VALUE="<%=ALLT(STR(FT2))%>" tabindex="10"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(FT21))%></td>
+ </tr>
+  <tr>
+    <td width="19%" class="TD2">40 ft. container - INTL Move</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<input NAME="FT4" size="3" VALUE="<%=ALLT(STR(FT4))%>" tabindex="11"></td>          
+    <td width="10%" class="TD2" style="border-left: 1px solid #A9A9A9;">&nbsp;<%=ALLT(STR(FT41))%></td>
+ </tr>          
+</table>    
+  <BR>
+<table border="0" align="center" style="border-collapse: collapse" width="70%">
+  <tr>
+    <td align="center"><input type="submit" CLASS="SUBOFF" name="B5" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" STYLE="cursor:pointer;" value="Submit"></td>
+    <td align="center"><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="SubmitFunction(1)" value="Exit"></td>
+  </tr>
+ </table>    
+</form>    
+    <br></td>
+  </tr>
+  <tr>
+    <td bgcolor="#0081D3" height="15">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+</table>
+
+</body>
+</html>

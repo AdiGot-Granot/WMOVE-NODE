@@ -1,0 +1,320 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Update Agent</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function sf(){
+	detectBrowser();
+}
+
+///************************************************************************************************
+
+function detectBrowser(){
+	
+	browserName="";
+	browserVer=parseInt(navigator.appVersion);
+	//alert(navigator.userAgent);
+	// browserName
+	if (navigator.userAgent.indexOf("MSIE 6.")!=-1)
+			browserName="IE6";
+	else if (navigator.userAgent.indexOf("MSIE 7.")!=-1)
+			browserName="IE7";
+	else if (navigator.userAgent.indexOf("MSIE 8.")!=-1)
+			browserName="IE8";
+	else if (navigator.userAgent.indexOf("MSIE 9.")!=-1)
+			browserName="IE9";
+	else if (navigator.userAgent.indexOf("Firefox")!=-1)
+			browserName="FF";
+	else if (navigator.userAgent.indexOf("Chrome")!=-1)
+			browserName="Chrome"
+	else if (navigator.userAgent.indexOf("Safari")!=-1)
+			browserName="Safari"
+	else if (navigator.userAgent.indexOf("Opera")!=-1)
+			browserName="Opera"
+		else browserName="Unknown";
+
+}
+
+function loadXML(cURL){
+	var xmlDoc="";
+	
+	if(browserName=="IE6")
+			xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+		else if(browserName=="IE7")
+			xmlDoc=new ActiveXObject("msxml2.DOMDocument");
+		else if(browserName=="IE8")
+			xmlDoc=new ActiveXObject("msxml2.DOMDocument");
+		else if(browserName=="IE9")
+			xmlDoc=new ActiveXObject("msxml2.DOMDocument");
+		else if(browserName=="Chrome" || browserName=="Safari" || browserName=="FF" || browserName=="Opera")
+			xmlDoc=document.implementation.createDocument("","",null);
+
+	if(browserName=="Chrome" || browserName=="Safari"){
+	  	var xmlhttp = new window.XMLHttpRequest();
+		xmlhttp.open("GET",cURL,false);
+		xmlhttp.send(null);
+		xmlDoc=xmlhttp.responseXML.documentElement;
+	}else{
+		xmlDoc.async=false;
+		xmlDoc.load(cURL);
+	}	
+	return xmlDoc;
+}
+
+
+function alertXML(oXML){
+		
+	var Xml2String ;
+	if(browserName=="IE6" || browserName=="IE7" || browserName=="IE8" || browserName=="IE9") {
+	  	Xml2String=oXML.xml;
+	}else{
+	  	Xml2String= new XMLSerializer().serializeToString(oXML);
+	}
+	alert(Xml2String);
+}
+
+
+function fillCombo(elmId,oXML,cNodeValueName,cNodeTextName){
+	
+	document.getElementById(elmId).length=null;
+
+	var x=(oXML).getElementsByTagName('BBB');
+	for(i=0;i<x.length;i++){
+  		cValue=x[i].getElementsByTagName(cNodeValueName)[0].childNodes[0].nodeValue;
+		cText=x[i].getElementsByTagName(cNodeTextName)[0].childNodes[0].nodeValue;
+ 	 	document.getElementById(elmId)[i]=new Option(cText,cValue,false);
+	}
+}
+///************************************************************************************************
+
+function fetchXML(){
+
+	c=document.theForm.CUSTID.value;
+	s=document.theForm.STATEID.value;
+
+	cURL='/wc.dll?mpagent~AGENTXML~&CUSTID='+c+'&STATEID='+s;
+	xmlAGENT=loadXML(cURL);
+
+	//fillCombo(elmId,oXML,cNodeValueName,cNodeTextName)
+	fillCombo('agent',xmlAGENT,'agent','agent')
+}
+
+</SCRIPT>
+
+<!--DROPDOWN STATE/AGENT SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN STATE/AGENT SEARCH-->
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+      $('.state-select').select2({
+          placeholder: 'Select state',
+          allowClear: true
+      });
+  });
+
+  $(document).ready(function() {
+      $('.agent-select').select2({
+          placeholder: 'Select Agent',
+          allowClear: true
+      });
+  });
+  
+</script>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitData(i) {
+    if (i==1) 
+	  {
+	   document.theForm.action="/wc.dll?mpcharge~updagentret~<%=pcSCR%>";
+       document.theForm.submit();
+      };
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpcharge~chargeswc~<%=pcSCR%>";
+       document.theForm.submit();
+      } ;
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpcharge~crgautowc~<%=pcSCR%>";
+       document.theForm.submit();
+      } ;
+  }
+
+function sendemail() {
+	var Message = "Are you sure you want to send this estimate to the agent?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpcharge~emailtoagent~<%=pcSCR%>~1";
+       document.theForm.submit();
+       }
+	}
+
+function sendagentjaf() {
+	var Message = "Send Job Acceptance form to agent?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpcharge~emailtoagent~<%=pcSCR%>~2";
+       document.theForm.submit();
+       }
+	}
+	
+function sendagbol() {
+	var Message = "Send Bill of Lading to agent?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpcharge~emailtoagent~<%=pcSCR%>~3";
+       document.theForm.submit();
+       }
+	}
+    
+function sendagfree() {
+    window.open('/wc.dll?mpest~emailcenterret~&SCR=<%=pcSCR%>&ACTION=VIEW&RADIO=201','EANITHING','toolbar=no,location=no,directories=no,status=yes,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=800,height=750');
+self.name="main"}
+	
+<% IF 1=2 AND pcCUSTNO='DEMOMOVE' %>
+function transferGmoveJob() {
+    window.open('/wc.dll?mpcharge~TransferGmoveJobWC~<%=pcSCR%>','');
+   }
+<%ENDIF%>
+	
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000080;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+				  	text-align: right;}
+	.TD2		{	color: #000080;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+				  	text-align: left;}
+     .TD3 	    {	font-size: 10pt;
+				    font-family: Verdana;
+				    font-weight: bold;}				  					  	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					height:25;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					height:25;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699" onload="sf(); return false;">
+<br>
+<form name="theForm" method="post">
+<input type="hidden" name="CUSTID" value="<%=pcCUSTID%>">
+<table border="2" align="center" width="40%" BGCOLOR="#FFFFFF" style="border-collapse:collapse;line-height:21px;" bordercolor="#C0C0C0" cellspacing="1">
+  <tr>
+    <td width="100%" align="center" bgcolor="#008000" colspan="2"><b><font face="Verdana" color="#FFFFFF">Update Agent/Carrier <font color="FFFF00"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></font></font></b></td>
+ </tr>
+  <tr>      
+    <td width="29%" class="TD1">Filter by State:&nbsp;</td>
+    <td width="71%">
+	<select size="1" name="STATEID" onchange="fetchXML()" class="state-select" style="width: 170px;">
+	    <option><%=_S.STATE%></option>
+   		  <%SELECT _S
+    		SCAN%>
+	<option value="<%=ALLT(STR(_S.STATEID))%>"><%=_S.STATENAME%></option>
+		 <%ENDSCAN%>
+    </select></td>
+ </tr> 
+  <tr>      
+    <td width="29%" class="TD1">Agent/Carrier:&nbsp;</td>
+    <td width="71%">
+      <select size="1" name="AGENT" id="agent" class="agent-select" style="width: 350px;">
+	        <option value="<%=lcAGENT%>" selected><%=pcCOMPANY%></option> 
+		    <option></option> 
+		     <% SELECT _TAGENT 
+		         GO TOP 
+		     	 SCAN %>
+			 <OPTION value="<%=ALLT(AGENT)%>"><%=ALLT(AGENT)%><%=IIF(EMPTY(COMPANY),'',' - '+ALLT(PROPER(COMPANY)))%></OPTION>
+		     <% ENDSCAN %>  
+		    </select><font color="red"><%=pcAGACTIVE%></font></td>
+ </tr>
+  <% IF pcTYPE<>'T' AND plAGENTEMAIL=.T. AND plACTIVE=.T. %>
+  <tr>
+    <td width="29%" class="TD1">Carrier Email:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<%=pcEMAIL%></td>
+ </tr>
+  <% IF plUSEREMAIL=.T. %>
+    <% IF plJAF %>
+  <tr>      
+    <td width="29%" class="TD1">Job Acceptance Form:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<img border="0" onclick="sendagentjaf()" style="cursor:pointer;" src="zz/images/email1.gif" width="18" height="11"></td>
+ </tr>
+    <%ENDIF%> 
+  <tr>      
+    <td width="29%" class="TD1">Moving Estimate:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<img border="0" onclick="sendemail()" style="cursor:pointer;" src="zz/images/email1.gif" width="18" height="11"></td>
+ </tr>
+ 		<% IF plAGBOL=.T. %>
+  <tr>
+    <td width="29%" class="TD1">Bill of Lading:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<img border="0" onclick="sendagbol()" style="cursor:pointer;" src="zz/images/email1.gif" width="18" height="11"></td>
+  </tr>
+  		<%ENDIF%>
+   <tr>
+    <td width="29%" class="TD1">Free Text Email:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<img border="0" onclick="sendagfree()" style="cursor:pointer;" src="zz/images/email1.gif" width="18" height="11"></td>
+  </tr>  		
+  <%ENDIF%>
+ <%ENDIF%> 
+ <% IF 1=2 AND pcCUSTNO='DEMOMOVE' AND pnLEVEL=5 %>
+  <tr>      
+    <td width="29%" class="TD1">Job Coop / Board:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<%=pcJobOrderString%>&nbsp;<%=pcHopString%>&nbsp;<img border="0" onclick="transferGmoveJob()" style="cursor:pointer;" src="zz/images/email1.gif" width="18" height="11"></td>
+ </tr>
+ <%ENDIF%>
+  <tr>      
+    <td width="29%" class="TD1">Rating:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<font color="#000000"><%=pcRATING%></font></td>
+ </tr>
+ <%IF !EMPTY(pdINSEXPDTE) %>
+  <tr>      
+    <td width="29%" class="TD1">Insurance Expire On:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<font color="#<%=IIF(pdINSEXPDTE<DATE(),'FF0000','008000')%>"><%=pdINSEXPDTE%></font></td>
+ </tr>
+ <%ENDIF%>
+ <%IF !EMPTY(pdAGREXPDTE) %>
+  <tr>      
+    <td width="29%" class="TD1">Agreement Expire On:&nbsp;</td>
+    <td width="71%" class="TD2">&nbsp;<font color="#<%=IIF(pdAGREXPDTE<DATE(),'FF0000','008000')%>"><%=pdAGREXPDTE%></font></td>
+ </tr>
+  <%ENDIF%>    
+ </table>  
+ <br>
+  <table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="35%">
+    <tr>
+      <td width="10%">&nbsp;</td>
+      <td width="23%" align="center"><input type="button" name="B45" onclick="SubmitData(1)" class="SUBOFF" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+    <% IF pcTYPE<>'T'%>
+      <td width="25%" align="center"><input type="button" name="B45" onclick="SubmitData(2)" class="SUBOFF" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+    <% ELSE %>
+      <td width="25%"><input type="button" name="B45" onclick="SubmitData(3)" class="SUBOFF" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+    <% ENDIF %>
+    </tr>
+  </table>  
+</form>    
+</body>
+</html>

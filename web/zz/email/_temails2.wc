@@ -1,0 +1,180 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<TITLE><%=IIF(plCLAIMS,'Update Claims Email Center','Update Email Center')%></TITLE>
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 750,
+		maxHeight	: 700,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+	
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailsadd~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+      
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailsadd~<%=pcSCR%>~~CLAIMS";
+       document.theForm.submit();
+      }
+     
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailswc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+      
+    if (i==4) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+      
+    if (i==5) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~temailsorder~<%=pcSCR%>";
+       document.theForm.submit();
+      }  
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 125;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 125;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="1100">
+  <tr>
+    <td width="100%" colspan="2"><a class="fancybox fancybox.iframe" href="/zz/help/emailcenter.htm">
+    <img border="0" src="/zz/util/manual.gif" width="32" height="32"></a></td>
+ </tr>
+  <tr>
+    <td width="95%" BGCOLOR="#008000" align="center"><b><font face="Verdana" SIZE="4" color="#FFFFFF">
+    <%=IIF(plCLAIMS,'Claims Email Center','Update Email Center')%></font></b></td>
+    <td width="5%" BGCOLOR="#008000" align="right">
+    <img border="0" src="/zz/images/x.gif" onclick="submitFunction(4)" width="17" height="18" style="cursor:pointer;">&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" colspan="2">
+<form name="theForm" method="POST">
+  <input type="HIDDEN" name="DEPTIDX" value="<%=pcDEPTIDX%>">
+  <input type="HIDDEN" name="CLAIM" value="<%=IIF(plCLAIMS,'CLAIM','')%>">  
+<% IF plDEPT AND !plCLAIMS %>
+ <br>
+<table border="1" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="98%">
+   <tr>   
+     <td>
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse:collapse;" bordercolor="#111111" id="AutoNumber1" width="100%">
+   <tr>
+     <td align="center"><b><font face="Verdana" size="2">Filter Emails by Department: Click on the Department below.</font></b></td>
+   </tr>
+   <tr>     
+     <td align="center">
+      <%SELECT _DEPT
+      SCAN %> 
+     <b><a href="/wc.dll?mpmainten~temailswc~<%=pcSCR%>~~<%=ALLT(STR(DEPTID))%>"><font color="#0359D4"><%=ALLT(DEPT)%></font></a></b>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+     <%ENDSCAN%>
+     </td>
+   </tr>
+</table>     
+     </td>
+  </tr>  
+</table>
+<%ENDIF%>
+ <br><center><b><font face="Verdana" size="2">You have <font color="red"><%=ALLT(STR(RECCOUNT('_TEMAILS')))%></font> Email Letters</font></b></center>
+<table border="1" width="98%" align="center" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" id="AutoNumber1">
+   <tr>
+     <td width="6%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">View</font></b></td>
+     <td width="4%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">No</font></b></td>
+   <% IF pnCOLEVEL<>3 %>  
+     <td width="10%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">Move Type</font></b></td>
+   <%ENDIF%>  
+     <td width="30%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">Subject</font></b></td>  
+   <% IF plDEPT %>  
+     <td width="4%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">Dept</font></b></td>
+   <%ENDIF%>
+     <td width="8%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">User</font></b></td>     
+   <% IF !plCLAIMS %>  
+     <td width="8%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">Category</font></b></td>
+     <td width="4%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">Link</font></b></td>
+     <td width="5%" align="center" bgcolor="#008000"><font color="#FFFFFF"><b>
+     E-First</b></font></td>  
+     <td width="6%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">E-Book</font></b></td>
+   <%ENDIF%>       
+     <td width="9%" align="center" bgcolor="#008000"><b><font color="#FFFFFF">Update</font></b></td>     
+   </tr>
+ <% SELECT _TEMAILS
+    SCAN %>
+   <tr>
+     <td width="6%"><a class="fancybox fancybox.iframe" href="/wc.dll?mpmainten~temailstxt~<%=pcSCR%>~<%=ALLT(STR(TEMAILID))%>"><b><font face="Arial" size="2">Preview</font></b></a></td>
+     <td width="4%" align="center"><input type="text" name="T<%=ALLT(STR(TEMAILID))%>" size="1" value="<%=IIF(ISNULL(TID),'',ALLT(STR(TID)))%>" style="text-align: center"></td>
+    <% IF pnCOLEVEL<>3 %>
+     <td width="10%"><%=ALLT(TYP1)%>&nbsp;</td>
+    <%ENDIF%> 
+     <td width="30%"><%=ALLT(SUBJECT)%>&nbsp;</td>
+   <% IF plDEPT %>
+     <td width="4%" align="center"><B><%=ALLT(DEPT)%></B>&nbsp;</td>
+   <%ENDIF%>
+   	 <td width="8%" align="center"><B><%=ALLT(USERNAME)%></B>&nbsp;</td>	      
+   <% IF !plCLAIMS %>  
+     <td width="8%" align="center"><%=ALLT(CATEGORY)%>&nbsp;</td>
+     <td width="4%" align="center"><font color="#008000" size="4"><b><%=IIF(LINK,'&#10003;','')%></b></font>&nbsp;</td>
+     <td width="5%" align="center"><font color="#F76A00" size="4"><b><%=IIF(FIRSTMAIL,'&#10003;','')%></b></font></td>
+     <td width="6%" align="center"><font color="#A0522D" size="4"><b><%=IIF(EBOOK,'&#10003;','')%></b></font>&nbsp;</td>
+   <%ENDIF%>       
+     <td width="9%" align="center"><a href="/wc.dll?mpmainten~temailsadd~<%=pcSCR%>~<%=ALLT(STR(TEMAILID))%>~<%=IIF(plCLAIMS,'CLAIMS','')%>"><font face="Arial" size="2"><B><%=ALLT(STR(TEMAILID))%>-Update</B></font></a></td>     
+   </tr>
+ <%ENDSCAN%>  
+</table>
+ <br>
+<table border="0" width="90%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+	<td width="7%" align="center"><input type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(5)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Save Email Order">	</td>
+	<td width="9%" align="center"><input type="button" CLASS="SUBOFF" name="B5" onclick="<%=IIF(plCLAIMS,'submitFunction(2)','submitFunction(1)')%>" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Create New Email"></td>
+	<td width="7%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(4)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>
+    </form>&nbsp;</td>
+</tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" colspan="2"><font color="#FFFFFF" size="2" face="Arial">&nbsp;<%=pcUSER%> - <%=pcCOMPANY%></font></td>
+  </tr>
+  </table>
+</body>
+</html>

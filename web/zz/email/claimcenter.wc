@@ -1,0 +1,170 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Claims Email Center</title>
+<script language="JavaScript">
+
+function SubmitEmail() {
+    document.theForm.action="/wc.dll?mpest~emailcenterret~&SCR=<%=pcSCR%>&ACTION=EMAIL"
+    document.theForm.submit()
+    }
+
+function ViewEmail(r) {
+    document.theForm.action="/wc.dll?mpest~emailcenterret~&SCR=<%=pcSCR%>&ACTION=VIEW&RADIO="+r
+    document.theForm.submit()
+    }
+
+//function UpdateEmail() {
+//	    window.location.href=('/wc.dll?mpmainten~temailswc~<%=pcSCR%>~<%=SYS(2015)%>');
+//	}
+
+function OpenClose(e){
+	if (document.getElementById(e).style.position=='relative'){
+		document.getElementById(e).style.position='absolute';
+		document.getElementById(e).style.visibility='hidden';
+		document.getElementById('oc').innerText="open";
+	}else{
+		document.getElementById(e).style.position='relative';
+		document.getElementById(e).style.visibility='visible';
+		document.getElementById('oc').innerText="close";
+	}
+}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+ <TR>
+  <TD bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <tr>
+    <td width="100%" align="center" bgcolor="#BEBE99"><b><font face="Verdana" COLOR="#000080">Claim Email Center</font></b></td>
+  </tr>
+</table>
+<br>
+<form name="theForm" method="post">
+<input type="hidden" name="CLAIMS" size="17" tabindex="3" value="CLAIMS">
+
+<table border="1" cellpadding="1" cellspacing="1" style="font-family:Arial;font-size:10pt;border-collapse: collapse" bordercolor="#808080" width="686" align="center">
+  <tr>
+    <td height="19" width="72">Customer:</td>
+    <td height="19" width="163">&nbsp;<b><%=pcSNAME%></b></td>
+    <td height="19" width="84">Email To:</td>
+    <td height="19" width="225">&nbsp;<b><%=pcEMAIL%></b></td>
+    <td height="19" width="120">Job #: <b><%=ALLT(pcDEPT+pcORDNO)%></b></td>
+  </tr>
+  <tr>
+    <td height="19" width="72">Sender:</td>
+    <td height="19" width="163">&nbsp;<b><%=pcUSER%></td>
+    <td height="19" width="84">Email From:</td>
+    <td height="19" width="349" colspan="2">&nbsp;<b><%=pcUSEREMAIL%></b></td>
+  </tr>
+</table>
+<br>
+<table border="0" width="55%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align="center">
+  <tr>
+    <td width="30%" align="center">
+    <%IF EMPTY(pcUSEREMAIL)%><B><FONT COLOR="RED">Missing From Email</FONT></B><%ELSE%>
+    <input type="button" CLASS="SUBOFF" name="btnSendEmail" onclick="SubmitEmail()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Send Email"><%ENDIF%></td>
+    <td width="27%" align="center">
+    <input type="button" CLASS="SUBOFF" name="btnExit" onclick="window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Exit"></td>
+  </tr>
+</table>
+<BR>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#808080" width="50%" align="center" height="29">
+  <tr>
+    <td height="12"><font style="font-family:Arial;font-size:10pt;">Add text to the emails' header - </font></td>
+    <td height="12"><a href="javascript:OpenClose('emailheader')" align="center" style="font-family:Arial;font-size:10pt;cursor:pointer;">
+    <div id="oc" style="width: 65; height: 19">open</div></a></td>
+  </tr>
+  <tr id="emailheader" style="position:absolute; visibility:hidden">
+    <td height="16" colspan="2"><textarea rows="5" name="EMAILHEADER" cols="52"></textarea></td>
+  </tr>
+</table>
+<br>
+<table border="1" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#808080" width="550" align="center">
+  <tr>
+    <td align="center" height="26" width="24"><b><FONT FACE="Arial" size="2">#</font></b></td>
+    <td align="center" height="26" width="359"><b><FONT FACE="Arial" size="2">Subject</font></b></td>
+    <td align="center" height="26" width="69"><b><FONT FACE="Arial" size="2">Select</font></b></td>
+  </tr>
+<% SELECT _T
+	SCAN%>
+  <tr>
+    <td align="center" height="26" width="24"><font style="font-family:Arial;font-size:10pt;"><%=ALLT(STR(RECNO()))%><b>.</b></font></td>
+    <td height="26" width="359"><font style="font-family:Arial;font-size:10pt;color:#0000FF;cursor:pointer;" onclick="ViewEmail('<%=ALLT(STR(TEMAILID))%>')"><u><%=ALLT(SUBJECT)%></u></font>&nbsp;</td>
+    <td align="center" height="26" width="69"><input type="radio" value="<%=ALLT(STR(TEMAILID))%>" name="R1"></td>
+  </tr>
+<%ENDSCAN %>
+  <tr>
+    <td align="center" height="26" width="24"></td>
+    <td height="26" width="359"><font style="font-family:Arial;font-size:10pt;color:#0000FF;cursor:pointer;" onclick="ViewEmail('200')"><u>Free Text</u></font></td>
+    <td align="center" height="26" width="69">&nbsp;</td>
+  </tr>
+</table>
+<br>
+<table border="0" width="55%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align="center">
+  <tr>
+    <td width="32%" align="center">
+    <%IF EMPTY(pcUSEREMAIL)%><B><FONT COLOR="RED">Missing From Email</FONT></B><%ELSE%>
+    <input type="button" CLASS="SUBOFF" name="btnSendEmail" onclick="SubmitEmail()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Send Email"><%ENDIF%></td>
+    <td width="32%" align="center">
+    <input type="button" CLASS="SUBOFF" name="btnExit" onclick="window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Exit"></td>
+  </tr>
+</table>
+</form>
+<center><b><font size="2" face="Verdana">Previous Emails</font></b></center>
+<table border="1" align="center" cellSpacing="1" cellPadding="2" style="border-collapse:collapse;font-family:Verdana;font-size:8pt;" bordercolor="#C0C0C0" width="98%">
+  <tr style="background-color:#008000;">
+	<td width="1%" height="23">&nbsp;</td>  
+    <td width="16%" height="23">&nbsp;<font color="#FFFFFF"><b>Sent Date</b></font></td>
+    <td width="19%" height="23">&nbsp;<font color="#FFFFFF"><b>Emailed To</b></font></td>
+    <td width="19%" height="23">&nbsp;<font color="#FFFFFF"><b>Subject</b></font></td>
+    <td width="13%" height="23">&nbsp;<font color="#FFFFFF"><b>Esign Details</b></font></td>
+ </tr>
+  <% SELECT _L
+     SCAN%>
+ <tr>
+   <td width="1%">&nbsp;<%=EID%></td> 
+   <td width="16%">&nbsp;<%=SENTDTE%>&nbsp;<%=SENTTME%><br><b><%=ALLT(SENTBY)%></b></td>
+   <td width="19%">&nbsp;<%=ALLT(EMAILEDTO)%></td>
+   <td width="19%">&nbsp;<%=ALLT(SUBJECT)%></td>
+   <td width="13%">&nbsp;<%=ALLT(ENAME)%><BR>&nbsp;<%=CEDTE%></td>
+ </tr>
+ <%ENDSCAN %>
+</table>
+ <br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#008000">&nbsp;</td>
+  </tr>
+</table>
+  </td>
+ </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<TITLE>Auto Zone Rate</TITLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+
+var ie;
+
+if (document.all)
+	ie = true;
+else
+	ie = false;
+	
+function _ca(obj)
+  {
+  var Count = <%=pnRECS%>; // number of checkboxes
+  
+  for(var ii=1;ii<=Count;ii++)
+    {
+	if (ie)
+	  {
+	  box = document.all["t"+ii];
+	  box.checked = obj.checked;
+	  }
+	else
+	  {
+	  box = document.getElementsByName("t"+ii);
+	  box[0].checked = obj.checked;
+	  }
+	}
+  }	
+
+function ViewTags() {
+       document.theForm.action="/wc.dll?mpauto~AutoTypeTags~<%=pcSCR%>~CLEARALL";
+       document.theForm.submit();
+	}
+
+function ViewAll() {
+       document.theForm.action="/wc.dll?mpauto~AutoTypeTags~<%=pcSCR%>~SAVETAGS";
+       document.theForm.submit();
+	}
+
+function autozone(ccID) {
+//alert(ccID)
+    window.open('/wc.dll?mpauto~AutoTypeEditWc~<%=pcSCR%>~'+ccID,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=550,height=400');
+	}
+
+
+function SubmitEdit() {
+       document.theForm.action="/wc.dll?mpauto~AutoTypeRet~<%=pcSCR%>~<%=pcID%>";
+       document.theForm.submit();
+	}
+
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+
+<div align="center">
+  <center>
+<form name="theForm" method="POST">
+<!--Main Table -->
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#99CCFF" width="850" bgcolor="#C0C0C0">
+    <tr>
+      <td bgcolor="#FF9900">&nbsp;</td>
+      <td bgcolor="#4E6699" bordercolor="#FFFFFF">&nbsp;</td>
+      <td bgcolor="#FF9900" align="right"><a href="javascript:window.close()">
+      <img border="0" src="/zz/images/x.gif" align="right" width="17" height="18"></a></td>
+    </tr>
+    <tr>
+      <td width="308" bgcolor="#000000">
+      <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="100%">
+        <tr>
+          <td width="100%">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="100%" align="center"><b><font color="#FFFFFF">Auto Zone</font></b></td>
+        </tr>
+      </table>
+      </td>
+      <td width="14" bgcolor="#4E6699" bordercolor="#FFFFFF">&nbsp;</td>
+      <td width="524" bgcolor="#000000">
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="100%">
+  <tr>
+    <td width="12%" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF">State</font></b></td>
+    <td width="55%" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF">Name</font></b></td>
+    <td width="9%" BGCOLOR="#000000" align="center" height="19"><b><font face="Arial" size="2" color="#FFFFFF">Zip</font></b></td>
+    <td width="10%" BGCOLOR="#000000" align="center" height="19"><b><font color="#FFFFFF" size="2" face="Arial">Radius</font></b></td>
+    <td width="14%" BGCOLOR="#000000" align="center" height="19"><font size="2" face="Arial" color="#FFFFFF"><b>Id</b></font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" BGCOLOR="#000000" align="center" height="19"><b><font size="6" face="Arial" color="#FFFF00"><%=pcSTATE%>&nbsp;</b></font></td>
+    <td width="55%" BGCOLOR="#000000" align="center" height="19"><b>
+    <font size="6" face="Arial" color="#FFFF00"><%=pcNAME%></b>&nbsp;</font></td>
+    <td width="9%" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF"><%=pcZIP%></font></b>&nbsp;</td>
+    <td width="10%" BGCOLOR="#000000" align="center" height="19"><b><font size="2" face="Arial" color="#FFFFFF"><%=pcRADIUS%></font></b>&nbsp;</td>
+    <td width="14%" BGCOLOR="#000000" align="center" height="19"><b><font size="6" face="Arial" color="#FFFF00"><%=pcID%>&nbsp;</b></font></td>
+  </tr>
+</table>
+      </td>
+    </tr>
+    <tr>
+      <td width="308">&nbsp;</td>
+      <td width="14" bgcolor="#4E6699" bordercolor="#FFFFFF">&nbsp;</td>
+      <td width="524">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="308" valign="top">
+<!--Zone Table -->
+      <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#0000FF" width="100%" id="AutoNumber2">
+        <tr>
+          <td width="10%" align="center">&nbsp;</td>
+          <td width="13%" align="center">&nbsp;</td>
+          <td width="17%" align="center">&nbsp;</td>
+          <td width="14%" align="center">&nbsp;</td>
+          <td width="40%" align="center">
+          <p align="right"><font color="#008000">Clear all Tags</font></td>
+          <td width="6%" align="center"><font color="#008000">
+     <input type="image"  border="0" src="/zz/images/go-green.gif" onclick="ViewTags()" style="cursor:hand" width="10" height="18" tabindex="2" name="I1" align="right"></font></td>
+        </tr>
+        <tr>
+          <td width="40%" align="center" colspan="3"><b><a href="javascript:autozone('ADD_NEW')">Add Zone</a></b></td>
+          <td width="14%" align="center">&nbsp;</td>
+          <td width="40%" align="center">
+          <p align="right"><font color="#0000FF">Submit Tags</font></td>
+          <td width="6%" align="center"><font color="#008000">
+     <input type="image"  border="0" src="/zz/images/go.gif" onclick="ViewAll()" style="cursor:hand" width="10" height="18" tabindex="2" align="right"></font></td>
+        </tr>
+        <tr>
+          <td width="10%" align="center"><font face="Arial" size="2">ID</font></td>
+          <td width="13%" align="center"><font face="Arial" size="2">State</font></td>
+          <td width="17%" align="center"><font face="Arial" size="2">Zip</font></td>
+          <td width="14%" align="center"><font face="Arial" size="2">Radius</font></td>
+          <td width="40%" align="center"><font face="Arial" size="2">Name</font></td>
+          <td width="6%" align="center">&nbsp;</td>
+        </tr>
+<% SELECT _AUTOZONE
+   SCAN%>
+ <tr bgcolor="<%=IIF(ODD,'CCCC00','FFFFFF')%>">
+    <td width="10%" font size="2" face="Arial"><a href="/wc.dll?mpauto~AutoTypeWc~<%=pcSCR%>~<%=ID%>"><%=ALLTRIM(ID)%></a></font></B>&nbsp;</td>
+    <td width="13%" align="center" font size="2" face="Arial"><%=STATE%></font></b>&nbsp;</td>
+    <td width="17%" font size="2" face="Arial"><%=ZIP%></font></b>&nbsp;</td>
+    <td width="14%"  align="center" font size="2" face="Arial"><%=IIF(RADIUS=0,'',ALLT(STR(RADIUS)))%></font></b>&nbsp;</td>
+    <td width="40%" font size="2" face="Arial"><a href="javascript:autozone(<%=ID%>)"><%=ALLTRIM(NAME)%></a></font>&nbsp;</td>
+    <td width="6%" ><input type="checkbox" name="A-<%=ID%>" value="ON" <%=IIF(TAGON,'checked','')%>></td>
+ </tr>
+<% ENDSCAN%>
+  <tr>
+    <td width="100%" bgcolor="#000080" colspan="6">&nbsp;</td>
+ </tr>
+
+      </table>
+<!--end Zone Table -->
+
+      </td>
+      <td width="14" bgcolor="#4E6699" bordercolor="#FFFFFF">&nbsp;</td>
+      <td width="524">
+<!--Prc Table -->
+      <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="100%" id="AutoNumber3" height="84">
+        <tr>
+          <td width="6%" height="19">&nbsp;</td>
+          <td width="9%" height="19">&nbsp;</td>
+          <td width="9%" height="19">&nbsp;</td>
+          <td width="8%" height="19">&nbsp;</td>
+          <td width="22%" height="19">
+          &nbsp;</td>
+          <td width="6%" height="19">&nbsp;</td>
+          <td width="40%" colspan="3" height="19">
+          <p align="center"><b>Rate per type of Car</b></td>
+        </tr>
+       <tr>
+          <td width="6%" height="19">&nbsp;</td>
+          <td width="9%" height="19">&nbsp;</td>
+          <td width="9%" height="19">&nbsp;</td>
+          <td width="8%" height="19">&nbsp;</td>
+          <td width="22%" height="19">
+          <p align="right"><font color="#0000FF">Submit&nbsp;&nbsp;</font></td>
+          <td width="6%" height="19"><font color="#008000">
+     <input type="image"  border="0" src="/zz/images/go.gif" onclick="SubmitEdit()" style="cursor:hand" width="10" height="18" tabindex="2" align="left" name="I2"></font></td>
+          <td width="14%" height="19">
+          &nbsp;</td>
+          <td width="13%" height="19">
+          <b><font size="2">Add from A</font></b></td>
+          <td width="13%" height="19">
+          <b><font size="2">Add from A</font></b></td>
+        </tr>
+         <tr>
+          <td width="6%" align="center" height="22">&nbsp;</td>
+          <td width="9%" align="center" height="22">&nbsp;</td>
+          <td width="9%" align="center" height="22">&nbsp;</td>
+          <td width="8%" align="center" height="22">&nbsp;</td>
+          <td width="22%" align="center" height="22">&nbsp;</td>
+          <td width="6%" align="center" height="22">&nbsp;</td>
+          <td width="13%" align="center" height="22"><b><font face="Arial" size="2"><input NAME="RA" size="5" VALUE=""><input type="checkbox" name="RAP" value="ON">%</font></b></td>
+          <td width="14%" align="center" height="22"><b><font face="Arial" size="2"><input NAME="RB" size="5" VALUE=""><input type="checkbox" name="RBP" value="ON">%</font></b></td>
+          <td width="13%" align="center" height="22"><b><font face="Arial" size="2"><input NAME="RC" size="5" VALUE=""><input type="checkbox" name="RCP" value="ON">%</font></b></td>
+        </tr>
+       <tr>
+          <td width="6%" align="center" height="20"><font face="Arial" size="2">ID</font></td>
+          <td width="9%" align="center" height="20"><font face="Arial" size="2">State</font></td>
+          <td width="9%" align="center" height="20"><font face="Arial" size="2">Radius</font></td>
+          <td width="8%" align="center" height="20"><font face="Arial" size="2">Zip</font></td>
+          <td width="22%" align="center" height="20"><font face="Arial" size="2">Name</font></td>
+          <td width="6%" align="center" height="20"><INPUT TYPE="checkbox" NAME="checkbox" VALUE="checkbox" onClick="javascript: _ca(this);"></td>
+          <td width="13%" align="center" height="20"><b><font face="Arial" size="2">A</font></b></td>
+          <td width="14%" align="center" height="20"><b><font face="Arial" size="2">B</font></b></td>
+          <td width="13%" align="center" height="20"><b><font face="Arial" size="2">C</font></b></td>
+        </tr>
+  <%SELECT _LIST
+        SCAN %>
+        <tr bgcolor="<%=IIF(ODD,'CCCCFF','EEEEEE')%>">
+        <td width="6%" align="center"><font size="2" face="Arial" color="#083484"><%=ID2%>&nbsp;</font></td>
+        <td width="9%"><font face="Arial" size="2"><%=STATE%>&nbsp;</font></td>
+        <td width="9%"><font face="Arial" size="2"><%=ZIP%>&nbsp;</font></td>
+        <td width="8%" align="center"><font face="Arial" size="2"><%=IIF(RADIUS=0,'',ALLT(STR(RADIUS)))%>&nbsp;</td>
+        <td width="22%"><font face="Arial" size="2"><%=NAME%>&nbsp;</td>
+        <td width="6%" align="center"><input type="checkbox" name="<%='t'+ALLT(STR(RECNO()))%>" value="ON"></td>
+        <td width="13%" align="center"><B><font face="Arial" size="2"><%=IIF(RATE=0,'',ALLT(STR(RATE,7,2)))%></B></FONT>&nbsp;</td>
+        <td width="14%" align="center"><B><font face="Arial" size="2"><%=IIF(RATEB=0,'',ALLT(STR(RATEB,7,2)))%></B></FONT>&nbsp;</td>
+        <td width="13%" align="center"><B><font face="Arial" size="2"><%=IIF(RATEC=0,'',ALLT(STR(RATEC,7,2)))%></B></FONT>&nbsp;</td>
+      </tr>
+  <%ENDSCAN %>
+      </table>
+<!--end Prc Table -->
+      </td>
+    </tr>
+    <tr>
+      <td width="308" bgcolor="#FF9900">&nbsp;</td>
+      <td width="14" bgcolor="#4E6699" bordercolor="#FFFFFF">&nbsp;</td>
+      <td width="524" bgcolor="#FF9900">
+      <p align="center">&nbsp;</td>
+    </tr>
+  </table>
+<!--end Main Table -->
+</form>
+  </center>
+</div>
+
+</body>
+
+</html>

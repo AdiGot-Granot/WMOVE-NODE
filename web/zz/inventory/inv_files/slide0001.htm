@@ -1,0 +1,593 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:p="urn:schemas-microsoft-com:office:powerpoint"
+xmlns:oa="urn:schemas-microsoft-com:office:activation"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=PowerPoint.Slide>
+<meta name=Generator content="Microsoft PowerPoint 10">
+<link id=Main-File rel=Main-File href="../inv.htm">
+<link rel=Preview href=preview.wmf>
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+p\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+v\:textbox {display:none;}
+</style>
+<![endif]-->
+<title>Slide 1</title>
+<meta name=Description content="6/6/2005">
+<link rel=Stylesheet href="master03_stylesheet.css">
+<![if !ppt]>
+<style media=print>
+<!--.sld
+	{left:0px !important;
+	width:6.0in !important;
+	height:4.5in !important;
+	font-size:103% !important;}
+-->
+</style>
+<script><!--
+function LoadSld()
+{
+	var sld=GetObj("SlideObj")
+	if( !g_supportsPPTHTML ) {
+		sld.style.visibility="visible"
+		return
+	}
+	if( MakeNotesVis() ) return
+	runAnimations = _InitAnimations();
+	if( IsWin("PPTSld") )
+		parent.SldUpdated(GetSldId())
+	g_origSz=parseInt(SlideObj.style.fontSize)
+	g_origH=sld.style.posHeight
+	g_origW=sld.style.posWidth
+	g_scaleHyperlinks=(document.all.tags("AREA").length>0)
+	if( g_scaleHyperlinks )
+		InitHLinkArray()
+	if( g_scaleInFrame||(IsWin("PPTSld") && parent.IsFullScrMode() ) )
+		document.body.scroll="no"
+	_RSW()
+	if( IsWin("PPTSld") && parent.IsFullScrMode() )
+		FullScrInit();
+	
+	MakeSldVis();
+	
+	if( runAnimations )
+	{
+		if( document.all("NSPlay") )
+			document.all("NSPlay").autoStart = false;
+		if( sld.filters && sld.filters.revealtrans )
+			setTimeout( "document.body.start()", sld.filters.revealtrans.duration * 1000 );
+		else
+			document.body.start();
+	}
+}
+function MakeSldVis()
+{
+	var fTrans=g_showAnimation && SldHasTrans()
+	if( fTrans )
+	{
+		if( g_bgSound ) {
+			idx=g_bgSound.indexOf(",");
+			pptSound.src=g_bgSound.substr( 0, idx );
+			pptSound.loop= -(parseInt(g_bgSound.substr(idx+1)));
+		}
+		SlideObj.filters.revealtrans.Apply()
+    }
+	SlideObj.style.visibility="visible"
+	if( fTrans )
+		SlideObj.filters.revealtrans.Play()
+}
+function MakeNotesVis()
+{
+	if( !IsNts() ) return false
+	SlideObj.style.display="none"
+	nObj = document.all.item("NotesObj")
+	parent.SetHasNts(0)
+	if( nObj ) {
+		nObj.style.display=""
+		parent.SetHasNts(1)
+	}
+	return 1
+}
+function ChkAutoAdv()
+{
+	if(SldHasTrans())
+		SlideObj.onfilterchange=AutoAdv
+	else
+		AutoAdv()
+}
+function AutoAdv()
+{
+	if(!IsWin("PPTSld") || !gUseSldTimings )return
+	var sld=GetCurSld()
+	if( (sld.mAdvDelay>0) && !parent.IsFramesMode() )
+		setTimeout("parent.GoToNextSld()",sld.mAdvDelay)
+}
+function GetObj(id)
+{
+	if(g_supportsPPTHTML) return document.all(id);
+	else return document.getElementById(id);
+}
+function SldHasTrans() { return SlideObj.style.getAttribute("filter")!="" }
+function GetSldId() { return sId=location.href.substring(location.href.lastIndexOf('/')+1) }
+function HideMenu() { if( frames["PPTSld"] && PPTSld.document.all.item("ctxtmenu") && PPTSld.ctxtmenu.style.display!="none" ) { PPTSld.ctxtmenu.style.display='none'; return true } return false }
+function IsWin( name ) { return window.name == name }
+function IsNts() { return IsWin("PPTNts") }
+function IsSldOrNts() { return( IsWin("PPTSld")||IsWin("PPTNts") ) }
+function SupportsPPTAnimation() { return( navigator.platform == "Win32" && navigator.appVersion.indexOf("Windows")>0 ) }
+function SupportsPPTHTML()
+{
+	var appVer=navigator.appVersion, msie=appVer.indexOf("MSIE "), ver=0
+	if( msie >= 0 )
+		ver=parseFloat( appVer.substring( msie+5, appVer.indexOf(";",msie) ) )
+	else
+		ver=parseInt(appVer)
+	return( ver >= 4 && msie >= 0 )
+}
+function _RSW()
+{
+	if( !g_supportsPPTHTML || IsNts() ||
+	  ( !g_scaleInFrame && (!IsWin("PPTSld") || !parent.IsFullScrMode()) ) )
+		return
+        var padding=0;
+        if( IsWin("PPTSld") && parent.IsFramesMode() ) padding=6
+	cltWidth=document.body.clientWidth-padding
+	cltHeight=document.body.clientHeight-padding
+	factor=(1.0*cltWidth)/g_origW
+	if( cltHeight < g_origH*factor )
+		factor=(1.0*cltHeight)/g_origH
+	newSize = g_origSz * factor
+	if( newSize < 1 ) newSize=1
+	s=SlideObj.style
+	s.fontSize=newSize+"px"
+	s.posWidth=g_origW*factor
+	s.posHeight=g_origH*factor
+	s.posLeft=(cltWidth-s.posWidth+padding)/2
+	s.posTop=(cltHeight-s.posHeight+padding)/2
+	if( g_scaleHyperlinks )
+		ScaleHyperlinks( factor )
+}
+function _InitAnimations()
+{
+	animRuntimeInstalled = ''+document.body.localTime != 'undefined';
+	isFullScreen = (window.name == "PPTSld") && !parent.IsFramesMode();
+	g_animUseRuntime = g_showAnimation && animRuntimeInstalled && !(isFullScreen && parent.IsSldVisited());
+	if( g_animUseRuntime ) {
+		collSeq = document.all.tags("seq");
+		if( collSeq != null ) {
+			for(ii=0;ii<collSeq.length;ii++) {
+				if( collSeq[ii].getAttribute( "p:nodeType" ) == "mainSeq" ) {
+					g_animMainSequence = collSeq[ii];
+					break;
+				}
+			}
+		}
+		if( g_animItemsToHide ) {
+			for(jj = 0; jj < g_animItemsToHide.length; jj++) {
+				if( hideObj = GetObj(g_animItemsToHide[jj]) )
+					hideObj.runtimeStyle.visibility="hidden";
+			}
+		}
+		if( g_animInteractiveItems ){
+			for(jj = 0; jj < g_animInteractiveItems.length; jj++) {
+				if( triggerObj = GetObj(g_animInteractiveItems[jj]) )
+					triggerObj.runtimeStyle.cursor="hand";
+			}
+		}
+		if( gUseSldTimings && ''+g_animSlideTime != 'undefined' ) {
+			adjustedTime = document.body.calculateAutoAdvanceTimes( g_animSlideTime, g_animEffectTimings );
+			if( IsWin("PPTSld") && adjustedTime != g_animSlideTime ) {
+			   var sld = GetCurSld();
+			   sld.mAdvDelay = adjustedTime * 1000;
+			}
+		}
+	}
+	return g_animUseRuntime;
+}
+
+var g_supportsPPTHTML = SupportsPPTHTML(), g_scaleInFrame = 1, gId="", g_bgSound="",
+    g_scaleHyperlinks = false, g_allowAdvOnClick = 1, g_showInBrowser = 0, gLoopCont = 0, gUseSldTimings = 1;
+var g_showAnimation = g_supportsPPTHTML && SupportsPPTAnimation() && g_showInBrowser;
+var g_animManager = null;
+var g_animUseRuntime = false;
+var g_animItemsToHide, g_animInteractiveItems, g_animSlideTime;
+var g_animMainSequence = null;
+
+//--></script><!--[if vml]><script>g_vml = 1;
+</script><![endif]--><![endif]><o:shapelayout v:ext="edit">
+ <o:idmap v:ext="edit" data="2"/>
+</o:shapelayout>
+</head>
+
+<body lang=EN-US style='margin:0px;background-color:white' onresize="_RSW()"
+onload="LoadSld()">
+
+<div id=SlideObj class=sld style='position:absolute;top:0px;left:0px;
+width:554px;height:415px;font-size:16px;background-color:white;clip:rect(0%, 101%, 101%, 0%);
+visibility:hidden'><p:slide coordsize="720,540"
+ colors="#FFFFFF,#000000,#808080,#000000,#BBE0E3,#333399,#009999,#99CC00"
+ masterhref="master03.xml">
+ <p:shaperange href="master03.xml#_x0000_s1025"/><![if !ppt]><p:shaperange
+  href="master03.xml#_x0000_s1028"/><p:shaperange
+  href="master03.xml#_x0000_s1029"/><![endif]><v:shapetype id="_x0000_t75"
+  coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+  filled="f" stroked="f">
+  <v:stroke joinstyle="miter"/>
+  <v:formulas>
+   <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+   <v:f eqn="sum @0 1 0"/>
+   <v:f eqn="sum 0 0 @1"/>
+   <v:f eqn="prod @2 1 2"/>
+   <v:f eqn="prod @3 21600 pixelWidth"/>
+   <v:f eqn="prod @3 21600 pixelHeight"/>
+   <v:f eqn="sum @0 0 1"/>
+   <v:f eqn="prod @6 1 2"/>
+   <v:f eqn="prod @7 21600 pixelWidth"/>
+   <v:f eqn="sum @8 21600 0"/>
+   <v:f eqn="prod @7 21600 pixelHeight"/>
+   <v:f eqn="sum @10 21600 0"/>
+  </v:formulas>
+  <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+  <o:lock v:ext="edit" aspectratio="t"/>
+ </v:shapetype><v:shape id="_x0000_s2053" type="#_x0000_t75" style='position:absolute;
+  left:90pt;top:60pt;width:543pt;height:417.75pt' fillcolor="#bbe0e3 [4]"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:imagedata src="slide0001_image001.png" o:title=""/>
+  <v:shadow color="gray [2]"/>
+ </v:shape><![if !vml]><img border=0 v:shapes="_x0000_s2053"
+ src="slide0001_image002.jpg" style='position:absolute;top:11.08%;left:12.45%;
+ width:75.45%;height:77.34%'><![endif]><v:oval id="_x0000_s2054" style='position:absolute;
+  left:96pt;top:108pt;width:24pt;height:18pt;mso-wrap-style:none;
+  v-text-anchor:middle' filled="f" fillcolor="#bbe0e3 [4]" strokecolor="#339 [5]"
+  strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><![if !vml]><img border=0 v:shapes="_x0000_s2054"
+ src="slide0001_image003.gif" style='position:absolute;top:19.75%;left:13.17%;
+ width:3.97%;height:4.09%'><![endif]>
+ <div v:shape="_x0000_s2054" class=O style='text-align:center'><span
+ style='position:absolute;top:20.0%;left:14.62%;width:.9%;height:3.85%'><span
+ style='color:#333399;mso-color-index:5;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <v:oval id="_x0000_s2055" style='position:absolute;left:165.5pt;top:66pt;
+  width:36pt;height:36pt;mso-wrap-style:none;v-text-anchor:middle' filled="f"
+  fillcolor="#bbe0e3 [4]" strokecolor="#339 [5]" strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><![if !vml]><img border=0 v:shapes="_x0000_s2055"
+ src="slide0001_image004.gif" style='position:absolute;top:12.04%;left:22.74%;
+ width:5.59%;height:7.46%'><![endif]>
+ <div v:shape="_x0000_s2055" class=O style='text-align:center'><span
+ style='position:absolute;top:13.73%;left:24.54%;width:1.98%;height:3.85%'><span
+ style='color:#333399;mso-color-index:5;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <v:shapetype id="_x0000_t202" coordsize="21600,21600" o:spt="202" path="m,l,21600r21600,l21600,xe">
+  <v:stroke joinstyle="miter"/>
+  <v:path gradientshapeok="t" o:connecttype="rect"/>
+ </v:shapetype><v:shape id="_x0000_s2056" type="#_x0000_t202" style='position:absolute;
+  left:2.625pt;top:131.25pt;width:90pt;height:52.625pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" strokecolor="#339 [5]"
+  strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:line id="_x0000_s2057" style='position:absolute;flip:x' from="96pt,96pt"
+  to="168pt,2in" coordsize="21600,21600" strokecolor="#339 [5]" strokeweight="1.5pt">
+  <v:shadow color="gray [2]"/>
+ </v:line><![if !vml]><img border=0 v:shapes="_x0000_s2056,_x0000_s2057"
+ src="slide0001_image005.gif" style='position:absolute;top:17.59%;left:.18%;
+ width:23.46%;height:17.1%'><![endif]>
+ <div v:shape="_x0000_s2056" class=O style='mso-line-spacing:"100 50 0"'><span
+ style='position:absolute;top:25.3%;left:1.44%;width:11.01%;height:2.65%'><span
+ style='font-size:67%'>Filter the list </span></span><span style='position:
+ absolute;top:27.95%;left:1.44%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'>by letter or </span></span><span style='position:absolute;
+ top:30.6%;left:1.44%;width:10.28%;height:2.65%'><span style='font-size:67%'>category</span></span></div>
+ <v:oval id="_x0000_s2058" style='position:absolute;left:438pt;top:174pt;
+  width:192pt;height:36pt;mso-wrap-style:none;v-text-anchor:middle' filled="f"
+  fillcolor="#bbe0e3 [4]" strokecolor="red" strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><![if !vml]><img border=0 v:shapes="_x0000_s2058"
+ src="slide0001_image006.gif" style='position:absolute;top:32.04%;left:60.64%;
+ width:27.25%;height:7.46%'><![endif]>
+ <div v:shape="_x0000_s2058" class=O style='text-align:center'><span
+ style='position:absolute;top:33.73%;left:65.52%;width:17.32%;height:3.85%'><span
+ style='color:#333399;mso-color-index:5;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <v:shape id="_x0000_s2059" type="#_x0000_t202" style='position:absolute;
+  left:630pt;top:84pt;width:90pt;height:95.75pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" strokecolor="red"
+  strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2060" type="#_x0000_t202" style='position:absolute;
+  left:660pt;top:54pt;width:18pt;height:28.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><![if !vml]><img border=0 v:shapes="_x0000_s2059"
+ src="slide0001_image007.gif" style='position:absolute;top:15.42%;left:87.36%;
+ width:13.17%;height:18.55%'><![endif]>
+ <div v:shape="_x0000_s2059" class=O style='mso-line-spacing:"100 50 0"'><span
+ style='position:absolute;top:16.62%;left:88.62%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'><b>Search by </b></span></span><span style='position:
+ absolute;top:19.27%;left:88.62%;width:11.55%;height:2.65%'><span
+ style='font-size:67%'><b>name</b></span><span style='font-size:67%'> (at the </span></span><span
+ style='position:absolute;top:21.92%;left:88.62%;width:11.01%;height:2.65%'><span
+ style='font-size:67%'>beginning of </span></span><span style='position:absolute;
+ top:24.57%;left:88.62%;width:10.28%;height:2.65%'><span style='font-size:67%'>the
+ word or </span></span><span style='position:absolute;top:27.22%;left:88.62%;
+ width:10.28%;height:2.65%'><span style='font-size:67%'>within the </span></span><span
+ style='position:absolute;top:29.87%;left:88.62%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'>word)</span></span></div>
+ <div v:shape="_x0000_s2060" class=O style='mso-line-spacing:"100 50 0";
+ position:absolute;top:10.84%;left:92.59%;width:1.8%;height:3.85%'>1</div>
+ <v:oval id="_x0000_s2061" style='position:absolute;left:430.375pt;top:222pt;
+  width:192pt;height:36pt;mso-wrap-style:none;v-text-anchor:middle' filled="f"
+  fillcolor="#bbe0e3 [4]" strokecolor="green" strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><![if !vml]><img border=0 v:shapes="_x0000_s2061"
+ src="slide0001_image008.gif" style='position:absolute;top:40.96%;left:59.56%;
+ width:27.25%;height:7.46%'><![endif]>
+ <div v:shape="_x0000_s2061" class=O style='text-align:center'><span
+ style='position:absolute;top:42.65%;left:64.44%;width:17.32%;height:3.85%'><span
+ style='color:#333399;mso-color-index:5;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <v:shape id="_x0000_s2062" type="#_x0000_t202" style='position:absolute;
+  left:630pt;top:246pt;width:90pt;height:239.5pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" strokecolor="green"
+  strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2064" type="#_x0000_t202" style='position:absolute;
+  left:666pt;top:3in;width:30pt;height:28.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2065" type="#_x0000_t202" style='position:absolute;
+  left:30pt;top:104.75pt;width:30pt;height:28.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><![if !vml]><img border=0 v:shapes="_x0000_s2062"
+ src="slide0001_image009.gif" style='position:absolute;top:45.3%;left:87.36%;
+ width:13.17%;height:45.06%'><![endif]>
+ <div v:shape="_x0000_s2062" class=O style='mso-line-spacing:"100 50 0"'><span
+ style='position:absolute;top:46.5%;left:88.62%;width:11.55%;height:2.65%'><span
+ style='font-size:67%'><b>Adding new </b></span></span><span style='position:
+ absolute;top:49.15%;left:88.62%;width:10.64%;height:2.65%'><span
+ style='font-size:67%'><b>items (max </b></span></span><span style='position:
+ absolute;top:51.8%;left:88.62%;width:10.46%;height:2.65%'><span
+ style='font-size:67%'><b>20 items in </b></span></span><span style='position:
+ absolute;top:54.69%;left:88.62%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'><b>each </b></span></span><span style='position:absolute;
+ top:57.34%;left:88.62%;width:10.28%;height:2.65%'><span style='font-size:67%'><b>session.
+ </b></span></span><span style='position:absolute;top:60.0%;left:88.62%;
+ width:10.28%;height:2.65%'><span style='font-size:67%'><b>after </b></span></span><span
+ style='position:absolute;top:62.65%;left:88.62%;width:10.46%;height:2.65%'><span
+ style='font-size:67%'><b>submitting </b></span></span><span style='position:
+ absolute;top:65.3%;left:88.62%;width:11.73%;height:2.65%'><span
+ style='font-size:67%'><b>the page, 20 </b></span></span><span
+ style='position:absolute;top:67.95%;left:88.62%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'><b>new more </b></span></span><span style='position:
+ absolute;top:70.6%;left:88.62%;width:10.83%;height:2.65%'><span
+ style='font-size:67%'><b>spaces will </b></span></span><span style='position:
+ absolute;top:73.25%;left:88.62%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'><b>be </b></span></span><span style='position:absolute;
+ top:75.9%;left:88.62%;width:10.28%;height:2.65%'><span style='font-size:67%'><b>available).
+ </b></span></span><span style='position:absolute;top:78.55%;left:88.62%;
+ width:11.01%;height:2.65%'><span style='font-size:67%'><b>Provide the </b></span></span><span
+ style='position:absolute;top:81.2%;left:88.62%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'><b>name, </b></span></span><span style='position:absolute;
+ top:83.85%;left:88.62%;width:11.91%;height:2.65%'><span style='font-size:67%'><b>volume,
+ and </b></span></span><span style='position:absolute;top:86.5%;left:88.62%;
+ width:10.28%;height:2.65%'><span style='font-size:67%'><b>quantity. </b></span><span
+ style='font-size:67%;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <div v:shape="_x0000_s2064" class=O style='mso-line-spacing:"100 50 0";
+ position:absolute;top:40.96%;left:93.5%;width:2.34%;height:3.85%'>2</div>
+ <div v:shape="_x0000_s2065" class=O style='mso-line-spacing:"100 50 0";
+ position:absolute;top:20.24%;left:5.23%;width:2.34%;height:3.85%'>6</div>
+ <v:oval id="_x0000_s2066" style='position:absolute;left:96pt;top:366pt;
+  width:66pt;height:36pt;mso-wrap-style:none;v-text-anchor:middle' filled="f"
+  fillcolor="#bbe0e3 [4]" strokecolor="#f6c" strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><v:shape id="_x0000_s2067" type="#_x0000_t202" style='position:absolute;
+  left:5.125pt;top:5in;width:90pt;height:38.25pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" strokecolor="#f6c"
+  strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2068" type="#_x0000_t202" style='position:absolute;
+  left:30.125pt;top:333.5pt;width:30pt;height:28.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><![if !vml]><img border=0 v:shapes="_x0000_s2066,_x0000_s2067"
+ src="slide0001_image010.gif" style='position:absolute;top:66.5%;left:.54%;
+ width:22.38%;height:8.67%'><![endif]>
+ <div v:shape="_x0000_s2066" class=O style='text-align:center'><span
+ style='position:absolute;top:69.39%;left:15.52%;width:5.05%;height:3.85%'><span
+ style='color:#3333FF;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <div v:shape="_x0000_s2067" class=O style='mso-line-spacing:"100 50 0"'><span
+ style='position:absolute;top:67.71%;left:1.8%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'>Default </span></span><span style='position:absolute;
+ top:70.36%;left:1.8%;width:10.28%;height:2.65%'><span style='font-size:67%'>selection.</span></span></div>
+ <div v:shape="_x0000_s2068" class=O style='mso-line-spacing:"100 50 0";
+ position:absolute;top:62.65%;left:5.23%;width:2.34%;height:3.85%'>4</div>
+ <v:oval id="_x0000_s2069" style='position:absolute;left:374.625pt;top:144.875pt;
+  width:48pt;height:24pt;mso-wrap-style:none;v-text-anchor:middle' filled="f"
+  fillcolor="#bbe0e3 [4]" strokecolor="#960" strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><![if !vml]><img border=0 v:shapes="_x0000_s2069"
+ src="slide0001_image011.gif" style='position:absolute;top:26.5%;left:51.8%;
+ width:7.22%;height:5.3%'><![endif]>
+ <div v:shape="_x0000_s2069" class=O style='text-align:center'><span
+ style='position:absolute;top:27.22%;left:53.79%;width:3.24%;height:3.85%'><span
+ style='color:#333399;mso-color-index:5;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <v:oval id="_x0000_s2070" style='position:absolute;left:325.875pt;top:168.875pt;
+  width:30pt;height:18pt;mso-wrap-style:none;v-text-anchor:middle' filled="f"
+  fillcolor="#bbe0e3 [4]" strokecolor="#960" strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><![if !vml]><img border=0 v:shapes="_x0000_s2070"
+ src="slide0001_image012.gif" style='position:absolute;top:31.08%;left:45.12%;
+ width:4.69%;height:4.09%'><![endif]>
+ <div v:shape="_x0000_s2070" class=O style='text-align:center'><span
+ style='position:absolute;top:31.08%;left:46.75%;width:1.44%;height:3.85%'><span
+ style='color:#333399;mso-color-index:5;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <v:shape id="_x0000_s2071" type="#_x0000_t202" style='position:absolute;
+  left:438pt;top:359.25pt;width:90pt;height:138.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" strokecolor="#960"
+  strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:line id="_x0000_s2072" style='position:absolute' from="372pt,186pt"
+  to="438pt,5in" coordsize="21600,21600" strokecolor="#960" strokeweight="1.5pt">
+  <v:shadow color="gray [2]"/>
+ </v:line><v:line id="_x0000_s2073" style='position:absolute;flip:x' from="372pt,168pt"
+  to="384pt,186pt" coordsize="21600,21600" strokecolor="#960" strokeweight="1.5pt">
+  <v:shadow color="gray [2]"/>
+ </v:line><v:line id="_x0000_s2074" style='position:absolute;flip:x y' from="354pt,180.125pt"
+  to="372pt,186pt" coordsize="21600,21600" strokecolor="#960" strokeweight="1.5pt">
+  <v:shadow color="gray [2]"/>
+ </v:line><v:shape id="_x0000_s2075" type="#_x0000_t202" style='position:absolute;
+  left:524.625pt;top:5in;width:30pt;height:28.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><![if !vml]><img border=0
+ v:shapes="_x0000_s2071,_x0000_s2072,_x0000_s2073,_x0000_s2074"
+ src="slide0001_image013.gif" style='position:absolute;top:31.08%;left:49.09%;
+ width:24.72%;height:61.92%'><![endif]>
+ <div v:shape="_x0000_s2071" class=O style='mso-line-spacing:"100 50 0"'><span
+ style='position:absolute;top:67.46%;left:61.91%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'>Changing </span></span><span style='position:absolute;
+ top:70.12%;left:61.91%;width:10.28%;height:2.65%'><span style='font-size:67%'>quantity
+ </span></span><span style='position:absolute;top:73.01%;left:61.91%;
+ width:10.64%;height:2.65%'><span style='font-size:67%'>(adding one </span></span><span
+ style='position:absolute;top:75.66%;left:61.91%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'>item, ten </span></span><span style='position:absolute;
+ top:78.31%;left:61.91%;width:10.28%;height:2.65%'><span style='font-size:67%'>items,
+ </span></span><span style='position:absolute;top:80.96%;left:61.91%;
+ width:10.28%;height:2.65%'><span style='font-size:67%'>decreasing </span></span><span
+ style='position:absolute;top:83.61%;left:61.91%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'>items, or </span></span><span style='position:absolute;
+ top:86.26%;left:61.91%;width:10.28%;height:2.65%'><span style='font-size:67%'>remove
+ all </span></span><span style='position:absolute;top:88.91%;left:61.91%;
+ width:11.37%;height:2.65%'><span style='font-size:67%'>items (zero))</span></span></div>
+ <div v:shape="_x0000_s2075" class=O style='mso-line-spacing:"100 50 0";
+ position:absolute;top:67.46%;left:73.82%;width:2.34%;height:3.85%'>3</div>
+ <v:oval id="_x0000_s2077" style='position:absolute;left:98.625pt;top:65.125pt;
+  width:60pt;height:36pt;mso-wrap-style:none;v-text-anchor:middle' filled="f"
+  fillcolor="#bbe0e3 [4]" strokecolor="#33f" strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><v:shape id="_x0000_s2078" type="#_x0000_t202" style='position:absolute;
+  left:5.25pt;top:18.625pt;width:84pt;height:81.375pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" strokecolor="#33f"
+  strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2079" type="#_x0000_t202" style='position:absolute;
+  left:90pt;top:18pt;width:30pt;height:28.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2080" type="#_x0000_t202" style='position:absolute;
+  left:252pt;top:12pt;width:312pt;height:28.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><![if !vml]><img border=0 v:shapes="_x0000_s2077,_x0000_s2078"
+ src="slide0001_image014.gif" style='position:absolute;top:3.13%;left:.54%;
+ width:21.84%;height:16.14%'><![endif]>
+ <div v:shape="_x0000_s2077" class=O style='text-align:center'><span
+ style='position:absolute;top:13.73%;left:15.7%;width:4.33%;height:3.85%'><span
+ style='color:#333399;mso-color-index:5;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <div v:shape="_x0000_s2078" class=O style='mso-line-spacing:"100 50 0"'><span
+ style='position:absolute;top:4.57%;left:1.8%;width:9.56%;height:2.65%'><span
+ style='font-size:67%'>Submitting </span></span><span style='position:absolute;
+ top:7.22%;left:1.8%;width:9.56%;height:2.65%'><span style='font-size:67%'>the
+ page </span></span><span style='position:absolute;top:9.87%;left:1.8%;
+ width:9.56%;height:2.65%'><span style='font-size:67%'>after finish </span></span><span
+ style='position:absolute;top:12.53%;left:1.8%;width:9.56%;height:2.65%'><span
+ style='font-size:67%'>filling the </span></span><span style='position:absolute;
+ top:15.18%;left:1.8%;width:9.56%;height:2.65%'><span style='font-size:67%'>inventory</span></span></div>
+ <div v:shape="_x0000_s2079" class=O style='mso-line-spacing:"100 50 0";
+ position:absolute;top:4.33%;left:13.53%;width:2.34%;height:3.85%'>7</div>
+ <div v:shape="_x0000_s2080" class=O style='mso-line-spacing:"100 50 0";
+ position:absolute;top:3.13%;left:35.92%;width:41.51%;height:3.85%'><u>The new
+ inventory screen</u></div>
+ <v:oval id="_x0000_s2081" style='position:absolute;left:228pt;top:104.5pt;
+  width:36pt;height:24pt;mso-wrap-style:none;v-text-anchor:middle' filled="f"
+  fillcolor="#bbe0e3 [4]" strokecolor="#90c" strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+ </v:oval><![if !vml]><img border=0 v:shapes="_x0000_s2081"
+ src="slide0001_image015.gif" style='position:absolute;top:19.03%;left:31.58%;
+ width:5.59%;height:5.3%'><![endif]>
+ <div v:shape="_x0000_s2081" class=O style='text-align:center'><span
+ style='position:absolute;top:19.75%;left:33.21%;width:1.98%;height:3.85%'><span
+ style='color:#333399;mso-color-index:5;mso-special-format:lastCR;display:none'>&#13;</span></span></div>
+ <v:shape id="_x0000_s2082" type="#_x0000_t202" style='position:absolute;
+  left:1.75pt;top:235.375pt;width:90pt;height:52.625pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" strokecolor="#90c"
+  strokeweight="2.25pt">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2083" type="#_x0000_t202" style='position:absolute;
+  left:30pt;top:204pt;width:30pt;height:28.875pt;mso-wrap-style:square;
+  v-text-anchor:top' filled="f" fillcolor="#bbe0e3 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><![if !vml]><img border=0 v:shapes="_x0000_s2082"
+ src="slide0001_image016.gif" style='position:absolute;top:43.37%;left:0%;
+ width:13.17%;height:10.6%'><![endif]>
+ <div v:shape="_x0000_s2082" class=O style='mso-line-spacing:"100 50 0"'><span
+ style='position:absolute;top:44.57%;left:1.44%;width:10.28%;height:2.65%'><span
+ style='font-size:67%'>Sort the list </span></span><span style='position:absolute;
+ top:47.22%;left:1.44%;width:12.27%;height:2.65%'><span style='font-size:67%'>(ascending
+ or </span></span><span style='position:absolute;top:49.87%;left:1.44%;
+ width:11.01%;height:2.65%'><span style='font-size:67%'>descending)</span></span></div>
+ <div v:shape="_x0000_s2083" class=O style='mso-line-spacing:"100 50 0";
+ position:absolute;top:38.79%;left:5.23%;width:2.34%;height:3.85%'>5</div>
+ <v:line id="_x0000_s2084" style='position:absolute;flip:x' from="91.75pt,126pt"
+  to="235.75pt,258pt" coordsize="21600,21600" strokecolor="#90c"
+  strokeweight="1.5pt">
+  <v:shadow color="gray [2]"/>
+ </v:line><![if !vml]><img border=0 v:shapes="_x0000_s2084"
+ src="slide0001_image017.gif" style='position:absolute;top:23.13%;left:12.63%;
+ width:20.57%;height:25.06%'><![endif]></p:slide></div>
+
+</body>
+
+</html>

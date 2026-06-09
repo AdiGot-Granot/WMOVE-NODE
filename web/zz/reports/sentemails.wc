@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Sent Emails - 7 Days Tally</title>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+  				  	text-align: center;
+  				  	border-left: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+  				  	text-align: center;}
+.SUBOFF {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 1.00rem;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  background: #239243;
+  color: #FFF;
+  border: none;
+/*  border: 3px solid #1626F8; */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.SUBOFF:hover {
+  background: #556677;
+  color: #FFF;
+/*  border-color: #000; */
+}</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius:6px;border: 1px solid #A9A9A9;overflow:hidden;" width="45%">
+  <tr>
+    <td BGCOLOR="#239243" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Sent Emails - 7 Days Tally</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><br>
+<table border="0" width="98%" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111">
+  <tr style="line-height:20px;">
+    <td width="10%" class="TD2">Today<br><%=pcD0%></td>
+    <td width="12%" class="TD1">Yesterday<br><%=pcD1%></td>
+    <td width="13%" class="TD1">2 Days Ago<br><%=pcD2%></td>
+    <td width="12%" class="TD1">3 Days Ago<br><%=pcD3%></td>
+    <td width="12%" class="TD1">4 Days Ago<br><%=pcD4%></td>
+    <td width="13%" class="TD1">5 Days Ago<br><%=pcD5%></td>
+    <td width="12%" class="TD1">6 Days Ago<br><%=pcD6%></td>
+    <td width="12%" class="TD1">7 Days Ago<br><%=pcD7%></td>
+ </tr> 
+</table>
+<% IF plSMTPACC %>
+<BR>
+<table border="0" width="95%" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111">
+  <tr>
+    <td width="50%">
+      <%SELECT _MS
+        Response.ShowCursor(,,.T.,,"style='font-family: Verdana;color: #000000;font-size: 9pt'")%> &nbsp;</td>
+ </tr>
+</table>
+<%ENDIF%>
+  <br>
+<table border="0" width="90%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="javascript:history.go(-1)" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#239243">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+  </table> 
+</body>
+</html>

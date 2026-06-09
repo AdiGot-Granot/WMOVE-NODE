@@ -1,0 +1,36 @@
+	.items	 	{	color: black; 
+					background-color: white;
+					font-size: 10pt;
+					font-family: Arial ;
+					font-weight: none;
+					width: 200;
+					border-style: none; 
+ 					border-color: #FFFF99;
+ 					visibility: hidden}
+	.qty	 	{	color: #0000FF; 
+					background-color: #FFFF99;
+					font-size: x-small;
+					font-weight: none;
+					font-family: Arial ;
+					width: 50;
+					visibility: hidden}
+	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+ 					color: blue}
+	.ABCOFF		{	color: blue;
+				  	font-size: 10pt;
+				  	text-align: center}
+	.ABCON		{	color: red;
+				  	font-size: 10pt;
+				  	text-align: center;
+  				  	cursor: Hand;
+  				  	font-weight: bold}
+	.SUBOFF		{	color: blue;
+				  	font-size: 10pt;
+				  	text-align: center}
+	.SUBON		{	color: red;
+				  	font-size: 10pt;
+				  	text-align: center;
+  				  	cursor: Hand;
+  				  	font-weight: none}

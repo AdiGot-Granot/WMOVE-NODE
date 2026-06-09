@@ -1,0 +1,197 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Merchant Service</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~MerchantRet~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }                    
+	}
+      
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="45%">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center">&nbsp;<b><font face="Verdana" color="#FFFFFF">Merchant Service</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="5">
+  <tr>
+    <td width="100%" align="center"><br>
+ <form name="theForm" method="POST">
+<center><B><font face="Verdana"><u>Authorize.net</u></font></B></center>    
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="95%">
+  <tr>
+ <% IF plDEPT %>
+    <td width="5%" class="TD1">Dept</td>
+ <% ENDIF %>
+    <td width="13%" class="TD1" style="border-left: 1px solid #A9A9A9;">Bank Name</td>
+    <td width="14%" class="TD1" style="border-left: 1px solid #A9A9A9;">API Log</td>
+    <td width="16%" class="TD1" style="border-left: 1px solid #A9A9A9;">Transaction Key</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Active</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Delete</td>
+ </tr>
+ <%SELECT _AUTHORIZE 
+ SCAN %>
+  <tr>
+ <% IF plDEPT %>
+   <td width="5%" style="border-bottom: 1px solid #A9A9A9;">
+            <select size="1" name="<%='DEPT-'+ALLT(STR(MERCHANTID))%>">
+	        <option selected><%=ALLT(_AUTHORIZE.DEPT)%></option> 
+	        <option></option> 
+		     <% SELECT _DEPARTMENT 
+		     	 SCAN %>
+			       <OPTION VALUE="<%=ALLT(_DEPARTMENT.DEPT)%>"><%=ALLT(_DEPARTMENT.DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select></td>
+ <% ENDIF %>
+  <%SELECT _AUTHORIZE  %>
+  <td width="13%" class="TD2"><input type="text" name="<%='CNAME-'+ALLT(STR(MERCHANTID))%>" size="15" value="<%=ALLT(CNAME)%>"></td>
+    <td width="14%" class="TD2"><input type="text" name="<%='APILOG-'+ALLT(STR(MERCHANTID))%>" size="20" value="<%=ALLT(APILOG)%>"></td>
+    <td width="16%" class="TD2"><input type="text" name="<%='TRANSKEY-'+ALLT(STR(MERCHANTID))%>" size="25" value="<%=ALLT(TRANSKEY)%>"></td>
+    <td width="5%" class="TD3"><input type="checkbox" name="<%='ACTIVE-'+ALLT(STR(MERCHANTID))%>" value="ON" <%=IIF(ACTIVE,'checked','')%>></td>
+    <td width="5%" class="TD3"><input type="checkbox" name="<%='DEL-'+ALLT(STR(MERCHANTID))%>" value="ON"></td>
+ </tr>
+<% ENDSCAN %>
+  <tr>
+ <% IF plDEPT %>
+    <td width="5%" style="border-bottom: 1px solid #A9A9A9;">
+            <select size="1" name="DEPT-11">
+	        <option selected></option> 
+		     <% SELECT _DEPARTMENT 
+		     	 SCAN %>
+			       <OPTION><%=ALLT(_DEPARTMENT.DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select></td>
+ <% ENDIF %>
+    <td width="13%" class="TD2"><input type="text" name="CNAME-11" size="15" value=""></td>
+    <td width="14%" class="TD2"><input type="text" name="APILOG-11" size="20" value=""></td>
+    <td width="16%" class="TD2"><input type="text" name="TRANSKEY-11" size="25" value=""></td>
+    <td width="5%" class="TD3"><input type="checkbox" name="ACTIVE-11" value="ON" checked></td>
+    <td width="5%" class="TD3"></td>
+ </tr>
+</table>
+ <br><center><B><font face="Verdana"><u>Fidelity Payment Service (Authorize.net Emulator)</u></font></B></center>
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="95%">
+  <tr>
+ <% IF plDEPT %>
+    <td width="5%" class="TD1">Dept</td>
+ <% ENDIF %>
+    <td width="13%" class="TD1" style="border-left: 1px solid #A9A9A9;">Bank Name</td>
+    <td width="14%" class="TD1" style="border-left: 1px solid #A9A9A9;">API Log</td>
+    <td width="16%" class="TD1" style="border-left: 1px solid #A9A9A9;">Transaction Key</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Active</td>
+    <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Delete</td>
+ </tr>
+ <%SELECT _FIDELITY 
+ SCAN %>
+  <tr>
+ <% IF plDEPT %>
+   <td width="7%" style="border-bottom: 1px solid #A9A9A9;">
+            <select size="1" name="<%='DEPT-'+ALLT(STR(MERCHANTID))%>">
+	        <option selected><%=ALLT(_FIDELITY.DEPT)%></option> 
+	        <option></option> 
+		     <% SELECT _DEPARTMENT 
+		     	 SCAN %>
+			       <OPTION VALUE="<%=ALLT(_DEPARTMENT.DEPT)%>"><%=ALLT(_DEPARTMENT.DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select></td>
+ <% ENDIF %>
+  <%SELECT _FIDELITY  %>
+  <td width="11%" class="TD2"><input type="text" name="<%='CNAME-'+ALLT(STR(MERCHANTID))%>" size="15" value="<%=ALLT(CNAME)%>"></td>
+    <td width="14%" class="TD2"><input type="text" name="<%='APILOG-'+ALLT(STR(MERCHANTID))%>" size="16" value="<%=ALLT(APILOG)%>"></td>
+    <td width="15%" class="TD2"><input type="text" name="<%='TRANSKEY-'+ALLT(STR(MERCHANTID))%>" size="23" value="<%=ALLT(TRANSKEY)%>"></td>
+    <td width="6%" class="TD3"><input type="checkbox" name="<%='ACTIVE-'+ALLT(STR(MERCHANTID))%>" value="ON" <%=IIF(ACTIVE,'checked','')%>></td>
+    <td width="5%" class="TD3"><input type="checkbox" name="<%='DEL-'+ALLT(STR(MERCHANTID))%>" value="ON"></td>
+ </tr>
+<% ENDSCAN %>
+  <tr>
+ <% IF plDEPT %>
+    <td width="7%" style="border-bottom: 1px solid #A9A9A9;">
+            <select size="1" name="DEPT-14">
+	        <option selected></option> 
+		     <% SELECT _DEPARTMENT 
+		     	 SCAN %>
+			       <OPTION><%=ALLT(_DEPARTMENT.DEPT)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select></td>
+ <% ENDIF %>
+    <td width="11%" class="TD2"><input type="text" name="CNAME-14" size="15" value=""></td>
+    <td width="14%" class="TD2"><input type="text" name="APILOG-14" size="16" value=""></td>
+    <td width="15%" class="TD2"><input type="text" name="TRANSKEY-14" size="23" value=""></td>
+    <td width="6%" class="TD3"><input type="checkbox" name="ACTIVE-14" value="ON" checked></td>
+    <td width="5%" class="TD3"></td>
+ </tr>
+</table>
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="65%">
+  <tr>
+    <td width="50%" align="center"><input type="button" CLASS="SUBOFF" name="SUBMIT_1" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+    <td width="50%"  align="center"><input type="button" CLASS="SUBOFF" name="B45"  onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+ </tr>
+</table>
+ </form>        
+   </td>
+  </tr>
+</table>
+   </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+</body>
+</html>

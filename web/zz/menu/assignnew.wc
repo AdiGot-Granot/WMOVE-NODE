@@ -1,0 +1,153 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Assign New Estimates</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1){ 
+       //document.theForm.SUBMIT_1.style.visibility="hidden";
+       document.theForm.action="/wc.dll?mv~AssignNewList~<%=pcSCR%>~CLASSIC";
+       document.theForm.submit();
+      }
+    if (i==2){
+      // document.theForm.SUBMIT_2.style.visibility="hidden";
+       document.theForm.action="/wc.dll?mv~AssignNewList~<%=pcSCR%>~SINGLE";
+       document.theForm.submit();
+      }     
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500" align="center">
+  <tr>
+    <td width="100%"><IMG ALT="" SRC="zz/images/topBar.gif" width="500" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" align="center" BGCOLOR="#008000"><a href="javascript:window.close()"><img border="0" src="zz/images/x.gif" align="right" width="17" height="18"></a>
+    <b><font size="4" color="#FFFFFF" face="Verdana">Assign New Estimates</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<%IF plLEADDIST%>
+   <br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="50%" align="center"><B><font color="#FF0000" face="Verdana">Lead Rotation is active!!!</FONT></B></TD>
+ </TR>
+ <%SELECT _USERS
+   SCAN%>
+  <tr>
+    <td width="50%" align="center"><font style="font-size: 9pt;font-family:Verdana;"><%=IIF(EMPTY(NAME),PROPER(USERNAME),ALLT(PROPER(NAME)))%></font></TD>
+ </TR>
+ <%ENDSCAN%>
+    <% IF pnLEVEL > 3 %>
+  <tr>
+    <td width="50%" align="center" height="35"><font style="font-size: 11pt;font-family:Verdana;"><b>Go to <a href="wc.dll?mpmainten~leaddistruleswc~<%=pcSCR%>">Lead Rotation</a> settings</b></font></TD>
+ </TR>
+   <%ENDIF%>    
+</table>
+<%ENDIF%>    
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="100%" align="center" colspan="2">
+     <form name="theForm" method="post"><br>
+<table border="1" align="center" width="98%" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td>
+<table border="1" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#COCOCO" width="100%">
+  <tr>
+  	<td width="29%" bgcolor="#008000" align="center"><b><font face="Verdana" color="#FFFFFF" size="2">Type of Estimate</font></b></td>
+    <td width="15%" bgcolor="#008000" align="center" colspan="2"><b><font face="Verdana" color="#FFFFFF" size="2">Leads</font></b></td>
+    <td width="20%" bgcolor="#008000" align="center" colspan="2"><b><font face="Verdana" color="#FFFFFF" size="2">Website</font></b></td>
+  </tr>
+  <tr>
+    <td width="29%" bgcolor="#F7F0B9"><font face="Arial" size="2"><B>Assign All New Estimates</B></font></td>
+    <td width="8%" bgcolor="#F7F0B9" align="center"><font face="Verdana" size="2"><B><%=IIF(VAL(pcNEW)=0,'',pcNEW)%></B></FONT>&nbsp;</td>  
+    <td width="7%" bgcolor="#F7F0B9" align="center"><input type="radio" name="R" value="LA" checked></td>  
+    <td width="10%" bgcolor="#F7F0B9" align="center"><font face="Verdana" size="2"><B><%=IIF(VAL(pcWEB)=0,'',pcWEB)%></B></FONT>&nbsp;</td>
+    <td width="10%" bgcolor="#F7F0B9" align="center"><input type="radio" name="R" value="WA"></td>
+ </tr>  
+ <% SELECT _NEW
+    SCAN %>  
+  <tr>
+    <td width="29%"><font face="Arial" size="2"><%=CTYPENAME%></font>&nbsp;</td>
+    <td width="8%" align="center"><font face="Verdana" size="2"><B><%=IIF(LEADS=0,'',ALLT(STR(LEADS)))%></B></FONT>&nbsp;</td>  
+    <td width="7%" align="center"><input type="radio" name="R" value="L<%=CTYPE%>"></td>  
+    <td width="10%" align="center"><font face="Verdana" size="2"><B><%=IIF(WEB=0,'',ALLT(STR(WEB)))%></B></FONT>&nbsp;</td>
+    <td width="10%" align="center"><input type="radio" name="R" value="W<%=CTYPE%>"></td>
+ </tr>
+ <%ENDSCAN%>
+</table>
+    </td>
+ </tr>
+</table>
+<br>     
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="50%" align="center"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT_1" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Classic"></td> 
+    <td width="50%" align="center">
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT_2" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Multi Assign"></td>
+ </tr>
+</table>
+  </FORM>
+<br>    
+<table border="1" align="center" width="98%" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td>
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#008000" colspan="3" align="center"><b>
+    <font face="Verdana" size="2" color="#FFFFFF">Reference List</font></b></td>
+ </tr>
+ <% SELECT _REF
+    SCAN %>
+  <tr>
+    <td width="36%"><font face="Verdana" size="2"><%=REF%></FONT></td>
+    <td width="14%" align="center"><font face="Verdana" size="2"><%=ALLT(STR(CNT1))%></FONT></td>
+    <td width="50%">&nbsp;</td>
+ </tr>  
+ <%ENDSCAN%>
+    </table>
+    </td>
+ </tr>
+</table>    
+	 &nbsp;</td>
+  </tr>
+</table>
+<!-- frame table -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366">&nbsp;<font size="2" face="Arial" color="#FFFFFF">User: <%=pcUser%></font></td>
+  </tr>
+  <tr>
+    <td width="100%"><IMG SRC="zz/images/botBar.gif" width="500" height="14"></td>
+  </tr>
+</table>  
+</body>
+</html>

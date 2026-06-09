@@ -1,0 +1,152 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Workers per CF Table</title>
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 550,
+		maxHeight	: 300,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpmainten~maintenwc~<%=pcSCR%>~1');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					border-bottom: 1px solid #A9A9A9;}	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="30%">
+ <tr>
+  <td width="46%"><a class="fancybox fancybox.iframe" href="/zz/help/menpercf.htm"><img border="0" src="zz/util/manual.gif" title="Read about Workers per CF table" width="32" height="32"></a></td>
+</tr>
+</table>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="30%"> 
+  <tr>
+    <td BGCOLOR="#0081D3" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Workers per CF Table: <font size="2">Local/Intrastate Move</font></font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><br>
+<form method="POST" action="wc.dll?mpmainten~tmencfret~<%=pcSCR%>">
+  <% SELECT _TMENCF %>		
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="10%" style="background-color: #F7F7F7;border-bottom: 1px solid #A9A9A9;">&nbsp;</td>
+    <td width="7%" class="TD1">Cubic Feet</td>
+    <td width="8%" class="TD1">Workers</td>
+    <td width="8%" class="TD1">Trucks</td>
+ </tr>
+   <%SCAN 
+   lcTMENCFID=ALLT(STR(TMENCFID))%>
+  <tr style="line-height:28px;">
+    <td width="13%" class="TD2">&nbsp;Up to &amp; include</td>          
+    <td width="9%" class="TD2" style="border-left: 1px solid #A9A9A9;text-align: center"><input NAME="<%='UPTOCF-'+lcTMENCFID %>" autocomplete="off" size="4" VALUE="<%=ALLT(STR(UPTOCF)) %>" tabindex="1" style="text-align: right">&nbsp;</td>          
+    <td width="8%" class="TD1" style="background-color: #FFFFFF;">
+	<select size="1" NAME="<%='GROUND-'+lcTMENCFID %>" tabindex="2">
+	  <option value="<%=ALLT(STR(GROUND))%>" selected><%=ALLT(STR(GROUND))%></option> 
+		  <option>0</option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+		  <option>11</option>
+		  <option>12</option>
+		  <option>13</option>
+		  <option>14</option>
+		  <option>15</option>		  		  
+    </select></td>          
+    <td width="8%" class="TD1" style="background-color: #FFFFFF;">
+	<select size="1" NAME="<%='TRUCK-'+lcTMENCFID %>" tabindex="3">
+	  <option value="<%=ALLT(STR(TRUCK))%>" selected><%=ALLT(STR(TRUCK))%></option> 
+		  <option>0</option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>		  		  
+    </select></td>
+ </tr>
+<% ENDSCAN %> 
+  </table>    
+  <BR>
+<table border="0" align="center" style="border-collapse: collapse" width="90%">
+  <tr>
+    <td align="center"><input type="submit" CLASS="SUBOFF" name="B5" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" STYLE="cursor:pointer;" value="Submit"></td>
+    <td align="center"><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="SubmitFunction(1)" value="Exit"></td>
+  </tr>
+ </table>    
+</form>    
+    <br></td>
+  </tr>
+  <tr>
+    <td bgcolor="#0081D3" height="15">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+</table>
+
+</body>
+</html>

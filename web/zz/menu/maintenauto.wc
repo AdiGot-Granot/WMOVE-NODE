@@ -1,0 +1,209 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Maintenance Menu</title>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  /* Right-Click Disable */
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    alert('Right Click Disabled!');
+  });
+});
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~1');
+    if (i==4) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~4');    
+    if (i==6) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~6');
+    if (i==8) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~8');
+    if (i==7) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~7');    
+    if (i==9) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~9');
+    if (i==10) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~10');
+    if (i==11) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~11');        
+    if (i==12) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~12');
+    if (i==13) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~13');
+    if (i==15) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~15');
+    if (i==16) window.location.href=('/wc.dll?mpmainten~maintenret~<%=pcSCR%>~16');    	
+	
+	}
+
+function submitTables(i) {
+    if (i==3) window.location.href=('/wc.dll?mpmainten~tablesret~<%=pcSCR%>~3');
+    if (i==6) window.location.href=('/wc.dll?mpmainten~tablesret~<%=pcSCR%>~6');
+    if (i==10) window.location.href=('/wc.dll?mpmainten~tablesret~<%=pcSCR%>~10');
+    if (i==15) window.location.href=('/wc.dll?mpmainten~tablesret~<%=pcSCR%>~15');
+    if (i==18) window.location.href=('/wc.dll?mpmainten~tablesret~<%=pcSCR%>~18');
+    if (i==23) window.location.href=('/wc.dll?mpauto~autozonewc~<%=pcSCR%>');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 11pt;
+  				  	font-family: Verdana;
+  				  	cursor: pointer;
+					background-color: white;
+				  	text-align: left}
+	.txton		{	color: blue;
+				  	font-size: 11pt;
+				  	text-align: left;
+  				  	font-family: Verdana;
+  				  	cursor: pointer;
+					background-color: white;
+					text-decoration: underline
+  				  	cursor: pointer;}
+	.txtoffblue	{	color: #083484;
+				  	font-size: 11pt;
+  				  	font-family: Verdana;
+  				  	cursor: pointer;
+					background-color: white;
+				  	text-align: left}
+	.txtonred	{	color: #BB0000;
+				  	font-size: 11pt;
+  				  	font-family: Verdana;
+  				  	cursor: pointer;
+					background-color: white;
+				  	text-align: left}				  	
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="45%">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="20"><b><font face="Verdana" size="4" color="#FFFFFF">Maintenance Menu</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="7"><br>
+<table border="0" align="center" style="border-collapse: collapse;" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="33%" valign="top">
+<table border="0" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="97%" cellspacing="0" cellpadding="0">
+   <tr>
+     <td width="100%" colspan="2" align="center"><b><font face="Verdana" color="#008000">Company</font></b></td>
+  </tr>
+  <% IF plDEPARTMENT=.F. %>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="89%" height="30"><font class="txtoff" onclick="submitFunction(1)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Company Information</font></td>
+  </tr>
+  <%ELSE%>  
+   <% IF plDEPARTMENT=.T. %>  
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="89%" height="30"><font class="txtoff" onclick="submitTables(15)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Company and Departments</font></td>
+  </tr>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="89%" height="30"><font class="txtoff" onclick="submitFunction(10)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Replace Department Estimates</font></td>
+  </tr>   
+   <% ENDIF %>
+ <%ENDIF%>  
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="89%" height="30"><font class="txtoff" onclick="submitTables(6)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Company Policy Remarks</font></td>
+  </tr>
+   <tr>
+     <td width="11%" height="30" align="center">
+     <img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="89%" height="30"><font class="txtoff" onclick="submitFunction(15)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Leads Grabbing & Posting</font></td>
+  </tr>
+   <tr>
+     <td width="11%" height="30" align="center">
+     <img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="89%" height="30"><font class="txtoff" onclick="submitFunction(16)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Outgoing Mail Server</font></td>
+  </tr>
+ <% IF plMERCHANT%>
+   <tr>
+     <td width="11%" height="30" align="center">
+     <img border="0" src="/zz/images/g-point.jpg" width="12" height="12"></td>
+     <td width="89%" height="30"><font class="txtoff" onclick="submitFunction(4)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Payment Processing Gateway</font></td>
+  </tr>
+ <%ENDIF%>     
+</table>    
+    </td>
+    <td width="33%" valign="top">
+<table border="0" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="97%" cellspacing="0" cellpadding="0">
+   <tr>
+     <td width="100%" colspan="2" align="center"><b><font face="Verdana" color="#BB0000">Users</b></font></td>
+  </tr>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/red-point.gif" width="8" height="8"></td>
+     <td width="87%" height="30"><font class="txtonred" onclick="submitTables(10)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtonred'">Users Table</font></td>
+  </tr>
+  <% IF 1=2 %>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/red-point.gif" width="8" height="8"></td>
+     <td width="89%" height="30"><font class="txtonred" onclick="submitFunction(8)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtonred'">Active Users</font></td>
+  </tr>
+  <%ENDIF%>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/red-point.gif" width="8" height="8"></td>
+     <td width="89%" height="30"><font class="txtonred" onclick="submitFunction(11)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtonred'">Lead Rotation Rules</font></td>
+  </tr>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/red-point.gif" width="8" height="8"></td>
+     <td width="89%" height="30"><font class="txtonred" onclick="submitFunction(9)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtonred'">Replace Follow-up Users</font></td>
+  </tr>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/red-point.gif" width="8" height="8"></td>
+     <td width="89%" height="30"><font class="txtonred" onclick="submitFunction(13)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtonred'">Client/Users Activities</font></td>
+  </tr> 
+</table>    
+    </td>
+    <td width="32%" valign="top">
+<table border="0" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%" cellspacing="0" cellpadding="0">
+   <tr>
+     <td width="100%" colspan="2" align="center"><b><font face="Verdana" color="#083484">General</font></b></td>
+  </tr>
+<% IF plAUTOZONE%>	 	  
+   <tr>
+     <td width="13%" height="30" align="center"><img border="0" src="/zz/images/b-point.jpg" width="10" height="10"></td>
+     <td width="87%" height="30"><font class="txtoffblue" onclick="submitTables(23)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoffblue'">Auto Transport Tariff</font></td>
+  </tr>
+<%ENDIF%>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/b-point.jpg" width="10" height="10"></td>
+     <td width="89%" height="30"><font class="txtoffblue" onclick="submitTables(18)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoffblue'">Update Email Center</font></td>
+  </tr>
+   <tr>
+     <td width="11%" height="30" align="center">
+     <img border="0" src="/zz/images/b-point.jpg" width="10" height="10"></td>
+     <td width="89%" height="30"><font  class="txtoffblue" onclick="submitTables(3)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoffblue'">Advertising Table</font></td>
+  </tr>  
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/b-point.jpg" width="10" height="10"></td>
+     <td width="89%" height="30"><font class="txtoffblue" onclick="submitFunction(6)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoffblue'">Data Clean-Up</font></td>
+  </tr> 
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/b-point.jpg" width="10" height="10"></td>
+     <td width="89%" height="30"><font class="txtoffblue" onclick="submitFunction(12)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoffblue'">Download Back-Up</font></td>
+  </tr>
+   <tr>
+     <td width="11%" height="30" align="center"><img border="0" src="/zz/images/b-point.jpg" width="10" height="10"></td>
+     <td width="89%" height="30"><font class="txtoffblue" onclick="submitFunction(7)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoffblue'">Restricted IPs</font></td>
+  </tr>       
+</table>    
+    </td>
+ </tr>
+</table>   
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="15">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+  </center>
+</div>
+</body>
+</html>

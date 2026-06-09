@@ -1,0 +1,135 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Assign Workers-<%=RIGHT(pcORDNO,4)%></title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpopr~mpwret~<%=pcSCR%>~<%=pcCODE%>~<%=pcORDNO%>";
+       document.theForm.submit();
+      }
+	}
+
+</SCRIPT>
+
+</head>
+
+<STYLE TYPE="text/css">
+ 	.TD1	 	{	background-color: #BEBE99; 
+					font-weight: bold;
+					font-family: Verdana;
+					font-size: 10pt;
+					color: black;
+				  	text-align: center;}
+ 	.TD2	 	{	background-color: #BEBE99; 
+					font-weight: bold;
+					font-family: Verdana;
+					font-size: 9pt;
+					color: black;
+				  	text-align: left;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+<body bgcolor="#F7F7F7">
+<!-- PROD -->
+<form name="theForm" method="post">
+<table border="0" width="100%" bgcolor="#F7F7F7" bordercolor="#000000" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="27%"><font style="font-family:Verdana;font-size:13pt;"><b>Assign Workers:</b></font></td>
+    <td width="39%" align="center"><font style="font-family:Verdana;font-size:13pt;"><b><%=pcCODENAME%>: <%=ldDTE%></b></font></td>
+    <td width="33%" align="center"><font style="font-family:Verdana;font-size:13pt;"><b>Job No: <%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font></td>
+  </tr>
+</table>
+<br>
+<table border="1" width="100%" bordercolor="#C0C0C0" cellspacing="1" bgcolor="#FFFFFF" cellpadding="1" style="border-collapse: collapse">
+  <tr>
+    <td width="2%" class="TD1">&nbsp;</td>
+    <td width="2%" class="TD1">Dept</td>
+    <td width="11%" class="TD1">Worker ID</td>
+    <td width="11%" class="TD1">Position</td>
+    <td width="17%" class="TD1">Name</td>
+    <td width="18%" class="TD1">Phone</td>
+    <td width="4%" class="TD1">Jobs</td>
+    <td width="12%" class="TD1">Foreman</td>
+    <td width="9%" class="TD1">Driver</td>
+    <td width="10%" class="TD1">Helper</td>   
+  </tr>
+ <% SELECT _MPW
+ 	SCAN %>
+  <tr>
+    <td width="2%" bgcolor="#FFFFFF"><font face="Verdana" size="2"><%=ALLT(STR(RECNO()))%>&nbsp;</FONT></td>
+    <td width="2%" bgcolor="#FFFFFF" align="center"><font face="Verdana" size="2"><B><%=IIF(EMPTY(DEPT),'',ALLT(DEPT))%></B></FONT>&nbsp;</td>
+    <td width="11%" bgcolor="#FFFFFF"><font face="Verdana" size="2" color="<%=FONTCOLOR%>"><B><%=ALLT(ID)%></B></FONT>&nbsp;</td>
+    <td width="11%" bgcolor="#FFFFFF"><font face="Verdana" size="2" color="<%=FONTCOLOR%>"><B><%=OPRNAME%></B></FONT>&nbsp;</td>
+    <td width="17%" bgcolor="#FFFFFF"><font face="Verdana" size="2"><%=ALLT(PROPER(NAME))%></font>&nbsp;</td>
+    <td width="18%" bgcolor="#FFFFFF"><font style="font-family:Verdana;font-size:8pt;"><B><%=IIF(EMPTY(PHONE),'','P: '+ALLT(PHONE))%><%=IIF(EMPTY(CELL),'','<BR>C: '+ALLT(CELL))%></B></FONT>&nbsp;</td>
+    <td width="4%" align="center" bgcolor="#FFFFFF"><font face="Verdana" size="2"><b><%=ALLT(STR(JOBS))%></b></font>&nbsp;</td>
+    <td width="12%" bgcolor="#FFFFFF" align="center"><input type="checkbox" name="<%='F'+ALLT(ID)%>" value="ON" <%=IIF(FOREMAN,'CHECKED','')%>></td>
+    <td width="9%" align="center"><input type="checkbox" name="<%='D'+ALLT(ID)%>" value="ON" <%=IIF(DRIVER,'CHECKED','')%>></td>
+    <td width="10%" align="center"><input type="checkbox" name="<%='H'+ALLT(ID)%>" value="ON" <%=IIF(HELPER,'CHECKED','')%>></td>
+  </tr>
+ <% ENDSCAN %>
+</table>
+<br><b><font face="verdana" size="2">Add New Workers: <font style="font-size: 8pt">ID= 3-10 Characters</font></font></b>
+<table border="1" width="100%" bordercolor="#C0C0C0" cellspacing="1" bgcolor="#FFFFFF" cellpadding="2" style="border-collapse:collapse"> 
+  <tr>  
+    <td width="11%" class="TD2">Worker ID</td>
+    <td width="24%" class="TD2">First Name</td>
+    <td width="22%" class="TD2">Last Name</td>
+    <td width="14%" class="TD2">Salary per hrs.</td>
+  </tr>
+  <tr>
+    <td width="11%"><input type="text" name="ID1" size="10" maxlength="10"></td>
+    <td width="24%"><input type="text" name="FIRST1" size="15"></td>
+    <td width="22%"><input type="text" name="LAST1" size="15"></td>
+    <td width="14%"><b>$</b><input type="text" name="PERHRS1" size="5"></td>
+  </tr>
+  <tr>
+    <td width="11%"><input type="text" name="ID2" size="10" maxlength="10"></td>
+    <td width="24%"><input type="text" name="FIRST2" size="15"></td>
+    <td width="22%"><input type="text" name="LAST2" size="15"></td>
+    <td width="14%"><b>$</b><input type="text" name="PERHRS2" size="5"></td>
+    <tr>
+    <td width="11%"><input type="text" name="ID3" size="10" maxlength="10"></td>
+    <td width="24%"><input type="text" name="FIRST3" size="15"></td>
+    <td width="22%"><input type="text" name="LAST3" size="15"></td>
+    <td width="14%"><b>$</b><input type="text" name="PERHRS3" size="5"></td>
+  </tr>
+  <tr>
+    <td width="11%"><input type="text" name="ID4" size="10" maxlength="10"></td>
+    <td width="24%"><input type="text" name="FIRST4" size="15"></td>
+    <td width="22%"><input type="text" name="LAST4" size="15"></td>
+    <td width="14%"><b>$</b><input type="text" name="PERHRS4" size="5"></td>
+  </tr>
+</table>
+<% IF _EST.STATUS<>'D'%>
+<br>
+  <table border="0" align="center" width="25%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+   <tr>
+    <td width="100%" align="center"><input type="button" CLASS="SUBOFF" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit Workers"></td>    
+  </tr>
+ </table>
+<%ENDIF%> 
+</form>
+</body>
+</html>

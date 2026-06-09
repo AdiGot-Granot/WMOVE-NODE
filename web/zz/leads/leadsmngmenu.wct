@@ -1,0 +1,53 @@
+FUNCTION __LEADSMNGMENU
+TEXT<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Leads Mng Menu</title>
+</head>
+
+<body bgcolor="#4E6699">
+<font color="#FFFFFF"><b>&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">Click F5 to refresh</font></b></font><BR>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="350">
+  <tr>
+    <td bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+  <tr>
+    <td >
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#808080" width="100%">
+      <tr>
+        <td width="100%" colspan="6" bgcolor="#000000" align="center">
+        <font color="#FFFFDF"><b>Customers</b></font></td>
+      </tr>
+      <tr>
+        <td width="6%" bgcolor="#C0C0C0" ALIGN="CENTER">#</font></b></td>
+        <td width="8%" bgcolor="#C0C0C0" ALIGN="CENTER"><font size="1">VM</td>
+        <td width="25%" bgcolor="#C0C0C0" ALIGN="CENTER"><b><font size="2">Customer</font></b></td>
+        <td width="9%" bgcolor="#C0C0C0" ALIGN="CENTER"><b><font size="2">Today</font></b></td>
+        <td width="14%" bgcolor="#C0C0C0" ALIGN="CENTER"><b><font size="2">Yesterday</font></b>&nbsp;</td>
+        <td width="12%" bgcolor="#C0C0C0" ALIGN="CENTER"><font size="2"><b>7 days</b></font></td>
+      </tr>
+ENDTEXT SELECT _CUST
+   SCANTEXT
+     <tr>
+      <td width="6%" bgcolor="#FFFFDF" ><font size="1" face="Arial"><<ALLTRIM(STR(RECNO()))>>.</font></td>
+      <td width="8%" bgcolor="#FFFFDF" ><B><font size="2" face="Arial"><<ALLTRIM(PROD)>></B></font>&nbsp;</td>
+      <td width="25%" bgcolor="#FFFFDF"><b><font size="2" face="Arial">&nbsp;<a target="MainWindow" href="/wc.dll?mpleads~LeadsMngEditWc~<<pcSCR>>~<<CUSTNO>>"><<CUSTNO>></a></font></B>&nbsp;</td>
+      <td width="9%" bgcolor="#FFFFDF" ALIGN="CENTER"><b><font size="2" face="Arial"><<ALLTRIM(STR(D0))>></font>&nbsp;</td>
+      <td width="14%" bgcolor="#FFFFDF" ALIGN="CENTER"><b><font size="2" face="Arial"><<ALLTRIM(STR(D1))>></font>&nbsp;</td>
+      <td width="12%" bgcolor="#FFFFDF" ALIGN="CENTER"><b><font size="2" face="Arial"><<ALLTRIM(STR(D7))>></font>&nbsp;</td>
+    </tr>
+ENDTEXT ENDSCANTEXT
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="429" height="13" bgcolor="#FF9900">
+    &nbsp;</td>
+  </tr>
+</table>
+</body>
+
+</html>ENDTEXT

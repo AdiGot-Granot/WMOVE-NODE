@@ -1,0 +1,167 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Workers Payroll Report - Printable</title>
+
+<style>
+	p.pagebreak {   page-break-after: always;}				  	 	 	 	
+</style>
+
+</head>
+<body>
+<% SELECT DISTIN ID,WNAME FROM _MPW ORDER BY ID INTO CURSOR _A
+GO TOP
+SCAN 
+  lcID=ALLT(ID) %>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+   <tr>
+    <td width="100%">   
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="18%" align="left">Printing: <%=DATE()%></td>
+    <td width="69%" align="center"><b><font face="Verdana" size="4">Worker Payroll Report</font></b></td>
+    <td width="13%" align="center">&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="100%" colspan="3">Worker:&nbsp;<b><font size="4"><%=lcID%>&nbsp;&nbsp;<%=WNAME%></b></font></td>
+ </tr>
+  <tr>
+    <td width="100%" colspan="3">From:&nbsp;<b><%=DTOC(ldFROMDTE)%></b>&nbsp;To:&nbsp;<b><%=DTOC(ldTODTE)%></b></td>
+ </tr>         
+</table>
+  <br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="1%" align="center" bgcolor="#C0C0C0"><b><font size="2">#</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Job Date</font></b></td>
+    <td width="7%" align="center" bgcolor="#C0C0C0"><b><font size="2">Job No</font></b></td>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><b><font size="2">Start/End</font></b></td>
+    <td width="3%" align="center" bgcolor="#C0C0C0"><b><font size="2">Hours</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Per<br>Hour</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Total</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Line<br>Haul</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Overload</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Material</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Others</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Extra</font></b></td>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><b><font size="2">Total<br>Pick-Up</font></b></td>
+    <td width="3%" align="center" bgcolor="#C0C0C0"><b><font size="2">Tip</font></b></td>    
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Total<br>Comm</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><b><font size="2">Paid On</font></b></td>
+    <td width="8%" align="center" bgcolor="#C0C0C0"><b><font size="2">Remarks</font></b></td>
+ </tr>
+ <% SELECT * FROM _MPW WHERE ID==lcID INTO CURSOR _B
+ 	SCAN %>
+    <tr>
+     <td width="1%" align="center"><font size="2"><%=ALLT(STR(RECNO()))+'.'%></font>&nbsp;</td>
+     <td width="4%" align="center"><font size="2"><%=DTOC(DTE)%></font>&nbsp;</td>
+     <td width="7%" align="center"><font size="2"><%=ALLT(DEPT)+ALLT(ORDNO)%>-<%=CODE%><br><%=ALLT(ETYPE)%><br><%=ALLT(OPRCODE)%></font></td>
+     <td width="5%" align="center"><font size="2"><%=ALLT(STARTTME)%>-<%=ALLT(ENDTME)%></font>&nbsp;</td>
+     <td width="3%" align="RIGHT"><font size="2"><%=IIF(HRS=0,'',ALLT(STR(HRS,7,2)))%></font>&nbsp;</td>
+     <td width="4%" align="RIGHT"><font size="2"><%='$'+ALLT(STR(PERHRS,7,2))%></font>&nbsp;</td>
+     <td width="4%" align="RIGHT"><font size="2"><B><%=IIF(CHRS=0,'','$'+ALLT(STR(CHRS,7,2)))%></B></font>&nbsp;</td>
+     <td width="4%" align="RIGHT"><font size="2">
+  <%IF ETYPE='D'%><%=IIF(CLH=0,"",'$'+ALLT(STR(CLH,7,2)))%><%ELSE%><%=IIF(CLOCALLH=0,"",'$'+ALLT(STR(CLOCALLH,7,2)))%><%ENDIF%></font>&nbsp;</td>
+     <td width="4%" align="RIGHT"><font size="2"><%=IIF(COVERLOAD=0,'','$'+ALLT(STR(COVERLOAD,7,2)))%></font>&nbsp;</td>
+     <td width="4%" align="RIGHT"><font size="2"><%=IIF(CMAT=0,"",'$'+ALLT(STR(CMAT,7,2)))%></font>&nbsp;</td>
+     <td width="4%" align="RIGHT"><font size="2"><%=IIF(COTHER=0,"",'$'+ALLT(STR(COTHER,8,2)))%></font>&nbsp;</td>
+     <td width="4%" align="RIGHT"><font size="2"><%=IIF(CEXTRA=0,"",'$'+ALLT(STR(CEXTRA,7,2)))%></font>&nbsp;</td>
+     <td width="5%" align="RIGHT"><font size="2"><%=IIF(CACTTOTAL=0,'','$'+ALLT(STR(CACTTOTAL,7,2)))%></font>&nbsp;</td>
+     <td width="3%" align="RIGHT"><font size="2"><%=IIF(TIP=0,"",'$'+ALLT(STR(TIP,7,2)))%></font>&nbsp;</td>     
+     <td width="4%" align="RIGHT"><font size="2"><B><%='$'+ALLT(STR(COMM,10,2))%></B></font>&nbsp;</td>
+     <td width="4%" align="center"><font size="2"><B><%=IIF(EMPTY(PAIDDTE),'',PAIDDTE)%></B></font>&nbsp;</td>
+     <td width="8%"><B><font size="2"><%=ALLT(NOTES)%></B></FONT>&nbsp;</td>
+    </tr>
+  <% ENDSCAN
+      SELECT SUM(HRS) AS HRS,SUM(CHRS) AS CHRS,SUM(CLH)+SUM(CLOCALLH) AS CLH,SUM(COVERLOAD) AS COVERLOAD,SUM(CMAT) AS CMAT, ;
+      SUM(COTHER) AS COTHER,SUM(CEXTRA) AS CEXTRA,SUM(CACTTOTAL) AS CACTTOTAL,SUM(COMM) AS COMM,SUM(TIP) AS TIP ;
+      FROM _B INTO CURSOR _SUM   
+  %>       
+    <tr>
+     <td width="17%" bgcolor="#E7FFE7" colspan="4">&nbsp;</td>
+     <td width="3%" bgcolor="#E7FFE7" align="RIGHT"><%=IIF(HRS=0,'',ALLT(STR(HRS,7,2)))%>&nbsp;</td>
+     <td width="4%" bgcolor="#E7FFE7">&nbsp;</td>
+     <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CHRS=0,'','$'+ALLT(STR(CHRS,7,2)))%>&nbsp;</td>
+     <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CLH=0,'','$'+ALLT(STR(CLH,7,2)))%>&nbsp;</td>
+     <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(COVERLOAD=0,'','$'+ALLT(STR(COVERLOAD,7,2)))%>&nbsp;</td>
+     <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CMAT=0,"",'$'+ALLT(STR(CMAT,7,2)))%>&nbsp;</td>
+     <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(COTHER=0,"",'$'+ALLT(STR(COTHER,8,2)))%>&nbsp;</td>
+     <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CEXTRA=0,"",'$'+ALLT(STR(CEXTRA,7,2)))%>&nbsp;</td>
+     <td width="5%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CACTTOTAL=0,'','$'+ALLT(STR(CACTTOTAL,7,2)))%>&nbsp;</td>
+	 <td width="3%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(TIP=0,"",'$'+ALLT(STR(TIP,7,2)))%>&nbsp;</td>     
+     <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%='$'+ALLT(STR(COMM,10,2))%>&nbsp;</td>
+     <td width="4%" bgcolor="#E7FFE7">&nbsp;</td>
+     <td width="8%" bgcolor="#E7FFE7">&nbsp;</td>
+    </tr>
+   </table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="100%" height="25" valign="bottom"><font face="Verdana" size="2">I verified that this is a true and complete record of all contract time, 
+    commission, tips and other amounts of salary due to me for all work</font></td>
+  </tr>
+  <tr>
+    <td width="100%" height="25" valign="bottom"><font face="Verdana" size="2">performed during the above pay periods. 
+    <% IF pcCUSTNO='PARTNERMOV'%>The time paid for includes drive time, lunch, other breaks and overtime.<%ENDIF%></font></td>
+ </tr>
+  <tr>
+    <td width="100%" height="25" valign="bottom"><font face="Verdana" size="2">Signature: _____________________________________</font></td>
+ </tr>
+ 
+</table>    
+    </td>
+    </tr>
+  </table>
+   </td>
+  </tr>
+  </table>
+<p class="pagebreak">&nbsp;</p>
+<% ENDSCAN %>
+<% SELECT _GROSSSUM %>
+<br><!---Summary workers--->
+<table border="3" align="center" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%">   
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="20%">Printing: <%=DATE()%></td>
+    <td width="67%" align="center"><b><font face="Verdana" size="4">Summary Worker Payroll Report</font></b></td>
+    <td width="13%" align="center">&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="100%" colspan="3">From:&nbsp;<b><%=DTOC(ldFROMDTE)%></b>&nbsp;To:&nbsp;<b><%=DTOC(ldTODTE)%></b>
+    &nbsp;<b><%=CDOW(ldFROMDTE)%></b>&nbsp;To&nbsp;<b><%=CDOW(ldTODTE)%></b></td>
+ </tr>    
+</table>
+  <br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Total Hours</font></b></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Total</font></b></td>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Line Haul</b></font></td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Overload</b></font></td>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Total Materials</b></font></td>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Total Others</b></font></td>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Total Extra</font></b></td>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Total Pick-Up</td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Total Comm.</td>
+    <td width="4%" align="center" bgcolor="#C0C0C0"><font size="2"><b>Total Tip</font></b></td>
+ </tr>
+  <tr>
+    <td width="5%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(HRS=0,'',ALLT(STR(HRS,7,2)))%>&nbsp;</td>
+    <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CHRS=0,'','$'+ALLT(STR(CHRS,7,2)))%>&nbsp;</td>
+    <td width="5%" align="RIGHT" bgcolor="#E7FFE7"><%='$'+ALLT(STR(CLH+CLOCALLH,10,2))%>&nbsp;</td>
+    <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%='$'+ALLT(STR(COVERLOAD,10,2))%>&nbsp;</td>
+    <td width="5%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CMAT=0,"",'$'+ALLT(STR(CMAT,7,2)))%>&nbsp;</td>
+    <td width="5%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(COTHER=0,"",'$'+ALLT(STR(COTHER,8,2)))%>&nbsp;</td>
+    <td width="5%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CEXTRA=0,"",'$'+ALLT(STR(CEXTRA,7,2)))%>&nbsp;</td>
+    <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(CACTTOTAL=0,'','$'+ALLT(STR(CACTTOTAL,7,2)))%>&nbsp;</td>
+    <td width="5%" align="RIGHT" bgcolor="#E7FFE7"><%='$'+ALLT(STR(COMM,10,2))%>&nbsp;</td>
+    <td width="4%" align="RIGHT" bgcolor="#E7FFE7"><%=IIF(TIP=0,"",'$'+ALLT(STR(TIP,7,2)))%>&nbsp;</td>
+ </tr>
+</table>
+    </td></tr></table>
+   <br><center><a href="/wc.dll?mv~payworkerwc~<%=pcSCR%>">Payroll Menu</a></center></td></tr></table>
+</body>
+</html>

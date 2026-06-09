@@ -1,0 +1,111 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Material Sale-<%=RIGHT(pcORDNO,4)%></title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitmat(i) {
+    if (i==1) document.theForm.action="/wc.dll?mpopr~matsaleret~<%=pcSCR%>";
+    document.theForm.submit()
+
+    if (i==2) document.theForm.action="/wc.dll?mpopr~oprwc~<%=pcSCR%>";
+    document.theForm.submit()
+    }
+
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="40%">
+  <tr>
+    <td width="100%"><IMG SRC="zz/images/topBaropr.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#BEBE99" align="center"><b><font face="Verdana" size="4" color="#000080">Materials Sale</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+    <% SELECT _EST %>
+<table border="0" width="95%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="23%" height="30">&nbsp;<b><font face="Arial" size="2">Job No: <%=ALLT(DEPT)+ALLT(ORDNO)%></b></font></td>
+    <td width="38%" height="30"><b><font face="Arial" size="2">Move Type: <%=ALLT(JOBTYPE)%></b></font></td>
+    <td width="39%" height="30"><b><font face="Arial" size="2">Customer:&nbsp;<%=ALLT(PROPER(SNAME))%></b></font>&nbsp;</td>
+ </tr>
+</table>
+<form name="theForm" method="post">
+<table border="1" width="95%" align="center" bordercolor="#C0C0C0" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+  <tr>
+    <td width="32%" bgcolor="#BEBE99" align="center"><font style="font-family:Verdana;font-size:11pt;"><b>Item</b></font></td>
+    <td width="4%" bgcolor="#BEBE99" align="center"><font style="font-family:Verdana;font-size:11pt;"><b>Qty</b></font></td>
+    <td width="15%" bgcolor="#BEBE99" align="center"><font style="font-family:Verdana;font-size:11pt;"><b>Price</b></font>&nbsp;</td>
+  </tr>
+  <% SELECT _OPRMAT
+  	 SCAN %>
+  <tr>
+    <td width="32%" bgcolor="#FFFFFF">&nbsp;<b><font size="2" face="Verdana"><%=ALLT(ITEM)%></b></td>
+    <td width="4%" bgcolor="#FFFFFF" align="center">
+    <input type="text" name="QTY<%=ALLT(STR(TMATID))%>" size="1" autocomplete="off" value="<%=IIF(QTY=0,'',ALLT(STR(QTY)))%>" style="text-align: center; color:#000080"></td>
+    <td width="15%" bgcolor="#FFFFFF" align="right"><b><font size="2" face="Verdana" color="#008000">$<%=ALLT(STR(PRICE,6,2))%></font></b>&nbsp;</td>
+  <% ENDSCAN%>
+</table>
+ <br>
+<table border="0" width="80%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="19%" align="center">
+	<input type="button" CLASS="SUBOFF" name="B3" onclick="submitmat(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+	<td width="19%" align="center">
+	<input type="button" CLASS="SUBOFF" name="B3" onclick="submitmat(2)" onmouseover="javasctript: this.className='SUBONEXIT'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+ </tr>
+</table>
+</form>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#008000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%"><IMG SRC="zz/images/botBaropr.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+  </center>
+</div>
+</body>
+</html>

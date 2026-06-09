@@ -1,0 +1,332 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Trucks Miscellaneous Operation</title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+	<% SELECT _TREC
+		SCAN %>
+       $("#Date<%=ALLT(STR(TRUCKRECID))%>").datepicker({ numberOfMonths:[1,2] });
+   <%ENDSCAN%>
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function OprSave(par) { 
+       document.theForm.action="/wc.dll?mpopr~truckmiscret~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+
+function submitFunction(i) {
+//    document.theForm.SUBMIT1.style.visibility="hidden";
+//    if (i==1) document.theForm.action="/wc.dll?mpopr~truckmiscret~<%=pcSCR%>";
+//    document.theForm.submit()
+    
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mv~oprmenuwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    }
+        
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.BUTTON	 	{	color: black; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 70;
+					height: 25;
+					font-size: 10pt;
+  				  	cursor: pointer;}  				  	
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="70%">
+  <tr>
+    <td width="100%" height="14"><IMG SRC="/zz/images/topBaropr.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#bebe99" align="center" height="20"><b><font face="Verdana" size="4" color="#993366">Trucks Miscellaneous Operation</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><BR>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center">
+<FORM NAME="theForm" method="post">      
+<table border="2" width="98%" bordercolor="#C0C0C0" cellspacing="0" cellpadding="2" align="center" style="border-collapse: collapse" bordercolorlight="#6B8AAD" bordercolordark="#6B8AAD">
+    <tr style="font-family:Verdana;font-size:10pt;font-weight:700;color:#993366;">
+      <td width="11%" align="center" height="32">Operation Date</td>
+      <td width="10%" align="center" height="32">Truck</td>
+      <td width="9%" align="center" height="32">Driver</td>
+      <td width="8%" align="center" height="32">Start Time</td>
+      <td width="8%" align="center" height="32">Finish Time</td>
+      <td width="5%" align="center" height="32">Hours</td>
+      <td width="6%" align="center" height="32">Fuel</td>
+      <td width="7%" align="center" height="32">Expense 1</td>
+      <td width="7%" align="center" height="32">Expense 2</td>
+      <td width="16%" align="center" height="32">remarks</td>
+      <td width="4%" align="center" height="32">Close</td>
+      <td width="6%" align="center" height="32">Action</td>
+    </tr>
+    <% SELECT _TREC
+       SCAN %>
+    <tr>
+      <td width="11%" align="center"><input id="Date<%=ALLT(STR(TRUCKRECID))%>" NAME="<%='D'+ALLT(STR(TRUCKRECID))%>" size="8" VALUE="<%=TTOD(OPRDTE)%>"></td>
+      <td width="10%" align="center">
+		<select size="1" name="<%='T'+ALLT(STR(_TREC.TRUCKRECID))%>">
+		<option selected value="<%=ALLT(STR(_TREC.TRUCKID))%>"><%=ALLT(_TREC.TRUCKNO)%></option>
+		  <option></option>
+		     <% SELECT _TRUCKS
+		     	 SCAN %>
+			     <OPTION value="<%=ALLT(STR(TRUCKID))%>"><%=ALLT(TRUCKNO)%></OPTION>
+		     <% ENDSCAN %>  
+	    </select>      
+      </td>
+      <td width="9%" align="center">
+		<select size="1" name="<%='DR'+ALLT(STR(_TREC.TRUCKRECID))%>">
+		<option selected value="<%=ALLT(_TREC.DRIVER1)%>"><%=ALLT(_TREC.DRIVER1)%></option>
+		<option></option>
+		     <% SELECT _WORKERS
+		     	 SCAN %>
+			     <OPTION value="<%=ALLT(WORKER)%>"><%=ALLT(WORKER)%></OPTION>
+		     <% ENDSCAN %>  
+		    </select>      
+      </td>
+      <% SELECT _TREC %>
+      <td width="8%" align="center">
+		<select size="1" name="<%='S'+ALLT(STR(TRUCKRECID))%>">
+		<option selected value="<%=ALLT(_TREC.STARTTME)%>"><%=ALLT(_TREC.STARTTME)%></option>
+		  <option></option>
+		  <option value="03:00 AM">03:00 AM</option>
+		  <option value="03:15 AM">03:15 AM</option>
+		  <option value="03:30 AM">03:30 AM</option>
+		  <option value="03:45 AM">03:45 AM</option>
+		  <option value="04:00 AM">04:00 AM</option>
+		  <option value="04:15 AM">04:15 AM</option>
+		  <option value="04:30 AM">04:30 AM</option>
+		  <option value="04:45 AM">04:45 AM</option>
+		  <option value="05:00 AM">05:00 AM</option>
+		  <option value="05:15 AM">05:15 AM</option>
+		  <option value="05:30 AM">05:30 AM</option>
+		  <option value="05:45 AM">05:45 AM</option>
+		  <option value="06:00 AM">06:00 AM</option>
+		  <option value="06:15 AM">06:15 AM</option>
+		  <option value="06:30 AM">06:30 AM</option>
+		  <option value="06:45 AM">06:45 AM</option>
+		  <option value="07:00 AM">07:00 AM</option>
+		  <option value="07:15 AM">07:15 AM</option>
+		  <option value="07:30 AM">07:30 AM</option>
+		  <option value="07:45 AM">07:45 AM</option>
+		  <option value="08:00 AM">08:00 AM</option>
+		  <option value="08:15 AM">08:15 AM</option>
+		  <option value="08:30 AM">08:30 AM</option>
+		  <option value="08:45 AM">08:45 AM</option>
+		  <option value="09:00 AM">09:00 AM</option>
+		  <option value="09:15 AM">09:15 AM</option>
+		  <option value="09:30 AM">09:30 AM</option>
+		  <option value="09:45 AM">09:45 AM</option>
+		  <option value="10:00 AM">10:00 AM</option>
+		  <option value="10:15 AM">10:15 AM</option>
+		  <option value="10:30 AM">10:30 AM</option>
+		  <option value="10:45 AM">10:45 AM</option>
+		  <option value="11:00 AM">11:00 AM</option>
+		  <option value="11:15 AM">11:15 AM</option>
+		  <option value="11:30 AM">11:30 AM</option>
+		  <option value="11:45 AM">11:45 AM</option>
+		  <option value="12:00 PM">12:00 PM</option>
+		  <option value="12:15 PM">12:15 PM</option>
+		  <option value="12:30 PM">12:30 PM</option>
+		  <option value="12:45 PM">12:45 PM</option>
+		  <option value="01:00 PM">01:00 PM</option>
+		  <option value="01:15 PM">01:15 PM</option>
+		  <option value="01:30 PM">01:30 PM</option>
+		  <option value="01:45 PM">01:45 PM</option>
+		  <option value="02:00 PM">02:00 PM</option>
+		  <option value="02:15 PM">02:15 PM</option>
+		  <option value="02:30 PM">02:30 PM</option>
+		  <option value="02:45 PM">02:45 PM</option>
+		  <option value="03:00 PM">03:00 PM</option>
+		  <option value="03:15 PM">03:15 PM</option>
+		  <option value="03:30 PM">03:30 PM</option>
+		  <option value="03:45 PM">03:45 PM</option>
+		  <option value="04:00 PM">04:00 PM</option>
+		  <option value="04:15 PM">04:15 PM</option>
+		  <option value="04:30 PM">04:30 PM</option>
+		  <option value="04:45 PM">04:45 PM</option>
+		  <option value="05:00 PM">05:00 PM</option>
+		  <option value="05:15 PM">05:15 PM</option>
+		  <option value="05:30 PM">05:30 PM</option>
+		  <option value="05:45 PM">05:45 PM</option>
+		  <option value="06:00 PM">06:00 PM</option>
+		  <option value="06:15 PM">06:15 PM</option>
+		  <option value="06:30 PM">06:30 PM</option>
+		  <option value="06:45 PM">06:45 PM</option>
+		  <option value="07:00 PM">07:00 PM</option>
+		  <option value="07:15 PM">07:15 PM</option>
+		  <option value="07:30 PM">07:30 PM</option>
+		  <option value="07:45 PM">07:45 PM</option>
+		  <option value="08:00 PM">08:00 PM</option>
+		  <option value="08:15 PM">08:15 PM</option>
+		  <option value="08:30 PM">08:30 PM</option>
+		  <option value="08:45 PM">08:45 PM</option>
+		  <option value="09:00 PM">09:00 PM</option>
+		  <option value="09:15 PM">09:15 PM</option>
+		  <option value="09:30 PM">09:30 PM</option>
+		  <option value="09:45 PM">09:45 PM</option>
+		  <option value="10:00 PM">10:00 PM</option>
+		  <option value="10:15 PM">10:15 PM</option>
+		  <option value="10:30 PM">10:30 PM</option>
+		  <option value="10:45 PM">10:45 PM</option>
+		  <option value="11:00 PM">11:00 PM</option>
+		  <option value="11:15 PM">11:15 PM</option>
+		  <option value="11:30 PM">11:30 PM</option>
+		  <option value="11:45 PM">11:45 PM</option>  
+	    </select>      
+      </td>
+      <td width="8%" align="center">
+		<select size="1" name="<%='E'+ALLT(STR(TRUCKRECID))%>">
+		<option selected value="<%=ALLT(_TREC.ENDTME)%>"><%=ALLT(_TREC.ENDTME)%></option>
+		  <option></option>
+		  <option value="03:00 AM">03:00 AM</option>
+		  <option value="03:15 AM">03:15 AM</option>
+		  <option value="03:30 AM">03:30 AM</option>
+		  <option value="03:45 AM">03:45 AM</option>
+		  <option value="04:00 AM">04:00 AM</option>
+		  <option value="04:15 AM">04:15 AM</option>
+		  <option value="04:30 AM">04:30 AM</option>
+		  <option value="04:45 AM">04:45 AM</option>
+		  <option value="05:00 AM">05:00 AM</option>
+		  <option value="05:15 AM">05:15 AM</option>
+		  <option value="05:30 AM">05:30 AM</option>
+		  <option value="05:45 AM">05:45 AM</option>
+		  <option value="06:00 AM">06:00 AM</option>
+		  <option value="06:15 AM">06:15 AM</option>
+		  <option value="06:30 AM">06:30 AM</option>
+		  <option value="06:45 AM">06:45 AM</option>
+		  <option value="07:00 AM">07:00 AM</option>
+		  <option value="07:15 AM">07:15 AM</option>
+		  <option value="07:30 AM">07:30 AM</option>
+		  <option value="07:45 AM">07:45 AM</option>
+		  <option value="08:00 AM">08:00 AM</option>
+		  <option value="08:15 AM">08:15 AM</option>
+		  <option value="08:30 AM">08:30 AM</option>
+		  <option value="08:45 AM">08:45 AM</option>
+		  <option value="09:00 AM">09:00 AM</option>
+		  <option value="09:15 AM">09:15 AM</option>
+		  <option value="09:30 AM">09:30 AM</option>
+		  <option value="09:45 AM">09:45 AM</option>
+		  <option value="10:00 AM">10:00 AM</option>
+		  <option value="10:15 AM">10:15 AM</option>
+		  <option value="10:30 AM">10:30 AM</option>
+		  <option value="10:45 AM">10:45 AM</option>
+		  <option value="11:00 AM">11:00 AM</option>
+		  <option value="11:15 AM">11:15 AM</option>
+		  <option value="11:30 AM">11:30 AM</option>
+		  <option value="11:45 AM">11:45 AM</option>
+		  <option value="12:00 PM">12:00 PM</option>
+		  <option value="12:15 PM">12:15 PM</option>
+		  <option value="12:30 PM">12:30 PM</option>
+		  <option value="12:45 PM">12:45 PM</option>
+		  <option value="01:00 PM">01:00 PM</option>
+		  <option value="01:15 PM">01:15 PM</option>
+		  <option value="01:30 PM">01:30 PM</option>
+		  <option value="01:45 PM">01:45 PM</option>
+		  <option value="02:00 PM">02:00 PM</option>
+		  <option value="02:15 PM">02:15 PM</option>
+		  <option value="02:30 PM">02:30 PM</option>
+		  <option value="02:45 PM">02:45 PM</option>
+		  <option value="03:00 PM">03:00 PM</option>
+		  <option value="03:15 PM">03:15 PM</option>
+		  <option value="03:30 PM">03:30 PM</option>
+		  <option value="03:45 PM">03:45 PM</option>
+		  <option value="04:00 PM">04:00 PM</option>
+		  <option value="04:15 PM">04:15 PM</option>
+		  <option value="04:30 PM">04:30 PM</option>
+		  <option value="04:45 PM">04:45 PM</option>
+		  <option value="05:00 PM">05:00 PM</option>
+		  <option value="05:15 PM">05:15 PM</option>
+		  <option value="05:30 PM">05:30 PM</option>
+		  <option value="05:45 PM">05:45 PM</option>
+		  <option value="06:00 PM">06:00 PM</option>
+		  <option value="06:15 PM">06:15 PM</option>
+		  <option value="06:30 PM">06:30 PM</option>
+		  <option value="06:45 PM">06:45 PM</option>
+		  <option value="07:00 PM">07:00 PM</option>
+		  <option value="07:15 PM">07:15 PM</option>
+		  <option value="07:30 PM">07:30 PM</option>
+		  <option value="07:45 PM">07:45 PM</option>
+		  <option value="08:00 PM">08:00 PM</option>
+		  <option value="08:15 PM">08:15 PM</option>
+		  <option value="08:30 PM">08:30 PM</option>
+		  <option value="08:45 PM">08:45 PM</option>
+		  <option value="09:00 PM">09:00 PM</option>
+		  <option value="09:15 PM">09:15 PM</option>
+		  <option value="09:30 PM">09:30 PM</option>
+		  <option value="09:45 PM">09:45 PM</option>
+		  <option value="10:00 PM">10:00 PM</option>
+		  <option value="10:15 PM">10:15 PM</option>
+		  <option value="10:30 PM">10:30 PM</option>
+		  <option value="10:45 PM">10:45 PM</option>
+		  <option value="11:00 PM">11:00 PM</option>
+		  <option value="11:15 PM">11:15 PM</option>
+		  <option value="11:30 PM">11:30 PM</option>
+		  <option value="11:45 PM">11:45 PM</option>  
+	    </select>            
+      </td>
+      <td width="5%"  bgcolor="#F5F5F5" align="right"><font style="font-family:Verdana;font-size:10pt;font-weight:700;"><%=ALLT(JOBHRS)%></font>&nbsp;</td>
+      <td width="6%" align="center"><input NAME="<%='F'+ALLT(STR(TRUCKRECID))%>" size="3" VALUE="<%=ALLT(STR(FUEL,8,2))%>" style="text-align: right"></td>
+      <td width="7%" align="center"><input NAME="<%='M1'+ALLT(STR(TRUCKRECID))%>" size="3" VALUE="<%=ALLT(STR(EXPENSE1,8,2))%>" style="text-align: right"></td>
+      <td width="7%" align="center"><input NAME="<%='M2'+ALLT(STR(TRUCKRECID))%>" size="3" VALUE="<%=ALLT(STR(EXPENSE2,8,2))%>" style="text-align: right"></td>
+      <td width="16%" align="center"><input NAME="<%='N'+ALLT(STR(TRUCKRECID))%>" size="25" VALUE="<%=ALLT(NOTES)%>" autocomplete="off"></td>
+      <td width="4%" align="center"><input type="checkbox" name="<%='C'+ALLT(STR(TRUCKRECID))%>" value="ON"></td>
+      <td width="6%" align="center"><input type="button" class="button" name="B1" onclick="OprSave(<%=ALLT(STR(TRUCKRECID,6))%>)" value="Save"></td>
+    </tr>
+  <%ENDSCAN%>
+ </table>
+       <br>
+	<table border="0" width="48%" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111">
+	  <tr>
+       <td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B4" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Operation Menu"></td>
+   </tr>
+	</table>
+ </form>
+    </td></tr></table>
+    </td></tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="20"><font size="2" color="#FFFFFF">User: <%=pcUser%></font></td>
+  </tr>
+  <tr>
+    <td width="100%" height="14"><IMG SRC="/zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>

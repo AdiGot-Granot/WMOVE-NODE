@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Material Sale</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitmat(){
+    document.theForm.action="/wc.dll?mpinv~matret~<%=pcSCR%>";
+    document.theForm.submit()
+}
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="50%">
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/topBar.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center" height="22"><b>
+    <font face="Verdana" size="4" color="#FFFFFF">Materials Sale</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+    <% SELECT _EST %>
+<table border="0" width="95%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="20%" height="30">&nbsp;<b><font face="Arial" size="2">Job No: <%=ALLT(DEPT)+ALLT(ORDNO)%></b></font></td>
+    <td width="19%" height="30"><b><font face="Arial" size="2"><%=IIF(plCALCCF,'Volume: '+ALLT(STR(TOTALCF))+' cf','Weight: '+ALLT(STR(TOTALLBS))+' lbs')%></b></font></td>
+    <td width="26%" height="30"><b><font face="Arial" size="2">Move Type: <%=ALLT(JOBTYPE)%></b></font></td>
+    <td width="25%" height="30" align="right"><b><font face="Arial" size="2">Customer:&nbsp;<%=ALLT(PROPER(SNAME))%></b></font>&nbsp;</td>
+ </tr>
+</table>
+<form name="theForm" method="post">
+<table border="1" width="90%" bordercolor="#C0C0C0" align="center" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+	<tr>
+    	<td width="28%" bgcolor="#008000" align="center"><font style="font-family:Verdana;font-size:11pt;color:#FFFFFF;"><b>Item</b></font></td>
+    	<td width="5%" bgcolor="#008000" align="center"><font style="font-family:Verdana;font-size:11pt;color:#FFFFFF;"><b>Qty</b></font></td>
+    	<td width="18%" bgcolor="#008000" align="center"><font style="font-family:Verdana;font-size:11pt;color:#FFFFFF;"><b>Price</b></font>&nbsp;</td>
+	</tr>
+  <% SELECT _MAT
+  	 SCAN %>
+	<tr>
+    	<td width="28%">&nbsp;<b><font face="Verdana" size="2"><%=ALLT(ITEM)%></font></b></td>
+    	<td width="5%" align="center"><input type="text" name="QTY<%=ALLT(STR(TMATID))%>" size="2" autocomplete="off" value="<%=IIF(QTY=0,'',ALLT(STR(QTY)))%>" style="text-align: center; color:#000080"></td>
+    	<td width="18%" align="right"><b><font face="Verdana" size="2" color="#008000">$<%=ALLT(STR(PRICE,6,2))%></font></b>&nbsp;</td>
+	</tr>		
+  <% ENDSCAN%>
+</table>  
+ <br>
+<table border="0" width="90%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td>
+<table border="1" width="70%" bordercolor="#C0C0C0" ellspacing="0" cellpadding="0" style="border-collapse: collapse">
+  <tr style="background-color:#EBEBEC;">
+    <td width="45%">&nbsp;<b><font face="Verdana" size="2">Add New Material to this Estimate</FONT></b></td>
+    <td width="13%" align="center"><b><font face="Verdana">Qty</font></b></td>
+    <td width="17%" align="center"><b><font face="Verdana">Price</font></b></td>
+ </tr>      
+  <tr>
+    <td width="45%"><input type="text" name="ITEM_1" size="35" value="" maxlength="30"></td>
+    <td width="13%" align="center"><input type="text" name="QTY_1" autocomplete="off" size="1" style="text-align: center;" value="1"></td>
+    <td width="17%" align="right">$<input name="PRC_1" autocomplete="off" size="4" style="text-align: right;"></td>
+ </tr>		
+  <tr>
+    <td width="45%"><input type="text" name="ITEM_2" size="35" value="" maxlength="30"></td>
+    <td width="13%" align="center"><input type="text" name="QTY_2" autocomplete="off" size="1" value="1" style="text-align: center;"></td>
+    <td width="17%" align="right">$<input name="PRC_2" autocomplete="off" size="4" style="text-align: right;"></td>
+ </tr>		
+  <tr>
+   	<td width="45%"><input type="text" name="ITEM_3" size="35" value="" maxlength="30"></td>
+   	<td width="13%" align="center"><input type="text" name="QTY_3" autocomplete="off" size="1" value="1" style="text-align: center;"></td>
+   	<td width="17%" align="right">$<input name="PRC_3" autocomplete="off" size="4" style="text-align: right;"></td>
+ </tr>		
+  <tr>
+   	<td width="45%"><input type="text" name="ITEM_4" size="35" value="" maxlength="30"></td>
+   	<td width="13%" align="center"><input type="text" name="QTY_4" autocomplete="off" size="1" value="1" style="text-align: center;"></td>
+   	<td width="17%" align="right">$<input name="PRC_4" autocomplete="off" size="4" style="text-align: right;"></td>
+ </tr>		
+  <tr>
+   	<td width="45%"><input type="text" name="ITEM_5" size="35" value="" maxlength="30"></td>
+   	<td width="13%" align="center"><input type="text" name="QTY_5" autocomplete="off" size="1" value="1" style="text-align: center;"></td>
+   	<td width="17%" align="right">$<input name="PRC_5" autocomplete="off" size="4" style="text-align: right;"></td>
+ </tr>
+</table>    
+    </td>
+  </tr>
+</table>
+  <br>
+<table border="0" width="90%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="19%" align="center">
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" onclick="submitmat()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="37" value="Submit"></td>    
+    <td width="19%" align="center">
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" onclick="javascript:history.go(-1)" onmouseover="javasctript: this.className='SUBONEXIT'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="39" value="Exit"></td>
+ </tr>
+</table>
+ </form>
+    </td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>

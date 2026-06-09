@@ -1,0 +1,41 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+</HEAD>
+
+<body>
+<table border="0" align="center" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="700">
+  <TR>
+    <TD width="700" height="14">
+<%IF pcCUSTNO<>'BUDGETVAN' AND pcCUSTNO<>'MOA' AND pcCUSTNO<>'MARKETOG'%>
+    <img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100">
+<%ENDIF%>
+<%IF pcCUSTNO='MOA'%>
+<img border="0" src="https://eagle.hellomoving.com/moa/images/logomoa.gif" alt="" width="700" height="185">
+<% ENDIF %>
+<%IF pcCUSTNO='MARKETOG'%>
+<img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="100%" height="150">
+<% ENDIF %>
+    </TD>
+ </TR>
+ <tr>
+    <td align="right"><font face="Verdana" size="2"><%=CDOW(DATE())%>, <%=DATE()%>&nbsp;&nbsp;&nbsp;</font></td>
+ </tr>
+ <tr>
+  <TD width="700"><font face="Verdana" size="2"><%=pcMESSAGE%>
+  <% IF plESIGN%><BR><BR><B>Click on <a href="https://<%=lcSERVERIP%>/wc.dll?mpest~esignwc~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>">Online Electronic Signature</a> to sign this document.</B><%ENDIF%>
+<%IF pcCUSTNO<>'BUDGETVAN' AND pcCUSTNO<>'USEXPRESS'%>
+  <br><br>Sincerely,<br><br><%=PROPER(pcFULLNAME)%><br><%=IIF(EMPTY(pcTITLE),'Moving Consultant',pcTITLE)%><br><%=pcCOMPANY%><%=IIF(EMPTY(pcSLOGAN),'','<BR>'+pcSLOGAN)%><BR><%=pcTOLLFREE%>
+  <%=IIF(EMPTY(pcUSERPHONE),'','<BR>'+pcUSERPHONE)%>
+  <%=IIF(EMPTY(pcFAX),'','<BR>Fax: '+pcFAX)%><br>
+  <a href="mailto:<%=pcUSEREMAIL%>"><%=pcUSEREMAIL%></a><br><a href="<%=pcWEB%>" TARGET="_BLANK"><%=pcWEB%></a><BR>
+  <%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%><%=IIF(EMPTY(pcICC),"","&nbsp;&nbsp;MC: "+pcICC)%>
+<%ENDIF%></font></td>
+</tr>
+</table>
+<center><br><font face="Verdana" size="1">
+If you no longer wish to receive emails from <%=pcCOMPANY%>, please click on 
+<a target="_blank" href="https://<%=gcSERVERIP%>/wc.dll?mputil~removeemail~&CUSTID=<%=pcCUSTID%>&EMAILTO=<%=pcEMAIL%>&JOBID=<%=pcJOBID%>">unsubscribe</a></font></center>
+</BODY>
+</HTML>

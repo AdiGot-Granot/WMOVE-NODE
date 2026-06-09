@@ -1,0 +1,46 @@
+.rbottom {
+	VERTICAL-ALIGN: bottom;
+	DISPLAY: block; FONT-SIZE: 1px;}
+.r1 {
+	MARGIN: 0px 5px;
+	DISPLAY: block; OVERFLOW: hidden; HEIGHT: 1px;}
+.r2 {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 2px; BORDER-BOTTOM-WIDTH: 0px; MARGIN: 0px 3px; BORDER-RIGHT-WIDTH: 2px;
+	DISPLAY: block; OVERFLOW: hidden; HEIGHT: 1px;
+	BORDER-RIGHT: #083484 1px solid; BORDER-LEFT: #083484 1px solid;}
+.r3 {
+	MARGIN: 0px 2px;
+	BORDER-RIGHT: #083484 1px solid; BORDER-LEFT: #083484 1px solid;
+	DISPLAY: block; OVERFLOW: hidden; HEIGHT: 1px;}
+.r4 {
+	MARGIN: 0px 1px; HEIGHT: 2px;
+	BORDER-RIGHT: #083484 1px solid; BORDER-LEFT: #083484 1px solid;
+	DISPLAY: block; OVERFLOW: hidden; HEIGHT: 1px;}
+.rl1 {
+	MARGIN: 0px 0px 0px 5px;}
+.rl2 {
+	BORDER-RIGHT-WIDTH: 0px;
+	MARGIN: 0px 0px 0px 3px;}
+.rl3 {
+	BORDER-RIGHT-WIDTH: 0px;
+	MARGIN: 0px 0px 0px 2px;}
+.rl4 {
+	BORDER-RIGHT-WIDTH: 0px;
+	MARGIN: 0px 0px 0px 1px;}
+.rr1 {
+	MARGIN: 0px 5px 0px 0px;}
+.rr2 {
+	MARGIN: 0px 3px 0px 0px;
+	BORDER-LEFT-WIDTH: 0px;}
+.rr3 {
+	BORDER-LEFT-WIDTH: 0px;
+	MARGIN: 0px 2px 0px 0px;}
+.rr4 {
+	BORDER-LEFT-WIDTH: 0px;
+	MARGIN: 0px 1px 0px 0px;}
+.rbox {
+	BORDER-RIGHT: #083484 1px solid; BORDER-TOP: #083484 0px solid; BORDER-LEFT: #083484 1px solid; BORDER-BOTTOM: #083484 0px solid;}
+.w {
+	BACKGROUND: #AAC0D0;}
+.gr {
+	BACKGROUND: #083484;}

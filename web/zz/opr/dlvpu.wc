@@ -1,0 +1,765 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>PU-<%=pcORDNO%></title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" /><!--CONF CHECKBOX-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+       $("#Date3").datepicker({ numberOfMonths:[1,2] });
+       $("#Date4").datepicker({ numberOfMonths:[1,2] });      
+             
+   });
+</script>
+
+<!--DROPDOWN AGENT SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN AGENT SEARCH-->
+
+<script type="text/javascript">
+ jQuery.noConflict();
+      jQuery( document ).ready(function( $ ) {  
+      $('.agent-select').select2({
+          placeholder: 'Select Agent',
+          allowClear: true
+      });
+  });
+</script>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function edittrip(){
+ 	window.open('/wc.dll?mpopr~tripaddwc~<%=pcSCR%>~theForm~TRIPNO~<%=pcCODE%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=700,height=400')
+ }
+ 
+function locatezip() {
+    window.open('/wc.dll?mputil~zipwc~NEW','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=550,height=500');
+self.name="main"}
+
+function submitagent() {
+   	document.theForm.action="/wc.dll?mpopr~agentfee~<%=pcSCR%>~<%=pcCODE%>";
+    document.theForm.submit();
+    }
+
+function submitdelivery(i) {
+    if (i==1) { document.theForm.action="/wc.dll?mpopr~dlvret~<%=pcSCR%>~pu";
+                document.theForm.submit();
+    }
+    if (i==5){
+      window.open('/wc.dll?mpopr~mpwwc~<%=pcSCR%>~BX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=600');
+    self.name="main"}
+    if (i==6){
+      window.open('/wc.dll?mpopr~truckswc~<%=pcSCR%>~BX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=720,height=600');
+    self.name="main"}
+    if (i==7){
+      window.open('/wc.dll?mpopr~mpwwc~<%=pcSCR%>~PK','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=600');
+    self.name="main"}
+    if (i==8){
+      window.open('/wc.dll?mpopr~truckswc~<%=pcSCR%>~PK','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=720,height=600');
+    self.name="main"}
+    if (i==9) {
+      window.open('/wc.dll?mpopr~mpwwc~<%=pcSCR%>~PU','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=1000,height=600');
+    self.name="main"}
+    if (i==10){
+      window.open('/wc.dll?mpopr~truckswc~<%=pcSCR%>~PU','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=720,height=600');
+	self.name="main"}
+}
+
+function showHide(BX) {
+   if (document.getElementById(BX)) {
+      if (document.getElementById(BX+'-show').style.display != 'none') {
+          document.getElementById(BX+'-show').style.display = 'none';
+          document.getElementById(BX).style.display = 'block';
+      }
+      else {
+         document.getElementById(BX+'-show').style.display = 'inline';
+         document.getElementById(BX).style.display = 'none';
+      }
+   }
+}
+
+function showHide(PK) {
+   if (document.getElementById(PK)) {
+      if (document.getElementById(PK+'-show').style.display != 'none') {
+          document.getElementById(PK+'-show').style.display = 'none';
+          document.getElementById(PK).style.display = 'block';
+      }
+      else {
+         document.getElementById(PK+'-show').style.display = 'inline';
+         document.getElementById(PK).style.display = 'none';
+      }
+   }
+}
+
+</SCRIPT>
+
+<style type="text/css">
+  .more {display: none;}
+   a.showLink, a.hideLink {text-decoration: none;color: #0000FF;padding-left: 8px;}
+</style>
+
+
+<STYLE TYPE="text/css">
+	  .TD2		{	color: #000080;
+				  	font-size: 8pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					background-color: white;
+				  	text-align: left;}
+	 .SUBMIT1	{	color: #FFFFFF;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    cursor: pointer;
+                    width: 120; 
+                    height: 22;}			  	
+	.SUBMIT		{	color: #FFFFFF;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 145; 
+                    height: 25; 
+                    cursor: pointer;} 	
+ 	.ASSIGNOFF 	{	color: BLACK; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #BEBE99;
+					font-size: 9pt;
+  				  	cursor: pointer;}
+	.ASSIGNON	 {	color: #000080; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #BEBE99;
+					font-size: 9pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<BODY bgColor="#4e6699">
+<center>
+<br>
+<TABLE cellSpacing="0" cellPadding=0 width="850" border="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td bgcolor="#800000" width="129" height="25" align="center"><b><font face="Verdana" color="#FFFFFF">Pickup Info.</font></b></td>
+    <td height="25" width="12">&nbsp;</td>
+    <td bgcolor="#002259" onmouseover="this.style.background='#4A929C'" onmouseout="this.style.background='#002259'" width="157" height="25" align="center">
+    <b><font face="Verdana"><a href="/wc.dll?mpopr~dlvwc~<%=pcSCR%>~d1"><font color="#FFFFFF">Delivery 1</font></a></font></b></td>
+    <td height="25" width="13">&nbsp;</td>
+<% IF plD2=.T. %>
+    <td bgcolor="#002259" onmouseover="this.style.background='#4A929C'" onmouseout="this.style.background='#002259'" width="158" height="25" align="center">
+    <b><font face="Verdana"><a href="/wc.dll?mpopr~dlvwc~<%=pcSCR%>~d2"><font color="#FFFFFF">Delivery 2</font></b></A></td>
+<% ENDIF %>
+    <td height="25" width="231">&nbsp;</td>
+  </tr>
+ </TABLE>
+<TABLE cellSpacing="0" cellPadding=0 width="850" bgColor="#ffffff" border="0" height="16">
+  <tr>
+    <td width="30%" BGCOLOR="#800000"><b><font face="Verdana" color="#FFFF00"><%=pcBALANCEX%><%=pcBALSTGX%></font></b></td>
+    <td width="25%" BGCOLOR="#800000" align="center"></td>
+    <td width="20%" BGCOLOR="#800000" align="center"><b><font face="Verdana" color="#FFFF00"><%=IIF(plCLAIMSX=.T.,'CLAIM','')%></font></b></td>
+    <td width="20%" BGCOLOR="#800000" align="center"><b><font face="Verdana" color="#FFFF00"><%=pcCLOSEDX%></font></b></td>
+    <td width="5%" BGCOLOR="#800000">&nbsp;</td>
+  </tr>
+</TABLE>
+<TABLE cellSpacing="0" cellPadding="0" width="850" bgColor="#ffffff" border="0">
+  <TR>
+    <TD><FORM NAME="theForm" METHOD="POST"><br> 
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="71%" valign="top">
+<%IF !EMPTY(_BX.DTE) %>    
+<table border="1" width="100%" align="center" style="border-collapse: collapse;" bordercolor="#808080">
+  <tr>
+    <td align="center" bgcolor="#3366CC" height="25"><font style="font-family:Verdana;font-weight:bold;color:#FFF;">Box Delivery</font></td>
+ </tr>
+</table>
+<table border="1" width="100%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#808080">
+  <tr>
+	<td width="100%">
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="5"><b><u><font size="3">Job Parameters</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="23%"><b>Job Date/Time:</b></td>
+    <td width="14%" ><input type="text" autocomplete="off" id="Date1" name="DTEBX" size="8" value="<%=_BX.DTE%>" tabindex="1" maxlength="15"></td>
+    <td width="17%" style="border-right: 1px solid #808080;"><input type="text" name="TMEBX" size="8" value="<%=ALLT(_BX.TME)%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~TMEBX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')"  tabindex="2" maxlength="20"></td>
+    <td width="26%">Job Start Time:</td>
+    <td width="20%"><input type="text" name="STARTTMEBX" size="8" value="<%=_BX.STARTTME%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~STARTTMEBX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')" maxlength="20" readonly tabindex="6"></td>
+ </tr> 
+  <tr>
+    <td width="23%"><b>Confirm Job:</b></td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2"><label class="switch"><input type="checkbox" id="togBtn" name="CONFBX" value="ON" <%=IIF(_BX.CONFIRM,'checked','')%> tabindex="3"><div class="slider round"></div></label></td>
+    <td width="26%">Job Finish Time:</td>
+    <td width="20%"><input type="text" name="ENDTMEBX" size="8" value="<%=_BX.ENDTME%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~ENDTMEBX','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')" maxlength="20" reaonly tabindex="7"></td>
+ </tr> 
+  <tr>
+    <td width="23%">Required Workers:</td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2">
+	<select size="1" name="JMENBX" tabindex="4">
+	  <option value="<%=ALLT(STR(_BX.JMEN))%>" selected><%=ALLT(STR(_BX.JMEN))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+		  <option>11</option>
+		  <option>12</option>
+		  <option>13</option>
+		  <option>14</option>
+		  <option>15</option>
+		  <option>16</option>
+		  <option>17</option>
+		  <option>18</option>
+		  <option>19</option>
+		  <option>20</option>		  
+    </select></td>
+    <td width="26%">Workers Pay Hours:</td>
+    <td width="20%"><input type="text" name="HRSBX" style="width:50px;" value="<%=ALLT(STR(_BX.HRS,6,2))%>" tabindex="8" size="20"></td>
+ </tr>
+  <tr>
+    <td width="23%">Required Truck(s):</td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2">
+	<select size="1" name="JTRUCKBX" tabindex="5">
+	  <option value="<%=ALLT(STR(_BX.JTRUCK))%>" selected><%=ALLT(STR(_BX.JTRUCK))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+    </select></td>
+    <td width="25%">&nbsp;</td>
+    <td width="21%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="54%" align="center" style="border-right: 1px solid #808080;" colspan="3"><b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitdelivery(5)" style="cursor:pointer;">Assign Workers</a></font></u></b></td>
+    <td width="46%" align="center" colspan="2"><b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitdelivery(6)" style="cursor:pointer;">Assign Trucks</a></font></u></b></td>
+  </tr>    
+  <tr>
+    <td width="54%" valign="top" style="border-right: 1px solid #808080;" colspan="3">
+    <table border="1" align="center" cellSpacing="0" cellPadding="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="100%">
+      <tr>
+        <td width="59%" height="23" bgcolor="#3366CC" align="left">&nbsp;<font color="#FFFFFF"><b>Workers</b></font></td>
+        <td width="21%" height="23" bgcolor="#3366CC" align="left">&nbsp;<font color="#FFFFFF"><b>Code</b></font></td>
+     </tr>
+      <%SELECT _MPWBX
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="59%">&nbsp;<%=ALLT(ID)%><%=IIF(EMPTY(NAME),'',' - <b>'+ALLT(NAME)+'</b>')%></td>
+        <td width="21%">&nbsp;<%=ALLT(OPRCODE)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>    
+    </td>
+    <td width="46%" valign="top" colspan="2">
+    <table border="1" align="center" cellSpacing="1" cellPadding="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="95%">
+      <tr>
+        <td width="38%" height="23" bgcolor="#3366CC" align="left">&nbsp;<font color="#FFFFFF"><b>Truck</b></font></td>
+        <td width="42%" height="23" bgcolor="#3366CC" align="left">&nbsp;<font color="#FFFFFF"><b>Driver</b></font></td>
+     </tr>
+      <%SELECT _TRBX
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="38%">&nbsp;<%=ALLT(TRUCK)%></td>
+        <td width="42%">&nbsp;<%=ALLT(DRIVER)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>    
+    </td>
+  </tr>  
+  </table>	
+  <% IF plAGENT AND !plBLKAGENTS %>
+  <br>  
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%"> 
+  <tr>
+    <td width="100%" colspan="5"><b><font face="Verdana" size="2">Agent:</font></b>
+	<select size="1" name="AGENTIDBX" tabindex="10" class="agent-select" style="width: 450px;">
+	  <option value="<%=pnAGENTIDBX%>" selected><%=pcAGCOMPANYBX%></option> 
+	    <option></option>
+	    <% SELECT _TAGENT 
+	       GO TOP 
+	   	 SCAN %>
+	   <option value="<%=ALLT(STR(AGENTID))%>"><%=ALLT(AGENT)%>&nbsp;&nbsp;***&nbsp;&nbsp;<%=ALLT(COMPANY)%></option>
+       <% ENDSCAN %>  
+    </select></td>
+  </tr>
+</table>    
+  <%ENDIF%>  
+  </td>
+ </tr>
+</table> 
+ <br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center"><b><u><font face="Verdana">Internal Office Remarks</font></u></b>
+    <font style="font-family:Verdana;font-size:10pt;color:#0000FF;"><b><a id="BX-show" class="showLink" style="cursor:pointer;" onclick="showHide('BX');return false;">Show Remarks</a></font></b>
+    <b><font style="font-size:17pt;color:#000000;"><%=IIF(!EMPTY(_BX.REMARKS),'&#10003;','')%></font></td>
+ </tr>
+  <tr>
+    <td width="100%"><div id="BX" class="more"><textarea rows="4" name="REMBX" cols="58" tabindex="7"><%=ALLT(_BX.REMARKS)%></textarea>
+	<font style="font-family:Verdana;font-size:9pt;color:#0000FF;"><b><a id="BX-hide" class="hideLink" style="cursor:pointer;" onclick="showHide('BX');return false;">Hide Remarks</a></b></font></div></td>
+ </tr>
+</table> 	
+ <hr color="#000000" size="3">
+<% ENDIF %>
+<%IF !EMPTY(_PK.DTE) %>    
+<table border="1" width="100%" align="center" style="border-collapse: collapse;" bordercolor="#808080">
+  <tr>
+    <td align="center" bgcolor="#00574F" height="25"><font style="font-family:Verdana;font-weight:bold;color:#FFF;">Packing</font></td>
+ </tr>
+</table>
+<table border="1" width="100%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#808080">
+  <tr>
+	<td width="100%">
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="5"><b><u><font size="3">Job Parameters</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="23%"><b>Job Date/Time:</b></td>
+    <td width="14%"><input type="text" autocomplete="off" id="Date2" name="DTEPK" size="8" value="<%=_PK.DTE%>" tabindex="5" maxlength="15"></td>
+    <td width="17%" style="border-right: 1px solid #808080;"><input type="text" name="TMEPK" size="8" value="<%=ALLT(_PK.TME)%>" style="cursor:pointer" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~TMEPK','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')"  tabindex="6" maxlength="20"></td>
+    <td width="26%">Job Start Time:</td>
+    <td width="20%"><input type="text" name="STARTTMEPK" size="8" value="<%=_PK.STARTTME%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~STARTTMEPK','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')" maxlength="20" readonly></td>
+ </tr> 
+  <tr>
+    <td width="23%"><b>Confirm Job:</b></td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2"><label class="switch"><input type="checkbox" id="togBtn" name="CONFPK" value="ON" <%=IIF(_PK.CONFIRM,'checked','')%> tabindex="3"><div class="slider round"></div></label></td>
+    <td width="26%">Job Finish Time:</td>
+    <td width="20%"><input type="text" name="ENDTMEPK" size="8" value="<%=_PK.ENDTME%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~ENDTMEPK','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')" maxlength="20" reaonly></td>
+ </tr> 
+  <tr>
+    <td width="23%">Required Workers:</td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2">
+	<select size="1" name="JMENPK" tabindex="10">
+	  <option value="<%=ALLT(STR(_PK.JMEN))%>" selected><%=ALLT(STR(_PK.JMEN))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+		  <option>11</option>
+		  <option>12</option>
+		  <option>13</option>
+		  <option>14</option>
+		  <option>15</option>
+		  <option>16</option>
+		  <option>17</option>
+		  <option>18</option>
+		  <option>19</option>
+		  <option>20</option>		  
+    </select></td>
+    <td width="26%">Workers Pay Hours:</td>
+    <td width="20%"><input type="text" name="HRSPK" style="width:40px;" value="<%=ALLT(STR(_PK.HRS,6,2))%>" tabindex="8" size="20"></td>
+ </tr>
+  <tr>
+    <td width="23%">Required Truck(s):</td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2">
+	<select size="1" name="JTRUCKPK" tabindex="10">
+	  <option value="<%=ALLT(STR(_PK.JTRUCK))%>" selected><%=ALLT(STR(_PK.JTRUCK))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+    </select></td>
+    <td width="25%">&nbsp;</td>
+    <td width="21%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="54%" align="center" style="border-right: 1px solid #808080;" colspan="3"><b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitdelivery(7)" style="cursor:pointer;">Assign Workers</a></font></u></b></td>
+    <td width="46%" align="center" colspan="2"><b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitdelivery(8)" style="cursor:pointer;">Assign Trucks</a></font></u></b></td>
+  </tr>    
+  <tr>
+    <td width="54%" valign="top" style="border-right: 1px solid #808080;" colspan="3">
+    <table border="1" align="center" cellSpacing="0" cellPadding="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="100%">
+      <tr>
+        <td width="59%" height="23" bgcolor="#00574F" align="left">&nbsp;<font color="#FFFFFF"><b>Workers</b></font></td>
+        <td width="21%" height="23" bgcolor="#00574F" align="left">&nbsp;<font color="#FFFFFF"><b>Code</b></font></td>
+     </tr>
+      <%SELECT _MPWPK
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="59%">&nbsp;<%=ALLT(ID)%><%=IIF(EMPTY(NAME),'',' - <b>'+ALLT(NAME)+'</b>')%></td>
+        <td width="21%">&nbsp;<%=ALLT(OPRCODE)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>    
+    </td>
+    <td width="46%" valign="top" colspan="2">
+    <table border="1" align="center" cellSpacing="1" cellPadding="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="95%">
+      <tr>
+        <td width="38%" height="23" bgcolor="#00574F" align="left">&nbsp;<font color="#FFFFFF"><b>Truck</b></font></td>
+        <td width="42%" height="23" bgcolor="#00574F" align="left">&nbsp;<font color="#FFFFFF"><b>Driver</b></font></td>
+     </tr>
+      <%SELECT _TRPK
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="38%">&nbsp;<%=ALLT(TRUCK)%></td>
+        <td width="42%">&nbsp;<%=ALLT(DRIVER)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>    
+    </td>
+  </tr>  
+  </table>	
+  <% IF plAGENT AND !plBLKAGENTS %>
+  <br>  
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%"> 
+  <tr>
+    <td width="100%" colspan="5"><b><font face="Verdana" size="2">Agent:</font></b>
+    <select size="1" name="AGENTIDPK" tabindex="10" class="agent-select" style="width: 450px;">
+	  <option value="<%=pnAGENTIDPK%>" selected><%=pcAGCOMPANYPK%></option> 
+	   <option></option>
+	    <% SELECT _TAGENT 
+	       GO TOP 
+	   	   SCAN %>
+     	 <option value="<%=ALLT(STR(AGENTID))%>"><%=ALLT(AGENT)%>&nbsp;&nbsp;***&nbsp;&nbsp;<%=ALLT(COMPANY)%></option>
+       <% ENDSCAN %>  
+	    </select></td>
+  </tr>
+</table>    
+  <%ENDIF%>  
+  </td>
+ </tr>
+</table> 
+ <br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center"><b><u><font face="Verdana">Internal Office Remarks</font></u></b>
+    <font style="font-family:Verdana;font-size:10pt;color:#0000FF;"><b><a id="PK-show" class="showLink" style="cursor:pointer;" onclick="showHide('PK');return false;">Show Remarks</a></font></b>
+    <b><font style="font-size:17pt;color:#000000;"><%=IIF(!EMPTY(_PK.REMARKS),'&#10003;','')%></font></td>
+ </tr>
+  <tr>
+    <td width="100%"><div id="PK" class="more"><textarea rows="4" name="REMPK" cols="58" tabindex="7"><%=ALLT(_PK.REMARKS)%></textarea>
+	<font style="font-family:Verdana;font-size:9pt;color:#0000FF;"><b><a id="PK-hide" class="hideLink" style="cursor:pointer;" onclick="showHide('PK');return false;">Hide Remarks</a></b></font></div></td>
+ </tr>
+</table>	
+ <hr color="#000000" size="3">
+<% ENDIF %>
+<!---PICK-UP-->
+<table border="0" width="100%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font color="#FF0000"><B><%=pcMSG%></b></font></td>
+ </tr>
+</table> 
+<table border="1" width="100%" align="center" style="border-collapse: collapse;" bordercolor="#808080">
+  <tr>
+    <td align="center" bgcolor="#800000" height="25"><font style="font-family:Verdana;font-weight:bold;color:#FFF;">Pick-Up</font></td>
+ </tr>
+</table>
+<table border="1" width="100%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#808080">
+  <tr>
+	<td width="100%">
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse: collapse;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="5"><b><u><font size="3">Job Parameters</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="23%"><b>Job Date/Time:</b></td>
+    <td width="14%"><input type="text" autocomplete="off" <%IF plBLKMOVEDTE%>READONLY<%ELSE%>id="Date3"<%ENDIF%> name="DTE" size="8" value="<%=_SCHED.DTE%>" tabindex="9" maxlength="15"></td>
+    <td width="17%" style="border-right: 1px solid #808080;"><input type="text" name="TME" size="8" value="<%=ALLT(_SCHED.TME)%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~TME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')"  tabindex="10" maxlength="20"></td>
+    <td width="26%">Workers Pay Hours:</td>
+    <td width="20%"><input type="text" name="HRS" style="width:40px;" value="<%=ALLT(STR(_SCHED.HRS,6,2))%>" tabindex="12" size="20"></td>
+ </tr> 
+  <tr>
+    <td width="23%"><b>Confirm Job:</b></td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2"><label class="switch"><input type="checkbox" id="togBtn" name="CONF" value="ON" <%=IIF(_SCHED.CONFIRM,'checked','')%> tabindex="3"><div class="slider round"></div></label></td>
+    <td width="26%">Travel Days:</td>
+    <td width="20%"><input type="text" style="width:35px;text-align: right;" name="DURATION" size="2" value="<%=ALLT(STR((_SCHED.DROPDTE-_SCHED.DTE)+1))%>" tabindex="5"></td>
+ </tr> 
+  <tr>
+    <td width="23%">Required Workers:</td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2">
+    <select size="1" name="JMENPU" tabindex="10">
+	  <option value="<%=ALLT(STR(_S.JMEN))%>" selected><%=ALLT(STR(_S.JMEN))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+		  <option>11</option>
+		  <option>12</option>
+		  <option>13</option>
+		  <option>14</option>
+		  <option>15</option>
+		  <option>16</option>
+		  <option>17</option>
+		  <option>18</option>
+		  <option>19</option>
+		  <option>20</option>		  
+    </select></td>
+    <td width="26%"><b>Job CF:</b></td>
+    <td width="20%"><input type="text" style="width:55px;text-align: right;" name="TOTALCF" size="5" value="<%=ALLT(STR(_SCHED.TOTALCF))%>" tabindex="6"></td>
+ </tr>
+  <tr>
+    <td width="23%">Required Truck(s):</td>
+    <td width="31%" style="border-right: 1px solid #808080;" colspan="2">
+    <select size="1" name="JTRUCKPU" tabindex="10">
+	  <option value="<%=ALLT(STR(_S.JTRUCK))%>" selected><%=ALLT(STR(_S.JTRUCK))%></option> 
+		  <option></option>
+		  <option>1</option>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option>10</option>
+    </select></td>
+    <td width="25%">Job LBS:</td>
+    <td width="21%"><input type="text" style="width:55px;text-align: right;" name="TOTALLBS" size="5" value="<%=ALLT(STR(_SCHED.TOTALLBS))%>" tabindex="7"></td>
+  </tr>
+  <tr>
+    <td width="54%" align="center" style="border-right: 1px solid #808080;" colspan="3"><b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitdelivery(9)" style="cursor:pointer;">Assign Workers</a></font></u></b></td>
+    <td width="46%" align="center" colspan="2"><b><u><font face="Verdana" size="2" color="#0000FF"><a onclick="submitdelivery(10)" style="cursor:pointer;">Assign Trucks</a></font></u></b></td>
+  </tr>    
+  <tr>
+    <td width="54%" valign="top" style="border-right: 1px solid #808080;" colspan="3">
+    <table border="1" align="center" cellSpacing="0" cellPadding="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="100%">
+      <tr>
+        <td width="54%" height="23" bgcolor="#800000" align="left">&nbsp;<font color="#FFFFFF"><b>Workers</b></font></td>
+        <td width="26%" height="23" bgcolor="#800000" align="left">&nbsp;<font color="#FFFFFF"><b>Code</b></font></td>
+     </tr>
+      <%SELECT _MPWPU
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="54%">&nbsp;<%=ALLT(ID)%><%=IIF(EMPTY(NAME),'',+'&nbsp;<br><b>'+ALLT(NAME)+'</b>')%></td>
+        <td width="26%">&nbsp;<%=ALLT(OPRCODE)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table>
+    </td>
+    <td width="46%" valign="top" colspan="2">
+    <table border="1" align="center" cellSpacing="1" cellPadding="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0" width="95%">
+      <tr>
+        <td width="38%" height="23" bgcolor="#800000" align="left">&nbsp;<font color="#FFFFFF"><b>Truck</b></font></td>
+        <td width="42%" height="23" bgcolor="#800000" align="left">&nbsp;<font color="#FFFFFF"><b>Driver</b></font></td>
+     </tr>
+      <%SELECT _TRPU
+         SCAN %>
+      <tr style="line-height:20px;">
+        <td width="38%">&nbsp;<%=ALLT(TRUCK)%></td>
+        <td width="42%">&nbsp;<%=ALLT(DRIVER)%></td>
+     </tr>
+      <%ENDSCAN %>
+     </table> 
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center" colspan="5"><b><u><font size="3">Internal Office Remarks:</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center" colspan="5"><textarea rows="4" name="REM" cols="70" tabindex="7"><%=ALLT(_SCHED.REMARKS)%></textarea></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center" colspan="5"><b><u><font size="3">Pick-Up Agent</font></u></b></td>
+ </tr>
+  <tr>
+    <td width="586" colspan="5"><b>Agent:
+	<select size="1" name="AGENTIDPU" class="agent-select" style="width: 400px;">
+	        <option value="<%=pnAGENTIDPU%>" selected><%=pcAGCOMPANYPU%></option> 
+		         <option></option>
+		     <% SELECT _TAGENT 
+		         GO TOP 
+		     	 SCAN %>
+		     	 <option value="<%=ALLT(STR(AGENTID))%>"><%=ALLT(AGENT)%>&nbsp;&nbsp;***&nbsp;&nbsp;<%=ALLT(COMPANY)%></option>
+		     <% ENDSCAN %>  
+		    </select>    
+    <input type="checkbox" name="SUBAGENT" value="ON" <%=IIF(_SCHED.SUBAGENT,'checked','')%>> <font style="font-family:Verdana;font-size:9pt;">Job Holder</font></b></td>
+ </tr>       
+  </table>
+  </td>
+ </tr>  
+</table>
+<% IF _EST.STATUS<>'D' %>
+ <br>
+<table border="0" align="center" width="90%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="100%" align="center"><input type="button" CLASS="SUBMIT" name="B7" onclick="submitdelivery(1)" style="background-color: #800000;" value="Submit Pick-Up"></td>    
+ </TR>
+</TABLE>
+<%ENDIF%>
+<% IF plAGENT AND !plBLKAGENTS %>
+  <br>
+<table border="1" width="99%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#808080">
+   <tr>
+	 <td width="100%">
+<table border="0" style="border-collapse: collapse;font-family:Verdana;font-size:10pt;line-height:27px;" bordercolor="#111111" width="588" bordercolor="#111111" cellspacing="1" cellpadding="2">
+  <tr>
+    <td align="center" colspan="4" width="581"><b><u><%=IIF(_SCHED.SUBAGENT=.T.,'Agent','Company')%> Fee</u></b></td>
+ </tr> 
+  <tr>
+    <td width="271" align="center" style="border-right: 1px solid #808080;" colspan="2"><b><u>Job Fee</u></b></td>
+    <td width="304" align="center" colspan="2"><b><u>Accessorial</u></b></td>
+ </tr>
+  <tr>
+    <td width="91"><b>CF Loaded:</b></td>
+    <td width="175" style="border-right: 1px solid #808080;"><input type="text" name="JOBCF" autocomplete="off" style="width:50px;text-align: right;" size="3" value="<%=ALLT(STR(_AG.JOBCF))%>" tabindex="10"></td>
+    <td width="81">Labor $:</td>
+    <td width="219"><input type="text" name="LABOR" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.LABOR=0,'',ALLT(STR(_AG.LABOR,7,2)))%>" tabindex="18" size="3"></td>
+ </tr>
+  <tr>
+    <td width="91">Per CF $:</td>
+    <td width="175" style="border-right: 1px solid #808080;"><input type="text" name="AGPERCF" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.AGPERCF=0,' ',ALLT(STR(_AG.AGPERCF,7,2)))%>" tabindex="18" size="20"></td>
+    <td width="81">Blankets $:</td>
+    <td width="219"><input type="text" name="BLANKETS" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.BLANKETS=0,'',ALLT(STR(_AG.BLANKETS)))%>" tabindex="18" size="3"></td>
+ </tr> 
+  <tr>
+    <td width="91">Flat Fee $:</td>
+    <td width="175" style="border-right: 1px solid #808080;"><input type="text" name="AGFLAT" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.AGFLAT=0,'',ALLT(STR(_AG.AGFLAT)))%>" tabindex="20" size="3"></td>
+    <td width="81">Others $:</td>
+    <td width="219"><input type="text" name="OTHERSAMT" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.OTHERSAMT=0,'',ALLT(STR(_AG.OTHERSAMT,7,2)))%>" tabindex="18" size="3"></td>
+ </tr>
+  <tr>
+    <td width="91">Percent %:</td>
+    <td width="175" style="border-right: 1px solid #808080;"><input type="text" name="AGPERCENT" autocomplete="off" style="width:50px;text-align: right;" value="<%=IIF(_AG.AGPERCENT=0,'',ALLT(STR(_AG.AGPERCENT,7,0)))%>" tabindex="17" size="3"></td>
+    <td width="81">Other:</td>
+    <td width="219"><input type="text" name="OTHERSTXT" autocomplete="off" value="<%=ALLT(_AG.OTHERSTXT)%>" tabindex="18" size="30"></td>
+ </tr>
+   <% IF _EST.STATUS<>'D' AND !EMPTY(_SCHED.AGENT) %>
+  <tr>
+    <td width="581" align="center" colspan="4"><input type="button" CLASS="SUBMIT" name="B7" onclick="submitagent()" style="background-color: #800000;" value="Submit Agent Fee"></td>
+ </tr>
+   <%ENDIF%> 
+</table>	 
+	 </td>    
+  </TR>
+</TABLE>
+<%ENDIF%>    
+    </td>
+    <td width="1%" valign="top">&nbsp;</td>
+    <td width="29%" valign="top">
+<table border="0" width="240" bgcolor="#F7F7E7" cellpadding="0" cellspacing="0" style="border-collapse:collapse;line-height:25px;" bordercolor="#111111">
+  <tr>
+    <td width="88" height="20"><b><font face="Verdana" size="2">Job No:</font></b></td>
+    <td width="135" height="20"><b><font face="Verdana" size="2" color="#083484"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></font></b></td>
+ </tr>
+  <tr>
+    <td width="88" height="20"><b><font face="Verdana" size="2">Job Status:</font></b></td>
+    <td width="135" height="20"><b><font face="Verdana" size="2" color="#083484"><%=pcSTATUSNAME%></font></b></td>
+ </tr>
+  <tr>
+    <td width="88" height="20"><b><font face="Verdana" size="2">Customer:</font></b></td>
+    <td width="135" height="20"><b><font face="Verdana" size="2" color="#083484"><%=ALLT(_EST.SNAME)%></font></b></td>
+ </tr>
+</table>
+ <br>
+<table border="0" width="240" bgcolor="#F7F7E7" cellpadding="0" cellspacing="0" style="border-collapse:collapse;line-height:25px;" bordercolor="#111111">  
+  <tr>
+	<td width="93"><b><font face="Verdana" size="2"><a href="javascript:edittrip()">Assign Trip</a></font></b></td>
+	<td width="130"><input type="text" name="TRIPNO" size="15" value="<%=pcTRIPNO%>" style="color: #000000; border: 1px solid #CCCCCC;" READONLY></td>
+ </tr>
+  <tr>
+    <td width="93"><b><font face="Verdana" size="2">Drop Date:</font></b></td>
+    <td width="130"><input type="text" name="SHDROPDTE" id="Date4" size="8" ALIGN="center" value="<%=pcSHDROPDTE%>" style="text-align: left; color: #008000;" tabindex="1" ></td>
+ </tr>
+<%IF !EMPTY(pcTRIPNO)%>		
+  <tr>
+    <td width="264" align="center" height="15" colspan="2"><b><font face="Verdana" size="2"><a href="wc.dll?mpopr~TripPrint~<%=pcSCR%>~<%=ALLT(STR(pnTRIPID))%>" target="_blank">Print Trip/Carrier Invoice</a></font></b></td>
+ </tr>
+<%ENDIF%>		 		 	
+</table>
+ <BR>
+<table border="0" width="240" BGCOLOR="#F7F7E7" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+   <tr>
+     <td><center><b><font face="Verdana" size="2">Moving From</center><font color="#083484"><%=ALLT(_SCHED.SADD1)%><%=IIF(EMPTY(_SCHED.SADD2),'','<br>'+ALLT(_SCHED.SADD2))%>
+     <%=IIF(EMPTY(_SCHED.SAPT),'','<br>Apt. #: '+ALLT(_SCHED.SAPT))%>&nbsp;<%=IIF(EMPTY(_SCHED.SFLOOR),'',' Floor: '+ALLT(STR(_SCHED.SFLOOR)))%><br>
+     <%=ALLT(PROPER(_SCHED.SCITY))%>,&nbsp;<%=ALLT(_SCHED.SSTATE)%>&nbsp;<%=ALLT(_SCHED.SZIP)%><br><%=ALLT(_SCHED.SPHONE1)%><br><%=ALLT(_SCHED.SPHONE2)%></font></font></b></td>
+  </tr>
+</table>
+ <br> 
+<table border="0" width="240" BGCOLOR="#F7F7E7" cellspacing="0" cellpadding="0" style="border-collapse:collapse;line-height:25px;font-size:9pt;" bordercolor="#111111">
+  <tr>
+    <td width="230" align="center" height="19" colspan="2"><font face="Verdana" size="2"><b>Moving To</b></font></td>
+ </tr>
+  <tr>
+    <td width="70" height="19"><b><font face="Verdana">Name:</font></b></td>
+    <td width="160" height="19"><input type="text" name="RNAME" size="23" value="<%=ALLT(_SCHED.RNAME)%>" style="font-size: 9pt" tabindex="21"></td>
+ </tr>
+  <tr>
+    <td width="70" height="19"><b><font face="Verdana">Address:</font></b></td>
+    <td width="160" height="19"><input type="text" name="RADD1" size="23" value="<%=ALLT(_SCHED.RADD1)%>" style="font-size: 9pt" tabindex="22"></td>
+ </tr>
+  <tr>
+    <td width="70" height="19">&nbsp;</td>
+    <td width="160" height="19"><input type="text" name="RADD2" size="23" value="<%=ALLT(_SCHED.RADD2)%>" style="font-size: 9pt" tabindex="23"></td>
+ </tr>
+  <tr>
+    <td width="70" height="21"><b><font face="Verdana">Floor:</font></b></td>
+    <td width="160" height="21"><input type="text" name="RFLOOR" size="2" style="font-size: 9pt" value="<%=IIF(_SCHED.RFLOOR=0,'',ALLT(STR(_SCHED.RFLOOR)))%>" maxlength="3" tabindex="25">
+	<b><font face="Verdana">Apt.#:</font></b><input type="text" name="RAPT" size="2" value="<%=ALLT(_SCHED.RAPT)%>" style="font-size: 9pt" tabindex="24"></td>
+ </tr>
+  <tr>
+    <td width="70" height="22"><b><font face="Verdana">City/State:</font></b></td>
+    <td width="160" height="22"><input type="text" name="RCITY" size="13" style="font-size: 9pt" value="<%=ALLT(PROPER(_SCHED.RCITY))%>" tabindex="26"> <input type="text" name="RSTATE" size="2" style="font-size: 9pt" value="<%=ALLT(_SCHED.RSTATE)%>" tabindex="27"></td>
+ </tr>
+  <tr>
+    <td width="70" height="19"><b><font face="Verdana"><a href="javascript:locatezip()">Zip Code:</a></font></b></td>
+    <td width="160" height="19"><input type="text" name="RZIP" size="5" style="font-size: 9pt" value="<%=ALLT(_SCHED.RZIP)%>" tabindex="28"></td>
+ </tr>
+  <tr>
+    <td width="70" height="19"><b><font face="Verdana">Phone 1:</font></b></td>
+    <td width="160" height="19"><input type="text" name="RPHONE1" size="23" value="<%=ALLT(_SCHED.RPHONE1)%>" style="font-size: 9pt" tabindex="29"></td>
+ </tr>
+  <tr>
+    <td width="70" height="19"><b><font face="Verdana">Phone 2:</font></b></td>
+    <td width="160" height="19"><input type="text" name="RPHONE2" size="23" value="<%=ALLT(_SCHED.RPHONE2)%>" style="font-size: 9pt" tabindex="30"></td>
+ </tr>
+</table> 
+<br><center><input type="button" CLASS="SUBMIT1" name="btnDir" onclick="Javascript: window.open('/wc.dll?mpopr~prnslipwc~<%=pcSCR%>~<%=pcCODE%>','')" style="background-color: #800000;" value="Print Slip-PU"></center>     
+    </td>
+  </tr>
+</table>
+   </Form>
+</BODY>
+</HTML>

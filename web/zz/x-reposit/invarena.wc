@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Movers Arena</title>
+</head>
+
+<BODY bgColor="#ADBACE" leftMargin=0 topMargin=0 MARGINHEIGHT="0" MARGINWIDTH="0">
+<TABLE width="450" border="0" align="center"><TR><TD bgcolor="#FFFFFF">
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" height="30">
+		  <tr height="30">
+		    <td width="100%" bgcolor="#4A698C" align="center"><b>
+		    <font color="#FFFFFF" face="Verdana">Inventory list for estimate number</font></b></td>
+		  </tr>
+		</table>
+		<BR>
+               			<TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="100%" height="72">
+                          <tr>
+                            <td width="6%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090" height="22">
+                            <b>
+                            <font face="Verdana" size="2">#</font></b></td>
+                            <td width="40%" bgcolor="#FFCF63" align="center" bordercolor="#708090" height="22">
+                            <b>
+                            <font face="Verdana" size="2">Item</font></b></td>
+                            <td width="13%" bgcolor="#FFCF63" align="center" bordercolor="#708090" height="22">
+                            <b>
+                            <font face="Verdana" size="2">Quantity</font></b></td>
+                            <td width="22%" bgcolor="#FFCF63" align="center" bordercolor="#708090" height="22">
+                            <b>
+                            <font face="Verdana" size="2">Cubic Feet</font></b></td>
+                            <td width="19%" bgcolor="#FFCF63" align="center" bordercolor="#708090" height="22">
+                            <b>
+                            <font face="Verdana" size="2">Pounds</font></b></td>
+                          </tr>
+                          <% SELECT _INV 
+                          		SCAN%>
+                          <tr>
+                            <td width="6%" bgcolor="#CECFCE" align="center" bordercolor="#708090" height="19"><b><font face="Verdana" size="2"><%=ALLT(STR(RECNO()))%>.</b>&nbsp;</td>
+                            <td width="40%" bgcolor="#FFFFFF" bordercolor="#708090" height="19"><b><font face="Verdana" size="2"><%=ALLT(ITEM)%></b>&nbsp;</td>
+                            <td width="13%" bgcolor="#FFFFFF" align="center" bordercolor="#708090" height="19"><b><font face="Verdana" size="2"><%=ALLT(STR(QTY))%></b>&nbsp;</td>
+                            <td width="22%" bgcolor="#FFFFFF" align="right" bordercolor="#708090" height="19"><b><font face="Verdana" size="2"><%=ALLT(TRANSFORM(CUFT,"999,999,999"))%></b>&nbsp;</td>
+                            <td width="19%" bgcolor="#FFFFFF" align="right" bordercolor="#708090" height="19"><b><font face="Verdana" size="2"><%=ALLT(TRANSFORM(LBS,"999,999,999"))%></b>&nbsp;</td>
+                          </tr>
+                          <%ENDSCAN%>	
+                          <% SELECT SUM(_INV.QTY) AS QTY, SUM(_INV.CUFT) AS CUFT,SUM(_INV.LBS) AS LBS FROM _INV INTO CURSOR __INV
+                          		SCAN%>
+                          <tr>
+                            <td width="6%" bgcolor="#CCCCCC" align="center" bordercolor="#708090" height="19">&nbsp;</td>
+                            <td width="40%" bordercolor="#708090" bgcolor="#CECFCE" bordercolor="#708090" height="19"><p align="right"><b><font face="Verdana" size="2">Total:&nbsp; </font></b></td>
+                            <td width="13%" bordercolor="#708090" bgcolor="#CECFCE" align="center" bordercolor="#708090" height="19"><font face="Verdana" size="2"><b><%=ALLT(STR(__INV.QTY))%></b></font>&nbsp;</td>
+                            <td width="22%" bordercolor="#708090" bgcolor="#CECFCE" align="right" bordercolor="#708090" height="19"><font face="Verdana" size="2"><b><%=ALLT(TRANSFORM(__INV.CUFT,"999,999,999"))%></b></font>&nbsp;</td>
+                            <td width="19%" bordercolor="#708090" bgcolor="#CECFCE" align="right" bordercolor="#708090" height="19"><font face="Verdana" size="2"><b><%=ALLT(TRANSFORM(__INV.LBS,"999,999,999"))%></b></font>&nbsp;</td>
+                          </tr>
+                          <%ENDSCAN%>	
+                        </table>
+						<br>
+						<table border="0" cellpadding="0" cellspacing="0" width="100%">
+						  <tr>
+						    <td width="100%"><p align="center">
+						    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="btnContinue" onclick="window.close()" style="border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:120" tabindex="9" value="Exit"><br>
+&nbsp;</td>
+						  </tr>
+						</table>
+
+</TD></TR></TABLE>
+	
+<p>
+&nbsp;</p>
+	
+</BODY>
+</HTML>

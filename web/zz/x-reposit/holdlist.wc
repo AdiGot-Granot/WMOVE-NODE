@@ -1,0 +1,178 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Repository Release List</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitlist(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~repositoryholdret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpadmin~adminmenuwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+</head>
+
+<body  BGCOLOR="#4E6699">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%" height="10">
+  <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="zz/images/BotBar8.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#001E4C" height="25" colspan="2">
+    <p align="center"><font color="#FFFFFF" face="Arial Rounded MT Bold">
+    <font size="4"><a href="javascript:window.close()">
+    <img border="0" src="zz/images/x.gif" align="right" width="17" height="18"></a><b>Releasing 
+    New Estimates to Arena</b></font></font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="50" colspan="2">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+<form name="theForm" method="POST">
+<% SELECT _LIST 
+    GO TOP %>
+    <table border="1" width="100%" bgcolor="#C0C0C0" bordercolor="#A0965A" cellspacing="0" cellpadding="2" style="border-collapse: collapse">
+    <tr>
+      <td width="4%" bgcolor="#001E4C" align="center"><p align="center"><b>
+      <font color="#FFFFFF">#</font></b></td>
+      <td width="6%" bgcolor="#001E4C" align="center"><p align="center"><b>
+      <font color="#FFFFFF">Source</font></b></td>
+      <td width="5%" bgcolor="#001E4C" align="center"><b><font color="#FFFFFF">Type</font></b></td>
+      <td width="19%" bgcolor="#001E4C" align="center"><p align="center"><b>
+      <font color="#FFFFFF">Name / Email</font></b></td>
+      <td width="4%" bgcolor="#001E4C" align="center"><font color="#FFFFFF"><b>Email</b></font></td>
+      <td width="18%" bgcolor="#001E4C" align="center"><p align="center"><b>
+      <font color="#FFFFFF">From / To</font></b></td>
+      <td width="8%" bgcolor="#001E4C" align="center"><font color="#FFFFFF"><b>Volume</b></font></td>
+      <td width="15%" bgcolor="#001E4C" align="center"><b><font color="#FFFFFF">Phone</font></b></td>
+      <td width="4%" bgcolor="#001E4C" align="center"><font color="#FFFFFF"><b>Phone</b></font></td>
+      <td width="8%" bgcolor="#001E4C" align="center"><b><font color="#FFFFFF">Open Date</font></b></td>
+      <td width="9%" bgcolor="#001E4C" align="center"><p align="center"><b>
+      <font color="#FFFFFF">Release</font></b></td>
+   </tr>
+<%SCAN %>
+    <tr>
+      <td width="4%" bgcolor=#FFFFCC>
+         <p><b><font size="2" ><%=ALLT(STR(RECNO())) %>.</font></b></td>
+      <td width="6%" bgcolor=#FFFFCC>
+        <p><b><font size="2" ><%=MDSOURCE %><br>
+        <a href="/wc.dll?mpreposit~arenaholdcrg~<%=pcSCR%>~<%=+ALLT(REFNO)%>" target='_blank'><%=ALLT(ORDNO)%></a>
+          &nbsp;</font></b></td>
+      <td width="5%" bgcolor=#FFFFCC>
+        <p><b><font size="2" ><%=TYPE %></font></b></td>
+      <td width="18%" bgcolor=#FFFFCC>
+        <p><b><%=SNAME %><br><%=EMAIL %></font></b></td>
+      <td width="4%" bgcolor=#FFFFCC>
+        <p align="center">
+           <b>
+           <input type="checkbox" name="<%='E'+ALLT(ORDNO) %>" value="ON" checked></b></td>
+      <td width="21%" bgcolor=#FFFFCC>
+        <p><b><font size="2" ><%=FROM %><br><%=TO %></font></b></td>
+      <td width="8%" bgcolor=#FFFFCC><font size="2"><b><a href="/wc.dll?mpreposit~invarena~<%=ALLT(REFNO)%>" TARGET="_blank"><%=ALLT(STR(TOTALCF)) %></a></b> cf</font></td>
+      <td width="14%" bgcolor=#FFFFCC>
+        <p><b><%=ALLT(STELH)%><br><%=ALLT(STELO) %></font></b></td>
+      <td width="3%" bgcolor=#FFFFCC>
+        <p align="center">
+           <b>
+           <input type="checkbox" name="<%='P'+ALLT(ORDNO) %>" value="ON" checked></b></td>
+      <td width="8%" bgcolor=#FFFFCC><p><b><%=TTOC(OPENDTE) %></font></b></td>
+      <td width="9%" bgcolor=#FFFFCC align="center"><p>
+           <b>
+           <input type="checkbox" name="<%='H'+ALLT(ORDNO) %>" value="ON" checked></b></p></td>
+    </tr>
+   <% ENDSCAN %>
+   </table>
+</form>
+</td>
+</tr>
+</table>
+ <br>
+		<!-- Buttons --->
+		<div align="center">
+          <center>
+		<table border="0" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="50%" align="center">
+            <input id="btnSubmit" type="button" CLASS="SUBOFF" name="btnContinue" onclick="submitlist(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Continue"></td>    
+		  </tr>
+		</table>
+		  </center>
+    </div>
+		<!-- Buttons --->
+		<!-- Frame Table --->
+
+
+	<!-- Menu -->
+
+	<br>
+
+	<!-- Command Buttons -->
+
+
+<!-- frame table -->
+    </td>
+</tr>
+<tr>
+    <td width="50%" BGCOLOR="#001E4C" height="15">
+      <font color="#FFFFFF">
+      <b>User:<%=pcUSER%></b></font></td>
+    <td width="50%" BGCOLOR="#001E4C" height="15"></td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="zz/images/botBarep.gif" width="100%" height="14"></td>
+ </tr>
+  </table>
+ </center>
+</div>
+
+
+</body>
+
+</html>

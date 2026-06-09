@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Electronic Signature</title>
+
+<script language="JavaScript" type="text/JavaScript">
+function eSign() {
+		if (checkData()) {
+			document.theForm.action="/wc.dll?mpest~esignret~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcLOGEMAILID%>";
+		    document.theForm.submit();
+		     }
+		}
+
+function checkData(){
+			frm = document.theForm;
+			if (frm.EAGREE.checked==false) {
+					alert("Please select the 'I Confirm' checkbox");
+					frm.EAGREE.focus();
+				}else if (frm.ENAME.value.length < 4 || frm.ENAME.value.indexOf(" ") < 1) {
+					alert("Please type your full name (last & first)");
+					frm.ENAME.focus();
+				}else if (frm.EEMAIL.value.length < 8 || frm.EEMAIL.value.indexOf("@") < 1 || frm.EEMAIL.value.indexOf(".") < 1){
+					alert("Please type your valid email");
+					frm.EEMAIL.focus();
+			}else  	
+				return true;
+} 
+</script>
+
+<STYLE TYPE="text/css">
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 0;        /* Remove left padding */
+    padding-right: 35px;    /* Add right padding instead */
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    text-align: right;      /* Align text to right */
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;               /* Change from left: 0 to right: 0 */
+    left: auto;             /* Add this */
+    height: 20px;
+    width: 20px;
+    border: 1px solid #000;
+    margin-right: 15px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    border-left:0px solid black; border-right:3px solid black; border-top:0px solid black; border-bottom:3px solid black; left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);    
+}
+
+@media (max-width: 768px) {
+    /* Reduce padding and font sizes */
+    .container {
+        padding-right: 15px;
+        font-size: 14px;
+    }
+
+    /* Make tables responsive */
+    table {
+        font-size: 12px;
+        width: 100% !important;
+    }
+    
+    td {
+        padding: 5px !important;
+    }
+}				  	
+</style>
+
+</head>
+<body>
+<br>
+ <form name="theForm" method="post">
+ <input type="hidden" name="ESIGN" value='<%=pcESIGN%>'>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="1400">
+  <tr>
+    <td colspan="3" height="22" width="1400"><font face="Verdana"><b><u>Electronic Signature</u>:</font><br><%=pcESIGN%></b></td>
+ </tr>
+  <tr>
+    <td colspan="3" width="1400"><font size="1">&nbsp;</font></td>
+ </tr> 
+  <tr>
+    <td width="42"></td>
+    <td width="120"><label class="container"><input type="checkbox" name="EAGREE" value="ON"><span class="checkmark"></span></label></td>
+    <td width="1238"><font face="Verdana"><b>I have read, agree, and accept the terms and conditions:</b></font></td>
+ </tr>
+  <tr>
+    <td width="42" height="30" valign="bottom">&nbsp;</td>
+    <td height="30" valign="bottom" width="120"><font face="Verdana"><b>Your Name:</b></font></td>
+    <td height="30" valign="bottom" width="1238"><input type="text" name="ENAME" size="22" maxlength="50"></td>
+ </tr>
+  <tr>
+    <td width="42">&nbsp;</td>
+    <td height="30" valign="bottom" width="120"><font face="Verdana"><b>Your Email:</b></font></td>
+    <td height="30" valign="bottom" width="1238"><input type="text" name="EEMAIL" size="22"></td>
+ </tr>
+  <tr>
+    <td width="42">&nbsp;</td>
+    <td width="120"></td>
+    <td height="40" valign="bottom" width="1238"><input type="button" onclick="eSign()" style="font-family:Verdana;font-weight:bold;color:#000;border:2px solid #000;width:120;height:30;cursor:pointer;" value="Click to Sign" name="B1"></td>
+ </tr>   
+</table>
+ </form>
+<%=pcBODY%>
+</body>
+</html>

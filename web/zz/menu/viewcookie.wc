@@ -1,0 +1,130 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+
+<title>Client/Users Activities</title>
+
+<script type="text/javascript">
+jQuery.noConflict();
+
+   jQuery(document).ready(function($){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+   
+</script>
+
+<script type="text/javascript">
+
+function submitFunction(i) 
+  {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~viewcookie~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+ }
+ 
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #F0F0F0;
+					font-size: 10pt;
+  				  	cursor: pointer;}										
+</style>
+
+</head>
+
+<body><br><center><font face="Verdana" size="3"><a href="wc.dll?mpmainten~maintenwc~<%=pcSCR%>">Exit</a></font></center><br>
+
+<form name="theForm" method="POST">
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="60%">
+  <tr>
+    <td width="50%" height="35" align="center"><font face="Verdana" size="2"><b>Activity Date:</b></font>&nbsp;<input type="text" id="Date1" name="DTE" size="10" value="<%=ldDATE%>">&nbsp;<input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" value="Run Report"></td>
+    <td width="50%" height="35" align="left"><font face="Verdana" size="3"><a href="/wc.dll?mpmainten~viewcookie~<%=pcSCR%>~<%=lcDATE%>">Sort by User</a></font></td>
+ </tr>
+</table>
+</form>
+
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="60%">
+    <tr>
+      <td width="5%" class="TD1">User</td>
+      <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">User Level</td>
+      <td width="13%" class="TD1" style="border-left: 1px solid #A9A9A9;">Activity Date</td>
+      <td width="5%" class="TD1" style="border-left: 1px solid #A9A9A9;">Job No.</td>
+      <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Login</td>
+      <td width="19%" class="TD1" style="border-left: 1px solid #A9A9A9;">Note</td>      
+      <td width="3%" class="TD1" style="border-left: 1px solid #A9A9A9;">Mobile</td>      
+      <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">IP</td>
+   </tr>
+  <% SELECT _ACT  
+     SCAN %>
+     <tr>
+      <td width="5%" class="TD4"><%=ALLT(USER)%></td>
+      <td width="7%" class="TD2"><%=ALLT(CLEVEL)%></td>
+      <td width="13%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=ACTDTE%></td>
+      <td width="5%" class="TD2">&nbsp;<%=ALLT(JOBNO)%></td>
+      <td width="3%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=LOGIN%></td>
+      <td width="19%" class="TD2"><%=ALLT(NOTE)%></td>      
+      <td width="3%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=ALLT(MOBILE)%></td>      
+      <td width="7%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=ALLT(IP)%></td>
+    </tr>
+   <% ENDSCAN %>
+</table> 
+<br><center><font face="Verdana" size="3"><a href="wc.dll?mpmainten~maintenwc~<%=pcSCR%>">Exit</a></font><br>
+<br><b><font face="Verdana" size="3">Users IP List</font></b></center><br>
+
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="30%">
+    <tr>
+      <td width="6%" class="TD1">User</td>
+      <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">User Level</td>
+      <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">IP</td>
+   </tr>
+	<% SELECT _USERS
+   	   SCAN %>
+     <tr>
+      <td width="6%" class="TD4"><%=ALLT(USER)%></td>
+      <td width="7%" class="TD2"><%=ALLT(CLEVEL)%></td>
+      <td width="7%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=ALLT(IP)%></td>
+    </tr>
+   <% ENDSCAN %>
+</table> 
+
+</body>
+</html>

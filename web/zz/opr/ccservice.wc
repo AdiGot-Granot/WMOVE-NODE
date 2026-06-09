@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Credit Card Processing</title>
+<LINK REL="STYLESHEET" TYPE="text/css" href="zz/util/mystyle.css">
+
+
+<style>
+	.TD2		{	color: #000000;
+				  	font-size: 8pt;
+					font-weight: none;
+  				  	font-family: Verdana;
+				  	text-align: left;
+				  	border: 1px solid #708090}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: #CC0000}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+  <tr>
+    <td width="95%" BGCOLOR="#008000" align="center" height="30"><b><font face="Verdana" size="2" color="#FFFFFF">Online Credit Card Processing</font></b></td>
+    <td width="5%" BGCOLOR="#008000" align="center" height="30"><a href="javascript:window.close()">
+    <img border="0" src="/zz/images/x.gif" align="right"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" colspan="2">	
+ <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="69%" valign="top" align="center"><br>
+<table border="1" width="469" cellspacing="0" align="center">
+  <tr>
+	<td width="463" valign="top" class="TD2"><b><u><font size="2" color="#CC0000">Credit Card Processing Integration</font></u><br><br>
+    Credit card processing is an easy and secured way to charge your customer's credit card. Payments go directly to the bank account you setup with your Merchant 
+    provider.<br><br><font color="#CC0000" size="2"><u>How does it work?</font></u><br><br>First, check with your Merchant provider if you can process credit cards 
+    through the following integrated credit card processing Gateways: Authorize.net and/or Fidelity Payment Systems.<br>
+    Second, setup the Merchant Services page with the required credentials: API Log and Transaction Key.<br><br>
+    <u><font size="2" color="#CC0000">How to start?</font></u><br><br>First, you need to setup a Merchant account. Contact the above credit card 
+    processing Gateways. These are the ones integrated in the Moving Software.</b></td>
+  </tr>
+</table>
+  <br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="80%" align="center">
+  <tr>
+    <td width="50%" align="center"><a href="javascript:window.close()"><font face="Verdana" size="2"><b>Close this Page</b></font></a></td>
+ </tr>
+</table>
+ <td width="31%" valign="top" align="center"><br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" BGCOLOR="#F5F5F5">
+  <tr>
+    <td width="100%" align="center"><b><font size="2" face="Verdana" color="#0000FF">Secured Socket Layer (SSL)</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font size="2" face="Verdana" color="#0000FF">Merchant Account</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><a target="_blank" href="http://paynetsystems.com"><img src="/zz/images/paynet.gif" border="0" width="182" height="73"></a></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font size="2" face="Verdana" color="#0000FF">Payments Gateway</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><a target="_blank" href="http://www.authorize.net"><img src="/zz/images/authorizenet.gif" border="0" width="169" height="67"></a></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center">&nbsp;</td>
+ </tr> 
+  <tr>
+    <td width="100%" align="center"><a target="_blank" href="http://www.fidelitypayment.com">
+    <img src="/zz/images/fidelity.gif" border="0" width="190" height="95"></a></td>
+ </tr>    
+</table>
+   &nbsp;</td>
+   </tr>
+ </table>
+    </td>
+  </tr>
+</table>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" colspan="2" height="19">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Estimates in Process</title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+ jQuery.noConflict();
+      jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+   });
+
+</script>
+
+<!--DROPDOWN STATE/USER SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN STATE/USER SEARCH-->
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+      $('.state-select').select2({
+          placeholder: 'Select State',
+          allowClear: true
+      });
+  });
+  
+  $(document).ready(function() {
+      $('.user-select').select2({
+          placeholder: 'Select User',
+          allowClear: true
+      });
+  });
+  
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function toggleVisibility(id) {
+   var el = document.getElementById(id);
+
+   if (el.style.visibility=="visible") {
+          el.style.visibility="hidden";
+     }
+     else {
+          el.style.visibility="visible";
+     }
+ }
+
+function submitEstProcess(i) {
+    if (i==1){
+       document.theForm.SUBMIT_1.style.visibility="hidden"; 
+       document.theForm.action="/wc.dll?mv~estprocessret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+	
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="45%">
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/topBar.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#008000" height="20" align="center"><b><font size="4" color="#FFFFFF" face="Verdana">Estimates in Process</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+   <tr>
+     <td width="100%" align="center"><br>
+		<form name="theForm" method="POST">
+<table border="1" align="center" width="95%" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+	<td valign="top">	<!-- Dates-->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;" bordercolor="#111111">
+  <tr>
+	<td width="16%" bgcolor="#008000"><input class="chkon" type="radio" name="TYPEDTE" value="V1" checked><b><font face="Verdana" color="#FFFFFF" size="2">Open Date</font></b></td>
+	<td width="14%" bgcolor="#008000"><input class="chkon" type="radio" name="TYPEDTE" value="V2"><b><font face="Verdana" size="2" color="#FFFFFF">Move Date</font></b></td>
+    <td width="25%">&nbsp;<i><font color="#000080" size="2" face="Verdana">From:</font></i> <input type="text" id="Date1" name="DATE1" size="8" value="<%=DATE()-15%>"></td>
+	<td width="50%"><i><font color="#000080" size="2" face="Verdana">To:</font></i> <input type="text" id="Date2" name="DATE2" size="8" value="<%=DATE()%>"></td>
+  </tr>
+</table>
+   </td>
+ </tr>
+ <tr>
+   <td width="100%"><!-- State-->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="16%" height="30" bgcolor="#008000"><b><font face="Verdana" color="#FFFFFF" size="2">States:</font></b></td>
+    <td width="19%" height="30" align="right"><i><font color="#000080" size="2" face="Verdana">From:</font></i>&nbsp;</td>
+    <td width="23%" height="30">
+    				<select size="1" name="STATE1" class="state-select" style="width: 170px;">
+			  		<option></option>
+			  		 <% SELECT _STATE
+					 	 SCAN %>
+				   		<option value="<%=ALLT(STATECODE)%>"><%=ALLT(PROPER(STATE))%></option>
+					 <% ENDSCAN %>
+					</select></td>
+   <td width="47%" height="3"><i><font color="#000080" size="2" face="Verdana">To:</font></i>&nbsp;
+   				<select size="1" name="STATE2" class="state-select" style="width: 170px;">
+				   	<option></option>
+				        <% SELECT _STATE
+					 	 SCAN %>
+				   		<option value="<%=ALLT(STATECODE)%>"><%=ALLT(PROPER(STATE))%></option>
+					 <% ENDSCAN %>
+					</select></td>
+ </tr>
+</table>
+   </td>
+  </tr>		
+   <tr>
+     <td width="100%"><!-- Dept & Rep-->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	 <% IF plDEPT %>
+	 <td width="16%" height="20" bgcolor="#008000"><b><font face="Verdana" color="#FFFFFF" size="2">Department: </font></b></td>
+	 <td width="11%" height="20"><select size="1" name="DEPT">
+			  		<option selected>ALL</option>
+				  		 <%	SELECT _DEPARTMENT
+					 	 SCAN %>
+				   		<option><%=ALLT(DEPT)%></option>
+					 <% ENDSCAN %>
+					</select></td>
+	<% ENDIF %>
+	<% IF pnLEVEL=2 OR pnLEVEL > 3 %>
+	<td width="6%" height="20" bgcolor="#008000"><b><font face="Verdana" size="2" color="#FFFFFF">Users:</font></b></td>
+	<td width="19%" height="20">
+				<select size="1" name="USER" class="user-select" style="width: 140px;">
+			  		<option selected></option>
+			  		 <%	SELECT _USERS
+					 	 SCAN %>
+				   		<option><%=ALLT(USER)%></option>
+						 <% ENDSCAN %>
+					</select></td>
+	<% ENDIF %>
+	<%IF pnCOLEVEL > 2 %>
+	<td width="8%" height="20" bgcolor="#008000"><b><font face="Verdana" size="2" color="#FFFFFF">Priority:</font></b></td>
+	<td width="10%" height="20">
+			     <select size="1" name="FUSTATUS">
+			        <option value="10">ALL</option>
+			  		<option value="0">0</option>
+			   		<option value="1">1</option>
+			   		<option value="2">2</option>
+			   		<option value="3">3</option>
+			   		<option value="4">4</option>
+			   		<option value="5">5</option>
+			   		<option value="6">6</option>
+			   		<option value="7">7</option>
+			   		<option value="8">8</option>
+			   		<option value="9">Pool</option>
+					</select></td>
+	<% ENDIF %>
+	<% IF pnLEVEL=2 OR pnLEVEL > 3  %>
+	<td width="10%" height="20" bgcolor="#008000"><b><font face="Verdana" color="#FFFFFF" size="2">Duplicate:</font></b></td>
+	<td width="5%" height="20"><input type="checkbox" name="DUPEMAIL" value="ON" tabindex="2"></td>
+	<%ENDIF%>   
+	<td width="5%" height="20" bgcolor="#008000"><b><font face="Verdana" color="#FFFFFF" size="2">VIP:</font></b></td>
+	<td width="53%" height="20"><input type="checkbox" name="FUVIP" value="ON" tabindex="2"></td>
+  </tr>
+</table>
+   </td>
+  </tr>
+</table>
+<br>
+<table border="1" align="center" width="95%" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td valign="top" width="45%">
+<table border="0" width="100%" align="center" cellspacing="0" cellpadding="3" style="border-collapse: collapse;line-height:25px;">
+  <tr>
+    <td width="100%" height="17" bgcolor="#008000" colspan="3" align="center" ><b><font face="Verdana" color="#FFFFFF" size="2">Status of Estimate</font></b></td>
+ </tr>
+ <%IF pnCOLEVEL>3 AND (pnLEVEL=2 OR pnLEVEL>3) %>
+  <tr>
+    <td width="5%" height="20"><input class="chkon" type="radio" name="STATUS" value="V15" checked></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">Today`s Recent 50 Estimates Priority 0</font></td>
+ </tr>
+ <%ENDIF%>
+ <%IF pnLEVEL<>3 %>	  	  	   	  
+  <tr>
+    <td width="5%" height="20"><input class="chkon" type="radio" name="STATUS" value="V1"></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">All Estimates</font>
+    <%IF pnLEVEL = 2 OR pnLEVEL = 5 %> 
+    <input type="checkbox" id="dlallest" name="DLXLS" value="ON" style="visibility:hidden" />
+    <img id="chkdlallest" onclick="toggleVisibility('dlallest');" src="zz/images/dl.gif" width="67" height="18" style="cursor:pointer;"/>
+    <%ENDIF%>			    
+    </td>
+ </tr>
+ <%ENDIF%>	  
+ <%IF pnLEVEL=2 OR pnLEVEL>3 %>		 
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V2" ></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">Delete Old Estimates by Move Date & User</font></td>
+ </tr>
+ <%ENDIF %>		 
+ <%IF pnCOLEVEL > 3 %>		 
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V4"></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">Visual Estimates by Visual Date</font></td>
+ </tr>			  
+ <%ENDIF %>		 
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V9"></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">Follow-Up Estimates</font>
+    <%IF pnLEVEL = 2 OR pnLEVEL = 5 OR ((pcCUSTNO='USMOVE' OR pcCUSTNO='MOVINGACC') AND pnLEVEL=4) OR pcCUSTNO='MARKETWR' %> 
+    <input type="checkbox" id="dlfu" name="DLXLS" value="ON" style="visibility:hidden" />
+    <img id="chkdlfu" onclick="toggleVisibility('dlfu');" src="zz/images/dl.gif" width="67" height="18" style="cursor:pointer;"/>
+   <%ENDIF%></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V10"></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">Estimates with Esign by Sent Date</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V5" <%IF pnLEVEL=3%>checked<%ELSE%><%ENDIF%>></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">Booked Jobs</font>
+   <%IF pnLEVEL = 2 OR pnLEVEL = 5 OR (pcCUSTNO='USMOVE' AND pnLEVEL=4) %> 
+    <input type="checkbox" id="dlbook" name="DLXLS" value="ON" style="visibility:hidden" />
+    <img id="chkdlbook" onclick="toggleVisibility('dlbook');" src="zz/images/dl.gif" width="67" height="18" style="cursor:pointer;"/>
+   <%ENDIF%></td>
+ </tr>
+  <%IF pnCOLEVEL > 2 %>			  
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V11"></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">Booked Jobs - Req. Delivery</font></td>
+ </tr>
+  <%ENDIF%>
+  <%IF plQA %>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V13"></td>
+    <td width="71%" height="20" colspan="2"><font face="Arial" size="2">Assign Booked Jobs to QA</font></td>
+ </tr>			  
+  <%ENDIF%>			  			  
+  <%IF pnLEVEL= 2 OR pnLEVEL > 3 %>		  
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V7"></td>
+    <td width="63%" height="20"><font face="Arial" size="2">Reassign Estimates</font></td>
+    <td width="32%" height="20"><B><font color="#993366">(&nbsp;<%=pcREASSIGN%>&nbsp;)</FONT></B></td>
+ </tr>
+  <%ENDIF%>
+  <% IF 1=2 %> 
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="STATUS" value="V8"></td>
+    <td width="63%" height="20"><font face="Arial" size="2">View New Estimates</font></td>
+    <td width="32%" height="20"><B><font color="#993366">(&nbsp;<%=pcNEW1%>&nbsp;)</font></B></td>
+ </tr>
+  <%ENDIF%>
+</table>    
+    </td>
+    <td valign="top" width="27%">
+<table border="0" width="100%" align="center" cellspacing="0" cellpadding="3" style="border-collapse: collapse;line-height:25px;">
+  <tr>
+    <td width="100%" height="17" bgcolor="#008000" colspan="2" align="center"><b><font face="Verdana" color="#FFFFFF" size="2">&nbsp;Sort By</font></b></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input class="chkon" type="radio" name="SORT" value="V1" checked></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Job No.</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="SORT" value="V2"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Move Date</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="SORT" value="V3"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Volume</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="SORT" value="V4"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Estimate Amount</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="SORT" value="V5"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Follow-Up Date</font></td>
+ </tr>
+  <%IF pnCOLEVEL > 2 %>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="SORT" value="V6"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Priority</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="SORT" value="V7"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Req. Delivery Date</font></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="SORT" value="V8"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Top to Bottom</font></td>
+ </tr>			 			  			  			 
+</table>    
+    </td>
+    <td valign="top" width="28%">
+<table border="0" width="100%" align="center" cellspacing="0" cellpadding="3" style="border-collapse: collapse;line-height:25px;">
+  <tr>
+    <td width="100%" height="17" bgcolor="#008000" colspan="2" align="center"><b><font face="Verdana" color="#FFFFFF" size="2">Type of Move</font></b></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input class="chkon" type="radio" name="TYPE" value="V1" checked></td>
+    <td width="95%" height="20"><font face="Arial" size="2">All</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="TYPE" value="V2"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Local</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="TYPE" value="V3"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Long Distance</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="TYPE" value="V5"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">International</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="TYPE" value="V4"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Auto Transport</font></td>
+ </tr>
+  <tr>
+    <td width="100%" height="17" bgcolor="#008000" colspan="2" align="center"><b><font face="Verdana" color="#FFFFFF" size="2">Type of Location</font></b></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="RC" value="V1" checked></td>
+    <td width="95%" height="20"><font face="Arial" size="2">All</font></td>
+ </tr>			  
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="RC" value="V2"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Residential</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="RC" value="V3"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Commercial</font></td>
+ </tr>
+  <tr>
+    <td width="5%" height="20"><input type="radio" name="RC" value="V4"></td>
+    <td width="95%" height="20"><font face="Arial" size="2">Military</font></td>
+ </tr>
+</table>    
+    </td>
+  </tr>
+</table>
+ <br>
+<table border="0" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="25%" align="center"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT_1" onclick="submitEstProcess(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Submit"></td>    
+    <td width="24%" align="center"><input type="button" CLASS="SUBOFF" name="EXIT" onclick="window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>    
+ </tr>
+</table>
+</form>
+  <br></td>
+ </tr>
+</table>
+<!-- frame table -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="15">&nbsp;<font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUser%></font></td>
+  </tr>
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+  </center>
+</div>
+
+</body>
+</html>

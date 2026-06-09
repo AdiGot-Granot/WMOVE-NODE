@@ -1,0 +1,171 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Full Value Protection</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~fullvalueret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~fullvaluedeductret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }                    
+	}
+
+function multiply(){
+    a=Number(document.calculator.number1.value);
+    b=Number(document.calculator.number2.value);
+    c=Number(document.calculator.number3.value);    
+    d=a/b*c;
+    document.calculator.total.value=d;
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.CALCOFF	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					height: 25;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.CALCON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					height: 25;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}  				  	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" width="800" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="25"><b><font face="Verdana" color="#FFFFFF">Full Value Protection</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+<form name="calculator">    
+<table border="0" align="center" width="95%" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" cellpadding="1" cellspacing="1">
+   <tr>
+    <td>
+<table border="0" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" colspan="5"><b><font face="Verdana" size="2">Valuation Charge Rate Calculator:</font></b></td>
+  </tr>
+  <tr>
+    <td width="28%"><font face="Verdana" size="2">Valuation Charge:</font> <input type="text" name="number1" autocomplete="off" onclick='this.value=""' size="4"></td>
+    <td width="33%"><font face="Verdana" size="2">Amount of Liability:</font> <input type="text" name="number2" autocomplete="off" onclick='this.value=""' size="4"></td>
+    <td width="10%"><input type="text" name="number3" size="4" value="1000" readonly></td>
+    <td width="13%"><input type="button" CLASS="CALCOFF" onmouseover="javasctript: this.className='CALCON'" onmouseout="javasctript: this.className='CALCOFF'" onclick="javascript:multiply();" value="Calculate"></td>
+    <td width="16%"><font face="Verdana" size="2">Rate:</font> <input type="text" name="total" size="4"></td>
+ </tr>
+</table>
+    </td>
+  </tr>
+</table>
+</form>
+
+  <FORM NAME="theForm" method="post">
+  <% SELECT _DEDUCT 
+  GO TOP %>
+<table border="0" align="center" width="95%" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" cellspacing="1" cellpadding="2">
+   <tr>
+    <td height="18" width="25%"><font size="2" face="Verdana">Deductible Levels:</font></td>
+    <td height="18" width="10%">$<input type="text" name="D0TXT" size="2" value="<%=ALLT(D0TXT)%>" maxlength="5"></td>
+    <td height="18" width="10%">$<input type="text" name="D1TXT" size="2" value="<%=ALLT(D1TXT)%>" maxlength="5"></td>
+    <td height="18" width="10%">$<input type="text" name="D2TXT" size="2" value="<%=ALLT(D2TXT)%>" maxlength="5"></td>
+    <td height="18" width="10%">$<input type="text" name="D3TXT" size="2" value="<%=ALLT(D3TXT)%>" maxlength="5"></td>
+    <td height="18" width="10%">$<input type="text" name="D4TXT" size="2" value="<%=ALLT(D4TXT)%>"></td>
+    <td height="18" width="10%">$<input type="text" name="D5TXT" size="2" value="<%=ALLT(D5TXT)%>" maxlength="5"></td>
+    <td height="18" width="15%" align="center"><input type="button" CLASS="SUBOFF" Style="width:70;height:25;" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" name="B36" onclick="submitFunction(2)" value="Save"></td>
+  </tr>
+</table>
+<br>
+<table border="0" width="95%" cellpadding="2" cellspacing="1" ALIGN="center" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111">
+  <tr>
+    <td width="22%" bgcolor="#FFCC43" align="center" rowspan="2"><b><font face="Verdana" size="2">Amount of Liability<br>(Shipment Value)</font></b></td>
+    <td width="78%" colspan="6" bgcolor="#D5E4EB" align="center"><b><font face="Verdana" size="2">Deductible Levels</font></b></td>
+  </tr>
+  <tr>
+    <td width="9%" bgcolor="#D5E4EB" align="center"><b><font face="Verdana" size="2">$<%=D0TXT%></font></b></td>
+    <td width="10%" bgcolor="#D5E4EB" align="center"><b><font face="Verdana" size="2">$<%=D1TXT%></font></b></td>
+    <td width="10%" bgcolor="#D5E4EB" align="center"><b><font face="Verdana" size="2">$<%=D2TXT%></font></b></td>
+    <td width="9%" bgcolor="#D5E4EB" align="center"><b><font face="Verdana" size="2">$<%=D3TXT%></font></b></td>
+    <td width="9%" bgcolor="#D5E4EB" align="center"><b><font face="Verdana" size="2">$<%=D4TXT%></font></b></td>
+    <td width="9%" bgcolor="#D5E4EB" align="center"><b><font face="Verdana" size="2">$<%=D5TXT%></font></b></td>
+  </tr>
+  <% SELECT _FV
+     SCAN %>
+  <tr>
+    <td width="20%" bgcolor="#FFCC43"><font face="Verdana" size="2">Up To <b><%=TRANSFORM(FVAMT,'$$$,$$$,999')%></b></font></td>
+    <td width="9%" align="center"><input type="text" style="text-align:right;" name="<%=ALLT(P0)%>" size="3" value="<%=IIF(V0='0','',ALLT(V0))%>" maxlength="5" title="Valuation charge=<%=ALLT(V0)%>*<%=ALLT(STR(FVAMT/1000))%>=<%=ALLT(STR(VAL(V0)*FVAMT/1000,9,2))%>"></td>
+    <td width="10%" align="center"><input type="text" style="text-align:right;" name="<%=ALLT(P1)%>" size="3" value="<%=IIF(V1='0','',ALLT(V1))%>" maxlength="5"></td>
+    <td width="10%" align="center"><input type="text" style="text-align:right;" name="<%=ALLT(P2)%>" size="3" value="<%=IIF(V2='0','',ALLT(V2))%>" maxlength="5"></td>
+    <td width="9%" align="center"><input type="text" style="text-align:right;" name="<%=ALLT(P3)%>" size="3" value="<%=IIF(V3='0','',ALLT(V3))%>" maxlength="5"></td>
+    <td width="9%" align="center"><input type="text" style="text-align:right;" name="<%=ALLT(P4)%>" size="3" value="<%=IIF(V4='0','',ALLT(V4))%>" maxlength="5"></td>
+    <td width="9%" align="center"><input type="text" style="text-align:right;" name="<%=ALLT(P5)%>" size="3" value="<%=IIF(V5='0','',ALLT(V5))%>" maxlength="5"></td>
+  </tr>
+ <%ENDSCAN%> 
+</table>
+  <br>
+<table border="0" align="center" width="65%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B4" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B6" onclick="submitFunction(3)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>    
+</table>   
+  </form>
+ <br>
+<table border="0" align="center" width="95%" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" cellspacing="1" cellpadding="2">
+   <tr>
+    <td height="18" width="74%"><font face="Verdana" size="2"><u>Valuation Charge Formula</u>:<br>Valuation Charge=Rate x Amount of Liability / 1000<br><br>
+	<u>Example:</u><br>Valuation Charge: $1,200<br>Amount of Liability: $90,000.00<br>
+	<b>Valuation Charge</b> Calculation: 1200 / 90000 * 1000 = $13.33<br><b>Rate</b>: $13.33<br><br>
+	More information is available here: 
+	<a href="https://docs.google.com/document/d/1zK2eYdX7Csk7PO5exaCMHt5QHoP1iiLLt5Q6TBh6WPQ/edit?pli=1#" target="_blank">Full Value Protection</a></font></td>
+  </tr>
+</table>    
+</td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+  </table> 
+</body>
+</html>

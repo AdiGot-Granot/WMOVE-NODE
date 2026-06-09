@@ -1,0 +1,36 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Text Link</title>
+
+<script language="JavaScript">
+
+function CopyMe(TextToCopy) {
+  var TempText = document.createElement("input");
+  TempText.value = TextToCopy;
+  document.body.appendChild(TempText);
+  TempText.select();
+  
+  document.execCommand("copy");
+  document.body.removeChild(TempText);
+  
+  alert("Text link was cpoied");
+}
+</script>
+
+</head>
+
+<body>
+<br>
+  <table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="72%">
+    <tr>
+      <td width="100%" align="center"><font style="font-family:Verdana;font-size:11pt;">Link to Text: <b>Link expires after three days!</b></font></td>
+    </tr>
+  </table>
+<br><center><br><input type="button" style="font-size:9pt;font-weight:bold;font-family:Arial;width:115;height:25;cursor:pointer;" onclick="CopyMe('<%=pcTEXTLINK%>')" value="Copy Text Link">
+<br><br><br><b><a href="javascript:window.close()"><font face="Verdana" size="2">Close Window</font></a></b></center>
+
+</body>
+
+</html>

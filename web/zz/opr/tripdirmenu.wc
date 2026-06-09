@@ -1,0 +1,145 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Salesman Report</title>
+<script language="JavaScript" src="/zz/util/calendar.js"></script>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction() {
+       document.theForm.action="/wc.dll?mpopr~tripdirret~<%=pcSCR%>";
+       document.theForm.submit();
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="50%" height="200">
+  <tr>
+    <td width="100%" height="14">
+    <IMG SRC="../reports/zz/images/topBar.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#008000" height="20" align="center"><a href="javascript:window.close()">
+    <img border="0" src="../reports/zz/images/x.gif" align="right" width="17" height="18"></a>
+    <b><font size="4" color="#FFFFFF" face="Verdana">Trip Direction</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="200">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+     <tr>
+    <td width="100%" align="center">
+    <form name="theForm" method="POST">
+
+<!----top table --->
+<table border="2" width="85%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#6B8AAD" cellpadding="0">
+  <tr>
+   <td valign="top">
+		    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+              <tr>
+                <td width="22%"><b><font face="Verdana" size="1">Select:</font></b></td>
+                <td width="33%"><b><font face="Verdana" size="1">Move Date</font></b><input type="radio" name="CODE" value="pu" checked></td>
+                <td width="45%"><font face="Verdana" size="1"><b>Delivery Date:</b></font><input type="radio" name="CODE" value="d1"></td>
+              </tr>
+             </table>
+<table border="0" width="100%" cellpadding="0" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" height="23">
+  <tr>
+    <td width="53%"><b><font face="Verdana" size="2">From Date:&nbsp;&nbsp; </font></b>
+    <input type="text" name="DATE1" size="10" value="<%=DATE()%>">&nbsp;<a href="javascript:cal1.popup();"><img src="/zz/images/cal.gif" border="0" width="16" height="16"></a></td>
+    <td width="52%"><b><font face="Verdana" size="2">To Date:</font></b>
+    <input type="text" name="DATE2" size="10" value="<%=DATE()+10%>">&nbsp;<a href="javascript:cal2.popup();"><img src="/zz/images/cal.gif" border="0" width="16" height="16"></a></td>
+ </tr>
+</table>
+ </td></tr>
+		<tr><td width="100%">
+			<table border="0" width="100%" cellpadding="0" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+			  <tr>
+			    <td width="15%"><b><font face="Verdana" size="2">Department:</font></b></td>
+			    <td width="31%"><select size="1" name="DEPT">
+			  		<option selected><%=ALLT(pcDEPT)%></option>
+				  		 <%	SELECT _DEPT
+					 	 SCAN %>
+				   		<option><%=ALLT(DEPT)%></option>
+					 <% ENDSCAN %>
+					</select></td>
+			    <td width="49%">&nbsp;</td>
+			  </tr>
+			</table>
+		    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+              <tr>
+                <td width="22%"><font face="Verdana" size="1"><b>East:</b></font><input class="chkon" type="radio" name="AREA" value="E" checked></td>
+                <td width="24%"><font face="Verdana" size="1"><b>West:</b></font><input type="radio" name="AREA" value="W"></td>
+                <td width="24%"><font face="Verdana" size="1"><b>North:</b></font><input type="radio" name="AREA" value="N"></td>
+                <td width="30%"><font face="Verdana" size="1"><b>South:</b></font><input type="radio" name="AREA" value="S"></td>
+              </tr>
+            </table>
+           </td></tr>
+      </table>
+  <!----end top table --->
+
+<br>
+		<table border="0" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="49%" align="center"><input id="btnSubmit" type="button" name="B3" onclick="submitFunction()" style="width:110; cursor:hand;" value="Submit"></td>    
+		  </tr>
+		</table>
+
+<script language="JavaScript">
+	var cal1 = new calendar2(document.forms['theForm'].elements['DATE1']);
+	cal1.year_scroll = false;
+	cal1.time_comp = false;
+
+	var cal2 = new calendar2(document.forms['theForm'].elements['DATE2']);
+	cal1.year_scroll = false;
+	cal1.time_comp = false;
+
+        </script>		
+	</form>
+	<br>
+    </td>
+  </tr>
+</table>
+<!-- frame table -->
+    </td></tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="15"></td>&nbsp;</tr><tr><td width="100%" height="14"><IMG SRC="../reports/zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+  </center>
+</div>
+</body>
+</html>

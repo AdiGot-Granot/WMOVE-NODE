@@ -1,0 +1,537 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title><%=pcORDNO%></title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+       $("#Date3").datepicker({ numberOfMonths:[1,2] });
+       $("#Date4").datepicker({ numberOfMonths:[1,2] });
+       $("#Date5").datepicker({ numberOfMonths:[1,2] });
+       
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+ function manualcrg(){
+ 	window.open('/wc.dll?mpstg~ManualStgCrgWc~<%=pcSCR%>~<%=pcSTGID%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=800,height=600')
+ }
+
+function stginvupd(){
+ 	window.open('/wc.dll?mpstg~stginvupdwc~<%=pcSCR%>~<%=ALLT(STR(_STG.STGID))%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=750,height=500')
+ }
+
+function vault(){
+ 	window.open('/wc.dll?mpstg~vaultwc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=685,height=600')
+ }
+
+function CHKSTG(){
+		frm = document.theForm;
+		if(frm.STORAGEID[frm.STORAGEID.selectedIndex].text=='') {
+			alert("Please select Storage");
+			frm.STORAGEID.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+
+function submitstg() {
+    if (CHKSTG()) {
+    document.theForm.action="/wc.dll?mpstg~stgret~<%=pcSCR%>~<%=ALLT(STR(_STG.STGID))%>";
+    document.theForm.submit()  
+    }
+  }
+
+function StgIn() {
+	var Message = "Are you sure you want to resend this job back to Storage?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpstg~InOutStg~<%=pcSCR%>~STGIN";
+       document.theForm.submit();
+       }
+	}
+	
+function StgOut() {
+	var Message = "Are you sure you want to send this job out of Storage?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpstg~InOutStg~<%=pcSCR%>~STGOUT";
+       document.theForm.submit();
+       }
+	}
+
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+	.TDTOP1	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #993366;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TDBODY1 	{	text-align: center;
+					color: yellow; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #993366;
+  				  	font-weight: bold;
+ 					border-style: none;}
+	.TDINPUT 	{	background-color: #993366;
+  				  	border-style: none;} 					
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	a:visited  {    color: blue;}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="800" align="center">
+  <tr>
+    <td colspan="4" height="14"><IMG width="800" height="14" src="zz/images/topBaropr.gif"></td>
+  </tr>
+  <tr>
+    <td width="202" BGCOLOR="#BEBE99"><b><font face="Verdana" color="#FFFF00"><%=pcBALANCEX%><%=pcBALSTGX%></font></b></td>
+    <td width="328" BGCOLOR="#BEBE99" align="center" height="22"><b><font face="Verdana" size="4" color="#000080">Storage</font></b></td>
+    <td width="10" BGCOLOR="#BEBE99" height="22"><b><font face="Verdana" color="#FFFF00">&nbsp;<%=IIF(plCLAIMSX=.T.,'CLAIM','')%></font></b></td>
+    <td width="202" BGCOLOR="#BEBE99" align="right" height="22"><b><font face="Verdana" color="#FFFF00"><%=pcCLOSEDX%></font></b></td>
+  </tr>
+  <tr>
+    <td width="800" bgcolor="#FFFFFF" colspan="4">
+	<form name="theForm" method="post"><br>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="73%" valign="top" align="center">
+<table border="1" width="98%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" cellpadding="0">
+  <tr>
+    <td align="center" width="53%" bgcolor="#008000"><font FACE="VERDANA" color="#FFFFFF"><b>Customer Billing Address</b></font></td>
+	<td align="center" width="46%" bgcolor="#008000"><font FACE="VERDANA" color="#FFFFFF"><b>Storage Details</b></font></td>
+ </tr>
+  <tr>
+	<td valign="top">
+<table border="0" width="100%" cellspacing="1" style="border-collapse:collapse;line-height:23px;" bordercolor="#111111">
+  <tr>
+    <td width="83"><font size="2" face="Verdana">Name:</font></td>
+    <td colspan="2" width="213"><input type="text" name="CNAME" size="25" style="background-color: #FFFFCC; font-size:9pt" value="<%=ALLT(_BILLING.CNAME)%>" tabindex="1"></td>
+ </tr>
+  <tr>
+    <td width="83"><font size="2" face="Verdana">Address:</font></td>
+    <td colspan="2" width="213"><input type="text" name="ADD1" size="25" value="<%=ALLT(_BILLING.ADD1)%>" tabindex="2" style="font-size: 9pt"></td>
+ </tr>
+  <tr>
+    <td width="83"></td>
+    <td colspan="2" width="213"><input type="text" name="ADD2" size="25" value="<%=ALLT(_BILLING.ADD2)%>" tabindex="3" style="font-size: 9pt"></td>
+ </tr>
+  <tr>
+    <td width="83"><font style="font-size:9pt;" face="Verdana">APT</FONT></td>
+    <td colspan="2" width="213"><input type="text" name="APT" size="2" value="<%=ALLT(_BILLING.APT)%>" tabindex="6" style="font-size: 9pt"></td>
+ </tr>		  
+  <tr>
+    <td width="83"><font size="2" face="Verdana">City/State:</font></td>
+    <td width="136">
+	<input type="text" name="CITY" size="20" value="<%=ALLT(_BILLING.CITY)%>" tabindex="4" style="font-size: 9pt"></td>
+	<td width="66">
+	<select size="1" name="STATEID">
+		<option selected value="<%=ALLT(STR(_BILLING.STATEID))%>"><%=ALLT(_BILLING.STATE)%></option>
+	 <%	SELECT _STATES
+	   SCAN %>
+		<option value="<%=ALLT(STR(STATEID))%>"><%=ALLT(STATECODE)%></option>
+	 <% ENDSCAN %>
+		</select></td>
+	</td>
+ </tr>
+  <tr>
+    <td width="83"><font size="2" face="Verdana">Zip Code:</font></td>
+    <td colspan="2" width="213"><input type="text" name="ZIP" size="4" style="background-color: #FFFFCC; font-size:9pt" value="<%=ALLT(_BILLING.ZIP)%>" tabindex="6">
+    <font style="font-size:9pt;" face="Verdana">Country:</font><input type="text" name="COUNTRY" size="4" value="<%=ALLT(_BILLING.COUNTRY)%>" tabindex="7" style="font-size: 9pt"></td>
+ </tr>
+  <tr>
+    <td width="83"><font size="2" face="Verdana">Phone:</font></td>
+    <td colspan="2" width="213">
+	<input type="text" name="PHONE" size="25" style="background-color: #FFFFCC; font-size:9pt" value="<%=ALLT(_BILLING.PHONE)%>" tabindex="8"></td>
+ </tr>
+  <tr>	
+    <td width="83"><font size="2" face="Verdana">Fax:</font></td>
+    <td colspan="2" width="213">
+	<input type="text" name="FAX" size="25" value="<%=ALLT(_BILLING.FAX)%>" tabindex="10" style="font-size: 9pt"></td>
+ </tr>
+  <tr>
+    <td width="83"><font face="Verdana" size="2">Email:</font></td>
+    <td colspan="2" width="213">
+	<input type="text" name="EMAIL" size="25" value="<%=ALLT(_BILLING.EMAIL)%>" tabindex="11" style="background-color: #FFFFCC; font-size:9pt"></td>
+ </tr>
+</table>	
+	</td>
+    <td valign="top">
+<table border="0" width="100%" cellspacing="1" style="border-collapse:collapse;line-height:22px;" bordercolor="#111111">
+		  <tr>
+		    <td width="51%" height="19"><font face="Verdana" size="2">Storage Code</font></td>
+		    <td width="46%" height="19">
+          <select size="1" name="STORAGEID" tabindex="6">
+		  <option selected value="<%=pcSTORAGEID%>"><%=pcSTGNO%></option>
+			<option></option>
+		  	<% SELECT  _STORAGE
+				 	 SCAN %>
+			   	<option value="<%=ALLT(STR(STORAGEID))%>"><%=ALLT(STGNO)%></option>
+				 <% ENDSCAN %>
+		  </select></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><font face="Verdana" size="2">Date in:</font></td>
+		    <td width="46%" height="19"><input type="text" autocomplete="off" id="Date1" name="CINDTE" style="width: 90px; max-width: 100%;" size="20" value="<%=ALLT(_STG.CINDTE)%>"></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="20"><font face="Verdana" size="2">Storage in Transit</font></td>
+		    <td width="46%" height="20"><input type="checkbox" name="SIT" value="ON" <%=IIF(_STG.SIT,'checked','')%>></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><font face="Verdana" size="2">Next Bill Date</font></td>
+		    <td width="46%" height="19"><input type="text" autocomplete="off" id="Date2" name="CBILLDTE" style="width: 90px; max-width: 100%;" size="20" value="<%=ALLT(_STG.CBILLDTE)%>"></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><b><font face="Verdana" size="2">Monthly Fee</b></font></td>
+		    <td width="46%" height="19"><input type="text" name="MONTHFEE" size="10" value="<%=ALLT(STR(_STG.MONTHFEE,8,2))%>"></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><font size="2" face="Verdana">Total <%=IIF(plCALCCF,'CF','Lbs')%></font></td>
+		    <td width="46%" height="19"><input type="text" name="VOLUME" size="10" value="<%=pcVOLUME%>"></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="16"><font face="Verdana" size="2">Total <%=IIF(plCALCCF,'Lbs','CF')%></font></td>
+		    <td width="46%" height="16"><font face="Verdana" size="2"><%=IIF(plCALCCF,ALLT(STR(_STG.TOTALLBS)),ALLT(STR(_STG.TOTALCF)))%></FONT></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><font face="Verdana" size="2">Crates/Vaults</font></td>
+		    <td width="46%" height="19"><input type="text" name="CRATES" size="5" value="<%=ALLT(STR(_STG.CRATES))%>"></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><font face="Verdana" size="2">Moving Pads</b></font></td>
+		    <td width="46%" height="19"><input type="text" name="PADS" size="5" value="<%=ALLT(STR(_STG.PADS))%>" maxlength="3"></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><font face="Verdana" size="2">Oversize Items</b></font></td>
+		    <td width="46%" height="19"><input type="text" name="XLITEMS" size="5" value="<%=ALLT(STR(_STG.XLITEMS))%>" maxlength="3"></td>
+		  </tr>		  
+		  <tr>
+		    <td width="56%" height="19" colspan="2"><font face="Verdana" size="2">Delivery Out of Storage</font></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><font face="Verdana" size="2">Date Out 1</font></td>
+		    <td width="46%" height="19"><input type="text" autocomplete="off" id="Date3" name="CDLVDTE1" style="width: 90px; max-width: 100%;" size="20" value="<%=IIF(EMPTY(_STG.CDLVDTE1),'',ALLT(_STG.CDLVDTE1))%>"></td>
+		  </tr>
+		  <tr>
+		    <td width="51%" height="19"><font face="Verdana" size="2">Date Out 2</font></td>
+		    <td width="46%" height="19"><input type="text" autocomplete="off" id="Date4" name="CDLVDTE2" style="width: 90px; max-width: 100%;" size="20" value="<%=IIF(EMPTY(_STG.CDLVDTE2),'',ALLT(_STG.CDLVDTE2))%>"></td>
+		  </tr>		  		  		  		  
+</table>    
+    </td>
+	 </tr>
+</table>
+<table border="0" width="80%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+ <tr>
+   <td align="center" height="40" width="40%"><%IF _EST.STATUS<>'D'%><input type="button" CLASS="SUBOFF" name="B3" onclick="submitstg()" style="background-color: #7B96B5;font-weight:bold;color:#FFF;" value="Submit"><%ENDIF%></td>
+   <td align="center" height="40" width="40%"><%IF _EST.STATUS<>'D' %><input type="button" CLASS="SUBOFF" name="B3" onclick="manualcrg()" style="background-color: #31557B;font-weight: bold;color:#FFFFFF" value="Manual Invoice"><%ENDIF%></td>
+  </tr>
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%"><b><font style="font-family:Verdana;font-size:10pt;color:#000;">Crates/Vaults List:</font></b> <input type="text" name="CRATESMEMO" value="<%=ALLT(_STG.CRATESMEMO)%>" tabindex="20" size="50"></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr>
+  <tr>
+    <td width="100%"><b><font style="font-family:Verdana;font-size:11pt;color:#000;">Additional Invoice Remarks</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%">
+    <textarea style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #000000;margin-bottom:8px;width:98%;" name="NOTES" rows="3" cols="68"><%=_STG.NOTES%></textarea></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><font size="1">&nbsp;</font></td>
+ </tr> 
+  <tr>
+    <td width="100%"><b><font style="font-family:Verdana;font-size:11pt;color:#000;">Internal Office Remarks</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea style="border-radius:6px;border-style: solid;border-width: 1px;border-color: #000000;margin-bottom:8px;width:98%;" name="REMARKSX" rows="4" cols="68"></textarea>
+    <% SELECT _REPNOTES
+  	   IF RECCOUNT() > 0 %>
+   <table border="0" cellpadding="1" cellspacing="1" style="border-radius:6px;border: 1px solid #000000;width:98%;"> 
+       <% SCAN %>
+   <tr>
+      <td width="29%" style="border-bottom: 1px solid #808080;" valign="top" bgcolor="#F5F5F5"><font style="font-family:Arial;font-size:10pt;"><%=DATE%><br><%=USER%></font>&nbsp;</td>
+      <td width="71%" style="border-left: 1px solid #C0C0C0;border-bottom: 1px solid #808080;"><font style="font-family:Arial;font-size:10pt;"><%=ALLT(NOTES)%></font>&nbsp;</td>
+   </tr>
+    <% ENDSCAN %>
+  </table>
+    <center><a href="wc.dll?mpcharge~ViewRepNotes~<%=pcSCR%>~~2"><font face="verdana" size="2"><b>View Previous Remarks</b></font></a></center>
+    <%ENDIF%>    
+    </td>   
+ </tr>   
+ </table>   
+    </td>
+    <td width="27%" valign="top" align="center">
+<table border="0" width="210" cellspacing="0">
+  <tr>
+    <td CLASS="TDTOP1" width="78">Job No.</td>
+    <td CLASS="TDTOP1" width="96">Move Date</td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="78"><%=ALLT(_EST.DEPT)%><%=ALLT(_EST.ORDNO)%>&nbsp;</td>
+    <td CLASS="TDBODY1" width="96"><%=pcPUDTE%></td>
+ </tr>		
+</table>
+ <br>
+<table border="0" width="210" cellspacing="0">
+  <tr>
+    <td CLASS="TDTOP1" width="78">Status</td>
+    <td CLASS="TDTOP1" width="96">Move Type</td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="78"><%=ALLT(_EST.JOBSTAT)%></td>
+    <td CLASS="TDBODY1" width="96"><%=ALLT(_EST.JOBTYPE)%></td>
+ </tr>		
+</table>
+ <br>
+<table border="0" width="210" cellspacing="0">
+  <tr>
+    <td CLASS="TDTOP1" width="78">Rep</td>
+    <td CLASS="TDTOP1" width="96">Type</td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="78"><%=ALLT(_EST.REP)%></td>
+    <td CLASS="TDBODY1" width="96"><%=ALLT(_EST.RCTYPE)%></td>
+ </tr>		
+</table>
+<% IF _EST.STATUS='S' %>
+ <br>
+<table border="0" width="210" cellspacing="0">
+  <tr>
+    <td CLASS="TDTOP1" width="206" colspan="2">Follow-Up</td>
+ </tr>
+  <tr>
+    <td CLASS="TDTOP1" width="95"><font color="#FFFF00">Date</font></td>
+    <td CLASS="TDTOP1" width="111"><font color="#FFFF00">Time</font></td>
+ </tr>
+  <tr>
+    <td align="center" width="95"><input type="text" autocomplete="off" id="Date5" name="FUDTE" style="width: 90px; max-width: 100%;" value="<%=IIF(EMPTY(_STG.FUDTE),'',ALLT(DTOC(_STG.FUDTE)))%>" tabindex="26" size="20"></td>
+    <td align="center" width="111"><input type="text" name="FUTME" size="8" value="<%=ALLT(_STG.FUTME)%>" style="cursor:pointer; font-size:10pt" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~FUTME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')"  tabindex="27" maxlength="20"></td>
+ </tr>		
+</table>
+<%ENDIF%>
+<% IF _EST.STATUS<>'D' %>
+  <br>
+<table border="1" width="210" cellspacing="0" bordercolor="#993366" style="border-collapse: collapse" cellpadding="0">
+ <tr>
+   <td align="center" height="25"><%IF _EST.STATUS='S'%><a href="javascript:StgOut()"><font face="Arial" size="2" color="#0000FF"><b>Out of Storage</a><%ENDIF%>
+   <%IF _EST.STATUS='O'%><a href="javascript:StgIn()"><font face="Arial" size="2" color="#0000FF"><b>Back to Storage</font></b></a><%ENDIF%></td>
+ </tr>
+</table>
+<%ENDIF%> 
+ <br>
+<table border="0" width="210" cellspacing="0">
+  <tr>
+	<td CLASS="TDTOP1">Add to Monthly Cycle <input type="checkbox" name="ACTIVE" value="ON" <%=IIF(_STG.ACTIVE,'checked','')%>></td>
+  </tr>
+</table>	
+	<br>	
+<table border="0" width="210" cellspacing="0">
+  <tr>
+    <td CLASS="TDTOP1" colspan="3" width="176" height="16">Sticker Info.</td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="77" height="18"><p style="text-align: left">Lot No.</p></td>
+    <td CLASS="TDINPUT" width="87" height="18" colspan="2"><input type="text" name="LOTNO" style="width: 70px;" value="<%=ALLT(_STG.LOTNO)%>" size="20"></td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="77" height="19"><p style="text-align: left">Color</p></td>
+    <td CLASS="TDINPUT" width="87" height="19" colspan="2">
+            <select size='1' name='LOTCOLOR' type="hidden">
+	        	<option selected><%=_STG.LOTCOLOR%></option> 
+				<option></option>
+				<option>Black</option>
+				<option>Blue</option>
+				<option>Brown</option>
+				<option>Gold</option>
+				<option>Gray</option>
+				<option>Green</option>
+				<option>Magenta</option>
+				<option>Maroon</option>
+				<option>Navy</option>
+				<option>Orange</option>
+				<option>Pink</option>
+				<option>Purple</option>
+				<option>Red</option>
+				<option>White</option>
+				<option>Yellow</option>				
+		    </select></td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="77" height="19"><p style="text-align: left">From/To #</p></td>
+    <td CLASS="TDINPUT" width="43" height="19"><input type="text" name="LOTFROM" style="width: 50px;" value="<%=ALLT(STR(_STG.LOTFROM))%>" size="20"></td>
+    <td CLASS="TDINPUT" width="52" height="19"><input type="text" name="LOTTO" style="width: 50px;" value="<%=ALLT(STR(_STG.LOTTO))%>" size="20"></td>
+ </tr>
+</table>	
+	<br>
+<table border="0" width="210" cellspacing="0">
+  <tr>
+    <td CLASS="TDTOP1" colspan="3" width="176" height="16">Sticker Info.</td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="77" height="18"><p style="text-align: left">Lot No.</p></td>
+    <td CLASS="TDINPUT" width="87" height="18" colspan="2"><input type="text" name="LOTNO1" style="width: 70px;" value="<%=ALLT(_STG.LOTNO1)%>" size="20"></td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="77" height="19"><p style="text-align: left">Color</p></td>
+    <td CLASS="TDINPUT" width="87" height="19" colspan="2">
+            <select size='1' name='LOTCOLOR1' type="hidden">
+	        	<option selected><%=_STG.LOTCOLOR1%></option> 
+				<option></option>
+				<option>Black</option>
+				<option>Blue</option>
+				<option>Brown</option>
+				<option>Gold</option>
+				<option>Gray</option>
+				<option>Green</option>
+				<option>Magenta</option>
+				<option>Maroon</option>
+				<option>Navy</option>
+				<option>Orange</option>
+				<option>Pink</option>
+				<option>Purple</option>
+				<option>Red</option>
+				<option>White</option>
+				<option>Yellow</option>				
+		    </select></td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1" width="77" height="19"><p style="text-align: left">From/To #</p></td>
+    <td CLASS="TDINPUT" width="43" height="19"><input type="text" name="LOTFROM1" style="width: 50px;" value="<%=ALLT(STR(_STG.LOTFROM1))%>" size="20"></td>
+    <td CLASS="TDINPUT" width="52" height="19"><input type="text" name="LOTTO1" style="width: 50px;" value="<%=ALLT(STR(_STG.LOTTO1))%>" size="20"></td>
+ </tr>
+</table>
+    <br>	
+<table border="0" width="210" cellspacing="0">
+  <tr>
+    <td CLASS="TDTOP1">Location in Storage</td>
+ </tr>
+  <tr>
+    <td CLASS="TDBODY1"><input type="text" name="LOCATION" size="20" value="<%=ALLT(_STG.LOCATION)%>" tabindex="15" maxlength="39"></td>
+ </tr>
+</table>
+  <br>
+<table border="1" width="210" cellspacing="0" bordercolor="#993366" style="border-collapse: collapse" cellpadding="0">
+ <tr>
+   <td align="center" height="25"><a href="javascript:vault()"><font face="Arial" size="2" color="#0000FF"><b>Add Vault Location</b></font></a></td>
+ </tr>
+</table>
+ <br>
+<table border="1" width="210" cellspacing="0" bordercolor="#993366" style="border-collapse: collapse" cellpadding="0">
+  <tr>
+   <td valign="top"><center><font face="Arial" size="2"><b>Vault Locations:</b></font></center>
+<table border="0" width="100%" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse" cellpadding="0">
+   <% SELECT _VAULTS
+      SCAN %>
+  <tr>
+   <td width="45%" align="center" height="30"><font face="Arial" size="2"><b><%=ALLT(SPACENO)%></b></font></td>
+   <td width="55%" align="center" height="30"><a href="/wc.dll?mpstg~vaultret~<%=pcSCR%>~<%=ALLT(STR(VAULTID))%>"><font face="Arial" size="2">Vacate Location</font></a></td>
+ </tr>
+	<%ENDSCAN%> 
+</table>   
+   </td>
+ </tr>
+</table>
+  <br>
+<table border="0" width="210" cellspacing="0">
+  <tr>
+     <td align="center" width="50">
+     <img border="0" onclick="Javascript: window.open('/wc.dll?mpstg~stgwc~<%=pcSCR%>~PRINT')" style="cursor:pointer;" src="zz/images/Printer.png" width="37" height="37"></td>
+     <td width="124"><b><font face="Arial" size="2">Print Vault Sticker</font></b></td>
+ </tr>
+  <tr>
+     <td width="174" colspan="2"><font size="1">&nbsp;</font></td>
+ </tr> 
+  <tr>
+     <td align="center" width="50">
+     <img border="0" onclick="Javascript: window.open('/wc.dll?mpstg~stgpayprintwc~<%=pcSCR%>~<%=pcSTORAGEID%>')" style="cursor:pointer;" src="zz/images/Printer-icon.png" width="37" height="36"></td>
+     <td width="124"><b><font face="Arial" size="2">Storage Statement</font></b></td>
+ </tr> 
+</table>    
+    </td>
+  </tr>
+</table>
+    </td>
+  </tr>
+  <tr>
+    <td width="800" bgcolor="#FFFFFF" colspan="4"><hr color="#000000" width="98%"></hr>
+<table border="0" bgcolor="#FFFFFF" align="center" width="99%" cellspacing="0">
+  <tr>
+    <td height="30" align="center"><b><u><font face="Verdana" size="2" color="#00008B">Past Storage Invoices:</u> <a href="javascript:stginvupd()">Edit Last Invoice</A></font></b></td>
+ </tr>
+</table>    
+<table border="1" bgcolor="#FFFFFF" align="center" width="99%" cellspacing="0" bordercolor="#C0C0C0">
+  <tr style="font-family:Verdana;font-size:9pt;color:#FFFFFF;">
+    <td bgcolor="#4E6699" width="95"><b>Invoice #</b></td>
+    <td bgcolor="#4E6699" width="91"><b>Invoice Date</b></td>
+    <td bgcolor="#4E6699" width="85"><b>Storage Fee</b></td>
+    <td bgcolor="#4E6699" width="77"><b>Late Fee</b></td>
+    <td bgcolor="#4E6699" width="89"><b>Due Date</b></td>
+    <td bgcolor="#4E6699" width="74"><b>User</b></td>
+    <td bgcolor="#4E6699" width="53"><b>Cycle</b></td>
+    <td bgcolor="#4E6699"><b>Remarks</b></td>
+  </tr>
+	<% SELECT _STGINV
+	   SCAN %>		  
+  <tr>
+    <td width="95"><a href="wc.dll?mpstg~PrintStgInvWc~<%=pcSCR%>~<%=ALLT(STR(STGINVID))%>" TARGET="_BLANK" STYLE="cursor:pointer;"><font face="Verdana" size="2"><%=ALLT(CINVNO)%></font></a>&nbsp;</td>
+    <td width="91"><font face="Verdana" size="2"><%=ALLT(CRUNDTE)%></font>&nbsp;</td>
+    <td width="85" align="right"><font face="Verdana" size="2"><%=ALLT(STR(STGAMT,8,2))%></font>&nbsp;</td>
+    <td width="77" align="right"><font face="Verdana" size="2"><%=ALLT(STR(LATEAMT,6,2))%></font>&nbsp;</td>
+    <td width="89"><font face="Verdana" size="2"><%=ALLT(CBILLDTE)%></font>&nbsp;</td>
+    <td width="74"><font face="Verdana" size="2"><%=ALLT(USER)%></font>&nbsp;</td>
+    <td width="53" align="center"><font face="Verdana" size="2"><%=IIF(MANUAL=.F.,'Yes','')%></font>&nbsp;</td>
+    <td><font face="Verdana" size="2"><%=INVNOTES%></font>&nbsp;</td>
+  </tr>
+	<% ENDSCAN %>
+</table>
+</form>    
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4" height="14"><IMG width="800" SRC="zz/images/botBar.gif" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>

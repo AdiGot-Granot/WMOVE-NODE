@@ -1,0 +1,92 @@
+	.TDTOP1	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Verdana;
+					background-color: #993366;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TDBODY1 	{	text-align: center;
+					color: yellow; 
+					font-size: 10pt;
+					font-family: Verdana;
+					background-color: #993366;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TD3		{	color: #006600;
+				  	font-size: 8pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					background-color: white;
+				  	text-align: right}
+	.TD1		{	color: #000000;
+				  	font-size: 8pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					background-color: white;
+				  	text-align: left}
+	.TD2		{	color: #000000;
+				  	font-size: 8pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					background-color: white}
+	.TD4		{	color: #000000;
+				  	font-size: 7pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					background-color: white;
+				  	text-align: left}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.TXTREADONLY{	border-width: 0;
+					background-color: #FFFFFF;
+					color:#008000;
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: right;
+					width: 65;
+					font-family:verdana;
+					font-size: 8pt}
+	.TXT		{	border: 1px solid #52657B;
+					color:#000000;
+					font-weight: none;
+					font-family: verdana;
+				  	text-align: left;
+					height: 16;
+					font-family:verdana;
+					font-size: 8pt}
+	.TXTNUM		{	border: 1px solid #52657B;
+					color:#008000;
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: right;
+					height: 16;
+					font-family:verdana;
+					font-size: 8pt}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}

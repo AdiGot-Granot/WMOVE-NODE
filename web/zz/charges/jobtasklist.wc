@@ -1,0 +1,137 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Job Tasks Check List</TITLE>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+   <% SELECT _JTASK1
+      SCAN %>
+       $("#Date<%=ALLT(STR(TASKID))%>").datepicker({ numberOfMonths:[1,2] });
+   <%ENDSCAN%>
+   });
+</script>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {      
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpcharge~jobtaskret~<%=pcSCR%>~MENU~<%=ALLT(STR(pnCUSTID23))%>~<%=ALLT(STR(pnJOBID))%>~<%=ALLT(pcTYPE)%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpcharge~jobtaskret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+ 	}
+     
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 125;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 125;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="1300">
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center"><b><font face="Verdana" SIZE="4"><font color="#FFFFFF">Tasks Check List</font> <font color="#FFFF00"><%=pcDEPT+pcORDNO%></font></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+<form name="theForm" method="POST">
+<table border="1" width="1272" align="center" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0">
+   <tr>
+     <td align="center" bgcolor="#008000" width="65"><b><font color="#FFFFFF">Required</font></b></td>
+     <td align="center" bgcolor="#008000" width="307"><b><font color="#FFFFFF">Task Description</font></b></td>             
+     <td align="center" bgcolor="#008000" width="76"><b><font color="#FFFFFF">Assign To</font></b></td>             
+     <td align="center" bgcolor="#008000" width="68"><b><font color="#FFFFFF">Due Date</font></b></td>             
+     <td align="center" bgcolor="#008000" width="80"><b><font color="#FFFFFF">Completed</font></b></td>
+     <td align="center" bgcolor="#008000" width="235"><b><font color="#FFFFFF">Completed By</font></b></td>
+     <td align="center" bgcolor="#008000" width="40"><b><font color="#FFFFFF">N/A</font></b></td>
+     <td align="center" bgcolor="#008000" width="137"><font color="#FFFFFF"><b>Task Note</font></b></td>
+     <td align="center" bgcolor="#008000" width="208"><font color="#FFFFFF"><b>Open By</b></font></td>
+   </tr>
+ <% SELECT _JTASK1
+    SCAN %>
+   <tr>
+     <td align="center" width="65"><% IF ACTIVE=.F. AND EMPTY(CONFDTE) %><input type="checkbox" name="<%='R'+ALLT(STR(TASKID))%>" value="ON" <%=IIF(NEEDED,'checked','')%>><%ENDIF%></td>
+     <td width="307"><%=ALLT(DESCNAME)%>&nbsp;</td>
+     <td align="center" width="76"><% IF  NEEDED=.T. AND EMPTY(CONFDTE) %>
+		<select size="1" name=<%='U'+ALLT(STR(TASKID))%>>
+   		  <option value="<%=ALLT(STR(_JTASK1.TUSERID))%>"><%=_JTASK1.TASKUSER%></option>
+	     <% SELECT _USERS
+	         SCAN %>
+		       <option value="<%=ALLT(STR(_USERS.USERID))%>"><%=_USERS.USERNAME%></option>
+	     <% ENDSCAN %>
+   	   </select>
+   	   <%ELSE%><%=IIF(EMPTY(UNAME),ALLT(TASKUSER),ALLT(PROPER(UNAME)))%><%ENDIF%></td>
+    <% SELECT _JTASK1 %>
+     <td align="center" width="68"><% IF ACTIVE=.F. %><input type="text" id="Date<%=ALLT(STR(TASKID))%>" autocomplete="off" placeholder="Full Date" name="<%='D'+ALLT(STR(TASKID))%>" size="7" value="<%=IIF(YEAR(DUEDATE)<YEAR(DATE())-20,'',DTOC(DUEDATE))%>" style="font-size:10pt;"><%ENDIF%></td>
+     <td align="center" width="80"><% IF NEEDED=.T. AND EMPTY(CONFDTE) %><input type="checkbox" name="<%='C'+ALLT(STR(TASKID))%>" value="ON" <%=IIF(CONFIRM,'checked','')%>><%ENDIF%></td>
+     <td align="center" width="235"><%=IIF(EMPTY(NAME),ALLT(USERNAME),ALLT(PROPER(NAME)))%><br><%=IIF(EMPTY(CONFDTE),'',CONFDTE)%></td>
+     <td align="center" width="40"><% IF NEEDED=.F. AND EMPTY(CONFDTE) %><input type="checkbox" name="<%='A'+ALLT(STR(TASKID))%>" value="ON" <%=IIF(ACTIVE,'checked','')%>><%ENDIF%></td>
+     <td width="137"><input autocomplete="off" name="<%='N'+ALLT(STR(TASKID))%>" size="20" value="<%=ALLT(NOTES)%>" style="font-family:Verdana; font-size:9pt;" maxlength="200"></td>
+     <td width="208" align="center"><%=IIF(OPENUSERID=0,'',IIF(EMPTY(OPENBY),ALLT(OPENUSER),ALLT(PROPER(OPENBY))))%><br><%=IIF(TASKID<1000,NEEDDTE,'')%></td>
+   </tr>
+ <%ENDSCAN%>       
+</table>
+<BR>
+<table border="0" width="98%" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" bordercolor="#111111">
+   <tr>
+    <td>
+<table border="1" width="350" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#C0C0C0">
+   <tr>
+     <td align="center" bgcolor="#008000" width="503"><b><font color="#FFFFFF">New Task</font></b></td>             
+   </tr>
+ <% SELECT _JTASK2
+    SCAN %>   
+   <tr>
+     <td width="503"><input autocomplete="off" name="<%='T'+ALLT(STR(TASKID))%>" size="40" value="" style="font-family:Verdana; font-size:10pt;"></td>
+   </tr>
+ <%ENDSCAN%>  
+</table>
+  </td>
+ </tr>
+</table>
+<br>   
+<table border="0" width="60%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B5" onclick="<%IF plMENU=.T.%>submitFunction(1)<%ELSE%>submitFunction(2)<%ENDIF%>" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="javascript: window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>    
+    </form>&nbsp;</td>
+</tr>
+  <tr>
+    <td width="100%" bgcolor="#993366"><font face="Verdana" size="2" color="#FFFFFF">&nbsp;View By: <%=pcUSER%></font></td>
+  </tr>
+  </table>
+</body>
+</html>

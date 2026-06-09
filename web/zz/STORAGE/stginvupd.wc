@@ -1,0 +1,125 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Updaet Storage Invoice-<%=RIGHT(pcORDNO,4)%></title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitA() {
+      { 
+       document.theForm.action="/wc.dll?mpstg~stginvupdret~<%=pcSCR%>~<%=_STGINV.STGINVID%>";
+       document.theForm.submit();
+      } ;
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+  				  	font-family: Verdana;
+				  	text-align: left}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 90;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<body BGCOLOR="#4E6699"><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="85%">
+   <tr>
+    <td width="100%" align="center" BGCOLOR="#008200"><a href="javascript:window.close()">
+    <img border="0" src="/zz/images/x.gif" align="right" width="17" height="18"></a>
+    <font face="Verdana" color="#FFFFFF"><B>Adjust Storage Invoice -<FONT COLOR="#FFFF00"><%=_STGINV.CINVNO%></font></b>
+</td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">	
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+      <tr>
+    <td width="100%" align="center"><br>
+     <form name="theForm" method="POST"> 		
+<table border="1" width="95%" align="center" cellspacing="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#4E6699">
+  <tr>
+    <td width="43%" class="TD1" height="20">Job No:<FONT SIZE="3"><B> <%=pcORDNO%></B></FONT></td>
+    <td width="24%" class="TD1" height="20">Next Bill Date:</td>
+    <td width="34%" class="TD1" height="20"><input type="text" id="Date1" name="BILLDTE" size="8" value="<%=TTOD(_STGINV.BILLDTE)%>" tabindex="1" style="font-size: 9pt"></td>
+ </tr>
+  <tr>
+    <td width="43%" class="TD1" height="20">Move Balance:&nbsp;<b><%=ALLT(STR(_OPR.BALANCE,8,2))%></b></td>
+    <td width="24%" class="TD1" height="20">Previous Balance:</td>
+    <td width="34%" class="TD1" height="20">
+    <input type="text" name="BALSTG" size="8" maxlength="8" value="<%=ALLT(STR(_STGINV.BALSTG,8,2))%>" tabindex="2" style="font-size: 9pt"></td>
+ </tr>
+  <tr>
+    <td width="43%" class="TD1" height="20">Current Storage Balance: <b><%=ALLT(STR(_OPR.BALSTG,8,2))%></b></td>
+    <td width="24%" class="TD1" height="20">Storage Fee:</td>
+    <td width="34%" class="TD1" height="20">
+    <input type="text" name="STGAMT" size="8" value="<%=ALLT(STR(_STGINV.STGAMT,8,2))%>" tabindex="3" style="font-size: 9pt"></td>
+ </tr>
+  <tr>
+    <td width="43%" class="TD1" height="20"></td>
+    <td width="24%" class="TD1" height="20">Late Fee:</td>
+    <td width="34%" class="TD1" height="20">
+    <input type="text" name="LATEAMT" size="8" value="<%=ALLT(STR(_STGINV.LATEAMT,8,2))%>" maxlength="8" tabindex="4" style="font-size: 9pt"></td>
+ </tr>
+  <tr>
+    <td width="43%" class="TD1" height="20"></td>
+    <td width="24%" class="TD1" height="20">Sales Tax:</td>
+    <td width="34%" class="TD1" height="20"><input type="text" name="TAX" size="6" maxlength="8" tabindex="5" style="font-size: 9pt" value="<%=ALLT(STR(_STGINV.TAX,6,3))%>">%</td>
+ </tr>
+  <tr>
+    <td width="43%" class="TD1" height="20"></td>
+    <td width="24%" class="TD1" height="20">Remarks:</td>
+    <td width="34%" class="TD1" height="20"><input type="text" name="INVNOTES" size="20" tabindex="6" style="font-size: 9pt" value="<%=ALLT(_STGINV.INVNOTES)%>"></td>
+ </tr> 
+  </table>
+  <BR>
+<table border="0" align="center" width="50%" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0" cellpadding="0">
+  <tr>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitA()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+ </tr>
+</table>  	
+</form>
+   </td>
+ </tr>
+</table>
+   </td>
+  </tr>
+</table>
+
+</body>
+</html>

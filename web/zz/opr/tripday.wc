@@ -1,0 +1,176 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Trip Day</title>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitseq(par) {
+   { 
+      document.theForm.action="/wc.dll?mpopr~tripdayret~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      } 
+	}
+
+function updadd(par) { 
+// alert(par)
+    window.open('/wc.dll?mpopr~EditTripAddressWc~<%=pcSCR%>~'+par,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=500,height=350');
+    self.name="main"
+}
+
+function submitFunction() { 
+       document.theForm.action="/wc.dll?mpopr~dailytrip~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	font-family: Verdana;
+					color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold; 				  	
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}	
+	.TD2		{	font-family: Verdana;
+					font-size: 10pt;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	font-family: Verdana;
+				  	color: #000000;
+					font-size: 10pt;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<BODY>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="100%" bgcolor="#F7F7F7" align="center" hight="30"><b><font face="Verdana">Jobs Details:&nbsp;&nbsp;<%=pcTRIPDTE%></font></b></td>
+ </tr>
+</table>
+ <br>
+<form name="theForm" method="post">
+  <%SELECT _TRIP
+    SCAN
+      lnTRIPID=TRIPID
+      lcTRIPNO=ALLT(TRIPNO)
+      lcTRIPID=ALLT(STR(lnTRIPID))
+      lcTRUCKNO=ALLT(TRUCKNO)%>
+<input type="hidden" name="TRIPID" value="<%=lnTRIPID%>">      
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="100%">
+<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#111111">
+  <tr>
+	<td width="8%" height="25"><b>Trip Name:</b></td>
+	<td width="10%" height="25"><b>Route:</b></td>
+	<td width="11%" height="25"><b>Truck:</b></td>
+	<td width="12%" height="25"><b>Driver:</b></td>
+	<td width="9%" height="25"><b>Pads/Blankets:</b></td>	
+  </tr>
+  <tr>
+	<td width="8%"><%IF ACTIVE%><b><a href="wc.dll?mpopr~TripEditWc~<%=pcSCR%>~<%=lcTRIPID%>" target="_blank"><%=lcTRIPNO%></a><%ELSE%><font color="#CC0000"><%=lcTRIPNO%> (Trip Closed)<%ENDIF %></font></b></td>
+	<td width="10%"><input name="TRIPROUTE-<%=lcTRIPID%>" size="15" value="<%=ALLT(TRIPROUTE)%>" style="font-weight:bold" maxlength="14"></td>
+	<td width="11%">
+    <% SELECT _TRUCKS%>
+      <select size="1" name="TRUCKNO-<%=lcTRIPID%>" style="font-weight: bold">
+    	<option selected value="<%=lcTRUCKNO%>"><%=lcTRUCKNO%></option>
+	    <option value=""></option>
+        <% SCAN%>
+	    <option value="<%=ALLT(TRUCKNO)%>"><%=ALLT(TRUCKNO)+'-'+ALLT(CNAME)%></option>
+    	<%ENDSCAN%>
+      </select></td>
+      <% SELECT _TRIP%>
+	<td width="12%"><input name="DRIVER-<%=lcTRIPID%>" size="15" value="<%=ALLT(DRIVER)%>" style="font-weight:bold" maxlength="15"></td>	  
+	<td width="9%"><input name="PADS-<%=lcTRIPID%>" size="2" value="<%=ALLT(STR(PADS))%>" style="border:1px solid #4E6699;font-weight:bold" maxlength="3"></td>
+  </tr>  
+</table>    
+    </td>
+ </tr>
+</table> 
+<br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" bordercolor="#111111" width="95%">
+   <tr>
+     <td class="TD1" width="1%">Load<br>Order</td>
+     <td class="TD1" width="2%" style="border-left: 1px solid #A9A9A9;">Drop<br>Order</td>
+     <td class="TD1" width="2%" style="border-left: 1px solid #A9A9A9;">Loaded</td>     
+   	 <td class="TD1" width="3%" style="border-left: 1px solid #A9A9A9;">Job No.</td>
+   	 <td class="TD1" width="3%" style="border-left: 1px solid #A9A9A9;">Job Code</td>
+	 <td class="TD1" width="4%" style="border-left: 1px solid #A9A9A9;">Job Date</td>
+	 <td class="TD1" width="3%" style="border-left: 1px solid #A9A9A9;">Drop Date</td>
+     <td class="TD1" width="9%" style="border-left: 1px solid #A9A9A9;">Addr/From</td>
+     <td class="TD1" width="8%" style="border-left: 1px solid #A9A9A9;">Addr/To</td>
+     <td class="TD1" width="2%" style="border-left: 1px solid #A9A9A9;">Job CF</td>
+     <td class="TD1" width="2%" style="border-left: 1px solid #A9A9A9;">Loaded<br>CF</td>
+     <td class="TD1" width="4%" style="border-left: 1px solid #A9A9A9;">Total Job</td>
+     <td class="TD1" width="6%" style="border-left: 1px solid #A9A9A9;">Balance</td>
+	 <td class="TD1" width="8%" style="border-left: 1px solid #A9A9A9;">Office<br>Remarks</td>
+ </tr>
+  <%SELECT * FROM _TR WHERE TRIPID=lnTRIPID INTO CURSOR _TR1
+      SCAN %>
+   <tr valign="top">
+     <td align="center" width="1%" style="border-bottom: 1px solid #A9A9A9;"><input NAME="A-<%=ALLT(ORDNO)%><%=CODE%>" size="1" VALUE="<%=ALLT(STR(SHSEQ))%>" maxlength="2" style="text-align: center"></td> 
+     <td align="center" width="2%" style="border-left: 1px solid #A9A9A9;border-bottom: 1px solid #A9A9A9;"><input NAME="B-<%=ALLT(ORDNO)%><%=CODE%>" size="1" VALUE="<%=ALLT(STR(SHSEQB))%>" maxlength="2" style="border-style:solid; border-width:1px; text-align:center"></td> 
+     <td align="center" width="2%" style="border-left: 1px solid #A9A9A9;border-bottom: 1px solid #A9A9A9;"><input type="checkbox" name="P-<%=ALLT(ORDNO)%><%=CODE%>" value="ON" <%=IIF(SHPU,'checked','')%>></td>     
+     <td class="TD2" width="3%"><B><a href="wc.dll?mprep~printselect~<%=pcSCR%>~<%=REFNO%>~<%=CODE%>" target="_blank"><%=ALLT(DEPT)+ALLT(ORDNO)%></a><br><font color="#008000"><%=ALLT(ESTATUS)%></font></B></td>
+     <td class="TD2" width="3%"><b><font color="<%=IIF(CODE='pu','#226A21','purple')%>"><%=ALLT(CODETXT)%></font></b></td>
+     <td class="TD2" width="4%"><b><%=DTE%></b><%IF CODE='d'%><%=IIF(EMPTY(DLVDTE),'','<br>Requ. dlv: '+ALLT(DTOC(DLVDTE)))%><%=IIF(EMPTY(DLVDTE1),'','-'+ALLT(DTOC(DLVDTE1)))%><%ENDIF%></td>
+     <td class="TD2" width="3%"><b><%=IIF(EMPTY(SHDROPDTE),'',DTOC(SHDROPDTE))%></b></td>
+     <td class="TD2" width="9%"><b><%=ALLT(SNAME)%></b><br><%=FROMADD%><BR><%=ALLT(SPHONE1)%>&nbsp;<%=ALLT(SPHONE2)%></td>
+     <td class="TD2" width="8%"><b><%=ALLT(SNAME)%></b><br><%=TOADD%><BR><%=ALLT(RPHONE1)%>&nbsp;<%=ALLT(RPHONE2)%></td>
+     <td class="TD3" width="2%"><B><%=ALLT(STR(ACTCUFT))%></B></td>
+     <td align="right" width="2%" style="border-left: 1px solid #A9A9A9;border-bottom: 1px solid #A9A9A9;"><input name="CF-<%=ALLT(ORDNO)%><%=CODE%>" size="3" value="<%=ALLT(STR(TOTALCF))%>" style="text-align:right;font-weight:bold"></td>
+     <td class="TD2" width="4%"><B><%=ALLT(TRANSFORM(ACTTOTAL,"$$,$$9.99"))%></B></td>
+     <td class="TD2" width="6%"><b><%=IIF(BALANCE=0,'','Move: ')%><font color="#FF0000"><%=ALLT(TRANSFORM(BALANCE,"$$,$$9.99"))%></font>
+     <%=IIF(BALSTG=0,'','<br>STG: ')%><font color="#FF0000"><%=IIF(BALSTG=0,'',ALLT(TRANSFORM(BALSTG,"$$,$$9.99")))%></font></b></td>
+     <td class="TD2" width="8%"><%=REMARKS%>&nbsp;</td>
+  </tr>
+  <%ENDSCAN%> 
+</table>
+   <% SELECT _TR1
+   	GO TOP%>
+ <br>   	
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" align="center" width="40%">
+  <tr>
+    <td align="center"><%IF _TR1.ACTIVE%><input type="button" CLASS="SUBOFF" onclick="submitseq('<%=lcTRIPID%>')" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" VALUE="Submit"><%ENDIF%></td>
+    <td align="center"><input type="button" CLASS="SUBOFF" onclick="submitFunction()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" VALUE="Exit"></td>
+ </tr> 
+</table> 
+<hr color="#0081D3"></hr>
+<% ENDSCAN %>   
+
+</form>
+</body>
+</HTML>

@@ -1,0 +1,102 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Update Past Follow-Up Date</title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+			if (i==1) 
+		      { 
+		       document.theFormX.action="/wc.dll?mprep~updfudate~<%=pcSCR%>";
+   		       document.theFormX.submit();
+		      }		
+			}
+
+function CheckBoxes(FormName, CheckValue){
+   if(!document.forms[FormName])
+      return;
+   var objCheckBoxes = document.getElementsByTagName('input');
+   if(!objCheckBoxes)
+      return;
+   var countCheckBoxes = objCheckBoxes.length;
+   if(!countCheckBoxes)
+      objCheckBoxes.checked = CheckValue;
+   else
+      for(var i = 0; i < countCheckBoxes; i++)
+      objCheckBoxes[i].checked = CheckValue;
+}
+   
+</SCRIPT>
+
+</head>
+
+<body>
+    <%	SELECT _OLDFU %>
+<br><center><font face="Arial"><B>Update Past Follow-Up Estimates<br>
+    <% IF RECCOUNT() > 99 %>You have <%=ALLT(STR(pnTOTALRECS))%> Estimates - View in increments of 100
+    <%ELSE%><BR>Total Estimates: <%=ALLT(STR(pnTOTALRECS))%><%ENDIF%></font></B></center><br>
+<form name="theFormX" method="POST">
+<table border="0" width="65%" ALIGN="CENTER" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="19%"><font face="Verdana" size="2"><b>Select Follow-Up Date:</b></font></td>
+    <td width="81%"><input id="Date1" name="NEXTFU" size="7" value="<%=DATE()+1%>"></td>
+  </tr>
+</table>
+ <table border="1" width="65%" ALIGN="CENTER" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#C0C0C0">
+    <tr>
+      <td width="2%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">#</font></b></td>
+      <td width="4%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Update</font></b><input name="checkall" type="checkbox" onclick="CheckBoxes('theFormX',this.checked);" value="ON" /></td>
+      <td width="4%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Job No</font></b></td>
+      <td width="4%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Type</font></b></td>
+      <td width="5%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Follow-Up</font></b></td>
+      <td width="2%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Prior</font></b></td>
+      <td width="6%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Move Date</font></b></td>
+      <td width="10%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Customer</font></b></td>
+      <td width="8%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Move From</font></b></td>
+      <td width="8%" align="center" bgcolor="#0081D3"><b><font face="Verdana" size="2" color="#FFFFFF">Move To</font></b></td>
+      <td width="4%" align="center" bgcolor="#0081D3"><b><font size="2" face="Verdana" color="#FFFFFF">Estimate</font></b></td>
+    </tr>
+  <%SELECT _LIST
+  		SCAN%>    
+      <tr>
+      <td width="2%" align="left"><font face="Arial" style="font-size:9pt;"><%=NO%></font>&nbsp;</td>
+      <td width="4%" align="center"><input type="checkbox" name="<%=ALLT(ORDNO)%>" value="ON"></td>
+      <td width="4%" height="18"><font face="Arial" style="font-size:9pt;"><%=ALLT(JOB_NO)%><BR><%=ALLT(REF)%></font></td>
+      <td width="4%" height="18"><font face="Arial" style="font-size:9pt;"><%=ALLT(TYPE1)%></font></td>
+      <td width="5%" align="center" height="18"><font face="Arial" style="font-size:9pt;"><b><%=NEXTFU%></b></font></td>
+      <td width="2%" align="center" height="18"><font face="Arial" style="font-size:9pt;"><%=IIF(FUSTATUS=9,'Pool',ALLT(STR(FUSTATUS)))%></font></td>
+      <td width="6%" align="center" height="18"><font face="Arial" style="font-size:9pt;" color="#<%=IIF(LBOOKDTE<DATE(),'FF0000','008000')%>"><b><%=LBOOKDTE%></b></font></td>
+      <td width="10%" height="18"><font face="Arial" style="font-size:9pt;"><%=ALLT(PROPER(SNAME))%></font></td>
+      <td width="8%" height="18"><font face="Arial" style="font-size:9pt;"><%=FROM%></font></td>
+      <td width="8%" height="18"><font face="Arial" style="font-size:9pt;"><%=TO%></font></td>
+      <td width="4%" height="18" align="right"><font face="Arial" style="font-size:9pt;"><%='$'+ALLT(STR(SUBTOTAL,10,2))%></font>&nbsp;</td>
+    </tr>
+   <% ENDSCAN %>
+</table>
+<% IF pcCUSTNO<>'AGILITY' AND pcCUSTNO<>'EDENSMOVE' %>
+  <BR>
+<table border="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="100%" ALIGN="CENTER"><input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(1)" style="width: 100;cursor: pointer;" value="Submit"></td>
+  </tr>
+</table>
+<%ENDIF%>
+</form>
+
+</body>
+</html>

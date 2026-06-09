@@ -1,0 +1,551 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Operations Calendar</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function blkdates() {
+    window.open('/wc.dll?mpopr~blkdateswc~<%=pcSCR%>','EANITHING','toolbar=no,location=no,directories=no,status=yes,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=1000,height=550');
+	}
+
+function submitday(i) {
+	 window.location.href=('/wc.dll?mpopr~oprcald~<%=pcSCR%>~'+i);
+    }
+
+function submitopr() {
+   	document.theForm.elements['oprday'].value = eval(0);
+   	document.theForm.action="/wc.dll?mpopr~oprcald~<%=pcSCR%>";
+    document.theForm.submit();
+    }
+
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+	.TDTOP1	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #336699;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TDBODY1 	{	text-align: center;
+					color: #ff9900; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #336699;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TDTOP2	 	{	text-align: center;
+					color: White; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #336699;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+	.TDBODY2 	{	text-align: center;
+					color: #ff9900; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #336699;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #DDDDDD}
+	.TD0	 	{	color: #000000; 
+				  	text-align: center;
+					width: 100%;
+  				  	font-weight: bold;
+					font-size: 9pt;
+					font-family: Arial;
+					background-color: #DDDDDD;
+ 					border-style: none} 
+	.TD1	 	{	color: #000000; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 9pt;
+					font-family: Arial;
+					background-color: #DDDDDD;
+ 					border-style: none} 
+	.TD2	 	{	color: #000000; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 10pt;
+  				  	font-weight: bold;
+					font-family: Arial;
+					background-color: #DDDDDD;
+ 					border-style: none} 
+	.TD3	 	{	color: #000000; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 10pt;
+  				  	font-weight: bold;
+					font-family: Arial;
+					background-color: #D7FFFF;
+ 					border-style: none} 
+	.TD10	 	{	color: #000000; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #D7FFFF;
+ 					border-style: none} 
+	.TD11	 	{	color: #800800; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 9pt;
+					font-family: Arial;
+					background-color: #BFFFFF;
+ 					border-style: none} 
+	.TD12	 	{	color: #800800; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 9pt;
+					font-family: Arial;
+					background-color: #DDDDDD;
+ 					border-style: none} 
+	.TD13	 	{	color: #FFFFFF; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 12pt;
+					font-family: Arial;
+					text-decoration: underline ;
+  				  	font-weight: bold;
+					background-color: #BB0000;
+  				  	cursor: pointer;
+ 					border-style: none} 
+	.TD14	 	{	color: #FFFFFF; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 12pt;
+					font-family: Arial;
+  				  	font-weight: bold;
+					text-decoration: underline ;
+					background-color: #000080;
+  				  	cursor: pointer;
+ 					border-style: none} 
+	.TD15	 	{	color: #FFFFFF; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 12pt;
+					font-family: Arial;
+  				  	font-weight: bold;
+					background-color: #C2C2C2;
+ 					border-style: none} 
+	.TD16	 	{	color: #FF0000; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 9pt;
+					font-family: Arial;
+  				  	font-weight: bold;
+					background-color: #DDDDDD;
+ 					border-style: none} 
+	.TD17	 	{	color: #008000; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 10pt;
+  				  	font-weight: bold;
+					font-family: Arial;
+					background-color: #D7FFFF;
+ 					border-style: none} 
+	.TD18	 	{	color: #0B780B; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 13pt;
+					font-family: Arial;
+  				  	font-weight: bold;
+					background-color: #DDDDDD;
+ 					border-style: none} 
+	.TD19	 	{	color: #FFFFFF; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 8pt;
+					font-family: Arial;
+					background-color: #008080;
+                    border: 2px outset #BB0000 } 
+	.TD20	 	{	color: #FFFFFF; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 8pt;
+					font-family: Arial;
+					background-color: #008080;
+                    border: 2px outset #BB0000 } 
+	.TD21	 	{	color: #008080; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 10pt;
+					font-family: Arial;
+  				  	font-weight: bold;
+					background-color: #DDDDDD;
+ 					border-style: none} 
+	.TD22	 	{	color: #000000; 
+				  	text-align: center;
+					width: 100%;
+  				  	font-weight: bold;
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #D7FFFF;
+ 					border-style: none} 
+	.TD23	 	{	color: #008080; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 10pt;
+  				  	font-weight: bold;
+					font-family: Arial;
+					background-color: #D7FFFF;
+ 					border-style: none} 
+	.TD24	 	{	color: #000000; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 10pt;
+  				  	font-weight: bold;
+					font-family: Arial;
+					background-color: #808080;
+ 					border-style: none} 
+	.TD25	 	{	color: #006600; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 10pt;
+  				  	font-weight: bold;
+					font-family: Arial;
+					background-color: #808080;
+ 					border-style: none} 
+	.TD26	 	{	color: #FFFFFF; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 12pt;
+                    text-decoration:line-through;
+					font-family: Arial;
+					background-color: #FF0000;
+                    border: 2px outset #BB0000 } 
+	.TD27	 	{	color: #008000; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 12pt;
+                    text-decoration:line-through;
+					font-family: Arial;
+					background-color: E7C818;
+                    border: 2px outset #BB0000 } 
+	.TD28	 	{	color: #FFFFFF; 
+				  	text-align: center;
+					width: 100%;
+					font-size: 12pt;
+  				  	font-weight: bold;
+					font-family: Arial;
+					background-color: #008000;
+                    border: 2px outset #BB0000 } 
+	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 80;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 80;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+
+</STYLE>
+
+
+</head>
+
+<body BGCOLOR="#4E6699">
+
+<!-- main -->
+<table align="center" border="2" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#808000" width="850" bordercolorlight="#336699" bordercolordark="#0000FF" bgcolor="#FFFFCC">
+  <tr>
+    <td width="100%" align="left">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" background="/ZZ/images/bgup.gif">
+  <tr>
+    <td width="33%" height="25"><%IF pcJOBPHASE<>'P10'%><font color="#FFFFFF"><b>&nbsp;Booked Jobs (Pick-up)&nbsp;&nbsp;&nbsp;<FONT color="#FFFF00" SIZE="3"><%=ALLT(STR(pnBOOKED))%>&nbsp;</font></b><%ENDIF%></td>
+    <td width="33%" height="25" align="center" ><b><font color="#FFFFFF" face="Verdana" size="4">Operations Calendar</font></b></td>
+    <td width="34%" height="25" align="center"><b><font face="Verdana" size="4"><a href="javascript:window.close()">
+    <img border="0" src="/zz/images/X-YELLOW.gif" align="right" width="17" height="18"></a> </font></b></td>
+  </tr>
+</table>
+<% IF pnLEVEL>1 AND lcJOBPHASE=='P1' OR lcJOBPHASE=='P2' OR lcJOBPHASE=='P9' %>
+<br><center><a href="javascript: blkdates()"><FONT FACE="VERDANA" COLOR="#0000FF" SIZE="2"><B>Block Pick-Up Days/Limit Booking</b></font></a></center>
+<%ENDIF%>
+<br>
+<table border="1" width="98%" cellspacing="1" bordercolor="#C0C0C0" align="center">
+ <tr>
+    <%IF pnCOLEVEL <> 3 %>
+ 	<td CLASS="TDTOP1" width="15%" align="center">Job Type</td>
+    <%ENDIF%>    
+ 	<td CLASS="TDTOP1" width="15%" align="center">Job Phase</td>
+ 	<td CLASS="TDTOP1" width="15%" align="center">Month</td>
+ 	<td CLASS="TDTOP1" width="10%" align="center">Year</td>
+    <%IF plDEPT %>    
+ 	<td CLASS="TDTOP1" width="15%" align="center">Dept.</td>
+    <%ENDIF%>    
+ 	<td CLASS="TDTOP1" width="15%" align="center">User</td>
+    <td width="15%" align="center" rowspan="2"><input type="submit" CLASS="SUBOFF" name="btnSubmit" onclick="submitopr(0)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Submit"></td>
+ </tr>
+ <tr>	
+ 	<FORM NAME="theForm" method="post">
+    <input type="hidden" name="oprday" value="">   
+<%IF pnCOLEVEL <> 3 %>    
+    <td CLASS="TDBODY1" width="15%" height="18" align="center"><select size="1" name="JOBTYPE">
+      <option selected><%=pcJOBTYPE%></option>
+      <option>All</option>
+      <option>Local</option>
+      <option>Long Distance</option>
+      <option>Auto Transport</option>
+      <option>International</option>
+       </select></td>
+<%ENDIF%>    
+     <td CLASS="TDBODY1" width="15%" height="18" align="center">
+       <select size="1" name="JOBPHASE">
+       <option value="<%=pcJOBPHASE%>"><%=pcPHASENAME%></option>
+       <% SELECT _JOBPHASE 
+     	 SCAN %>
+       <option value="<%=ALLT(PX)%>"><%=ALLT(PNAME)%></option>
+       <% ENDSCAN %>  
+       </select>
+     </td>
+    <td CLASS="TDBODY1" width="15%" height="18" align="center"><select size="1" name="MONTH">
+      <option selected value="<%=lcMONTH1%>"><%=lcMONTH%></option>
+      <option value="01">January</option>
+      <option value="02">February</option>
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      <option value="06">June</option>
+      <option value="07">July</option>
+      <option value="08">August</option>
+      <option value="09">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+       </select></td>
+    <td CLASS="TDBODY1" width="10%" height="18" align="center"><select size="1" name="YEAR">
+      <option selected><%=lcYEAR%></option>
+     <%IF pnLEVEL > 1 %>
+      <option><%=ALLT(STR(YEAR(DATE())-2))%></option>     
+      <option><%=ALLT(STR(YEAR(DATE())-1))%></option>
+     <%ENDIF %>
+      <option><%=ALLT(STR(YEAR(DATE())))%></option>
+      <option><%=ALLT(STR(YEAR(DATE())+1))%></option>
+      </select></td>
+    <%IF plDEPT %>    
+    <td CLASS="TDBODY1" width="15%" height="18" align="center"><select size="1" name="DEPT">
+        <option selected><%=ALLT(pcDEPT1)%></option>
+       <% SELECT _DEPARTMENT
+  		 SCAN %>
+	      <option><%=ALLT(DEPT)%></option>
+       <% ENDSCAN%>
+      </select></td>
+    <%ENDIF %>    
+    <td CLASS="TDBODY1" width="15%" height="18" align="center"><select size="1" name="USER">
+        <option selected><%=pcUSER1 %></option>
+       <% SELECT _USERS
+  		 SCAN %>
+	      <option><%=ALLT(USER)%></option>
+       <% ENDSCAN%>
+      </select></td>
+   </tr>
+</table>
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#4E6699" width="98%" bgcolor="#C0C0C0">
+  <tr>
+    <td width="5%" align="center" rowspan="2"><b>
+	<font face="Arial" size="2" color="#FFFFFF"><a href="#today">
+	<font color="#BB0000">Today</font></a></font></b></td>
+    <td width="6%" align="center" rowspan="2">
+    <font face="Arial" size="2" color="#FFFFFF">Confirm</font></td>
+    <td width="7%" align="center" rowspan="2"><font face="Arial" color="#FFFFFF" size="2">Received<br>&nbsp;Doc</font></td>
+    <td width="7%" align="center" rowspan="2"></td>
+    <td width="6%" align="center" rowspan="2"><%IF lcJOBPHASE<>'P1'%><font face="Arial" color="#FFFFFF" size="2">Cancel</font><%ENDIF%></td>
+    <td width="9%" align="center" rowspan="2"><%IF lcJOBPHASE<>'P1'%><font face="Arial" color="#FFFFFF" size="2">Visual - Visit</font><font face="Arial" size="2"></font><%ENDIF%></td>
+    <td width="7%" align="center" rowspan="2"><%IF lcJOBPHASE<>'P1'%><font face="Arial" color="#FFFFFF" size="2">Book Job</font><font face="Arial" size="2"></font><%ENDIF%></td>
+    <td width="4%" align="center" rowspan="2"><font face="Arial" color="#FFFFFF" size="2">Sign</font></td>
+    <td width="12%" align="center" colspan="2"><font face="Arial" color="#FFFFFF" size="2">Auto Transport</font></td>
+    <td width="6%" align="center" rowspan="2"><font face="Arial" color="#FFFFFF" size="2">Intl</font></td>
+    <td width="10%" align="center" rowspan="2"><font face="Arial" color="#FFFFFF" size="2">Esign</font></td>
+    <td width="9%" align="center" rowspan="2"><font face="Arial" size="2" color="#FFFFFF">Agent<br>Esign</font></td>
+    <td width="10%" align="center" colspan="2"><font face="Arial" size="2" color="#FFFFFF">QA</font></td>
+  </tr>
+  <tr>
+    <td width="5%" align="center"><font face="Arial" size="2" color="#FFFFFF">+Move</font></td>
+    <td width="6%" align="center"><font face="Arial" size="2" color="#FFFFFF"> Car</font></td>
+    <td width="5%" align="center"><font face="Arial" size="2" color="#FFFFFF">Start</font></td>
+    <td width="4%" align="center"><font face="Arial" size="2" color="#FFFFFF">Sign</font></td>
+  </tr>
+  <tr>
+    <td width="5%" height="25" align="center" bgcolor="#FFFFFF"></td>
+    <td width="6%" height="25" align="center" bgcolor="#FFFFFF"><img border="0" src="/zz/images/vmark.gif" width="21" height="18"></td>
+    <td width="7%" height="25" align="center" bgcolor="#FFFFFF"></td>
+    <td width="7%" height="25" align="center" bgcolor="#FFFFFF"></td>
+    <td width="6%" height="25" align="center" bgcolor="#FFFFFF"><%IF lcJOBPHASE<>'P1'%><img border="0" src="/zz/images/vcancel.gif" width="22" height="22"><%ENDIF%></td>
+    <td width="9%" height="25" align="center" bgcolor="#FFFFFF"><%IF lcJOBPHASE<>'P1'%><img border="0" src="/zz/images/vvisual.gif" width="19" height="23"><img border="0" src="/zz/images/vvisit.gif" width="19" height="23"><%ENDIF%></td>
+    <td width="7%" height="25" align="center" bgcolor="#FFFFFF" ><%IF lcJOBPHASE<>'P1'%><img border="0" src="/zz/images/vBook.gif" width="22" height="22"><%ENDIF%></td>
+    <td width="4%" height="25" align="center" bgcolor="#FFFFFF">
+    <img border="0" src="/zz/images/vsign.png" width="25" height="18"></td>
+    <td width="12%" height="25" align="center" bgcolor="#FFFFFF" colspan="2">
+    <img border="0" src="/zz/images/vcarM.gif" width="22" height="22"><img border="0" src="/zz/images/vcar.gif" width="22" height="22"></td>
+    <td width="6%" height="25" align="center" bgcolor="#FFFFFF"><img border="0" src="/zz/images/vintl.png" width="29" height="26"></td>
+    <td width="10%" height="25" align="center" bgcolor="#FFFFFF"><img border="0" src="/zz/images/esign.png" width="25" height="24"></td>
+    <td width="9%" height="25" align="center" bgcolor="#FFFFFF"><img border="0" src="/zz/images/agesign12.gif" width="19" height="23"></td>
+    <td width="5%" height="25" align="center" bgcolor="#FFFFFF"><img border="0" src="/zz/images/qa.png" width="19" height="23"></td>
+    <td width="4%" height="25" align="center" bgcolor="#FFFFFF"><img border="0" src="/zz/images/qav.png" width="19" height="23"></td>
+  </tr>
+</table>
+<% M1=lnSTARTDAY
+   M2=lnLASTDAY 
+   lnDAY=0
+%>
+  <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td CLASS="TDTOP2" width="14%" align="center">Sunday</td>
+    <td CLASS="TDTOP2" width="14%" align="center">Monday</td>
+    <td CLASS="TDTOP2" width="14%" align="center">Tuesday</td>
+    <td CLASS="TDTOP2" width="14%" align="center">Wednesday</td>
+    <td CLASS="TDTOP2" width="14%" align="center">Thursday</td>
+    <td CLASS="TDTOP2" width="14%" align="center">Friday</td>
+    <td CLASS="TDTOP2" width="14%" align="center">Saturday</td>
+  </tr>
+  </table>
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#0000FF" width="98%">
+<%FOR I = 1 TO 6 %>
+	<tr>
+	<%FOR J = 1 TO 7 
+		lcL='_L'+ALLT(STR(I))
+		SELECT * FROM &lcL WHERE nDOW=J INTO CURSOR _A
+		GO TOP
+		IF (I=1 AND J < M1) OR lnDAY >= M2
+			pcHEADER="" 
+		ELSE
+			lnDAY=lnDAY+1
+			pcHEADER=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'<a name="today"></a>today '+ALLT(STR(lnDAY)),ALLT(STR(lnDAY)))
+		ENDIF
+		%>
+		<!-- DAY CELL -->
+		<td width="14%" align="center" valign="top">
+		<!-- DISPLAY DAY -->
+		<table border="3" bordercolordark="#808080" cellpadding="1" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+		<tr>
+		  <td onclick=submitday("<%=ALLT(STR(lnDAY))%>") CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD13',IIF(EMPTY(pcHEADER),'TD15','TD14'))%>" ><%=pcHEADER%>&nbsp;</td>
+		</tr>
+		</table>
+		<!-- END DISPLAY DAY -->
+		<% NN=0 
+		lcNO=0
+		SCAN
+		    lcNO=ALLT(STR(RECNO()))%>
+			<table border="3" bordercolordark="#808080"  cellpadding="1" cellspacing="1" style="border-collapse: collapse" width="100%" >
+				<tr>
+					<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD3','TD2')%>"><%=lcNO%>.&nbsp;<font face="Arial"><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target='_blank'><%=ALLT(DEPT)%><%=ALLT(ORDNO)%></a>&nbsp;<a href="#top"><%=CODE%></a></td>
+				</tr>
+				<tr>
+					<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD10','TD1')%>"><%=SNAME%>&nbsp;</td>
+				</tr>
+				<%IF lcJOBPHASE='P4'%>
+				 <tr>
+					<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD10','TD1')%>"><b><%=PROPER(SCITY)%></b>&nbsp;</td>
+				</tr>
+				<%ENDIF%>
+				 <tr>
+					<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),IIF(AMPM='P','TD21','TD22'),IIF(AMPM='P','TD23','TD0'))%>"><%=SSTATE%>-<%=RSTATE%>&nbsp;&nbsp;<%=AMPM1%></td>
+				</tr>
+				<%IF STATUS='D' %>
+				 <tr>
+					<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD10','TD16')%>">CLOSE JOB</td>
+				</tr>
+				<%ENDIF%>
+				<tr>
+				  <td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD17','TD18')%>"><font color="#000000"><%=ALLT(REP)%></font>&nbsp;</td>
+				</tr>
+				<%IF !EMPTY(ALLT(AGENT)) %>
+					<tr>
+						<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD17','TD18')%>"><%=ALLT(AGENT)%>&nbsp;</td>
+					</tr>
+				<%ENDIF%>
+				<%IF !EMPTY(ALLT(ESTIM)) %>
+					<tr>
+						<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD17','TD18')%>"><%=ALLT(ESTIM)%>&nbsp;</td>
+					</tr>
+				<%ENDIF%>
+				<%IF STATUS='S' %>
+					<tr>
+						<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD10','TD16')%>">STORAGE</td>
+					</tr>
+				<%ENDIF%>
+				<%IF !EMPTY(ALLT(DEPTDLV)) %>
+					<tr>
+						<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD10','TD1')%>"><%=ALLT(DEPTDLV)%>&nbsp;</td>
+					</tr>
+				<%ENDIF%>
+				<%IF TYPE='D' OR TYPE='L' OR TYPE='R' %>
+					<tr>
+						<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),IIF(CALCCF,'TD10','TD11'),IIF(CALCCF,'TD1','TD12'))%>" ><%=IIF(CALCCF,TRANSFORM(CF,'99,999'),TRANSFORM(LBS,'99,999'))%>&nbsp;<%=IIF(CALCCF,'cf.','lbs.')%></td>
+					</tr>
+				    <%IF pcCUSTNO <> 'BUDGETVAN' %>
+						  <tr>
+							<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD10','TD1')%>"><%=TRANSFORM(MILES,'99,999')%>&nbsp;miles</td>
+						  </tr>
+				   <%ENDIF%>
+				<%ENDIF%>
+				<%IF !EMPTY(QAUSER) %>
+					<tr>
+						<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD10','TD1')%>"><b>QA-<%=ALLT(QAUSER)%></b></td>
+					</tr>
+				<%ENDIF%>		
+				<%IF !EMPTY(TRIPNO) %>
+					<tr>
+						<td CLASS="<%=IIF(lnDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD20','TD19')%>"><%=ALLT(TRIPNO)%>&nbsp;</td>
+					</tr>
+				<%ENDIF%>
+				<%IF  pcCUSTNO = 'BUDGETVAN'
+				   DO CASE 
+				      CASE PAY=.F. AND PAYRSRV=.F. %>
+						<td CLASS="TD26">$$$$$$$</td>
+				    <%CASE PAY=.T. AND PAYRSRV=.F. %>
+						<td CLASS="TD27">$$$</td>
+				    <%CASE PAY=.F. AND PAYRSRV=.T. %>
+						<td CLASS="TD28">RSRV</td>
+				  <%ENDCASE%>
+				<%ELSE%>
+				   <%IF PAY=.T. or PAYRSRV=.T.%> 
+						<td CLASS="TD18">$$$$$</td>
+				   <%ENDIF%>
+				<%ENDIF%>
+				</tr>
+				<!--->			
+				<%IF !EMPTY(ALLT(TEXT)) %>
+					<tr>
+						<td CLASS="<%=IIF(nDAY=DAY(DATE()) AND MONTH(DTE)=MONTH(DATE()),'TD10','TD1')%>"><%=ALLT(TEXT)%>&nbsp;</td>
+					</tr>
+				<%ENDIF%>
+			</table>
+		<% ENDSCAN %>
+		</td>
+	<!-- END DAY CELL -->
+	<%ENDFOR %>
+	</tr>
+<%ENDFOR %>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" height="25" background="/zz/images/bgdown.gif"><font face="Arial" size="2"><font color="#FFFFFF"><%=pcUSER%>&nbsp;&nbsp;<%=pcCUSTNO%></font></font></td>
+  </tr>
+</table>
+</td> 
+</tr>
+</table>
+<!--end main -->
+
+</body>
+</html>

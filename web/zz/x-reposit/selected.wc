@@ -1,0 +1,262 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Repository Selected List</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitlist(i) {
+    if (i==1) 
+      { 
+		if (checkData()) {
+	       document.theForm.action="/wc.dll?mpreposit~selectedret~<%=pcSCR%>";
+	       document.theForm.submit();
+	     }  
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~processwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+
+function checkData(){
+	frm = document.theForm;
+	return  lengthValid(frm.buypass, 2,"password");
+	}
+
+//function to validate by length
+function lengthValid(field, len, text) {
+    // text = Trim(text);
+	if (field.value.length < len)
+  	{
+ 	  	alert("Please enter valid " + text + ".");
+		field.focus();
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function addleads(){
+	window.open('/wc.dll?mpreposit~addleadswc~<%=ALLT(pcSCR)%>~<%=ALLT(pcCUSTNO)%>~LEADS','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=790,height=590')	      
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+</head>
+
+<body BGCOLOR="#ADBACE">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="85%" height="13">
+  <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#4A698C" height="20" colspan="2">
+    <p align="center">
+    <b>
+    <font size="4" color="#FFFFFF" face="Verdana">Pre-Statement for Selected 
+    Leads</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="355" colspan="2">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+<form name="theForm" method="POST">
+<% SELECT _LIST 
+    GO TOP %>
+    <center>
+    <TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="98%" align="center">
+    <tr>
+      <td width="5%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">#</font></b></td>
+      <td width="9%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b>
+      <font face="Verdana" size="2">Reference</font></b></td>
+      <td width="16%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">Move Date</font></b></td>
+      <td width="16%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">From</font></b></td>
+      <td width="16%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b>
+      <font face="Verdana" size="2">To</font></b></td>
+      <td width="10%" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><p align="center">
+      <b><font face="Verdana" size="2">CF</font></b></td>
+   </tr>
+<%SCAN %>
+    <tr>
+      <td width="5%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=ALLT(STR(NO)) %>.</font></b></td>
+      <td width="9%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana">AR-<%=ORDNO %></font></b></td>
+      <td width="16%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=LBOOKDTE %>&nbsp;&nbsp;<%=LEFT(CDOW(LBOOKDTE),3) %></font></b></td>
+      <td width="16%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=FROM %></font></b></td>
+      <td width="16%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=TO %></font></b></td>
+      <td width="10%" bgcolor="#FFFFFF" BORDERCOLOR="#708090"><p><b>
+      <font size="2" color="#000000" face="Verdana"><%=ALLT(STR(TOTALCF)) %>&nbsp;cf.</font></b></td>
+    </tr>
+   <% ENDSCAN %>
+    <tr>
+      <td width="72%" bgcolor="#CECFCE" colspan="6" BORDERCOLOR="#708090">&nbsp;</td>
+    </tr>
+   </table>
+    </center>
+  </div>
+  &nbsp;<hr color="#000000" width="60%">
+  
+  <TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="75%" height="161">
+    <tr>
+      <td width="37%" BORDERCOLOR="#708090" height="19"><p align="right"><b>
+      <font face="Verdana" size="2">Company:&nbsp;</font></b></td>
+      <td width="20%" colspan="2" BORDERCOLOR="#708090" height="19"><b>&nbsp;<%=ALLT(pcCOMPANY)%></b>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="37%" BORDERCOLOR="#708090" height="19"><p align="right"><b><font face="Verdana" size="2">Selected By:&nbsp;</font></b></td>
+      <td width="20%" colspan="2" BORDERCOLOR="#708090" height="19"><b>&nbsp;<%=pcUSER%></b>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="98%" BORDERCOLOR="#708090" colspan="3" height="11"></td>
+    </tr>
+    <tr>
+      <td width="37%" BORDERCOLOR="#708090" height="19"><p align="right"><font face="Verdana" size="2"><b>
+      Current Leads Credit:&nbsp;</b></font></td>
+      <td width="31%" BORDERCOLOR="#708090" align="right" height="19"><b><font color="#006600" face="Verdana" size="2">
+      &nbsp;<%=ALLT(STR(pnLEADSBAL1+pnLEADSXBAL1))%>&nbsp;leads</font></b></td>
+      <td width="30%" BORDERCOLOR="#708090" align="right" height="84" rowspan="4" bgcolor="#CCCCCC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="37%" BORDERCOLOR="#708090" height="19"><p align="right"><font face="Verdana" size="2"><b>
+      Total Selected Leads:&nbsp;</b></font></td>
+      <td width="31%" align="right" BORDERCOLOR="#708090" height="19"><b><font color="#FF0000" face="Verdana" size="2">
+      &nbsp;<%=ALLT(STR(pnLEADS))%>&nbsp;leads</font></b></td>
+    </tr>
+    <tr>
+      <td width="37%" BORDERCOLOR="#708090" height="19"><p align="right">&nbsp;</td>
+      <td width="31%" align="right" BORDERCOLOR="#708090" height="19"><font face="Verdana" size="2"><b>----------</b></font></td>
+    </tr>
+    <tr>
+      <td width="37%" bgcolor="#CECFCE" BORDERCOLOR="#708090" height="27"><p align="right"><font face="Verdana" size="2"><b>Updated 
+      Leads Credit:&nbsp;</b></font></td>
+      <td width="31%" align="right" bgcolor="#CECFCE" BORDERCOLOR="#708090" height="27">
+      <font color="#006600" face="Verdana" size="2"><b>&nbsp;<%=ALLT(STR(pnLEADS1))%>&nbsp;leads</b></font></td>
+    </tr>
+  </table>
+</td>
+</tr>
+</table>
+    <hr color="#000000" width="60%">
+<%IF pnLEADS1 >= 0 %>
+    <div align="center">
+      <center>
+      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="60%" id="AutoNumber1" height="56">
+        <tr>
+          <td width="150" height="26"><font face="Verdana" size="2"><b>Username:</b></font></td>
+          <td width="82%" height="26">
+                            <font face="Verdana"><b>
+                            <select size="1" name="USERNAME" style="border: 1px solid #52657B; ">
+                            	<option selected><%=ALLT(pcUSER)%></option>
+                            	<%SELECT _USERS
+                            		SCAN%>
+	                          <%IF USER!=pcUSER%><option><%=ALLT(USER)%></option><%ENDIF%>
+	                          <%ENDSCAN%>
+    	                    </select></b></font></td>
+        </tr>
+        <tr>
+          <td width="150" height="30"><font face="Verdana" size="2"><b>Password:</b></font></td>
+          <td width="82%" height="30">
+         <font face="Verdana"><b>
+         <input type="password" name="buypass" style="border: 1px solid #52657B; " size="17"></b></font></td>
+        </tr>
+      </table>
+      </center>
+    </div>
+<%ENDIF%>
+<BR>
+</form>
+ <!-- Buttons --->
+    <div align="center">
+      <center>
+<table border="0" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  </form>
+  <tr>
+    <%IF pnLEADS1 >= 0 %>
+       <td width="50%" align="center">
+       <input type="submit" CLASS="SUBOFF" name="btnSubmit" onclick="submitlist(1)" style="border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:120" tabindex="9" value="Continue"></td>    
+    <%ELSE%>
+		<!---<td width="50%" align="center"><input type="button" CLASS="SUBOFF" name="btnAdd" onclick="addleads()" style="border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:120" tabindex="9" value="Add Leads"></td>--->
+    <%ENDIF%>
+    <td width="50%" align="center"><input type="button" CLASS="SUBOFF" name="btnExit" onclick="submitlist(2)" style="border: 1px solid #52657B; font-size:9pt; font-family: Verdana; font-weight: bold; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; height: 24; width:120" tabindex="9" value="Cancel"></td>    
+  </tr>
+</table>
+      </center>
+    </div>
+      </center>
+    </div>
+<!-- Buttons --->
+    <br>
+&nbsp;<table border="0" cellpadding="0" cellspacing="1" width="100%">
+      <tr>
+        <td width="100%" align="center"><b><font color="#FF0000"><%=pcMSG%></b>&nbsp;</font></td>
+      </tr>
+    </table>
+<BR>
+    <table border="0" cellpadding="0" cellspacing="1" width="100%">
+      <tr>
+        <td width="100%" align="center">
+    <b>
+    <font face="Verdana">-  Purchase is Final -</font></b></td>
+      </tr>
+    </table>
+</td>
+</tr>
+<tr>
+    <td width="50%" BGCOLOR="#4A698C" height="18">
+      <font color="#FFFFFF" face="Verdana" size="2">
+      <b>&nbsp;User:<%=pcUSER%></b></font></td>
+    <td width="50%" BGCOLOR="#4A698C" height="18">
+      <p align="right"><font color="#FFFFFF" face="Verdana" size="2"><b><%=datetime()%>&nbsp;&nbsp;</b></font></td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2" bgcolor="#FFCF63">
+    </td>
+ </tr>
+  </table>
+  </center>
+</div>
+</body>
+</html>

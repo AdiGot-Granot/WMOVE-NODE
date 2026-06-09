@@ -1,0 +1,336 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Tariff Rates</TITLE>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i){
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~TariffRateRet~<%=pcSCR%>~<%=pcDMAINID%>~<%=pcAREA%>~<%=pcPERIOD%>";
+       document.theForm.submit();
+     }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~TariffMenuWc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==3){ 
+       var Message = "Are you sure you want to copy all rates?";
+       if (confirm (Message)){
+       document.theForm.action="/wc.dll?mpmainten~TariffCopyPeriod~<%=pcSCR%>~<%=pcDMAINID%>~<%=pcAREA%>~<%=pcPERIOD%>";
+       document.theForm.submit();
+      }                
+    }
+
+    if (i==5){ 
+      window.open('/wc.dll?mpmainten~TariffValidate~<%=pcSCR%>~<%=pcDMAINID%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=950,height=600');
+    }    
+
+    if (i==4){ 
+       var Message = "Are you sure you want to update all rates?";
+       if (confirm (Message)){
+       document.theForm.action="/wc.dll?mpmainten~TariffPercentPeriod~<%=pcSCR%>~<%=pcDMAINID%>~<%=pcAREA%>~<%=pcPERIOD%>";
+       document.theForm.submit();
+      }                
+    } 
+
+      
+    if (i==6){ 
+       var Message = "Are you sure you want to update all rates?";
+       if (confirm (Message)){
+       document.theForm.action="/wc.dll?mpmainten~TariffUpdRatePercent~<%=pcSCR%>~<%=pcDMAINID%>";
+       document.theForm.submit();
+      }                
+    }
+    if (i==7){ 
+       var Message = "Are you sure you want to copy the rates?";
+       if (confirm (Message)){
+       document.theForm.action="/wc.dll?mpmainten~TariffRateCopyZone~<%=pcSCR%>~<%=pcDMAINID%>~<%=pcAREA%>";
+       document.theForm.submit();
+      }                
+    }    
+
+
+    if (i==8){ 
+       var Message = "Are you sure you want to update all zones?";
+       if (confirm (Message)){
+       document.theForm.action="/wc.dll?mpmainten~TariffUpdPercentAll~<%=pcSCR%>~<%=pcDMAINID%>~<%=pcAREA%>~<%=pcPERIOD%>";
+       document.theForm.submit();
+      }                
+    }
+    
+    if (i==9){ 
+       var Message = "Are you sure you want to update all zones?";
+       if (confirm (Message)){
+       document.theForm.action="/wc.dll?mpmainten~TariffUpdMoneyAll~<%=pcSCR%>~<%=pcDMAINID%>";
+       document.theForm.submit();
+      }                
+    }
+    if (i==10){ 
+       var Message = "Are you sure you want to update all zones?";
+       if (confirm (Message)){
+       document.theForm.action="/wc.dll?mpmainten~TariffUpdMoneyAll~<%=pcSCR%>~<%=pcDMAINID%>~<%=ALLT(AREA1)%>";
+       document.theForm.submit();
+      }                
+    }
+      
+  }
+        
+function openDir( form ) { 
+
+	var newIndex = form.fieldname.selectedIndex; 
+
+	if ( newIndex == 0 ) { 
+
+		alert( "Please select a location!" ); 
+
+	} else { 
+
+		cururl = form.fieldname.options[ newIndex ].value; 
+
+		window.location.assign( cururl ); 
+
+	} 
+} 
+
+function view() {
+    window.open('/wc.dll?mpmainten~TariffAreaWc~<%=pcSCR%>~<%=pcAREA%>','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=630,height=700');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #E9E9EA;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: left;
+					background-color: #E9E9EA;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+				  	font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #E9E9EA;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}															
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 135;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 135;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="1100">
+  <tr>
+    <td valign="top" width="248">
+      <table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="100%">
+        <tr>
+          <td width="100%" align="center" BGCOLOR="#0081D3" colspan="2"><b><font face="Verdana" size="3" color="#FFFFFF">Zone List</font></b></td>
+        </tr>
+<form name="form">            
+        <tr>
+          <td width="25%" bgcolor="#FFFFFF" colspan="2">
+			<select name="fieldname" size="1" onChange="openDir( this.form )"> 
+				<option VALUE="/wc.dll?mpmainten~TariffRateWc~<%=pcSCR%>~<%=pcAREA%>~<%=pcPERIOD%>">Period-<%=pcPERIOD%></option>
+               	     <% SELECT _PERIODS
+	        			SCAN %>
+		       <OPTION value="/wc.dll?mpmainten~TariffRateWc~<%=pcSCR%>~<%=pcAREA%>~<%=ALLT(STR(PID))%>">Period-<%=ALLT(STR(_PERIODS.PID))%></OPTION>
+	          <% ENDSCAN %>			 
+			</select></td>
+        </tr> 
+</form>               
+    <% SELECT _Z
+       SCAN %>    
+        <tr style="line-height:22px;">
+          <td width="13%" bgcolor="<%=IIF(ALLT(AREA)==pcAREA,'#FFFF5B','#FFFFFF')%>">&nbsp;
+          <a href="/wc.dll?mpmainten~TariffRateWc~<%=pcSCR%>~<%=ALLT(AREA)%>~1"><b><font face="Verdana" size="2" COLOR="#0000FF"><%=AREA%></a></b></font></td>
+          <td width="12%" bgcolor="<%=IIF(ALLT(AREA)==pcAREA,'#FFFF5B','#FFFFFF')%>"><font onclick="view()" style="cursor:pointer; font-family:Verdana;text-decoration:underline;font-size:10pt;color:BLUE"><%=IIF(ALLT(AREA)==pcAREA,'View Zone','')%></font></td>
+        </tr>
+   <% ENDSCAN%>     
+        <tr>
+          <td width="100%" BGCOLOR="#0081D3" colspan="2">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+    <td valign="top" width="14">&nbsp;</td>
+    <td valign="top" width="832">
+<form name="theForm" method="post">
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="100%">
+   <tr>
+    <td width="100%" align="center" BGCOLOR="#0081D3" colspan="5"><b><font face="Verdana" size="3" color="#FFFFFF">Tariff Rates</font></b></td>
+  </tr>
+   <tr>
+     <td width="13%" bgcolor="#FFFFFF">&nbsp;<font face="Verdana" size="2">From zone:</font></td>
+     <td width="15%" bgcolor="#FFFF00">&nbsp;<b><font face="Verdana" color="#008000"><%=pcAREA%></font></b></td>
+     <td width="5%" bgcolor="#E9E9EA"><b><font face="Verdana" SIZE="2">1.</font></b></td>
+     <td width="18%" bgcolor="#E9E9EA" height="21">
+     <select size="1" name="AREA">
+		<option selected></option>
+		<%	SELECT _DAREA
+			SCAN %>
+		<option><%=ALLT(AREA)%></option>
+		<% ENDSCAN %>
+	</select></td>
+     <td width="52%" bgcolor="#E9E9EA"><font onclick="submitFunction(7)" style="cursor:pointer;font-family:Verdana;font-size:11pt;color:BLUE;"><u>Copy Rate from zone</u></font></td>
+  </tr>        
+   <tr>
+     <td width="28%" bgcolor="#FFFFFF" colspan="2">&nbsp;<font face="Verdana" size="2">Period: <b><font color="#008000"><%=pcPERIOD%>&nbsp;&nbsp;(<%=pcDAYS%>)</font></b></font></td>
+     <td width="5%" bgcolor="#E9E9EA"><b><font face="Verdana" size="2">2.</font></b></td>
+     <td width="18%" bgcolor="#E9E9EA">&nbsp;</td>
+     <td width="52%" bgcolor="#E9E9EA" height="21"><font onclick="submitFunction(3)" style="cursor:pointer;font-family:Verdana;font-size:11pt;color:BLUE;"><u>Copy rate from period 1</u></font></td>
+  </tr>        
+   <tr>
+     <td width="13%" bgcolor="#FFFFFF">&nbsp;<font face="Verdana" size="2">Rate By:</font></td>
+     <td width="15%" bgcolor="#FFFFFF">&nbsp;<b><font face="Verdana" size="2" color="#008000"><%=IIF(plCALCCF,'Cu. Ft','Lbs')%></font></b></td>
+     <td width="5%" bgcolor="#E9E9EA"><b><font face="Verdana" SIZE="2">3.</font></b></td>
+     <td width="18%" bgcolor="#E9E9EA"><input NAME="REDUCE" size="2" VALUE="" style="text-align: right;"><b><font face="Verdana" SIZE="1">% (+)</font></b></td>
+     <td width="52%" bgcolor="#E9E9EA"><font onclick="submitFunction(6)" style="cursor:pointer;font-family:Verdana;font-size:11pt;color:BLUE;"><u>Reduce price from column A to all tariff zones</u></font></td>
+  </tr>        
+   <tr>
+     <td width="13%" bgcolor="#FFFFFF">&nbsp;<font face="Verdana" size="2">CF/Lbs Ratio</font></td>
+     <td width="15%" bgcolor="#FFFFFF">&nbsp;<b><font face="Verdana" size="2" color="#008000"><%=ALLT(STR(pnCFRATIO,7,2))%></font></b></td>
+     <td width="5%" bgcolor="#E9E9EA"><b><font face="Verdana" size="2">4.</font></b></td>
+     <td width="18%" bgcolor="#E9E9EA"><input NAME="PERCENT" size="2" VALUE="" style="text-align: right;"><b><font face="Verdana" SIZE="1">% (+/-)</font></b></td>
+     <td width="52%" bgcolor="#E9E9EA"><font onclick="submitFunction(4)" style="cursor:pointer;font-family:Verdana;font-size:11pt;color:BLUE;"><u>Add/Reduce to this period</u></font></td>
+  </tr>        
+   <tr>
+     <td width="13%" bgcolor="#FFFFFF">&nbsp;<font face="Verdana" size="2">Tariff ID:</font></td>
+     <td width="15%" bgcolor="#FFFFFF">&nbsp;<font face="Verdana" size="2" color="#008000"><b><%=pcDMAINID%></b></font></td>
+     <td width="5%" bgcolor="#E9E9EA"><b><font face="Verdana" size="2">5.</font></b></td>
+     <td width="18%" bgcolor="#E9E9EA"><input NAME="PERCENTALL" size="2" VALUE="" style="text-align: right;"><b><font face="Verdana" SIZE="1">% (+/-)</font></b></td>
+     <td width="52%" bgcolor="#E9E9EA"><font onclick="submitFunction(8)" style="cursor:pointer;font-family:Verdana;font-size:11pt;color:BLUE;"><u>Add/Reduce to this zone all periods</u></font></td>
+  </tr>
+   <tr>
+     <td width="28%" bgcolor="#FFFFFF" colspan="2">&nbsp;</td>
+     <td width="5%" bgcolor="#E9E9EA"><b><font face="Verdana" size="2">6.</font></b></td>
+     <td width="18%" bgcolor="#E9E9EA"><input NAME="MONEYALL" size="2" VALUE="" style="text-align: right;"><b><font face="Verdana" SIZE="1">$0.00 (+/-) </font></b></td>
+     <td width="52%" bgcolor="#E9E9EA"><font onclick="submitFunction(9)" style="cursor:pointer;font-family:Verdana;font-size:11pt;color:BLUE;"><u>Add/Reduce money from column A to all tariff zones</u></font></td>
+  </tr>
+   <tr>
+     <td width="28%" bgcolor="#FFFFFF" colspan="2">&nbsp;</td>
+     <td width="5%" bgcolor="#E9E9EA"><b><font face="Verdana" size="2">7.</font></b></td>
+     <td width="18%" bgcolor="#E9E9EA"><input NAME="MONEYX" size="2" VALUE="" style="text-align: right;"><b><font face="Verdana" SIZE="1">$0.00 (+/-) </font></b></td>
+     <td width="52%" bgcolor="#E9E9EA"><font onclick="submitFunction(10)" style="cursor:pointer;font-family:Verdana;font-size:11pt;color:BLUE;"><u>Add/Reduce money from column A to this zone ONLY</u></font></td>
+  </tr>
+</table>
+ <br>    
+<table border="0" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="27%" class="TD1" colspan="2">&nbsp;</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">A</td>
+    <td width="6%" class="TD1" style="border-left: 1px solid #A9A9A9;">B</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">C</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">D</td>
+    <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">E</td>
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">F</td>
+ <% IF plG%>  
+    <td width="7%" class="TD1" style="border-left: 1px solid #A9A9A9;">G</td>  
+ <% ENDIF%>
+ <% IF plH%>  
+    <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">H</td>
+ <% ENDIF%>
+ <% IF plI%>  
+    <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">I</td>
+ <% ENDIF%>
+ <% IF plJ%> 
+    <td width="8%" class="TD1" style="border-left: 1px solid #A9A9A9;">J</td>
+<% ENDIF%>
+ </tr>
+ <% SELECT _M%>
+  <tr>
+    <td width="8%" class="TD2">To Zone</td>
+    <td width="7%" class="TD2" style="border-left: 1px solid #A9A9A9;"><%=pcMINVOLUME%></td>
+    <td width="7%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=A%>&nbsp;</td>
+    <td width="6%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=B%>&nbsp;</td>
+    <td width="7%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=C%>&nbsp;</td>
+    <td width="7%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=D%>&nbsp;</td>
+    <td width="8%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=E%>&nbsp;</td>
+    <td width="7%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=F%>&nbsp;</td>
+  <% IF plG%>  
+    <td width="7%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=G%>&nbsp;</td>
+  <% ENDIF%>
+  <% IF plH%>  
+    <td width="8%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=H%>&nbsp;</td>
+  <% ENDIF%>
+  <% IF plI%>  
+    <td width="8%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=I%>&nbsp;</td>
+  <% ENDIF%>
+  <% IF plJ%>  
+    <td width="8%" class="TD3" style="border-left: 1px solid #A9A9A9;"><%=J%>&nbsp;</td>
+  <% ENDIF%>  
+ </tr>
+  <% SELECT _R
+       SCAN %>
+  <tr style="line-height:28px;">
+    <td width="8%" style="border-bottom: 1px solid #A9A9A9;" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>">&nbsp;<font face="Verdana" size="2"><b><%=AREA2%></B></FONT></td>
+    <td width="7%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-MIN" size="3" VALUE="<%=IIF(MINPRC=0,'',ALLT(STR(MINPRC)))%>" style="text-align: right;"></td>
+    <td width="7%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-A" size="2" VALUE="<%=IIF(A=0,'',ALLT(STR(A,6,2)))%>" style="text-align: right;"></td>
+    <td width="6%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-B" size="2" VALUE="<%=IIF(B=0,'',ALLT(STR(B,6,2)))%>" style="text-align: right;"></td>
+    <td width="7%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-C" size="2" VALUE="<%=IIF(C=0,'',ALLT(STR(C,6,2)))%>" style="text-align: right;"></td>
+    <td width="7%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-D" size="2" VALUE="<%=IIF(D=0,'',ALLT(STR(D,6,2)))%>" style="text-align: right;"></td>
+    <td width="8%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-E" size="2" VALUE="<%=IIF(E=0,'',ALLT(STR(E,6,2)))%>" style="text-align: right;"></td>
+    <td width="7%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-F" size="2" VALUE="<%=IIF(F=0,'',ALLT(STR(F,6,2)))%>" style="text-align: right;"></td>
+ <% IF plG%>     
+    <td width="7%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-G" size="2" VALUE="<%=IIF(G=0,'',ALLT(STR(G,6,2)))%>" style="text-align: right;"></td>
+ <% ENDIF%>
+ <% IF plH%>    
+    <td width="8%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-H" size="2" VALUE="<%=IIF(H=0,'',ALLT(STR(H,6,2)))%>" style="text-align: right;"></td>
+ <% ENDIF%>
+ <% IF plI%>    
+    <td width="8%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-I" size="2" VALUE="<%=IIF(I=0,'',ALLT(STR(I,6,2)))%>" style="text-align: right;"></td>
+ <% ENDIF%>
+ <% IF plJ%>    
+    <td width="8%" class="TD4" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'CCCCFF','FFFFFF')%>"><input NAME="<%=ALLT(AREA2)%>-J" size="2" VALUE="<%=IIF(J=0,'',ALLT(STR(J,6,2)))%>" style="text-align: right;"></td>
+ <% ENDIF%>  
+ </tr>
+ <%ENDSCAN%>
+</table>
+<table border="0" width="100%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="16%" height="40" bgcolor="#FFFFFF" align="center">
+    <input type="button" CLASS="SUBOFF" name="B4" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+	<td width="18%" height="40" bgcolor="#FFFFFF" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(5)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="3" value="Validate Your Rates"></td>    
+	<td width="15%" height="40" bgcolor="#FFFFFF"><input type="button" CLASS="SUBOFF" name="B6" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="3" value="Exit"></td>    
+ </tr>
+  <tr>
+	<td BGCOLOR="#0081D3" colspan="3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+ </tr>
+</table>
+ </form>     
+    </td>
+  </tr>
+</table>
+</body>
+
+</html>

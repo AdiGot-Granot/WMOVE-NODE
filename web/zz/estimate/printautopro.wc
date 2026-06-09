@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Vehicle Transport Estimate</title>
+  <style type="text/css">
+    body { margin:0; padding:0; background-color:#efefec; font-family:Arial,Helvetica,sans-serif; color:#1c1c1c; }
+
+    @media only screen and (max-width: 620px) {
+      .outer-table  { width:100% !important; }
+      .hdr-co       { display:block !important; width:100% !important; border-right:none !important; border-bottom:1px solid #d4d0c8 !important; box-sizing:border-box !important; }
+      .hdr-job      { display:block !important; width:100% !important; padding:16px 16px 20px !important; box-sizing:border-box !important; }
+      .hdr-job table { width:100% !important; }
+      .date-td      { display:block !important; width:50% !important; float:left !important; border-right:none !important; border-bottom:1px solid #e8e5de !important; padding:10px 14px !important; box-sizing:border-box !important; }
+      .dates-clear  { display:block !important; clear:both !important; font-size:0 !important; line-height:0 !important; }
+      .loc-l        { display:block !important; width:100% !important; border-right:none !important; border-bottom:1px solid #d4d0c8 !important; box-sizing:border-box !important; }
+      .loc-r        { display:block !important; width:100% !important; box-sizing:border-box !important; }
+      .sig-c        { display:block !important; width:100% !important; padding-right:0 !important; padding-bottom:18px !important; }
+      .hide-sm      { display:none !important; }
+    }
+  </style>
+  
+</head>
+
+<body>
+<%=lcEMAILHEADER%>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#efefec;">
+ <tr><td align="center" style="padding:28px 12px 48px;"><img border="0" src="https://eagle.hellomoving.com<%=pcIMG%>" alt="" width="700" height="100">
+
+  <!-- CARD -->
+  <table class="outer-table" border="0" cellpadding="0" cellspacing="0" width="900" style="background-color:#ffffff;border:1px solid #d4d0c8;">
+
+    <!-- TOP RULE -->
+    <tr><td height="5" style="background-color:#1c1c1c;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+    <!-- ═══ HEADER ═══ -->
+    <tr>
+      <td style="padding:0;border-bottom:1px solid #d4d0c8;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <!-- Company block: 52% -->
+            <td class="hdr-co" valign="top" width="53%" style="padding:26px 20px 22px 28px;border-right:1px solid #d4d0c8;">
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:bold;color:#1c1c1c;line-height:1.1;"><%=pcCOMPANY%></div>
+              <div style="font-size:15px;color:#555;margin-top:9px;line-height:1.9;"><%=IIF(pcCUSTNO='SHIPSLINE','Physical Address:<br>','')%><%=pcADD1%><br><%=IIF(pcCUSTNO='SHIPSLINE','Mailing Address:<br>','')%><%=pcADD2%><br>
+              <%=pcTOLLFREE%>&nbsp;<%=IIF(!EMPTY(pcFAX),'&bull;&nbsp;Fax: '+pcFAX,'')%>
+               <br> <a href="<%=pcOURWEB%>" style="text-decoration:underline;"><%=pcOURWEB%></a>
+              </div>
+              <div style="margin-top:11px;">
+                <span style="display:inline-block;font-size:15px;font-weight:bold;color:#555;border:1px solid #bbb;border-radius:3px;padding:3px 8px;margin-right:5px;"><%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%></span>
+                <span style="display:inline-block;font-size:15px;font-weight:bold;color:#555;border:1px solid #bbb;border-radius:3px;padding:3px 8px;margin-right:5px;"><%=IIF(EMPTY(pcICC),"","ICC MC: "+pcICC)%></span>
+                <% IF !EMPTY(pcREGISTER)%>
+                <br><br><span style="display:inline-block;font-size:15px;font-weight:bold;color:#555;border:1px solid #bbb;border-radius:3px;padding:3px 8px;">Registration #: <%=pcREGISTER%></span>
+                <%ENDIF%>                
+              </div>
+            </td>
+            <!-- Job box: 48% -->
+            <td class="hdr-job" valign="top" width="47%" style="padding:14px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border:1px solid #d4d0c8;background-color:#fafaf8;border-radius:8px;overflow:hidden;">
+                <tr><td style="padding:10px;">        
+                  <table border="0" cellpadding="0" cellspacing="0" width="99%">
+                    <tr>
+                      <td width="30%" style="font-size:14px;font-weight:bold;letter-spacing:0.14em;color:#000;">Job Order</td>
+                      <td width="68%" style="font-family:Arial,Helvetica,sans-serif;font-size:20px;font-weight:bold;color:#1c1c1c;"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></td>
+                    </tr>
+                   </table>
+                    <br>
+                   <table border="0" cellpadding="0" cellspacing="0" width="99%" style="line-height:23px;">                                    
+                    <tr>
+                      <td width="35%" style="font-size:14px;">Customer Rep:</td>
+                      <td width="63%" style="font-size:14px;font-weight:bold;color:#1c1c1c;"><% IF plUNAME %><%=pcREP%><%ELSE%><%=IIF(EMPTY(_EST.REP),PROPER(_EST.USER),PROPER(_EST.REP))%><%ENDIF%></td>
+                    </tr>
+                    <% IF !EMPTY(pcUSERPHONE)%>
+                    <tr>
+                      <td width="35%" style="font-size:14px;">Direct Line:</td>
+                      <td width="63%" style="font-size:14px;font-weight:bold;color:#1c1c1c;"><%=pcUSERPHONE%></td>
+                    </tr>
+                    <%ENDIF%>
+                    <% IF !EMPTY(pcPHONEEXT)%>
+                    <tr>
+                      <td width="35%" style="font-size:14px;">Line Ext.:</td>
+                      <td width="63%" style="font-size:14px;font-weight:bold;color:#1c1c1c;"><%=pcPHONEEXT%></td>
+                    </tr>
+                    <%ENDIF%>                    
+                    <tr>
+                      <td width="35%" style="font-size:14px;">Email:</td>
+                      <td width="63%" style="font-size:14px;color:#1c1c1c;"><a href="mailto:<%=pcOUREMAIL%>" class="__cf_email__" data-cfemail="4a2e2f27250a2d382b24253e64292527"><%=pcOUREMAIL%></a></td>
+                    </tr>
+                  </table>
+                </td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- ═══ TITLE BAR ═══ -->
+    <tr>
+      <td style="background-color:#fafaf8;border-bottom:1px solid #d4d0c8;padding:11px 28px;">
+        <div style="font-size:18px;font-weight:bold;letter-spacing:0.12em;text-transform:uppercase;color:#555;"><%=IIF(_EST.STATUS='F','Vehicle Transport Estimate','Vehicle Transport Job Order')%>
+        <span color="#<%=IIF(plAGENT,'FF0000','000000')%>"><%=IIF(plAGENT,' - Carrier Copy','')%></span></div>
+      </td>
+    </tr>
+
+    <!-- ═══ DATES ═══ -->
+    <tr>
+      <td style="border-bottom:1px solid #d4d0c8;padding:14px 28px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td class="date-td" valign="top" style="padding-right:24px;border-right:1px solid #d4d0c8;width:31%;">
+              <div style="font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:0.08em;color:#333;">Pick-Up Date</div>
+              <div style="font-size:14px;font-weight:bold;color:#1c1c1c;margin-top:3px;"><%=IIF(EMPTY(_EST.LBOOKDTE1),_EST.LBOOKDTE,'Between '+DTOC(_EST.LBOOKDTE)+' to '+DTOC(_EST.LBOOKDTE1))%></div>
+            </td>
+            <% IF !EMPTY(_EST.LBOOKTME) %>
+            <td class="date-td" valign="top" style="border-right:1px solid #d4d0c8;width:24%;padding-left:24px; padding-right:24px; padding-top:0; padding-bottom:0">
+              <div style="font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:0.08em;color:#333;">Arrival Time</div>
+              <div style="font-size:14px;font-weight:bold;color:#1c1c1c;margin-top:3px;"><%=ALLT(_EST.LBOOKTME)%></div>
+            </td>
+            <%ENDIF%>
+            <td class="date-td" valign="top" style="border-right:1px solid #d4d0c8;width:25%;padding-left:24px; padding-right:24px; padding-top:0; padding-bottom:0">
+              <div style="font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:0.08em;color:#333;">Service Type</div>
+              <div style="font-size:14px;font-weight:bold;color:#1c1c1c;margin-top:3px;"><%=pcINTLSERV%></div>
+            </td>
+            <td class="date-td" valign="top" style="padding-left:24px;width:20%;">
+              <div style="font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:0.08em;color:#333;">Estimate Date</div>
+              <div style="font-size:14px;font-weight:bold;color:#1c1c1c;margin-top:3px;"><%=DATE()%></div>
+            </td>
+          </tr>
+        </table>
+        <div class="dates-clear">&nbsp;</div>
+      </td>
+    </tr>
+
+    <!-- ═══ LOCATIONS ═══ -->
+    <tr>
+      <td style="padding:0 28px 12px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border:1px solid #d4d0c8;margin-top:16px;border-radius:8px;overflow:hidden;">
+          <tr>
+            <!-- Pickup -->
+            <td class="loc-l" valign="top" width="50%" style="padding:18px 22px;border-right:1px solid #d4d0c8;">
+              <div style="font-size:15px;font-weight:bold;text-transform:uppercase;letter-spacing:0.10em;color:#555;margin-bottom:12px;">Pick-Up From</div>
+              <div style="font-size:18px;font-weight:bold;color:#1c1c1c;margin-bottom:2px; width:375; height:17"><%=ALLT(PROPER(_EST.SNAME))%></div>
+              <%IF !EMPTY(_EST.SPROXY)%>
+              <div style="font-size:13px;color:#888;margin-bottom:10px;">Proxy: <%=ALLT(_EST.SPROXY)%></div>
+              <%ENDIF%>
+              <div style="font-size:14px;font-weight:bold;color:#333;line-height:1.7;margin-bottom:10px;"><%=ALLT(_EST.SADD1)%>&nbsp;<%=ALLT(_EST.SADD2)%><br><%=ALLT(PROPER(_EST.SCITY))+', '+(_EST.SSTATE)%>&nbsp;<%=ALLT(_EST.SZIP)%>
+              <%=IIF(EMPTY(_EST.SCOUNTRY),' ','&nbsp;'+ALLT(_EST.SCOUNTRY))%><%=IIF(EMPTY(_EST.SLEVEL),'','<br>'+ALLT(_EST.SLEVEL))%></div>
+              <div style="font-size:15px;color:#555;margin-bottom:3px;">Phone: <%=ALLT(_EST.STELH)%><%=IIF(EMPTY(_EST.STELO),'','&nbsp;/&nbsp;'+ALLT(_EST.STELO))%></div>
+              <%IF !EMPTY(_EST.SFAX)%>
+              <div style="font-size:14px;color:#555;margin-bottom:3px;">Fax: <%=ALLT(_EST.SFAX)%></div>
+              <%ENDIF%>
+              <div style="font-size:14px;color:#555;"><a href="mailto:<%=ALLT(_EST.EMAIL)%>" class="__cf_email__" data-cfemail="fd979c90988ebd9992909c9493d39e9290"><%=ALLT(_EST.EMAIL)%></a></div>
+            </td>
+            <!-- Dropoff -->
+            <td class="loc-r" valign="top" width="50%" style="padding:18px 22px;">
+              <div style="font-size:15px;font-weight:bold;text-transform:uppercase;letter-spacing:0.10em;color:#555;margin-bottom:12px;">Shipping To</div>
+              <div style="font-size:18px;font-weight:bold;color:#1c1c1c;margin-bottom:2px; width:375; height:17"><%=ALLT(PROPER(_EST.RNAME))%></div>
+              <%IF !EMPTY(_EST.RPROXY)%>
+              <div style="font-size:13px;color:#888;margin-bottom:10px;">Proxy: <%=ALLT(_EST.RPROXY)%></div>
+              <%ENDIF%>
+              <div style="font-size:14px;font-weight:bold;color:#333;line-height:1.7;margin-bottom:10px;"><%=ALLT(_EST.RADD1)%>&nbsp;<%=ALLT(_EST.RADD2)%><br><%=ALLT(PROPER(_EST.RCITY))+', '+(_EST.RSTATE)%>&nbsp;<%=ALLT(_EST.RZIP)%>
+              <%=IIF(EMPTY(_EST.RCOUNTRY),' ','&nbsp;'+ALLT(_EST.RCOUNTRY))%><%=IIF(EMPTY(_EST.RLEVEL),'','<br>'+ALLT(_EST.RLEVEL))%></div>
+              <div style="font-size:15px;color:#555;margin-bottom:3px;">Phone: <%=ALLT(_EST.RTELH)%><%=IIF(EMPTY(_EST.RTELO),'','&nbsp;/&nbsp;'+ALLT(_EST.RTELO))%></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <%IF !EMPTY(_ESTMEMO.EXTSTOP)%>
+    <!-- ═══ NOTES ═══ -->
+    <tr>
+      <td style="padding:0 28px 12px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border:1px solid #d4d0c8;margin-top:16px;border-radius:8px;overflow:hidden;">
+          <tr>
+            <td class="loc-l" valign="top" width="100%" style="padding:10px;border-right:1px solid #d4d0c8;">
+              <div style="font-size:14px;font-weight:bold;text-transform:uppercase;letter-spacing:0.10em;color:#555;margin-bottom:12px;">Order Notes</div>
+              <%=ALLT(_ESTMEMO.EXTSTOP)%></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <%ENDIF%>
+    
+    <%IF !EMPTY(_ESTMEMO.REMAGENT)%>
+    <!-- ═══ CARRIER NOTES ═══ -->
+    <tr>
+      <td style="padding:0 28px 12px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border:1px solid #d4d0c8;margin-top:16px;border-radius:8px;overflow:hidden;">
+          <tr>
+            <td class="loc-l" valign="top" width="100%" style="padding:10px;border-right:1px solid #d4d0c8;">
+              <div style="font-size:14px;font-weight:bold;text-transform:uppercase;letter-spacing:0.10em;color:#555;margin-bottom:12px;">Carrier Notes</div>
+              <%=ALLT(_ESTMEMO.REMAGENT)%></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <%ENDIF%>
+    <%IF plAGENT%>
+    <!-- ═══ CARRIER ═══ -->
+    <tr>
+      <td style="padding:0 28px 12px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border:1px solid #d4d0c8;margin-top:16px;border-radius:8px;overflow:hidden;">
+          <tr>
+            <td class="loc-l" valign="top" width="50%" style="padding:18px 22px;border-right:1px solid #d4d0c8;">
+              <div style="font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:0.10em;color:#555;margin-bottom:12px;">carrier</div>
+              <div style="font-size:16px;font-weight:bold;color:#1c1c1c;margin-bottom:2px; width:375; height:17"><%=pcAGCOMPANY%><br><%=pcAGEMAIL%></div></td>
+            <td class="loc-r" valign="top" width="50%" style="padding:18px 22px;">
+              <div style="font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:0.10em;color:#555;margin-bottom:12px;">Contact</div>
+              <div style="font-size:16px;font-weight:bold;color:#1c1c1c;margin-bottom:2px; width:375; height:17"><%=pcAGCONTACT%></div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+     <%ENDIF%> 
+    <!-- ═══ VEHICLES HEADING ═══ -->
+    <tr><td style="padding:14px 28px 8px;">
+      <div style="font-size:16px;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#555;">Vehicles</div>
+    </td></tr>
+
+    <!-- ═══ VEHICLES TABLE ═══ -->
+    <tr>
+      <td style="padding:0 28px 4px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="844" style="border:1px solid #d4d0c8;border-collapse:collapse;border-radius:8px;overflow:hidden;">
+          <tr style="background-color:#fafaf8;">
+            <th align="left" style="font-size:13px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase;color:#555;padding:5px;border-bottom:2px solid #1c1c1c;" width="304">Year / Color / Make / Model</th>
+            <th align="left" style="font-size:13px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase;color:#555;padding:5px;border-bottom:2px solid #1c1c1c;" width="72">Type</th>
+            <th align="left" style="font-size:13px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase;color:#555;padding:5px;border-bottom:2px solid #1c1c1c;" width="47">Runs</th>
+            <th class="hide-sm" align="left" style="font-size:13px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase;color:#555;padding:5px;border-bottom:2px solid #1c1c1c;" width="68">Enclosed</th>
+            <th align="left" style="font-size:13px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase;color:#555;padding:5px;border-bottom:2px solid #1c1c1c;" width="93">Engine</th>
+            <th align="center" style="font-size:13px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase;color:#555;padding:5px;border-bottom:2px solid #1c1c1c;" width="37">Qty</th>
+            <th align="right" style="font-size:13px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase;color:#555;padding:5px;border-bottom:2px solid #1c1c1c;" width="53">Price</th>
+          </tr>
+          <%SELECT _INVAUTO
+       		SCAN %>
+          <tr>
+            <td style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="304"><%=ALLT(YEAR)+'  '+ALLT(COLOR)+'  '+ALLT(MAKE)+'  '+ALLT(MODEL)%></td>
+            <td style="font-size:14px;color:#333;padding:5px;" width="72"><%=ALLT(TYPE)%></td>
+            <td style="font-size:14px;color:#333;padding:5px;" width="47"><%=IIF(RUN,'Yes',' No')%></td>
+            <td class="hide-sm" style="font-size:14px;color:#333;padding:5px;" width="68"><%=IIF(COVER,'Yes',' No')%></td>
+            <td style="font-size:14px;color:#555;padding:5px;" width="93"><%=ALLT(ENGINE)%></td>
+            <td align="center" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="37"><%=ALLT(STR(QTY))%></td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="53">
+            <%IF plAGENT%><%=IIF(UPRC=0,'','$'+ALLT(STR(UPRC-DEPOSIT,8,2)))%><%ELSE%><%=IIF(UPRC=0,'','$'+ALLT(STR(UPRC,8,2)))%><%ENDIF%></td>
+          </tr>
+             <% IF !EMPTY(VIN) %>
+          <tr style="border-bottom:1px solid #e8e5de;">
+            <td style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="818" colspan="7">VIN #: <%=ALLT(VIN)%></td>
+          </tr>
+            <%ENDIF%>          
+             <% IF !EMPTY(REMARKS) OR !EMPTY(DLVTYPE) %>
+          <tr style="border-bottom:1px solid #e8e5de;">
+            <td style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="818" colspan="7"><%=IIF(EMPTY(DLVTYPE),'','Deliver By: '+ALLT(DLVTYPE)+' ')%><%=IIF(EMPTY(REMARKS),'','Remarks: '+ALLT(REMARKS))%></td>
+          </tr>
+            <%ENDIF%>
+         <%ENDSCAN%>
+        </table>    
+      </td>
+    </tr>
+    <!-- ═══ SERVICES ═══ -->
+    <tr>
+      <td style="padding:6px 28px 22px;">
+        <table border="0" cellpadding="0" cellspacing="0" align="right" width="840">
+   <%IF !plAGENT%> 
+ 		<% IF _AUTOCRG.ORIGINAMT > 0 %>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705">Terminal Handling - Origin</td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.ORIGINAMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+ 		<% IF _AUTOCRG.DESTINAMT > 0 %>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705">Terminal Handling - Destination</td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.DESTINAMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+ 		<% IF _AUTOCRG.BOOKINGAMT > 0 AND _EST.STATUS='O'%>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705">Booking & Processing</td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.BOOKINGAMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>         
+ 		<% IF !EMPTY(_AUTOCRG.OTHERS1) %>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705"><%=ALLT(_AUTOCRG.OTHERS1)%></td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.OTHERS1AMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+ 		<% IF !EMPTY(_AUTOCRG.OTHERS2) %>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705"><%=ALLT(_AUTOCRG.OTHERS2)%></td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.OTHERS2AMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+ 		<% IF !EMPTY(_AUTOCRG.OTHERS3) %>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705"><%=ALLT(_AUTOCRG.OTHERS3)%></td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.OTHERS3AMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+ 		<% IF !EMPTY(_AUTOCRG.EXTRA1) %>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705"><%=ALLT(_AUTOCRG.EXTRA1)%></td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.EXTRA1AMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+ 		<% IF !EMPTY(_AUTOCRG.EXTRA2) %>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705"><%=ALLT(_AUTOCRG.EXTRA2)%></td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.EXTRA2AMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+ 		<% IF _AUTOCRG.INSAMT > 0 %>
+          <tr>
+            <td style="font-size:14px;color:#1c1c1c;padding:5px;" width="705"><%=ALLT(_AUTOCRG.INS)%></td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_AUTOCRG.INSAMT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+ 		<% IF _AUTOCRG.DISCOUNT > 0 %>
+          <tr>
+            <td style="font-size:14px;color:#a02020;padding:5px;" width="705"><%=ALLT(_AUTOCRG.DISCTXT)%></td>
+            <td align="right" style="font-size:14px;font-weight:bold;color:#a02020;padding:5px;" width="115"><%='-$'+ALLT(STR(_AUTOCRG.DISCOUNT,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+  <%ENDIF%>
+          <tr>
+            <td colspan="2" height="1" style="border-top:1.5px solid #1c1c1c;font-size:0;line-height:0;padding:2px 0 0;" width="840">&nbsp;</td>
+          </tr>
+           <%IF !plAGENT%>
+          <tr>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#1c1c1c;padding:5px;" width="705">Total:</td>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(_EST.SUBTOTAL,8,2))%></td>
+          </tr>
+		<%ELSE%>
+          <tr>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#1c1c1c;padding:5px;" width="705">Total Charge:</td>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#1c1c1c;padding:5px;" width="115"><%='$'+ALLT(STR(pnPRICE,8,2))%></td>
+          </tr>
+          <%ENDIF%>
+          <% IF _OPR.PAIDAMT > 0 AND !plAGENT %>
+          <tr>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#008000;padding:5px;" width="705">Customer Payment:</td>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#008000;padding:5px;" width="115"><%='$'+ALLT(STR(_OPR.PAIDAMT,8,2))%></td>
+          </tr>
+          	<% IF pcCUSTNO='MOVINGFROM' OR pcCUSTNO='DRIVING'%>
+          <tr>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#a02020;padding:5px;" width="705">Customer Balance:</td>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#a02020;padding:5px;" width="115"><%='$'+ALLT(STR(_OPR.BALANCE,8,2))%></td>
+          </tr>
+               <%ENDIF%>
+          <%ENDIF%>
+          <% IF _OPR.PAIDAMT > 0 AND plAGENT %>
+          <tr>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#a02020;padding:5px;" width="705">Customer Balance:</td>
+            <td align="right" style="font-size:15px;font-weight:bold;color:#a02020;padding:5px;" width="115"><%='$'+ALLT(STR(_OPR.BALANCE,8,2))%></td>
+          </tr>
+          <% ENDIF %>
+        </table>
+      </td>
+    </tr>    
+    <!-- ═══ UNDERSTANDING YOUR QUOTE ═══ -->
+    <tr>
+      <td style="padding:0 28px 24px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border:1px solid #d4d0c8;border-radius:8px;overflow:hidden;">
+          <tr>
+            <td style="background-color:#fafaf8;border-bottom:1px solid #d4d0c8;padding:10px 13px;font-size:17px;font-weight:bold;letter-spacing:0.12em;text-transform:uppercase;color:#555;"><%=IIF(!plAGENT,'Understanding Your Quote','Remarks to Carrier')%></td>
+          </tr>
+          <tr>
+            <td style="padding:10px;"><%=pcREMFILE%></p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- ═══ SIGNATURES ═══ -->
+    <tr>
+      <td style="border-top:1px solid #d4d0c8;padding:24px 28px 32px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:26px;">
+        <%IF plESIGN %>
+          <tr>
+            <td align="center" width="100%" colspan="3"><span style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:bold;color:#1c1c1c;letter-spacing:0.04em;margin-left:10px;">
+            Confirm your Auto Transport via<br><a href="https://<%=pcSERVERIP%>/wc.dll?mpest~esignwc~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>">Online Electronic Signature</a></span></td>
+          </tr>        
+       <%ELSE%>        
+          <tr>
+            <td class="sig-c" valign="bottom" width="40%" style="padding-right:24px;"><div style="border-bottom:1px solid #1c1c1c;height:36px;">&nbsp;</div>
+              <div style="font-size:14px;margin-top:5px;"><%=IIF(!plAGENT,'Customer Name','Carrier Name')%></div>
+            </td>
+            <td class="sig-c" valign="bottom" width="40%" style="padding-right:24px;"><div style="border-bottom:1px solid #1c1c1c;height:36px;">&nbsp;</div>
+              <div style="font-size:14px;margin-top:5px;"><%=IIF(!plAGENT,'Customer Signature','Carrier Signature')%></div>
+            </td>
+            <td class="sig-c" valign="bottom" width="20%"><div style="border-bottom:1px solid #1c1c1c;height:36px;">&nbsp;</div>
+              <div style="font-size:14px;margin-top:5px;">Date</div>
+            </td>
+          </tr>
+       <%ENDIF%>
+        </table>
+        <%IF plREPSIGN AND _EST.STATUS='O' %> 
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td class="sig-c" valign="bottom" width="51%" style="font-size:14px;padding-right:24px;"><u><i><font face="Courier New" style="font-size:11pt;"><%=pcREP%></i></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>Company Representative</td>
+            <td class="sig-c" valign="bottom" width="49%" style="font-size:14px;padding-right:24px;"><u><i><font face="Courier New" style="font-size:11pt;"><%=DATE()%></i></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>Date</td>
+          </tr>
+        </table>
+       <%ENDIF%> 
+      </td>
+    </tr>
+    <!-- FOOTER -->
+    <tr>
+      <td style="border-top:1px solid #d4d0c8;padding:12px 28px;background-color:#fafaf8;">
+       <%IF !EMPTY(pcEMAIL)%>
+       <div style="font-size:12px;color:#000;text-align:center;">If you no longer wish to receive emails from <%=pcCOMPANY%>, please click on <a href="https://<%=gcSERVERIP%>/wc.dll?mputil~removeemail~&CUSTID=<%=pcCUSTID%>&EMAILTO=<%=pcEMAIL%>&JOBID=<%=pcJOBID%>">unsubscribe</a></div>
+        <%ENDIF%>
+      </td>
+    </tr>    
+  </table><!-- /CARD -->
+ </td>
+ </tr>
+</table>
+
+</body>
+</html>

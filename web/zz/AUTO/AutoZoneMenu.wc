@@ -1,0 +1,53 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta http-equiv="Content-Language" content="en-us">
+
+<title>Auto Zone Menu</title>
+</head>
+
+<body bgcolor="#4E6699">
+<font color="#FFFFFF"><b>&nbsp;&nbsp;&nbsp;&nbsp;Click F5 to refresh</b></font><BR>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="263">
+  <tr>
+    <td width="263" height="12" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="263">
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#0000FF" width="100%">
+      <tr>
+        <td width="100%" colspan="5" bgcolor="#000000" align="center"><font color="#FFFFFF"><b>Auto Zone</b></font></td>
+      </tr>
+      <tr>
+        <td width="100%" bgcolor="#C0C0C0" colspan="5"><b><font face="Arial" size="2">
+        <a target="MainWindow" href="/wc.dll?mpauto~AutoZoneEditWc~<%=pcSCR%>~ADD_NEW">Add Zone</a>      
+      </tr>
+      <tr>
+        <td width="8%" bgcolor="#C0C0C0">&nbsp;<b><font size="2">ID</font></b></td>
+        <td width="9%" bgcolor="#C0C0C0">&nbsp;<b><font size="2">State</font></b></td>
+        <td width="12%" bgcolor="#C0C0C0">&nbsp;<b><font size="2">Zip</font></b></td>
+        <td width="12%" bgcolor="#C0C0C0">&nbsp;<b><font size="2">Radius</font></b></td>
+        <td width="59%" bgcolor="#C0C0C0">&nbsp;<b><font size="2">Name</font></b></td>
+      </tr>
+<% SELECT _AUTOZONE
+   SCAN%>
+     <tr>
+      <td width="8%" bgcolor="#FFFFFF">&nbsp;<b><font size="1" face="Arial"><a target="MainWindow" href="/wc.dll?mpauto~AutoZonePrcEditWc~<%=pcSCR%>~<%=ALLT(STR(AUTOZID))%>"><%=ALLT(STR(AUTOZID))%></a></font></B>&nbsp;</td>
+      <td width="9%" bgcolor="#FFFFFF">&nbsp;<B><font size="1" face="Arial"><%=STATE%></font></b></td>
+      <td width="12%" bgcolor="#FFFFFF">&nbsp;<B><font size="1" face="Arial"><%=ZIP%></font></b></td>
+      <td width="12%" bgcolor="#FFFFFF">&nbsp;<B><font size="1" face="Arial"><%=IIF(RADIUS=0,'',ALLT(STR(RADIUS)))%></font></b></td>
+      <td width="59%" bgcolor="#FFFFFF">&nbsp;<b><font size="1" face="Arial"><a target="MainWindow" href="/wc.dll?mpauto~AutoZoneEditWc~<%=pcSCR%>~<%=ALLT(STR(AUTOZID))%>"><%=ALLTRIM(CNAME)%></a></font></b></td>
+    </tr>
+<% ENDSCAN%>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="263" height="13" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+</table>
+</body>
+
+</html>

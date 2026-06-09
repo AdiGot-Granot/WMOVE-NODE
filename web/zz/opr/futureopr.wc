@@ -1,0 +1,105 @@
+<html lang="en" style="width: 1200px; height: 500px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Future Jobs</title>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function RefreshScr(){
+	window.location.href=('/wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=lcDEPT%>&OPR=<%=pcOPR%>&TYPE=ALL');
+}
+</SCRIPT>
+
+</head>
+<body bgcolor="#ADBACE">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:1200px;height:500px;" bordercolor="#111111">
+  <tr>
+    <td width="100%" height="30" bgcolor="#FFCF63" align="center"><b><font face="Verdana"><%=ALLT(STR(pnRECCOUNT))%>&nbsp;<%=pcTITLE%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top">
+<% IF pcOPR='es'%> <!---VISUAL ESTIMATES-->    
+<table border="1" align="center" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" bordercolor="#111111">
+  <tr style="background-color:#EFEFEF;line-height:22px;font-family:Arial;font-size:10pt;">
+    <td width="3%" align="center"><b>#</b></td>
+    <td width="7%" align="center"><b>Day</b></td>
+    <td width="13%" align="center" colspan="2"><b>Visual Date-Time</b></td>
+    <td width="6%" align="center"><b>Estimator</b></td>
+    <td width="7%" align="center"><b>Visual Type</b></td>
+    <td width="6%" align="center"><b>Confirm</b></td>
+    <td width="11%" align="center"><b>Job No</b></td>
+    <td width="6%" align="center"><b>Estimate</b></td>    
+    <td width="7%" align="center"><b>Type</b></td>
+    <td width="20%" align="center"><b>From/To</b></td>    
+    <td width="6%" align="center"><b>Volume</b></td>
+    <td width="6%" align="center"><b>Rep</b></td>    
+  </tr>
+  <% SELECT _OPR 
+    SCAN %>
+  <tr style="background-color:<%=ALLT(BGCOLOR)%>;line-height:20px;font-family:Arial;font-size:10pt;font-weight:bold;">
+    <td width="3%">&nbsp;<%=ALLT(STR(NO))%>.</td>
+    <td width="7%">&nbsp;<%=CDOW(DTE)%></td>
+    <td width="6%" align="center"><%=LEFT(DTOC(DTE),5)%>&nbsp;</td>
+    <td width="7%" align="center"><font color="<%=IIF(RIGHT(ALLT(TME),2)='PM','#FF0000','OOOOOO')%>"><%=ALLT(TME)%></font>&nbsp;</td>
+    <td width="6%" align="center"><%=ALLT(ESTIMATOR)%>&nbsp;</td>
+    <td width="7%" align="center"><%=ALLT(VIZUAL)%>&nbsp;</td>
+    <td width="6%" align="center"><%=ALLT(CONF)%>&nbsp;</td>
+    <td width="11%" align="center"><a href="/wc.dll?mprep~futureselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target="_blank"><%=ALLT(JOBNO)%></a><br><%=ALLT(PROPER(SNAME))%></td>
+    <td width="6%" align="center"><a href="/wc.dll?mprep~futureselect~<%=pcSCR%>~<%=ALLT(REFNO)%>~PRNEST" target="_blank">Print</a></td>    
+    <td width="7%" align="left">&nbsp;<%=ALLT(TYPE)%></td>    
+    <td width="20%" align="left">&nbsp;<%=ALLT(PROPER(SCITY))+', '+ALLT(SSTATE)+' '+ALLT(SZIP)%><%=IIF(EMPTY(SCOUNTRY),'',' '+ALLT(SCOUNTRY))%><br>&nbsp;<%=ALLT(PROPER(RCITY))+', '+ALLT(RSTATE)+' '+ALLT(RZIP)%><%=IIF(EMPTY(RCOUNTRY),'',' '+ALLT(RCOUNTRY))%></td>
+    <td width="6%" align="right"><%=IIF(CALCCF=.T.,ALLT(STR(TOTALCF))+' cf',ALLT(STR(TOTALLBS))+' lbs')%>&nbsp;</td>
+    <td width="6%" align="center"><%=ALLT(REP)%>&nbsp;</td>    
+  </tr>
+  <%ENDSCAN%>
+</table>
+<%ELSE%> <!--BX-PK-PU-D1-D2-->
+<table border="1" align="center" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" bordercolor="#111111">
+  <tr style="background-color:#EFEFEF;line-height:22px;font-family:Arial;font-size:10pt;">
+    <td width="3%" align="center"><b>#</b></td>
+    <td width="6%" align="center"><b>Day</b></td>
+    <td width="12%" align="center" colspan="2"><b>Job Date-Time</b></td>
+    <td width="6%" align="center"><b>Confirm</b></td>
+    <td width="6%" align="center"><b>Job Opr</b></td>
+    <td width="6%" align="center"><b>Job No</b></td>
+    <td width="5%" align="center"><b>Estimate</b></td>
+    <td width="3%" align="center"><b>Dlv Dept</b></td>    
+    <td width="9%" align="center"><b>Type</b></td>
+    <td width="16%" align="center"><b>From/To</b></td>    
+    <td width="7%" align="center"><b>Truck/Driver</b></td>
+    <td width="8%" align="center"><b>Crew</b></td>
+    <td width="5%" align="center"><b>Volume</b></td>
+    <td width="6%" align="center"><b>Rep</b></td>    
+  </tr>
+  <% SELECT _OPR 
+    SCAN %>
+  <tr style="background-color:<%=ALLT(BGCOLOR)%>;line-height:20px;font-family:Arial;font-size:10pt;font-weight:bold;">
+    <td width="3%">&nbsp;<%=ALLT(STR(NO))%>.</td>
+    <td width="6%">&nbsp;<%=CDOW(DTE)%></td>
+    <td width="6%" align="center"><%=LEFT(DTOC(DTE),5)%><% IF !EMPTY(LBOOKDTE1)%><span style="font-size:12pt;color:#1626F8;">&#x229E;</span><%ENDIF%>
+    <font color="#FF0000"><%=IIF(ONHOLD=.T.,'<br>On Hold','')%></font>&nbsp;</td>
+    <td width="6%" align="center"><font color="<%=IIF(RIGHT(ALLT(TME),2)='PM','#FF0000','OOOOOO')%>"><%=ALLT(TME)%></font>&nbsp;</td>
+    <td width="6%" align="center"><%=ALLT(CONF)%>&nbsp;</td>
+    <td width="6%" align="center"><font color="<%=CODECOLOR%>"><%=ALLT(OPRCODE)%></font>&nbsp;</td>
+    <td width="6%" align="center">
+    <a href="/wc.dll?mprep~futureselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target="_blank"><%=ALLT(JOBNO)%></a><BR><%=ALLT(PROPER(SNAME))%></td>
+    <td width="5%" align="center"><a href="/wc.dll?mprep~futureselect~<%=pcSCR%>~<%=ALLT(REFNO)%>~PRNEST" target="_blank">Print</a></td>
+    <td width="3%" align="center">&nbsp;<%=ALLT(DEPTDLV)%></td>    
+    <td width="9%" align="left">&nbsp;<%=ALLT(TYPE)%><%=IIF(!EMPTY(AGENT),'<br>AG: '+AGENT,'')%><%=IIF(DLVIMM=.T.,'<br><font color="#FF0000">Deliver Now</font>','')%></td>    
+    <td width="16%" align="left">&nbsp;<%=ALLT(PROPER(SCITY))+', '+ALLT(SSTATE)+' '+ALLT(SZIP)%><%=IIF(EMPTY(SCOUNTRY),'',' '+ALLT(SCOUNTRY))%><br>&nbsp;<%=ALLT(PROPER(RCITY))+', '+ALLT(RSTATE)+' '+ALLT(RZIP)%><%=IIF(EMPTY(RCOUNTRY),'',' '+ALLT(RCOUNTRY))%></td>
+    <td width="7%" align="left"><%=ALLT(TRUCKNO)%><br><font color="#8C1021"><%=ALLT(PROPER(DRIVER))%></font></td>
+    <td width="8%" align="left"><%=ALLT(CREW)%>&nbsp;</td>
+    <td width="5%" align="right"><%=IIF(CALCCF=.T.,ALLT(STR(TOTALCF))+' cf',ALLT(STR(TOTALLBS))+' lbs')%>&nbsp;</td>
+    <td width="6%" align="center"><%=ALLT(REP)%>&nbsp;</td>    
+  </tr>
+  <%ENDSCAN%>
+</table>
+<%ENDIF%>
+    </td>
+   </tr>   
+ </table>    
+  
+</body>
+</html>

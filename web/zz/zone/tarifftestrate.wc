@@ -1,0 +1,173 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Tariff Calculator</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~TariffTestRateWc~<%=pcSCR%>~<%=pcDMAINID%>~<%=IIF(plCALCCF ,'CF','LBS')%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+     { 
+       parent.location.href=('javascript:window.close()');
+     }      
+	}
+
+function FindZip(par) {
+   frm = document.theForm;
+   if (par=='SZIP'){      
+      var cSR='S'
+   }else{
+      var cSR='R'
+   }
+//   alert(cSR);
+   window.open('/wc.dll?mputil~ZipWc~&SR='+cSR,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=550,height=500');   
+   self.name="main"
+}
+
+</SCRIPT>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+	jQuery.noConflict();
+
+   jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+   
+</script>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+
+<body BGCOLOR="#F7F7F7">
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="800">
+  <tr>
+    <td BGCOLOR="#0081D3" align="center"><b><font face="Verdana" size="4" color="#FFFFFF">Tariff Calculator</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><br>
+<table border="0" width="98%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td valign="top" width="32%">
+<form name="theForm" method="POST">	
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:30px;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="98%">
+   <tr>
+     <td width="4%">&nbsp;</td>
+     <td width="20%"><a href="javascript:FindZip('SZIP')"><font face="Verdana" color="#0000FF" size="2"><b>From Zip:</a></b></font> <input NAME="SZIP" size="3" value="<%=pcSZIP%>"></td>
+     <td width="14%"><a href="javascript:FindZip('RZIP')"><font face="Verdana" color="#0000FF" size="2"><b>To Zip:</a></b></font> <input NAME="RZIP" size="3" value="<%=pcRZIP%>"></td>
+     <td width="23%"><font face="Verdana" size="2"><b>Move Date:</b></font> <input autocomplete="off" id="Date1" NAME="DATE1" size="7" value="<%=DTOC(pdDATE1)%>"></td>
+     <td width="12%"><font face="Verdana" size="2"><b><%=IIF(plCALCCF,'CF:','LBS:')%></b></font>
+     <% IF plCALCCF %>
+     <input NAME="CF" size="3" value="<%=ALLT(STR(pnCF))%>">
+     <%ELSE%>
+     <input NAME="LBS" size="3" value="<%=ALLT(STR(pnLBS))%>"></td>
+     <%ENDIF%>  
+     <td width="16%"><input type="button" CLASS="SUBOFF" name="B5" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+  </tr>
+</table>
+</form>		
+	</td>
+ </tr>
+</table>
+ <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="95%">
+   <tr>
+    <td>
+<table border="0" align="center" style="border-collapse: collapse;font-family:Arial;font-size:11pt;line-height:23px;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="99%">
+   <tr>    
+     <td width="49%" colspan="5"><b>Tariff ID: <font color="#008000"><%=pcDMAINID%></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cu.Ft.-Lbs Ratio: <font color="#008000"><%=pnCFRATIO%></font>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tariff Rate by: <font color="#008000"><%=IIF(plCALCCF,'Cu.Ft','Lbs')%></font></b></td>
+ </tr>
+   <tr>
+     <td width="25%" colspan="3">From Zone: <b><font size="3" color="#008000"><%=pcAREA1%></font>&nbsp;&nbsp;<font size="2">(<%=PROPER(pcSCITY)%>, <%=pcSSTATE%>)</font></b></td>
+     <td width="24%" colspan="2">To Zone: <b><font size="3" color="#008000"><%=pcAREA2%></font>&nbsp;&nbsp;<font size="2">(<%=PROPER(pcRCITY)%>, <%=pcRSTATE%>)</font></b></td>
+  </tr>
+  <% IF pnMINMILES> 0 %>
+   <tr>
+     <td width="49%" colspan="5">
+        <%IF plCALCCF AND pnPERCF > pnPERCFx %><b><font color="#0000FF" size="2"><%=ALLT(STR(pnPERCFx,7,2))%></font></b>&nbsp;<b><font color="#FF0000">/</font></b>&nbsp;<b><font color="#0000FF" size="2"><%=ALLT(STR(pnMINMILES))%></font></b>&nbsp;<b><font color="#FF0000">x</font></b>&nbsp;<b><font color="#0000FF" size="2"><%=ALLT(STR(pnMILES))%></font></b>&nbsp;=&nbsp;<b><font color="#008000">$<%=ALLT(STR(pnPERCF,7,2))%></font></b>&nbsp;Per cf<%ENDIF%>
+        <%IF !plCALCCF AND pnPERLBS > pnPERLBSx %><b><font color="#0000FF" size="2"><%=ALLT(STR(pnPERLBSx,7,2))%></font></b>&nbsp;<b><font color="#FF0000">/</font></b>&nbsp;<b><font color="#0000FF" size="2"><%=ALLT(STR(pnMINMILES))%></font></b>&nbsp;<b><font color="#FF0000">x</font></b>&nbsp;<b><font color="#0000FF" size="2"><%=ALLT(STR(pnMILES))%></font></b>&nbsp;=&nbsp;<b><font color="#008000">$<%=ALLT(STR(pnPERLBS,7,2))%></font></b>&nbsp;Per cf<%ENDIF%>
+       </td>
+  </tr>
+  <%ENDIF%>  
+   <tr>
+     <td width="11%">Period: <b><font size="4" color="#008000"><%=ALLT(STR(pnPERIOD))%></font></b></td>
+     <td width="38%" colspan="4"><font size="3" color="#008000"><B><%=pcDAYS%></B></font>&nbsp;</td>
+  </tr>
+   <tr>
+     <td width="49%" colspan="5">Distance: <B><font color="#008000"><%=pcMILES%></font> miles</b></td>
+  </tr>  
+   <tr>
+     <td width="11%">Rate per Cu.Ft.:</td>
+     <td width="8%"><font size="3" color="#<%=IIF(plCALCCF,'008000','000000')%>"><B><%='$'+ALLT(STR(pnPERCF,6,2))%> per cf</b></font></td>
+     <td width="5%" colspan="2"><font size="3" color="#<%=IIF(plCALCCF,'008000','000000')%>"><b><%=ALLT(STR(pnCF))%>&nbsp;cf.</b></font></td>
+    <td width="25%"><%IF plCALCCF AND pnPERCF > pnPERCFx AND pnMINMILES > 0 %><font color="#0000FF" size="2"><%=pnPERCFx%></font>&nbsp;per/cf<%ENDIF%></td>
+  </tr>
+   <tr>
+     <td width="11%">Rate per Lbs:</td>
+     <td width="8%"><font size="3" color="#<%=IIF(!plCALCCF,'008000','000000')%>"><B><%='$'+ALLT(STR(pnPERLBS,6,2))%>&nbsp;per lbs</B></font></td>
+     <td width="5%" colspan="2"><font size="3" color="#<%=IIF(!plCALCCF,'008000','000000')%>"><b><%=ALLT(STR(pnLBS))%>&nbsp;lbs.</b></font></td>
+     <td width="25%"><%IF !plCALCCF AND pnPERLBS > pnPERLBSx AND pnMINMILES> 0 %><b><font color="#0000FF" size="2"><%=pnPERLBSx%></font></b>&nbsp;per/lbs<%ENDIF%></td>
+  </tr>
+   <tr>
+     <td width="49%" colspan="5">Price: <B><font size="4" color="#008000"><%=ALLTRIM(TRANSFORM(pnI1TOTAL,'@$ 999,999,999.99'))%></font>&nbsp;&nbsp;<font size="2" color="#FF0000"><%=pcMIN%></font></b></td>
+  </tr>  
+</table>
+  </td>
+ </tr>
+</table>     
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+   <tr>
+     <td width="100%"> 	<% SELECT _VZONE
+       Dimension laHeader[5]
+       laHeader[1]='Tariff'
+       laHeader[2]='Zone'              
+       laHeader[3]='State'
+       laHeader[4]='Zip - Miles'
+       laHeader[5]='Radius'
+       Response.ShowCursor(@laHeader,,.F.,,"width='60%' style='font-family:Arial;font-size: 11pt;'")
+	%></td>
+  </tr>
+</table>
+ <br>
+<table border="0" width="90%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+	<td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="6" value="Exit"></td>    
+ </tr>
+</table>    
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>  
+</table> 
+</body>
+</html>

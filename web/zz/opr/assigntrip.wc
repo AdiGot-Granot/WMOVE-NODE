@@ -1,0 +1,144 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Assign Jobs to Trips</title>
+</head>
+
+<style>
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}						
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD5		{	color: #FF0000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					font-weight:bold;
+					text-align: right;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}					
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}				  	  				  	 	
+</style>
+
+<body>
+
+<br><center><a href="/wc.dll?mv~oprmenuwc~<%=pcSCR%>"><font face="Arial" size="4">Exit</font></a><br><br>
+<font face="Arial" size="4"><b>Assign Jobs to Active Trips<br><font size="3"><%=ALLT(STR(RECCOUNT('_TRIPS')))%> Opened Trips in the last 90 Days</font></font></b></center>
+<form method="POST" action="/wc.dll?mpopr~assigntripret~<%=pcSCR%>">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" width="65%">
+  <tr>
+    <td class="TD2" width="4%">Select</td>
+    <td class="TD1" width="8%">Trip Name</td>
+    <td class="TD1" width="8%">Trip Date</td>
+    <td class="TD1" width="6%">Time</td>
+    <td class="TD1" width="4%">Jobs</td>
+    <td class="TD1" width="4%">CF</td>
+    <td class="TD1" width="9%">Trip Route</td>
+    <td class="TD1" width="7%">Truck</td>
+    <td class="TD1" width="4%">Pads</td>    
+    <td class="TD1" width="13%">Driver</td>
+    <td class="TD1" width="6%">Deposit</td>
+    <td class="TD1" width="6%">Close</td>
+ </tr>
+  <% SELECT _TRIPS 
+     SCAN %>
+  <tr>
+    <td width="4%" align="center" style="border-bottom: 1px solid #A9A9A9;"><input type="radio" value="<%=ALLT(STR(TRIPID))%>" name="RADIO"></td>
+    <td class="TD3" width="8%"><%=ALLT(TRIPNO)%>&nbsp;</td>
+    <td class="TD3" width="8%"><%=ALLT(CTRIPDTE)%>&nbsp;</td>
+    <td class="TD3" width="6%"><%=ALLT(TRIPTME)%>&nbsp;</td>
+    <td class="TD4" width="4%"><%=ALLT(STR(JOBS))%>&nbsp;</td>
+    <td class="TD4" width="4%"><%=ALLT(STR(CF))%>&nbsp;</td>
+    <td class="TD3" width="9%"><%=ALLT(TRIPROUTE)%>&nbsp;</td>
+    <td class="TD3" width="7%"><%=ALLT(TRUCKNO)%>&nbsp;</td>
+    <td class="TD4" width="4%"><%=ALLT(STR(PADS))%>&nbsp;</td>    
+    <td class="TD3" width="13%"><%=ALLT(TRIPNAME)%><%=IIF(EMPTY(PHONE),'',': '+ALLT(PHONE))%>&nbsp;</td>
+    <td class="TD4" width="6%"><%=IIF(DEPOSIT>0,'$'+ALLT(STR(DEPOSIT,8,2)),'')%>&nbsp;</td>
+    <td class="TD3" align="center" width="6%"><% IF TTOD(TRIPDTE) < DATE() %><b><font face="Verdana" size="2"><a href="/wc.dll?mpopr~TripStatus~<%=+pcSCR%>~<%=ALLT(STR(TRIPID))%>~REMOVE">Inactivate</a></b><%ENDIF%></td>
+ </tr>
+  <% ENDSCAN %>
+ </table>
+    <br>    
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="50%">
+  <tr>
+    <td width="100%" align="center"><input type="submit" CLASS="SUBOFF" name="B31" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit" size="20"></td>
+ </tr>
+</table>
+  <br>
+<center><font face="Arial" size="4"><b>Jobs List ( <%=ALLT(STR(RECCOUNT('_LIST')))%> Jobs )</b></font>
+  <br>    
+<table border="0" border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="2" width="80%">
+  <tr>
+    <td class="TD2" width="2%">Assign</td>
+    <td class="TD1" width="3%">Job No</td>
+    <td class="TD1" width="4%">Job Phase</td>
+    <td class="TD1" width="3%">Job Date</td>
+    <td class="TD1" width="5%">1<sup>st</sup> Avail. DLV</td>
+    <td class="TD1" width="10%">Job From / To</td>
+    <td class="TD1" width="9%">Customer</td>
+    <td class="TD1" width="4%">Job Volume</td>
+    <td class="TD1" width="3%">Balance</td>
+    <td class="TD1" width="4%">STG Balance</td>
+    <td class="TD1" width="6%">Estimate From/To</td>
+ </tr>
+  <% SELECT _LIST 
+     SCAN %>
+  <tr>
+    <td align="center" width="2%" style="border-bottom: 1px solid #A9A9A9;"><input type="checkbox" name="<%='S-'+ALLT(ORDNO)+'-'+ALLT(CODE)%>" value="ON"></td> 
+    <td class="TD3" width="3%"><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target="_blank"><%=ALLT(DEPT)+ALLT(ORDNO)%></A><br><%=ALLT(RCTYPE)%></td>
+    <td class="TD3" width="4%"><%=ALLT(CODE1)%>&nbsp;</td>
+    <td class="TD3" width="3%"><%=ALLT(DTOC(DTE))%><BR><%=ALLT(TME)%></td>
+    <td class="TD3" width="5%"><%=IIF(CODE='pu' AND !EMPTY(DLVDTE),DTOC(DLVDTE),'')%><%=IIF(CODE='pu' AND !EMPTY(DLVDTE1),'<BR>'+DTOC(DLVDTE1),'')%>&nbsp;</td>
+    <td class="TD3" width="10%"><%=ALLT(FROM2)%><BR><%=ALLT(TO2)%></td>
+    <td class="TD3" width="9%"><%=ALLT(SNAME)%>&nbsp;</td>
+    <td class="TD3" width="4%"><%=ALLT(STR(TOTALCF))%>&nbsp;cf.<br><%=ALLT(STR(TOTALLBS))%>&nbsp;lbs.</td>
+    <td class="TD5" width="3%"><%=IIF(BALANCE>0,'$'+ALLT(STR(BALANCE,8,2)),' ')%>&nbsp;</td>
+    <td class="TD5" width="4%"><%=IIF(BALSTG=0,' ','$'+ALLT(STR(BALSTG,8,2)))%>&nbsp;</td>
+    <td class="TD3" width="6%"><%=ALLT(FROM1)%><BR><%=ALLT(TO1)%></td>
+ </tr>
+  <% ENDSCAN %>
+</table>
+   </form>    
+<br><center><a href="/wc.dll?mv~oprmenuwc~<%=pcSCR%>"><font face="Arial" size="4">Exit</font></a></center>
+
+</body>
+</html>

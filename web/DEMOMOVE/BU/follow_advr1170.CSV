@@ -1,0 +1,2 @@
+source,ref_no,type,user,rep,prior,customer,phone,email,from,from_zip,to,to_zip,dup_lead,miles,move_date,est_cf,estimate,open_date
+"MOVING.COM","","Auto","DEMO","","0","Jimmy Smiths","7865551234","test@tester.com","Aventura,FL","33180","Atlanta,GA","30308","",654,04/07/2026,0,1000.00,03/30/2026 12:42:38

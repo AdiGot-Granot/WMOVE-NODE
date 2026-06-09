@@ -1,0 +1,20 @@
+<html>
+
+<head>
+<title>Close Window and refresh main</title>
+</head>
+
+function sf(){ var _w=null; _w=self.opener; _w.window.location.reload(false); window.close() } 
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function sf()
+  { var _w=null; _w=self.opener; _w.window.location.reload(false);
+   window.close() 
+  } 
+
+</SCRIPT>
+
+<body onload="sf()">
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+</head>
+
+<body>
+<table border="0" style="border-collapse: collapse;" bordercolor="#111111" width="500" cellspacing="1" cellpadding="2">
+  <tr>
+    <td align="center"><%=pcCOMPANY%><BR><%=pcADD1%><BR><%=pcADD2%><BR>Phone: <%=pcTOLLFREE%>&nbsp;&nbsp;&nbsp;Fax:&nbsp;<%=pcFAX%><BR>
+    <%=IIF(!EMPTY(pcDOT),"DOT #: "+pcDOT,"")%><%=IIF(!EMPTY(pcICC),"&nbsp;&nbsp;MC #: "+pcICC,"")%>
+    <%=IIF(!EMPTY(pcREGISTER),"&nbsp;&nbsp;Registration: "+pcREGISTER,"")%></td>
+  </tr>
+  <tr>
+    <td><BR><font size="2">Hello <%=ALLT(PROPER(_EST.SNAME))%>,<br><br>
+    Thank you for your interest in <%=pcCOMPANY%> auto transport services.<br>
+    Please utilize your reference number <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~FriendlyIn~<%=pcREFNO%>~<%=pcCUSTID%>~<%=pcEMAILID%>"><B><%=pcORDNO%></B></A> 
+    to view your <%=IIF(_EST.STATUS='F','Auto Shipping Estimate','Auto Transport Job Order')%><br><BR>
+    Thank you,<br><br><%=pcREP%><br><%=pcTITLE%><br><%=pcCOMPANY%><%=IIF(EMPTY(pcSLOGAN),'','<BR>'+pcSLOGAN)%><BR><%=pcTOLLFREE%>&nbsp;<%=pcPHONEEXT%><br>
+	<a href="mailto:<%=pcOUREMAIL%>"><%=pcOUREMAIL%></a><br>
+    <a href="<%=pcOURWEB%>" TARGET="_BLANK"><%=pcOURWEB%></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Full Value Protection</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitData(i) {
+    if (i==1) 
+	  {
+	   document.theForm.action="/wc.dll?mpcharge~FullValuecrgret~<%=pcSCR%>";
+       document.theForm.submit();
+      };
+    if (i==2) 
+	  {
+	   document.theForm.action="/wc.dll?mpcharge~chargeswc~<%=pcSCR%>";
+       document.theForm.submit();
+      };
+     if (i==3) 
+	  {
+	   document.theForm.action="/wc.dll?mpcharge~FullValuecrgwc~<%=pcSCR%>~CALC";
+       document.theForm.submit();
+      };      
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.TD1	 	{	font-weight: none;
+					font-family: Verdana;
+					text-align: center;
+				  	font-size: 10pt;}
+ 	.TD2	 	{	font-weight: none;
+					font-family: Verdana;
+				  	font-size: 10pt;}				  	
+ 	.SUBOFF	 	{	font-family: Arial;
+					font-size: 10pt;
+				  	text-align: center;
+					width: 100;
+					height: 25;
+					background-color: #CCCCCC;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+					font-size: 10pt;					
+				  	text-align: center;
+					width: 100;
+					height: 25;
+					background-color: #FFFF00;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="750">
+  <tr>
+    <td background="/zz/images/bar-green.gif" height="25" align="center"><b><font face="Arial" size="4" color="#FFFFFF">Liability Options</font></b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" valign="top"><br>
+<form name="theForm" method="post">   
+<table border="0" width="95%" align="center" style="border-collapse: collapse;" bordercolor="#CCCCCC">
+  <tr>
+    <td width="46%"><font face="Verdana" size="2">Job No: <B><%=ALLT(_FV1.DEPT)+ALLT(_FV1.ORDNO)%></b></font></td>
+    <td width="53%"><font face="Verdana" size="2">Customer Name: <b><%=ALLT(PROPER(_FV1.SNAME))%></b></font></td>
+ </tr>
+</table>
+ <br>
+<table border="1" width="95%" align="center" style="border-collapse: collapse;" bordercolor="#CCCCCC" cellspacing="1" cellpadding="2">
+  <tr>
+    <td height="18" width="98%"><input type="radio" value="V2" name="R2" <%IF !_FV1.FVPLEVEL%>checked<%ENDIF%>>
+    <font size="2" face="Verdana">Release Value ($0.60 Basic Valuation Protection)</font></td>
+ </tr>
+</table>
+ <br>
+<table border="1" width="95%" align="center" style="border-collapse: collapse;" bordercolor="#CCCCCC" cellspacing="1" cellpadding="2">   	
+   <tr>
+    <td height="18" width="99%"><input type="radio" value="V1" name="R2" <%IF _FV1.FVPLEVEL%>checked<%ENDIF%>>
+    <font face="Verdana" size="2">Full Value Protection: Amount of Liability <b><%=pcMINDECLAR%></b> (<%=ALLT(STR(_FV1.TOTALLBS))+' lbs'%> X $6 = <%=pcMINDECLAR%>)</font></td>
+  </tr>
+   <tr>
+    <td height="18" width="99%"><font face="Verdana" size="2">Declared Amount of Liability: $</font>
+    <input type="text" name="FVPVALUE" size="5" value="<%=pcFVPVALUE%>" tabindex="1">
+    <input type="button" CLASS="SUBOFF" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" name="B36" onclick="SubmitData(3)" value="Calculate"></td>
+  </tr>
+</table>
+   <br>
+<% SELECT _DEDUCT %>   
+  &nbsp;&nbsp;<font face="Verdana" size="2">Example for a deductible of $<%=_DEDUCT.D1TXT%>: <b><%=pcCALC%></b></font>        
+<table border="1" width="98%" align="center" style="border-collapse: collapse;" bordercolor="#CCCCCC">       
+   <tr>
+	<td bgcolor="#D5E4EB" class="TD2"><b>Deductible Levels</b></td>
+	<td bgcolor="#D5E4EB" class="TD1"><b>$<%=D0TXT%></b></td>
+	<td bgcolor="#D5E4EB" class="TD1"><b>$<%=D1TXT%></b></td>
+	<td bgcolor="#D5E4EB" class="TD1"><b>$<%=D2TXT%></b></td>
+	<td bgcolor="#D5E4EB" class="TD1"><b>$<%=D3TXT%></b></td>
+	<td bgcolor="#D5E4EB" class="TD1"><b>$<%=D4TXT%></b></td>
+	<td bgcolor="#D5E4EB" class="TD1"><b>$<%=D5TXT%></b></td>
+  </tr>
+   <tr>
+	<td bgcolor="#FFFFDF" class="TD2"><b>Valuation Charge</b></td>
+	<td bgcolor="#FFFFDF" class="TD1">$<input type="text" name="D0" size="5" value="<%=IIF(EMPTY(_DEDUCT.D0TXT),'',ALLT(STR(_FV.D0,7,2)))%>" style="text-align: right" tabindex="3" readonly></td>
+	<td bgcolor="#FFFFDF" class="TD1">$<input type="text" name="D1" size="5" value="<%=IIF(VAL(_DEDUCT.D1TXT)=0,'',ALLT(STR(_FV.D1,7,2)))%>" style="text-align: right" tabindex="3" readonly></td>
+	<td bgcolor="#FFFFDF" class="TD1">$<input type="text" name="D2" size="5" value="<%=IIF(VAL(_DEDUCT.D2TXT)=0,'',ALLT(STR(_FV.D2,7,2)))%>" style="text-align: right" tabindex="4" readonly></td>
+	<td bgcolor="#FFFFDF" class="TD1">$<input type="text" name="D3" size="5" value="<%=IIF(VAL(_DEDUCT.D3TXT)=0,'',ALLT(STR(_FV.D3,7,2)))%>" style="text-align: right" tabindex="5" readonly></td>
+	<td bgcolor="#FFFFDF" class="TD1">$<input type="text" name="D4" size="5" value="<%=IIF(VAL(_DEDUCT.D4TXT)=0,'',ALLT(STR(_FV.D4,7,2)))%>" style="text-align: right" tabindex="6" readonly></td>
+	<td bgcolor="#FFFFDF" class="TD1">$<input type="text" name="D5" size="5" value="<%=IIF(VAL(_DEDUCT.D5TXT)=0,'',ALLT(STR(_FV.D5,7,2)))%>" style="text-align: right" tabindex="7" readonly></td>
+  </tr>
+   <tr>
+	<td bgcolor="#E9E9EA" class="TD2"><b>Select Deductible</b></td>
+	<td bgcolor="#E9E9EA" align="center"><% IF !EMPTY(_DEDUCT.D0TXT) %><input type="radio" value="D0" name="R1" <%IF VAL(_FV.P0)=pnFVID%>checked <%ENDIF%>><%ENDIF%></td>
+	<td bgcolor="#E9E9EA" align="center"><% IF VAL(_DEDUCT.D1TXT) > 0 %><input type="radio" value="D1" name="R1" <%IF VAL(_FV.P1)=pnFVID%>checked <%ENDIF%>><%ENDIF%></td>
+	<td bgcolor="#E9E9EA" align="center"><% IF VAL(_DEDUCT.D2TXT) > 0 %><input type="radio" value="D2" name="R1" <%IF VAL(_FV.P2)=pnFVID%>checked <%ENDIF%>><%ENDIF%></td>
+	<td bgcolor="#E9E9EA" align="center"><% IF VAL(_DEDUCT.D3TXT) > 0 %><input type="radio" value="D3" name="R1" <%IF VAL(_FV.P3)=pnFVID%>checked <%ENDIF%>><%ENDIF%></td>
+	<td bgcolor="#E9E9EA" align="center"><% IF VAL(_DEDUCT.D4TXT) > 0 %><input type="radio" value="D4" name="R1" <%IF VAL(_FV.P4)=pnFVID%>checked <%ENDIF%>><%ENDIF%></td>
+	<td bgcolor="#E9E9EA" align="center"><% IF VAL(_DEDUCT.D5TXT) > 0 %><input type="radio" value="D5" name="R1" <%IF VAL(_FV.P5)=pnFVID%>checked <%ENDIF%>><%ENDIF%></td>
+  </tr>
+</table>
+  <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="360">
+  <tr>
+   <td align="center" width="228"><input type="button" CLASS="SUBOFF" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" name="B36" onclick="SubmitData(1)" value="Submit"></td>
+   <td align="center" width="132"><input type="button" CLASS="SUBOFF" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" name="B36" onclick="SubmitData(2)" value="Exit"></td>
+ </tr>
+</table>
+</form>  
+    </td>
+  </tr>
+  <tr>
+    <td height="25" background="/zz/images/bgdown.gif">&nbsp;</td>
+  </tr>	 
+</table>
+  <br>
+<table border="1" align="center" bgcolor="#FFFFFF" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#000000" width="750">
+  <tr>
+    <td bgcolor="#F7F0B9" width="166"><b><font face="Verdana" size="2">Amount of Valuation</font></b></td>
+    <td bgcolor="#F7F0B9" width="60" class="TD1"><b>$<%=_DEDUCT.D0TXT%></b></td>
+    <td bgcolor="#F7F0B9" width="60" class="TD1"><b>$<%=_DEDUCT.D1TXT%></b></td>
+    <td bgcolor="#F7F0B9" width="76" class="TD1"><b>$<%=_DEDUCT.D2TXT%></b></td>
+    <td bgcolor="#F7F0B9" width="65" class="TD1"><b>$<%=_DEDUCT.D3TXT%></b></td>
+    <td bgcolor="#F7F0B9" width="66" class="TD1"><b>$<%=_DEDUCT.D4TXT%></b></td>
+    <td bgcolor="#F7F0B9" width="63" class="TD1"><b>$<%=_DEDUCT.D5TXT%></b></td>
+  </tr>
+  <% SELECT _FVALL
+     SCAN %>
+  <tr>
+    <td width="146" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'B5CFE7','FFFFFF')%>"><font face="Verdana" size="2" <% IF VAL(P1)=VAL(_FV.P1) %>color="red"<%ENDIF%>>Up To <%='$'+ALLT(STR(FVAMT))%></font>
+    &nbsp;<% IF VAL(P1)=VAL(_FV.P1) %><font color="red" size="4">&#10003;</font><%ENDIF%></td>
+    <td width="50" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'B5CFE7','FFFFFF')%>" align="center"><font face="Verdana" size="2" <% IF VAL(P1)=VAL(_FV.P1) %>color="red"<%ENDIF%>><% IF !EMPTY(_DEDUCT.D0TXT) %><%=ALLT(V0)%><%ENDIF%></font>&nbsp;</td>
+    <td width="50" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'B5CFE7','FFFFFF')%>" align="center"><font face="Verdana" size="2" <% IF VAL(P1)=VAL(_FV.P1) %>color="red"<%ENDIF%>><% IF !EMPTY(_DEDUCT.D1TXT) %><%=ALLT(V1)%><%ENDIF%></font>&nbsp;</td>
+    <td width="66" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'B5CFE7','FFFFFF')%>" align="center"><font face="Verdana" size="2" <% IF VAL(P1)=VAL(_FV.P1) %>color="red"<%ENDIF%>><% IF !EMPTY(_DEDUCT.D2TXT) %><%=ALLT(V2)%><%ENDIF%></font>&nbsp;</td>
+    <td width="55" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'B5CFE7','FFFFFF')%>" align="center"><font face="Verdana" size="2" <% IF VAL(P1)=VAL(_FV.P1) %>color="red"<%ENDIF%>><% IF !EMPTY(_DEDUCT.D3TXT) %><%=ALLT(V3)%><%ENDIF%></font>&nbsp;</td>
+    <td width="56" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'B5CFE7','FFFFFF')%>" align="center"><font face="Verdana" size="2" <% IF VAL(P1)=VAL(_FV.P1) %>color="red"<%ENDIF%>><% IF !EMPTY(_DEDUCT.D4TXT) %><%=ALLT(V4)%><%ENDIF%></font>&nbsp;</td>
+    <td width="53" bgcolor="#<%=IIF(MOD(RECNO(),2)=0,'B5CFE7','FFFFFF')%>" align="center"><font face="Verdana" size="2" <% IF VAL(P1)=VAL(_FV.P1) %>color="red"<%ENDIF%>><% IF !EMPTY(_DEDUCT.D5TXT) %><%=ALLT(V5)%><%ENDIF%></font>&nbsp;</td>
+  </tr>
+  <% ENDSCAN%>
+</table>
+</body>
+</html>

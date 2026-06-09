@@ -1,0 +1,606 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Time Table</title>
+<SCRIPT LANGUAGE="JavaScript">
+
+
+function transfer(T<%=pcORDNO+pcCODE%>) {
+
+	var _w1 = null;
+	_w1 = self.opener;
+	_w1.document.<%=ALLT(pcFORM)%>.<%=ALLT(pcELEMENT)%>.value=T<%=pcORDNO+pcCODE%>;
+
+	window.close();
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.TIMEOFFAM	 {	color: #4A659C;; 
+					font-weight: bold;
+					font-family: Verdana;
+				  	text-align: center;
+					background-color: #E2E2E2;
+					font-size: 10pt;
+  				  	text-decoration: nounderline}
+	.TIMEONAM 	{	color: #FFBE29; 
+					font-weight: bold;
+					font-family: Verdana;
+				  	text-align: center;
+					background-color: #4275A5;
+					font-size: 10pt;
+  				  	cursor: Hand;
+  				  	text-decoration: underline}
+ 	.TIMEOFFPM	 {	color: #4A659C; 
+					font-weight: bold;
+					font-family: Verdana;
+				  	text-align: center;
+					background-color: #C6DBF7;
+					font-size: 10pt;
+  				  	text-decoration: nounderline}
+	.TIMEONPM 	{	color: #FFBE29; 
+					font-weight: bold;
+					font-family: Verdana;
+				  	text-align: center;
+					background-color: #F7EFAD;
+					font-size: 10pt;
+  				  	cursor: Hand;
+  				  	text-decoration: underline}
+</style>
+
+</head>
+<body bgcolor="#4E6699">
+<table border="1" align="center" width="98%" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td valign="top" width="20%">
+			<table border="0" width="100%" cellspacing="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111">
+			  <tr>
+		    	<td width="100%" bgcolor="#008200" align="center" colspan="5" height="18">
+                <b><font color="#FFFFFF" face="Verdana" size="2">Time Table</font></b></td>
+			  </tr>
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('00:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">12:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('00:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">12:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('00:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">12:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('00:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">12:45</font></td>
+		    	<td width="20%" VALIGN="TOP" bgcolor="#F7EFAD" align="center" rowspan="12">
+                <b><font color="#000000" face="Verdana" size="2"><BR>AM<P>AM<P>AM<P>AM<P>AM<P>AM</font></b></td>
+			  </tr>			  
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('01:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">01:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('01:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">01:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('01:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">01:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('01:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">01:45</font></td>
+			  </tr>				  
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('02:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">02:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('02:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">02:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('02:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">02:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('02:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">02:45</font></td>
+			  </tr>			  
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('03:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">03:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('03:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">03:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('03:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">03:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('03:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">03:45</font></td>
+			  </tr>			  
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('04:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">04:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('04:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">04:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('04:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">04:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('04:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">04:45</font></td>
+			  </tr>			  
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('05:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">05:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('05:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">05:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('05:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">05:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('05:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">05:45</font></td>
+			  </tr>
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('06:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">06:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('06:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">06:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('06:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">06:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('06:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">06:45</font></td>
+			  </tr>
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('07:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">07:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('07:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">07:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('07:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">07:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('07:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">07:45</font></td>
+			  </tr>
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('08:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">08:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('08:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">08:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('08:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">08:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('08:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">08:45</font></td>
+			  </tr>
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('09:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">09:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('09:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">09:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('09:07 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">09:07</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('09:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">09:45</font></td>
+			  </tr>
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('10:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">10:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('10:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">10:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('10:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">10:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('10:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">10:45</font></td>
+			  </tr>
+			  <tr>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('11:00 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">11:00</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('11:15 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">11:15</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('11:30 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">11:30</font></td>
+		    	<td width="20%" class="TIMEOFFAM" height="19" ONCLICK="transfer('11:45 AM')" onmouseover="this.className='TIMEONAM'" onmouseout="this.className='TIMEOFFAM'" style="background-color: #F7EFAD">
+                <font color="#000000">11:45</font></td>
+			  </tr>
+			  <tr>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">12:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">12:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">12:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">12:45</font></td>
+		    	<td width="20%" valign="top" height="209" align="center" rowspan="12" style="background-color: #ADEBC6">
+                <b><font color="#000000" face="Verdana" size="2"><br>PM<P>PM<P>PM<P>PM<P>PM<P>PM</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">01:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">01:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">01:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">01:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">02:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">02:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02:13 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">02:13</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">02:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03:00 PM')"onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">03:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">03:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">03:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">03:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">04:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04:15 PM')"onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">04:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">04:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">04:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">05:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">05:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">05:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">05:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">06:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">06:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">06:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">06:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">07:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">07:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">07:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">07:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">08:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">08:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">08:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">08:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">09:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">09:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">09:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">09:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">10:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">10:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">10:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">10:45</font></td>
+			  </tr>
+			  <tr>
+			    <td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11:00 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">11:00</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11:15 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">11:15</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11:30 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">11:30</font></td>
+		    	<td width="20%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11:45 PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'" style="background-color: #ADEBC6">
+                <font color="#000000">11:45</font></td>
+			  </tr>			  
+			</table>
+		    <table border="0" width="100%" cellspacing="0" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111">
+              <tr>
+			    <td width="55%" height="50" colspan="2" class="TIMEOFFPM" height="19" ONCLICK="transfer(' ')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">No Time</FONT></td>
+			 </tr>		      
+			</table>			    
+    </td>
+    <% IF pcELEMENT<>'FUTME' AND pcELEMENT<>'STARTTME' AND pcELEMENT<>'LOADTME' AND pcELEMENT<>'ENDTME'%>
+    <td valign="top" width="21%">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+			  <tr>
+		    	<td width="55%" height="19" bgcolor="#008200" align="left" colspan="2">
+		    	<font color="#FFFFFF" face="Verdana" size="2"><b>Time Range: 1 &amp;&nbsp;2 hours</b></font></td>
+			  </tr>			  
+			  <tr>
+		    	<td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05-06AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">05-06AM</font></td>
+		    	<td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05-07AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">05-07AM</font></td>
+			  </tr>
+			  <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-07AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">06-07AM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-08AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">06-08AM</font></td>
+			  </tr>
+			  <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-08AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">07-08AM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-09AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">07-09AM</font></td>
+			  </tr>			  
+			  <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08-09AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">08-09AM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08-10AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">08-10AM</font></td>
+			  </tr>
+			  <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09-10AM')"onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">09-10AM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09-11AM')"onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">09-11AM</font></td>
+			  </tr>
+			  <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10-11AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">10-11AM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10-12PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">10-12PM</font></td>
+			  </tr>
+			  <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11-12PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">11-12PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11-01PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">11-01PM</font></td>
+			  </tr>
+			  <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12-01PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">12-01PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12-02PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">12-02PM</font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01-02PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">01-02PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01-03PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">01-03PM</td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02-03PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">02-03PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02-04PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">02-04PM</td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03-04PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">03-04PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03-05PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">03-05PM</td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04-05PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">04-05PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04-06PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">04-06PM</td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05-06PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">05-06PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05-07PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">05-07PM</td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-07PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">06-07PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-08PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">06-08PM</td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-08PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">07-08PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-09PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">07-09PM</td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08-09PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">08-09PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08-10PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">08-10PM</td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09-10PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">09-10PM</td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09-11PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+                <font color="#000000">09-11PM</td>
+			  </tr>
+              <tr>
+			    <td width="55%" class="TIMEOFFPM" height="19" colspan="2">&nbsp;</td>
+			 </tr>			 
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10-12AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">10-12AM</FONT></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11-12AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">11-12AM</FONT></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12-01AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">12-01AM</FONT></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12-02AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">12-02AM</FONT></td>
+			  </tr>			  
+              </table>    
+    </td>
+    <td valign="top" width="19%">
+  			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+			  <tr>
+		    	<td width="55%" height="19" bgcolor="#008200" align="center" colspan="2">
+		    	<font color="#FFFFFF" face="Verdana" size="2"><b>Time Range: 3 hours</b></font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05-08AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">05-08AM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-09AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">06-09AM</font></td>
+			  </tr>			
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-10AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">07-10AM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08-11AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">08-11AM</font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09-12PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">09-12PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10-01PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">10-01PM</font></td>
+			  </tr>			  
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11-02PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">11-02PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12-03PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">12-03PM</font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01-04PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">01-04PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02-05PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">02-05PM</font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03-06PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">03-06PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04-07PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">04-07PM</font></td>
+			  </tr>			  			  			  			  
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05-08PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">05-08PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-09PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">06-09PM</font></td>
+			 </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-10PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">07-10PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08-11PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">08-11PM</font></td>
+			 </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09-12AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">09-12AM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10-01AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">10-01AM</font></td>
+			 </tr>			 			 
+			 </table>
+  			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+			  <tr>
+		    	<td width="55%" height="19" bgcolor="#008200" align="center" colspan="2">
+		    	<font color="#FFFFFF" face="Verdana" size="2"><b>Time Range: 4 hours</b></font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-10AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">06-10AM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-11AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">07-11AM</font></td>
+			  </tr>			
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08-12PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">08-12PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09-01PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">09-01PM</FONT></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10-02PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">10-02PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11-03PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">11-03PM</font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12-04PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">12-04PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01-05PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">01-05PM</font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02-06PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">02-06PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03-07PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">03-07PM</font></td>
+			  </tr>			  			  			  			  
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04-08PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">04-08PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05-09PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">05-09PM</font></td>
+			 </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-10PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">06-10PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-11PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">07-11PM</font></td>
+			 </tr>
+			 </table>    
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">			 
+			  <tr>
+		    	<td width="55%" height="19" bgcolor="#008200" align="center" colspan="2">
+		    	<font color="#FFFFFF" face="Verdana" size="2"><b>Time Range: 6 hours</b></font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-12PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">06-12PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-01PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">07-01PM</font></td>
+			  </tr>			
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('08-02PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">08-02PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('09-03PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">09-03PM</FONT></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('10-04PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">10-04PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('11-05PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">11-05PM</font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('12-06PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">12-06PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('01-07PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">01-07PM</font></td>
+			  </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('02-08PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">02-08PM</font></td>
+			    <td width="27%" class="TIMEOFFPM" height="19" ONCLICK="transfer('03-09PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">03-09PM</font></td>
+			  </tr>			  			  			  			  
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('04-10PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">04-10PM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('05-11PM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">05-11PM</font></td>
+			 </tr>
+              <tr>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('06-12AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">06-12AM</font></td>
+			    <td width="28%" class="TIMEOFFPM" height="19" ONCLICK="transfer('07-01AM')" onmouseover="this.className='TIMEONPM'" onmouseout="this.className='TIMEOFFPM'">
+			    <font color="#000000">07-01AM</font></td>
+			 </tr>
+			 </table>			     
+    </td>
+    <%ENDIF%>    
+  </tr>
+</table>
+
+</body>
+</html>

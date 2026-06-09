@@ -1,0 +1,225 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Repository Process</title>
+<LINK REL="STYLESHEET" TYPE="text/css" href="/granot/mystyle.css" />
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function sf(){
+	document.theForm.btnExit.focus();
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 12pt;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+				  	text-align: left}
+	.txton		{	color: blue;
+				  	font-size: 12pt;
+				  	text-align: left;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+					text-decoration: underline
+  				  	cursor: Hand}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBONEXIT 	{	color: red; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+
+<body onload="sf()" BGCOLOR="#ADBACE">
+<br>
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="80%" height="348">
+  <tr>
+    <td width="100%" height="15" colspan="3" bgcolor="#FFCF63">
+    </td>
+  </tr>
+  <tr>
+    <td width="9%" BGCOLOR="#CCCCCC" height="27" dir="ltr">
+    <b><font face="Verdana" size="1">&nbsp;<%=ALLT(pcCUSTNO)%></font></b></td>
+    <td width="59%" BGCOLOR="#4A698C" height="27" dir="ltr">
+    <p align="center" dir="ltr">
+    <b><font face="Verdana" size="4" color="#FFFFFF">Moving Leads Service</font></b></td>
+    <td width="26%" BGCOLOR="#CCCCCC" height="24" align="right" dir="ltr">
+    <b><font face="Verdana" size="2">Leads Credit:&nbsp;<%=ALLT(STR(pnLEADSBAL+pnLEADSXBAL))%>&nbsp;&nbsp;</font></b></td>
+
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="234" colspan="3">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+	
+		<p align="left" dir="ltr"><font class="list" face="verdana,arial,sans-serif">
+        &nbsp;</font></p>
+
+				
+		<form name="theForm" method="POST">
+		<table border="0" width="55%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="50%" align="center">
+            <input type="button" class="BTN" name="btnEdit" onclick="window.close()" style="width:120" tabindex="1" value="Edit Selection">&nbsp;&nbsp; </td>    
+		    <td width="50%" align="center"><input type="button" class="BTN" name="btnExit" onclick="window.close()" style="width:120" tabindex="1" value="Exit">&nbsp;&nbsp; </td>    
+		  </tr>
+		</table>
+		</form>
+		<br>
+		<div align="center">
+          <center>
+		<table border="0" width="408" cellspacing="0" height="94">
+		 <tr>
+           <td valign="top" width="94" height="92">
+			<!-- Type-->
+			<TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="633" height="48">
+			  <tr>
+			    <td width="112" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+                <b><font face="Verdana" size="2">Start Date</font></b></td>
+			    <td width="152" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+                <p dir="ltr"><b><font face="Verdana" size="2">Guaranteed Leads
+                </font>
+                    <font face="Verdana" size="1">&nbsp;</font></b></td>
+			    <td width="145" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+                <b><font face="Verdana" size="2">Transferred Leads </font></b></td>
+                <td width="106" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+				    <b><font face="Verdana" size="2">Amount Paid </font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="112" height="10" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2">
+                &nbsp;<%=ALLT(DTOC(_RL.ADDDTE))%></font></b></td>
+			    <td width="152" height="9" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2" align="center">
+                &nbsp;<%=ALLT(STR(_RL.LEADS))%></font></b></td>
+			    <td width="145" height="9" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2" align="center">
+                &nbsp;<%=ALLT(STR(_T.TRLEADS))%></font></b></td>
+			    <td width="106" height="9" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2" align="center">
+                &nbsp;$<%=ALLT(STR(_RL.AMOUNT,8,2))%></font></b></td>
+			  </tr>
+			  </table>
+			<!-- Type-->
+
+		 </td>
+		 </tr>
+		 <tr><td valign="top" width="94" height="92">
+			<!-- Type-->
+			<TABLE CELLPADDING="0" CELLSPACING="2" BORDER="2" BORDERCOLOR="#ffffff" WIDTH="633" height="48">
+			  <tr>
+			    <td width="630" height="10" bgcolor="#4A698C" colspan="7" align="center" BORDERCOLOR="#708090">
+				    <b><font face="Verdana" size="2" color="#FFFFFF">Selected Leads</font></b></td>
+			  </tr>
+			  <tr>
+			    <td width="96" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">State</font></b></td>
+			    <td width="58" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+                <b><font face="Verdana" size="2">Zip</font></b></td>
+			    <td width="54" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+                <b><font face="Verdana" size="2">Radius</font></b></td>
+			    <td width="86" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Local </font></b>
+                </td>
+			    <td width="118" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">Long Distance </font>
+                    <font face="Verdana" size="1">&nbsp;</font></b></td>
+			    <td width="101" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090"><b><font face="Verdana" size="2">International </font>
+                    </b></td>
+                <td width="117" height="10" bgcolor="#FFCF63" align="center" BORDERCOLOR="#708090">
+				    <b><font face="Verdana" size="2">Auto Transport </font>
+                    </b></td>
+			  </tr>
+			  <%SELECT _RO
+			  	SCAN%>
+			  <tr>
+			    <td width="96" height="10" BORDERCOLOR="#708090" align="left"><b><font face="Verdana" size="2">&nbsp;<%=ALLT(NAME)%></font></b></td>
+			    <td width="58" height="10" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2">&nbsp;<%=ALLT(ZIP)%></font></b></td>
+			    <td width="54" height="10" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2">&nbsp;<%=IIF(RADIUS>0,ALLT(STR(RADIUS)),"")%></font></b></td>
+			    <td width="86" height="9" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2" align="center">
+                &nbsp;<%=IIF(LOCAL,"Yes","")%></font></b></td>
+			    <td width="118" height="9" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2" align="center">
+                &nbsp;<%=IIF(LD,"Yes","")%></font></b></td>
+			    <td width="101" height="9" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2" align="center">
+                &nbsp;<%=IIF(INTL,"Yes","")%></font></b></td>
+			    <td width="117" height="9" BORDERCOLOR="#708090" align="center"><b><font face="Verdana" size="2" align="center">
+                &nbsp;<%=IIF(AUTO,"Yes","")%></font></b></td>
+			  </tr>
+			  <%ENDSCAN%>
+              <tr>
+			    <td width="630" height="1" bgcolor="#CECFCE" colspan="7" align="center" BORDERCOLOR="#708090">
+				    &nbsp;</td>
+			  </tr>
+			  </table>
+			<!-- Type-->
+
+		 </td>
+		 </tr></table>
+		  </center>
+        </div>
+		<!-- Radio-->
+		<!-- Frame Table-->
+		</form>
+ &nbsp;<!-- Buttons ---><!-- Frame Table ---><!-- Menu --></td>
+  </tr>
+</table>
+<!-- frame table -->
+
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#4A698C" height="15" colspan="3">
+    <p align="left"><b><font face="Verdana" size="2" color="#FFFFFF">&nbsp;</font></b><font face="Verdana" size="2"><b><font color="#FFFFFF">User: <%=pcUser%></font> </b>
+    </font></td>
+  </tr>
+   <tr>
+    <td width="100%" height="14" colspan="3" bgcolor="#FFCF63">
+    </td>
+ </tr>
+  </table>
+
+  </center>
+</div>
+
+</body>
+
+</html>

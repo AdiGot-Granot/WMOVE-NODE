@@ -1,0 +1,81 @@
+<html>
+
+<head>
+<title><%=RIGHT(pcORDNO,3)%></title>
+<LINK REL="STYLESHEET" TYPE="text/css" href="/zz/inventory/invstyle.css">
+
+<script language="javascript">
+function SubmitInv(i)
+  {  
+    if (i==2) 
+      {
+      	document.theForm.action="/wc.dll?mpinv~newitemret~<%=pcSCR%>";
+      	document.theForm.submit();
+      }
+  }
+</script>
+</head>
+
+
+<body onload="javascript: window.btnSubmitInv.focus()" BGCOLOR="#4E6699">
+
+<br>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="450" align="center">
+  <tr>
+    <td width="700" colspan="3"><IMG ALT="" SRC="zz/images/topBar.gif" width="450" height="14"></td>
+  </tr>
+  <tr>
+    <td width="313" BGCOLOR="#669966" align="left">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF"><%=ALLT(pcSNAME)%></font></b></td>
+    <td width="258" BGCOLOR="#669966" align="center"><b>
+    <font color="#FFFFFF" face="Verdana" size="4">Inventory-New Items</font></b></td>
+    <td width="129" BGCOLOR="#669966" align="right">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">Reference:&nbsp;<%=ALLT(pcDEPT+pcORDNO)%>&nbsp;</font></b></td>
+  </tr>
+  <tr>
+    <td width="450" bgcolor="#FFFFFF" colspan="3">
+<!-- frame table  Starts-->
+   <br>
+		<table border="1" cellspacing="0" width="95%" cellpadding="0" align="center">
+		  <tr>
+		    <td width="24%" bgcolor="#336699" align="center"><b>
+	        <font color="#FFFFFF" face="Arial">
+	        Item Description</font></b></td>
+		    <td width="5%" bgcolor="#336699" align="center"><b>
+	        <font color="#FFFFFF" face="Arial">Qty.</font></b></td>
+		    <td width="21%" bgcolor="#336699" align="center" colspan="2">
+	        <font color="#FFFFFF" face="Arial"><b>Cubic Feet <font color="#FFFF00">or</font> Pounds&nbsp; per item</b></td>
+		  </tr>
+<form name="theForm" method="post">
+
+			<% SELECT _NEWITEM
+				SCAN %>
+		  <tr>
+		    <td width="23%">
+	        <input type="text" name="ITEM<%=ALLT(_NEWITEM.ID)%>" size="24"></td>
+		    <td width="5%"><p align="center">
+	        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY<%=ALLT(_NEWITEM.ID)%>" size="2" value=""></td>
+		    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT<%=ALLT(_NEWITEM.ID)%>" size="3" value="">cf.</td>
+		    <td width="13%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS<%=ALLT(_NEWITEM.ID)%>" size="3" value="">lbs.</td>
+		  </tr>
+			<% ENDSCAN %>
+		</table>
+</form>
+
+	<p align="center">The customized items will appear under miscellanies.<br><br>
+
+    <input id="btnSubmitInv" type="button" onclick="SubmitInv(2)" size="10" value="Submit Additional Items" name="btnSubmit" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'"><br>
+
+<!-- frame table  Ends-->
+&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="450" bgcolor="#993366" colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="700" colspan="3">
+    <IMG ALT="" SRC="zz/images/botBar.gif" width="450" height="14"></td>
+  </tr>
+</table>
+</body>
+
+</html>

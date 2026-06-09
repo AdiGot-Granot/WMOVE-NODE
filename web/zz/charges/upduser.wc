@@ -1,0 +1,110 @@
+<html lang="en" style="width: 450px; height: 300px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Update User/Rep</title>
+
+<!--DROPDOWN USER SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN USER SEARCH-->
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+      $('.user-select').select2({
+          placeholder: 'Select User',
+          allowClear: true
+      });
+  });
+  
+</script>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function UpdValueB(A,B) {
+	var Message = "Click OK to Confirm Your Action! No Need to Submit!";
+	alert(Message);
+		window.open('/wc.dll?mpcharge~UpdValue~<%=pcSCR%>~'+A+'~'+B,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=5,height=5');
+}
+	
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000080;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+				  	text-align: right;}
+	.TD2		{	color: #000080;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+				  	text-align: left;}
+     .TD3 	    {	font-size: 10pt;
+				    font-family: Verdana;
+				    font-weight: bold;}				  					  	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					height:25;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					height:25;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<br>
+<form name="theForm" method="post">
+<table border="2" align="center" width="90%" BGCOLOR="#FFFFFF" style="border-collapse:collapse;" bordercolor="#C0C0C0" cellspacing="1">
+  <tr>
+    <td width="100%" align="center" bgcolor="#008000" colspan="2"><b><font face="Verdana" color="#FFFFFF">Update User/Rep <font color="FFFF00"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></font></font></b></td>
+ </tr>
+<% IF pnLEVEL=2 OR pnLEVEL > 3 %> 
+  <tr>      
+    <td width="29%" class="TD1">Representative:&nbsp;</td>
+    <td width="71%">
+    <select size="1" name="REP" class="user-select" style="width: 250px;" onChange="UpdValueB('REP',this.value)">
+      <option value="<%=_EST.REP%>" selected><%=_EST.REP%></option>
+      <option></option> 
+	     <% SELECT  _USERS 
+		         GO TOP
+		     	 SCAN %>
+      <OPTION value="<%=ALLT(_USERS.USER)%>"><%=ALLT(_USERS.USER)%><%=IIF(EMPTY(NAME),'',' - '+ALLT(PROPER(NAME)))%></OPTION>
+		     <% ENDSCAN %>  
+     </select>	    
+    </td>       
+ </tr>
+  <tr>
+    <td width="29%" class="TD1">User:&nbsp;</td>
+    <td width="71%">
+    <select size="1" name="USER" class="user-select" style="width: 250px;" onChange="UpdValueB('USER',this.value)">
+	 <option value="<%=_EST.USER%>" selected><%=_EST.USER%></option> 
+	     <% SELECT _USERS 
+	         GO TOP
+	     	 SCAN %>
+	     <OPTION value="<%=ALLT(_USERS.USER)%>"><%=ALLT(_USERS.USER)%><%=IIF(EMPTY(NAME),'',' - '+ALLT(PROPER(NAME)))%></OPTION>
+	     <% ENDSCAN %>  
+	 </select></td>
+ </tr>
+<%ENDIF%> 
+ </table>
+
+</form>    
+</body>
+</html>

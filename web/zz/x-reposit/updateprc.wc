@@ -1,0 +1,239 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Repository Job List</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitlist(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~updateprcret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpreposit~updprocesswc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+
+function movingdirectory(SRC) {
+    window.open('/zz/reposit/'&&eval(SRC)&&'.htm','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=350,height=300');
+self.name="main"}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style></head>
+
+<body  BGCOLOR="#4E6699">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" height="10">
+  <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="zz/images/BotBar8.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#001E4C" height="20" colspan="2">
+    <p align="center"><b>
+    <font face="Arial Rounded MT Bold" size="4" color="#FFFFFF">Update Sale 
+    Price</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="355" colspan="2">
+<b>Selected: <font color="#008000"><%=ALLT(STR(pnRECCOUNT))%></font> Estimates</b><BR>
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+<form name="theForm" method="POST">
+<% SELECT _LIST 
+    GO TOP %>
+    <table border="1" width="100%" bordercolor="#A0965A" cellspacing="0" cellpadding="2" style="border-collapse: collapse">
+    <tr>
+      <td width="5%" bgcolor="#001E4C" align="center"><p align="center">
+      <font color="#FFFFFF"><b>#</b></font></td>
+      <td width="13%" bgcolor="#001E4C" align="center"><p align="center">
+      <font color="#FFFFFF"><b>Source<br>Estimate Date</b></font></td>
+      <td width="11%" bgcolor="#001E4C" align="center"><p align="center">
+      <font color="#FFFFFF"><b>Move Date</b></font></td>
+      <td width="17%" bgcolor="#001E4C" align="center"><p align="center">
+      <font color="#FFFFFF" size="4"><b>From</b></font></td>
+      <td width="15%" bgcolor="#001E4C" align="center">
+      <font color="#FFFFFF" size="4"><b>To</b></font></td>
+      <td width="9%" bgcolor="#001E4C" align="center"><p align="center">
+      <font color="#FFFFFF"><b>Volume</b></font></td>
+      <td width="9%" bgcolor="#001E4C" align="center"><p align="center">
+      <font color="#FFFFFF"><b>Basic Prc<br>
+      Cur Prc</b></font></td>
+      <td width="8%" bgcolor="#001E4C" align="center"><p align="center">
+      <font color="#FFFFFF"><b>
+      New Price</b></font></td>
+      <td width="6%" bgcolor="#001E4C" align="center"><font color="#FFFFFF"><b>
+      Only<br>
+      Exclu.</b></font></td>
+   </tr>
+<%SCAN %>
+    <tr>
+      <td width="5%" bgcolor=#FFFFCC>
+        <p><b><font size="2" ><%=ALLT(STR(NO)) %>.<%IF XLAST%><img border="0" src="/zz/images/hot1.gif" width="23" height="15"><%ENDIF%></font></b></td>
+      <td width="13%" bgcolor=#FFFFCC>
+        <p><b><font size="2" style="cursor: hand" onclick="window.open('/zz/reposit/<%=ALLT(MDSOURCE)%>.htm','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=500,height=300')"><u><%=ALLT(MDSOURCE)%></u>
+        <br><%=OPENDTE %><%IF XNEW%><img border="0" src="/zz/images/new.gif" width="30" height="15"><%ENDIF%></font></b></td>
+      <td width="11%" bgcolor=#FFFFCC>
+        <p><font color=<%=IIF(LBOOKDTE=DATE(),"#FF0000","#008000")%>><b><%=LBOOKDTE %>&nbsp;<%=LEFT(CDOW(LBOOKDTE),3) %><%IF XSOON%><img border="0" src="/zz/images/ball2.gif" width="8" height="8"><%ENDIF%><br>
+        </b><font size="2">AR-<b><%=ORDNO %></b></font></font></td>
+      <td width="17%" bgcolor=#FFFFCC>
+        <p><b><font size="2" ><%=FROM %><br><font color="#33CC33">&nbsp;&nbsp;<%=IIF(ARemail,'','Phone Only') %></font></font></b></td>
+      <td width="15%" bgcolor=#FFFFCC>
+        <p><font size="2" ><b><%=TO %><br><font color="#33CC33">&nbsp;&nbsp;<%=IIF(ARPHONE,'','Email Only') %></font></b></td>
+      <td width="9%" bgcolor=#FFFFCC>
+        <p><font size="2" ><b><a href="/wc.dll?mpreposit~invarena~<%=ALLT(REFNO)%>" TARGET="_blank"><%=IIF(TOTALCF=0,'',ALLT(STR(TOTALCF))+' cf.') %><%IF XINV%><img border="0" src="/zz//images/ball1.gif" width="10" height="10"><%ENDIF%></a></b></td>
+      <td width="9%" bgcolor=#FFFFCC>
+        <p><b><font size="2" ><%=ALLT(STR(MDPRC,7,2))%><%IF MDPRC1 <> MDPRC%><br><%=ALLT(STR(MDPRC1,7,2))%><%ENDIF%></font></b></td>
+      <td width="8%" bgcolor=#FFFFCC align="center"><b>$ <font color="#FFFFFF">
+        <input type="text" name="<%='S'+ALLT(ORDNO) %>" size="5" value="<%=ALLT(STR(MDPRC1,7,2)) %>"></font></b><br>
+        <%IF XSALE%><img border="0" src="/zz/images/sale.gif" width="24" height="16"><%ENDIF%></font></b></td>
+         <td width="6%" bgcolor=#FFFFCC align="center">
+           <%IF MDCNT=0%>
+             <input type="checkbox" name="<%='EX'+ALLT(ORDNO) %>" value="ON" <%=IIF(MDEXCLUSON,'checked','')%>>
+           <%ENDIF%>
+           <font color="#008000">&nbsp;<%=IIF(MDCNT >0,'<br>'+ALLT(STR(MDCNT))+' sold','')%></font></td>
+    </tr>
+   <% ENDSCAN %>
+    <tr>
+      <td width="5%" bgcolor=#FFFFCC>
+        &nbsp;</td>
+      <td width="13%" bgcolor=#FFFFCC>
+        &nbsp;</td>
+      <td width="11%" bgcolor=#FFFFCC>
+        &nbsp;</td>
+      <td width="17%" bgcolor=#FFFFCC>
+        &nbsp;</td>
+      <td width="33%" bgcolor=#FFFFCC colspan="3">
+        <font color="#0000FF"><i><b>New price for all list --&gt;</b></i></font></td>
+      <td width="8%" bgcolor=#FFFFCC align="center"><b><font color="#008000">$
+      </font> <font color="#FFFFFF">
+        <input type="text" name="<%='ALL'+ALLT(ORDNO) %>" size="5"></font></b></td>
+         <td width="6%" bgcolor=#FFFFCC align="center">
+           &nbsp;</td>
+    </tr>
+   </table>
+</form>
+</td>
+</tr>
+</table>
+ <br>
+		<!-- Buttons --->
+		<div align="center">
+          <center>
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+            <tr>
+              <td width="19%"><b><font size="2">
+              <img border="0" src="/zz/images/hot1.gif" width="33" height="24"> 
+              Last Minute Move!!!</font></b></td>
+              <td width="28%"><b><font size="2">
+              <img border="0" src="/zz/images/new.gif" width="41" height="21"> 
+              Less than 24 hrs. in the system</font></b></td>
+              <td width="14%"><b>
+              <font size="2"><img border="0" src="/zz/images/ball2.gif" width="8" height="8"> 
+              Moving soon</font></b></td>
+              <td width="20%"><b>
+              <font size="2"><img border="0" src="/zz//images/ball1.gif" width="10" height="10"></font><font size="2"> 
+              Complete inventory list</font></b></td>
+              <td width="19%">
+        <b><font size="2">
+              <img border="0" src="/zz/images/sale.gif" width="38" height="27"> 
+              Price cut</font></b></td>
+            </tr>
+            <tr>
+              <td width="19%">&nbsp;</td>
+              <td width="28%">&nbsp;</td>
+              <td width="14%">&nbsp;</td>
+              <td width="20%">&nbsp;</td>
+              <td width="19%">&nbsp;</td>
+            </tr>
+          </table>
+          </center>
+    </div>
+		<div align="center">
+          <center>
+		<table border="0" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+		  <tr>
+		    <td width="25%" align="center">
+            <input id="btnSubmit" type="button" CLASS="SUBOFF" name="B3" onclick="submitlist(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="9" value="Submit"></td>    
+		    <td width="25%" align="center">
+            <input type="button" CLASS="SUBOFF" name="B3" onclick="submitlist(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="10" value="Cancel"></td>    
+		  </tr>
+		</table>
+		  </center>
+    </div>
+		<!-- Buttons --->
+		<!-- Frame Table --->
+
+
+	<!-- Menu -->
+
+	<br>
+
+	<!-- Command Buttons -->
+
+
+<!-- frame table -->
+</td>
+</tr>
+<tr>
+    <td width="50%" BGCOLOR="#001E4C" height="15">
+      <font color="#FFFFFF">
+      <b>User:<%=pcUSER%></b></font></td>
+    <td width="50%" BGCOLOR="#001E4C" height="15">
+      <p align="right"><font color="#FFFFFF"><b><%=datetime()%>&nbsp;&nbsp;</b></font></td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="zz/images/botBarep.gif" width="100%" height="14"></td>
+ </tr>
+  </table>
+  </center>
+</div>
+
+
+</body>
+
+</html>

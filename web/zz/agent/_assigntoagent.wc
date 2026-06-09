@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Jobs Assigned to Agent</title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitData() {
+    document.theForm.action="/wc.dll?mpagent~assignacttotal~<%=pcSCR%>";
+    document.theForm.submit();
+     } 
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+	 .SUBMIT	{	font-size: 10pt;
+                    width: 100; 
+                    height: 25; 
+                    cursor: pointer;}			  	
+</style>
+
+</head>
+<body>
+<center><a href="/wc.dll?mpagent~agprocesswc~<%=pcSCR%>"><font face="Arial" size="4">Exit</a><br><br><b>Jobs Assigned to Agents</font><br>
+<font face="Arial" size="2"><%=pcAGENTTXT%><BR><A HREF="mailto:<%=pcAGENTEMAIL%>"><%=pcAGENTEMAIL%></A></b></font><br>
+<% SELECT _LIST 
+    GO TOP %>
+<form name="theForm" method="post">
+<table border="1" width="80%" align="center" cellspacing="1" cellpadding="2" style="border-collapse: collapse" bordercolor="#C0C0C0">
+    <tr style="background-color:#0081D3;">
+      <td width="4%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Job No.</font></b></td>
+      <td width="13%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Customer</font></b></td>
+      <td width="6%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Agent</font></b></td>
+      <td width="5%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Move Date</font></b></td>
+      <td width="11%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Move From</font></b></td>
+      <td width="9%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Move To</font></b></td>
+      <td width="6%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Est. Volume</font></b></td>
+      <td width="4%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Estimate</font></b></td>
+      <td width="5%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Act. Total</font></b></td>
+      <td width="4%" align="center"><b><font face="Arial" size="2" color="#FFFFFF">Cust. Pay</font></b></td>
+   </tr>
+<%SCAN %>
+    <tr>
+     <td width="4%"><b><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=+ALLT(REFNO)%>" target='_blank'><font face="Arial" size="2"><%=ALLT(DEPT)+ALLT(ORDNO)%></font></a>&nbsp;</td> 
+     <td width="13%">&nbsp;<b><font size="2" face="Arial"><%=ALLT(SNAME)%></font></b></td>
+     <td width="6%">&nbsp;<b><font size="2" face="Arial"><%=ALLT(AGENT)%></font></b></td>
+     <td width="5%" align="center"><b><font size="2" face="Arial"><%=LBOOKDTE%></font></b>&nbsp;</td>
+     <td width="11%">&nbsp;<b><font size="2" face="Arial"><%=ALLT(SSTATE)+' '+ALLT(SCITY)%></font></b></td>
+     <td width="9%">&nbsp;<b><font size="2" face="Arial"><%=ALLT(RSTATE)+' '+ALLT(RCITY)%></font></b></td>
+     <td width="6%">&nbsp;<b><font size="2" face="Arial"><%=ALLT(STR(TOTALCF))+' cf'%> / <%=ALLT(STR(TOTALLBS))+' lbs'%></font></b></td>
+     <td width="4%" align="right"><b><font size="2" face="Arial"><%='$'+ALLT(STR(SUBTOTAL,8,2))%></font></b>&nbsp;</td>
+     <td width="5%">
+     <%IF ACTTOTAL =0%>
+      <p align="right"><input type="text" class="textFeilds" autocomplete="off" name="A-<%=ALLT(ORDNO) %>" size="4"  value="<%=IIF(ACTTOTAL=0,'',TRANSFORM(ACTTOTAL,'$$,$$$,$$9.99'))%>" style="border: 1px solid #008000;text-align: Right;">&nbsp;</p>
+     <%ELSE%>
+        <b><font face="Arial" size="2"><%=IIF(ACTTOTAL=0,'','$'+ALLT(STR(ACTTOTAL,8,2)))%></b></font>
+     <%ENDIF%>
+      </td>
+      <td width="4%" bgcolor="#FFFFFF" align="right"><b><font size="2" face="Arial"><%=IIF(PAIDAMT=0,'','$'+ALLT(STR(PAIDAMT,8,2)))%></b></font>&nbsp;</td>
+     </tr>
+   <% ENDSCAN %>
+    <tr>
+     <td width="54%" colspan="7"></td> 
+     <td width="4%" align="right"><b><font size="2" face="Arial"><%=pcSUBTOTAL%></b></font>&nbsp;</td>
+     <td width="5%" align="right"><b><font size="2" face="Arial"><%=pcACTTOTAL%></b></font>&nbsp;</td>
+     <td width="4%" align="right"><b><font size="2" face="Arial"><%=pcPAIDAMT%></b></font>&nbsp;</td>
+   </tr>   
+</table>
+ <br><center><input type="button" CLASS="SUBMIT" name="SUBMIT_1" onclick="SubmitData()" value="Submit"><br><br>
+ <a href="/wc.dll?mpagent~agprocesswc~<%=pcSCR%>"><font face="Arial" size="4">Exit</font></a>
+</form>
+</body>
+</html>

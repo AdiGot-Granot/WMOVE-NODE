@@ -1,0 +1,58 @@
+<html lang="en" style="width: 1200px; height: 500px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Future Jobs</title>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function RefreshScr(){
+	window.location.href=('/wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=lcDEPT%>&OPR=<%=pcOPR%>&TYPE=ALL');
+}
+</SCRIPT>
+
+</head>
+<body bgcolor="#ADBACE">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:1200px;height:500px;" bordercolor="#111111">
+  <tr>
+    <td width="100%" height="30" bgcolor="#FFCF63" align="center"><b><font face="Verdana"><%=ALLT(STR(pnRECCOUNT))%>&nbsp;Future First Available Delivery (FADD)</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" valign="top">
+<table border="1" align="center" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" bordercolor="#111111">
+  <tr style="background-color:#EFEFEF;line-height:22px;font-family:Arial;font-size:10pt;">
+    <td width="2%" align="center"><b>#</b></td>
+    <td width="9%" align="center"><b>1<sup>st</sup> Avail. Delivery</b></td>
+    <td width="4%" align="center"><b>Job No</b></td>
+    <td width="9%" align="center"><b>Customer</b></td>
+    <td width="4%" align="center"><b>Type</b></td>
+    <td width="5%" align="center"><b>Move Date</b></td>
+    <td width="12%" align="center"><b>From/To</b></td> 
+    <td width="4%" align="center"><b>Follow-Up</b></td>
+    <td width="4%" align="center"><b>Agent</b></td>
+    <td width="13%" align="center"><b>Contact</b></td>
+  </tr>
+  <% SELECT _OPR 
+    SCAN %>
+  <tr style="background-color:<%=ALLT(BGCOLOR)%>;line-height:20px;font-family:Arial;font-size:10pt;font-weight:bold;">
+    <td width="2%">&nbsp;<%=ALLT(STR(NO))%>.</td>
+    <td width="9%" align="center"><%=DLVDTE%><%=IIF(EMPTY(DLVDTE1),'','-'+DTOC(DLVDTE1))%>&nbsp;</td>
+    <td width="4%" align="center">
+    <a href="wc.dll?mprep~futureselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target="_blank"><%=ALLT(JOBNO)%></a>&nbsp;</td>
+    <td width="9%" align="center"><%=ALLT(PROPER(SNAME))%>&nbsp;</td>
+    <td width="4%" align="left">&nbsp;<%=ALLT(TYPE)%></td>    
+    <td width="5%" align="center"><%=LBOOKDTE%>&nbsp;</td>
+    <td width="12%" align="left">&nbsp;<%=ALLT(PROPER(SCITY))+', '+ALLT(SSTATE)+' '+ALLT(SZIP)%><%=IIF(EMPTY(SCOUNTRY),'',' '+ALLT(SCOUNTRY))%><br>&nbsp;<%=ALLT(PROPER(RCITY))+', '+ALLT(RSTATE)+' '+ALLT(RZIP)%><%=IIF(EMPTY(RCOUNTRY),'',' '+ALLT(RCOUNTRY))%></td>
+    <td width="4%" align="center"><%=IIF(NEXTFU<DATE(),'',NEXTFU)%>&nbsp;</td>
+    <td width="4%" align="left">&nbsp;<%=ALLT(AGENT)%><br>&nbsp;<%=ALLT(CONTACT)%></font></td>
+    <td width="13%" align="left">&nbsp;<%=ALLT(PHONE1)%><%=IIF(EMPTY(PHONE2),'','<BR>&nbsp;'+ALLT(PHONE2))%><%=IIF(EMPTY(EMAIL),'','<BR>&nbsp;'+ALLT(EMAIL))%></td>
+  </tr>
+  <%ENDSCAN%>
+</table>
+    </td>
+   </tr>   
+ </table>    
+  
+</body>
+</html>

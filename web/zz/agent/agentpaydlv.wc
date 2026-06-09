@@ -1,0 +1,275 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Pay Commission to Agent</title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+<%pcRAND=RIGHT(SYS(3),5)%>
+
+function recalculate(i) {
+    if (i==1){
+       document.theForm.SUBMIT_1.style.visibility="hidden"; 
+       document.theForm.action="/wc.dll?mpagent~recalculateagentpay~<%=pcSCR%>~DLV";
+       document.theForm.submit();
+    }
+    if (i==2) {
+       document.theForm.SUBMIT_4.style.visibility="hidden"; 
+       document.theForm.action="/wc.dll?mpagent~recalculateagentpay~<%=pcSCR%>~DLV~TRIP";
+       document.theForm.submit();
+   } 
+ }
+ 
+ function submitfunction(i) {
+    if (i==1) 
+      { 
+   	   var Message = "STOP!! PLEASE REVIEW THE PAYMENT LIST BEFORE SUBMITTING!! PAYMENTS ARE FINAL!!";
+       frm=document.theForm;
+ 	   alert(frm.RAND1.value)
+ 	   if (frm.RAND1.value=="<%=pcRAND%>") {
+   	   if (confirm (Message)){
+   	   	  document.theForm.SUBMIT_2.style.visibility="hidden";
+          document.theForm.action="/wc.dll?mpagent~agentpayret~<%=pcSCR%>~DLV";
+          document.theForm.submit();
+         }
+      }
+    }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpagent~agprocesswc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+
+	}
+
+function CheckBoxes(FormName, CheckValue){
+   if(!document.forms[FormName])
+      return;
+   var objCheckBoxes = document.getElementsByTagName('input');
+   if(!objCheckBoxes)
+      return;
+   var countCheckBoxes = objCheckBoxes.length;
+   if(!countCheckBoxes)
+      objCheckBoxes.checked = CheckValue;
+   else
+      for(var i = 0; i < countCheckBoxes; i++)
+      objCheckBoxes[i].checked = CheckValue;
+}
+    
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.TD1	 	{	text-align: center; 
+					font-family: Verdana;
+					font-size: 9pt;
+					font-weight: bold;
+					color: #993366;}
+ 	.TD2	 	{	text-align: center; 
+					font-family: Verdana;
+					font-size: 9pt;
+					font-weight: bold;
+					color: #000000;}
+ 	.TD3	 	{	text-align: right; 
+					font-family: Verdana;
+					font-size: 9pt;
+					font-weight: bold;
+					color: #000000;}
+ 	.VIEW	 	{	color: black; 
+					font-family: Arial;
+				  	text-align: center;
+					width: 80;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="100%" BGCOLOR="#bebe99" align="center"><b><font face="Verdana">Pay Commission to Agent - Delivery Jobs</font></b></td> 
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+<FORM NAME="theForm" method="post">
+<input type="hidden" name="AGENT" value="<%=pcAGENT%>">    
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="4%"><font face="Verdana" size="2"><b>Agent:</b></font></td>
+    <td width="43%"><b><font face="Verdana" size="2"><%=pcAGENT%>&nbsp;-&nbsp;<%=pcCOMPANY%></font></b></td>
+    <td width="5%"><font face="Verdana" size="2"><b>Trip:</b></font></td>
+    <td width="24%">
+       	<select size="1" name="TRIPID">
+		<option selected></option>
+		<%	SELECT _TRIPS
+			SCAN %>
+		<option VALUE="<%=ALLT(STR(TRIPID))%>"><%=ALLT(TRIPNO)%></option>
+		<% ENDSCAN %>
+	</select>
+	<input type="button" CLASS="VIEW" name="SUBMIT_4" onclick="recalculate(2)" value="View Jobs"></td>
+    <td width="24%" align="right"><input type="button" CLASS="SUBOFF" name="SUBMIT_1" onclick="recalculate(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Filter Jobs to Pay">&nbsp;</td>
+ </tr>
+</table>
+<table border="2" width="98%" cellpadding="0" align="center" cellspacing="1" style="border-collapse: collapse" bordercolor="#6B8AAD">
+  <tr>
+    <td width="39%" align="center" colspan="4">&nbsp;</td>
+    <td width="8%" align="center" colspan="2"><b><font face="Verdana" size="2" color="#993366">Job Details</font></b></td>
+    <td width="28%" align="center" colspan="7"><b><font face="Verdana" size="2">Agent Commission</b></font></td>
+    <td width="14%" align="center" colspan="2"><b><font face="Verdana" size="2" color="#993366">Customer Finance</font></b></td>
+    <td width="14%" align="right" colspan="2"><font face="Verdana" size="2" color="#993366"><b>Select All:</b></font><input name="checkall" type="checkbox" onclick="CheckBoxes('theForm',this.checked);" value="ON" /></td>
+ </tr>
+  <tr>
+    <td width="5%" height="25" class="TD1">Date</td>
+    <td width="4%" height="25" class="TD1">Job No</td>
+    <td width="5%" height="25" class="TD1">Type/Trip</td>    
+    <td width="8%" height="25" class="TD1">Customer</td>
+    <td width="4%" height="25" class="TD1">Loaded CF</td>
+    <td width="4%" height="25" class="TD1">Total</td>
+    <td width="3%" height="25" class="TD2">Percent</td>
+    <td width="4%" height="25" class="TD2">Per CF</td>
+    <td width="3%" height="25" class="TD2">Flat</td>
+    <td width="4%" height="25" class="TD2">Labor</td>
+    <td width="4%" height="25" class="TD2">Blankets</td>
+    <td width="4%" height="25" class="TD2">Others</td>
+    <td width="5%" height="25" class="TD2">Total Comm</td>    
+    <td width="6%" height="25" class="TD1">Payment</td>
+    <td width="5%" height="25" class="TD1">Balance</td>
+    <td width="6%" height="25" class="TD1">Balance to Pay</td>
+    <td width="3%" height="25" class="TD1">Pay</td>
+  </tr>    
+	<% SELECT _AG
+	SCAN %>
+  <tr>
+    <td width="5%" class="TD2"><%=DTOC(DTE)%>&nbsp;</td>
+    <td width="1%" align="center" bgcolor=<%=IIF(SUBAGENT,'"#CCFFFF"','"#FFFFFF"')%>><font style="font-family:Verdana;font-size:9pt;"><b>
+    <a href="wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a><br><%=ALLT(STATUS)%></b></font>&nbsp;</td>
+    <td width="6%" class="TD2"><%=ALLT(JOBCODE)%><%=IIF(EMPTY(TRIPNO),'','<br>'+ALLT(TRIPNO))%></b></font>&nbsp;</td>    
+    <td width="9%">&nbsp;<font style="font-family:Verdana;font-size:9pt;"><b><%=ALLT(SNAME)%></b></font></td>        
+    <td width="4%" class="TD3"><font color="#993366"><%=ALLT(STR(ACTCUFT))%></font>&nbsp;</td>
+    <td width="4%" class="TD3"><font color="#993366"><%=IIF(ACTTOTAL=0,' ','$'+ALLT(STR(ACTTOTAL,10,2)))%></font>&nbsp;</td>
+    <td width="3%" class="TD3"><%=IIF(AGPERCENT=0,'',ALLT(STR(AGPERCENT,6,2))) %>&nbsp;</td>
+    <td width="4%" class="TD3"><%=IIF(AGPERCF=0,'',ALLT(STR(AGPERCF,6,2))) %>&nbsp;</td>
+    <td width="3%" class="TD3"><%=IIF(AGFLAT=0,'',ALLT(STR(AGFLAT))) %>&nbsp;</td>
+    <td width="4%" class="TD3">&nbsp;</td>
+    <td width="4%" class="TD3">&nbsp;</td>
+    <td width="4%" class="TD3">&nbsp;</td>
+    <td width="5%" class="TD3"><%=IIF(COMMTOTAL=0,' ','$'+ALLT(STR(COMMTOTAL,10,2)))%>&nbsp;</td>    
+    <td width="6%" class="TD3"><%=IIF(CUSTPAID=0,' ','$'+ALLT(STR(CUSTPAID,10,2)))%>&nbsp;</td>
+    <td width="5%" class="TD3"><%=IIF(BALANCE=0,' ','$'+ALLT(STR(BALANCE,10,2)))%><%=IIF(BALSTG=0,' ','<BR>STG $'+ALLT(STR(BALSTG,10,2)))%>&nbsp;</td>
+    <td width="6%" align="right"><font face="Verdana" size="2" color=<%=IIF(AGBALANCE >= 0,'"#FF0000"','"#008000"')%>><b><%=IIF(AGBALANCE=0,' ','$'+ALLT(STR(AGBALANCE,10,2)))%></b></font>&nbsp;</td>
+    <td width="3%" align="center"><input type="checkbox" name="<%='t'+ALLT(STR(TRNO)) %>" size="2" value="ON"></td>
+ </tr>
+ 	<%ENDSCAN %>
+  <tr>
+    <td width="83%" colspan="17">
+	<table border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse: collapse" bordercolor="#111111" width="96%">
+  	   <tr>
+    	<td width="39%" height="30"><b><font face="Verdana" size="2"><span style="background-color: #CCFFFF">*Agent is the holder</span></font></b></td>
+    	<td width="53%" height="30" align="right"><b><font face="Verdana">Total:</font></b></td>
+    	<td width="8%" height="30" align="right"><b><font face="Verdana" color=<%=IIF(pnCOMM>= 0,'"#FF0000"','"#008000"')%>>$<%=STR(pnCOMM,10,2) %></font></b></td>
+     </tr>
+    </table>    
+    </td>
+ </tr>
+  </table>
+ <br> 
+<table border="2" width="45%" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD">
+   <tr>
+     <td width="50%" valign="top">
+<table border="0" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" colspan="6"><b><font size="3">Payment Details</font></b></td>
+ </tr>
+  <tr>
+    <td width="25%"><b>Payment Date:</b></td>
+    <td width="25%" colspan="3"><input id="Date1" NAME="PAIDDTE" size="10" VALUE="<%=DTOC(DATE())%>"></td>
+    <td width="15%"><b>Reference:</b></td>
+    <td width="35%"><input autocomplete="off" NAME="REF" size="30" VALUE=""></td>
+ </tr>
+  <tr>
+    <td width="25%"><b>Payment Method:</b></td>
+    <td width="25%" colspan="3">
+	<select size="1" name="TYPE">
+			<option value="CC">Credit Card</option>
+			<option value="CK">Check</option>
+            <option value="CA">Cash</option>
+            <option value="DD">Direct Deposit</option>
+            <option value="WT">Wire Transfer</option>
+            <option value="PP">PayPal</option>
+            <option value="QP">Quick Pay</option>
+            <option value="ZL">Zelle</option>
+            <option value="VM">Venmo</option>
+            <option value="CP">CashApp</option>
+            <option value="GP">Google Pay</option>
+     	</select></td>
+    <td width="15%">
+        <b>Remarks:</b></td>
+    <td width="35%">
+        <input autocomplete="off" NAME="REMARKS" size="30"></td>
+ </tr>
+  <tr>
+    <td width="25%"><b>Payment Amount:</b></td>
+    <td width="19%"><input NAME="PAYAMT" size="8" VALUE="<%=ALLT(STR(pnCOMM1,10,2))%>" style="font-weight:bold;color:<%=IIF(pnCOMM1>= 0,'#008000;','#FF0000;')%>">
+    </td>
+    <td width="56%" colspan="4"><font face="Verdana" color="#FF0000" size="2"><b>Payment to the Company, <font color="#008000">Payment to the Agent</font></b></font></td>
+ </tr>
+  <tr>
+    <td width="25%"><b>Payment Authorization:</td>
+    <td width="75%" colspan="5"><b><font face="Verdana" size="4" color="#993366"><b><%=pcRAND%></b></font>&nbsp;<input NAME="RAND1" size="10"></td>
+ </tr>
+  <tr>
+    <td width="50%" align="center" height="50" valign="bottom" colspan="3"><input type="button" CLASS="SUBOFF" name="SUBMIT_2" onclick="submitfunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+    <td width="50%" align="center" colspan="3">&nbsp;</td>
+ </tr>
+</table>
+     </td>
+  </tr>
+</table>
+ <br><br><br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="50%">
+   <tr>
+     <td align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitfunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Agents Menu"></td>
+  </tr>  
+</table>
+</form>      
+    <br></td>
+ </tr>
+   <tr>
+     <td width="100%" bgcolor="#993366"><font size="2" face="Arial" color="#FFFFFF">User: <%=pcUser%></font></td>
+  </tr>
+ </tr> 
+</table>
+</body>
+</html>

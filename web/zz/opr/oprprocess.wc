@@ -1,0 +1,358 @@
+<html>
+<head>
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Jobs in Process</title>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+ jQuery.noConflict();
+      jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });
+   });
+
+</script>
+
+<!--DROPDOWN STATE/USER SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN STATE/USER SEARCH-->
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+      $('.state-select').select2({
+          placeholder: 'Select State',
+          allowClear: true
+      });
+  });
+  
+  $(document).ready(function() {
+      $('.user-select').select2({
+          placeholder: 'Select User',
+          allowClear: true
+      });
+  });
+  
+</script>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function toggleVisibility(id) {
+   var el = document.getElementById(id);
+
+   if (el.style.visibility=="visible") {
+          el.style.visibility="hidden";
+     }
+     else {
+          el.style.visibility="visible";
+     }
+ }
+
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.SUBMIT.style.visibility="hidden";
+       document.theForm.action="/wc.dll?mv~oprprocessret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="750" align="center">
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/topBarOpr.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#bebe99" height="20" align="center"><b><font size="4" color="#993366" face="Verdana">Jobs in Process</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center"><br>
+<form name="theForm" method="POST">
+<table border="1" align="center" width="98%" cellspacing="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+	<td valign="top">	<!-- Dates-->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#111111">
+  <tr>
+	<td width="12%" height="25"><b>Date Range:</b></td>
+	<td width="8%" height="25"><b>From Date:</b></td>
+	<td width="9%" height="25"><b>To Date:</b></td>
+	<td width="12%" height="25"><% IF pnLEVEL > 3 %><b>User:</b><%ENDIF%>&nbsp;</td>
+	<td width="9%" height="25"><% IF plDEPT %><b>Department:</b><%ENDIF%>&nbsp;</td>	
+  </tr>
+  <tr>
+	<td width="12%">
+  <select id="rangeSelect">
+    <option value="">-- Select --</option>
+    <option value="today">Today</option>
+    <option value="tomorrow">Tomorrow</option>
+    <option value="yesterday">Yesterday</option>
+    <option value="thisWeek">This Week</option>
+    <option value="lastWeek">Last Week</option>
+	<option value="nextWeek">Next Week</option>    
+    <option value="thisMonth">This Month</option>
+    <option value="lastMonth">Last Month</option>
+    <option value="nextMonth">Next Month</option>
+    <option value="lastYear">Last Year</option>
+    <option value="ytd">Year to Date</option>
+  </select>	
+	</td>
+	<td width="8%"><input type="text" id="Date1" name="DATE1" size="10" value="<%=DATE()-14%>"></td>
+	<td width="9%"><input type="text" id="Date2" name="DATE2" size="10" value="<%=DATE()%>"></td>
+	<td width="12%">
+	<% IF pnLEVEL > 3 %>
+		<select size="1" name="USER" class="user-select" style="width: 140px;">
+		<option selected></option>
+		 <%	SELECT _USERS
+			 SCAN %>
+		<option><%=ALLT(USER)%></option>
+		 <% ENDSCAN %>
+		</select>
+	<%ENDIF%>
+		</td>	  
+	<td width="9%">
+		<% IF plDEPT %>
+		<select size="1" name="DEPT">
+           <option selected>ALL</option>
+            <% SELECT _DEPARTMENT
+  			   SCAN %>
+            <option><%=ALLT(DEPT)%></option>
+           <% ENDSCAN%>
+        </select>
+    <%ENDIF%></td>
+  </tr>  
+</table>
+   </td>
+ </tr>
+ <tr>
+   <td width="100%"><!-- State-->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#111111">
+  <tr>
+    <td width="18%" height="25"><b>From State:</b></td>
+    <td width="18%" height="25"><b>To State:</b></td>
+    <td width="11%" height="25"><b>Job Phase:</b></td>
+    <td width="12%" height="25"><b>Type:</b></td>
+    <td width="13%" height="25"><% IF plTRIP %><b>Trip:</b><%ENDIF%>&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="18%">
+	<select size="1" name="STATE1" class="state-select" style="width: 170px;">
+		<option></option>
+		 <% SELECT _STATE
+			 SCAN %>
+		<option value="<%=ALLT(STATECODE)%>"><%=ALLT(PROPER(STATE))%></option>
+		<% ENDSCAN %>
+		</select>    
+    </td>
+    <td width="18%">
+	<select size="1" name="STATE2" class="state-select" style="width: 170px;">
+		<option></option>
+		  <% SELECT _STATE
+		 	 SCAN %>
+		<option value="<%=ALLT(STATECODE)%>"><%=ALLT(PROPER(STATE))%></option>
+		<% ENDSCAN %>
+		</select>    
+    </td>
+    <td width="11%">
+	<select size="1" name="SHOW">
+	<option>All</option>	
+	<option value="PU">Pick-Up</option>
+	<option value="BX">Box DLV</option>	
+	<option value="PK">Pack Day</option>		
+	<option value="DL">Delivery</option>			
+	</select>    
+    </td>
+    <td width="12%">
+	<select size="1" name="RC">
+	<option>All</option>	
+	<option value="R">Residential</option>	
+	<option value="C">Commercial</option>
+	<option value="M">Military</option>		
+	</select>    
+    </td>
+    <td width="13%"><% IF plTRIP %>
+	<select size="1" name="TRIPID">
+	<option selected></option>
+	 <%	SELECT _TRIPS
+	 	 SCAN %>
+	<option value="<%=ALLT(STR(TRIPID))%>"><%=ALLT(TRIPNO)%></option>
+	 <% ENDSCAN %>
+	</select><%ENDIF%>     
+    </td>
+ </tr> 
+</table>
+   </td>
+  </tr>
+</table>
+ <br>
+<table border="1" align="center" width="667" cellspacing="0" style="border-collapse: collapse" bordercolor="#C0C0C0">
+  <tr>
+    <td valign="top" width="262"><!-- Status-->
+<table border="0" width="100%" align="center" cellspacing="0" cellpadding="3" style="border-collapse: collapse;line-height:25px;">
+  <tr>
+	<td width="100%" bgcolor="#008000" colspan="2" align="center"><b><font face="Verdana" color="#FFFFFF" size="2">Status of Jobs</font></b></td>
+ </tr>
+  <tr>
+	<td width="5%"><input class="chkon" type="radio" name="STATUS" value="V1" checked></td>
+	<td width="95%"><font face="Verdana" size="2">All Jobs</font>
+  <%IF pnLEVEL > 3 %> 
+	<input type="checkbox" id="dlall" name="DLXLS" value="ON" style="visibility:hidden" />
+	<img id="chkdlall" onclick="toggleVisibility('dlall');" src="zz/images/dl.gif" width="67" height="18" style="cursor:pointer;"/>
+  <%ENDIF%></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="STATUS" value="V2"></td>
+    <td width="95%"><font face="Verdana" size="2">Jobs in Operation</font>
+  <%IF pnLEVEL > 3 %> 
+	<input type="checkbox" id="dlopr" name="DLXLS" value="ON" style="visibility:hidden" />
+	<img id="chkdlopr" onclick="toggleVisibility('dlopr');" src="zz/images/dl.gif" width="67" height="18" style="cursor:pointer;"/>
+  <%ENDIF%></td>
+ </tr>
+  <tr>
+    <td width="5%"><input type="radio" name="STATUS" value="V3"></td>
+	<td width="95%"><font face="Verdana" size="2">Workers Jobs Planner</font></td>
+ </tr>
+  <tr>
+    <td width="5%"><input type="radio" name="STATUS" value="V5" ></td>
+	<td width="95%"><font face="Verdana" size="2">Operational Jobs No Workers</font></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="STATUS" value="V4"></td>
+	<td width="95%"><font face="Verdana" size="2">Completed Jobs</font></td>
+ </tr>
+ <% IF pcCUSTNO='NOBELVAN'%>
+  <tr>
+    <td width="5%"><input type="radio" name="STATUS" value="V7"></td>
+	<td width="95%"><font face="Verdana" size="2">International Report</font>
+	<input type="checkbox" id="dlintl" name="DLXLS" value="ON" style="visibility:hidden" />
+	<img id="chkdlintl" onclick="toggleVisibility('dlintl');" src="zz/images/dl.gif" width="67" height="18" style="cursor:pointer;"/></td>
+ </tr>
+ <%ENDIF%>  
+</table>
+	<!-- Status-->
+</td>
+   <td valign="top" width="202"><!-- Sort-->
+<table border="0" width="100%" align="center" cellspacing="0" cellpadding="3" style="border-collapse: collapse;line-height:25px;">
+  <tr>
+	<td width="100%" bgcolor="#008000" colspan="2" align="center"><b><font face="Verdana" color="#FFFFFF" size="2">Sort By</font></b></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="SORT" value="V1" checked></td>
+	<td width="95%"><font face="Verdana" size="2">Operation Date</font></td>
+ </tr>
+  <tr>
+	<td width="5%"><input class="chkon" type="radio" name="SORT" value="V2"></td>
+	<td width="95%"><font face="Verdana" size="2">Job No.</font></td>
+ </tr> 
+  <tr>
+	<td width="5%"><input type="radio" name="SORT" value="V3"></td>
+	<td width="95%"><font face="Verdana" size="2">Trip-By Trip Date</font></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="SORT" value="V4"></td>
+	<td width="95%"><font face="Verdana" size="2">Volume</font></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="SORT" value="V5"></td>
+	<td width="95%"><font face="Verdana" size="2">Job Balance</font></td>
+ </tr>  
+  </table>
+	<!-- Sort-->
+ </td>
+   <td valign="top" width="193"><!-- Type-->
+<table border="0" width="100%" align="center" cellspacing="0" cellpadding="3" style="border-collapse: collapse;line-height:25px;">
+  <tr>
+	<td width="100%" bgcolor="#008000" colspan="2" align="center"><b><font face="Verdana" color="#FFFFFF" size="2">Type of Jobs</font></b></td>
+ </tr>
+  <tr>
+	<td width="5%"><input class="chkon" type="radio" name="TYPE" value="V1" checked></td>
+	<td width="95%"><font face="Verdana" size="2">All Jobs</font></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="TYPE" value="V2"></td>
+	<td width="95%"><font face="Verdana" size="2">Local</font></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="TYPE" value="V3"></td>
+	<td width="95%"><font face="Verdana" size="2">Intrastate</font></td>
+ </tr> 
+  <tr>
+	<td width="5%"><input type="radio" name="TYPE" value="V4"></td>
+	<td width="95%"><font face="Verdana" size="2">Long Distance</font></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="TYPE" value="V5"></td>
+	<td width="95%"><font face="Verdana" size="2">International</font></td>
+ </tr> 
+  <tr>
+	<td width="5%"><input type="radio" name="TYPE" value="V6"></td>
+	<td width="95%"><font face="Verdana" size="2">Trip Jobs</font></td>
+ </tr>
+  <tr>
+	<td width="5%"><input type="radio" name="TYPE" value="V7"></td>
+	<td width="95%"><font face="Verdana" size="2">Agents/Carriers Jobs</font></td>
+ </tr> 
+  </table>
+ <!-- Type-->
+	</td>
+ </tr>
+</table>
+   <br>
+<table border="0" width="70%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="25%" align="center"><input type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit" id="btnSubmit"></td>    
+	<td width="24%" align="center"><input type="button" CLASS="SUBOFF" name="EXIT" onclick="window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>    
+ </tr>
+</table>
+   </td>
+  </tr>
+</table>	
+	</form>
+    </td>
+ </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="15">&nbsp;<font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></td>
+  </tr>
+  <tr>
+    <td width="100%" height="14"><IMG ALT="" SRC="zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+<script language="JavaScript" src="/zz/js/rangeselect.js"></SCRIPT><!--RANGE SELECT-->
+
+</body>
+</html>

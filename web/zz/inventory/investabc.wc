@@ -1,0 +1,205 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>ABC Inventory</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+document.addEventListener('mouseup', (e) => {
+  const container = document.getElementById('container');
+  if (!container.contains(e.target)) {
+    container.style.display = 'none';
+  }
+});
+
+
+<% IF plNL=.F. %>
+function Switch() {
+       document.theForm.action="/wc.dll?mpinv~investret~<%=pcSCR%>~CAT~~1<%=SYS(3)%>";
+       document.theForm.submit();
+      }
+<%ENDIF%>
+
+   function additem(elem) 
+    {  
+		document.theForm.elements[elem].value ++ ;
+		theForm.elements[elem].className="QTYON";
+    }
+   
+function clearall() {
+	var Message = "Are you sure you want to clear all the items?";
+	if (confirm (Message)){
+		document.theForm.action="/wc.dll?mpinv~clearall~<%=pcSCR%>~~~2<%=SYS(3)%>";
+       document.theForm.submit();
+       }
+	}   
+
+function CheckOut() {
+    document.theForm.CheckOut_1.style.visibility="hidden";
+    document.theForm.CheckOut_2.style.visibility="hidden";
+    document.theForm.Save_1.style.visibility="hidden";
+    document.theForm.Save_2.style.visibility="hidden";
+    document.theForm.action="/wc.dll?mpinv~investret~<%=pcSCR%>~~~4<%=SYS(3)%>~<%=pcNL%>";
+    document.theForm.submit()  
+  }
+
+function save() {
+    document.theForm.Save_1.style.visibility="hidden";
+    document.theForm.Save_2.style.visibility="hidden";
+    document.theForm.CheckOut_1.style.visibility="hidden";
+    document.theForm.CheckOut_2.style.visibility="hidden";
+    document.theForm.action="/wc.dll?mpinv~investret~<%=pcSCR%>~~Save~4<%=SYS(3)%>~<%=pcNL%>";
+    document.theForm.submit()  
+  }
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+	.ITEMOFF	{	color: #0000FF;
+				  	font-size: 9pt;
+					font-weight: bold;
+				  	font-family: verdana;
+				  	cursor: pointer;
+				  	text-align: left;
+				  	text-decoration: underline;}
+	.ITEMON		{	color: red;
+				  	font-size: 9pt;
+ 				  	font-weight: bold;
+				  	font-family: verdana;
+				  	cursor: pointer;
+				  	text-align: left;
+				  	text-decoration: underline;}
+	.QTYOFF		{	text-align: Right;
+					color: #0000FF; 
+					font-size: 10pt;
+					font-family: Arial;
+					font-weight: none;
+					width: 30;
+					background-color: white}
+	.QTYON		{	text-align: Right;
+					color: #0000FF; 
+					font-size: 10pt;
+					font-family: Arial;
+					font-weight:none;
+					width: 30;
+					background-color: #FFFF99}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<BR>
+<table border="1" align="center" style="border-collapse: collapse" bgcolor="#FFFFFF" width="700">
+  <tr>
+   <td>
+<a name="top"></a>
+    <FORM name="theForm" method="post">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;font-family:Verdana;font-size:11pt;">
+<% IF pnLEVEL=0 %>
+  <tr>
+    <td width="100%" colspan="2">&nbsp;Hello <b><%=ALLT(PROPER(_EST.SNAME))%></b>. Click <b><i><font color="#008000">Save</font></i></b> to save your inventory or <b><i><font color="#395594">Check Out</font></i></b> once you finished.</td>
+ </tr>    
+<% ELSE %>
+  <tr>
+    <td width="50%">&nbsp;<b>Job #:&nbsp;<%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></td>
+    <td width="50%"><b>Customer:&nbsp;<%=ALLT(PROPER(_EST.SNAME))%></b></td>
+ </tr>
+<%ENDIF%>
+</table>
+    <BR>
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="95%">
+  <tr>
+    <td width="13%" align="center"><input type="button" value="Save" name="Save_1" onclick="save()" style="width:100;background-color:#008000;font-family:Verdana;color:#F7F7DE;font-weight: bold;cursor:pointer;">
+    &nbsp;<div id="container"><b><font face="Verdana" size="2"><%= IIF(plSAVED=.T.,'Saved','')%></font></b></div></td>
+    <td width="31%" align="center"><% IF plNL=.T. %><b><font face="Verdana" size="5" color="#9400D3">Items not Moving</font></b><%ENDIF%></td>
+    <td width="16%" align="center"><input type="button" value="Check Out" name="CheckOut_1" onclick="CheckOut()" style="width:100;background-color:#395594;font-family:Verdana;color:#F7F7DE;font-weight: bold;cursor:pointer;"></td>
+ </tr>
+</table>
+ <br>
+<table border="0" cellpadding="1" cellspacing="1" align="center" style="border-radius:6px;border: 1px solid #083484;font-size:11pt;font-family:verdana;line-height:28px;" width="626" bgcolor="#FFFFFF">
+  <tr>
+   <td>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <%SELECT _I1 
+      I1=ALLT(STR(FLOOR(100/RECCOUNT()/2)))
+      SCAN %>
+    <td width="620" align="center"><a href="#<%=ALLT(ABC)%>"><%=ALLT(ABC)%></a>&nbsp;</td>
+    <%ENDSCAN%>
+ </tr>
+  <tr>
+    <td width="620" height="10" style="font-size:0; line-height:0;"></td>
+  </tr>
+  <tr>
+    <%SELECT _I2 
+      I2=ALLT(STR(FLOOR(100/RECCOUNT()/2)))
+      SCAN %>
+    <td width="620" align="center"><a href="#<%=ALLT(ABC)%>"><%=ALLT(ABC)%></a>&nbsp;</td>
+    <%ENDSCAN%>
+  </tr>
+  <tr>
+    <td width="620" height="15" style="font-size:0; line-height:0;"></td>
+  </tr>
+ </table>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+  <tr>
+   <td align="center" width="30%"><%IF pcCUSTNO<>'MOVINGAPT'%><font style="font-family:verdana;font-size:10pt;"><a href="#new">Additional Items</a></font><%ENDIF%></td>
+   <% IF pnLEVEL>0 %>
+   <td align="center" width="41%"><% IF plNL=.F. %><font onclick="Switch()" style="font-family:Verdana;text-decoration:underline;font-size:10pt;color: #0000FF;cursor:pointer;">Go to list by Room Category</font><%ENDIF%></td>
+   <td align="center" width="29%"><font onclick="clearall()" style="font-family:Verdana;text-decoration:underline;font-size:10pt;color: #0000FF;cursor:pointer;">Clear All</font></td>
+   <%ENDIF%>
+ </tr>
+ </table>  
+   </td>
+   </tr>
+</table>
+   <BR>
+	<% SELECT _INVABC
+	   SCAN %>
+<table border="0" width="90%" cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;font-size:10pt;font-family:verdana;" bordercolor="#111111">
+  <tr>
+    <td width="40%" height="25" bgcolor="#EBEBEC"><b><a name="<%=ALLT(ABC)%>"></a>&nbsp;Item</td>
+    <td width="60%" height="25" bgcolor="#EBEBEC" colspan="2"><a href="#top">Go Top</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#top"><img border="0" src="zz/images/arrwtop.gif" width="11" height="15"></a></td>
+ </tr>
+  <% SELECT * FROM _INV INTO CURSOR __INV WHERE LEFT(ITEM,1)=_INVABC.ABC
+  	 SCAN%>
+  <tr style="line-height:28px;">
+    <td width="79%" colspan="2" CLASS="itemoff" onclick="additem('<%=ALLT(CODE)+ID%>')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'"><%=ALLT(ITEM)%></td>
+    <td width="21%"><input ID="<%=ALLT(CODE)+ID%>" CLASS="<%=IIF(QTY>0,'QTYON','QTYOFF')%>" type="text" name="QTY<%=ALLT(ID)%>" size="3" value="<%=IIF(QTY>0,ALLT(STR(QTY)),'')%>" ></td>
+ </tr>
+ <% ENDSCAN %>	
+</table>
+	<% ENDSCAN %>
+<% IF pcCUSTNO<>'MOVINGAPT' %>	
+<br>
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse;font-size:10pt;font-family:verdana;"  width="90%">
+  <tr>
+    <td width="52%" align="left" bgcolor="#EBEBEC" height="25"><a name="new"></a><b>&nbsp;Add items not on the list</b> - <a href="#top">Go Top</a></td>
+    <td width="19%" align="left" bgcolor="#EBEBEC" height="25">&nbsp;<b>Qty</b></td>
+    <td width="29%" bgcolor="#EBEBEC" height="25">&nbsp;<b>Volume</b></td>
+ </tr>
+  <%FOR I = 1 TO 20%>
+  <tr style="line-height:28px;">
+    <td width="52%" height="21">&nbsp;<input type="text" name="<%='I'+ALLT(STR(I))%>" size="30" maxlength="70"></td>
+    <td width="19%" height="21">&nbsp;<input type="text" name="<%='Q'+ALLT(STR(I))%>" size="3" ></td>
+    <td width="29%" height="21">&nbsp;<input type="text" name="<%='V'+ALLT(STR(I))%>" size="3" ><%=IIF(plCALCCF,'cf.','lbs.')%></td>
+ </tr>
+  <%ENDFOR%>
+</table>
+<%ENDIF%>     
+<br>
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="95%">
+  <tr>
+    <td width="17%" align="center"><input type="button" value="Save" name="Save_2" onclick="save()" style="width:100;background-color: #008000;font-family:Verdana;color:#F7F7DE;font-weight: bold;cursor:pointer;">
+    &nbsp;<div id="container"><b><font face="Verdana" size="2"><%= IIF(plSAVED=.T.,'Saved','')%></font></b></div></td>
+    <td width="24%" align="center">&nbsp;</td>
+    <td width="19%" align="center"><input type="button" value="Check Out" name="CheckOut_2" onclick="CheckOut()" style="width:100;background-color:#395594;font-family:Verdana;color:#F7F7DE;font-weight: bold;cursor:pointer;"></td>        
+ </tr>
+</table>  
+</FORM>
+     </td>
+    </tr>
+  </table>
+</body>
+
+</html>

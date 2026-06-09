@@ -1,0 +1,81 @@
+<html lang="en" style="width: 800px; height: 400px;">
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>JAFe to Multiple Agents</title>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	font-size: 10pt;
+					font-family: Verdana;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 20;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 20;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" align="center" style="border-collapse:collapse;width:800px;" bordercolor="#111111">
+  <tr>
+    <td width="100%" bgcolor="#F7F0B9" align="center"><b><font face="Verdana" size="2">Send Job Acceptance Form to Multiple Agents</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">&nbsp;&nbsp;<b><font face="Verdana" size="2">Moving From: <%=ALLT(_LIST.SSTATE)%></font></b><br>
+<form name="theForm" method="POST" action="#" target="_top">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="782">
+  <tr>
+    <td class="TD1" width="410">Agent/Carrier</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="52">State</td>    
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="306">Email</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="52">Select</td>
+ </tr>
+<%SELECT _LIST
+    SCAN%>
+  <tr style="line-height:23px;">
+    <td style="border-bottom: 1px solid #A9A9A9;" width="410">&nbsp;<font face="Verdana" size="2"><%=ALLTRIM(AGENT)+' - '+ALLTRIM(PROPER(COMPANY))%></font></td>
+    <td class="TD3" align="center" width="52"><%=ALLT(STATECODE)%></td>       
+    <td class="TD3" width="306">&nbsp;<%=ALLT(EMAIL)%></font></td> 
+    <td class="TD3" align="center" width="52"><input type="checkbox" name="#" value="ON"></td>        
+ </tr>
+<% ENDSCAN %>
+</table>
+<table border="0" align="center" width="40%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font style="font-size:7pt;">&nbsp;</font></td>    
+ </tr>  
+  <tr>
+    <td align="center"><input type="submit" CLASS="SUBOFF" name="B3" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+ </tr>
+</table>
+</form>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="15"><font size="2" color="#FFFFFF">User:&nbsp;<%=pcUSER%></font></td>
+  </tr>
+  </table>
+</body>
+</html>

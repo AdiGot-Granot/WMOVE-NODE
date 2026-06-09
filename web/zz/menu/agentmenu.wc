@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Moving System</title>
+
+<script language="JavaScript">
+var msg="Right Click Disabled!";
+function disableIE() {if (document.all) {alert(msg);return false;}
+}
+function disableNS(e) {
+  if (document.layers||(document.getElementById&&!document.all)) {
+    if (e.which==2||e.which==3) {alert(msg);return false;}
+  }
+}
+if (document.layers) {
+  document.captureEvents(Event.MOUSEDOWN);document.onmousedown=disableNS;
+} else {
+  document.onmouseup=disableNS;document.oncontextmenu=disableIE;
+}
+document.oncontextmenu=new Function("alert(msg);return false")
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==5) window.open('/wc.dll?mpopr~dailyopr~<%=pcSCR%>','');
+    if (i==7) window.open('/wc.dll?mv~oprmenuwc~<%=pcSCR%>','');    
+ }
+
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	font-size: 10pt;
+  				  	font-family: verdana;
+  				  	cursor: pointer;
+					background-color: white;
+					font-weight: bold;
+				  	text-align: left}
+	.txton		{	font-size: 10pt;
+				  	text-align: left;
+  				  	font-family: verdana;
+					background-color: white;
+					text-decoration: underline;
+					font-weight: bold;
+  				  	cursor: pointer;}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="400" align="center">
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" valign="top" bgcolor="#FFFFFF">
+  <BR>    
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="60%" BGCOLOR="#EFEFDF" align="center">
+  <tr>
+    <td width="100%"><IMG SRC="/zz/images/menuFrame_01.gif" width="300" height="10"></td>
+ </tr>
+  <tr>
+	<td width="100%" valign="top" align="center"><font size="5" color="#000080" face="Verdana">Agent Menu</font></td>
+ </tr>
+  <tr>
+    <td width="100%"><IMG SRC="/zz/images/menuFrame_03.gif" width="300" height="10"></td>
+ </tr>
+</table>
+<br>
+  <form name="theForm" method="POST" action="/wc.dll?mv~searchret~<%=pcSCR%>~QSEARCH" target="_blank"> 
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="90%">
+  <tr>
+    <td width="8%" align="center" height="26">&nbsp;</td>
+    <td width="35%" height="26"><input type="text" name="VALUE" autocomplete="off" onclick='this.value=""' size="20"></td>
+    <td width="18%" height="26"><input type="image" src="zz/images/QuickSearch.gif" width="106" height="23" border="0" alt="Quick Search"></td>
+    <td width="17%" height="26"></td>
+ </tr>
+</table>
+  </form>
+  <BR>
+<table border="0" align="center" width="80%" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+   <tr>
+     <td width="6%" ALIGN="CENTER"><img border="0" src="/zz/images/point.gif" width="8" height="7"></td>
+     <td width="94%"><font class="txtoff" onclick="submitFunction(5)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Operations Calendar</font></td>
+  </tr>
+   <tr>
+     <td width="6%" ALIGN="CENTER"><img border="0" src="/zz/images/point.gif" width="8" height="7"></td>
+     <td width="94%"><font class="txtoff" onclick="submitFunction(7)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">Operation</font></td>
+  </tr>  
+</table>      
+&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="15"><font face="Arial" size="2" color="#FFFFFF">&nbsp;User: <%=pcUser%></font></td>
+  </tr>
+ </table> 
+<table border="0" width="500" align="center">
+  <tr>
+	<td align="center"><font color="#FFFFFF" face="Verdana" size="2"><b><%=pcCOPYRIGHT%></b></font></td>
+ </tr>
+</table>  
+</body>
+</html>

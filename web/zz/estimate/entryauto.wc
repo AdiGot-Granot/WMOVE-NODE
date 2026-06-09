@@ -1,0 +1,350 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Auto Transport Entry Form</title>
+
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+
+<!--DROPDOWN REF SEARCH-->
+<link type="text/css" rel="stylesheet" href="/zz/util/dropdown.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--DROPDOWN REF SEARCH-->
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+      $('.ref-select').select2({
+          placeholder: 'Select Reference',
+          allowClear: true
+      });
+  });
+    
+</script>
+
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+   
+function sf(){
+	window.theForm.SNAME.focus();
+}
+	
+function FindZip(par) {
+   frm = document.theForm;
+   if (par=='SZIP'){      
+      var cCITY=frm.SCITY.value;
+      var cSTATE=frm.SSTATE.value;
+      var cSR='S'
+   }else{
+      var cCITY=frm.RCITY.value;
+      var cSTATE=frm.RSTATE.value;
+      var cSR='R'
+   }
+//  alert(cCITY);
+// alert(cSR);
+   window.open('/wc.dll?mputil~ZipWc~&SR='+cSR+'&cSTATE='+cSTATE+'&cCITY='+cCITY,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=550,height=500');
+   self.name="main"
+}
+
+<%IF pnLEVEL > 0 AND !plBLKREFER %>
+function CHKREF(){
+		frm = document.theForm;
+		if(frm.REF[frm.REF.selectedIndex].text=='') {
+			alert("Please select how did you hear about us?");
+			frm.REF.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+<%ENDIF%>
+
+<% IF pnCOLEVEL=3 %>
+function DEPT(){
+	<%IF plDEPT %>
+		frm = document.theForm;
+		if(frm.DEPT[frm.DEPT.selectedIndex].text=='') {
+			alert("Please select department");
+			frm.DEPT.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+	<%ELSE%>
+			return true ;
+	<%ENDIF%>
+	
+}
+<%ENDIF%>
+
+function checkData(){
+	frm = document.theForm;
+	return  lengthValid(frm.SNAME, 2,"full name")
+			&& lengthValid(frm.STELH, 1,"phone number")
+			&& lengthValid(frm.EMAIL, 1,"email")			
+		<% IF _EST.STATUS='F' OR _EST.STATUS='C' %>	
+			&& lengthValid(frm.LBOOKDTE, 1,"transport date");
+		<%ENDIF%>	
+  return  true
+  
+ }
+
+
+function SubmitEntry() {
+    if (checkData() <%IF pnLEVEL > 0 AND !plBLKREFER %>&&CHKREF()<%ENDIF%> <% IF pnCOLEVEL=3 AND plDEPT=.T. AND VAL(_EST.ORDNO) < 99999 %>&&DEPT()<%ENDIF%>) {
+       document.theForm.action="/wc.dll?mpest~entryret~<%=pcSCR%>~AUTO";
+       document.theForm.submit();
+     }  
+  }
+</SCRIPT>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+	jQuery.noConflict();
+
+   jQuery( document ).ready(function( $ ) {
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+
+<STYLE TYPE="text/css">
+	.TDTOP1	 	{	text-align: left;
+					color: White; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #993366;
+  				  	font-weight: bold;}
+	.TDBODY1 	{	text-align: center;
+					color: white; 
+					font-size: 10pt;
+					font-family: Arial;
+					background-color: #993366;
+  				  	font-weight: bold;
+ 					border-style: none; 
+ 					border-color: #CCCCCC}
+ 	.SUBOFF1	{	color: white; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 110;
+					background-color: #5A79A5;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<body onload="window.theForm.SNAME.focus()" BGCOLOR="#4E6699"><BR>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="620">
+  <tr>
+    <td width="696" align="center" BGCOLOR="#008000"><b><font face="Verdana" color="#FFFFFF">Auto Transport Entry Form</b></font></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF">
+    <form name="theForm" method="post"><br>
+<table border="1" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#CCCCCC">
+	 <tr>
+	  <td bgcolor="#008000" align="center"><font COLOR="#FFFFFF" face="Verdana"><b>Transport From</b></font></td>
+	  <td bgcolor="#008000" align="center"><font color="#FFFFFF" face="Verdana"><b>Transport To</b></font></td>
+	</tr>
+	 <tr>
+	  <td valign="top" width="49%">
+<table border="0" width="100%" align="center" style="border-collapse:collapse;line-height:23px;" bordercolor="#111111">
+  <tr>
+    <td height="17" width="79"><font face="Arial" size="2" color="#0000FF">Customer:</font><font color="#FF0000">*</font></td>
+    <td height="17" colspan="3" width="216"><input id="txtSNAME" type="text" autocomplete="off" name="SNAME" size="30" style="background-color: #FFFFCC; font-size:9pt" value="<%=ALLT(_EST.SNAME)%>" onload="window.btnSNAME.focus()" <% IF plBLKSNAME %>READONLY<%ENDIF%>></td>
+ </tr> 
+  <tr>
+	<td height="19" width="79"><font face="Arial" size="2">Address:</font></td>
+	<td height="19" colspan="3" width="216"><input type="text" autocomplete="off" name="SADD1" size="30" style="font-size:9pt" value="<%=ALLT(_EST.SADD1)%>"></td>
+ </tr>
+  <tr>
+	<td height="19" width="79">&nbsp;</td>
+	<td height="19" colspan="3" width="216"><input type="text" autocomplete="off" name="SADD2" size="30" style="font-size:9pt" value="<%=ALLT(_EST.SADD2)%>"></td>
+ </tr>
+  <tr>
+	<td height="19" width="79"><font face="Arial" size="2">Location:</font></td>
+	<td height="19" colspan="3" width="216">
+	<select size="1" name="SLEVEL" tabindex="4" style="font-size: 9pt">
+		   <option selected><%=pcSLEVEL%></option>
+		   <option value=""></option>		   
+		   <option>Residence</option>
+           <option>Business</option>
+		   <option>Dealership</option>           
+           <option>Port</option>
+		   <option>Terminal</option>
+		   <option>Auction</option>
+		  </select></td>
+ </tr> 
+  <tr>
+    <td height="19" width="79"><font face="Arial" size="2">City:</font></td>
+    <td height="19" width="83"><input type="text" autocomplete="off" name="SCITY" size="15" style="font-size:9pt" value="<%=ALLT(_EST.SCITY)%>"></td>
+    <td height="19" width="47"><font face="Arial" size="2">State:</font></td>
+    <td height="19" width="80"><input type="text" autocomplete="off" name="SSTATE" size="1" style="font-size:9pt" value="<%=ALLT(_EST.SSTATE)%>"></td>
+ </tr>
+  <tr>
+    <td height="19" width="79"><b><font face="Arial" SIZE="2" color="#0000FF"><a href="javascript:FindZip('SZIP')">Zip Code:</a></font></b></td>
+    <td height="19" colspan="3" width="216"><input type="text" autocomplete="off" name="SZIP" value="<%=ALLT(_EST.SZIP)%>" style="width:65px;font-size:9pt;" size="20"></td>
+ </tr>
+  <tr>
+    <td height="19" width="79"><font face="Arial" size="2">Country:</font></td>
+    <td height="19" colspan="3" width="216"><input type="text" autocomplete="off" name="SCOUNTRY" size="25"  value="<%=ALLT(_EST.SCOUNTRY)%>" style="font-size: 9pt"></td>
+ </tr>	
+  <tr>
+    <td height="19" width="79"><font face="Arial" size="2" color="#0000FF">Phone 1:</font><font color="#FF0000">*</font></td>
+    <td height="19" colspan="3" width="216"><input type="text" autocomplete="off" name="STELH" size="25" value="<%=ALLT(_EST.STELH)%>" style="background-color: #FFFFCC; font-size:9pt"></td>
+ </tr>	
+  <tr>		
+    <td height="19" width="79"><font face="Arial" size="2">Phone 2:</font></td>
+    <td height="19" colspan="3" width="216"><input type="text" autocomplete="off" name="STELO" size="25" style="font-size:9pt" value="<%=ALLT(_EST.STELO)%>"></td>
+ </tr>
+  <tr>
+    <td height="19" width="79"><font face="Arial" size="2" color="#0000FF">Email:</font><font color="#FF0000">*</font></td>
+    <td height="19" colspan="3" width="216"><input type="text" autocomplete="off" name="EMAIL" size="30" value="<%=ALLT(_EST.EMAIL)%>" style="background-color: #FFFFCC; font-size:9pt"></td>
+ </tr>
+  <tr>
+	<td width="79" height="19"><font size="2" face="Arial">Proxy:</font></td>
+	<td width="256" colspan="3" height="19"><input type="text" autocomplete="off" name="SPROXY" size="30" style="font-size:9pt" value="<%=ALLT(_EST.SPROXY)%>"></td>
+ </tr> 	
+</table>	
+	</td>
+	<td valign="top" width="49%">
+<table border="0" width="100%" align="center" style="border-collapse:collapse;line-height:23px;" bordercolor="#111111">
+  <tr>
+    <td height="17" width="85"><font face="Arial" size="2">Customer:</font></td>
+    <td height="17" colspan="3" width="200"><input id="txtSNAME" type="text" autocomplete="off" name="RNAME" size="30" style="font-size:9pt" value="<%=ALLT(_EST.RNAME)%>" onload="window.btnSNAME.focus()" <% IF plBLKSNAME %>READONLY<%ENDIF%>></td>
+ </tr> 
+  <tr>
+	<td height="19" width="85"><font face="Arial" size="2">Address:</font></td>
+	<td height="19" colspan="3" width="200"><input type="text" autocomplete="off" name="RADD1" size="30" style="font-size:9pt" value="<%=ALLT(_EST.RADD1)%>"></td>
+ </tr>
+  <tr>
+	<td height="19" width="85">&nbsp;</td>
+	<td height="19" colspan="3" width="200"><input type="text" autocomplete="off" name="RADD2" size="30" style="font-size:9pt" value="<%=ALLT(_EST.RADD2)%>"></td>
+ </tr>
+  <tr>
+	<td height="19" width="79"><font face="Arial" size="2">Location:</font></td>
+	<td height="19" colspan="3" width="216">
+	<select size="1" name="RLEVEL" tabindex="4" style="font-size: 9pt">
+		   <option selected><%=pcRLEVEL%></option>
+		   <option value=""></option>		   
+		   <option>Residence</option>
+           <option>Business</option>
+		   <option>Dealership</option>
+           <option>Port</option>
+		   <option>Terminal</option>
+		   <option>Auction</option>		   
+		  </select></td>
+ </tr> 
+  <tr>
+    <td height="19" width="85"><font face="Arial" size="2">City:</font></td>
+    <td height="19" width="93"><input type="text" autocomplete="off" name="RCITY" size="15" style="font-size:9pt" value="<%=ALLT(_EST.RCITY)%>"></td>
+    <td height="19" width="37"><font face="Arial" size="2">State:</font></td>
+    <td height="19" width="66"><input type="text" autocomplete="off" name="RSTATE" size="1" style="font-size:9pt" value="<%=ALLT(_EST.RSTATE)%>"></td>
+ </tr>
+  <tr>
+    <td height="19" width="85"><b><font face="Arial" SIZE="2" color="#0000FF"><a href="javascript:FindZip('RZIP')">Zip Code:</a></font></b></td>
+    <td height="19" colspan="3" width="200"><input type="text" autocomplete="off" name="RZIP" size="5" value="<%=ALLT(_EST.RZIP)%>" style="width:65px;font-size:9pt;"></td>
+ </tr>
+  <tr>
+    <td height="19" width="85"><font face="Arial" size="2">Country:</font></td>
+    <td height="19" colspan="3" width="200"><input type="text" autocomplete="off" name="RCOUNTRY" size="25"  value="<%=ALLT(_EST.RCOUNTRY)%>" style="font-size: 9pt"></td>
+ </tr>		
+  <tr>		
+    <td height="19" width="85"><font face="Arial" size="2">Phone 3:</font></td>
+    <td height="19" colspan="3" width="200"><input type="text" autocomplete="off" name="RTELO" size="25" style="font-size:9pt" value="<%=ALLT(_EST.RTELO)%>"></td>
+ </tr>
+  <tr>
+    <td height="19" width="85"><font face="Arial" size="2" color="#0000FF">Mobile:</font></td>
+    <td height="19" colspan="3" width="200"><input type="text" autocomplete="off" name="RTELH" size="25" value="<%=ALLT(_EST.RTELH)%>" style="font-size:9pt"></td>
+ </tr> 
+  <tr>	
+	<td height="19" width="83"><font face="Arial" size="2">Fax:</font></td>
+	<td height="19" width="224" colspan="3"><input type="text" autocomplete="off" name="SFAX" size="25" style="font-size:9pt" value="<%=ALLT(_EST.SFAX)%>"></td>
+ </tr>
+  <tr>
+	<td width="79" height="19"><font size="2" face="Arial">Proxy:</font></td>
+	<td width="256" colspan="3" height="19"><input type="text" autocomplete="off" name="RPROXY" size="30" style="font-size:9pt" value="<%=ALLT(_EST.RPROXY)%>"></td>
+  </tr>  	
+</table>	
+	</td>
+	</tr>
+</table>
+ <BR>
+<table border="1" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#CCCCCC">
+  <tr>
+	<td valign="top" width="70%">
+<table border="0" width="602" align="center" cellspacing="0" style="border-collapse: collapse;line-height:27px;font-family:Arial;font-size:10pt;" bordercolor="#111111" cellpadding="0">
+<% IF pnCOLEVEL=3 AND plDEPT=.T. AND VAL(_EST.ORDNO) < 99999 %>
+  <tr>
+	<td colspan="3" width="602"><b>Department:</b>
+     <select size="1" name="DEPT" style="background-color: #FFFFCC;">
+      <option value="" selected></option> 
+         <% SELECT _DEPARTMENT 
+     	    GO TOP
+    	    SCAN %>
+	  <OPTION VALUE="<%=ALLT(DEPT)%>"><%=ALLT(DEPT)%>&nbsp;-&nbsp;<%=ALLT(DEPTNAME)%></OPTION>
+	     <% ENDSCAN %>  
+	</select>
+	</td>
+ </tr>
+<% ENDIF %> 
+<% IF VAL(_EST.ORDNO) > 99999 AND pnLEVEL > 0 %>
+  <tr>
+	<td colspan="3" width="602"><b>Job No:&nbsp;<FONT size="3" color="red"><%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></font></b></td>
+ </tr>
+<% ENDIF %>
+  <tr>
+	<td width="172"><font face="Arial" size="2" color="#0000FF">Transport Date:</font><font color="#FF0000">*</font></td>
+	<td width="115">
+	<% IF _EST.STATUS<>'F' AND _EST.STATUS<>'C' %>
+		<font face="Arial" color="#<%=IIF(_EST.LBOOKDTE<DATE(),'FF0000','008000')%>" size="3"><B><%=_EST.LBOOKDTE%></b></font>
+    <%ELSE%>
+       <input type="text" autocomplete="off" id="Date1" name="LBOOKDTE" size="20" value="<%=IIF(EMPTY(_EST.LBOOKDTE),'',ALLT(DTOC(_EST.LBOOKDTE)))%>" style="width: 100px; max-width: 100%;background-color:#FFFFCC;font-weight:bold;" tabindex="27">
+    <%ENDIF%>	
+	</td>
+	<td width="315"><font face="Arial" size="2">Time:</font>
+	<input type="text" name="LBOOKTME" size="10" value="<%=ALLT(_EST.LBOOKTME)%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~LBOOKTME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=650,height=600')"  tabindex="28" maxlength="20"></td>
+ </tr>
+<%IF pnLEVEL > 0 AND !plBLKREFER %> 
+  <tr>
+    <td width="172"><font face="Arial" size="2" color="#0000FF">How did you hear about us?</font><font color="#FF0000">*</font></td>
+    <td colspan="2" width="430">
+	<select size="1" name="REF" class="ref-select" style="width: 220px;background-color: #FFFFCC;" tabindex="33">
+	  <option><%=_EST.REF%></option>
+	   <% SELECT _TREF 
+			   SCAN %>
+	  <OPTION><%=_TREF.RNAME %></OPTION>
+		<% ENDSCAN %>
+		</select>    
+    </td>
+ </tr>
+<%ENDIF%>
+  <tr>
+	<td colspan="3" width="602"><b><font color="#FF0000"><%=pcMSG%></font></b></td>
+ </tr> 
+</table>	  
+	  </td>
+	</tr>
+</table>
+ <%IF _EST.STATUS <> 'D' AND _EST.STATUS <> 'C'  %>
+ <center><br><input type="button" CLASS="SUBOFF1" name="B31" onclick="SubmitEntry()" onmouseover="this.style.background='#993366'" onmouseout="this.style.background='#5A79A5'" value="Submit">
+ <% ENDIF %>   
+</form>    
+    </td>
+ </tr>
+  <tr>
+    <td bgcolor="#993366">&nbsp;</td>
+ </tr> 
+</table>
+
+
+</body>
+</html>

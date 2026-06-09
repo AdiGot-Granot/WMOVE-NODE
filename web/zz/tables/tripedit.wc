@@ -1,0 +1,224 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Trip Info</TITLE>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+  
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+       $("#Date2").datepicker({ numberOfMonths:[1,2] });       
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function checkData(){
+			frm = document.theForm;
+			return lengthValid(frm.TRIPNO,3,"Trip Name") ;
+		}
+
+function submitFunction(i) {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpopr~TripEditRet~<%=pcSCR%>~<%=pcTRIPID%>";
+       document.theForm.submit();
+     }
+    if (i==2) 
+	 {
+		var Message = "Are you sure you want to close this Trip?";
+		if (confirm (Message))
+		  {
+			document.theForm.action="/wc.dll?mpopr~TripEditRet~<%=pcSCR%>~<%=pcTRIPID%>~~CLOSE";
+	        document.theForm.submit();
+	      }
+     }
+    if (i==3) 
+     { 
+       parent.location.href="/wc.dll?mpopr~tripswc~<%=pcSCR%>";
+     }
+          
+   }
+
+//function findtrip() {
+//	if (checkData()) {
+//       document.theForm.action="/wc.dll?mpopr~TripSelect~<%=pcSCR%>~<%=pcTRIPID%>";
+//       document.theForm.submit();
+//     }
+//}
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="650">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="19"><font face="Verdana" size="4" color="#FFFFFF">Trip Information</font></b></td>
+  </tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF"><br>	
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="629">
+  <tr>
+    <td valign="top" width="390">
+    <form name="theForm" method="POST">
+<%SELECT _TRIP%>    
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="43%" height="19"><font face="Verdana" size="2">Active</font></td>
+    <td width="60%" height="19" colspan="2">
+    <%IF EMPTY(pcMSG) %>
+    <label class="switch"><input type="checkbox" id="togBtn" name="ACTIVE" value="ON" <%=IIF(ACTIVE,'checked','')%>><div class="slider round"></div></label>
+    <b><font face="Verdana" color="#<%=IIF(ACTIVE=.T.,'008000','FF0000')%>"><%=IIF(ACTIVE=.T.,'Active','Not Active')%></b></font>
+    <%ELSE%>
+    &nbsp;<b><font face="Verdana"><%=pcMSG%></font></b>
+    <%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="43%" height="19"><font face="Verdana" size="2">Trip Name/ No.</font></td>
+    <td width="60%" height="19" colspan="2"><%IF ACTIVE=.T. AND (pnLEVEL=5 OR pnTRIPID=0)%><input NAME="TRIPNO" size="20" VALUE="<%=ALLT(TRIPNO) %>" maxlength="15" tabindex="1">
+    <%ELSE%><B><font face="Verdana" color="#008000"><%=ALLT(TRIPNO)%></font></B><%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="43%" height="18"><font face="Verdana" size="2">Departure Date / Time</font></td>
+    <td width="26%" height="18"><input id="Date1" autocomplete="off" NAME="TRIPDTE" size="8" VALUE="<%=ALLT(CTRIPDTE)%>" tabindex="2"></td>
+    <td width="34%" height="18"><input type="text" name="TRIPTME" size="8" tabindex="3" value="<%=ALLT(TRIPTME)%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~TRIPTME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=680,height=600')" maxlength="20"></td>
+  </tr>  
+  <tr>
+    <td width="43%" height="18"><font face="Verdana" size="2">Return Date / Time</font></td>
+    <td width="26%" height="18"><input id="Date2" autocomplete="off" NAME="BACKDTE" size="8" VALUE="<%=ALLT(CBACKDTE)%>" tabindex="4"></td>
+    <td width="34%" height="18"><input type="text" name="BACKTME" size="8" tabindex="5" value="<%=ALLT(BACKTME)%>" style="cursor:pointer;" onclick="window.open('/wc.dll?mputil~timetablewc~theForm~BACKTME','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=680,height=600')" maxlength="20"></td>
+  </tr>
+  <tr>
+    <td width="43%" height="19"><font face="Verdana" size="2">Truck No.</font></td>
+    <td width="60%" height="19" colspan="2"><input NAME="TRUCKNO" size="10" VALUE="<%=ALLT(TRUCKNO) %>" tabindex="6" maxlength="10"></td>
+  </tr>  
+  <tr>
+    <td width="43%" height="18"><font face="Verdana" size="2">Capacity (CF)</font></td>
+    <td width="60%" height="18" colspan="2"><input NAME="VOLUMECF" size="4" VALUE="<%=ALLT(STR(VOLUMECF))%>" tabindex="7" maxlength="10"></td>
+  </tr>    
+  <tr>
+    <td width="43%" height="19"><font face="Verdana" size="2">Trip Route</font></td>
+    <td width="60%" height="19" colspan="2"><input NAME="TRIPROUTE" size="10" VALUE="<%=ALLT(TRIPROUTE)%>" tabindex="8" maxlength="14"></td>
+  </tr>  
+  <tr>
+    <td width="43%" height="19"><font face="Verdana" size="2">Pads / Blankets</font></td>
+    <td width="60%" height="19" colspan="2"><input NAME="PADS" size="2" VALUE="<%=ALLT(STR(PADS))%>" tabindex="9" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td width="43%" height="18"><font face="Verdana" size="2">Driver</font></td>
+    <td width="60%" height="18" colspan="2"><input NAME="TRIPNAME" size="15" VALUE="<%=ALLT(TRIPNAME)%>" tabindex="10" tabindex="4"></td>
+  </tr> 
+  <tr>
+    <td width="43%" height="18"><font face="Verdana" size="2">Driver's Phone</font></td>
+    <td width="60%" height="18" colspan="2"><input NAME="PHONE" size="15" VALUE="<%=ALLT(PHONE) %>" tabindex="11"></td>
+  </tr>
+  <tr>
+    <td width="43%" height="18"><font face="Verdana" size="2">Deposit for Driver $</font></td>
+    <td width="60%" height="18" colspan="2"><input NAME="DEPOSIT" size="15" VALUE="<%=ALLT(STR(DEPOSIT,7,2))%>" tabindex="12"></td>
+  </tr>
+<% IF pnTRIPID > 1000 %>  
+  <tr>
+    <td width="43%" height="18"><font face="Verdana" size="2">Open By</font></td>
+    <td width="60%" height="18" colspan="2"><font face="Verdana" size="2"><%=ALLT(OPENUSER)%></font></td>
+  </tr>
+<%ENDIF%>             
+</table>
+    </td>
+    <td width="9">&nbsp;</td>
+    <td valign="top" width="230">
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" height="30" align="center" colspan="2"><b><font face="Verdana" size="2" color="#0081D3">Trip Details</font></b></td>
+ </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Mile Start</font></td>
+    <td width="47%"><input NAME="MILESTART" size="5" VALUE="<%=ALLT(STR(MILESTART))%>" tabindex="13"></td>
+ </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Mile End</font></td>
+    <td width="47%"><input NAME="MILEEND" size="5" VALUE="<%=ALLT(STR(MILEEND))%>" tabindex="14"></td>
+ </tr>
+<% IF pnTRIPID > 1000 AND JOBS > 0 %>
+  <tr>
+    <td width="100%" colspan="2" align="center"><font style="font-family:Verdana;font-size:11pt;"><B><a href="/wc.dll?mpopr~TripPrint~<%=pcSCR%>~<%=pcTRIPID%>" target="_blank">Print Jobs on Trip</a></b></font></td>
+ </tr> 
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Jobs on Trip</font></td>
+    <td width="47%"><FONT face="Verdana" size="2" COLOR="#0081D3"><B><%=ALLT(STR(JOBS))%></B></FONT></td>
+ </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Volume on Trip</font></td>
+    <td width="47%"><FONT face="Verdana" size="2" COLOR="#0081D3"><B><%=ALLT(STR(CF))%></B></FONT></td>
+ </tr>
+  <% IF VOLUMECF-CF > 0 %>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Free Space</font></td>
+    <td width="47%"><FONT face="Verdana" size="2" COLOR="#0081D3"><B><%=ALLT(STR(VOLUMECF-CF))+' cf.'%></B></FONT></td>
+ </tr>
+  <%ENDIF%>
+<%ENDIF%>
+  </table>
+    </td>
+ </tr>
+</table>
+ <BR>
+<table border="0" width="95%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="14%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Submit" size="20"></td>
+    <td width="17%" align="right"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(3)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Exit" size="20"></td>
+    <% IF ACTIVE=.T. %>
+    <td width="17%" align="right"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Close Trip" size="20"></td> 
+    <%ENDIF%>   
+ </tr>   
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="100%" align="center" height="30" valign="bottom"><b><font face="Verdana" style="font-size:11pt;" color="#0081D3">Trip Remarks for Trip Printout</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea rows="5" name="NOTES" cols="68"><%=ALLT(NOTES)%></textarea></td>
+ </tr>
+</table>
+</form>
+  &nbsp;</td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="14">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+
+</body>
+</html>

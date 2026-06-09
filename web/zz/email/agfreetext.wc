@@ -1,0 +1,147 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Free Text</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="/zz/editor/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/zz/editor/lib/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/zz/editor/main.css">
+
+<script language="JavaScript">
+
+function CHKLENGTH() {
+    const frm = document.theForm;
+    const subject = frm.SUBJECT.value.trim();
+    const body = frm.BODY.value.trim();
+
+    if (subject.length < 2) {
+        alert("Please enter an email subject!");
+        frm.SUBJECT.focus();
+        return false;
+    }
+
+    if (body.length < 10) {
+        alert("Please enter the email body!");
+        frm.BODY.focus();
+        return false;
+    }
+
+    return true;
+}
+
+function SubmitEmail() {
+	if (CHKLENGTH()) {
+    document.theForm.action="/wc.dll?mpest~emailcenterret~&SCR=<%=pcSCR%>&ACTION=EMAIL&RADIO=201"
+    document.theForm.submit()
+    }
+}
+
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+<script type="text/javascript" src="/zz/editor/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zz/editor/lib/js/froala_editor.pkgd.min.js?v=2.1.6"></script>
+<script>
+        $(function () {
+            $('textarea').froalaEditor()
+        });
+</script>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="550" align="center">
+  <TR>
+    <TD bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="550">
+  <tr>
+    <td width="100%" align="center" bgcolor="#008000" height="25"><b><font face="Verdana" color="#FFFFFF">Free Text</font></b></td>
+  </tr>
+</table>
+  <br>
+<form name="theForm" method="post">
+
+<table border="1" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse;font-family:Arial;font-size:10pt;line-height:28px;" bordercolor="#808080" width="540">
+  <tr>
+    <td width="154">&nbsp;Job #:</td>
+    <td width="455">&nbsp;<b><%=ALLT(pcDEPT+pcORDNO)%></b></td>
+  </tr>
+  <tr>
+    <td width="154">&nbsp;Sender:</td>
+    <td width="455">&nbsp;<b><%=pcUSER%></b></td>
+  </tr>
+  <tr>
+    <td width="154">&nbsp;Email From:</td>
+    <td width="455">&nbsp;<b><%=pcUSEREMAIL%></b></td>
+    </tr>
+  <tr>
+    <td width="154">&nbsp;Email To:</td>
+    <td width="455">&nbsp;<b><%=pcAGEMAIL%></b></td>
+  </tr>
+  <tr>
+    <td width="1">&nbsp;Subject:</td>
+    <td width="869">&nbsp;<input type="text" name="SUBJECT" size="31" class="INPUTTXT" maxlength="100"></td>
+  </tr>
+</table>
+<br>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#808080" width="540" align="center">
+  <TR>
+    <TD>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" align="center">
+  <tr>
+    <td width="100%"><textarea ID="oInput" rows="10" name="BODY" cols="64"></textarea></td>
+  </tr>
+  <%IF pnLEVEL=2 OR pnLEVEL>3 %>
+  <tr>
+    <td width="100%"><BR><font face="Arial" size="2"><b><input type="checkbox" name="ESIGN" value="ON">&nbsp;Add Link to Electronic Signature</b></font></td>
+  </tr>
+  <%ENDIF%>
+</table>
+</td></tr></table>
+<br>
+<table border="0" width="60%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" align="center">
+  <tr>
+    <td width="31%" align="center">
+    <%IF EMPTY(pcUSEREMAIL)%><B><FONT COLOR="RED">Missing From Email</FONT></B><%ELSE%>
+    <input type="button" CLASS="SUBOFF" name="btnSendEmail" onclick="SubmitEmail()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Send Email"><%ENDIF%></td>
+    <td width="2%" align="center">&nbsp;</td>
+    <td width="27%" align="center"><input type="button" CLASS="SUBOFF" name="btnExit" onclick="window.close()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+  </tr>
+</table>
+<!-- Buttons --->
+</form>
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" align="center" bgcolor="#9C3063">&nbsp;</td>
+  </tr>
+</table>
+   </td>
+  </tr>
+</table>
+</body>
+
+</html>

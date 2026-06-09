@@ -1,0 +1,232 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Print Tariff</title>
+
+<style>
+	.TD1		{	color: #OOOOOO;
+					background-color: #E9E9EA;
+				  	font-size: 9pt;
+  				  	font-family: Arial;
+				  	text-align: center;}
+	.TD2		{	color: #OOOOOO;
+					background-color: #FFFFFF;
+				  	font-size: 9pt;
+  				  	font-family: Arial;
+				  	text-align: center;}
+	.TD3		{	color: #OOOOOO;
+					background-color: #DEFFFF;
+				  	font-size: 9pt;
+  				  	font-family: Arial;
+				  	text-align: center;}
+				  	
+	p.pagebreak {   page-break-after: always;}				  	 	 	 	
+</style>
+
+</head>
+<body>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="85%">
+  <tr>
+    <td width="46%"><b><font face="Arial" SIZE="2">&nbsp;</font></b></td>
+    <td width="27%"><a href="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>"><font face="Arial"><b>Exit</b></font></a></td>
+    <td width="27%" align="right"><b><font face="Arial" SIZE="2">Section 1 of 5</font></b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+</table> 
+  <br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD" width="85%" cellspacing="1" cellpadding="2">
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=IIF(plCALCCF,"Volume-CF","Weight-LBS")%></b>&nbsp;</td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1-20<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>21-40<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>41-60<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>61-80<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>81-100<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>101-120<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>121-140<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>141-160<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>161-180<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>181-200<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>201-250<BR>Miles</b></td>
+ </tr>
+<%SELECT T1
+		SCAN%> 
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=ALLT(TT)%></b>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M1))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M2))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M3))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M4))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M5))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M6))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M7))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M8))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M9))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M10))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M11))%>&nbsp;</td>
+ </tr>
+<%ENDSCAN%>  
+</table>
+<p class="pagebreak">&nbsp;</p>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="85%">
+  <tr>
+    <td width="100%" align="right"><b><font face="Arial" SIZE="2">Section 2 of 5</font></b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+</table> 
+  <br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD" width="85%" cellspacing="1" cellpadding="2">
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=IIF(plCALCCF,"Volume-CF","Weight-LBS")%></b>&nbsp;</td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>251-300<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>301-350<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>351-400<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>401-450<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>451-500<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>501-550<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>551-600<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>601-650<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>651-700<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>701-750<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>751-800<BR>Miles</b></td>
+ </tr>
+<%SELECT T2
+		SCAN%> 
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=ALLT(TT)%></b>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M1))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M2))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M3))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M4))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M5))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M6))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M7))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M8))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M9))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M10))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M11))%>&nbsp;</td>
+ </tr>
+<%ENDSCAN%>  
+</table>
+<p class="pagebreak">&nbsp;</p>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="85%">
+  <tr>
+    <td width="100%" align="right"><b><font face="Arial" SIZE="2">Section 3 of 5</font></b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+</table> 
+  <br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD" width="85%" cellspacing="1" cellpadding="2">
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=IIF(plCALCCF,"Volume-CF","Weight-LBS")%></b>&nbsp;</td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>801-850<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>851-900<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>901-950<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>951-1000<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1001-1100<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1101-1200<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1201-1300<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1301-1400<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1401-1500<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1501-1600<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1601-1700<BR>Miles</b></td>
+ </tr>
+<%SELECT T3
+		SCAN%> 
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=ALLT(TT)%></b>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M1))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M2))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M3))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M4))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M5))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M6))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M7))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M8))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M9))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M10))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M11))%>&nbsp;</td>
+ </tr>
+<%ENDSCAN%>  
+</table>
+<p class="pagebreak">&nbsp;</p>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="85%">
+  <tr>
+    <td width="100%" align="right"><b><font face="Arial" SIZE="2">Section 4 of 5</font></b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+</table> 
+  <br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD" width="85%" cellspacing="1" cellpadding="2">
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=IIF(plCALCCF,"Volume-CF","Weight-LBS")%></b>&nbsp;</td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1701-1800<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1801-1900<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>1901-2000<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2001-2100<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2101-2200<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2201-2300<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2301-2400<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2401-2500<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2501-2600<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2601-2700<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2701-2800<BR>Miles</b></td>
+ </tr>
+<%SELECT T4
+		SCAN%> 
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=ALLT(TT)%></b>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M1))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M2))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M3))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M4))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M5))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M6))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M7))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M8))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M9))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M10))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M11))%>&nbsp;</td>
+ </tr>
+<%ENDSCAN%>  
+</table>
+<p class="pagebreak">&nbsp;</p>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="85%">
+  <tr>
+    <td width="100%" align="right"><b><font face="Arial" SIZE="2">Section 5 of 5</font></b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+</table> 
+  <br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#6B8AAD" width="85%" cellspacing="1" cellpadding="2">
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=IIF(plCALCCF,"Volume-CF","Weight-LBS")%></b>&nbsp;</td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2801-2900<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>2901-3000<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>3001-3100<BR>Miles</b></td>
+    <td width="7%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>3101-3200<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>3201-3300<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>3301-3400<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>3401-3500<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>3501-3600<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>3601-3700<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>3701-3800<BR>Miles</b></td>
+    <td width="8%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b>Add 100<BR>Miles</b></td>
+ </tr>
+<%SELECT T5
+		SCAN%> 
+  <tr>  
+    <td width="12%" class="<%=IIF(plT400N,'TD3','TD1')%>"><b><%=ALLT(TT)%></b>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M1))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M2))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M3))%>&nbsp;</td>
+    <td width="7%" class="TD2"><%=ALLT(STR(M4))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M5))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M6))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M7))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M8))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M9))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M10))%>&nbsp;</td>
+    <td width="8%" class="TD2"><%=ALLT(STR(M11))%>&nbsp;</td>
+ </tr>
+<%ENDSCAN%>  
+</table>
+<p class="pagebreak">&nbsp;</p>
+</body>
+</html>

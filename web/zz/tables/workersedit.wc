@@ -1,0 +1,335 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Worker Info</TITLE>
+
+<script language="JavaScript" src="/zz/util/formcheck.js"></script>
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+  
+<script type="text/javascript">
+jQuery.noConflict();
+
+   jQuery(document).ready(function($){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function checkData(){
+			frm = document.theForm;
+			return lengthValid(frm.WORKERID,3,"Worker ID") ;
+		}
+
+function submitFunction(i) 
+  {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~workerseditret~<%=pcSCR%>~<%=pcWID%>";
+       document.theForm.submit();
+     }
+     
+    if (i==2) 
+     { 
+       document.theForm.action="/wc.dll?mpmainten~workerswc~<%=pcSCR%>";
+       document.theForm.submit();
+     }
+     
+    if (i==3) 
+	 {
+		var Message = "Are you sure you want to delete this Worker?";
+		if (confirm (Message))
+		  {
+			document.theForm.action="/wc.dll?mpmainten~deleteworker~<%=pcSCR%>~<%=pcWID%>";
+	        document.theForm.submit();
+	      }
+     }
+ }
+
+<% IF 1=2 %>
+function searchID() {
+	if (checkData()) {
+       document.theForm.action="/wc.dll?mpmainten~workersselect~<%=pcSCR%>~<%=pcWID%>";
+       document.theForm.submit();
+     }
+}
+
+function searchname() {
+	var frm=document.theForm;
+    window.open('/wc.dll?mpmainten~searchworker~<%=pcSCR%>~&name='+frm.WORKERNAME.value,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=750,height=450');
+}
+<%ENDIF%>
+
+</SCRIPT>
+
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.DELETE	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.DELETEON	{	color: #FFFFFF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					height: 30;
+					background-color: #FF0000;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	.SEARCHOFF	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SEARCHON	{	color: #0081D3; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FBC21C;
+					font-size: 10pt;
+  				  	cursor: pointer;}  				  	
+</style>
+
+</head>
+
+<body BGCOLOR="#F7F7F7"><br>
+
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="800">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center" height="19"><font face="Verdana" size="4" color="#FFFFFF">Worker Information</font></b></td>
+  </tr>
+    <td width="100%" align="center" bgcolor="#FFFFFF"><br>	
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="61%" valign="top">
+    <form name="theForm" method="POST">
+    <input type="hidden" name="DEL" value="<%=plDEL%>">
+<%SELECT _WORKERS%>    
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="23%" height="19"><font face="Verdana" size="2">Active</font></td>
+    <td width="78%" height="19" colspan="2">
+    <%IF EMPTY(pcMSG) %>
+    <label class="switch"><input type="checkbox" id="togBtn" name="ACTIVE" value="ON" <%=IIF(ACTIVE,'checked','')%>><div class="slider round"></div></label>
+    <b><font face="Verdana" color="#<%=IIF(ACTIVE=.T.,'008000','FF0000')%>"><%=IIF(ACTIVE=.T.,'Active','Not Active')%></b></font>
+    <%ELSE%>
+    &nbsp;&nbsp;<b><font face="Verdana"><%=pcMSG%></font></b>
+    <%ENDIF%></td>
+  </tr>
+  <tr>
+    <td width="23%" height="19"><font face="Verdana" size="2">Worker ID</font></td>
+    <td width="78%" height="19" colspan="2"><%IF pnWID=0 %><input type="text" autocomplete="off" name="USERNAME" size="11" value="<%=ALLT(USERNAME)%>" maxlength="10">
+    &nbsp;&nbsp;<b><font face="Verdana" size="2" color="#0081D3">3 to 10 Characters</font></b>
+    <%ELSE%><font face="Verdana" color="#008000"><b><%=ALLT(USERNAME)%></b></font><%ENDIF%></td>
+  </tr> 
+  <tr>
+    <td width="24%" height="19"><font face="Verdana" size="2">Position</font></td>
+    <td width="77%" height="19" colspan="2">
+        <select size="1" name="POSID">
+		<option selected value="<%=ALLT(STR(_WORKERS.POSID))%>"><%=lcPOSITION%></option>
+   		  <option value="24">Foreman</option>
+   		  <option value="20">Driver</option>
+   		  <option value="19">Helper</option>
+		</select>    
+    </td>
+  </tr>  
+  <tr>
+    <td width="23%" height="19"><font face="Verdana" size="2">First Name</font></td>
+    <td width="78%" height="19" colspan="2"><input type="text" name="FIRSTNAME" size="19" value="<%=ALLT(FIRSTNAME)%>"></td>
+  </tr>
+  <tr>
+    <td width="23%" height="19"><font face="Verdana" size="2">Last Name</font></td>
+    <td width="78%" height="19" colspan="2"><input type="text" name="LASTNAME" size="19" value="<%=ALLT(LASTNAME)%>" maxlength="20"></td>
+  </tr>    
+  <tr>
+    <td width="23%" height="18"><font face="Verdana" size="2">Address</font></td>
+    <td width="78%" height="18" colspan="2"><input type="text" name="ADDR" size="30" value="<%=ALLT(ADDR)%>" maxlength="30"></td>
+  </tr>
+  <tr>
+    <td width="23%" height="18"><font face="Verdana" size="2">City</font></td>
+    <td width="78%" height="18" colspan="2"><input type="text" name="CITY" size="30" value="<%=ALLT(CITY)%>"></td>
+  </tr>
+  <tr>
+    <td width="23%" height="18"><font face="Verdana" size="2">State</font></td>
+    <td width="23%" height="18">
+	<select size="1" name="STATEID" tabindex="6">
+		  <option selected value="<%=lcSTATEID%>"><%=lcSTATE%></option>
+		  	<% SELECT _STATE
+				 	 SCAN %>
+			   	<option value="<%=ALLT(STR(STATEID))%>"><%=ALLT(STATE)%></option>
+				 <% ENDSCAN %>
+		  </select></td>
+ <%SELECT _WORKERS%>				
+    <td width="55%" height="18"><font face="Verdana" size="2">Zip Code</font>&nbsp;<input name="ZIP" size="5" value="<%=ALLT(ZIP)%>"></td>
+  </tr>              
+  <tr>
+    <td width="23%" height="19"><font face="Verdana" size="2">Phone</font></td>
+    <td width="78%" height="19" colspan="2"><input type="text" name="PHONE" size="30" value="<%=ALLT(PHONE)%>"></td>
+  </tr>  
+  <tr>
+    <td width="23%" height="19"><font face="Verdana" size="2">Cell</font></td>
+    <td width="78%" height="19" colspan="2"><input type="text" name="CELL" size="30" value="<%=ALLT(CELL)%>"></td>
+  </tr>  
+  <tr>
+    <td width="23%" height="18"><font face="Verdana" size="2">Email</font></td>
+    <td width="78%" height="18" colspan="2"><input type="text" name="EMAIL" size="30" value="<%=ALLT(EMAIL)%>"></td>
+  </tr>
+  <tr>
+    <td width="23%" height="18"><font face="Verdana" size="2">Start Date</font></td>
+    <td width="78%" height="18" colspan="2"><input type="text" id="Date1" autocomplete="off" name="STARTDTE" size="10" value="<%=IIF(EMPTY(STARTDTE),'',ALLT(DTOC(STARTDTE)))%>"></td>
+  </tr>  
+  <% IF plDEPT%>
+  <tr>
+    <td width="23%" height="18"><font face="Verdana" size="2">Department</font></td>
+    <td width="78%" height="18" colspan="2">
+            <select size="1" name="DEPTID">
+            <option value=""></option>
+		<option selected value="<%=ALLT(STR(pnDEPTIDX))%>"><%=pcDEPTX%></option>
+		 <%	SELECT _DEPT
+			 SCAN %>
+   				<option value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></option>
+			<% ENDSCAN %>
+		</select>    
+    </td>
+  </tr> 
+  <%ENDIF%>
+  <tr>
+    <td width="23%" height="18"><font face="Verdana" size="2">Created On</font></td>
+    <td width="78%" height="18" colspan="2"><font face="Verdana" size="2"><%=TTOD(_WORKERS.OPENDTE)%></font></td>
+  </tr> 
+</table>
+<% IF 1=2 %>
+ <br>
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="23%" height="19"><font face="Verdana" size="2">Worker ID</font></td>
+    <td width="35%" height="19"><input type="text" name="WORKERID" size="11" value="" maxlength="10"></td>
+    <td width="43%" height="19"><input type="button" CLASS="SEARCHOFF" name="B54" onclick="searchID()" onmouseover="javasctript: this.className='SEARCHON'" onmouseout="javasctript: this.className='SEARCHOFF'" value="Search"></td>
+  </tr>
+  <tr>
+    <td width="23%" height="19"><font face="Verdana" size="2">Worker Name</font></td>
+    <td width="35%" height="19"><input type="text" name="WORKERNAME" size="11" value="" maxlength="10"></td>
+    <td width="43%" height="19"><input type="submit" CLASS="SEARCHOFF" name="B55" onclick="searchname()" onmouseover="javasctript: this.className='SEARCHON'" onmouseout="javasctript: this.className='SEARCHOFF'" value="Search"></td>
+  </tr>  
+</table>
+<%ENDIF%>         
+    </td>
+    <td width="1%">&nbsp;</td>
+    <td width="38%" valign="top">
+<%SELECT _WORKERS%>    
+<table border="0" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Arial;font-size:10pt;line-height:25px;" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="100%" height="30" align="center" colspan="2"><font face="Verdana" size="2" color="#0081D3"><b>Foreman Commission</b></font></td>
+ </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Salary per Hour $</font></td>
+    <td width="47%"><input type="text" name="PERHRS" size="5" value="<%=ALLT(STR(PERHRS,6,2))%>"></td>
+ </tr>
+ <% IF 1=2 %>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Daily Salary $</font></td>
+    <td width="47%"><input type="text" name="DAYCOMM" size="5" value="<%=ALLT(STR(DAYCOMM,6,2))%>"></td>
+ </tr>
+ <%ENDIF%>
+  <tr>
+    <td width="102%" colspan="2"><HR color="#0081D3" size="2"></HR></td>
+  </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Local Line Haul<BR>(Job Hours+Travel)</font></td>
+    <td width="47%"><input type="text" name="LOCALLH" size="5" value="<%=ALLT(STR(LOCALLH,7,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="102%" colspan="2"><HR color="#0081D3" size="2"></HR></td>
+  </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Line Haul Only</font></td>
+    <td width="47%"><input type="text" name="PERLH" size="5" value="<%=ALLT(STR(PERLH,7,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Overload Total</font></td>
+    <td width="47%"><input type="text" name="OVERLOAD" size="5" value="<%=ALLT(STR(OVERLOAD,5,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Materials</font></td>
+    <td width="47%"><input type="text" name="PERMAT" size="5" value="<%=ALLT(STR(PERMAT,6,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Others: 1 or All 3 Lines</font></td>
+    <td width="47%"><input type="text" name="PEROTHER" size="5" value="<%=ALLT(STR(PEROTHER,6,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Extra: 1 or All 3 Lines</font></td>
+    <td width="47%"><input type="text" name="PEREXTRA" size="5" value="<%=ALLT(STR(PEREXTRA,6,2))%>"><font face="Verdana" size="2">%</font></td>
+ </tr>
+  <tr>
+    <td width="102%" colspan="2"><HR color="#0081D3" size="2"></HR></td>
+  </tr>
+  <tr>
+    <td width="55%"><font face="Verdana" size="2">Total Job</font></td>
+    <td width="47%"><input type="text" name="PERTOTAL" size="5" value="<%=ALLT(STR(PERTOTAL,6,2))%>"><font face="Verdana" size="2">%</font></td>
+  </tr>
+  </table>
+    </td>
+ </tr>
+</table>
+ <BR> 
+<table border="0" width="90%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="16%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Submit" size="20"></td>
+    <td width="22%" align="center"><input type="button" CLASS="SUBOFF" name="B31" onclick="submitFunction(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="12" value="Exit" size="20"></td>
+    <td width="10%" align="right"><%IF pnWID > 0 %><input type="button" CLASS="DELETE" name="B31" onclick="submitFunction(3)" onmouseover="javasctript: this.className='DELETEON'" onmouseout="javasctript: this.className='DELETE'" tabindex="12" value="Delete" size="20"><%ENDIF%></td>
+ </tr>   
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="100%" align="center" height="30" valign="bottom"><b><font face="Verdana" style="font-size:11pt;" color="#0081D3">Internal Notes</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%"><textarea rows="5" name="REMARKS" cols="85"><%=ALLT(REMARKS)%></textarea></td>
+ </tr>
+</table>
+</form>
+  &nbsp;</td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3" height="14">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+</table>
+
+</body>
+</html>

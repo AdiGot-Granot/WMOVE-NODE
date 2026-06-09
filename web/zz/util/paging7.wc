@@ -1,0 +1,170 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title><%=pcTITLE%> <%=pcVER%> - Page <%=ALLT(STR(pnPAGENO))%> of <%=ALLT(STR(pnPAGES))%></title>
+<style>
+   body { font-family: Verdana; font-size: 10pt; margin: 10px; }
+   table.data { border-collapse: collapse; width: 100%; }
+   table.data th { 
+      background-color: #336699; color: #FFFFFF; 
+      padding: 6px 8px; border: 1px solid #ccc; 
+      font-size: 9pt; white-space: nowrap;
+   }
+   table.data td { 
+      padding: 4px 8px; border: 1px solid #ccc; 
+      font-size: 9pt; 
+   }
+   table.data tr:nth-child(even) { background-color: #F2F2F2; }
+   table.data tr:hover { background-color: #FFFFCC; }
+   .paging { font-family: Verdana; font-size: 10pt; margin: 10px 0; }
+   .paging a { 
+      padding: 4px 10px; margin: 1px; 
+      border: 1px solid #ccc; text-decoration: none; 
+      color: #333; background-color: #f9f9f9; 
+   }
+   .paging a:hover { background-color: #336699; color: #fff; }
+   .paging a.active { background-color: #CC0000; color: #fff; font-weight: bold; }
+   .paging a.nav { background-color: #e9e9e9; font-weight: bold; }
+   .info { font-family: Verdana; font-size: 10pt; color: #333; margin: 5px 0; }
+   .version { font-family: Verdana; font-size: 8pt; color: #999; }
+</style>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function GoPage(pgno) {
+    window.location.href = '/wc.dll?mv~estprocessret~<%=pcSCR%>~' + pgno;
+}
+</SCRIPT>
+</head>
+<body>
+
+<h2 style="font-family:Verdana;color:#336699;">Follow Up Report <span class="version"><%=pcVER%></span></h2>
+<div class="info">
+   Total Records: <b><%=ALLT(STR(lnTOTALRECS))%></b> &nbsp;|&nbsp;
+   Page <b><%=ALLT(STR(pnPAGENO))%></b> of <b><%=ALLT(STR(pnPAGES))%></b> &nbsp;|&nbsp;
+   Showing records <b><%=ALLT(STR(pnSTART))%></b> - <b><%=ALLT(STR(pnEND))%></b> &nbsp;|&nbsp;
+   <%=ALLT(STR(lnPERPAGE))%> per page
+</div>
+
+<!-- ========== TOP PAGING ========== -->
+<div class="paging" align="center">
+<%IF pnPAGENO > 1%>
+   <a class="nav" href="javascript:GoPage(1)">&laquo; First</a>
+   <a class="nav" href="javascript:GoPage(<%=ALLT(STR(pnPAGENO - 1))%>)">&lsaquo; Prev</a>
+<%ENDIF%>
+
+<%lnWS = MAX(1, pnPAGENO - 5)
+  lnWE = MIN(pnPAGES, pnPAGENO + 5)%>
+
+<%IF lnWS > 1%>
+   <span>&nbsp;...&nbsp;</span>
+<%ENDIF%>
+
+<%FOR MM = lnWS TO lnWE
+   lcMM = ALLT(STR(MM))%>
+   <%IF MM = pnPAGENO%>
+      <a class="active" href="#"><%=lcMM%></a>
+   <%ELSE%>
+      <a href="javascript:GoPage(<%=lcMM%>)"><%=lcMM%></a>
+   <%ENDIF%>
+<%ENDFOR%>
+
+<%IF lnWE < pnPAGES%>
+   <span>&nbsp;...&nbsp;</span>
+<%ENDIF%>
+
+<%IF pnPAGENO < pnPAGES%>
+   <a class="nav" href="javascript:GoPage(<%=ALLT(STR(pnPAGENO + 1))%>)">Next &rsaquo;</a>
+   <a class="nav" href="javascript:GoPage(<%=ALLT(STR(pnPAGES))%>)">Last &raquo;</a>
+<%ENDIF%>
+</div>
+
+<!-- ========== DATA TABLE ========== -->
+<table class="data">
+
+<%* ---- HEADER ROW: auto-detect all field names ---- %>
+<tr>
+   <th>#</th>
+<%FOR lnF = 1 TO pnFLDCOUNT%>
+   <th><%=ALLT(FIELD(lnF, "csrPage"))%></th>
+<%ENDFOR%>
+</tr>
+
+<%* ---- DATA ROWS ---- %>
+<%SELECT csrPage
+  GO TOP
+  lcVal = ''
+   IF pnSTART > 1
+     SKIP (pnSTART - 1)
+  ENDIF
+  lnRow = pnSTART
+  DO WHILE !EOF() AND lnRow <= pnEND%>
+<tr>
+   <td align="right"><%=ALLT(STR(lnRow))%></td>
+<%  FOR lnF = 1 TO pnFLDCOUNT
+      lcFldName = FIELD(lnF, "csrPage")
+      lcFldType = TYPE("csrPage." + lcFldName)
+      
+      DO CASE
+         CASE lcFldType = "C"
+            lcVal = ALLT(EVALUATE("csrPage." + lcFldName))
+         CASE lcFldType = "N" OR lcFldType = "I" OR lcFldType = "B"
+            lcVal = ALLT(STR(EVALUATE("csrPage." + lcFldName)))
+         CASE lcFldType = "D"
+            lcVal = DTOC(EVALUATE("csrPage." + lcFldName))
+         CASE lcFldType = "T"
+            lcVal = TTOC(EVALUATE("csrPage." + lcFldName))
+         CASE lcFldType = "L"
+            lcVal = IIF(EVALUATE("csrPage." + lcFldName), "Yes", "No")
+         CASE lcFldType = "Y"
+            lcVal = ALLT(TRANSFORM(EVALUATE("csrPage." + lcFldName), "$$$,$$$,$$$.99"))
+         OTHERWISE
+            lcVal = TRANSFORM(EVALUATE("csrPage." + lcFldName))
+      ENDCASE%>
+   <td><%=lcVal%></td>
+<%  ENDFOR%>
+</tr>
+<%  lnRow = lnRow + 1
+    SKIP
+  ENDDO%>
+</table>
+
+<!-- ========== BOTTOM PAGING ========== -->
+<div class="paging" align="center">
+<%IF pnPAGENO > 1%>
+   <a class="nav" href="javascript:GoPage(1)">&laquo; First</a>
+   <a class="nav" href="javascript:GoPage(<%=ALLT(STR(pnPAGENO - 1))%>)">&lsaquo; Prev</a>
+<%ENDIF%>
+
+<%lnWS = MAX(1, pnPAGENO - 5)
+  lnWE = MIN(pnPAGES, pnPAGENO + 5)%>
+
+<%IF lnWS > 1%>
+   <span>&nbsp;...&nbsp;</span>
+<%ENDIF%>
+
+<%FOR MM = lnWS TO lnWE
+   lcMM = ALLT(STR(MM))%>
+   <%IF MM = pnPAGENO%>
+      <a class="active" href="#"><%=lcMM%></a>
+   <%ELSE%>
+      <a href="javascript:GoPage(<%=lcMM%>)"><%=lcMM%></a>
+   <%ENDIF%>
+<%ENDFOR%>
+
+<%IF lnWE < pnPAGES%>
+   <span>&nbsp;...&nbsp;</span>
+<%ENDIF%>
+
+<%IF pnPAGENO < pnPAGES%>
+   <a class="nav" href="javascript:GoPage(<%=ALLT(STR(pnPAGENO + 1))%>)">Next &rsaquo;</a>
+   <a class="nav" href="javascript:GoPage(<%=ALLT(STR(pnPAGES))%>)">Last &raquo;</a>
+<%ENDIF%>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="info" align="center"><b><%=ALLT(STR(lnPERPAGE))%> per page records per page</b></div>
+<div class="version" align="right">Version: <%=pcVER%></div>
+
+</body>
+</html>

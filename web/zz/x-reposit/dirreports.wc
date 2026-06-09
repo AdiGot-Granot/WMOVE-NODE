@@ -1,0 +1,353 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Arena Reports</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitreps(i,j) {
+    // Type of Report
+    	// Report 2. Sold Estimates
+    if (j==2) 
+      { 
+	    	// Time Frame
+	    if (i==1) 
+	      { 
+			document.frmrep2.STARTDTE.value = '<%=DATE()%>';
+			document.frmrep2.ENDDTE.value = '<%=DATE()%>';
+	      }
+    	if (i==2) 
+	      { 
+			document.frmrep2.elements['STARTDTE'].value = '<%=DATE()-7%>';
+			document.frmrep2.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+	    if (i==3) 
+    	  { 
+			document.frmrep2.elements['STARTDTE'].value = '<%=DATE()-30%>';
+			document.frmrep2.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+    	document.frmrep2.action="/wc.dll?mpreposit~soldestimates~<%=pcSCR%>";
+   	    document.frmrep2.submit();
+      }
+    	// Report 3. Customers' Procures - Who purchases more?
+    if (j==3) 
+      { 
+	    	// Time Frame
+	    if (i==1) 
+	      { 
+			document.frmrep3.STARTDTE.value = '<%=DATE()%>';
+			document.frmrep3.ENDDTE.value = '<%=DATE()%>';
+	      }
+    	if (i==2) 
+	      { 
+			document.frmrep3.elements['STARTDTE'].value = '<%=DATE()-7%>';
+			document.frmrep3.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+	    if (i==3) 
+    	  { 
+			document.frmrep3.elements['STARTDTE'].value = '<%=DATE()-30%>';
+			document.frmrep3.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+    	document.frmrep3.action="/wc.dll?mpreposit~companyprocure~<%=pcSCR%>";
+   	    document.frmrep3.submit();
+      }
+    	// Report 5. Profitable Estimates vs. Wasted
+    if (j==5) 
+      { 
+	    	// Estimate Status per Company
+	    if (i==1) 
+	      { 
+			document.frmrep5.STARTDTE.value = '<%=DATE()%>';
+			document.frmrep5.ENDDTE.value = '<%=DATE()%>';
+	      }
+    	if (i==2) 
+	      { 
+			document.frmrep5.elements['STARTDTE'].value = '<%=DATE()-7%>';
+			document.frmrep5.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+	    if (i==3) 
+    	  { 
+			document.frmrep5.elements['STARTDTE'].value = '<%=DATE()-30%>';
+			document.frmrep5.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+    	document.frmrep5.action="/wc.dll?mpreposit~profitable~<%=pcSCR%>";
+   	    document.frmrep5.submit();
+      }
+	    	// Report 6. Best Viwer
+    if (j==6) 
+      { 
+	    	// Estimate Status per Company
+	    if (i==1) 
+	      { 
+			document.frmrep6.STARTDTE.value = '<%=DATE()%>';
+			document.frmrep6.ENDDTE.value = '<%=DATE()%>';
+	      }
+    	if (i==2) 
+	      { 
+			document.frmrep6.elements['STARTDTE'].value = '<%=DATE()-7%>';
+			document.frmrep6.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+	    if (i==3) 
+    	  { 
+			document.frmrep6.elements['STARTDTE'].value = '<%=DATE()-30%>';
+			document.frmrep6.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+    	document.frmrep6.action="/wc.dll?mpreposit~companyview~<%=pcSCR%>";
+   	    document.frmrep6.submit();
+      }
+    if (j==7) 
+      { 
+	    	// Transfered Leads Auto
+	    if (i==1) 
+	      { 
+			document.frmrep7.STARTDTE.value = '<%=DATE()%>';
+			document.frmrep7.ENDDTE.value = '<%=DATE()%>';
+	      }
+    	if (i==2) 
+	      { 
+			document.frmrep7.elements['STARTDTE'].value = '<%=DATE()-7%>';
+			document.frmrep7.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+	    if (i==3) 
+    	  { 
+			document.frmrep7.elements['STARTDTE'].value = '<%=DATE()-30%>';
+			document.frmrep7.elements['ENDDTE'].value = '<%=DATE()%>';
+	      }
+    	document.frmrep7.action="/wc.dll?mpreposit~AUTOLEADSWC~<%=pcSCR%>";
+   	    document.frmrep7.submit();
+      }
+	}
+
+
+function movingdirectory(SRC) {
+    window.open('/zz/reposit/'&&eval(SRC)&&'.htm','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=350,height=300');
+self.name="main"}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+<body  BGCOLOR="#4E6699">
+<div align="center">
+  <center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" height="10">
+  <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="zz/images/BotBar8.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#001E4C" height="20" colspan="2">
+    <p align="center"><b>
+    <font face="Arial Rounded MT Bold" size="4" color="#FFFFFF">Managerial 
+    Reports</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="355" colspan="2">
+	
+	<!-- Main -->
+
+    <br>
+&nbsp;<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="90%" align="center">
+      <tr>
+        <td width="100%" height="30" align="center">
+        <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="930" height="152">
+          <tr><!-- Report 1 -->
+            <form name="frmrep1" method="post">
+            <td width="154" height="32"><b><font face="Verdana" size="2">1</font></b><font face="Verdana" size="2" onclick="window.open('/wc.dll?mprep~refwc~<%=pcSCR%>','')"><b>. Advertisements</b></font></td>
+            <td width="765" height="32" align="center" colspan="9">&nbsp;</td>
+          	</form>
+          </tr>
+
+          <tr><!-- Report 2 -->
+            <form name="frmrep2" method="post">
+            <td width="154" height="32"><font face="Verdana" size="2"><b>2. Sold 
+            Estimates</b></font></td>
+            <td width="52" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(1,2)">Today</a></font></b></td>
+            <td width="49" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(2,2)">Week</a></font></b></td>
+            <td width="50" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(3,2)">Month</a></font></b></td>
+            <td width="78" height="32" align="center"><font face="Verdana"><b>
+            	<select size="1" name="Source" style="border: 1px solid #52657B; font-size:8pt; font-family:Verdana; font-weight:bold">
+             	<option selected>Source</option>
+           		<% SELECT _SOURCE
+            		SCAN %>
+	            	<option><%=ALLT(_SOURCE.SOURCE)%></option>
+    			<% ENDSCAN%>
+            	</select></b></font></td>
+            <td width="86" height="32" align="left"><font face="Verdana"><b>
+            	<select size="1" name="STATE" style="border: 1px solid #52657B; font-size:8pt; font-family:Verdana; font-weight:bold">
+             	<option selected>State</option>
+           		<% SELECT _STATE
+            		SCAN %>
+	            	<option><%=ALLT(_STATE.STATE)%></option>
+    			<% ENDSCAN%>
+            	</select></b></font></td>
+            <td width="81" height="32" align="center" bgcolor="#E7EFF7"><font face="Verdana"><b>
+            <input type="text" name="STARTDTE" size="8" value="<%=DATE()-1%>" style="border: 1px solid #52657B; "></b></font></td>
+            <td width="78" height="32" align="center" bgcolor="#E7EFF7"><font face="Verdana"><b>
+            <input type="text" name="ENDDTE" size="8" value="<%=DATE()-1%>" style="border: 1px solid #52657B; "></b></font></td>
+            <td width="95" height="32" align="center" bgcolor="#E7EFF7"><input type="button"  onclick="submitreps(4,2)" value="Submit" name="SubmitRep1" style="font-family: Verdana; font-weight: bold"></td>
+            <td width="196" height="32"><b><font face="Verdana" size="2">
+            &nbsp;Frequently sold </font><font face="Verdana" size="1">(2)</font></b></td>
+          	</form>
+          </tr>
+          <tr><!-- Report 3 -->
+            <form name="frmrep3" method="post">
+            <td width="154" height="32"><font face="Verdana" size="2"><b>3.  Customer 
+            Procure</b></font></td>
+            <td width="52" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(1,3)">Today</a></font></b></td>
+            <td width="49" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(2,3)">Week</a></font></b></td>
+            <td width="50" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(3,3)">Month</a></font></b></td>
+            <td width="78" height="32" align="center"><font face="Verdana"><b>
+            	<select size="1" name="Source" style="border: 1px solid #52657B; font-size:8pt; font-family:Verdana; font-weight:bold">
+             	<option selected>Source</option>
+           		<% SELECT _SOURCE
+            		SCAN %>
+	            	<option><%=ALLT(_SOURCE.SOURCE)%></option>
+    			<% ENDSCAN%>
+            	</select></b></font></td>
+            <td width="86" height="32" align="left">&nbsp;</td>
+            <td width="81" height="32" align="center" bgcolor="#E7EFF7"><font face="Verdana"><b>
+            <input type="text" name="STARTDTE" size="8" value="<%=DATE()-1%>" style="border: 1px solid #52657B; "></b></font></td>
+            <td width="78" height="32" align="center" bgcolor="#E7EFF7"><font face="Verdana"><b>
+            <input type="text" name="ENDDTE" size="8" value="<%=DATE()-1%>" style="border: 1px solid #52657B; "></b></font></td>
+            <td width="95" height="32" align="center" bgcolor="#E7EFF7"><input type="button"  onclick="submitreps(4,3)" value="Submit" name="SubmitRep1" style="font-family: Verdana; font-weight: bold"></td>
+            <td width="196" height="32"><b><font face="Verdana" size="2">&nbsp;Best 
+            Buyers&nbsp;</font><font face="Verdana" size="1">(3)</font></b></td>
+          	</form>
+          </tr>
+          <tr><!-- Report 5 -->
+            <form name="frmrep5" method="post">
+            <td width="154" height="32"><b><font face="Verdana" size="2">4</font></b><font face="Verdana" size="2"><b>. 
+            Profitable Est</b></font></td>
+            <td width="52" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(1,5)">Today</a></font></b></td>
+            <td width="49" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(2,5)">Week</a></font></b></td>
+            <td width="50" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(3,5)">Month</a></font></b></td>
+            <td width="78" height="32" align="center"><font face="Verdana"><b>
+            	<select size="1" name="Source" style="border: 1px solid #52657B; font-size:8pt; font-family:Verdana; font-weight:bold">
+             	<option selected>Source</option>
+           		<% SELECT _SOURCE
+            		SCAN %>
+	            	<option><%=ALLT(_SOURCE.SOURCE)%></option>
+    			<% ENDSCAN%>
+            	</select></b></font></td>
+            <td width="86" height="32" align="left"><font face="Verdana"><b>
+            <font size="1"><input type="radio" value="V1" checked name="DETAIL">Details<br><input type="radio" value="V2" name="DETAIL">Summary</font></b></font></td>
+            <td width="81" height="32" align="center" bgcolor="#E7EFF7"><font face="Verdana"><b>
+            <input type="text" name="STARTDTE" size="8" value="<%=DATE()-1%>" style="border: 1px solid #52657B; "></b></font></td>
+            <td width="78" height="32" align="center" bgcolor="#E7EFF7"><font face="Verdana"><b>
+            <input type="text" name="ENDDTE" size="8" value="<%=DATE()-1%>" style="border: 1px solid #52657B; "></b></font></td>
+            <td width="95" height="32" align="center" bgcolor="#E7EFF7"><input type="button"  onclick="submitreps(4,5)" value="Submit" name="SubmitRep1" style="font-family: Verdana; font-weight: bold"></td>
+            <td width="196" height="32"><b><font face="Verdana" size="2">
+            &nbsp;Profitable Vs. Wasted&nbsp;</font><font face="Verdana" size="1">(5)</font></b></td>
+          	</form>
+          </tr>
+          <tr><!-- Report 6 -->
+          </tr>
+          <tr>
+            <td width="154" height="32"><font face="Verdana" size="2"><b>6. 
+            Trans Leads Auto</b></font></td>
+            <td width="52" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(1,7)">Today</a></font></b></td>
+            <td width="49" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(2,7)">Week</a></font></b></td>
+            <td width="50" height="32" align="center"><b><font face="Verdana" size="2"><a href="javascript: submitreps(3,7)">Month</a></font></b></td>
+            <td width="78" height="32" align="center"><font face="Verdana"><b>
+            	<select size="1" name="Source" style="border: 1px solid #52657B; font-size:8pt; font-family:Verdana; font-weight:bold">
+             	<option selected>Source</option>
+           		<% SELECT _SOURCE
+            		SCAN %>
+	            	<option><%=ALLT(_SOURCE.SOURCE)%></option>
+    			<% ENDSCAN%>
+            	</select></b></font></td>
+            <td width="86" height="32" align="left">&nbsp;</td>
+            <td width="81" height="32" align="center" bgcolor="#E7EFF7"><font face="Verdana"><b>
+            <input type="text" name="STARTDTE" size="8" value="<%=DATE()-1%>" style="border: 1px solid #52657B; "></b></font></td>
+            <td width="78" height="32" align="center" bgcolor="#E7EFF7"><font face="Verdana"><b>
+            <input type="text" name="ENDDTE" size="8" value="<%=DATE()-1%>" style="border: 1px solid #52657B; "></b></font></td>
+            <td width="95" height="32" align="center" bgcolor="#E7EFF7"><input type="button"  onclick="submitreps(4,7)" value="Submit" name="SubmitRep1" style="font-family: Verdana; font-weight: bold"></td>
+            <td width="196" height="32"><b><font face="Verdana" size="2">&nbsp;Trans Leads Auto&nbsp;</font><font face="Verdana" size="1">(7)&nbsp;</font></b></td>
+         	</tr>
+          <tr>
+            <td width="154" height="32">
+            <p dir="ltr"><font face="Verdana" size="2"><b>7. Routine (Auto)</b></font></td>
+            <td width="52" height="32" align="center"><b><font face="Verdana" size="2">
+            <a href="/wc.dll?mpreposit~ROUTINETABLEWC~<%=pcSCR%>">Current</a></font></b></td>
+            <td width="49" height="32" align="center">&nbsp;</td>
+            <td width="50" height="32" align="center">&nbsp;</td>
+            <td width="78" height="32" align="center">&nbsp;</td>
+            <td width="86" height="32" align="left">&nbsp;</td>
+            <td width="81" height="32" align="center" bgcolor="#E7EFF7">&nbsp;</td>
+            <td width="78" height="32" align="center" bgcolor="#E7EFF7">&nbsp;</td>
+            <td width="95" height="32" align="center" bgcolor="#E7EFF7">&nbsp;</td>
+            <td width="196" height="32"><b><font face="Verdana" size="2">&nbsp;Routine Table</font><font face="Verdana" size="1"> (8)</font></b></td>
+          </tr>
+          <tr><!-- Report 7 -->
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+</td>
+</tr>
+</table>
+ &nbsp;<p>&nbsp;</p>
+    <p>
+
+	<!-- Command Buttons -->
+
+
+<!-- frame table -->
+</td>
+</tr>
+<tr>
+    <td width="50%" BGCOLOR="#001E4C" height="15">
+      <font color="#FFFFFF">
+      <b>User:</b></font></td>
+    <td width="50%" BGCOLOR="#001E4C" height="15">
+      <p align="right"><font color="#FFFFFF"><b><%=datetime()%>&nbsp;&nbsp;</b></font></td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="zz/images/botBarep.gif" width="100%" height="14"></td>
+ </tr>
+  </table>
+  </center>
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Print Trip</title>
+<style>
+	p.pagebreak {   page-break-after: always;}				  	 	 	 	
+</style>
+
+</head>
+
+<body>    
+<table border="2" align="center" style="border-collapse: collapse" width="100%" bordercolor="#000000">
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" align="center" width="100%">
+    <tr>
+     <td width="100%" align="center"><a href="javascript: window.print()"><b><font size="2" face="Verdana">Print Trip</a></font></b>
+<% IF pcCUSTNO<>'UNLIMITED'%>     
+  <table border="0" width="98%" cellspacing="0" align="center" style="border-collapse: collapse" cellpadding="0">
+    <tr>
+	 <td width="100%" align="center"><font face="verdana" color="#083484" size="4"><b><%=pcCOMPANY%></font></b></td>
+   </tr>    
+    <tr>
+	 <td width="100%" align="center"><font face="verdana" size="2"><b><%=pcADD1%><BR><%=pcADD2%></b></font></td>
+   </tr>
+    <tr>
+	 <td width="100%" align="center"><b><font face="verdana" size="2"><%='Phone: '+pcTOLLFREE%><br>
+	 <%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%>&nbsp;&nbsp;<%=IIF(EMPTY(pcICC),"","ICC MC: "+pcICC)%>&nbsp;&nbsp;<%=IIF(!EMPTY(pcREGISTER),"Registration #: "+pcREGISTER,"")%></font></b></td>
+   </tr>	
+  </table>
+<%ELSE%>
+<BR><BR>______________________________________________
+<%ENDIF%>  
+  <%SELECT _TRP%>
+<BR>
+  <table border="1" align="center" bordercolor="#000000" style="border-collapse: collapse" width="98%" cellpadding="2">
+   <tr>
+    <td width="15%"><b><font face="Verdana" size="2">Depart Date/Time</font></b></td>
+    <td width="12%"><b><font face="Verdana" size="2">Trip #/Route</font></b></td>
+    <td width="7%"><b><font face="Verdana" size="2">Truck #</font></b></td>
+    <td width="9%"><b><font face="Verdana" size="2">Volume</font></b></td>
+    <td width="13%"><b><font face="Verdana" size="2">Driver & Phone</font></b></td>
+    <td width="13%"><b><font face="Verdana" size="2">Pads/Blankets</font></b></td>
+    <td width="6%"><b><font face="Verdana" size="2">Deposit</font></b></td>
+    <td width="9%"><b><font face="Verdana" size="2">Trip Miles</font></b></td>
+   </tr>
+   <tr>
+    <td width="15%"><font face="Verdana" color="#083484" size="2"><b><%=ALLT(CTRIPDTE)%><br><%=ALLT(TRIPTME)%></b></font></td>
+    <td width="12%"><font face="Verdana" color="#083484" size="2"><b><%=ALLT(TRIPNO)%><br><%=ALLT(TRIPROUTE) %>&nbsp;</b></font></td>
+    <td width="7%"><font face="Verdana" color="#083484" size="3"><b><%=ALLT(TRUCKNO)%>&nbsp;</b></font></td>
+    <td width="9%"><font face="Verdana" color="#083484" size="2"><b><%=ALLT(STR(CF))+' cf'%><BR><%=ALLT(STR(LBS))+' lbs'%>&nbsp;</b></font></td>
+    <td width="13%"><b><font face="Verdana" color="#083484" size="2"><%=ALLT(TRIPNAME) %><br><%=ALLT(PHONE) %>&nbsp;</font></b></td>
+    <td width="13%"><font face="Verdana" color="#083484" size="2"><b><%=ALLT(STR(PADS))+'-Given'%><br>_______-Return&nbsp;</b></font></td>
+    <td width="6%"><font face="Verdana" color="#083484" size="2"><b><%='$'+ALLT(STR(DEPOSIT,8,2))%></b></font>&nbsp;</td>
+    <td width="9%"><font face="Verdana" color="#083484" size="2"><b><%=IIF(MILESTART >0,ALLT(STR(MILESTART))+' -Start','') %><br><%=IIF(MILEEND >0,ALLT(STR(MILEEND))+' -End','') %></b></font></td>
+  </tr>
+  </table>     
+  <br>
+  <table border="1" align="center" bordercolor="#000000" style="border-collapse: collapse" width="98%" cellpadding="2">
+   <tr>
+    <td width="1%"><b><font face="Verdana" style="font-size: 9pt">No.</font></b></td>
+    <td width="13%"><b><font face="Verdana" style="font-size: 9pt">Job No.</font></b></td>
+    <td width="16%"><b><font face="Verdana" style="font-size: 9pt">Addr/From</font></b></td>
+    <td width="16%"><b><font face="Verdana" style="font-size: 9pt">Addr/To</font></b></td>
+    <td width="6%" align="center"><font face="Verdana" style="font-size: 9pt"><b>Volume<br>on Truck</b></font></td>
+    <td width="6%" align="center"><b><font face="Verdana" style="font-size: 9pt">Carrier<br>Rate (cf)</font></b></td>
+    <td width="5%"><b><font face="Verdana" style="font-size: 9pt">Balance</font></b></td>
+    <td width="5%"><b><font face="Verdana" style="font-size: 9pt">Stg. Bal</font></b></td>
+    <td width="6%"><b><font face="Verdana" style="font-size: 9pt">Drop Date</font></b></td>
+   </tr>
+  <%SELECT _TRIPS
+    SCAN %>
+   <tr>
+    <td width="1%" rowspan="2"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=ALLT(STR(SHSEQ))%></b></font></td>
+    <td width="13%" valign="top"><font face="Verdana" color="#083484" style="font-size: 9pt"><b><%=ALLT(DEPT)+ALLT(ORDNO)%><br><BR><%=ALLT(SNAME)%></b></font></td>
+    <td width="16%"><font face="Verdana" style="font-size: 9pt"><%=FROMADD%><BR><%=ALLT(SPHONE1)%>&nbsp;<%=ALLT(SPHONE2)%></font></td>
+    <td width="16%"><font face="Verdana" style="font-size: 9pt"><%=TOADD%><BR><%=ALLT(RPHONE1)%>&nbsp;<%=ALLT(RPHONE2)%></font></td>
+    <td width="6%"><font face="Verdana" style="font-size: 9pt"><%=ALLT(STR(TOTALCF))+' cf'%><br><%='('+ALLT(STR(TOTALLBS))+' lbs)'%></font></td>
+    <td width="6%" align="center"><font face="Verdana" style="font-size: 9pt"><%=IIF(AGPERCF>0,'$'+ALLT(STR(AGPERCF,8,2)),'')%></font>&nbsp;</td>
+    <td width="5%" align="right"><font face="Verdana" color="#EF3821" style="font-size: 9pt"><b><%='$'+ALLT(STR(BALANCE,8,2))%></b></font>&nbsp;</td>
+    <td width="5%" align="right"><font face="Verdana" color="#EF3821" style="font-size: 9pt"><b><%=IIF(BALSTG > 0,'$'+ALLT(STR(BALSTG,10,2)),'')%></b></font>&nbsp;</td>
+    <td width="6%"><font face="Verdana" style="font-size: 9pt"><%=ALLT(DTOC(SHDROPDTE))%></font>&nbsp;</td>
+  </tr>
+   <tr>
+    <td width="9%" bgcolor="#F7F7E7"><font face="Verdana" color="#003842" style="font-size: 9pt"><b>&nbsp;<%=ALLT(LOCATION)%></b></font></td>
+    <td width="16%" bgcolor="#F7F7E7"><font face="Verdana" color="#003842" style="font-size: 9pt"><b>&nbsp;<%=ALLT(LOT1)%></b></font></td>
+    <td width="16%" bgcolor="#F7F7E7"><font face="Verdana" color="#003842" style="font-size: 9pt"><b>&nbsp;<%=ALLT(LOT2)%></b></font></td>
+    <td width="23%" bgcolor="#F7F7E7" colspan="4"><font face="Verdana" color="#003842" style="font-size: 9pt">
+    <b>&nbsp;<%=ALLT(CRATES1)%>&nbsp;<%=IIF(STGPADS=0,'',ALLT(STR(STGPADS))+' Pads')%></b></font></td>
+  </tr>
+  <% ENDSCAN%>
+  </table>
+  <table border="0" align="center" style="border-collapse: collapse" width="98%" cellpadding="4">
+   <tr>
+    <td width="47%" height="51" valign="top" rowspan="4"><font size="2" face="Verdana"><u>Trip Remarks:</u><br><%=_TRP.NOTES%>
+    <%=IIF(EMPTY(_TRP.REMARKS),'','<BR>'+ALLT(_TRP.REMARKS))%></font></td>
+    <td width="3%" height="17"><font face="Verdana" size="2">Total CF Loaded:</font></td>
+    <td width="3%" height="17" align="right"><font face="Verdana" size="3"><b><%=pcTOTALCF%></b>&nbsp;CF</font></td>
+    <td width="9%" height="17"></td>
+   </tr>   
+   <tr>
+    <td width="3%" height="17"><font size="2" face="Verdana">Move Balance:</font></td>
+    <td width="5%" height="17" align="right"><font face="Verdana" color="#EF3821" size="3"><B><%=pcBALANCE%></b></font>&nbsp;</td>
+    <td width="12%" height="17"></td>
+   </tr>
+   <tr>
+    <td width="3%" height="17"><font size="2" face="Verdana">Storage Balance:</font></td>
+    <td width="5%" height="17" align="right"><font face="Verdana" size="3"><B><%=pcBALSTG%></b></font>&nbsp;</td>
+    <td width="12%" height="17"></td>
+   </tr>
+   <tr>
+    <td width="9%" height="17"><font size="2" face="Verdana">Total:</font></td>
+    <td width="7%" height="17" align="right"><font face="Verdana" color="#008000" size="3"><B><%=pcTOTAL%></b></font>&nbsp;</td>
+    <td width="14%" height="17"></td>
+  </tr>
+  </table>     
+<div align="center">
+  <center>
+  <table border="0" style="border-collapse: collapse" width="98%" cellpadding="4">
+  <% IF plAGENT=.F. %>
+   <tr>
+    <td width="100%" height="30">&nbsp;<b><U><%=pcTOTALCF%></U></b>&nbsp;CUFT $_______________&nbsp;per CF&nbsp;=&nbsp;$_____________</td>
+   </tr>
+   <tr>
+    <td width="100%" height="30">Total Balance Collected:&nbsp;<B><u><%=pcBALANCE%></u></b></td>
+   </tr>
+   <tr>
+    <td width="100%" height="30">Total Balance Due To:&nbsp;______________</td>
+  </tr>
+   <tr>
+    <td width="100%" height="30">Total Amount Due:&nbsp;$_____________</td>
+  </tr>
+  <%ENDIF%>
+   <tr>
+    <td width="100%"><u>Driver/Carrier:</u><br>1.When loading, please check the inventory to make sure all items are loaded.<br>
+    2.Please call the customer 24-48 hrs prior to delivery.<br>3.By signing this trip sheet, Driver/Carrier must comply with all charges and fees.</td>
+  </tr>    
+   <tr>
+    <td width="100%"><br>Driver 
+    Name&nbsp;_______________________&nbsp;Signature&nbsp;______________________&nbsp;&nbsp;Date&nbsp;___________</td>
+  </tr>    
+  </table>
+  </center>
+</div>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+<% IF plAGENT %><!---TERMS:AGENTS,AGENT ON JOB+PRICE(PER CF,LBS,FLAT),!PAID AGENT,ONLY DLV,JOB COMPLETION --->
+<p class="pagebreak">&nbsp;</p>
+<table border="2" align="center" style="border-collapse: collapse" width="100%" bordercolor="#000000">
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<% IF pcCUSTNO<>'UNLIMITED'%>     
+  <table border="0" width="100%" cellspacing="0" style="border-collapse: collapse" cellpadding="0">
+    <tr>
+	 <td width="100%" align="center"><font face="verdana" color="#083484" size="4"><b><%=pcCOMPANY%></font></b></td>
+   </tr>    
+    <tr>
+	 <td width="100%" align="center"><font face="verdana" size="2"><b><%=pcADD1%>&nbsp;<%=pcADD2%></b></font></td>
+   </tr>
+    <tr>
+	 <td width="100%" align="center"><b><font face="verdana" size="2"><%='Phone: '+pcTOLLFREE%><br>
+	 <%=IIF(EMPTY(pcDOT),"","US DOT: "+pcDOT)%>&nbsp;<%=IIF(EMPTY(pcICC),"","ICC MC: "+pcICC)%>&nbsp;<%=IIF(!EMPTY(pcREGISTER),"Registration #: "+pcREGISTER,"")%></font></b></td>
+   </tr>	
+  </table>
+<%ENDIF%>    
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" align="center" width="100%">
+  <tr>
+    <td width="100%" align="center" height="30" valign="bottom"><b><font face="Verdana" size="3"><U>Carrier Billing</u> - <%=pcAGNAME%></font></b></td>
+ </tr>
+</table>     
+  <table border="1" align="center" bordercolor="#000000" style="border-collapse: collapse" width="98%" cellpadding="2">
+   <tr>
+    <td width="3%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Job No.</font></b></td>
+    <td width="4%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">DLV. Date</td>
+    <td width="2%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Trip #</font></b></td>
+    <td width="6%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Cust. Name</font></b></td>
+    <td width="5%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Actual on Truck</font></b></td>
+    <td width="4%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Comm. Option</font></b></td>
+    <td width="4%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Total Comm.</font></b></td>
+    <td width="5%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Cust. Balance</font></b></td>
+    <td width="5%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt">Balance to Pay</font></b></td>
+   </tr>
+  <%SELECT _AG
+    SCAN%>
+   <tr>
+    <td width="3%" ALIGN="LEFT">&nbsp;<font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=ALLT(DEPT)+ALLT(ORDNO)%></b></font></td>
+    <td width="4%" ALIGN="CENTER"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=DTE%></b></font></td>
+    <td width="2%" ALIGN="CENTER"><b><font face="Verdana" style="font-size: 9pt"><%=ALLT(TRIPNO)%></font></b>&nbsp;</td>
+    <td width="6%"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=ALLT(SNAME)%></b></font></td>
+    <td width="5%" ALIGN="CENTER"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=ALLT(STR(TOTALCF))+' cf'%></b></font></td>
+    <td width="4%" align="right"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;
+    <% IF !EMPTY(AGPERCENT)%><%=ALLT(STR(AGPERCENT,6,2))+' %'%><% ENDIF%>
+    <% IF !EMPTY(AGPERCF)%><%='$'+ALLT(STR(AGPERCF,6,2))+' /cf'%><% ENDIF%>
+    <% IF !EMPTY(AGPERLBS)%><%='$'+ALLT(STR(AGPERLBS,6,2))+' /lbs'%><% ENDIF%>
+    <% IF !EMPTY(AGFLAT)%><%='$'+ALLT(STR(AGFLAT))+' (flat)'%><% ENDIF%>
+    </B></FONT></td>
+    <td width="4%" align="right"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%=IIF(COMMTOTAL=0,' ','$'+ALLT(STR(COMMTOTAL,10,2)))%></b></font></td>
+    <td width="5%" align="right"><font face="Verdana" style="font-size: 9pt"><b>&nbsp;<%='$'+ALLT(STR(BALANCE+BALSTG,8,2))%></b></font></td>
+    <td width="5%" align="right"><font face="Verdana" style="font-size: 9pt"><b><%=IIF(AGBALANCE<0,'*','**')%>&nbsp;&nbsp;&nbsp;<%='$'+ALLT(STR(AGBALANCE,8,2))%></b></font></td>
+   </tr>
+   <% ENDSCAN%>
+   <tr>
+    <td width="38%" ALIGN="RIGHT" colspan="9">&nbsp;</td>
+  </tr>
+   <tr>
+    <td width="33%" ALIGN="RIGHT" colspan="8"><b><font face="Verdana" size="2">Balance:&nbsp;</b></font></td>
+    <td width="5%" align="right"><b><font face="Verdana" size="2">&nbsp;<%='$'+ALLT(STR(pnAGBALANCE,8,2))%></b></font></td>
+  </tr>
+   <tr>
+    <td width="13%" colspan="4"><font face="Verdana" size="2">** Payments to Our Company</font></td>
+    <td width="25%" colspan="5"><font face="Verdana" size="2">* Payments to Agent/Carrier</font></td>
+  </tr>  
+  </table><br><p align="left"><font face="Verdana" size="2">&nbsp;&nbsp;Driver Signature&nbsp;________________________________
+    &nbsp;&nbsp;Date&nbsp;________________</font></p></td>
+  </tr>
+</table> 
+    </td>
+ </tr>
+</table>
+<% ENDIF%>
+</body>
+</html>

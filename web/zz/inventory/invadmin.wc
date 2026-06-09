@@ -1,0 +1,11 @@
+<html>
+
+<FRAMESET rows="40" border="0" frameborder="0">
+	<FRAMESET cols='197,*'>
+		<FRAME NAME="MENU"  SRC="/wc.dll?mpscripts~itemsgroup~<%=pcSCR%>" NORESIZE>
+		<FRAME NAME="MainWindow" SRC="/wc.dll?mpscripts~itemslistWc~<%=pcSCR%>~LR">		
+	</FRAMESET>
+    <noframes>
+    </noframes>
+</FRAMESET>
+</html>

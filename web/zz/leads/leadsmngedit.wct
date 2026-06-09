@@ -1,0 +1,312 @@
+FUNCTION __LEADSMNGEDIT
+TEXT<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<TITLE>Leads Mng Edit</TITLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function submitFunction(i) 
+  {
+    if (i==1) 
+     { 
+       document.theForm.action="/wc.dll?mpleads~LeadsMngEditWc~<<pcSCR>>";
+       document.theForm.submit();
+     }
+  }
+
+function exitframe() {
+	parent.location.href=('javascript:window.close()');
+	}
+
+
+function submitFunctionxxx(A,B) {
+ //alert(A);
+ //alert(B);
+  document.theForm.action='/wc.dll?mpleads~LeadsManagementAdminWc~&MODULE='+A+'&VALUE='+B;
+   document.theForm.submit(); 
+  }    
+
+function ViewList(V,R,P,M) {
+//alert('<<pcCUSTNO>>');
+//alert(V);
+//alert(R);
+//alert(P);
+
+  window.open('/wc.dll?mpleads~LeadsMngViewList~<<pcSCR>>~<<pcCUSTNO>>~'+V+'~'+R+'~'+P+'~'+M,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=850,height=550');
+  }    
+
+function DelayZero(msid) {
+ // alert(msid);
+  window.open('/wc.dll?mpleads~DelayZero~'+msid,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=5,height=5');
+ //window.location.href=('wc.dll?mpleads~DelayZero~'+msid);
+  }    
+
+function Del_Open(msid) {
+ // alert(msid);
+  window.open('/wc.dll?mpleads~Del_Open~'+msid,'EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=5,height=5');
+ //window.location.href=('wc.dll?mpleads~DelayZero~'+msid);
+  }    
+
+function RecentZipCode() {
+  window.open('/wc.dll?mputil~RecentNewZipcode','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=850,height=550');
+  }    
+
+function RecentDistance() {
+  window.open('/wc.dll?mputil~NewDistance30Days','EANITHING','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=no,scrollbars=yes,width=850,height=550');
+  }    
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 100;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#4E6699">
+<form name="theForm" method="POST">
+<input type="hidden" name="CUSTNO" value="<<pcCUSTNO>>">   
+
+<table  bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="95%">
+  <tr>
+    <td width="100%" align="center" bgcolor="#DFDFDF"><b><font face="Arial">Leads Management Reports</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" valign="top">
+<table border="1"  align="center" cellpadding="3" style="border-collapse: collapse" bordercolor="#6B8AAD" width="95%">
+  <tr>
+    <td width="34%" align="center" VALIGN="TOP">
+<!--DATES-->
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="50%"><input class="chkon" type="radio" name="DATE" value="D0" <<IIF(pnDAY=0,'checked','')>>><font face="Arial" size="2">Today</font></td>
+    <td width="15%"><i><font face="Arial" size="2">From:</font></i> </td>
+    <td width="35%">
+    <input name="DATE1" size="10"></td>
+ </tr>
+  <tr>
+    <td width="50%"><input class="chkon" type="radio" name="DATE" value="D1" <<IIF(pnDAY=1,'checked','')>>><font face="Arial" size="2">Yesterday</font></td>
+    <td width="15%"><font face="Arial" size="2"><i>To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></font></font></td>
+    <td width="35%"><input name="DATE2" size="10"></td>
+ </tr>
+  <tr>
+    <td width="50%"><input class="chkon" type="radio" name="DATE" value="D2" <<IIF(pnDAY=3,'checked','')>>><font face="Arial" size="2">Last 3 Days</font></td>
+    <td width="25%">From:</td>
+    <td width="25%"><font color="#008000"><<pcDATE1>></font></td>
+ </tr>
+  <tr>
+    <td width="50%"><input class="chkon" type="radio" name="DATE" value="D3" <<IIF(pnDAY=7,'checked','')>>><font face="Arial" size="2">Last 7 Days</font></td>
+    <td width="25%">to</td>
+    <td width="25%"><font color="#008000"><<pcDATE2>></font></td>
+ </tr> 
+  <tr>
+    <td width="50%"><input class="chkon" type="radio" name="DATE" value="D4" <<IIF(pnDAY=15,'checked','')>>><font face="Arial" size="2">Last 15 Days</font></td>
+    <td width="50%" colspan="2">&nbsp;</td>
+ </tr>
+  <tr>
+    <td width="50%"><input class="chkon" type="radio" name="DATE" value="D5" <<IIF(pnDAY=30,'checked','')>>><font face="Arial" size="2">Last 30 Days</font></td>
+    <td width="50%" colspan="2">
+         <input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(1)" value="Submit"></td>
+ </tr>
+</table>
+<!--DATES-->
+    </td>
+    <td width="33%" VALIGN="TOP">
+<!--SORT-->
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="40%">
+  <tr>
+    <td width="50%" height="25" align="center"><font face="Arial" onclick="RecentZipCode()" style="cursor:pointer;" color="#0000FF"><U>Recent Zip Code</U></font></td>
+ </tr>
+  <tr>
+    <td width="50%" height="25" align="center"><font face="Arial" onclick="RecentDistance()" style="cursor:pointer;" color="#0000FF"><U>Recent Distance</U></font></td>
+ </tr> 
+  </table>
+<!--SORT-->  
+  </td>
+ </tr>
+</table>
+    <center>
+    <br>
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+      <tr>
+        <td width="21%">&nbsp;<b><font color="#008000" face="Verdana"><<pcCUSTNO>></font></b></td>
+        <td width="66%">&nbsp;<b><font color="#008000" face="Verdana"><<pcCOMPANY>>&nbsp;&nbsp;<<pcSTATE>></font></b></td>
+        <td width="13%"><p align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </center>
+    <br>
+<table border="1" align="center" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#6B8AAD" width="98%">
+  <tr>
+    <td width="13%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">Date</font></b></td>
+    <td width="12%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">
+    Download</font></b></td>
+    <td width="13%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">Trans<br>POP3</font></b></td>
+    <td width="11%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">Trans<br>EST</font></b></td>
+    <td width="8%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">Others</font></b></td>
+    <td width="13%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">Bad<br>Format</font></b></td>
+    <td width="11%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">Dup<br>Leads</font></b></td>
+    <td width="14%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">No Auto<br>Info</font></b></td>
+    <td width="5%" align="center" bgcolor="#FFFFDF"><b><font face="Arial" size="2">No Name/Email</font></b></td>
+ </tr>
+  ENDTEXT SELECT _SUM7
+    SCAN TEXT
+  <tr>
+    <td width="13%" align="center"><font face="Arial" size="2"><<DTE>></font>&nbsp;</td>
+    <td width="12%" align="center"><font face="Arial" size="2"><<ALLT(STR(ALL))>></font>&nbsp;</td>
+    <td width="13%" align="center"><font face="Arial" size="2"><<ALLT(STR(POP3))>></font>&nbsp;</td>
+    <td width="11%" align="center"><font face="Arial" size="2"><<ALLT(STR(EST))>></font>&nbsp;</td>
+    <td width="8%" align="center"><font face="Arial" size="2"><<ALLT(OTHERS)>></font>&nbsp;</td>
+    <td width="13%" align="center"><font face="Arial" size="2"><<ALLT(N2)>></font>&nbsp;</td>
+    <td width="11%" align="center"><font face="Arial" size="2"><<ALLT(STR(N3))>></font>&nbsp;</td>
+    <td width="14%" align="center"><font face="Arial" size="2"><<ALLT(N4)>></font>&nbsp;</td>
+    <td width="5%" align="center"><font face="Arial" size="2"><<ALLT(N5)>></font>&nbsp;</td>
+ </tr>
+ ENDTEXTENDSCANTEXT
+ ENDTEXT SELECT _SUM1 TEXT
+ <tr>
+    <td width="13%" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="12%" align="center" bgcolor="#C0C0C0"><font face="Arial" size="2"><<ALLT(STR(ALL))>></font>&nbsp;</td>
+    <td width="13%" align="center" bgcolor="#C0C0C0"><font face="Arial" size="2"><<ALLT(STR(POP3))>></font>&nbsp;</td>
+    <td width="11%" align="center" bgcolor="#C0C0C0"><font face="Arial" size="2"><<ALLT(STR(EST))>></font>&nbsp;</td>
+    <td width="8%" align="center" bgcolor="#C0C0C0"><font face="Arial" size="2"><<ALLT(STR(OTHERS))>></font>&nbsp;</td>
+    <td width="13%" align="center" bgcolor="#C0C0C0"><font face="Arial" size="2"><<ALLT(STR(N2))>></font>&nbsp;</td>
+    <td width="11%" align="center" bgcolor="#C0C0C0"><font face="Arial" size="2"><<ALLT(STR(N3))>></font>&nbsp;</td>
+    <td width="14%" align="center" bgcolor="#C0C0C0"><font face="Arial" size="2"><<ALLT(STR(N4))>></font>&nbsp;</td>
+    <td width="5%" align="center" bgcolor="#C0C0C0"><font face="Arial" size="2"><<ALLT(STR(N5))>></font>&nbsp;</td>
+ </tr>
+
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber2">
+  <tr>
+    <td width="33%">&nbsp;</td>
+    <td width="33%" align="center"><font color="#008000"><<pcDATE1>>&nbsp;-&nbsp;<<pcDATE2>></FONT></td>
+    <td width="34%">&nbsp;</td>
+  </tr>
+</table>
+<!--Providers,Resources,Procedures -->
+<div align="center">
+  <center>
+<table border="1" style="border-collapse: collapse" bordercolor="#6B8AAD" width="98%">
+  <tr>
+    <td align="center" bgcolor="#FFFFDF" width="59"><font FACE="Arial" size="2"><b>Prov ID</b></font></td>
+    <td align="center" bgcolor="#FFFFDF" width="196"><font FACE="Arial" size="2"><b>Provider Name</b></font></td>
+    <td align="center" bgcolor="#FFFFDF" width="55"><font FACE="Arial" size="2"><b>Count</b></font></td>
+    <td align="center" bgcolor="#FFFFDF" width="77"><font FACE="Arial" size="2"><b>Res. ID</b></font></td>
+    <td align="center" bgcolor="#FFFFDF" width="79"><font FACE="Arial" size="2"><b>Proc. ID</b></font></td>
+    <td align="center" bgcolor="#FFFFDF" width="59"><b><font size="2">Subject</font></b></td>
+    <td align="center" bgcolor="#FFFFDF" width="247"><font FACE="Arial" size="2"><b>Resource Name</b></font></td>
+ </tr> 
+    ENDTEXTSELECT _VIEW
+      SCAN TEXT
+  <tr>
+     <td width="59" height="25" align="center"><font FACE="Arial" size="2">
+        <font face="Arial" onclick="ViewList('<<ALLT(STR(ProvId))>>','','','')" style="cursor:pointer;" color="#0000FF">
+       <b><U><<ALLT(STR(ProvId))>></U></b></font>&nbsp;</td>
+     <td width="196" height="25" align="center"><font FACE="Arial" size="2"><<PNAME>></font></td>
+     <td width="55" height="25" align="center"><font FACE="Arial" size="2"><<ALLT(STR(COUNT))>></font></td>
+     <td width="77" height="25" align="center"><font FACE="Arial" size="2">
+        <font face="Arial" onclick="ViewList('','<<ALLT(STR(ResourceId))>>','','')" style="cursor:pointer;" color="#0000FF">
+      <b><U><<ALLT(STR(ResourceId))>></U></b></font>&nbsp;</td>
+     <td width="79" height="25" align="center"><font FACE="Arial" size="2"><font face="Arial" onclick="ViewList('','','<<ALLT(STR(ProcedureId))>>','')" style="cursor:pointer;" color="#0000FF"><b><U><<ALLT(STR(ProcedureId))>></U></b></font>&nbsp;</td>
+     <td width="59" height="25" align="center"><font FACE="Arial" size="2"><font face="Arial" onclick="ViewList('','','<<ALLT(STR(ProcedureId))>>','99')" style="cursor:pointer;" color="#0000FF"><b><U>subject</U></b></font>&nbsp;</td>
+     <td width="247" height="25" align="center"><font FACE="Arial" size="2"><<RNAME>></font></td>
+  </tr> 
+   ENDTEXTENDSCAN TEXT
+   <tr>
+     <td width="59" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="196" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="55" height="25" align="center" bgcolor="#C0C0C0"><<ALLT(STR(pnCOUNT))>>&nbsp;</td>
+     <td width="77" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="79" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="59" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="247" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+  </tr> 
+   </td>
+  </tr>
+</table>
+  </center>
+</div>
+<!--end Providers,Resources,Procedures -->
+<BR>
+<!--Msid -->
+<div align="center">
+  <center>
+<table border="1" style="border-collapse: collapse" bordercolor="#6B8AAD" width="760">
+  <tr>
+    <td align="center" bgcolor="#FFFFDF" width="64"><b>
+    <font face="Arial" size="2">CustNo</font></b></td>
+    <td align="center" bgcolor="#FFFFDF" width="31"><b>
+    <font face="Arial" size="2">Dept</font></b></td>
+    <td align="center" bgcolor="#FFFFDF" width="92"><b>
+    <font face="Arial" size="2">Leads</font></b></td>
+    <td align="center" bgcolor="#FFFFDF" width="24"><b>
+    <font face="Arial" size="2">MsId</font></b></td>
+    <td align="center" bgcolor="#FFFFDF" width="29"><b>
+    <font face="Arial" size="2">Prod</font></b></td>
+    <td width="21" height="25" align="center"><font FACE="Arial" size="2">
+        <font face="Arial" onclick="DelayZero('ALL')" style="cursor:pointer;" color="#0000FF">
+      <b><U>Delay</U></b></font></td>
+    <td width="34" height="25" align="center"><u><b>
+    <font face="Arial" size="2" >Email<br>Status</font></b></u></td>
+   <td align="center" bgcolor="#FFFFDF" width="245"><b><font face="Arial" size="2">Mail Server / Username / Password</font></b></td>
+ </tr> 
+    ENDTEXTSELECT _MSID
+      SCAN TEXT
+  <tr>
+     <td width="64" height="25"><font FACE="Arial" size="2"><b><<CUSTNO>></b></font>&nbsp;</td>
+     <td width="31" height="25" align="center"><font FACE="Arial" size="2"><<DEPT>></font></td>
+     <td width="92" height="25" align="center"><font FACE="Arial" size="2">
+     <font face="Arial" onclick="ViewList('','','','<<ALLT(STR(MsId))>>')" style="cursor:pointer;" color="#0000FF">
+      <b><U><<ALLT(STR(Leads))>></U></b></font></td>
+     <td width="24" height="25" align="center"><font FACE="Arial" size="1"><<ALLT(STR(MsId))>></font></td>
+     <td width="29" height="25" align="center"><font face="Arial" size="2"><<ALLT(PROD)>></font></td>
+     <td width="21" height="25" align="center"><font FACE="Arial" size="2"><font face="Arial" onclick="DelayZero('<<ALLT(STR(MsId))>>')" style="cursor:pointer;" color="#0000FF"><b><U><<IIF(DELAY=0,'',ALLT(STR(DELAY)))>></U></b></font></td>
+      <td width="34" height="25" align="center"><font FACE="Arial" size="2"><B><U><font face="Arial" onclick="Del_Open('<<ALLT(STR(MsId))>>')" style="cursor:pointer;" color="#<<IIF(DEL,'FF0000','0000FF')>>"><<IIF(DEL,'Undelete','Delete')>></font></U><<IIF(ACTIVE,'<BR>Active','<BR>Inactive')>></B></td>
+     <td width="245" height="25" ><font FACE="Arial" size="2"><<MAILSERVER>><br><<USERNAME>><br><<PASSWORD>>&nbsp;&nbsp;<b><font color="#FF0000"><<IIF(DUPEMAIL,'(block duplicate email)','')>></font></b></font></td>
+  </tr> 
+   ENDTEXTENDSCAN TEXT
+   <tr>
+     <td width="64" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="31" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="92" height="25" align="center" bgcolor="#C0C0C0"><<ALLT(STR(pnLEADS))>>&nbsp;</td>
+     <td width="24" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="29" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="21" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="34" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+     <td width="245" height="25" align="center" bgcolor="#C0C0C0">&nbsp;</td>
+  </tr> 
+   </td>
+  </tr>
+</table>
+  </center>
+</div>
+<!--end Msid -->
+    </td>
+  </tr>
+  <tr>
+    <td width="742" bgcolor="#FFEFCC">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="742" height="18" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>ENDTEXT

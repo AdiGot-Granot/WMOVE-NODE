@@ -1,0 +1,48 @@
+<html>
+
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta http-equiv="Content-Language" content="en-us">
+<title>Moving System</title>
+</head>
+
+<body bgcolor="#4E6699">
+<font color="#FFFFFF"><b>&nbsp;&nbsp;&nbsp;&nbsp;Click F5 to refresh</b></font><BR>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="200">
+  <tr>
+    <td bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="200">
+<table border="1" cellpadding="2" cellspacing="1" style="border-collapse:collapse;font-family:Arial;font-size:10pt;" bordercolor="#000000" width="100%">
+  <tr>
+    <td width="100%" colspan="4" bgcolor="#000000" align="center"><font color="#FFFFFF"><b>Department Table</b></font></td>
+ </tr>
+  <tr>
+    <td width="27%" align="center" bgcolor="#C0C0C0"><b>Dept.</b></td>
+    <td width="23%" align="left" bgcolor="#C0C0C0"><b>Grp</b></td>
+    <td width="23%" align="left" bgcolor="#C0C0C0"><b>State</b></td>
+    <td width="32%" align="left" bgcolor="#C0C0C0"><b>Active</b></td>
+ </tr>
+<% SELECT _DEPARTMENT
+   SCAN%>
+  <tr>
+    <td width="27%" align="center" bgcolor="<%=BGCOLOR%>"><% IF DEPTMAIN=.T. %><span style="font-size:18px;color:#000000">&#9733;</span><%ENDIF%>
+<b><a target="MainWindow" href="/wc.dll?mpmainten~depteditwc~<%=pcSCR%>~<%=ALLTRIM(STR(DEPTID))%>"><%=ALLTRIM(DEPT)%></a></b></td>
+    <td width="23%" align="center" bgcolor="<%=BGCOLOR%>"><b><%=IIF(GRP=0,'',ALLTRIM(STR(GRP)))%></b>&nbsp;</td>
+    <td width="23%" align="center" bgcolor="<%=BGCOLOR%>"><b><%=ALLTRIM(STATE)%></b>&nbsp;</td>
+    <td width="32%" bgcolor="<%=BGCOLOR%>"><b><%=ALLTRIM(CACTIVE)%></b>&nbsp;</td>
+ </tr>
+<% ENDSCAN%>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="180" bgcolor="#FF9900">&nbsp;</td>
+  </tr>
+</table>
+</body>
+
+</html>

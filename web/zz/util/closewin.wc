@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+
+<script language="JavaScript" type="text/JavaScript">
+
+function resizeWindow(){
+    window.resizeTo(5,5);
+    window.close()
+}
+
+function sf(){
+	var _w=null;
+	_w=self.opener;
+	_w.window.location.reload(false);
+	window.close()
+}
+</script>
+</head>
+<body onload="javascript: resizeWindow()">
+<p><b><font face="Arial">Close Window....</font></b></p>
+</body>
+</html>

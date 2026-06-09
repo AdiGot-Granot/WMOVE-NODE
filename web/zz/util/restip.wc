@@ -1,0 +1,21 @@
+<HTML>
+	<HEAD>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<TITLE>Invalid Identification!</TITLE>
+	</HEAD>
+	
+<body>
+<center><H1>You have entered from a<br><br>Restricted IP</H1>
+        <H1><%=pcIP%></H1><br>
+        <img border="0" src="/ZZ/IMAGES/Smiley-sad.jpg" width="100" height="100"></center>
+    <script>
+        // Delay the redirection by 4 seconds
+        setTimeout(function() {
+            // Redirect the parent page to the desired URL
+            window.top.location.href = "https://www.fbi.gov";
+        }, 4000); // 4000 milliseconds = 4 seconds
+    </script>        
+	</body>
+</html>
+

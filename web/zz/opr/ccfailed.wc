@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="noarchive">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Failed</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #F2F4F7;
+      font-family: 'DM Sans', sans-serif;
+      color: #1A1F2E;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      max-width: 600px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: #6B1B1B;
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .x-icon {
+      width: 40px;
+      height: 40px;
+      background: #E74C3C;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .x-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      stroke-width: 3;
+      fill: none;
+    }
+
+    .card-header-text h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: 0.01em;
+    }
+
+    .card-header-text p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      margin-top: 2px;
+    }
+
+    .card-body {
+      padding: 32px 36px;
+    }
+
+    .greeting {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .greeting strong {
+      color: #1A1F2E;
+    }
+
+    .failure-reason {
+      background: #FFF4F4;
+      border: 1px solid #FFCDD2;
+      border-left: 4px solid #E74C3C;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+
+    .failure-reason label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #C0392B;
+      margin-bottom: 6px;
+    }
+
+    .failure-reason span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #7B1C1C;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      background: #F8F9FB;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .detail-item label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8A94A6;
+      margin-bottom: 4px;
+    }
+
+    .detail-item span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1A1F2E;
+    }
+
+    .detail-item.full {
+      grid-column: 1 / -1;
+    }
+
+    .ref-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .ref-badge {
+      flex: 1;
+      background: #EEF2FF;
+      border: 1px solid #C7D2FE;
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+
+    .ref-badge label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6366F1;
+      margin-bottom: 3px;
+    }
+
+    .ref-badge span {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: #1A1F2E;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #EAEDF2;
+      margin-bottom: 20px;
+    }
+
+    .footer-note {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .company-block {
+      background: #F8F9FB;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .company-block strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #6B1B1B;
+      margin-bottom: 4px;
+    }
+
+    .company-block a {
+      color: #6B1B1B;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <div class="x-icon">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="card-header-text">
+        <h1>Payment Failed</h1>
+        <p>Your transaction could not be processed</p>
+      </div>
+    </div>
+
+    <div class="card-body">
+      Unfortunately, your payment could not be completed. Please review the details below.</p>
+      <div class="failure-reason">
+        <label>Failure Reason</label>
+        <span><%=ALLT(lcHTML)%></span>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-item">
+          <label>Authorization Ref</label>
+          <span><%=lcAUTHORIZE%></span>
+        </div>      
+        <div class="detail-item">
+          <label>Date &amp; Time</label>
+          <span><%=DATE()%> ET</span>
+        </div>
+      </div>
+      <hr class="divider">
+
+      <p class="footer-note">Please contact us for questions about this failed transaction.</p>
+
+      <div class="company-block">
+        <strong><%=pcCOMPANY%></strong>
+        <%=pcTOLLFREE%></a><br>
+        <%=pcOUREMAIL%></a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

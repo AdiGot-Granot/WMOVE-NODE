@@ -1,0 +1,36 @@
+Movers Arena - payment succeed
+
+Movers Arena - Online Services (http://www.moversarena.com)
+_________________________________________________________________
+
+Thank you for your payment!
+
+Keep a copy of this in a safe place - it may be your only record of this transaction.
+
+<UserDefinedFields>
+Authorization Code: <AuthorizationNumber>
+Transaction Date: <TransactionDate>
+Transaction Amount: <TransactionAmount>
+Name: <ShipToName>
+Address: <ShipToAddress>
+City: <ShipToCity>
+State: <ShipToState>
+Zip Code: <ShipToZipCode>
+Phone: <ShipToPhone>
+E-mail: <CustomerEmail>
+Transaction ID: <TransId>
+Order number: <OrderNumber>
+Comments: <Comment>
+
+If you have questions please contact:
+<MerchantName> at <MerchantPhone>, or E-mail us at <MerchantEmail>
+
+<OrderString>
+
+---------------------------------
+
+<CreditString>
+
+---------------------------------
+
+Authorization Response Message: <AuthorizationResponse>

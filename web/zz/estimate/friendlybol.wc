@@ -1,0 +1,32 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+</head>
+
+<body>
+<table border="0" style="border-collapse: collapse;" bordercolor="#111111" width="550" cellspacing="1" cellpadding="2">
+  <tr>
+    <td align="center"><%=pcCOMPANY%><BR><%=pcADD1%><BR><%=pcADD2%><BR>Phone: <%=pcTOLLFREE%><%=IIF(!EMPTY(pcFAX),'&nbsp;&nbsp;&nbsp;Fax:&nbsp;'+pcFAX,'')%><BR>
+    <%=IIF(!EMPTY(pcDOT),"DOT #: "+pcDOT,"")%><%=IIF(!EMPTY(pcICC),"&nbsp;&nbsp;MC #: "+pcICC,"")%>
+    <%=IIF(!EMPTY(pcREGISTER),"&nbsp;&nbsp;Registration: "+pcREGISTER,"")%></td>
+  </tr>
+ <% IF plEMAILTOAGENT=.F. %>
+  <tr>
+    <td><BR><font style="font-size:11pt;">Hello <%=ALLT(LEFT(ALLTRIM(_EST.SNAME),AT(' ',_EST.SNAME,1)))%>,<br><br>   
+    Thank you for booking your move with <%=pcCOMPANY%>.<br><br>
+    <b>Please click on your order number <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~bolwc~~<%=pcREFNO%>~<%=pcCUSTID%>~LINK"><B><%=pcORDNO%></B></A>
+    to view and sign your Bill of Lading.</B><br><BR>
+    Thank You,<br><br><%=PROPER(pcREP)%><br><%=pcCOMPANY%><BR><%=pcTOLLFREE%><br><a href="mailto:<%=pcOUREMAIL%>"><%=pcOUREMAIL%></a><br>
+    <a href="<%=pcOURWEB%>" TARGET="_BLANK"><%=pcOURWEB%></a></font></td>
+  </tr>
+ <%ELSE%> 
+  <tr>
+    <td><BR><font style="font-size:11pt;">Hello <%=pcAGCOMPANY%>,<br><br>   
+    <b>Click on the Job Number <a href="https://<%=pcSERVERIP%>/wc.dll?mpest~bolin~<%=ALLT(STR(pnCUSTID*27))%>~<%=ALLT(STR(pnJOBID*27))%>~<%=SYS(2015)%>"><B><%=pcORDNO%></B></A> to print the Bill of Lading.</B><br><BR>
+    Thank You,<br><br><%=PROPER(pcREP)%><br><%=pcCOMPANY%><BR><%=pcTOLLFREE%></font></td>
+  </tr>
+ <%ENDIF%> 
+</table>
+</body>
+</html>

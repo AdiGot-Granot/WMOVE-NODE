@@ -1,0 +1,422 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Add/Update Vehicle</title>
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" /><!--CONF CHECKBOX-->
+
+<SCRIPT type="text/javascript">
+
+function loadXML(cURL){
+    var xmlhttp = new window.XMLHttpRequest();
+    xmlhttp.open("GET", cURL, false);
+    xmlhttp.send(null);
+    return xmlhttp.responseXML.documentElement;
+}
+
+function alertXML(oXML){
+    var Xml2String = new XMLSerializer().serializeToString(oXML);
+    alert(Xml2String);
+}
+
+function fillCombo(elmId, oXML, cNodeValueName, cNodeTextName){
+    document.getElementById(elmId).length = null;
+    var x = oXML.getElementsByTagName('BBB');
+    for(i=0; i<x.length; i++){
+        cValue = x[i].getElementsByTagName(cNodeValueName)[0].childNodes[0].nodeValue;
+        cText = x[i].getElementsByTagName(cNodeTextName)[0].childNodes[0].nodeValue;
+        document.getElementById(elmId)[i] = new Option(cText, cValue, false);
+    }
+}
+
+function SubmitData(i) {
+    if (i==1) 
+	  {
+	   document.theForm.action="/wc.dll?mpcharge~selectautoret~<%=pcSCR%>~<%=pcINVAUTOID%>";
+       document.theForm.submit();
+      };
+}
+
+function delcar() {
+	var Message = "Are you sure you want to delete this vehicle?";
+	if (confirm (Message)){
+	 	window.location.href=('/wc.dll?mpcharge~deleteauto~<%=pcSCR%>~<%=pcINVAUTOID%>');
+  }
+}
+
+function fetchXML(){
+    m = document.theForm.AUTOMAKE.value;
+    y = document.theForm.AUTOYEAR.value;
+    cURL = '/wc.dll?mpauto~AUTOMODELXML~&AUTOMAKE='+m+'&AUTOYEAR='+y;
+    xmlAUTO = loadXML(cURL);
+    fillCombo('automodel', xmlAUTO, 'model', 'model');
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.TD1	 	{	font-weight: bold;
+					font-family: Verdana;
+					font-size: 10pt;}	  	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+
+<body BGCOLOR="#4E6699">
+<BR>
+ <%SELECT _INVAUTO
+   GO TOP%>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="800">
+  <tr>
+    <td BGCOLOR="#008000" height="20" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" valign="top"><br>
+<table border="0" width="97%" align="center" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+  <tr>
+    <td width="22%" height="10"><b><font face="Verdana" size="2">Job No: <%=ALLT(_EST.DEPT)+ALLT(_EST.ORDNO)%></b></font></td>
+    <td width="75%" height="10"><b><font face="Verdana" size="2"><b>Customer:&nbsp;<%=ALLT(PROPER(_EST.SNAME))%></b></font>&nbsp;</td>
+ </tr>
+</table>    
+<form name="theForm" method="post">   
+<input type="hidden" name="AUTOSERVID" size="17" tabindex="3" value="<%=pcAUTOSERVID%>">
+<table border="0" cellpadding="0" cellspacing="0" width="98%" align="center" style="border:1px solid #d4d0c8;margin-top:16px;border-radius:8px;overflow:hidden;">
+  <tr>
+    <td width="50%" align="center" style="border-right:1px solid #d4d0c8;"><span style="font-family:Verdana;font-size:11pt;font-weight:bold;color:#000;">Add/Update Vehicle</span></td>
+    <td width="50%" align="center"><span style="font-family:Verdana;font-size:11pt;font-weight:bold;color:#000;">Add New Vehicle <span style="font-size:8pt;font-weight:bold;">(not on the list)</span></span></td>
+ </tr>
+  <tr>
+    <td width="50%" height="10" style="border-right:1px solid #d4d0c8;font-size:0; line-height:0;"></td>
+    <td width="50%" height="10" style="font-size:0; line-height:0;"></td>
+ </tr> 
+  <tr>
+    <td valign="top" width="50%" style="border-right:1px solid #d4d0c8;"><!---SELECT VEHICLE-->
+<table border="0" width="100%" style="border-collapse: collapse;line-height:25px;" bordercolor="#111111" cellspacing="1" cellpadding="3">  
+   <tr>
+	<td width="25%" class="TD1">Year</td>
+	<td width="75%">
+	<select size="1" name="AUTOYEAR">
+	    <option><%=_INVAUTO.YEAR%></option>
+   	<%SELECT _Y
+    		SCAN%>
+	<option value="<%=_Y.YEAR%>"><%=_Y.YEAR%></option>
+	<%ENDSCAN%>
+    </select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Make</td>
+	<td width="75%">
+	<select size="1" name="AUTOMAKE" onchange="fetchXML()">
+   	    <option><%=_INVAUTO.MAKE%></option>
+ 		<%SELECT _M
+    		SCAN%>
+	    	<option value="<%=ALLT(_M.MAKE)%>"><%=ALLT(_M.MAKE)%></option>
+	    <%ENDSCAN%>
+    </select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Model</td>
+	<td width="75%">
+	<select size="1" name="AUTOMODEL" id="automodel">
+	<option><%=_INVAUTO.MODEL%></option>    
+    </select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Color</td>
+	<td width="75%">
+	<select size="1" name="COLOR">
+	    <option><%=_INVAUTO.COLOR%></option>
+	    <option></option>
+		<option>Beige</option>
+		<option>Black</option>
+		<option>Blue</option>
+		<option>Bronze</option>
+		<option>Brown</option>
+		<option>Burgundy</option>
+		<option>Charcoal</option>
+		<option>Gold</option>
+		<option>Gray</option>
+		<option>Green</option>
+		<option>Magenta</option>
+		<option>Maroon</option>
+		<option>Navy</option>
+		<option>Orange</option>
+		<option>Other</option>
+		<option>Pink</option>
+		<option>Purple</option>
+		<option>Red</option>
+		<option>Silver</option>
+		<option>Tan</option>
+		<option>Teal</option>
+		<option>White</option>
+		<option>Yellow</option>
+		</select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Type</td>
+	<td width="75%">
+	<select size="1" name="TYPE">
+	    	     <option selected><%=_INVAUTO.TYPE%></option>
+	        	 <option>Sedan</option>
+	        	 <option>Large Sedan</option>	        	 
+	        	 <option>Convertible</option>
+	        	 <option>Coupe</option>
+	        	 <option>Classic</option>
+	        	 <option>Crossover</option>	        	 
+	        	 <option>SUV</option>
+	        	 <option>Small SUV</option>	        	 
+   	        	 <option>Large SUV</option>
+   	        	 <option>Exta LG SUV</option>
+		         <option>Van</option>
+		         <option>Minivan</option>		         
+   		         <option>Tall Van</option>
+		         <option>Extra Large Van</option>
+		         <option>Pickup</option>
+		         <option>Small Pickup</option>
+		         <option>Large Pickup</option>
+		         <option>Extra LG Pickup</option>
+		         <option>RV</option>
+		         <option>Travel Trailer</option>
+		         <option>Camper Van</option>
+		         <option>Golf Cart</option>		         
+		         <option>ATV</option>
+		         <option>UTV</option>		         
+		         <option>S. Wagon</option>
+		         <option>Truck</option>
+		         <option>Ambulance</option>
+				 <option>Trike (3 wheel)</option>		         
+		         <option>Motorcycle</option>
+		         <option>Sail Boat</option>
+		         <option>Power Boat</option>
+		         <option>Speed Boat</option>
+		         <option>Jet Ski</option>
+		         <option>Armored</option>
+		         <option>Heavy Equ.</option>
+		         <option>Other</option>		         	            
+	 </select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Engine</td>
+	<td width="75%">
+	<select size="1" name="ENGINE">
+	    <option><%=_INVAUTO.ENGINE%></option>
+	    <option>Gasoline</option>
+	    <option>Diesel</option>
+		<option>Hybrid</option>
+		<option>Electric</option>
+		</select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Running</td>
+	<td width="75%"><label class="switch"><input type="checkbox" name="RUN" value="ON" <%=IIF(_INVAUTO.RUN,'checked','')%>><div class="slider round"></div></label></td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Enclosed</td>
+	<td width="75%"><label class="switch"><input type="checkbox" name="COVER" value="ON" <%=IIF(_INVAUTO.COVER,'checked','')%>><div class="slider round"></div></label></td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Deliver By</td>
+	<td width="75%">
+	<select size="1" name="DLVTYPE">
+	    <option><%=_INVAUTO.DLVTYPE%></option>
+	    <option></option>	    
+	    <option>Land</option>
+	    <option>Ocean</option>
+		<option>Land and Ocean</option>
+		</select>	
+	</td>
+  </tr>  
+   <tr>
+	<td width="25%" class="TD1">VIN No.</td>
+	<td width="75%"><input type="text" autocomplete="off" name="VIN" size="20" value="<%=ALLT(_INVAUTO.VIN)%>"></td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Lot No.</td>
+	<td width="75%"><input type="text" autocomplete="off" name="LOTNO" size="5" value="<%=ALLT(_INVAUTO.LOTNO)%>"></td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Remark:</td>
+	<td width="75%"><input type="text" autocomplete="off" name="NOTES" size="30" value="<%=ALLT(_INVAUTO.NOTES)%>"></td>
+  </tr>
+  <% IF pnINVAUTOID>999 %>
+   <tr>
+	<td width="100%" class="TD1" align="center" colspan="2"><a onclick="delcar()" style="color:#0000FF;cursor:pointer;"><u>Delete Vehicle</u></a></td>
+  </tr>
+  <%ENDIF%>    
+</table>
+    </td>
+    <td valign="top" width="50%"><!---NEW VEHICLE-->
+<table border="0" width="100%" style="border-collapse: collapse;line-height:25px;" bordercolor="#111111" cellspacing="1" cellpadding="3">  
+   <tr>
+	<td width="21%" class="TD1">Year</td>
+	<td width="79%" class="TD1"><input type="text" autocomplete="off" name="AUTOYEAR1" size="4" maxlength="4"></td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Make</td>
+	<td width="79%" class="TD1"><input type="text" autocomplete="off" name="AUTOMAKE1" size="7"></td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Model</td>
+	<td width="79%" class="TD1"><input type="text" autocomplete="off" name="AUTOMODEL1" size="7"></td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Color</td>
+	<td width="79%" class="TD1">
+	<select size="1" name="COLOR1">
+	    <option></option>
+		<option>Beige</option>
+		<option>Black</option>
+		<option>Blue</option>
+		<option>Bronze</option>
+		<option>Brown</option>
+		<option>Burgundy</option>
+		<option>Charcoal</option>
+		<option>Gold</option>
+		<option>Gray</option>
+		<option>Green</option>
+		<option>Magenta</option>
+		<option>Maroon</option>
+		<option>Navy</option>
+		<option>Orange</option>
+		<option>Other</option>
+		<option>Pink</option>
+		<option>Purple</option>
+		<option>Red</option>
+		<option>Silver</option>
+		<option>Tan</option>
+		<option>Teal</option>
+		<option>White</option>
+		<option>Yellow</option>
+		</select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Type</td>
+	<td width="79%" class="TD1">
+	<select size="1" name="TYPE1">
+	        	 <option>Sedan</option>
+	        	 <option>Large Sedan</option>	        	 
+	        	 <option>Convertible</option>
+	        	 <option>Coupe</option>
+	        	 <option>Classic</option>
+	        	 <option>Crossover</option>	        	 
+	        	 <option>SUV</option>
+	        	 <option>Small SUV</option>	        	 
+   	        	 <option>Large SUV</option>
+   	        	 <option>Exta LG SUV</option>
+		         <option>Van</option>
+		         <option>Minivan</option>		         
+   		         <option>Tall Van</option>
+		         <option>Extra Large Van</option>
+		         <option>Pickup</option>
+		         <option>Small Pickup</option>
+		         <option>Large Pickup</option>
+		         <option>Extra LG Pickup</option>
+		         <option>RV</option>
+		         <option>Travel Trailer</option>
+		         <option>Camper Van</option>
+		         <option>Golf Cart</option>		         
+		         <option>ATV</option>
+		         <option>UTV</option>		         
+		         <option>S. Wagon</option>
+		         <option>Truck</option>
+		         <option>Ambulance</option>
+				 <option>Trike (3 wheel)</option>		         
+		         <option>Motorcycle</option>
+		         <option>Sail Boat</option>
+		         <option>Power Boat</option>
+		         <option>Speed Boat</option>
+		         <option>Jet Ski</option>
+		         <option>Armored</option>
+		         <option>Heavy Equ.</option>
+		         <option>Other</option>		         	            
+	 </select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Engine</td>
+	<td width="79%" class="TD1">
+	<select size="1" name="ENGINE1">
+	    <option>Gasoline</option>
+	    <option>Diesel</option>
+		<option>Hybrid</option>
+		<option>Electric</option>
+		</select>	
+	</td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Running</td>
+	<td width="79%"><label class="switch"><input type="checkbox" name="RUN1" value="ON"><div class="slider round"></div></label></td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Enclosed</td>
+	<td width="79%"><label class="switch"><input type="checkbox" name="COVER1" value="ON"><div class="slider round"></div></label></td>
+  </tr>
+   <tr>
+	<td width="25%" class="TD1">Deliver By</td>
+	<td width="75%">
+	<select size="1" name="DLVTYPE1">
+		<option></option>	    
+	    <option>Land</option>
+	    <option>Ocean</option>
+		<option>Land and Ocean</option>
+		</select>	
+	</td>
+  </tr>   
+   <tr>
+	<td width="21%" class="TD1">VIN No.</td>
+	<td width="79%" class="TD1"><input type="text" autocomplete="off" name="VIN1" size="20"></td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Lot No.</td>
+	<td width="79%" class="TD1"><input type="text" autocomplete="off" name="LOTNO1" size="5"></td>
+  </tr>
+   <tr>
+	<td width="21%" class="TD1">Remark:</td>
+	<td width="79%"><input type="text" autocomplete="off" name="NOTES1" size="30"></td>
+  </tr>  
+</table>    
+    </td>
+ </tr> 
+</table> 
+ <br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="70%">
+  <tr>
+   <td align="center"><input type="button" CLASS="SUBOFF" name="B36" onclick="SubmitData(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>
+   <td align="center"><input type="button" CLASS="SUBOFF" name="B36" onclick="javascript:history.go(-1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Exit"></td>
+ </tr>
+</table> 
+</form>  
+    </td>
+  </tr>
+  <tr>
+    <td height="20" bgcolor="#993366">&nbsp;</td>
+  </tr>	 
+</table>
+
+</body>
+</html>

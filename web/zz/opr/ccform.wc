@@ -1,0 +1,355 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Secured Payment-<%=RIGHT(pcORDNO,4)%></title>
+
+<LINK REL="STYLESHEET" TYPE="text/css" href="zz/util/mystyle.css">
+
+<script language="JavaScript" src="zz/util/formcheck.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function sf() {
+	window.theForm.sjname.focus();
+	digitsonly(document.theForm.shiptophon);
+
+}
+
+function CHKSTATE(){
+		frm = document.theForm;
+		if(frm.state[frm.state.selectedIndex].text=='') {
+			alert("Please select state");
+			frm.state.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+
+function CHKMONTH(){
+		frm = document.theForm;
+		if(frm.month[frm.month.selectedIndex].text=='') {
+			alert("Please select month");
+			frm.month.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+
+function CHKYEAR(){
+		frm = document.theForm;
+		if(frm.year[frm.year.selectedIndex].text=='') {
+			alert("Please select year?");
+			frm.year.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+function checkData(){
+	frm = document.theForm;
+	return  lengthValid(frm.sjname, 4,"full name") 
+	//		&& emailValid(frm.email, 4,"Email")
+	//		&& zipValid(frm.shiptophon, 10, "phone number (10 digits)")
+			&& lengthValid(frm.streetaddr, 4,"billing address")
+			&& lengthValid(frm.city, 2,"city")
+	//		&& lengthValid(frm.zipcode, 6, "zip code (US only)")
+			&& zipValid(frm.PAYAMT, 2, "amount (Ex. 1000.00)")
+ <%IF(VAL(pcPAYID)) < 100%>			
+			&& zipValid(frm.accountnum, 13, "credit card number")
+ <%ENDIF%>
+	//		&& selectValid(frm.month, "month")
+	//		&& selectValid(frm.year, "year")
+			&& chkbox(frm.agree, "'I agree...'");
+	}
+
+
+function ProcessPayment() {
+		var Message = "Are you ready to process the payment?";
+		if (checkData() &&CHKSTATE() &&CHKMONTH() &&CHKYEAR() &&confirm (Message)) {
+			document.theForm.btnProcess.style.visibility="hidden";
+			document.theForm.action="/wc.dll?mpopr~ccformret~<%=ALLT(pcSCR)%>";
+			document.theForm.submit();
+			var _w = null;
+			_w = self.opener;
+			_w.location.reload();
+		}
+      }
+
+function PayVoid() {
+		if (checkData() &&CHKSTATE() &&CHKMONTH() &&CHKYEAR()) {
+			document.theForm.btnPayVoid.style.visibility="hidden";
+			document.theForm.action="/wc.dll?mpopr~ccformret~<%=ALLT(pcSCR)%>~VOID";
+			document.theForm.submit();
+			var _w = null;
+			_w = self.opener;
+			_w.location.reload();
+		}
+      }
+
+function legalterms() {
+		window.open('/wc.dll?mpopr~legalterms~<%=ALLT(pcSCR)%>','','width=750,height=650');
+		}
+
+</SCRIPT>
+</head>
+
+<style>
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+  				  	font-family: Verdana;
+  				  	text-align: left;
+				  	font-weight: bold;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+  				  	font-family: Verdana;
+				  	text-align: right;
+				  	font-weight: bold;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+  				  	font-family: Verdana;
+				  	text-align: right;
+				  	font-weight: bold;
+				  	background-color: #FFE6AA;}				  	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Verdana;
+				  	text-align: center;
+					width: 160;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Verdana;
+				  	text-align: center;
+					width: 160;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}				  					  	
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: #CC0000}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+
+<body onload="sf()" BGCOLOR="#4E6699">
+<br>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" width="700" align="center">
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center" height="30"><b><font face="Verdana" size="2" color="#FFFFFF">&nbsp;Secured Payment Process</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">	
+	<!-- Main -->
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+   <tr>
+	 <td width="100%">
+  <form name="theForm" method="post">
+    <input type="hidden" name="MERCHANTID" value="<%=pcMERCHANTID%>">
+    <input type="hidden" name="PAYID" value="<%=pcPAYID%>">   
+    <input type="hidden" name="CREDITNO" value="<%=pcCREDITNO%>">   
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="68%" valign="top" align="center"><br>
+<table border="1" width="421" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#CCCCCC">
+  <tr>
+    <td width="411" class="TD1">Payment Goes to: <font color="green"><%=pcCNAME%></font><br>Company: <%=pcCOMPANY%></td>
+ </tr>
+</table>
+ <br> 
+<table border="1" width="90%" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#CCCCCC">
+  <tr>
+	<td bgcolor="#FFCF63" align="center"><b><font size="2" face="Verdana">Credit Card Information</font></b></td>
+ </tr>
+</table>
+<div id="ccProcess">
+<TABLE CELLPADDING="1" width="427" CELLSPACING="1" BORDER="1" BORDERCOLOR="#ADBACE" style="border-collapse: collapse;line-height:25px;">
+  <tr>
+	<td class="TD2" height="23" width="160">Cardholder Name:</td>
+	<td height="23" width="257">&nbsp;<input name="sjname" MAXLENGTH=50 value="<%=pcCCNAME%>" style="font-weight: bold; height:20; width:180" size="25"></td>
+ </tr>
+  <tr>
+	<td class="TD2" height="23" width="160">Billing Address:</td>
+    <td height="23" width="257">&nbsp;<input MAXLENGTH="36" name="streetaddr" style="font-weight: bold; height:20; width:180" size="25" value="<%=pcCCADD%>"></td>
+ </tr>
+  <tr>
+    <td class="TD2" height="23" width="160">City:</td>
+    <td height="23" width="257">&nbsp;<input MAXLENGTH="25" name="city" style="font-weight: bold; height:20; width:180" size="20" value="<%=pcCCCITY%>"></td>
+ </tr>
+  <tr>
+    <td class="TD2" height="23" width="160">State:</td>
+    <td height="23" width="257">&nbsp;<select name="state" size="1" tabindex="13">
+      	      <option selected value="<%=pcCCSTATE%>"><%=pcCCSTATENAME%></option>
+      	  			<%	SELECT _STATE
+					    SCAN %>
+              <option value="<%=STATE%>"><%=NAME%></option>
+                    <% ENDSCAN %>
+              <option value="XX">OTHER</option>
+            </select></td>
+ </tr>
+  <tr>
+    <td class="TD2" height="23" width="160">Zip Code:</td>
+    <td height="23" width="257">&nbsp;<input name="zipcode" style="font-weight: bold; height:19; width:50" size="5" maxlength="6" value="<%=pcCCZIP%>"></td>
+ </tr>
+  <tr>
+    <td class="TD2" height="23" width="160">Country:</td>
+    <td height="23" width="257">&nbsp;<select name="CCCOUNTRY" size="1" tabindex="13">
+              <option value="USA" selected>USA</option>
+              <option value="OTHER">CANADA</option>
+              <option value="OTHER">OTHER</option>
+            </select></td>
+ </tr> 
+  <tr>
+    <td class="TD2" height="23" width="160">Phone:</td>
+    <td height="23" width="257">&nbsp;<input name="shiptophon" value="<%=ALLT(pcshiptophon)%>" style="font-weight: bold;width:95" size="12" maxlength="10">
+    <b><font face="Verdana" size="1">(Ex. 2125551212)</font></b></td>
+ </tr>
+  <tr>
+    <td class="TD2" height="23" width="160">Email:</td>
+    <td height="23" width="257">&nbsp;<input autocomplete="off" name="email" value="<%=pcemail%>" style="font-weight: bold; width:228" size="35" maxlength="35"></td>
+ </tr>
+  <tr>
+    <td colspan="2" width="421"><hr color="#000"></hr></td>
+ </tr>
+  <tr>
+    <td class="TD2" height="23" width="160">Payment Deposit:</td>
+	<td height="23" width="257">&nbsp;<input type="checkbox" name="RSRV" value="ON" <%=IIF(pcCUSTNO='MOVINGAPT','checked','')%>></td>
+ </tr> 
+  <tr>
+    <td class="TD2" height="23" width="160">Move Amount:</td>
+	<td height="23" width="257">&nbsp;<input type="text" name="PAYAMT" autocomplete="off" onclick='this.value=""' maxlength="9" style="text-align:right;font-weight: bold; height:19; width:70" size="7" value="0.00">
+    <b><font face="Verdana" size="1">(Ex. 1234.00)</font></b></td>
+ </tr>
+<% IF plJOBSTG %>    			
+  <tr>
+    <td class="TD3" height="23" width="160">Storage Amount:</td>
+	<td height="23" width="257" bgcolor="#FFE6AA">&nbsp;<input type="text" name="PAYSTG" autocomplete="off" onclick='this.value=""' maxlength="9" style="text-align:right;font-weight: bold; height:19; width:70" size="7" value="0.00">
+	<b><font face="Verdana" size="1">(Ex. 1234.00)</font></b></td>
+ </tr>
+<% ENDIF %>
+<% IF pnCCPROCP>0 %>
+  <tr>
+    <td class="TD2" height="23" width="160">Processing Fee:</td>
+	<td height="23" width="257">&nbsp;<input type="text" name="CCPROCP" value="<%=ALLT(STR(pnCCPROCP,6,2))%>" autocomplete="off" maxlength="2" style="text-align:right;font-weight: bold; height:19; width:40" size="7" READONLY>
+	<b><font face="Verdana" size="1">%</font></b></td>
+ </tr>
+<% ENDIF %>     			
+  <tr>
+	<td class="TD2" height="24" width="160">Type:</td>
+	<td height="24" width="257">&nbsp;
+	<select name="type" size="1" tabindex="18">
+              <option selected><%=pcCREDITCO%></option>
+              <option>Visa</option>
+              <option>Master Card</option>
+              <option>AMEX</option>
+              <option>Discover</option>
+            </select></td>
+ </tr>
+  <tr>
+    <td class="TD2" height="23" width="160">Credit Card No.:</td>
+	<td height="23" width="257">&nbsp;<input type="text" name="accountnum" size="16" maxlength="16" style="font-weight: bold; height:19; width:180" value=<%IF(VAL(pcPAYID)) < 100%>""<%ELSE%>"<%='xxxx-xxxx-xxxx-'+RIGHT(pcCREDITNO,4)%>"<%ENDIF%>>
+ 	</td>
+ </tr>  
+  <tr>
+    <td class="TD2" height="23" width="160">Security Code:</td>
+	<td height="23" width="257">&nbsp;<input type="text" name="cvv2" size="4" maxlength="4" style="font-weight: bold; height:19; width:50" value="<%=pcCCCODE%>"></td>
+ </tr>
+  <tr>
+	<td class="TD2" height="24" width="160">Expiration Date:</td>
+    <td height="24" width="257">&nbsp;<font face="Arial" size="2" color="#FFFFFF"><select name="month" size="1" tabindex="21">
+              <option selected><%=ALLT(pcEXPMONTH)%></option>
+              <option>01</option>
+              <option>02</option>
+              <option>03</option>
+              <option>04</option>
+              <option>05</option>
+              <option>06</option>
+              <option>07</option>
+              <option>08</option>
+              <option>09</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+            </select>&nbsp;
+              <select name="year" size="1" tabindex="22">
+              <option selected value="<%=pcEXPYEAR%>"><%=pcEXPYEAR%></option>
+      	  			<%	SELECT _YEAR
+					    SCAN %>
+   				    <option value="<%=YYYY%>"><%=YYYY%></option>
+   				    <%ENDSCAN%>             
+            </select> </td>
+ </tr>
+  <tr>
+    <td class="TD2" width="160">Comment:</td>
+	<td height="34" width="257">&nbsp;<textarea rows="3" name="comment" cols="25"  style="border: 1px solid #52657B; font-size:10pt"><%=pcREMARKS%></textarea></td>
+ </tr>
+  <tr>
+    <td class="TD1" colspan="2">&nbsp;<input type="checkbox" name="agree" value="ON">&nbsp;The cardholder agrees to charging his credit card</td>
+ </tr>
+   <tr>
+    <td height="18" width="421" colspan="2" align="center">
+    <% IF pcCUSTNO='MOVINGAPT' AND pnLEVEL=5 %><input type="button" name="btnPayVoid" onclick="PayVoid()" style="width:200;background-color:#DC143C;color:#FFFFFF;" value="Process Validation"><BR><BR><BR><%ENDIF%>
+    <input type="button" CLASS="SUBOFF" name="btnProcess" onclick="ProcessPayment()" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Process Payment"></td>
+  </tr>
+</table>     	
+  </div>
+		<br>
+        <td width="32%" valign="top" width="100%" align="center"><br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;line-height:25px;" bordercolor="#111111" width="98%" BGCOLOR="#F5F5F5">
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2" color="#1E3A8A">Job Number</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2"><%=pcDEPT+pcORDNO%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2" color="#1E3A8A">Customer Name</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2"><%=pcSNAME%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2" color="#1E3A8A">Processing Date</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2"><%=DATETIME()%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2" color="#1E3A8A">Processing IP</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2"><%=pcIP%></font></b></td>
+ </tr>  
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2" color="#1E3A8A">Processing Gateway</font></font></b></td>
+ </tr>
+ <tr>
+  <td width="100%" valign="top" align="center">
+  <% IF pnCCPROCID=11%><a target="_blank" href="https://www.authorize.net"><img src="/zz/images/authorizenet.gif" border="0" width="169" height="67"></a><%ENDIF%>
+  <% IF pnCCPROCID=14%><a target="_blank" href="https://www.fidelitypayment.com"><img src="/zz/images/fidelity.gif" border="0" width="190" height="95"></a><%ENDIF%>
+      </td>
+  </tr>
+</table>
+  </td>
+ </tr>
+</table>
+    </td>
+  </tr>
+</table>
+	</form>
+    </td>
+   </tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="19">&nbsp;</td>
+  </tr>
+  </table>
+</body>
+</html>

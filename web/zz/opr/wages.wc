@@ -1,0 +1,154 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title><%=pcORDNO%></title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitWages(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpopr~wagesret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+	.TD1		{	font-family: Verdana;
+					font-size: 9pt;
+					font-weight: bold;
+					height:25}
+	.TD2		{	font-family: Verdana;
+					font-size: 10pt;
+					font-weight: bold;
+					height:25;}			
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+</head>
+<BODY bgColor="#4e6699">
+<BR>
+<TABLE ALIGN="CENTER" width="100%" bgColor="#ffffff" border="0" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+    <TD bgColor="#bebe99" align="center"><b><font face="Verdana" size="4" color="#000080">Wages</font></b></TD>
+  </TR>
+</TABLE>
+<TABLE cellSpacing="0" cellPadding="0" width="100%" bgColor="#ffffff" border="0" style="border-collapse: collapse" bordercolor="#111111">
+  <TR>
+    <TD><br>
+<TABLE width="98%" align="center" border="0" style="border-collapse:collapse" bordercolor="#111111" cellspacing="1" cellpadding="1">
+  <TR>
+    <TD width="10%" class="TD2">Job No: <%=pcDEPT+pcORDNO%></TD>
+    <TD width="33%" class="TD2">Customer: <%=pcSNAME%></TD>
+    <TD width="18%" class="TD2">Pick Up Duration: <%=pcHRSPU%> Hrs.</TD>
+    <TD width="39%" class="TD2">Total Job: <font color="#008000"><%=pcACTTOTAL%></font></TD>
+  </TR>
+</TABLE>    
+	<TABLE align="center" width="98%" bgColor="#ffffff" border=0 style="border-collapse: collapse" bordercolor="#111111">
+	 <TR>
+	  <TD vAlign="top" width="100%">
+    <form name="theForm" method="post">
+  <table border="1" width="100%" bordercolor="#C0C0C0" bgcolor="#FFFFFF" style="border-collapse: collapse" cellspacing="1" cellpadding="1">
+   <tr style="background-color: #008000;text-align: center;">
+    <td width="2%" class="TD1"><font color="#FFFFFF">#</font></td>
+    <td width="10%" class="TD1"><font color="#FFFF00">Worker</font></td>
+    <td width="5%" class="TD1"><font color="#FFFF00">Position</font></td>
+    <td width="5%" class="TD1"><font color="#FFFF00">Job Code</font></td>
+    <td width="5%" class="TD1"><font color="#FFFF00">Job Date</font></td>
+    <td width="5%" class="TD1"><font color="#FFFFFF">Hours</font></td>
+    <td width="3%" class="TD1"><font color="#FFFFFF">per Hr.</font></td>
+    <td width="5%" class="TD1"><font color="#FFFF00">Subtotal</font></td>
+    <td width="5%" class="TD1"><font color="#FFFFFF">Line Haul</font></td>
+    <td width="4%" class="TD1"><font color="#FFFFFF">Overload</font></td>
+    <td width="4%" class="TD1"><font color="#FFFFFF">Mat</font></td>
+    <td width="4%" class="TD1"><font color="#FFFFFF">Other</font></td>
+    <td width="5%" class="TD1"><font color="#FFFFFF">Extra</font></td>
+    <td width="5%" class="TD1"><font color="#FFFF00">Total Pick-Up</font></td>    
+    <td width="3%" class="TD1"><font color="#FFFFFF">Tip</font></td>
+    <td width="5%" class="TD1"><font color="#FFFF00">Total Wage</font></td>
+    <td width="19%" class="TD1"><font color="#FFFFFF">Remarks</font></td>
+  </tr>
+ <% lnTOTALHRS=0
+ 	lnTOTAL=0
+ 	lnTOTALCHRS=0
+ 	lnTOTALTIP=0
+ 	SELECT _MPW
+ 	SCAN %>
+  <tr>
+    <td width="2%" align="center" class="TD1"><font color="<%=IIF(_MPW.COLORTF,'#000080','#000000')%>"><%=ALLT(STR(RECNO()))%>&nbsp;</font></td>
+    <td width="10%" class="TD1"><font color="<%=IIF(_MPW.COLORTF,'#000080','#000000')%>"><%=ALLT(ID)%><br><%=ALLT(NAME)%></font></td>
+    <td width="5%" class="TD1"><%=ALLT(OPRCODE)%>&nbsp;</td>
+    <td width="5%" class="TD1"><font color="<%=IIF(_MPW.COLORTF,'#000080','#000000')%>"><%=ALLT(JOBCODE)%></font>&nbsp;</td>
+    <td width="5%" class="TD1">&nbsp;<%=_MPW.DTE%></td>
+    <td width="5%" bgcolor="#F5F5F5" align="center"><input type="text" name="<%='C'+ALLT(ID)+_MPW.CODE%>" size="4" value="<%=IIF(HRS=0,'',ALLT(STR(HRS,6,2))) %>" style="text-align:right;"></td>
+    <td width="3%" bgcolor="#F5F5F5"><% IF PERHRS >0 %><input Class="INPUTTEXT" type="text" name="<%='D'+ALLT(ID)+_MPW.CODE%>" size="4" value="<%=ALLT(STR(PERHRS,6,2))%>" style="text-align:right;"><%ENDIF%></td>
+    <td width="5%" bgcolor="#F5F5F5" align="right" class="TD1"><%=IIF(CHRS=0,"","$"+STR(CHRS,6,2))%>&nbsp;</td>
+    <td width="5%" align="right" class="TD1"><%IF pcTYPE='D'%><%=IIF(CLH=0,"",ALLT(STR(CLH,7,2)))%><%ELSE%><%=IIF(CLOCALLH=0,"",ALLT(STR(CLOCALLH,7,2)))%><%ENDIF%>&nbsp;</td>
+    <td width="4%" align="right" class="TD1"><%=IIF(COVERLOAD=0,"",ALLT(STR(COVERLOAD,7,2)))%>&nbsp;</td>
+    <td width="4%" align="right" class="TD1"><%=IIF(CMAT=0,"",ALLT(STR(CMAT,7,2)))%>&nbsp;</td>
+    <td width="4%" align="center"><input Class="INPUTTEXT" type="text" name="<%='E'+ALLT(ID)+_MPW.CODE%>" size="3" value="<%=IIF(COTHER=0,'',ALLT(STR(COTHER,7,2)))%>" style="text-align:right;"></td>
+    <td width="5%" align="center"><input Class="INPUTTEXT" type="text" name="<%='X'+ALLT(ID)+_MPW.CODE%>" size="3" value="<%=IIF(CEXTRA=0,'',ALLT(STR(CEXTRA,7,2)))%>" style="text-align:right;"></td>
+    <td width="5%" align="center" bgcolor="#F5F5F5" class="TD1"><%=IIF(CACTTOTAL=0,"",ALLT(STR(CACTTOTAL,7,2)))%>&nbsp;</td>    
+    <td width="3%" align="center"><input Class="INPUTTEXT" type="text" name="<%='T'+ALLT(ID)+_MPW.CODE%>" size="3" value="<%=IIF(TIP=0,'',ALLT(STR(TIP,7,2)))%>" style="text-align:right;"></td>
+    <td width="5%" bgcolor="#F5F5F5" align="right" class="TD1"><%=IIF(COMM=0,'',"$"+ALLT(STR(COMM,8,2)))%>&nbsp;</td>
+    <td width="19%">
+    <input Class="INPUTTEXT" type="text" name="<%='F'+ALLT(ID)+_MPW.CODE%>" size="50" value="<%=ALLT(NOTES)%>" style="font-size: 9pt"></td>
+  </tr>
+ <% lnTOTALHRS=lnTOTALHRS+_MPW.HRS
+ 	lnTOTAL=lnTOTAL+_MPW.COMM
+ 	lnTOTALCHRS=lnTOTALCHRS+_MPW.CHRS
+ 	lnTOTALTIP=lnTOTALTIP+_MPW.TIP
+ 	ENDSCAN %>
+  <tr>
+    <td width="27%" height="27" colspan="5">&nbsp;</td>
+    <td width="2%" height="27" bgcolor="#FFFF99" align="center"><b><font size="2" face="Verdana"><%=IIF(lnTOTALHRS=0,"",ALLT(STR(lnTOTALHRS,8,2))+" Hrs.")%></font></b></td>
+    <td width="4%" height="27" align="left"></td>
+    <td width="4%" height="27" align="right" bgcolor="#FFFF99"><font size="2" face="Verdana"><b><%=IIF(lnTOTALCHRS=0,"",TRANSFORM(lnTOTALCHRS,'$$$,$$9.99'))%></b></font>&nbsp;</td>
+    <td width="27%" height="27" align="right" colspan="6"><font size="2" face="Verdana"><b>Total:</b></font>&nbsp;</td>
+    <td width="4%" height="27" align="right" bgcolor="#FFFF99"><font size="2" face="Verdana"><b><%=IIF(lnTOTALTIP=0,"",TRANSFORM(lnTOTALTIP,'$$$,$$9.99'))%></b></font>&nbsp;</td>
+    <td width="5%" height="27" align="right" bgcolor="#FFFF99"><b><font size="2" face="Verdana"><%=IIF(lnTOTAL=0,"",TRANSFORM(lnTOTAL,'$$$,$$9.99'))%></font>&nbsp;</td>
+    <td width="11%">&nbsp;</td>
+   </tr>
+  </table>
+<table border="0" width="98%" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="100%" height="25"><font face="Verdana" size="2"><B>*Note: Worker hours can not exceed pick up or delivery hours.</B></FONT></td>    
+ </tr>
+</table>
+  <br>    
+  <table border="0" width="25%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+   <tr>
+   <td width="100%" align="center"><input type="button" CLASS="SUBOFF" onclick="submitWages(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit Wages"></td>    
+  </tr>
+  </table>
+  <BR>	       
+	</TD>
+	 </TR></TABLE>
+  </form>
+  <TABLE width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse" bordercolor="#111111">
+	 <TR>
+   	   <TD bgcolor="#008000">&nbsp;</TD>
+	</TR>
+  </TABLE>    
+      <!-- red bar -->
+   </TD>
+  </TR>
+</TABLE>
+</BODY>
+</HTML>

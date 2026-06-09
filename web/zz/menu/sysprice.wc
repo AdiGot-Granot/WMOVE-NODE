@@ -1,0 +1,274 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Setup Prices</title>
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!---lightbox--->
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+$(document).ready(function() {
+	$('.fancybox').fancybox({
+		fitToView	: false,
+		maxWidth	: 600,
+		maxHeight	: 550,
+		autoSize	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+
+
+function submitlist(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~syspriceret~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+<body  BGCOLOR="#F7F7F7">
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="63%">
+ <tr>
+  <td width="46%"><a class="fancybox fancybox.iframe" href="/zz/help/setupprices1.htm"><img border="0" src="zz/util/manual.gif" title="Read about Setup Prices" width="32" height="32"></a>
+  <b><font face="Verdana" size="2">General Setup</font></b></td>
+  <td width="54%"><a class="fancybox fancybox.iframe" href="/zz/help/setupprices2.htm"><img border="0" src="zz/util/manual.gif" title="Read about Setup Prices" width="32" height="32"></a>
+  <b><font face="Verdana" size="2">Local / Long Distance Setup</font></b></td>
+</tr>
+</table>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="63%">
+  <tr>
+    <td width="90%" align="center" bgcolor="#0081D3" height="25" colspan="2"><b><font face="Verdana" size="4" color="#FFFFFF">Setup Prices</font></b></td>
+ </tr>
+  <tr>
+    <td width="90%" bgcolor="#FFFFFF" colspan="2"><br>
+  <form name="theForm" method="POST">    
+<table border="0" align="center" style="border-collapse: collapse;" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="49%" valign="top">
+<div align="center">
+  <center>
+<table border="0" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#CCCCCC" width="100%">
+  <tr>
+    <td width="100%" colspan="2" bgcolor="#F7F7F7">&nbsp;<font face="Verdana" size="3"><b>General Setup</b></font></td>
+ </tr> 
+  <tr>
+    <td width="86%">&nbsp;Calculate Long Distance Rates by Cu. Ft.</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="CALCCF" value="ON" <%=IIF(CALCCF,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;View Tariff on  Charges and Printed Estimate</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="CALCTARIF" value="ON" <%=IIF(CALCTARIF,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+ <% IF pnCOLEVEL > 3 %>
+  <tr>
+    <td width="86%">&nbsp;Show Packing Materials List on Printed Estimate</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="VIEWMAT" value="ON" <%=IIF(VIEWMAT,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;Show Only Selected Packing Materials on Printed Estimate</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="SHOWMAT" value="ON" <%=IIF(SHOWMAT,'checked','')%>><div class="slider round"></div></label></td>
+ </tr> 
+ <%ENDIF%>
+  <tr>
+    <td width="86%">&nbsp;Show Flat Rate on Printed Estimate for Local Moves</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="FLATRATE" value="ON" <%=IIF(FLATRATE,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;Show cf / lbs on Inventory List on Printed Estimate</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="VIEWVOL" value="ON" <%=IIF(VIEWVOL,'checked','')%>><div class="slider round"></div></label></td>
+ </tr> 
+  <tr>
+    <td width="86%">&nbsp;Block Advertising Source on Printed Estimate &amp; Web Integration</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="BLKREF" value="ON" <%=IIF(BLKREF,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;Customer Update Inventory Link (Skip Entry Form)</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="GOTOINV" value="ON" <%=IIF(GOTOINV,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;Allow Duplicate Leads from Website (Valid with web integration)</td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="DUPWEB" value="ON" <%=IIF(DUPWEB,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;Send Your Moving Estimate as <a class="fancybox fancybox.iframe" href="/zz/help/equote.htm">Equote</a></td>
+    <td width="14%" align="center"><label class="switch"><input type="checkbox" id="togBtn" name="EQUOTE" value="ON" <%=IIF(EQUOTE,'checked','')%>><div class="slider round"></div></label></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;Cf / Lbs Ratio (Default=7, valid between 4.00-12.00)**</td>
+    <td width="14%"><input type="text" name="CFRATIO" size="2" value="<%=ALLT(STR(CFRATIO,5,2))%>"></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;Default Senior Citizen Discount (5%)</td>
+    <td width="14%"><input type="text" name="SENIORP" size="2" maxlength="5" value="<%=ALLT(STR(SENIORP,6,2))%>"><font style="font-size: 9pt">%</font></td>
+ </tr>
+  <tr>
+    <td width="86%">&nbsp;Default Coupon Discount</td>
+    <td width="14%"><input type="text" name="COUPONP" size="2" maxlength="5" value="<%=ALLT(STR(COUPONP,6,2))%>"><font style="font-size: 9pt">%</font></td>
+ </tr> 
+  <tr>
+    <td width="86%">&nbsp;Default Customer Inventory Form</td>
+    <td width="14%">
+	<select size="1" name="CUSTINVFRM">
+	      <option selected value="<%=pcCUSTINVFRMNO%>"><%=pcCUSTINVFRM%></option>
+	      <option value="0">Room Category</option>
+	      <option value="1">Alphabet Order</option>
+      </select></td>  
+ </tr>                     
+<% IF pnCOLEVEL > 3 %>
+  <tr>
+    <td width="86%">&nbsp;Default Visual Type</td>
+    <td width="14%">
+	<select size="1" name="VISUALTYPE">
+	      <option selected value="<%=pcVISUALTYPENO%>"><%=pcVISUALTYPE%></option>
+	      <option value=""></option>
+	      <option value="1">On Site</option>
+	      <option value="2">Virtual</option>
+	      <option value="3">Waived</option>	      
+      </select></td>
+ </tr>
+  <%IF plDEPT=.F. %>     
+  <tr>
+    <td width="86%">&nbsp;Add Sales Tax for Packing Materials</td>
+    <td width="14%"><input type="text" name="MATTAX" size="2" maxlength="7" value="<%=ALLT(STR(_DEPT.MATTAX,7,3))%>"><font style="font-size: 9pt">%</font></td>
+ </tr>
+  <%ENDIF%>
+<%ENDIF%>                            
+  <%IF plMERCHANT=.T. AND plDEPT=.F. %>
+  <tr>
+    <td width="86%">&nbsp;Add Credit Card Processing Fee (Valid with payment 
+    Gateway)</td>
+    <td width="14%"><input type="text" name="CCPROCP" size="2" maxlength="5" value="<%=ALLT(STR(_DEPT.CCPROCP,6,2))%>"><font style="font-size: 9pt">%</font></td>
+ </tr>
+  <%ENDIF%>
+  <tr>
+    <td width="100%" colspan="2">** Changing the Cf/Lbs Ratio requires submitting 
+    each inventory category for recalculating of all inventory items.</td>
+ </tr>  
+</table>
+    </center>
+</div>
+    </td>
+    <td width="1%" valign="top">&nbsp;</td>
+    <td width="48%" valign="top">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#CCCCCC" width="100%">
+  <tr>
+    <td width="123%" colspan="2" bgcolor="#F7F7F7">&nbsp;<b><font face="Verdana" size="3">Local / Long Distance Setup</font></b></td>
+ </tr>
+  <tr>
+    <td width="82%">Long Distance: Minimum cf</td>
+    <td width="41%"><input type="text" name="LDMINCF" size="3" maxlength="4" value="<%=ALLT(STR(LDMINCF))%>"></td>    
+ </tr>
+  <tr>
+    <td width="82%">Long Distance: Minimum lbs</td>
+    <td width="41%"><input type="text" name="LDMINLBS" size="3" maxlength="4" value="<%=ALLT(STR(LDMINLBS))%>"></td>    
+ </tr>        
+  <tr>
+    <td width="85%">Long Distance: Calculate Fuel Surcharge</td>
+    <td width="41%"><input type="text" name="DIESELP" size="2" value="<%=ALLT(STR(DIESELP,6,2))%>"><font style="font-size: 9pt">%</font></td>    
+ </tr>
+  <tr>
+    <td width="85%">Local Move: Calculate Fuel Surcharge</td>
+    <td width="41%"><input type="text" name="DIESELPL" size="2" value="<%=ALLT(STR(DIESELPL,6,2))%>"><font style="font-size: 9pt">%</font></td>    
+ </tr> 
+  <tr>
+    <td width="85%">Long Distance: Set Default Binding Type</td>
+    <td width="41%">
+	<select size="1" name="ESTBINDING">
+	      <option selected value="<%=pcBINDINGNO%>"><%=pcESTBINDING%></option>
+	      <option value="0">None</option>
+	      <option value="1">Binding</option>
+	      <option value="2">Non-Binding</option>
+      </select></td>   
+ </tr>
+  <tr>
+    <td width="1%">Local Move: Calculate cubic feet load per 1 hour. <a href="wc.dll?mpmainten~MenPerCfTest~<%=pcSCR%>" target="_blank">Test</a><BR>(Default=70 cf, valid between 30-200 cf)</font></td>
+    <td width="41%"><input name="MENPERCF" size="2" maxlength="3" value="<%=ALLT(STR(MENPERCF))%>"></td>    
+ </tr>
+  <tr>
+    <td width="83%">Local Move: Calculate Default Travel Time (Default=1 hour)</td>
+    <td width="41%"><input name="TRAVEL" size="2" maxlength="4" value="<%=ALLT(STR(TRAVEL,5,2))%>"></td>    
+ </tr>      
+  <tr>
+    <td width="81%">Move between states Up to <B><%=ALLT(STR(LMINMILE))%> miles is Local</b> (Default=50)</td>
+    <td width="20%"><input name="LMINMILE" size="2" maxlength="4" value="<%=ALLT(STR(LMINMILE))%>"></td>
+ </tr>
+  <tr>
+    <td width="81%">Move within a state From <B><%=ALLT(STR(LDMILES))%> miles is Long Distance</b> (Default=0)</td>
+    <td width="20%"><input name="LDMILES" size="2" maxlength="4" value="<%=ALLT(STR(LDMILES))%>"></td>
+ </tr>  
+</table>
+  <br>
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;font-family:Verdana;font-size:10pt;line-height:25px;" bordercolor="#CCCCCC" width="100%">
+  <tr>
+    <td colspan="2" bgcolor="#F7F7F7" width="529">&nbsp;<b><font face="Verdana" size="3">Custom 
+    Moving Estimate Email Subject (optional)</font></b></td>
+ </tr>
+  <tr>
+    <td width="20%">Follow-Up</td>
+    <td width="80%"><input type="text" autocomplete="off" name="QSUBJECT" size="42" value="<%=ALLT(QSUBJECT)%>"></td>    
+ </tr>
+  <tr>
+    <td width="20%">Booked Job</td>
+    <td width="80%"><input type="text" autocomplete="off" name="BSUBJECT" size="42" value="<%=ALLT(BSUBJECT)%>"></td>    
+ </tr>          
+</table>          
+    </td>
+ </tr>
+</table>
+  <br>
+<table border="0" width="40%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="25%" align="center">
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="B3" onclick="submitlist(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="30" value="Submit"></td>    
+    <td width="25%" align="center">
+    <input type="button" CLASS="SUBOFF" name="B3" onclick="submitlist(2)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" tabindex="31" value="Exit"></td>    
+ </tr>
+</table>
+  <br>
+  </form></td>
+ </tr>
+ <tr>
+    <td width="90%"  bgcolor="#0081D3" height="15">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+ </tr>
+</table>
+</body>
+</html>

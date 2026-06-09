@@ -1,0 +1,130 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Update Priority and Follow-Up</title>
+
+</head>
+
+<body>
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="100%" align="center" colspan="2"><B><font face="Arial" size="4">Update Priority & Follow-Up<BR>
+    Total Estimates For <font color="navy"><%=PROPER(_LIST.USER)%>:&nbsp;<%=ALLT(STR(pnRECCOUNT))%></b></font></font></td>
+  </tr>
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="95%"><b><font face="Arial" color="#ff0000">Past Move Date</font><br><font face="Arial" color="#008000">Today or Future Move Date</font></b></td>
+  </tr>  
+</table>
+<form method="POST" action="/wc.dll?mprep~orderpriorret~<%=pcSCR%>">
+ <%IF pnCOLEVEL <> 3%> 
+<table border="1" width="95%" align="center" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#CCCCCC" cellspacing="1" cellpadding="2">
+    <tr style="background-color:#0081D3;">
+      <td width="5%" align="center"><b><font color="#FFFFFF">Priority</font></b></td>
+      <td width="7%" align="center"><b><font color="#FFFFFF">Follow-Up</font></b></td>      
+      <td width="6%" align="center"><b><font color="#FFFFFF">Job No</font></b></td>
+      <td width="6%" align="center"><b><font color="#FFFFFF">Type</font></b></td>
+      <td width="10%" align="center"><b><font color="#FFFFFF">Customer</font></b></td>
+      <td width="7%" align="center"><b><font color="#FFFFFF">Phone</font></b></td>
+      <td width="10%" align="center"><b><font color="#FFFFFF">From/To</font></b></td>
+      <td width="7%" align="center"><b><font color="#FFFFFF">Move Date</font></b></td>
+      <td width="6%" align="center"><b><font color="#FFFFFF">Estimate</font></b></td>      
+      <td width="8%" align="center"><b><font color="#FFFFFF">Last Note</font></b></td>
+      <td width="9%" align="center"><b><font color="#FFFFFF">Add Note</font></b></td>
+      <td width="8%" align="center"><b><font color="#FFFFFF">Open Date</font></td>
+    </tr>
+    	<% SCAN %>
+      <tr>
+      <td width="5%" ALIGN="CENTER" height="18">
+		<select size="1" style="border:1px solid #4E6699;" name="FS-<%=ALLT(ORDNO)%>">
+		  <option value="0">0</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  <option value="6">6</option>
+		  <option value="7">7</option>
+		  <option value="8">8</option>
+	  </select></td>
+      <td width="7%" ALIGN="CENTER" height="18"><input name="NF-<%=ALLT(ORDNO)%>" size="8" value="<%=NEXTFU%>" style="text-align:center;border:1px solid #4E6699;font-weight:bold;"></td>      
+      <td width="6%" ALIGN="CENTER" height="18"><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=REFNO%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a>
+      <font color="red"><b><%=IIF(VIEWCRG=.T.,'','<br>new')%></b></font></td>
+      <td width="6%" height="18"><%=ALLT(TYPE)%></td>
+      <td width="10%" height="18"><b><font style="font-size:9pt;"><%=ALLT(PROPER(SNAME))%></font></b></td>
+      <td width="9%" height="18"><%=ALLT(STELH)%><%=IIF(!EMPTY(STELO),',  '+STELO,'')%><%=IIF(!EMPTY(RTELH),'<br>'+RTELH,'')%></td>
+      <td width="8%" height="18"><%=ALLT(PROPER(SCITY))+', '+ALLT(SSTATE)%><%=IIF(EMPTY(SCOUNTRY),'',ALLT(SCOUNTRY))%>
+      <BR><%=ALLT(PROPER(RCITY))+', '+ALLT(RSTATE)%><%=IIF(EMPTY(RCOUNTRY),'',ALLT(RCOUNTRY))%></td>
+      <td width="7%" ALIGN="CENTER" height="18"><font style="font-size:9pt;" COLOR="#<%=IIF(LBOOKDTE>=DATE(),'008000','FF0000')%>"><B><%=LBOOKDTE%></B></font></td>
+      <td width="6%" height="18" ALIGN="RIGHT"><%=IIF(SUBTOTAL=0,'$0.00','$'+ALLT(STR(SUBTOTAL,8,2)))%></td>
+      <td width="8%" height="18"><%=ALLT(NOTES)%></td>
+      <td width="9%" height="18" align="center">
+	  <select size="1" name="RN-<%=ALLT(ORDNO)%>" tabindex="2" style="font-size: 9pt;border:1px solid #4E6699;">
+		 <option></option>
+         <option>Call Attempt 1</option>
+         <option>Call Attempt 2</option>
+         <option>Call Attempt 3</option>
+         <option>Call Attempt 4</option>
+         <option>Call Attempt 5</option>
+     	</select>      
+      </td>
+      <td width="8%" height="18"><font style="font-size:9pt;"><%=OPENDTE%><BR><%=ALLT(REF)%></font></td>
+    </tr>
+    <% ENDSCAN %>
+</table>
+ <%ELSE%> 
+<table border="1" width="90%" align="center" style="border-collapse:collapse;font-family:Verdana;font-size:10pt;" bordercolor="#CCCCCC" cellspacing="1" cellpadding="2">
+    <tr style="background-color:#0081D3;">
+      <td width="5%" align="center"><b><font color="#FFFFFF">Priority</font></b></td>
+      <td width="7%" align="center"><b><font color="#FFFFFF">Follow-Up</font></b></td>      
+      <td width="6%" align="center"><b><font color="#FFFFFF">Job No</font></b></td>
+      <td width="10%" align="center"><b><font color="#FFFFFF">Customer</font></b></td>
+      <td width="10%" align="center"><b><font color="#FFFFFF">Phone</font></b></td>
+      <td width="9%" align="center"><b><font color="#FFFFFF">From/To</font></b></td>
+      <td width="8%" align="center"><b><font color="#FFFFFF">Pick-Up</font></b></td>
+      <td width="3%" align="center"><b><font color="#FFFFFF">Qty</font></b></td>
+      <td width="12%" align="center"><b><font color="#FFFFFF">Make/Model</font></b></td>
+      <td width="6%" align="center"><b><font color="#FFFFFF">Price</font></b></td>
+      <td width="5%" align="center"><b><font color="#FFFFFF">Deposit</font></b></td>
+      <td width="8%" align="center"><b><font color="#FFFFFF">Open Date</font></td>
+    </tr>
+    	<% SCAN %>
+      <tr>
+      <td width="5%" ALIGN="CENTER" height="18">
+      <%IF OK%>
+		<select size="1" style="border:1px solid #4E6699;" name="FS-<%=ALLT(ORDNO)%>">
+		  <option value="0">0</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  <option value="6">6</option>
+		  <option value="7">7</option>
+		  <option value="8">8</option>
+	  </select>      
+      <%ENDIF%>&nbsp;</td>
+      <td width="7%" ALIGN="CENTER" height="18">
+      <%IF OK%><input name="NF-<%=ALLT(ORDNO)%>" size="8" value="<%=NEXTFU%>" style="text-align:center;border:1px solid #4E6699;font-weight:bold;"><%ENDIF%></td>      
+      <td width="6%" ALIGN="CENTER" height="18"><%IF !OK%><%=ALLT(DEPT)+ALLT(ORDNO)%>
+      <%ELSE%><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=REFNO%>" target='_blank'><%=ALLT(DEPT)+ALLT(ORDNO)%></a><%ENDIF%></td>
+      <td width="10%" height="18"><%IF OK%><b><font style="font-size:9pt;"><%=ALLT(PROPER(SNAME))%></font></b><%ENDIF%>&nbsp;</td>
+      <td width="9%" height="18"><%IF OK%><%=ALLT(STELH)%><%=IIF(!EMPTY(STELO),',  '+STELO,'')%><%=IIF(!EMPTY(RTELH),'<br>'+RTELH,'')%><%ENDIF%></td>      
+      <td width="10%" height="18"><%IF OK%><%=ALLT(PROPER(SCITY))+', '+ALLT(SSTATE)%><%=IIF(EMPTY(SCOUNTRY),'',ALLT(SCOUNTRY))%>
+      <BR><%=ALLT(PROPER(RCITY))+', '+ALLT(RSTATE)%><%=IIF(EMPTY(RCOUNTRY),'',ALLT(RCOUNTRY))%><%ENDIF%>&nbsp;</td>
+      <td width="8%" ALIGN="CENTER" height="18"><%IF OK%><font style="font-size:9pt;" COLOR="#<%=IIF(LBOOKDTE>=DATE(),'008000','FF0000')%>"><b><%=LBOOKDTE%></b><%ENDIF%></td>
+      <td width="3%" ALIGN="CENTER" height="18"><%=ALLT(STR(QTY))%></td>
+      <td width="12%" height="18"><%=MODEL%></td>
+      <td width="6%" ALIGN="RIGHT" height="18"><%=IIF(PRICE=0,' ','$'+ALLT(STR(PRICE,8,2)))%></td>
+      <td width="5%" ALIGN="RIGHT" height="18"><%=IIF(DEPOSIT=0,' ','$'+ALLT(STR(DEPOSIT,8,2)))%></td>
+      <td width="8%" height="18"><font style="font-size:9pt"><%=OPENDTE%><BR><%=ALLT(REF)%></font></td>
+    </tr>
+    <% ENDSCAN %>
+</table>
+ <%ENDIF%> 
+  <p align="center"><input type="submit" value="Submit" name="B1" style="width: 100;cursor: pointer;"></P>
+</form>
+</body>

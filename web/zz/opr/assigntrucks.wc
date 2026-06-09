@@ -1,0 +1,112 @@
+<html>
+
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Assign Trucks-<%=RIGHT(pcORDNO,4)%></title>
+</head>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpopr~trucksret~<%=pcSCR%>~<%=pcCODE%>~<%=pcORDNO%>";
+       document.theForm.submit();
+      }
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.TD1	 	{	background-color: #BEBE99; 
+					font-weight: bold;
+					font-family: Verdana;
+					font-size: 10pt;
+					color: black;
+				  	text-align: center;}
+ 	.TD2	 	{	background-color: #BEBE99; 
+					font-weight: bold;
+					font-family: Verdana;
+					font-size: 9pt;
+					color: black;
+				  	text-align: left;}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+
+<body bgColor="#F7F7F7">
+<form name="theForm" method="post">
+<input type="hidden" name="OPRDTE" value="<%=ldDTE%>">
+<table border="0" width="100%" bordercolor="#F7F7F7" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="22%"><font style="font-family:Verdana;font-size:13pt;"><b>Assign Trucks:</b></font></td>
+    <td width="48%" align="center"><font style="font-family:Verdana;font-size:13pt;"><b><%=pcCODENAME%>: <%=ldDTE%></b></font></td>
+    <td width="30%" align="center"><font style="font-family:Verdana;font-size:13pt;"><b>Job No: <%=ALLT(pcDEPT)+ALLT(pcORDNO)%></b></font></td>
+  </tr>
+</table>
+<br>
+<table border="1" width="100%" bordercolor="#C0C0C0" cellspacing="0" bgcolor="#FFFFFF" cellpadding="0" style="border-collapse: collapse">
+  <tr>
+    <td width="3%" class="TD1"></td>
+    <td width="3%" class="TD1">Dept</td>
+    <td width="20%" class="TD1">Truck ID</td>
+    <td width="26%" class="TD1">Truck Name</td>
+    <td width="10%" class="TD1">Driver</td>
+    <td width="13%" class="TD1">Assign</td>
+  </tr>
+ <% SELECT  _TRUCKS
+ 	SCAN %>
+  <tr>
+    <td width="3%" bgcolor="#<%=IIF(ONUSE=.T.,'DEFFFF','FFFFFF')%>"><font face="Verdana" size="2"><%=ALLT(STR(RECNO()))%></font>&nbsp;</td>
+    <td width="3%" bgcolor="#<%=IIF(ONUSE=.T.,'DEFFFF','FFFFFF')%>">&nbsp;<B><font face="Verdana" size="2"><%=IIF(EMPTY(DEPT),'',ALLT(DEPT))%></font></b></td>
+    <td width="20%" bgcolor="#<%=IIF(ONUSE=.T.,'DEFFFF','FFFFFF')%>">&nbsp;<B><font face="Verdana" size="2"><%=ALLT(TRUCKNO)%></font></b></td>
+    <td width="26%" bgcolor="#<%=IIF(ONUSE=.T.,'DEFFFF','FFFFFF')%>">&nbsp;<B><font face="Verdana" size="2"><%=ALLT(NAME)%></font></b></td>
+    <td width="25%" align="center"><input type="text" name="<%='D'+ALLT(TRUCKNO)%>" value="<%=ALLT(DRIVER)%>" SIZE="15"></td>
+    <td width="13%" bgcolor="#<%=IIF(ONUSE=.T.,'DEFFFF','FFFFFF')%>" align="center"><input type="checkbox" name="<%='T'+ALLT(TRUCKNO)%>" value="ON" <%=IIF(ONUSE,'CHECKED','')%>></td>
+  </tr>
+ <% ENDSCAN %>
+</table>
+<br><b><font face="verdana" size="2">Add New Truck: <font style="font-size: 8pt">ID= 3-10 Characters</font></font></b>
+<table border="1" width="100%" bordercolor="#C0C0C0" cellspacing="1" bgcolor="#FFFFFF" cellpadding="2" style="border-collapse: collapse">
+  <tr>
+    <td width="15%" class="TD2">Truck ID</font></b></td>
+    <td width="30%" class="TD2">Truck Name</font></b></td>
+    <td width="30%" class="TD2">Driver</font></b></td>
+  </tr>
+  <tr>
+    <td width="15%"><input type="text" name="TRUCKNO1" size="10" maxlength="10"></td>
+    <td width="30%"><input type="text" name="CNAME1" size="20"></td>
+    <td width="30%"><input type="text" name="DRIVER1" size="15"></td>
+  </tr>
+  <tr>
+    <td width="15%"><input type="text" name="TRUCKNO2" size="10" maxlength="10"></td>
+    <td width="30%"><input type="text" name="CNAME2" size="20"></td>
+    <td width="30%"><input type="text" name="DRIVER2" size="15"></td>
+  </tr>
+  </table>  
+<br>
+<table border="0" align="center" width="25%" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td width="100%" align="center">
+    <input type="button" CLASS="SUBOFF" onclick="submitFunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit Trucks"></td>    
+ </tr>
+</table>
+</form>
+</body>
+</html>

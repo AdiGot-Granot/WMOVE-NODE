@@ -1,0 +1,161 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Workers Table</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SubmitFunction(i) {
+    if (i==1) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~maintenwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }                        
+    if (i==2) 
+      { 
+       document.theForm.action="/wc.dll?mv~oprmenuwc~<%=pcSCR%>";
+       document.theForm.submit();
+      }
+    if (i==3) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~workerswc~<%=pcSCR%>";
+       document.theForm.submit();
+      }            
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD4		{	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD5		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					border-bottom: 1px solid #A9A9A9;}															
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #D3D3D3;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 130;
+					height: 30;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</style>
+
+</head>
+<body BGCOLOR="#F7F7F7"><br>
+<table border="0" align="center" cellpadding="1" cellspacing="2" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="50%">
+  <tr>
+    <td width="100%" BGCOLOR="#0081D3" align="center"><b><font face="Verdana" color="#FFFFFF">Workers Table</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><br>
+  <form name="theForm" method="POST">
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;line-height:25px;" bordercolor="#111111" width="80%" height="40" cellspacing="0" cellpadding="0">
+   <tr>
+   <% IF plDEPTWORK %>
+     <td width="35%">&nbsp;&nbsp;<b><font face="Verdana" size="2">Filter by Department:</font></b>    
+            <select size="1" name="DEPTIDX">
+            <option value=""></option>
+		 <%	SELECT _DEPTWORK
+			 SCAN %>
+   				<option value="<%=ALLT(STR(DEPTID))%>"><%=ALLT(DEPT)%></option>
+			<% ENDSCAN %>
+		</select> 
+     </td>
+   <%ENDIF%>  
+     <td width="33%">&nbsp;&nbsp;<b><font face="Verdana" size="2">Filter by Active:</font></b>
+     <select size="1" name="ACTIVE">
+	    <option value="1" selected>Active</option>
+	    <option value="2">Not Active</option>
+	    <option value="3">Deleted</option>
+	 </select>     
+     </td>
+    <td width="32%"><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="SubmitFunction(3)" value="Submit"></td>
+  </tr>
+</table>		
+<table border="0" width="98%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td height="40">&nbsp;&nbsp;<a style="font-size: 10pt;font-weight: bold;font-family: Verdana;" href="/wc.dll?mpmainten~WorkersEditWc~<%=pcSCR%>~0">Add New Worker</a></td>    
+</table>    
+<table border="0" align="center" cellpadding="1" cellspacing="1" style="border-radius:6px;border: 1px solid #A9A9A9;" bordercolor="#111111" width="98%">
+   <tr>
+     <td class="TD1" width="12%">Action</td>
+     <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="7%">Dept</td>
+     <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="16%">Worker ID</td>
+     <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="22%">Name</td>
+     <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="14%">Position</td>
+     <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="15%">Mobile</td>
+     <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="7%">Active</td>
+     <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="5%">Del</td>
+  </tr>
+<% SELECT _WORKERS 
+   SCAN%>  			
+   <tr style="line-height:23px;">
+     <td class="TD5" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>" width="12%">
+     <% IF DEL=.F. %>
+        <b><a href="/wc.dll?mpmainten~workerseditwc~<%=pcSCR%>~<%=ALLT(STR(USERID))%>">Edit Worker</a></b>
+     <%ELSE%>
+        <b><a href="/wc.dll?mpmainten~workerswc~<%=pcSCR%>~<%=ALLT(STR(USERID))%>~UNDEL">Undelete</a></b>        
+     <%ENDIF%></td>
+     <td class="TD4" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>" width="7%"><b><%=IIF(EMPTY(DEPT),'',ALLT(DEPT)+'-'+ALLT(STR(GRP)))%></b></td>
+     <td class="TD2" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>" width="16%">&nbsp;<b><%=ALLT(USERNAME)%></b></td>
+     <td class="TD2" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>" width="22%">&nbsp;<%=ALLT(NAME)%></td>
+     <td class="TD2" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>" width="14%">&nbsp;<font style="font-weight:700;color:<%=FONTCOLOR%>;"><%=ALLT(OPRNAME)%></font></td>
+     <td class="TD2" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>" width="15%">&nbsp;<%=ALLT(CELL)%></td>
+     <td class="TD4" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>" width="7%"><%=IIF(ACTIVE=.T.,'<b>Yes</b>','No')%></td>
+     <td class="TD4" bgcolor="#<%=IIF(ACTIVE=.F.,'E9E9EA','FFFFFF')%>" width="5%"><%=IIF(ACTIVE=.F. AND DEL=.T.,'<b>Yes</b>','')%></td>
+  </tr>
+<% ENDSCAN %> 
+</table>
+ <br>
+<table border="0" width="80%" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="23%" align="center"><input type="button" CLASS="SUBOFF" name="B45" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" onclick="<%=IIF(pnLEVEL=5,'SubmitFunction(1)','SubmitFunction(2)')%>" value="Exit">
+	</td>    
+</table>
+ </form>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#0081D3">&nbsp;<b><font face="Verdana" size="2" color="#FFFFFF">View By: <%=pcUSER%></font></b></td>
+  </tr>
+  </table>
+</body>
+</html>

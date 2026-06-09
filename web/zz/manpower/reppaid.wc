@@ -1,0 +1,79 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Salesman Payroll Report - Printable</title>
+
+</head>
+
+<body>
+
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="750">
+   <tr>
+    <td width="750">
+ <% SELECT REP,SUM(PAID_AMOUNT) AS PAID_AMOUNT FROM _REPPAY1 GROUP BY REP INTO CURSOR _SUM %>       
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="100%" height="30" align="center" colspan="4"><b><font face="Verdana" size="4">Salesman Payroll Report</font></b></td>
+ </tr>
+  <tr>
+    <td width="23%" height="35" valign="bottom">Salesman:&nbsp;<b><%=ALLT(PROPER(REP))%></b></td>
+    <td width="28%" height="35" valign="bottom">Report Dates:&nbsp;<b>&nbsp;-&nbsp;</b></td>
+    <td width="27%" height="35" valign="bottom">Total Commission:&nbsp;<B><%='$'+ALLT(STR(PAID_AMOUNT,10,2))%></B></td>
+    <td width="22%" height="35" valign="bottom">Printed On: <%=DATE()%></td>    
+ </tr>         
+</table>
+  <br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="1%" align="center" bgcolor="#E9E9EA"><b><font size="2">#</font></b></td>
+    <td width="4%" align="center" bgcolor="#E9E9EA"><b><font size="2">Move Date</font></b></td>
+    <td width="4%" align="center" bgcolor="#E9E9EA"><b><font size="2">Job No</font></b></td>
+    <td width="2%" align="center" bgcolor="#E9E9EA"><b><font size="2">Week</font></b></td>
+    <td width="6%" align="center" bgcolor="#E9E9EA"><b><font size="2">Type</font></b></td>
+    <td width="4%" align="center" bgcolor="#E9E9EA"><b><font size="2">Commission</font></b></td>
+    <td width="5%" align="center" bgcolor="#E9E9EA"><b><font size="2">Paid On</font></b></td>
+    <td width="9%" align="center" bgcolor="#E9E9EA"><b><font size="2">Remarks</font></b></td>
+ </tr>
+ <% SELECT _REPPAY1
+ 	SCAN %>
+    <tr>
+     <td width="1%" align="center"><font size="2"><%=ALLT(STR(RECNO()))+'.'%></font>&nbsp;</td>
+     <td width="4%" align="center"><font size="2"><%=MOVE_DATE%></font>&nbsp;</td>
+     <td width="4%" align="center"><font size="2"><%=IIF(JOB_NO=0,'',ALLT(STR(JOB_NO)))%></font>&nbsp;</td>
+     <td width="2%" align="center"><font size="2"><%=IIF(WEEK=0,'',ALLT(STR(WEEK)))%></font>&nbsp;</td>
+     <td width="6%" align="center"><font size="2"><%=ALLT(TYPE)%></font>&nbsp;</td>
+     <td width="4%" align="right"><font size="2"><%='$'+ALLT(STR(PAID_AMOUNT,10,2))%></font>&nbsp;</td>
+     <td width="5%" align="center"><font size="2"><%=PAID_DATE%></font>&nbsp;</td>
+     <td width="9%" align="left"><font size="2"><%=ALLT(REMARKS)%></FONT>&nbsp;</td>
+    </tr>
+  <% ENDSCAN%>
+   </table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="99%">
+  <tr>
+    <td width="100%" height="25" valign="bottom"><font face="Verdana" size="2">I verified that this is a true and complete record of  
+    commission and/or other amounts of salary due to me.</font></td>
+  </tr>
+  <tr>
+    <td width="100%" height="35" valign="bottom"><font face="Verdana" size="2">Signature: _____________________________________</font></td>
+ </tr> 
+</table>    
+    </td>
+    </tr>
+  </table>
+   </td>
+  </tr>
+  </table>
+    </td>
+  </tr>
+</table>
+<BR>
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="80%">
+  <tr>
+    <td width="50%" align="center"><%=pcURL%></td>
+    <td width="50%" align="center"><a href="javascript:window.print()">Print Report</a></td>
+ </tr>       
+</table>
+</body>
+</html>

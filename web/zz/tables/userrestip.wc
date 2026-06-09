@@ -1,0 +1,83 @@
+<html>
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<meta http-Equiv="Cache-Control" Content="no-cache">
+<meta http-Equiv="Pragma" Content="no-cache">
+<meta http-Equiv="Expires" Content="0">
+<link rel="stylesheet" type="text/css" href="/zz/util/checkboxslide.css?v=1.1.4" media="screen" />
+
+<title>User Restricted IP</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function SaveIP(par) 
+      { 
+       document.theForm.action="/wc.dll?mpmainten~restipsave~<%=pcSCR%>~"+par;
+       document.theForm.submit();
+      }
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.TD1		{	color: #000000;
+				  	font-size: 10pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+					text-align: center;
+					background-color: #F7F7F7;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD2		{	color: #000000;
+				  	font-size: 10pt;
+					font-family: Verdana;
+					text-align: center;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.TD3		{	font-size: 10pt;
+					font-family: Verdana;
+					text-align: left;
+					border-left: 1px solid #A9A9A9;
+					border-bottom: 1px solid #A9A9A9;}
+	.BUTTON		{	font-size: 9pt;
+					font-weight: bold;
+  				  	font-family: Verdana;
+                    width: 70; 
+                    height: 25; 
+                    cursor: pointer;}  				  	
+</style>
+</head>
+
+<body>
+  <form name="theForm" method="POST">
+  <input type="hidden" name="USERID" value="<%=lcUSERID%>">    			
+<table border="0" align="center" style="border-radius:6px;border: 1px solid #A9A9A9;" cellspacing="1" cellpadding="1" bordercolor="#111111" width="700">
+  <tr>
+    <td class="TD1" width="128">User</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="130">IP Name</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="167">IP Address</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="88">Active</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="87">Delete</td>
+    <td class="TD1" style="border-left: 1px solid #A9A9A9;" width="82">Action</td>
+ </tr>
+ <%SELECT _RESTIP 
+ 	SCAN %>
+  <tr>
+    <td width="128" style="border-bottom: 1px solid #A9A9A9;">&nbsp;<font style="font-family: Verdana;font-size: 10pt;font-weight: bold;"><%=ALLT(USERNAME)%></font></td>
+    <td width="130" style="border-left: 1px solid #A9A9A9;border-bottom: 1px solid #A9A9A9;"><font style="font-family: Verdana;font-size: 10pt;font-weight: bold;"><%=ALLT(CNAME)%></font></td>
+    <td width="167" class="TD2"><font style="font-family: Verdana;font-size: 10pt;font-weight: bold;"><%=ALLT(IP)%></font></td>
+    <td width="88" class="TD2"><label class="switch"><input type="checkbox" id="togBtn" name="<%='S'+ALLT(STR(RESTIPID)) %>" value="ON" <%=IIF(ACTIVE,'checked','')%>><div class="slider round"></div></label></td>
+    <td width="87" class="TD2"><label class="switch"><input type="checkbox" id="togBtn" name="<%='D'+ALLT(STR(RESTIPID)) %>" value="ON"><div class="slider round"></div></label></td>
+    <td width="82" class="TD2"><input type="button" class="BUTTON" name="B1" onclick="SaveIP(<%=ALLT(STR(RESTIPID))%>)" value="Save"></td>
+ </tr>
+<% ENDSCAN %>
+  <tr>
+    <td width="128" style="border-bottom: 1px solid #A9A9A9;">&nbsp;</td>
+    <td width="130" style="border-left: 1px solid #A9A9A9;border-bottom: 1px solid #A9A9A9;"><input type="text" autocomplete="off" name="CNAME" size="9" value=""></td>
+    <td width="167" class="TD2"><input type="text" autocomplete="off" name="IP" size="12" value=""></td>
+    <td width="175" class="TD2" colspan="2">&nbsp;</td>
+    <td width="82" class="TD2"><input type="button" class="BUTTON" name="B1" onclick="SaveIP(999)" value="Add New"></td>
+ </tr>
+ </table> 
+ </form> 
+</body>
+</html>

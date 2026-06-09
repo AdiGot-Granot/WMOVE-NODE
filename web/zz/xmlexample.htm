@@ -1,0 +1,241 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>moving software</title>
+
+<script language="JavaScript" type="text/JavaScript">
+
+function sf(){
+		xmlDoc=new ActiveXObject("microsoft.xmldom");
+		xmlDoc.async=false;
+		xmlDoc.load("/pop/wc.dll?isutil~xmlsample");
+
+		// Load the XSL
+		//xslDoc=new ActiveXObject("microsoft.xmldom");
+		//xslDoc.async=false;
+		//xslDoc.load("/granot/est/invxsl.xsl");
+
+ 				
+		// Transform
+		//mainBody.innerHTML=xmlDoc.transformNode(xslDoc);
+}
+
+
+function submitXML(){
+
+		var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		xmlhttp.Open("POST", "/pop/wc.dll?isutil~invxmlret~&COMPANY=YOURNAME", false);
+		xmlhttp.Send(xmlDoc);
+
+		window.location.href=("/pop/wc.dll?isutil~viewxmlexample")
+}
+
+</script>
+</head>
+
+<body onload="sf()" bgcolor="#EAEAF2" style="font-family:verdana" >
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="800" id="AutoNumber1" align="center" height="361">
+  <tr>
+    <td width="100%" bgcolor="#FFCC00" bordercolor="#000066" style="border-left-style:solid; border-left-width:1; border-right-style:solid; border-right-width:1; border-top-style:solid; border-top-width:1; border-bottom-style:none; border-bottom-width:medium" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#CC0000" style="border-top-style: none; border-top-width: medium; border-left-style:solid; border-left-width:1; border-right-style:solid; border-right-width:1; border-bottom-style:none; border-bottom-width:medium" height="18">
+  </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#4A4A66" style="border-left-style: solid; border-left-width: 1; border-right-style: solid; border-right-width: 1; border-top-style: none; border-top-width: medium; border-bottom-style: solid; border-bottom-width: 1" height="19">
+    <font face="Arial Black" color="#FFFFFF">OUR PEOPLE MAKE THE DIFFERENCE</font></td>
+  </tr>
+  <tr>
+    <td width="100%" style="border-left-style: solid; border-left-width: 1; border-right-style: solid; border-right-width: 1; border-bottom-style: solid; border-bottom-width: 1" bordercolor="#ACAEAF" height="305">
+    <!--- Body starts -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="798" id="AutoNumber2" height="296">
+      <tr>
+        <td width="39" height="298" bgcolor="#FFFFFF" valign="top">
+        &nbsp;</td>
+        <td rowspan="2" class="VerSeperator" bgcolor="#FFFFFF" height="296" width="1"></td>
+        <td style="padding-left:20px;padding-right:25px;padding-top:10px;padding-bottom:10px;"  valign="top" bgcolor="#FFFFFF" height="298" width="715">
+		 <div class="SectionTitles"><font color="#993300"><b>X</b></font><b><font color="#993300">ML 
+           -&nbsp; DocType DTD</font></b></div>
+		 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber4" height="1857">
+          <tr>
+            <td width="100%" valign="top" height="30">
+            <font size="2">Post XML Leads to this link:
+            <a href="http://www.granot.com/pop/wc.dll?isutil~invxmlret~&COMPANY=YOURNAME">
+            http://www.granot.com/pop/wc.dll?isutil~invxmlret~&amp;COMPANY=YOURNAME</a></font></td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="23">
+            <font size="2">View online XML DTD </font> <a href="http://www.granot.com/pop/wc.dll?isutil~xmlsample">
+            <font size="2">Example</font></a></td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="26">
+            <font size="2">Test the gateway by submitting this XML: </font>
+            <input type="button" onclick="submitXML()" value="Submit" name="B1"></td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="14">
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="14">
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="16">
+            <b><font face="Verdana" size="2">The Example: Here is the DocType </font></b></td>
+          </tr>
+          <tr>
+            <td height="803">
+		<pre>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE xdoc [
+&lt;!ELEMENT xdoc (moving)&gt;
+&lt;!ELEMENT moving (inv)*&gt;
+&lt;!ELEMENT inv (recnum,item,letter,cuft,lbs,qty,code,volume)&gt;
+&lt;!ELEMENT recnum (#PCDATA)&gt;
+&lt;!ATTLIST recnum
+          type CDATA #FIXED &quot;float&quot;
+          size CDATA #FIXED &quot;11&quot;
+&gt;
+&lt;!ELEMENT item (#PCDATA)&gt;
+&lt;!ATTLIST item
+          type CDATA #FIXED &quot;string&quot;
+          size CDATA #FIXED &quot;30&quot;
+&gt;
+&lt;!ELEMENT letter (#PCDATA)&gt;
+&lt;!ATTLIST letter
+          type CDATA #FIXED &quot;string&quot;
+          size CDATA #FIXED &quot;1&quot;
+&gt;
+&lt;!ELEMENT cuft (#PCDATA)&gt;
+&lt;!ATTLIST cuft
+          type CDATA #FIXED &quot;float&quot;
+          size CDATA #FIXED &quot;7&quot;
+          precision CDATA #FIXED &quot;2&quot;
+&gt;
+&lt;!ELEMENT lbs (#PCDATA)&gt;
+&lt;!ATTLIST lbs
+          type CDATA #FIXED &quot;float&quot;
+          size CDATA #FIXED &quot;8&quot;
+          precision CDATA #FIXED &quot;2&quot;
+&gt;
+&lt;!ELEMENT qty (#PCDATA)&gt;
+&lt;!ATTLIST qty
+          type CDATA #FIXED &quot;float&quot;
+          size CDATA #FIXED &quot;3&quot;
+&gt;
+&lt;!ELEMENT code (#PCDATA)&gt;
+&lt;!ATTLIST code
+          type CDATA #FIXED &quot;string&quot;
+          size CDATA #FIXED &quot;2&quot;
+&gt;
+&lt;!ELEMENT volume (#PCDATA)&gt;
+&lt;!ATTLIST volume
+          type CDATA #FIXED &quot;string&quot;
+          size CDATA #FIXED &quot;15&quot;
+&gt;
+
+]&gt;</pre>
+			</td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="14">
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="14">
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="16">
+            <b><font face="Verdana" size="2">Here is the XML </font></b></td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" height="901">
+            <pre>&lt;xdoc&gt;
+&lt;moving&gt;
+	&lt;inv&gt;
+		&lt;recnum&gt;0&lt;/recnum&gt;
+		&lt;item&gt;AIR COND. LARGE&lt;/item&gt;
+		&lt;letter&gt;A&lt;/letter&gt;
+		&lt;cuft&gt;12.00&lt;/cuft&gt;
+		&lt;lbs&gt;84.00&lt;/lbs&gt;
+		&lt;qty&gt;0&lt;/qty&gt;
+		&lt;code&gt;AP&lt;/code&gt;
+		&lt;volume&gt;84 lbs&lt;/volume&gt;
+	&lt;/inv&gt;
+	&lt;inv&gt;
+		&lt;recnum&gt;1&lt;/recnum&gt;
+		&lt;item&gt;AIR COND. SMALL&lt;/item&gt;
+		&lt;letter&gt;A&lt;/letter&gt;
+		&lt;cuft&gt;5.00&lt;/cuft&gt;
+		&lt;lbs&gt;35.00&lt;/lbs&gt;
+		&lt;qty&gt;0&lt;/qty&gt;
+		&lt;code&gt;AP&lt;/code&gt;
+		&lt;volume&gt;35 lbs&lt;/volume&gt;
+	&lt;/inv&gt;
+	&lt;inv&gt;
+		&lt;recnum&gt;2&lt;/recnum&gt;
+		&lt;item&gt;AQUARIUM STAND LARGE&lt;/item&gt;
+		&lt;letter&gt;A&lt;/letter&gt;
+		&lt;cuft&gt;50.00&lt;/cuft&gt;
+		&lt;lbs&gt;350.00&lt;/lbs&gt;
+		&lt;qty&gt;0&lt;/qty&gt;
+		&lt;code&gt;MS&lt;/code&gt;
+		&lt;volume&gt;350 lbs&lt;/volume&gt;
+	&lt;/inv&gt;
+	&lt;inv&gt;
+		&lt;recnum&gt;291&lt;/recnum&gt;
+		&lt;item&gt;~&lt;/item&gt;
+		&lt;letter&gt;~&lt;/letter&gt;
+		&lt;cuft&gt;0.00&lt;/cuft&gt;
+		&lt;lbs&gt;0.00&lt;/lbs&gt;
+		&lt;qty&gt;0&lt;/qty&gt;
+		&lt;code&gt;ZZ&lt;/code&gt;
+		&lt;volume&gt;~&lt;/volume&gt;
+	&lt;/inv&gt;
+	&lt;inv&gt;
+		&lt;recnum&gt;292&lt;/recnum&gt;
+		&lt;item&gt;~&lt;/item&gt;
+		&lt;letter&gt;~&lt;/letter&gt;
+		&lt;cuft&gt;0.00&lt;/cuft&gt;
+		&lt;lbs&gt;0.00&lt;/lbs&gt;
+		&lt;qty&gt;0&lt;/qty&gt;
+		&lt;code&gt;ZZ&lt;/code&gt;
+		&lt;volume&gt;~&lt;/volume&gt;
+	&lt;/inv&gt;
+&lt;/moving&gt;
+&lt;/xdoc&gt;
+</pre>
+            <p>&nbsp;</td>
+          </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="39" height="8" bgcolor="#ACAEAF" valign="top"></td>
+        <td valign="top" bgcolor="#ACAEAF" height="8" width="760"></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="800" align="center" height="44">
+ <tr>
+  <td align="center"><font size="1"><br>
+			 <br>
+  <font class="menuoff">Copyright © 1999-2005 GRANOT, INC.</font>
+  </td>
+ </tr>
+</table>
+  
+</body>
+
+</html>

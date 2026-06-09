@@ -1,0 +1,69 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Credit Card Process Successful</title>
+
+<style>
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: #CC0000}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="650" align="center">
+  <tr>
+    <td width="100%" BGCOLOR="#008000" align="center" height="30"><b><font face="Verdana" size="2" color="#FFFFFF">Payment Successful</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr>
+    <td width="70%" valign="top" align="center"><br>
+<table border="1" width="421" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#CCCCCC">
+  <tr>
+	<td bgcolor="#FFCF63" align="center" width="415"><b><font face="Verdana" size="2">Payment Successfully Processed</font></b></td>
+ </tr>
+  <tr>
+    <td width="415" valign="top"><br><b><font face="Verdana" size="2" color="#cc0000">Thank you for your payment!</font><br><br>
+	<font size="2" face="Verdana"><b>The amount of $<%=ALLT(pcTRANSACTIONAMOUNT)%> has been charged to your credit card.<br><br>
+    The Authorization Code for this payment is <%=ALLT(lcAUTHORIZE)%>.<br>The Transaction Number is <%=ALLT(lcCTRANSNO)%></b></font></td>
+ </tr>
+  </table>
+  <td width="30%" valign="top" align="center"><br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;line-height:25px;" bordercolor="#111111" width="98%" BGCOLOR="#F5F5F5">
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2" color="#1E3A8A">Job Number</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2"><%=pcJOBDEPT+pcJOBNO%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2" color="#1E3A8A">Customer Name</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2"><%=pcSJNAME%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="2" color="#1E3A8A">Processed Date</font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><b><font face="Verdana" size="1"><%=DATE()%></font></b></td>
+ </tr>
+  <tr>
+    <td width="100%" align="center"><img border="0" src="ZZ/IMAGES/Smiley-happy.jpg" width="100" height="100"></td>
+ </tr>
+</table>
+    </td></tr>
+</table>
+    </td></tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="19">&nbsp;</td>
+  </tr>
+  </table>
+</body>
+</html>

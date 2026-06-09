@@ -1,0 +1,160 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+
+<title>Repository Menu</title>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function submitFunction(i) {
+    if (i==1) window.location.href=('/wc.dll?mpreposit~menuret~<%=pcSCR%>~1');
+    if (i==2) window.location.href=('/wc.dll?mpreposit~menuret~<%=pcSCR%>~2');
+    if (i==3) window.location.href=('/wc.dll?mpreposit~menuret~<%=pcSCR%>~3');
+    if (i==4) window.location.href=('/wc.dll?mpreposit~menuret~<%=pcSCR%>~4');
+    if (i==5) window.location.href=('/wc.dll?mpreposit~menuret~<%=pcSCR%>~5');
+	}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+	.txtoff		{	color: #006600;
+				  	font-size: 12pt;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+				  	text-align: left}
+	.txton		{	color: blue;
+				  	font-size: 12pt;
+				  	text-align: left;
+  				  	font-family: Times new Roman;
+  				  	cursor: Hand;
+					background-color: white;
+					text-decoration: underline
+  				  	cursor: Hand}
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 140;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+ 	A:hover		{	text-decoration: nounderline;
+ 					color: red}
+ 	A			{	text-decoration: underline;
+					color: blue}
+</style>
+</head>
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="500" align="center">
+  <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="http://granot.com/zz/images/BotBar8.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#001E4C" colspan="2">
+    <p align="center"><font size="4">
+    <a href="javascript:window.close()">
+    <font color="#FFFFFF" face="Arial Rounded MT Bold">
+    <img border="0" src="http://www.granot.com/zz/images/x.gif" align="right" width="17" height="20"></font></a><b><font color="#FFFFFF" face="Arial Rounded MT Bold">Online 
+    Estimates Menu</font></b></font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" colspan="2">
+	
+	<!-- Main -->
+
+	<!-- frame table -->
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+	  <tr>
+	    <td width="100%">
+
+    <!-- Body & Column -->
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" align="center">
+	
+	<!--- Main -->
+
+		<br>
+		
+		<br>
+		
+	<!-- Frame Table --->
+	<!-- Menu -->
+		<table border="0" width="80%" cellpadding="0" cellspacing="0" align="center">
+		    <tr><td valign="top" width="50%">
+
+			  <!-- Menu A-->
+				<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="148%">
+<%IF !plBK_SALE%>
+				  <tr>
+				    <td width="5%" height="30" style="text-align: center"><img border="0" src="http://www.granot.com/zz/images/point.gif" width="8" height="7"></td>
+				    <td width="95%" height="30"><font class="txtoff" onclick="submitFunction(1)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">
+                    Online Estimates</font></td>
+				  </tr>
+<%ENDIF%>
+				  <tr>
+				    <td width="5%" height="30" style="text-align: center"><img border="0" src="http://www.granot.com/zz/images/point.gif" width="8" height="7"></td>
+				    <td width="95%" height="30"><font class="txtoff" onclick="submitFunction(2)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">
+                    Operational Reports</font></td>
+				  </tr>
+<%IF plBK_SALE and 1=2%>
+				  <tr>
+				    <td width="5%" height="30" style="text-align: center"><img border="0" src="http://www.granot.com/zz/images/point.gif" width="8" height="7"></td>
+				    <td width="95%" height="30"><font class="txtoff" onclick="submitFunction(3)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">List of Jobs for Sale</font></td>
+				  </tr>
+<%ENDIF%>
+<%IF plBK_SALE%>
+				  <tr>
+				    <td width="5%" height="30" style="text-align: center"><img border="0" src="http://www.granot.com/zz/images/point.gif" width="8" height="7"></td>
+				    <td width="95%" height="30"><font class="txtoff" onclick="submitFunction(4)" onmouseover="javascript: this.className='txton'" onmouseout="javascript: this.className='txtoff'">
+                    Alter Estimates' Prices</font></td>
+				  </tr>
+<%ENDIF%>
+				  </table>
+				
+		  <!-- Menu A-->
+
+		  </td></tr></table>
+	<!-- Menu -->
+
+	<br>
+
+	<!-- Command Buttons -->
+
+    </td>
+  </tr>
+</table>
+<!-- frame table -->
+
+    </td>
+  </tr>
+<tr>
+    <td width="50%" BGCOLOR="#001E4C" height="15">
+      <font color="#FFFFFF">
+      <b>User:<%=pcUSER%></b></font></td>
+    <td width="50%" BGCOLOR="#001E4C" height="15">
+      <p align="right"><font color="#FFFFFF"><b><%=datetime()%>&nbsp;&nbsp;</b></font></td>
+</tr>
+   <tr>
+    <td width="100%" height="14" colspan="2">
+    <IMG SRC="http://granot.com/zz/images/botBarep.gif" width="100%" height="14"></td>
+ </tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,2308 @@
+<html>
+
+<head>
+<SCRIPT LANGUAGE = "JavaScript">
+   function additem(elem) 
+    {  
+		document.inv.elements[elem].value ++ ;
+		inv.elements[elem].className="QTYON";
+
+    }
+
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+	.ITEMOFF	{	color: BLACK;
+				  	font-size: 8pt;
+					font-weight: bold;
+				  	font-family: verdana;
+				  	text-align: left;
+				  	text-decoration: underline;
+  				  	cursor: Hand}
+	.ITEMON		{	color: red;
+				  	font-size: 8pt;
+ 				  	font-weight: bold;
+				  	font-family: verdana;
+				  	text-align: left;
+				  	text-decoration: underline;
+  				  	cursor: Hand}
+	.QTYOFF		{	text-align: Right;
+					color: #0000FF; 
+					font-size: 10pt;
+					font-family: Arial;
+					font-weight: none;
+					width: 30;
+					background-color: white}
+	.QTYON		{	text-align: Right;
+					color: #0000FF; 
+					font-size: 10pt;
+					font-family: Arial;
+					font-weight:none;
+					width: 30;
+					background-color: #FFFF99}
+	.TITLENAME	{	color: red;
+				  	font-size: 12pt;
+ 				  	font-weight: bold;
+				  	font-family: Arial;
+				  	text-align: left;
+				  	text-decoration: underline}
+</style>
+</head>
+
+<body>
+<FORM name="inv" method="post">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+      <tr>
+        <td width="100%" BGCOLOR="#669966" align="center"><b>
+        <font face="Verdana" size="4" color="#FFFFFF">Inventory</font></b></tr>
+      </tr>
+      <tr>
+        <td width="100%"><b><font face="Verdana" size="2">The moving quote is based on the distance and the inventory list. Please 
+            create your inventory by adding items to the list. Orders without an inventory 
+            will not produce a quote. Please check out only after you have entered your list.<br>
+            <SCRIPT LANGUAGE = "JavaScript">
+			//detect Microsoft Intenet Expolore 4.0+
+			if (navigator.appName=="Microsoft Internet Explorer"&&parseFloat(navigator.appVersion)>=4.0)
+				document.writeln("Option: for a quicker inventory tool, click <a href='/wc.dll?mp~invwc~5100347' target='_top'>here</a> (for fast Internet access).");
+			</SCRIPT>
+		</font></b></td>
+      </tr>
+    </table>
+
+<!--- Items -->
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#LR"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Living Room              </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR44 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BAR  3X4X2&nbsp;</td>
+	    	<td width="8%"><input ID="LR44 " CLASS="QTYOFF" type="text" name="QTY44" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR69 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOOK SHELF SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="LR69 " CLASS="QTYOFF" type="text" name="QTY69" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR70 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOOKCASE 6X3&nbsp;</td>
+	    	<td width="8%"><input ID="LR70 " CLASS="QTYOFF" type="text" name="QTY70" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR71 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOOKCASE SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="LR71 " CLASS="QTYOFF" type="text" name="QTY71" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR83 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BUFFET BASE&nbsp;</td>
+	    	<td width="8%"><input ID="LR83 " CLASS="QTYOFF" type="text" name="QTY83" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR84 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BUFFET TOP&nbsp;</td>
+	    	<td width="8%"><input ID="LR84 " CLASS="QTYOFF" type="text" name="QTY84" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR90 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CARPET 8X10&nbsp;</td>
+	    	<td width="8%"><input ID="LR90 " CLASS="QTYOFF" type="text" name="QTY90" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR91 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CARPET,  AREA SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="LR91 " CLASS="QTYOFF" type="text" name="QTY91" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR92 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CD PLAYER&nbsp;</td>
+	    	<td width="8%"><input ID="LR92 " CLASS="QTYOFF" type="text" name="QTY92" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR93 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR ARM&nbsp;</td>
+	    	<td width="8%"><input ID="LR93 " CLASS="QTYOFF" type="text" name="QTY93" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR99 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR LOUNGE&nbsp;</td>
+	    	<td width="8%"><input ID="LR99 " CLASS="QTYOFF" type="text" name="QTY99" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR101')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR OVERSTUFFED&nbsp;</td>
+	    	<td width="8%"><input ID="LR101" CLASS="QTYOFF" type="text" name="QTY101" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR103')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR RECLINER&nbsp;</td>
+	    	<td width="8%"><input ID="LR103" CLASS="QTYOFF" type="text" name="QTY103" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR104')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR ROCKER&nbsp;</td>
+	    	<td width="8%"><input ID="LR104" CLASS="QTYOFF" type="text" name="QTY104" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR107')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR WICKER&nbsp;</td>
+	    	<td width="8%"><input ID="LR107" CLASS="QTYOFF" type="text" name="QTY107" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR108')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAISE LOUNGE&nbsp;</td>
+	    	<td width="8%"><input ID="LR108" CLASS="QTYOFF" type="text" name="QTY108" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR109')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHANDELIER - LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="LR109" CLASS="QTYOFF" type="text" name="QTY109" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR110')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHANDELIER - SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="LR110" CLASS="QTYOFF" type="text" name="QTY110" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR119')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHINA CAB - 1 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="LR119" CLASS="QTYOFF" type="text" name="QTY119" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR120')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHINA CAB - 2 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="LR120" CLASS="QTYOFF" type="text" name="QTY120" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR121')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CLOCK WALL&nbsp;</td>
+	    	<td width="8%"><input ID="LR121" CLASS="QTYOFF" type="text" name="QTY121" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR122')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CLOCK-GRANDFATHER&nbsp;</td>
+	    	<td width="8%"><input ID="LR122" CLASS="QTYOFF" type="text" name="QTY122" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR149')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">ENTERTAIN. LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="LR149" CLASS="QTYOFF" type="text" name="QTY149" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR150')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">ENTERTAIN. SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="LR150" CLASS="QTYOFF" type="text" name="QTY150" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR151')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">ENTERTAINMENT CENTER&nbsp;</td>
+	    	<td width="8%"><input ID="LR151" CLASS="QTYOFF" type="text" name="QTY151" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR183')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MAGAZINE RACK&nbsp;</td>
+	    	<td width="8%"><input ID="LR183" CLASS="QTYOFF" type="text" name="QTY183" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR196')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">ORIENTAL SCREEN&nbsp;</td>
+	    	<td width="8%"><input ID="LR196" CLASS="QTYOFF" type="text" name="QTY196" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR199')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PAPIZON CHAIR&nbsp;</td>
+	    	<td width="8%"><input ID="LR199" CLASS="QTYOFF" type="text" name="QTY199" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR204')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PIANO BABYGRAND&nbsp;</td>
+	    	<td width="8%"><input ID="LR204" CLASS="QTYOFF" type="text" name="QTY204" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR205')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PIANO GRAND&nbsp;</td>
+	    	<td width="8%"><input ID="LR205" CLASS="QTYOFF" type="text" name="QTY205" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR206')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PIANO SPINET&nbsp;</td>
+	    	<td width="8%"><input ID="LR206" CLASS="QTYOFF" type="text" name="QTY206" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR207')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PIANO UPRIGHT&nbsp;</td>
+	    	<td width="8%"><input ID="LR207" CLASS="QTYOFF" type="text" name="QTY207" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR217')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PORTABLE TV&nbsp;</td>
+	    	<td width="8%"><input ID="LR217" CLASS="QTYOFF" type="text" name="QTY217" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR232')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SIDE TABLE&nbsp;</td>
+	    	<td width="8%"><input ID="LR232" CLASS="QTYOFF" type="text" name="QTY232" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR234')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFA TABLE&nbsp;</td>
+	    	<td width="8%"><input ID="LR234" CLASS="QTYOFF" type="text" name="QTY234" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR235')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFA-2 LOVESEAT&nbsp;</td>
+	    	<td width="8%"><input ID="LR235" CLASS="QTYOFF" type="text" name="QTY235" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR236')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFA-3 SEAT/BED&nbsp;</td>
+	    	<td width="8%"><input ID="LR236" CLASS="QTYOFF" type="text" name="QTY236" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR237')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFA-4 SEAT&nbsp;</td>
+	    	<td width="8%"><input ID="LR237" CLASS="QTYOFF" type="text" name="QTY237" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR238')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFA-SEC 4 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="LR238" CLASS="QTYOFF" type="text" name="QTY238" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR239')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFA-SEC 5 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="LR239" CLASS="QTYOFF" type="text" name="QTY239" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR243')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SPEAKER LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="LR243" CLASS="QTYOFF" type="text" name="QTY243" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR244')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SPEAKER REGULAR&nbsp;</td>
+	    	<td width="8%"><input ID="LR244" CLASS="QTYOFF" type="text" name="QTY244" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR251')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STEREO CABINET&nbsp;</td>
+	    	<td width="8%"><input ID="LR251" CLASS="QTYOFF" type="text" name="QTY251" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR252')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STEREO SYSTEM&nbsp;</td>
+	    	<td width="8%"><input ID="LR252" CLASS="QTYOFF" type="text" name="QTY252" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR253')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STOOL BAR&nbsp;</td>
+	    	<td width="8%"><input ID="LR253" CLASS="QTYOFF" type="text" name="QTY253" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR260')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">T.V.  STAND&nbsp;</td>
+	    	<td width="8%"><input ID="LR260" CLASS="QTYOFF" type="text" name="QTY260" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR261')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">T.V. 20   (OR SMALLER)&nbsp;</td>
+	    	<td width="8%"><input ID="LR261" CLASS="QTYOFF" type="text" name="QTY261" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR262')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">T.V. BIG 60&nbsp;</td>
+	    	<td width="8%"><input ID="LR262" CLASS="QTYOFF" type="text" name="QTY262" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR263')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">T.V. CONSOLE&nbsp;</td>
+	    	<td width="8%"><input ID="LR263" CLASS="QTYOFF" type="text" name="QTY263" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR264')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">T.V. OVER 21  TO 41&nbsp;</td>
+	    	<td width="8%"><input ID="LR264" CLASS="QTYOFF" type="text" name="QTY264" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR265')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">T.V. OVER 42  TO 47&nbsp;</td>
+	    	<td width="8%"><input ID="LR265" CLASS="QTYOFF" type="text" name="QTY265" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR266')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">T.V. PROJECTOR 48 +&nbsp;</td>
+	    	<td width="8%"><input ID="LR266" CLASS="QTYOFF" type="text" name="QTY266" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR267')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">T.V. TABLE TOP&nbsp;</td>
+	    	<td width="8%"><input ID="LR267" CLASS="QTYOFF" type="text" name="QTY267" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR268')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE COFFEE&nbsp;</td>
+	    	<td width="8%"><input ID="LR268" CLASS="QTYOFF" type="text" name="QTY268" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR273')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE GLASS TOP&nbsp;</td>
+	    	<td width="8%"><input ID="LR273" CLASS="QTYOFF" type="text" name="QTY273" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR277')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE TELEPHONE&nbsp;</td>
+	    	<td width="8%"><input ID="LR277" CLASS="QTYOFF" type="text" name="QTY277" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR291')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">VCR&nbsp;</td>
+	    	<td width="8%"><input ID="LR291" CLASS="QTYOFF" type="text" name="QTY291" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR293')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WALL UNIT 1 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="LR293" CLASS="QTYOFF" type="text" name="QTY293" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR294')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WALL UNIT 2 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="LR294" CLASS="QTYOFF" type="text" name="QTY294" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR295')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WALL UNIT 3 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="LR295" CLASS="QTYOFF" type="text" name="QTY295" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('LR296')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WALL UNIT 4 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="LR296" CLASS="QTYOFF" type="text" name="QTY296" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#BR"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Bed Room                 </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR40 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">ARMOIRE LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="BR40 " CLASS="QTYOFF" type="text" name="QTY40" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR41 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">ARMOIRE REGULAR&nbsp;</td>
+	    	<td width="8%"><input ID="BR41 " CLASS="QTYOFF" type="text" name="QTY41" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR42 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">ARMOIRE SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="BR42 " CLASS="QTYOFF" type="text" name="QTY42" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR46 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED BRIDGE HEADBD.&nbsp;</td>
+	    	<td width="8%"><input ID="BR46 " CLASS="QTYOFF" type="text" name="QTY46" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR47 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED BRIDGELIGHT&nbsp;</td>
+	    	<td width="8%"><input ID="BR47 " CLASS="QTYOFF" type="text" name="QTY47" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR48 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED BUNK&nbsp;</td>
+	    	<td width="8%"><input ID="BR48 " CLASS="QTYOFF" type="text" name="QTY48" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR49 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED CANOPY&nbsp;</td>
+	    	<td width="8%"><input ID="BR49 " CLASS="QTYOFF" type="text" name="QTY49" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR50 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED DAY&nbsp;</td>
+	    	<td width="8%"><input ID="BR50 " CLASS="QTYOFF" type="text" name="QTY50" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR51 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED DOUBLE&nbsp;</td>
+	    	<td width="8%"><input ID="BR51 " CLASS="QTYOFF" type="text" name="QTY51" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR52 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED FOOTBOARD&nbsp;</td>
+	    	<td width="8%"><input ID="BR52 " CLASS="QTYOFF" type="text" name="QTY52" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR53 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED FULL&nbsp;</td>
+	    	<td width="8%"><input ID="BR53 " CLASS="QTYOFF" type="text" name="QTY53" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR54 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED HEADBD. LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="BR54 " CLASS="QTYOFF" type="text" name="QTY54" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR55 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED HEADBD. SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="BR55 " CLASS="QTYOFF" type="text" name="QTY55" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR56 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED KING&nbsp;</td>
+	    	<td width="8%"><input ID="BR56 " CLASS="QTYOFF" type="text" name="QTY56" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR57 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED PLATFORM&nbsp;</td>
+	    	<td width="8%"><input ID="BR57 " CLASS="QTYOFF" type="text" name="QTY57" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR58 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED POST&nbsp;</td>
+	    	<td width="8%"><input ID="BR58 " CLASS="QTYOFF" type="text" name="QTY58" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR59 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED QUEEN&nbsp;</td>
+	    	<td width="8%"><input ID="BR59 " CLASS="QTYOFF" type="text" name="QTY59" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR60 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED TRUNDLE&nbsp;</td>
+	    	<td width="8%"><input ID="BR60 " CLASS="QTYOFF" type="text" name="QTY60" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR61 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED TWIN&nbsp;</td>
+	    	<td width="8%"><input ID="BR61 " CLASS="QTYOFF" type="text" name="QTY61" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR62 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BED WATER Q/K&nbsp;</td>
+	    	<td width="8%"><input ID="BR62 " CLASS="QTYOFF" type="text" name="QTY62" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR67 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOOK CASE&nbsp;</td>
+	    	<td width="8%"><input ID="BR67 " CLASS="QTYOFF" type="text" name="QTY67" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR72 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOOKCASE/CHILD&nbsp;</td>
+	    	<td width="8%"><input ID="BR72 " CLASS="QTYOFF" type="text" name="QTY72" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR85 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CABINET CORNER&nbsp;</td>
+	    	<td width="8%"><input ID="BR85 " CLASS="QTYOFF" type="text" name="QTY85" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR86 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CABINET LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="BR86 " CLASS="QTYOFF" type="text" name="QTY86" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR87 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CABINET MEDIUM&nbsp;</td>
+	    	<td width="8%"><input ID="BR87 " CLASS="QTYOFF" type="text" name="QTY87" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR88 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CABINET SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="BR88 " CLASS="QTYOFF" type="text" name="QTY88" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR89 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CAPTAIN BED&nbsp;</td>
+	    	<td width="8%"><input ID="BR89 " CLASS="QTYOFF" type="text" name="QTY89" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR111')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHANGING TABLE&nbsp;</td>
+	    	<td width="8%"><input ID="BR111" CLASS="QTYOFF" type="text" name="QTY111" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR112')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHEST CEDAR&nbsp;</td>
+	    	<td width="8%"><input ID="BR112" CLASS="QTYOFF" type="text" name="QTY112" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR113')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHEST LINGERIE&nbsp;</td>
+	    	<td width="8%"><input ID="BR113" CLASS="QTYOFF" type="text" name="QTY113" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR114')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHEST MEDIUM&nbsp;</td>
+	    	<td width="8%"><input ID="BR114" CLASS="QTYOFF" type="text" name="QTY114" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR115')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHEST SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="BR115" CLASS="QTYOFF" type="text" name="QTY115" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR116')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHEST TOY&nbsp;</td>
+	    	<td width="8%"><input ID="BR116" CLASS="QTYOFF" type="text" name="QTY116" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR117')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHILD TABLE/CHAIRS&nbsp;</td>
+	    	<td width="8%"><input ID="BR117" CLASS="QTYOFF" type="text" name="QTY117" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR118')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHILD TOY&nbsp;</td>
+	    	<td width="8%"><input ID="BR118" CLASS="QTYOFF" type="text" name="QTY118" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR123')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">COAT RACK&nbsp;</td>
+	    	<td width="8%"><input ID="BR123" CLASS="QTYOFF" type="text" name="QTY123" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR130')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CRADLE&nbsp;</td>
+	    	<td width="8%"><input ID="BR130" CLASS="QTYOFF" type="text" name="QTY130" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR132')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CRIB&nbsp;</td>
+	    	<td width="8%"><input ID="BR132" CLASS="QTYOFF" type="text" name="QTY132" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR141')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DRESSER CHILD&nbsp;</td>
+	    	<td width="8%"><input ID="BR141" CLASS="QTYOFF" type="text" name="QTY141" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR142')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DRESSER DOUBLE&nbsp;</td>
+	    	<td width="8%"><input ID="BR142" CLASS="QTYOFF" type="text" name="QTY142" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR143')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DRESSER SINGLE&nbsp;</td>
+	    	<td width="8%"><input ID="BR143" CLASS="QTYOFF" type="text" name="QTY143" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR144')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DRESSER TRIPLE&nbsp;</td>
+	    	<td width="8%"><input ID="BR144" CLASS="QTYOFF" type="text" name="QTY144" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR165')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FUTON&nbsp;</td>
+	    	<td width="8%"><input ID="BR165" CLASS="QTYOFF" type="text" name="QTY165" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR169')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">HAMPER&nbsp;</td>
+	    	<td width="8%"><input ID="BR169" CLASS="QTYOFF" type="text" name="QTY169" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR173')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">IRONING BOARD&nbsp;</td>
+	    	<td width="8%"><input ID="BR173" CLASS="QTYOFF" type="text" name="QTY173" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR178')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">LAMP, FLOOR&nbsp;</td>
+	    	<td width="8%"><input ID="BR178" CLASS="QTYOFF" type="text" name="QTY178" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR179')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">LAMP, TABLE SM. OR MED.&nbsp;</td>
+	    	<td width="8%"><input ID="BR179" CLASS="QTYOFF" type="text" name="QTY179" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR184')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MATTRESS DBL/QN&nbsp;</td>
+	    	<td width="8%"><input ID="BR184" CLASS="QTYOFF" type="text" name="QTY184" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR185')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MATTRESS KING&nbsp;</td>
+	    	<td width="8%"><input ID="BR185" CLASS="QTYOFF" type="text" name="QTY185" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR186')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MATTRESS TWIN&nbsp;</td>
+	    	<td width="8%"><input ID="BR186" CLASS="QTYOFF" type="text" name="QTY186" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR191')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MIRROR&nbsp;</td>
+	    	<td width="8%"><input ID="BR191" CLASS="QTYOFF" type="text" name="QTY191" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR195')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">NIGHT STAND&nbsp;</td>
+	    	<td width="8%"><input ID="BR195" CLASS="QTYOFF" type="text" name="QTY195" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR219')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">RECLINER&nbsp;</td>
+	    	<td width="8%"><input ID="BR219" CLASS="QTYOFF" type="text" name="QTY219" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR258')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SUITCASE LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="BR258" CLASS="QTYOFF" type="text" name="QTY258" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR259')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SUITCASE SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="BR259" CLASS="QTYOFF" type="text" name="QTY259" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR271')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE END&nbsp;</td>
+	    	<td width="8%"><input ID="BR271" CLASS="QTYOFF" type="text" name="QTY271" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR276')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE LAMP LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="BR276" CLASS="QTYOFF" type="text" name="QTY276" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BR297')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WARDROBE CLOSET&nbsp;</td>
+	    	<td width="8%"><input ID="BR297" CLASS="QTYOFF" type="text" name="QTY297" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#DR"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Dining Room              </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('DR82 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BREAKFRONT 1 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="DR82 " CLASS="QTYOFF" type="text" name="QTY82" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('DR97 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR HIGH BACK&nbsp;</td>
+	    	<td width="8%"><input ID="DR97 " CLASS="QTYOFF" type="text" name="QTY97" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('DR105')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR SINGLE&nbsp;</td>
+	    	<td width="8%"><input ID="DR105" CLASS="QTYOFF" type="text" name="QTY105" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('DR170')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">HIGH CHAIR&nbsp;</td>
+	    	<td width="8%"><input ID="DR170" CLASS="QTYOFF" type="text" name="QTY170" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('DR270')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE DINING&nbsp;</td>
+	    	<td width="8%"><input ID="DR270" CLASS="QTYOFF" type="text" name="QTY270" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('DR272')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE FOLDING&nbsp;</td>
+	    	<td width="8%"><input ID="DR272" CLASS="QTYOFF" type="text" name="QTY272" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('DR278')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TEA CART&nbsp;</td>
+	    	<td width="8%"><input ID="DR278" CLASS="QTYOFF" type="text" name="QTY278" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('DR302')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WINE RACK&nbsp;</td>
+	    	<td width="8%"><input ID="DR302" CLASS="QTYOFF" type="text" name="QTY302" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#AP"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Appliances               </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('AP33 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">AIR COND. LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="AP33 " CLASS="QTYOFF" type="text" name="QTY33" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('AP34 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">AIR COND. SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="AP34 " CLASS="QTYOFF" type="text" name="QTY34" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('AP140')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DISHWASHER&nbsp;</td>
+	    	<td width="8%"><input ID="AP140" CLASS="QTYOFF" type="text" name="QTY140" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('AP146')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DRYER&nbsp;</td>
+	    	<td width="8%"><input ID="AP146" CLASS="QTYOFF" type="text" name="QTY146" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('AP155')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FAN, FLOOR&nbsp;</td>
+	    	<td width="8%"><input ID="AP155" CLASS="QTYOFF" type="text" name="QTY155" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('AP298')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WASHER/DRYER COMBO&nbsp;</td>
+	    	<td width="8%"><input ID="AP298" CLASS="QTYOFF" type="text" name="QTY298" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('AP299')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WASHING MACHINE&nbsp;</td>
+	    	<td width="8%"><input ID="AP299" CLASS="QTYOFF" type="text" name="QTY299" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#KI"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Kitchen                  </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI43 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BAKERS RACK&nbsp;</td>
+	    	<td width="8%"><input ID="KI43 " CLASS="QTYOFF" type="text" name="QTY43" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI95 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR DINING&nbsp;</td>
+	    	<td width="8%"><input ID="KI95 " CLASS="QTYOFF" type="text" name="QTY95" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI98 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR KITCHEN&nbsp;</td>
+	    	<td width="8%"><input ID="KI98 " CLASS="QTYOFF" type="text" name="QTY98" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI161')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FREEZER/LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="KI161" CLASS="QTYOFF" type="text" name="QTY161" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI162')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FREEZER/MEDIUM&nbsp;</td>
+	    	<td width="8%"><input ID="KI162" CLASS="QTYOFF" type="text" name="QTY162" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI163')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FREEZER/SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="KI163" CLASS="QTYOFF" type="text" name="QTY163" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI164')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FREEZER/XLGE&nbsp;</td>
+	    	<td width="8%"><input ID="KI164" CLASS="QTYOFF" type="text" name="QTY164" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI166')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">GARBAGE CAN&nbsp;</td>
+	    	<td width="8%"><input ID="KI166" CLASS="QTYOFF" type="text" name="QTY166" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI187')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MICROWAVE CART&nbsp;</td>
+	    	<td width="8%"><input ID="KI187" CLASS="QTYOFF" type="text" name="QTY187" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI188')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MICROWAVE LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="KI188" CLASS="QTYOFF" type="text" name="QTY188" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI189')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MICROWAVE OVEN STANDARD&nbsp;</td>
+	    	<td width="8%"><input ID="KI189" CLASS="QTYOFF" type="text" name="QTY189" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI190')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MICROWAVE SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="KI190" CLASS="QTYOFF" type="text" name="QTY190" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI220')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">REFRIGERATOR DORMITY&nbsp;</td>
+	    	<td width="8%"><input ID="KI220" CLASS="QTYOFF" type="text" name="QTY220" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI221')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">REFRIGERATOR SIDE/SIDE&nbsp;</td>
+	    	<td width="8%"><input ID="KI221" CLASS="QTYOFF" type="text" name="QTY221" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI222')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">REFRIGERATOR UPRIGHT&nbsp;</td>
+	    	<td width="8%"><input ID="KI222" CLASS="QTYOFF" type="text" name="QTY222" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI257')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STOVE&nbsp;</td>
+	    	<td width="8%"><input ID="KI257" CLASS="QTYOFF" type="text" name="QTY257" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI274')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE KITCHEN&nbsp;</td>
+	    	<td width="8%"><input ID="KI274" CLASS="QTYOFF" type="text" name="QTY274" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI275')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE KITCHEN SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="KI275" CLASS="QTYOFF" type="text" name="QTY275" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI279')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TOASTER OVEN&nbsp;</td>
+	    	<td width="8%"><input ID="KI279" CLASS="QTYOFF" type="text" name="QTY279" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('KI300')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WATER COOLER&nbsp;</td>
+	    	<td width="8%"><input ID="KI300" CLASS="QTYOFF" type="text" name="QTY300" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#OF"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Office                   </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF96 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR FOLDING&nbsp;</td>
+	    	<td width="8%"><input ID="OF96 " CLASS="QTYOFF" type="text" name="QTY96" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF100')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR OFFICE&nbsp;</td>
+	    	<td width="8%"><input ID="OF100" CLASS="QTYOFF" type="text" name="QTY100" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF124')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">COMPUTER DESK&nbsp;</td>
+	    	<td width="8%"><input ID="OF124" CLASS="QTYOFF" type="text" name="QTY124" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF125')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">COMPUTER SCREEN&nbsp;</td>
+	    	<td width="8%"><input ID="OF125" CLASS="QTYOFF" type="text" name="QTY125" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF126')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">COMPUTER SYSTEM&nbsp;</td>
+	    	<td width="8%"><input ID="OF126" CLASS="QTYOFF" type="text" name="QTY126" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF127')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">COPIER REG. OFFICE&nbsp;</td>
+	    	<td width="8%"><input ID="OF127" CLASS="QTYOFF" type="text" name="QTY127" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF128')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">COPIER TABLE TOP&nbsp;</td>
+	    	<td width="8%"><input ID="OF128" CLASS="QTYOFF" type="text" name="QTY128" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF129')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CORNER CABINET&nbsp;</td>
+	    	<td width="8%"><input ID="OF129" CLASS="QTYOFF" type="text" name="QTY129" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF134')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DESK&nbsp;</td>
+	    	<td width="8%"><input ID="OF134" CLASS="QTYOFF" type="text" name="QTY134" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF135')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DESK DOUBLE&nbsp;</td>
+	    	<td width="8%"><input ID="OF135" CLASS="QTYOFF" type="text" name="QTY135" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF136')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DESK EXECUTIVE&nbsp;</td>
+	    	<td width="8%"><input ID="OF136" CLASS="QTYOFF" type="text" name="QTY136" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF137')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DESK HUTCH&nbsp;</td>
+	    	<td width="8%"><input ID="OF137" CLASS="QTYOFF" type="text" name="QTY137" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF138')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DESK RETURN&nbsp;</td>
+	    	<td width="8%"><input ID="OF138" CLASS="QTYOFF" type="text" name="QTY138" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF139')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DESK SINGLE&nbsp;</td>
+	    	<td width="8%"><input ID="OF139" CLASS="QTYOFF" type="text" name="QTY139" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF156')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FILE CABINET FIVE&nbsp;</td>
+	    	<td width="8%"><input ID="OF156" CLASS="QTYOFF" type="text" name="QTY156" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF157')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FILE CABINET FOUR&nbsp;</td>
+	    	<td width="8%"><input ID="OF157" CLASS="QTYOFF" type="text" name="QTY157" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF158')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FILE CABINET LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="OF158" CLASS="QTYOFF" type="text" name="QTY158" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF159')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FILE CABINET SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="OF159" CLASS="QTYOFF" type="text" name="QTY159" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF160')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">FILE CABINET TWO DRAWER&nbsp;</td>
+	    	<td width="8%"><input ID="OF160" CLASS="QTYOFF" type="text" name="QTY160" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF174')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">KEYBOARD/LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="OF174" CLASS="QTYOFF" type="text" name="QTY174" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF175')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">KEYBOARD/SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="OF175" CLASS="QTYOFF" type="text" name="QTY175" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF226')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SAFE LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="OF226" CLASS="QTYOFF" type="text" name="QTY226" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF227')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SAFE SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="OF227" CLASS="QTYOFF" type="text" name="QTY227" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF249')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STATUE/LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="OF249" CLASS="QTYOFF" type="text" name="QTY249" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF250')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STATUE/SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="OF250" CLASS="QTYOFF" type="text" name="QTY250" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF269')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TABLE CONFERENCE&nbsp;</td>
+	    	<td width="8%"><input ID="OF269" CLASS="QTYOFF" type="text" name="QTY269" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('OF288')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TYPEWRITER&nbsp;</td>
+	    	<td width="8%"><input ID="OF288" CLASS="QTYOFF" type="text" name="QTY288" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#PO"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Patio Furniture          </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO45 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BARBECUE GRILL&nbsp;</td>
+	    	<td width="8%"><input ID="PO45 " CLASS="QTYOFF" type="text" name="QTY45" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO63 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BENCH LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="PO63 " CLASS="QTYOFF" type="text" name="QTY63" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO64 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BENCH SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="PO64 " CLASS="QTYOFF" type="text" name="QTY64" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO102')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR PATIO&nbsp;</td>
+	    	<td width="8%"><input ID="PO102" CLASS="QTYOFF" type="text" name="QTY102" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO106')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR STACKABLE&nbsp;</td>
+	    	<td width="8%"><input ID="PO106" CLASS="QTYOFF" type="text" name="QTY106" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO180')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">LAWNMOWER PUSH&nbsp;</td>
+	    	<td width="8%"><input ID="PO180" CLASS="QTYOFF" type="text" name="QTY180" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO181')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">LAWNMOWER RIDE&nbsp;</td>
+	    	<td width="8%"><input ID="PO181" CLASS="QTYOFF" type="text" name="QTY181" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO182')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">LOUNGE CHAIR&nbsp;</td>
+	    	<td width="8%"><input ID="PO182" CLASS="QTYOFF" type="text" name="QTY182" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO200')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PATIO SET 5 PIECE&nbsp;</td>
+	    	<td width="8%"><input ID="PO200" CLASS="QTYOFF" type="text" name="QTY200" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO201')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PATIO TABLE&nbsp;</td>
+	    	<td width="8%"><input ID="PO201" CLASS="QTYOFF" type="text" name="QTY201" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO202')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PATIO UMBRELLA&nbsp;</td>
+	    	<td width="8%"><input ID="PO202" CLASS="QTYOFF" type="text" name="QTY202" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO210')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PLANT ARTIFICIAL LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="PO210" CLASS="QTYOFF" type="text" name="QTY210" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO211')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PLANT ARTIFICIAL SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="PO211" CLASS="QTYOFF" type="text" name="QTY211" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('PO284')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TRAMPOLINE&nbsp;</td>
+	    	<td width="8%"><input ID="PO284" CLASS="QTYOFF" type="text" name="QTY284" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#GA"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Garage                   </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA152')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">EXCERCISE BIKE&nbsp;</td>
+	    	<td width="8%"><input ID="GA152" CLASS="QTYOFF" type="text" name="QTY152" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA153')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">EXCERCISE EQUIP LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="GA153" CLASS="QTYOFF" type="text" name="QTY153" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA154')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">EXCERCISE EQUIP SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="GA154" CLASS="QTYOFF" type="text" name="QTY154" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA176')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">LADDER TO 10&nbsp;</td>
+	    	<td width="8%"><input ID="GA176" CLASS="QTYOFF" type="text" name="QTY176" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA177')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">LADDER TO 7&nbsp;</td>
+	    	<td width="8%"><input ID="GA177" CLASS="QTYOFF" type="text" name="QTY177" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA255')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STORAGE-H/BOARD LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="GA255" CLASS="QTYOFF" type="text" name="QTY255" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA280')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TOOL BOX LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="GA280" CLASS="QTYOFF" type="text" name="QTY280" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA281')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TOOL BOX SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="GA281" CLASS="QTYOFF" type="text" name="QTY281" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA282')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TOOL GANG BOX&nbsp;</td>
+	    	<td width="8%"><input ID="GA282" CLASS="QTYOFF" type="text" name="QTY282" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA283')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TOOLS GARDEN&nbsp;</td>
+	    	<td width="8%"><input ID="GA283" CLASS="QTYOFF" type="text" name="QTY283" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA285')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TREADMILL&nbsp;</td>
+	    	<td width="8%"><input ID="GA285" CLASS="QTYOFF" type="text" name="QTY285" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA286')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TRUNK LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="GA286" CLASS="QTYOFF" type="text" name="QTY286" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA287')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">TRUNK SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="GA287" CLASS="QTYOFF" type="text" name="QTY287" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('GA289')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">VACUUM CLEANER&nbsp;</td>
+	    	<td width="8%"><input ID="GA289" CLASS="QTYOFF" type="text" name="QTY289" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#MS"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Miscellaneous            </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS35 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">AQUARIUM STAND LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="MS35 " CLASS="QTYOFF" type="text" name="QTY35" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS36 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">AQUARIUM STAND SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS36 " CLASS="QTYOFF" type="text" name="QTY36" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS37 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">AQUARIUM-10 GAL&nbsp;</td>
+	    	<td width="8%"><input ID="MS37 " CLASS="QTYOFF" type="text" name="QTY37" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS38 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">AQUARIUM-20 GAL&nbsp;</td>
+	    	<td width="8%"><input ID="MS38 " CLASS="QTYOFF" type="text" name="QTY38" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS39 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">AQUARIUM-55 GAL&nbsp;</td>
+	    	<td width="8%"><input ID="MS39 " CLASS="QTYOFF" type="text" name="QTY39" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS65 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BIKE-ADULT&nbsp;</td>
+	    	<td width="8%"><input ID="MS65 " CLASS="QTYOFF" type="text" name="QTY65" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS66 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BIKE-CHILD&nbsp;</td>
+	    	<td width="8%"><input ID="MS66 " CLASS="QTYOFF" type="text" name="QTY66" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS68 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOOK SHELF&nbsp;</td>
+	    	<td width="8%"><input ID="MS68 " CLASS="QTYOFF" type="text" name="QTY68" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS94 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CHAIR CLUB&nbsp;</td>
+	    	<td width="8%"><input ID="MS94 " CLASS="QTYOFF" type="text" name="QTY94" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS131')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CREDENZA&nbsp;</td>
+	    	<td width="8%"><input ID="MS131" CLASS="QTYOFF" type="text" name="QTY131" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS133')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">CURIO CABINET&nbsp;</td>
+	    	<td width="8%"><input ID="MS133" CLASS="QTYOFF" type="text" name="QTY133" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS145')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">DROP- LEAF TABLE&nbsp;</td>
+	    	<td width="8%"><input ID="MS145" CLASS="QTYOFF" type="text" name="QTY145" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS147')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">EDGER&nbsp;</td>
+	    	<td width="8%"><input ID="MS147" CLASS="QTYOFF" type="text" name="QTY147" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS148')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">ELIPTICAL MACHINE&nbsp;</td>
+	    	<td width="8%"><input ID="MS148" CLASS="QTYOFF" type="text" name="QTY148" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS167')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">GOLF BAG&nbsp;</td>
+	    	<td width="8%"><input ID="MS167" CLASS="QTYOFF" type="text" name="QTY167" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS168')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">GUITAR&nbsp;</td>
+	    	<td width="8%"><input ID="MS168" CLASS="QTYOFF" type="text" name="QTY168" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS171')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">HUTCH&nbsp;</td>
+	    	<td width="8%"><input ID="MS171" CLASS="QTYOFF" type="text" name="QTY171" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS172')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">INSTEP STROLLER&nbsp;</td>
+	    	<td width="8%"><input ID="MS172" CLASS="QTYOFF" type="text" name="QTY172" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS192')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MIRROR LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="MS192" CLASS="QTYOFF" type="text" name="QTY192" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS193')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MIRROR REGULAR&nbsp;</td>
+	    	<td width="8%"><input ID="MS193" CLASS="QTYOFF" type="text" name="QTY193" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS194')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">MUSICAL INSTRUMENT&nbsp;</td>
+	    	<td width="8%"><input ID="MS194" CLASS="QTYOFF" type="text" name="QTY194" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS197')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">OTTOMAN LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="MS197" CLASS="QTYOFF" type="text" name="QTY197" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS198')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">OTTOMAN SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS198" CLASS="QTYOFF" type="text" name="QTY198" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS203')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PEDESTAL&nbsp;</td>
+	    	<td width="8%"><input ID="MS203" CLASS="QTYOFF" type="text" name="QTY203" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS208')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PICTURES POSTER&nbsp;</td>
+	    	<td width="8%"><input ID="MS208" CLASS="QTYOFF" type="text" name="QTY208" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS209')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PICTURES SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS209" CLASS="QTYOFF" type="text" name="QTY209" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS212')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PLASTIC BAG/LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="MS212" CLASS="QTYOFF" type="text" name="QTY212" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS213')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PLASTIC BAG/SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS213" CLASS="QTYOFF" type="text" name="QTY213" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS214')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PLASTIC BIN SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS214" CLASS="QTYOFF" type="text" name="QTY214" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS215')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PLAYPEN-FOLDING&nbsp;</td>
+	    	<td width="8%"><input ID="MS215" CLASS="QTYOFF" type="text" name="QTY215" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS216')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">PLAYPEN-N/FOLDING&nbsp;</td>
+	    	<td width="8%"><input ID="MS216" CLASS="QTYOFF" type="text" name="QTY216" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS218')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">POTTERY&nbsp;</td>
+	    	<td width="8%"><input ID="MS218" CLASS="QTYOFF" type="text" name="QTY218" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS223')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SADDLE&nbsp;</td>
+	    	<td width="8%"><input ID="MS223" CLASS="QTYOFF" type="text" name="QTY223" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS224')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SADDLE/LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="MS224" CLASS="QTYOFF" type="text" name="QTY224" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS225')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SAFE EXTRA LARGE&nbsp;</td>
+	    	<td width="8%"><input ID="MS225" CLASS="QTYOFF" type="text" name="QTY225" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS228')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SCREEN/FOLDING&nbsp;</td>
+	    	<td width="8%"><input ID="MS228" CLASS="QTYOFF" type="text" name="QTY228" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS229')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SERVER&nbsp;</td>
+	    	<td width="8%"><input ID="MS229" CLASS="QTYOFF" type="text" name="QTY229" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS230')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SEWING MACHINE/CONSOLE&nbsp;</td>
+	    	<td width="8%"><input ID="MS230" CLASS="QTYOFF" type="text" name="QTY230" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS231')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SEWING MACHINE/PORTABLE&nbsp;</td>
+	    	<td width="8%"><input ID="MS231" CLASS="QTYOFF" type="text" name="QTY231" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS233')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SIDEBOARD&nbsp;</td>
+	    	<td width="8%"><input ID="MS233" CLASS="QTYOFF" type="text" name="QTY233" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS240')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFTSTRIDER&nbsp;</td>
+	    	<td width="8%"><input ID="MS240" CLASS="QTYOFF" type="text" name="QTY240" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS241')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFTSTRIDER EX&nbsp;</td>
+	    	<td width="8%"><input ID="MS241" CLASS="QTYOFF" type="text" name="QTY241" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS242')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">SOFTSTRIDER PRO&nbsp;</td>
+	    	<td width="8%"><input ID="MS242" CLASS="QTYOFF" type="text" name="QTY242" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS245')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STAIRMASTER  NORDIK&nbsp;</td>
+	    	<td width="8%"><input ID="MS245" CLASS="QTYOFF" type="text" name="QTY245" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS246')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STAIRMASTER SOLFLX&nbsp;</td>
+	    	<td width="8%"><input ID="MS246" CLASS="QTYOFF" type="text" name="QTY246" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS247')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STAND MEDIUM&nbsp;</td>
+	    	<td width="8%"><input ID="MS247" CLASS="QTYOFF" type="text" name="QTY247" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS248')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STAND SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS248" CLASS="QTYOFF" type="text" name="QTY248" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS254')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STOOL SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS254" CLASS="QTYOFF" type="text" name="QTY254" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS256')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">STORAGE-H/BOARD SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS256" CLASS="QTYOFF" type="text" name="QTY256" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS290')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">VANITY TABLE&nbsp;</td>
+	    	<td width="8%"><input ID="MS290" CLASS="QTYOFF" type="text" name="QTY290" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS292')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WALL SHELVES&nbsp;</td>
+	    	<td width="8%"><input ID="MS292" CLASS="QTYOFF" type="text" name="QTY292" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS301')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WEIGHT BENCH&nbsp;</td>
+	    	<td width="8%"><input ID="MS301" CLASS="QTYOFF" type="text" name="QTY301" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS303')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WORK BENCH REGULAR&nbsp;</td>
+	    	<td width="8%"><input ID="MS303" CLASS="QTYOFF" type="text" name="QTY303" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('MS304')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">WORK BENCH SMALL&nbsp;</td>
+	    	<td width="8%"><input ID="MS304" CLASS="QTYOFF" type="text" name="QTY304" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+    <b><font face="Verdana" size="2">
+    <br>
+		</font></b>
+		<a name="#BX"></a>
+		<BR>
+		<FONT CLASS="TITLENAME">Boxes                    </FONT>
+		<BR>
+		<table border="1" cellspacing="0" width="100%">
+		  <tr>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    	<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		    <td width="22%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item</font></b></td>
+		    <td width="8%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+		    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr>
+		  <tr>
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX73 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX (1.5 CU. FT.)&nbsp;</td>
+	    	<td width="8%"><input ID="BX73 " CLASS="QTYOFF" type="text" name="QTY73" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX74 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX (3.0 CU. FT.)&nbsp;</td>
+	    	<td width="8%"><input ID="BX74 " CLASS="QTYOFF" type="text" name="QTY74" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX75 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX (5.0 CU. FT. )&nbsp;</td>
+	    	<td width="8%"><input ID="BX75 " CLASS="QTYOFF" type="text" name="QTY75" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX76 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX 12 X18 X18&nbsp;</td>
+	    	<td width="8%"><input ID="BX76 " CLASS="QTYOFF" type="text" name="QTY76" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX77 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX CHINA   (6.0 CU. FT.)&nbsp;</td>
+	    	<td width="8%"><input ID="BX77 " CLASS="QTYOFF" type="text" name="QTY77" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX78 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX LG PBO&nbsp;</td>
+	    	<td width="8%"><input ID="BX78 " CLASS="QTYOFF" type="text" name="QTY78" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX79 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX LINEN&nbsp;</td>
+	    	<td width="8%"><input ID="BX79 " CLASS="QTYOFF" type="text" name="QTY79" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX80 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX TV 24 X24 X24&nbsp;</td>
+	    	<td width="8%"><input ID="BX80 " CLASS="QTYOFF" type="text" name="QTY80" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  	
+		  
+
+		    <td width="22%" CLASS="ITEMOFF" onclick="additem('BX81 ')" onmouseover="javascript: this.className='ITEMON'" onmouseout="javascript: this.className='ITEMOFF'">BOX WARDROBE&nbsp;</td>
+	    	<td width="8%"><input ID="BX81 " CLASS="QTYOFF" type="text" name="QTY81" size="3" value=""></td>
+			<td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+		  </tr><tr>	
+		  
+	
+			   </tr> 
+		 </table>
+	
+
+
+<br>	
+	
+<!--- News Items -->
+	<a name="#newitem"></a>
+	<BR>
+	<FONT CLASS="TITLENAME">Items that are not on the list</FONT>
+	<BR>
+	<table border="1" cellspacing="0" width="100%">
+	  <tr>
+	    <td width="26%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item Description</font></b></td>
+	    <td width="5%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    <td width="16%" bgcolor="#336699" align="center" colspan="2"><font color="#FFFFFF"><b>Pounds <font color="#FFFF00" size="4">or </font><font color="#FFFFFF">
+        Cubic Feet per item</font></b></td>
+	    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+	    <td width="26%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Item Description</font></b></td>
+	    <td width="5%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    <td width="16%" bgcolor="#336699" align="center" colspan="2"><font color="#FFFFFF"><b>Pounds <font color="#FFFF00" size="4">or </font><font color="#FFFFFF">
+        Cubic Feet per item</font></b></td>
+	    <td width="3%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+	  </tr>
+	  <tr>
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM1" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY1" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS1" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT1" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM2" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY2" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS2" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT2" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM3" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY3" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS3" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT3" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM4" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY4" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS4" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT4" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM5" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY5" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS5" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT5" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM6" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY6" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS6" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT6" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM7" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY7" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS7" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT7" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM8" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY8" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS8" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT8" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM9" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY9" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS9" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT9" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM10" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY10" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS10" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT10" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM11" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY11" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS11" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT11" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM12" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY12" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS12" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT12" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM13" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY13" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS13" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT13" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM14" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY14" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS14" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT14" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM15" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY15" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS15" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT15" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM16" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY16" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS16" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT16" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM17" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY17" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS17" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT17" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM18" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY18" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS18" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT18" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM19" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY19" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS19" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT19" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  	
+	  
+
+	    <td width="25%">
+        <input type="text" name="ITEM20" size="20"></td>
+	    <td width="5%"><p align="center">
+        <input ID="QQ" CLASS="QTYOFF" type="text" name="QTY20" size="2" value=""></td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="LBS20" size="3" value="">lbs.</td>
+	    <td width="8%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="CUFT20" size="3" value="">cf.</td>
+	    <td width="3%" bgcolor="#C0C0C0">&nbsp;</td>
+	  </tr><tr>	
+	  
+	
+	  </tr>
+	</table>
+* The customized items will appear under miscellanies in a future alteration.<br>
+
+<BR>
+
+<!--- Auto Transport-->
+	<a name="#auto"></a>
+	<BR>
+	<FONT CLASS="TITLENAME">Auto Transport</FONT>
+	<BR>
+	<table border="1" cellspacing="0" width="70%" align="left">
+	  <tr>
+	    <td width="35%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Model + Year</font></b></td>
+	    <td width="10%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    <td width="5%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+	    <td width="35%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Model + Year</font></b></td>
+	    <td width="10%" bgcolor="#336699" align="center"><b><font color="#FFFFFF">Qty.</font></b></td>
+	    <td width="5%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+	  </tr>
+	  <tr>
+	    <td width="45%" bgcolor="#FFFFFF" align="center" colspan="2">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+	   		  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE21' TYPE='HIDDEN' SIZE='10' value='CA'><input type="text" name="ITEM21" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY21" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE22' TYPE='HIDDEN' SIZE='10' value='CA'><input type="text" name="ITEM22" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY22" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE23' TYPE='HIDDEN' SIZE='10' value='CA'><input type="text" name="ITEM23" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY23" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE24' TYPE='HIDDEN' SIZE='10' value='CA'><input type="text" name="ITEM24" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY24" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE25' TYPE='HIDDEN' SIZE='10' value='CA'><input type="text" name="ITEM25" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY25" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE26' TYPE='HIDDEN' SIZE='10' value='CA'><input type="text" name="ITEM26" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY26" size="3" value=""></td>
+			   </tr>
+			  
+	
+   			  </tr>
+			</table></td>
+	    <td width="5%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+	    <td width="45%" bgcolor="#FFFFFF" align="center" colspan="2">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+	   		  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE27' TYPE='HIDDEN' SIZE='10' value='VA'><input type="text" name="ITEM27" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY27" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE28' TYPE='HIDDEN' SIZE='10' value='VA'><input type="text" name="ITEM28" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY28" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE29' TYPE='HIDDEN' SIZE='10' value='VA'><input type="text" name="ITEM29" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY29" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE30' TYPE='HIDDEN' SIZE='10' value='VA'><input type="text" name="ITEM30" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY30" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE31' TYPE='HIDDEN' SIZE='10' value='VA'><input type="text" name="ITEM31" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY31" size="3" value=""></td>
+			   </tr>
+			  
+
+			   <tr>
+			    <td width="85%"><INPUT Size='1' NAME='CODE32' TYPE='HIDDEN' SIZE='10' value='VA'><input type="text" name="ITEM32" size="30" value=""></td>
+			    <td width="15%"><p align="center"><input ID="QQ" CLASS="QTYOFF" type="text" name="QTY32" size="3" value=""></td>
+			   </tr>
+			  
+	
+   			  </tr>
+			</table></td>
+	    <td width="5%" bgcolor="#C0C0C0" align="center">&nbsp;</td>
+	  </tr>
+	</table>
+
+</FORM>
+<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+
+
+</body>
+
+</html>

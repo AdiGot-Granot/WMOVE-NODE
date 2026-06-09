@@ -1,0 +1,200 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Future Operation</title>
+
+<!----lightbox-->
+<script type="text/javascript" src="/zz/fancybox/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/zz/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/zz/fancybox/jquery.fancybox.css?v=2.1.7" media="screen" />
+<!---lightbox--->
+
+<SCRIPT LANGUAGE="JavaScript">
+
+$(document).ready(function() {
+ $(".fancybox").fancybox({
+  openEffect : 'elastic',
+  closeEffect : 'elastic',
+  fitToView: false,
+  autoSize: false,
+  nextSpeed: 0, //important
+  prevSpeed: 0, //important
+  afterLoad: function(){
+  // added 50px to avoid scrollbars inside fancybox
+   this.width = ($('.fancybox-iframe').contents().find('html').width())+50;
+   this.height = ($('.fancybox-iframe').contents().find('html').height())+50;
+  }
+
+ }); // fancybox
+}); // ready
+
+
+function FutureOpr(D,O,T) {
+    window.open('/wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT='+D+'&OPR='+O+'&TYPE='+T,'','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=850,height=550');
+    //window.location.href=('/wc.dll?mpopr~futureoprret~<%=pcSCR%>~'+D+'~'+O);
+self.name="main"}
+
+function FutureTotal(D,O,T) {
+    window.open('/wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT='+D+'&OPR='+O+'&TYPE='+T,'','toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,copyhistory=no,scrollbars=yes,width=850,height=550');
+self.name="main"}
+
+
+
+function RefreshScr(){
+	window.location.href=('/wc.dll?mpopr~futureoprwc~<%=pcSCR%>');
+}
+
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: pointer;}
+</STYLE>
+ 
+
+</head>
+<body bgcolor="#ADBACE">
+<br>
+<table border="1" align="center" style="border-collapse: collapse" bordercolor="#111111" width="950">
+  <tr>
+    <td height="25" colspan="10" bgcolor="#5275AD" align="center"><b><font face="Verdana" size="2" color="#FFFFFF">Future Operation</font></b></td>
+ </tr>
+        <tr style="background-color: #EFEFEF;line-height:22px;font-family:Verdana;font-size:10pt;">
+         <td width="49" align="center"><b>Dept</b></td>
+         <td width="269" align="center"><b>Company</b></td>
+         <td width="55" align="center"><b>Total</b></td>
+         <td width="134" align="center"><b>Type</b></td>
+         <td width="58" align="center"><b>Visual</b></td>         
+         <td width="58" align="center"><b>FADD</b></td>         
+         <td width="91" align="center"><b>Box Deliver</b></td>
+         <td width="77" align="center"><b>Pack Day</b></td>
+         <td width="67" align="center"><b>Pick-Up</b></td>
+         <td width="68" align="center"><b>Delivery</b></td>
+       </tr>
+    <% SELECT _PIVOT
+           SCAN %>
+        <tr style="font-weight: bold;background-color: #FFFFFF;font-family:Verdana;font-size:10pt;">
+         <td width="49" align="center" height="25"><%=ALLT(DEPTD)%></td>
+         <td width="269" height="25">&nbsp;<%=ALLT(NAME)%></td>
+         <td width="55" align="center" height="25" style="background-color: #E1E1FF">
+            <%IF PU > 0%>
+              <a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=ALLT(DEPTD)%>&OPR=PU&TYPE=ALL"><%=ALLT(STR(PU))%></a>
+            <%ENDIF%>
+         </td>
+         <td width="134" align="left" height="25" style="background-color: #E1E1FF">
+         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-weight: bold;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="100%">
+           <%IF LL > 0%>
+           <tr>
+             <td width="56%" valign="top">&nbsp;Local:</td>
+             <td width="44%" valign="top">&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=ALLT(DEPTD)%>&OPR=PU&TYPE=L"><%=ALLT(STR(LL))%></a></td>
+          </tr>
+          <%ENDIF%>
+           <%IF DD > 0%>
+           <tr>
+             <td width="56%" valign="top">&nbsp;Long D.:</td>
+             <td width="44%" valign="top">&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=ALLT(DEPTD)%>&OPR=PU&TYPE=D"><%=ALLT(STR(DD))%></a></td>
+          </tr>
+          <%ENDIF%>
+           <%IF II > 0%>
+           <tr>
+             <td width="56%" valign="top">&nbsp;INTL:</td>
+             <td width="44%" valign="top">&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=ALLT(DEPTD)%>&OPR=PU&TYPE=I"><%=ALLT(STR(II))%></a></td>
+          </tr>
+          <%ENDIF%>          
+           <%IF TT > 0%>
+           <tr>
+             <td width="56%" valign="top">&nbsp;Auto:</td>
+             <td width="44%" valign="top">&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=ALLT(DEPTD)%>&OPR=PU&TYPE=T"><%=ALLT(STR(TT))%></a></td>
+          </tr>
+          <%ENDIF%>
+         </table>
+         </td>
+         <td width="58" align="center" height="25">
+            <%IF ES > 0%>
+              <a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=ALLT(DEPTD)%>&OPR=ES&TYPE=ALL"><%=ALLT(STR(ES))%></a>
+            <%ENDIF%>
+            </td>         
+         <td width="58" align="center" height="25">
+            <%IF FADD > 0%>
+              <a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=<%=ALLT(DEPTD)%>&OPR=FADD&TYPE=ALL"><%=ALLT(STR(FADD))%></a>
+            <%ENDIF%>
+            </td>         
+         <td width="91" align="center" height="25"><font size="2">&nbsp;<%=ALLT(STR(BX))%>&nbsp;</td>
+         <td width="77" align="center" height="25"><font size="2">&nbsp;<%=ALLT(STR(PK))%>&nbsp;</td>
+         <td width="67" align="center" height="25"><font size="2">&nbsp;<%=ALLT(STR(PU1))%>&nbsp;</td>
+         <td width="68" align="center" height="25"><font size="2">&nbsp;<%=ALLT(STR(D1))%>&nbsp;</td>
+        </tr>
+   <%ENDSCAN%>
+  
+    <% SELECT SUM(ES) AS ES, SUM(FADD) AS FADD,SUM(PU) AS PU, SUM(BX) AS BX, SUM(PK) AS PK, SUM(PU1) AS PU1, SUM(D1) AS D1, SUM(LL) AS LL, SUM(DD) AS DD, SUM(TT) AS TT, SUM(II) AS II ;
+    	FROM _PIVOT INTO CURSOR _P
+           SCAN %>
+        <tr style="font-weight: bold;background-color: #FFFFFF;font-family:Verdana;font-size:10pt;">
+         <td width="321" align="center" height="25" style="background-color: #EFEFEF" colspan="2">Total:</td>
+         <td width="55" align="center" height="25" style="background-color: #EFEFEF">
+            <%IF PU > 0%>
+              <a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=ALLDEPT&OPR=PU&TYPE=ALL"><%=ALLT(STR(PU))%></a>
+            <%ENDIF%></td>
+         <td width="134" align="left" height="25" style="background-color: #EFEFEF">
+         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-weight: bold;font-family:Verdana;font-size:10pt;" bordercolor="#111111" width="100%" id="AutoNumber3">
+           <%IF LL > 0%>
+           <tr>
+             <td width="56%" valign="top">&nbsp;Local:</td>
+             <td width="44%" valign="top">&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=ALLDEPT&OPR=PU&TYPE=L"><%=ALLT(STR(LL))%></a></td>
+          </tr>
+          <%ENDIF%>
+           <%IF DD > 0%>
+           <tr>
+             <td width="56%" valign="top">&nbsp;Long D.:</td>
+             <td width="44%" valign="top">&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=ALLDEPT&OPR=PU&TYPE=D"><%=ALLT(STR(DD))%></a></td>
+          </tr>
+          <%ENDIF%>
+           <%IF II > 0%>
+           <tr>
+             <td width="56%" valign="top">&nbsp;INTL:</td>
+             <td width="44%" valign="top">&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=ALLDEPT&OPR=PU&TYPE=I"><%=ALLT(STR(II))%></a></td>
+          </tr>
+          <%ENDIF%>          
+           <%IF TT > 0%>
+           <tr>
+             <td width="56%" valign="top">&nbsp;Auto:</td>
+             <td width="44%" valign="top">&nbsp;<a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=ALLDEPT&OPR=PU&TYPE=T"><%=ALLT(STR(TT))%></a></td>
+          </tr>
+          <%ENDIF%>
+         </table>
+         </td>
+         <td width="58" align="center" height="25" style="background-color: #EFEFEF">
+            <%IF ES > 0%>
+              <a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=ALLDEPT&OPR=ES&TYPE=ALL"><%=ALLT(STR(ES))%></a>
+            <%ENDIF%>
+            </td>         
+         <td width="58" align="center" height="25" style="background-color: #EFEFEF">
+            <%IF FADD > 0%>
+              <a class="fancybox fancybox.iframe" href="wc.dll?mpopr~futureoprret~&SCR=<%=pcSCR%>&DEPT=ALLDEPT&OPR=FADD&TYPE=ALL"><%=ALLT(STR(FADD))%></a>
+            <%ENDIF%>
+            </td>         
+         <td width="91" align="center" height="25" style="background-color: #EFEFEF"><font size="2">&nbsp;<%=ALLT(STR(BX))%>&nbsp;</td>
+         <td width="77" align="center" height="25" style="background-color: #EFEFEF"><font size="2">&nbsp;<%=ALLT(STR(PK))%>&nbsp;</td>
+         <td width="67" align="center" height="25" style="background-color: #EFEFEF"><font size="2">&nbsp;<%=ALLT(STR(PU1))%>&nbsp;</td>
+         <td width="68" align="center" height="25" style="background-color: #EFEFEF"><font size="2">&nbsp;<%=ALLT(STR(D1))%>&nbsp;</td>
+        </tr>
+   <%ENDSCAN%>
+</table>
+</body>
+</html>

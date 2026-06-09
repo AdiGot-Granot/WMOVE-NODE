@@ -1,0 +1,240 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Assign Estimates to Representatives</title>
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function CHKUSER(){
+		frm = document.theForm;
+		if(frm.USER[frm.USER.selectedIndex].text=='') {
+			alert("Please Select User!");
+			frm.USER.focus();
+			return false ;
+			}
+		else {
+			return true ;
+		}
+}
+
+function submitFunction(i) {
+			if (i==1) 
+		      { 
+		       document.theForm.action="/wc.dll?mpscripts~trdistret~<%=pcSCR%>~ASSIGNNEW";
+   		       document.theForm.submit();
+		      }
+		    if (i==2 &&CHKUSER())
+		      { 
+               document.theForm.action="/wc.dll?mpscripts~AssignNewListRet~<%=pcSCR%>";
+   		       document.theForm.submit();
+		      }
+	    }
+		
+function CheckBoxes(FormName, CheckValue){
+   if(!document.forms[FormName])
+      return;
+   var objCheckBoxes = document.getElementsByTagName('input');
+   if(!objCheckBoxes)
+      return;
+   var countCheckBoxes = objCheckBoxes.length;
+   if(!countCheckBoxes)
+      objCheckBoxes.checked = CheckValue;
+   else
+      for(var i = 0; i < countCheckBoxes; i++)
+      objCheckBoxes[i].checked = CheckValue;
+}
+		
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+function typeCheck(value) {
+	if (Number(value)) {
+		return Number(value);
+	}
+
+	const isDate = new Date(value);
+	if (isDate instanceof Date && !isNaN(isDate.valueOf())) {
+		return isDate.getTime();
+	}
+
+	return value;
+}
+
+// if true sort else reverse
+var sortDirection = true;
+
+function compareValues(a, b) {
+	a = typeCheck(a);
+	b = typeCheck(b);
+
+	return a < b ? -1 : a > b ? 1 : 0;
+}
+
+function sortTable(id, colnum) {
+	// get all the rows in this table:
+	let table = document.getElementById(id);
+	let rows = Array.from(table.querySelectorAll(`tr`));
+
+	// but ignore the heading row:
+	rows = rows.slice(1);
+
+	if (sortDirection) {
+		// and then just... sort the rows:
+		rows.sort((r1, r2) => {
+			// get each row's relevant column
+			let t1 = r1.querySelectorAll('td')[colnum].querySelector('.target-me').textContent;
+			let t2 = r2.querySelectorAll('td')[colnum].querySelector('.target-me').textContent;
+
+			// and then effect sorting by comparing their content:
+			return compareValues(t1, t2);
+		});
+		console.log('TCL: sortTable -> sort');
+	} else {
+		// and then just... sort the rows:
+
+		console.log('TCL: sortTable -> rev');
+		rows.reverse((r1, r2) => {
+			// get each row's relevant column
+			let t1 = r1.querySelectorAll('td')[colnum].querySelector('.target-me').textContent;
+			let t2 = r2.querySelectorAll('td')[colnum].querySelector('.target-me').textContent;
+
+			// and then effect sorting by comparing their content:
+			return compareValues(t1, t2);
+		});
+	}
+
+	sortDirection = !sortDirection;
+	console.log('TCL: sortTable -> rows', rows);
+	// and then the magic part that makes the sorting appear on-page:
+	rows.forEach((row) => table.appendChild(row));
+}
+
+</script>
+
+</head>
+
+<body>
+  <p align="center"><br>
+    <%	SELECT _LIST
+    	lnRecCount = RecCount() %>
+  <font color="#<%=IIF(plREPASSIGN,'FF0000','000000')%>" face="arial" size="4"><b><%=IIF(plREPASSIGN,'Reassign','Assign')%> Follow-Up Estimates to Representatives<br>
+  Total Estimates:&nbsp;<b><%=ALLT(STR(lnRecCount))%></b></font><br><font face="arial" size="4"><%=pcTITLE%></font></b></p>
+<form name="theForm" method="POST">
+<%IF !plCLASSIC%>
+<table border="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="8%"><font face="Verdana" size="2"><b>To User:</b></font></td>
+    <td width="9%">
+     <select size="1" name="USER">
+     <OPTION value=""></OPTION>
+	     <% SELECT _USERS
+	         SCAN %>
+		       <OPTION value="<%=USER %>"><%=USER%><%=ALLT(DEPT1)%></OPTION>
+	     <% ENDSCAN %>
+   	   </select></td>
+  <%IF plDEPT%> 	   
+    <td width="9%"><font face="Verdana" size="2"><b>Department:</b></font></td>
+    <td width="6%">
+       	<select size="1" name="DEPT">
+       	<option value=""></option>
+		<% SELECT _DEPARTMENT
+				 SCAN %>
+		<option value="<%=ALLT(DEPT)%>"><%=ALLT(DEPT)%></option>
+		<% ENDSCAN %>
+		</select></td>
+   <%ENDIF%>
+    <td width="14%">
+  <% IF pnCOLEVEL > 2 %>
+    <font face="Verdana" size="2"><b>Priority:</b></font>&nbsp;&nbsp;
+    <select size="1" name="FUSTATUS">
+		<option value="99"></option>
+		<option value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">Pool</option>
+	</select>
+  <%ENDIF%>
+    </td>
+    <td width="54%"><%IF !plCLASSIC%><input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(2)" style="width: 100;cursor: pointer;" value="Submit"><%ENDIF%></td>
+  </tr>
+</table>
+<%ENDIF%>
+ <table border="1" id="myTable" cellpadding="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#C0C0C0" width="100%">
+    <tr style="background-color:#0081D3;font-family:Verdana;font-size:10pt;font-weight:bold;color:#FFFFFF;">
+      <th width="7%" align="center">Assign<%IF !plCLASSIC%><input type="checkbox" name="checkall" onclick="CheckBoxes('theForm',this.checked);" value="ON"><%ENDIF%></th>
+      <th width="5%" align="center">Job No</th>
+      <th width="7%" align="center" style="cursor:pointer;" onclick="sortTable('myTable',2)">Move Date <font size="5" color="#E7FFE7"><b>&#8597;</b></font></th>
+      <th width="16%" align="center">Customer</th>
+      <th width="9%" align="center">Phone</th>
+      <th width="15%" align="center">Moving From/To</th>
+      <th width="3%" align="center">Miles</th>
+      <th width="6%" align="center" style="cursor:pointer;" onclick="sortTable('myTable',7)">Volume <font size="5" color="#E7FFE7"><b>&#8597;</b></font></th>
+      <th width="6%" align="center">Estimate</th>
+      <th width="6%" align="center">Follow-Up</th>
+      <th width="7%" align="center">Open Date</th>
+      <th width="13%" align="center" style="cursor:pointer;" onclick="sortTable('myTable',11)">Refer/Type <font size="5" color="#E7FFE7"><b>&#8597;</b></font></th>
+    </tr>
+   <% SELECT _LIST 
+    	   SCAN %>
+      <tr style="font-family:Verdana;font-size:8pt;">
+      <td width="7%" align="center">
+   <%IF !plCLASSIC%>    
+      <input type="checkbox" name="<%=ALLT(ORDNO)%>" value="ON">
+   <%ELSE%>
+   <select size="1" name=<%=ALLT(ORDNO) %>>
+   <OPTION value="<%=_LIST.USER%>"><%=_LIST.USER%></OPTION>
+	     <% SELECT _USERS
+	         SCAN %>
+		       <OPTION value="<%=USER %>"><%=USER%></OPTION>
+	     <% ENDSCAN %>
+   	   </select>
+   <%ENDIF%> 
+   <%SELECT _LIST%>  
+      <font COLOR="#FF0000"><%=IIF(EMPTY(USER),'','<BR>'+USER)%></FONT></td>
+      <td width="5%" height="18"><b><a href="/wc.dll?mprep~printselect~<%=pcSCR+'~'+ALLT(REFERENCE)%>" target='_blank'><%=ALLT(_LIST.DEPT)+ALLT(_LIST.ORDNO)%></a><br><%=_LIST.WEB%></b></td>
+      <td width="7%" height="18"><span class="target-me"><%=ALLT(BOOKED) %></span>
+      <% IF pcCUSTNO<>'NATIONALMG' AND pcCUSTNO<>'EAGLEMOG' AND pcCUSTNO<>'EVERSAFE' %>
+      <font color="#FF0000"><%=IIF(EMPTY(cLEADSTATUS),'','<BR>'+ALLT(cLEADSTATUS))%></font>
+      <%ENDIF%>
+      <br><B>Prior-<%=IIF(FUSTATUS=9,'Pool',ALLT(STR(FUSTATUS)))%></B></td>
+      <td width="16%" height="18"><b><%=ALLT(SNAME)%><BR><FONT COLOR="<%=IIF(EMPTY(cLEADSTATUS),'#000000','#FF0000')%>"><%=ALLT(EMAIL)%></font></B>&nbsp;</td>
+      <td width="9%" height="18"><b><%=ALLT(STELH)%><%=IIF(EMPTY(STELO),'','<br>'+ALLT(STELO))%></b></td>
+      <td width="15%" height="18"><%=ALLT(FROM)%><br><%=ALLT(TO)%>&nbsp;</td>
+      <td width="3%" height="18" align="right"><%=IIF(MILES=0,' ',ALLT(STR(MILES))) %></td>
+      <td width="6%" height="18" align="right">
+      <%IF plCALCCF=.T. %>
+         <span class="target-me"><%=IIF(TOTALCF=0,' ',ALLT(STR(TOTALCF)))%></span> cf
+      <%ELSE%>   
+         <span class="target-me"><%=IIF(TOTALLBS=0,' ',ALLT(STR(TOTALLBS)))%></span> lbs
+      <%ENDIF%></td>
+      <td width="6%" height="18" align="right"><%=IIF(SUBTOTAL=0,' ','$'+ALLT(STR(SUBTOTAL))) %>&nbsp;</td>
+      <td width="6%" height="18">&nbsp;<%=NEXTFU%></td>
+      <td width="7%" height="18">&nbsp;<%=OPEN_DATE%></td>
+      <td width="13%" height="18"><span class="target-me"><b><%=ALLT(REF)%></b></span><BR><%=ALLT(RCM)%>&nbsp;</td>
+    </tr>
+    <% ENDSCAN %>
+</table>
+  <BR>
+<table border="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="100%" ALIGN="CENTER">
+ <%IF plCLASSIC%>   
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(1)" style="width: 100;cursor: pointer;" value="Submit">
+ <%ELSE%>    
+    <input id="btnSubmit" type="button" CLASS="SUBOFF" name="SUBMIT" onclick="submitFunction(2)" style="width: 100;cursor: pointer;" value="Submit">
+ <%ENDIF%>    
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

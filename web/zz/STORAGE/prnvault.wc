@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Print Vault Sticker</title>
+
+<style>
+	p.pagebreak {   page-break-after: always;}
+</style>
+
+</head>
+
+<body>
+<table width="700" border="2" align="center" style="border-collapse: collapse" bordercolor="#7D7D79">
+  <tr> 
+    <td width="100%" bgcolor="#FFFFFF" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="100%" align="center"><font face="Arial" size="5"><b><%=pcCOMPANY%><font size="3">
+    <%=IIF(EMPTY(pcADD1) AND EMPTY(pcADD2),' ','<BR>'+pcADD1+'<br>'+pcADD2)%><br><%=pcTOLLFREE%></font></b></td>
+ </tr>
+</table>
+  <br>   
+<table border="1" align="center" width="98%" style="border-collapse: collapse" bordercolor="#7D7D79" cellspacing="1" cellpadding="2">
+  <tr>
+    <td width="100%" align="center"><font SIZE="5" face="Arial"><b>Customer</b></font><br><br>
+    <font SIZE="7" face="Arial"><%=ALLT(PROPER(_EST.SNAME))%></font></td>
+ </tr>
+</table>
+<br>
+<table border="1" align="center" width="98%" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#7D7D79">
+  <tr>
+    <td width="28%"><font SIZE="5" face="Arial"><b>Job No</b></font></td>
+    <td width="72%" colspan="2"><font SIZE="7" face="Arial"><%=ALLT(_EST.DEPT)+'-'+ALLT(_EST.ORDNO)%></font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="28%"><font SIZE="5" face="Arial"><b>Date In</b></font></td>
+    <td width="72%" colspan="2"><font SIZE="7" face="Arial"><%=ALLT(_STG.CINDTE)%></font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="28%"><font SIZE="5" face="Arial"><b>Going To</b></font></td>
+    <td width="72%" colspan="2"><font SIZE="7" face="Arial"><%=ALLT(PROPER(_EST.RCITY))+', '+ALLT(_EST.RSTATE)%> <%=ALLT(_EST.RZIP)%></font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="28%"><font SIZE="5" face="Arial"><b>Delivery Out</b></font></td>
+    <td width="72%" colspan="2"><font SIZE="7" face="Arial"><%=ALLT(_STG.CDLVDTE1)%><%=IIF(EMPTY(_STG.CDLVDTE2),'',' - '+ALLT(_STG.CDLVDTE2))%></font>&nbsp;</td>
+ </tr>  
+  <tr>
+    <td width="28%"><font SIZE="5" face="Arial"><b>No. of Vaults</b></font></td>
+    <td width="25%"><font SIZE="6" face="Arial"><%=ALLT(STR(_STG.CRATES))%></font>&nbsp;</td>
+    <td width="47%"><font SIZE="5" face="Arial"><b>Oversize Items: <%=ALLT(STR(_STG.XLITEMS))%></b></font></td>
+ </tr>
+  <tr>
+    <td width="28%"><font SIZE="5" face="Arial"><b>CF in Storage</b></font></td>
+    <td width="25%"><font SIZE="6" face="Arial"><%=ALLT(STR(_STG.TOTALCF))%></font>&nbsp;</td>
+    <td width="47%"><font SIZE="5" face="Arial"><b>Moving Pads: <%=ALLT(STR(_STG.PADS))%></b></font>&nbsp;</td>
+ </tr>  
+</table>
+ <br>
+<table border="1" align="center" width="98%" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#7D7D79">
+  <tr>
+    <td width="50%" valign="top" align="center"><font SIZE="5" face="Arial"><b>Lot / Color / Sticker / Vault</b></font><br><br>
+    <font SIZE="7" face="Arial"><%=ALLT(_STG.LOTNO)%><br><%=_STG.LOTCOLOR%><br>From: <%=ALLT(STR(_STG.LOTFROM))%> To: <%=ALLT(STR(_STG.LOTTO))%><%=IIF(_STG.CRATES>0,'<br>'+pcPAGE,'')%></font></td>
+ <%IF !EMPTY(_STG.LOTFROM1) OR !EMPTY(_STG.LOTTO1)%>
+    <td width="50%" valign="top" align="center"><font SIZE="5" face="Arial"><b>Lot / Color / Sticker</b></font><br><br>
+    <font SIZE="7" face="Arial"><%=ALLT(_STG.LOTNO1)%><br><%=_STG.LOTCOLOR1%><br>From: <%=ALLT(STR(_STG.LOTFROM1))%> To: <%=ALLT(STR(_STG.LOTTO1))%></font></td>
+ <%ENDIF%>
+ </tr>
+</table>
+<% IF !EMPTY(_VAULTS.SPACENO)%>
+ <br>
+<table border="1" align="center" width="98%" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#7D7D79">
+  <tr>
+    <td width="100%"><center><b><font SIZE="5" face="Arial">Vault Locations</font><center><br>
+    <% SELECT _VAULTS
+       SCAN %> 
+     <font face="Arial" size="5"><%=ALLT(SPACENO)%>&nbsp,&nbsp
+     <%ENDSCAN%></font></b></td>
+ </tr>
+</table>
+<%ENDIF%>
+<% IF !EMPTY(_STG.LOCATION)%>
+ <br>
+<table border="1" align="center" width="98%" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#7D7D79">
+  <tr>
+    <td width="100%" align="center"><font SIZE="5" face="Arial"><b>Location in Storage</b></font><br><br>
+    <font SIZE="7" face="Arial"><%=ALLT(_STG.LOCATION)%></font></td>
+ </tr>
+</table>
+<%ENDIF%>
+<% IF !EMPTY(_STG.CRATESMEMO)%>
+ <br>
+<table border="1" align="center" width="98%" cellpadding="2" cellspacing="1" style="border-collapse: collapse" bordercolor="#7D7D79">
+  <tr>
+    <td width="100%"><CENTER><font SIZE="5" face="Arial"><b>Crates/Vaults List</b></CENTER><br><%=ALLT(_STG.CRATESMEMO)%></font></td>
+ </tr>
+</table>
+<%ENDIF%>
+&nbsp;</td>
+ </tr>
+</table>
+<p class="pagebreak">&nbsp;</p>   
+</body>
+</html>

@@ -1,0 +1,188 @@
+<html>
+
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+<title>Pay Commission to Worker</title>
+<script language="JavaScript" src="/zz/util/formcheck.js"></SCRIPT>
+
+<!--DATE PICKER-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<link type="text/css" rel="Stylesheet" href="/zz/util/datepicker.css?v=3.1.2" media="screen">
+<!--DATE PICKER-->
+  
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#Date1").datepicker({ numberOfMonths:[1,2] });
+   });
+</script>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+function recalculate(i) {
+    if (i==1) document.theForm.action="/wc.dll?mpopr~recalculateworker~<%=pcSCR %>";
+    document.theForm.submit()
+    }
+
+function checkData(){
+			frm = document.theForm;
+			return lengthValid(frm.REF,1,"Please enter reference to complete the payment") ;
+		}
+
+function submitfunction(i) {
+		if (checkData()) {
+          document.theForm.action="/wc.dll?mpopr~mpwpendret~<%=pcSCR%>";
+          document.theForm.submit();
+      }
+	}
+
+</SCRIPT>
+<STYLE TYPE="text/css">
+ 	.TD1	 	{	color: #993366; 
+					font-weight: bold;
+					font-size: 10pt;
+					font-family: Arial;
+				  	text-align: center;}
+ 	.TD2	 	{	font-weight: bold;
+					font-size: 10pt;
+					font-family: Arial;
+				  	text-align: right;}				  	
+ 	.SUBOFF	 	{	color: black; 
+					font-weight: none;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #CCCCCC;
+					font-size: 10pt;
+  				  	cursor: Hand}
+	.SUBON	 	{	color: #0000FF; 
+					font-weight: bold;
+					font-family: Arial;
+				  	text-align: center;
+					width: 120;
+					background-color: #FFFF00;
+					font-size: 10pt;
+  				  	cursor: Hand}
+</style>
+</head>
+
+<body BGCOLOR="#4E6699">
+<br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/topBaropr.gif" width="100%" height="14"></td>
+  </tr>
+  <tr>
+    <td width="100%" BGCOLOR="#bebe99" align="center" height="20">
+    <b><font face="Verdana" size="4" color="#993366">Pay Commission to Worker</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" valign="top" bgcolor="#FFFFFF"><br>
+<table border="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="98%">
+  <tr>
+    <td width="100%"><font face="Arial" size="2"><b>Worker ID:&nbsp;&nbsp;<%=pcID%>&nbsp;,&nbsp;<%=pcNAME%></b></font></td>
+ </tr>
+</table>
+ <FORM NAME="theForm" method="post">    
+<table border="2" width="99%" align="center" cellpadding="0" cellspacing="1" style="border-collapse:collapse;" bordercolor="#6B8AAD">
+    <tr>
+      <td width="5%" class="TD1">Job No.</td>
+      <td width="5%" class="TD1">Type</td>
+      <td width="9%" class="TD1">Customer</td>
+      <td width="6%" class="TD1">Move Date</td>
+      <td width="5%" class="TD1">Operation</td>
+      <td width="6%" class="TD1">Position</td>
+      <td width="1%" class="TD1">Hours</td>
+      <td width="5%" class="TD1">Line Haul</td>
+      <td width="5%" class="TD1">Overload</td>
+      <td width="5%" class="TD1">Material</td>
+      <td width="5%" class="TD1">Others</td>
+      <td width="5%" class="TD1">Extra</td>
+      <td width="6%" class="TD1">Total<br>Pick-Up</td>
+      <td width="4%" class="TD1">Tip</td>
+      <td width="6%" class="TD1">Total<br>Comm.</td>
+      <td width="15%" class="TD1">Remarks</td>
+      <td width="1%" class="TD1">To Pay</td>
+    </tr>    
+ <% lnTOTALHRS=0
+ 	SELECT _MPW
+ 	SCAN %>
+    <tr style="line-height:23px;">
+      <td width="5%" align="center"><font face="Arial" size="2"><b><a href="/wc.dll?mprep~printselect~<%=pcSCR%>~<%=ALLT(REFNO)%>" target="_blank"><%=ALLT(_MPW.DEPT)%><%=ALLT(ORDNO)%></a></b></font>&nbsp;</td>
+      <td width="5%" align="center"><font face="Arial" size="2"><b><%=ETYPE%></b></font>&nbsp;</td>
+      <td width="9%">&nbsp;<font face="Arial" size="2"><b><%=ALLT(PROPER(_MPW.SNAME))%></b></font></td>
+      <td width="6%" align="center"><font face="Arial" size="2"><b><%=DTOC(DTE)%></b></font>&nbsp;</td>
+      <td width="5%" align="center"><font face="Arial" size="2"><b><%=ALLT(JOBCODE)%></b></font>&nbsp;</td>
+      <td width="6%" align="center"><font face="Arial" size="2"><b><%=ALLT(OPRCODE)%></b></font>&nbsp;</td>
+      <td width="1%" class="TD2"><%=IIF(HRS=0,'',ALLT(STR(HRS,6,2))) %>&nbsp;</td>
+      <td width="5%" class="TD2"><%IF TYPE='D'%><%=IIF(CLH=0,"",'$'+ALLT(STR(CLH,7,2)))%><%ELSE%><%=IIF(CLOCALLH=0,"",'$'+ALLT(STR(CLOCALLH,7,2)))%><%ENDIF%>&nbsp;</td>
+      <td width="5%" class="TD2"><%=IIF(COVERLOAD=0,"",'$'+ALLT(STR(COVERLOAD,7,2)))%>&nbsp;</td>
+      <td width="5%" class="TD2"><%=IIF(CMAT=0,"",'$'+ALLT(STR(CMAT,7,2)))%>&nbsp;</td>
+      <td width="5%" class="TD2"><%=IIF(COTHER=0,"",'$'+ALLT(STR(COTHER,7,2)))%>&nbsp;</td>
+      <td width="5%" class="TD2"><%=IIF(CEXTRA=0,"",'$'+ALLT(STR(CEXTRA,7,2)))%>&nbsp;</td>
+      <td width="6%" bgcolor="#F5F5F5" class="TD2"><%=IIF(CACTTOTAL=0,"",'$'+ALLT(STR(CACTTOTAL,7,2)))%>&nbsp;</td>
+      <td width="4%" class="TD2"><%=IIF(TIP=0,"",'$'+ALLT(STR(TIP,7,2)))%>&nbsp;</td>
+      <td width="6%" bgcolor="#F5F5F5" align="right"><font face="Arial" size="2" color="#008000"><b>$<%=STR(COMM,10,2) %></b></font></td>
+      <td width="15%" align="left">&nbsp;<input NAME="<%='n'+ALLT(STR(TRNO)) %>" size="28" VALUE="<%=ALLT(NOTES) %>">
+      <td width="1%" align="center"><input type="checkbox" name="<%='p'+ALLT(STR(TRNO)) %>" value="ON" checked ></td>
+    </tr>
+ <% lnTOTALHRS=lnTOTALHRS+HRS
+ 	ENDSCAN %>    
+    <tr>
+      <td width="35%" height="30" colspan="6" align="right"><font face="Arial" size="2"><b>Total Hrs:</b></font></td>
+      <td width="3%" height="30" align="center"><b><font color="#FF0000" face="Arial" size="2"><%=IIF(lnTOTALHRS=0,"",ALLT(STR(lnTOTALHRS,8,2)))%></b></font>&nbsp;</td>
+      <td width="44%" height="30" colspan="7" align="right"><font face="Arial" size="2"><b>Total:</b></font></td>
+      <td width="4%" height="30" bgcolor="#F5F5F5" align="right"><b><font color="#008000" face="Arial" size="2">$<%=STR(pnCOMM,10,2) %></b></font></td>
+      <td width="3%" height="30" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="recalculate(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Recalculate"></td>
+      <td width="3%" height="30">&nbsp;</td>
+    </tr>
+</table>
+	<br>
+<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="100%"><font face="Arial" size="2"><b>Payment To: <%=pcID%>&nbsp;,&nbsp;<%=pcNAME%></b></font></td>
+ </tr>
+</table>
+  <table border="2" width="90%" align="center" style="border-collapse: collapse" bordercolor="#111111" bordercolorlight="#6B8AAD" bordercolordark="#6B8AAD">
+    <tr>
+      <td width="14%" class="TD1">Paid Date</td>
+      <td width="20%" class="TD1">Type of Payment</td>
+      <td width="26%" class="TD1">Reference/ Check No.</td>
+      <td width="11%" class="TD1">Amount</td>
+      <td width="29%" class="TD1">Remarks</td>
+    </tr>
+    <tr>
+      <td width="14%" align="center"><input NAME="PAIDDTE" id="Date1" size="10" VALUE="<%=DTOC(DATE())%>" READONLY></td>
+      <td width="20%" align="center">
+      <select size="1" name="TYPE" tabindex="28">
+	       	 <option>Check</option>
+		     <option>Cash</option>
+		     <option>Credit Card</option>
+       		 <option>Money Order</option>
+        </select></td>
+      <td width="26%" align="center"><input NAME="REF" style="background-color:#FFFFCC" size="25" VALUE=""></td>
+      <td width="11%" align="center"><input NAME="PAYAMT" size="5" VALUE="<%=STR(pnCOMM,10,2) %>" style="text-align:right;"></td>
+      <td width="29%" align="center"><input NAME="REMARKS" size="25" value=""></td>
+    </tr>
+  </table>
+  <p><font color="#FF0000"><b><%=pcMSG%></font></b></p>
+<!-- Buttons --->
+       <br>
+<table border="0" width="50%" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+	<td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="submitfunction(1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Submit"></td>    
+    <td width="49%" align="center"><input type="button" CLASS="SUBOFF" name="B3" onclick="javascript:history.go(-1)" onmouseover="javasctript: this.className='SUBON'" onmouseout="javasctript: this.className='SUBOFF'" value="Payroll Menu"></td>
+ </tr>
+</table>
+		</form>
+    </td></tr>
+  <tr>
+    <td width="100%" bgcolor="#993366" height="20"><font size="2" color="#FFFFFF">User: <%=pcUser%></font></td>
+  </tr>
+  <tr>
+    <td width="100%" height="14"><IMG SRC="zz/images/botBar.gif" width="100%" height="14"></td>
+  </tr>
+</table>
+</body>
+</html>
