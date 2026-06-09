@@ -11,6 +11,7 @@
 const inventoryService = require('../services/inventoryService');
 const estimateEntryService = require('../services/estimateEntryService');
 const entryService = require('../services/entryService');
+const autoEntryService = require('../services/autoEntryService');
 
 // Estimate entry form (legacy MPEST.entrywc). Local/Long-Distance, International
 // and Broker all land here (differ by ?module=). Renders entry.ejs.
@@ -33,6 +34,34 @@ async function entrywc(req, res, next) {
     // remember the estimate for continuity (entryret, inventory, etc.)
     req.session.est = { refno: model.est.REFNO, jobId: model.est.JOBID };
     res.render('mpest/entry', model);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// Auto Transport entry form (legacy MPEST.entryautowc, PRGS-736/MPEST.PRG:235).
+// Auto-transport companies (COLEVEL=3) skip the type chooser; the rest reach
+// this via `selectestret` choosing AUTO. Renders entryauto.ejs.
+async function entryautowc(req, res, next) {
+  try {
+    const dept = req.query.dept || '';
+    const refno = req.query.refno || (req.session.est && req.session.est.refno) || '';
+
+    const model = await autoEntryService.getAutoEntryForm(
+      req.user || { custid: null, levelid: 0 },
+      { dept, refno }
+    );
+
+    if (model.notFound) return res.status(404).type('text/plain').send('Estimate not found');
+    if (model.writeDisabled) {
+      return res
+        .status(503)
+        .type('text/plain')
+        .send('New estimate creation is disabled (ESTIMATE_WRITES=false). Verify on DEMOPRO, then enable to write to the database.');
+    }
+
+    req.session.est = { refno: model.est.REFNO, jobId: model.est.JOBID };
+    res.render('mpest/entryauto', model);
   } catch (err) {
     next(err);
   }
@@ -92,7 +121,7 @@ async function inventory(req, res, next) {
 // name → legacy source line. Public (token-auth) vs internal (login) is
 // enforced in routes/mpest.js.
 const PENDING = {
-  entryautowc: 235, entryret: 726, emailin: 1572,
+  entryret: 726, emailin: 1572,
   emaildocs: 1910, emailindocs: 1989, printautowc: 2268, emailauto: 2497,
   prnestwc: 2867, EmailEst: 3386, emailcenterwc: 4099, emailcenterret: 4208,
   ClaimsCenterWc: 4731, thankswc: 4832, thanksret: 4911, deleteest: 4964,
@@ -103,7 +132,7 @@ const PENDING = {
   bolwc: 6409, ESIGNBOLRET: 6948, ESIGNDOCRET: 7083,
 };
 
-const handlers = { inventory, indexwc, entrywc };
+const handlers = { inventory, indexwc, entrywc, entryautowc };
 for (const [name, line] of Object.entries(PENDING)) {
   handlers[name] = (req, res) =>
     res

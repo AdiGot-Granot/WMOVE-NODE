@@ -21,6 +21,7 @@ const PUBLIC = [
 
 // Implemented convenience routes (friendly params form).
 router.get('/entrywc', est.entrywc);
+router.get('/entryautowc', est.entryautowc);
 router.get('/indexwc/:custno/:dept?/:entry?', est.indexwc);
 router.get('/inventory/:refno/:custid?/:temailid?', est.inventory);
 router.post('/esigndocret/:refno/:custid?/:temailid?', est.ESIGNDOCRET);
